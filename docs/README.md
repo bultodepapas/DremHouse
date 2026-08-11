@@ -25,6 +25,7 @@
 
 - [Bases de diseño arquitectónico](02_arquitectura/bases_de_diseno.md)
 - [Control de visualizaciones](02_arquitectura/control_de_visualizaciones.md)
+- [Plano conceptual v0.3 — primer borrador paramétrico](02_arquitectura/plano_conceptual_v0.3_borrador.md)
 
 ## 03 — Ingenierías
 

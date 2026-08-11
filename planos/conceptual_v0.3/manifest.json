@@ -1,0 +1,12 @@
+{
+  "input": "dreamhouse\\project.json",
+  "input_sha256": "b99ca1e55a5d9b143f4421f9a91b70ead2808da2b366d348bd8bdc5203a53839",
+  "generator": "dreamhouse/generate_plans.py",
+  "revision": "0.3-borrador-01",
+  "outputs": [
+    "DH-ARQ-PLN-001-R00_PB.svg",
+    "DH-ARQ-PLN-002-R00_P2.svg",
+    "compliance.json",
+    "reporte_cumplimiento.md"
+  ]
+}

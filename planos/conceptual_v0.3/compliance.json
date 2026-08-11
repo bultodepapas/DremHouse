@@ -1,0 +1,50 @@
+{
+  "project_revision": "0.3-borrador-01",
+  "status": "hypothesis",
+  "checks": [
+    {
+      "rule_id": "HR-ENV",
+      "status": "PASS",
+      "message": "Todas las zonas PB dentro de 18 × 36 m"
+    },
+    {
+      "rule_id": "HR-P2",
+      "status": "PASS",
+      "message": "Todas las zonas P2 dentro de 18 × 15 m"
+    },
+    {
+      "rule_id": "HR-P2-TOPO",
+      "status": "PASS",
+      "message": "Zonificación P2 sin solapes"
+    },
+    {
+      "rule_id": "HR-DOORS",
+      "status": "PASS",
+      "message": "Exactamente tres accesos frontales"
+    },
+    {
+      "rule_id": "HR-SUITES",
+      "status": "PASS",
+      "message": "Exactamente cuatro suites"
+    },
+    {
+      "rule_id": "HR-CHILD-EQ",
+      "status": "PASS",
+      "message": "Suites de hijos con igual área objetivo"
+    },
+    {
+      "rule_id": "DCV-CORE",
+      "status": "PASS",
+      "message": "Núcleo PB = 81,00 m²"
+    },
+    {
+      "rule_id": "DCV-P2-AREA",
+      "status": "PASS",
+      "message": "Zonificación P2 suma 270,00 m²"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0
+  }
+}
