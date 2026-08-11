@@ -56,6 +56,11 @@
 - [Plantilla de acta](07_plantillas/acta.md)
 - [Plantilla de reporte diario de obra](07_plantillas/reporte_diario_obra.md)
 
+## 08 — Investigación y herramientas
+
+- [Herramientas digitales para planos, BIM y estructuras](08_investigacion/herramientas_planos_bim_y_estructuras.md):
+  arquitectura propuesta del modelo, formatos, validaciones y ruta de prototipos.
+
 ## Uso del expediente
 
 1. Consultar la constitución antes de diseñar.

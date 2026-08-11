@@ -15,7 +15,6 @@ Antes de proponer cambios:
 6. Registra cambios de alcance o costo en `docs/04_costos/base_y_control_de_costos.md`.
 
 Reglas permanentes:
-
 - Los documentos canónicos derivados sí evolucionan con versión, fecha, estatus y fuente.
 - Ante contradicciones, no elijas silenciosamente: abre un conflicto o una decisión.
 - Las visualizaciones deben obedecer la geometría y el programa; nunca son autoridad
