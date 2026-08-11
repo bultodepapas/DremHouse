@@ -11,46 +11,10 @@
 | M45 · PORTICO-T | HEA500 | IPE450 | 9 | **59.9 t** | 65.3 |
 | M45 · PORTICO-F | HEA300 | IPE450 | 9 | **47.7 t** | 52.0 |
 | M45 · CERCHA | HEA200 | IPE220 | 9 | **40.4 t** | 44.1 |
-| M45 · PORTICO | HEA500 | IPE450 | 9 | **58.5 t** | 63.7 |
-| M45 · PORTICO-T | HEA500 | IPE450 | 9 | **59.9 t** | 65.3 |
-| M45 · PORTICO-F | HEA300 | IPE450 | 9 | **47.7 t** | 52.0 |
-| M45 · CERCHA | HEA200 | IPE220 | 9 | **40.4 t** | 44.1 |
-| M45 · PORTICO | HEA500 | IPE450 | 9 | **58.5 t** | 63.7 |
-| M45 · PORTICO-T | HEA500 | IPE450 | 9 | **59.9 t** | 65.3 |
-| M45 · PORTICO-F | HEA300 | IPE450 | 9 | **47.7 t** | 52.0 |
-| M45 · CERCHA | HEA200 | IPE220 | 9 | **40.4 t** | 44.1 |
-| M45 · PORTICO | HEA500 | IPE450 | 9 | **58.5 t** | 63.7 |
-| M45 · PORTICO-T | HEA500 | IPE450 | 9 | **59.9 t** | 65.3 |
-| M45 · PORTICO-F | HEA300 | IPE450 | 9 | **47.7 t** | 52.0 |
-| M45 · CERCHA | HEA200 | IPE220 | 9 | **40.4 t** | 44.1 |
 | M60 · PORTICO | HEA500 | IPE500 | 7 | **52.1 t** | 56.8 |
 | M60 · PORTICO-T | HEA500 | IPE500 | 7 | **53.3 t** | 58.0 |
 | M60 · PORTICO-F | HEA300 | IPE450 | 7 | **41.8 t** | 45.6 |
 | M60 · CERCHA | HEA200 | IPE220 | 7 | **36.2 t** | 39.4 |
-| M60 · PORTICO | HEA500 | IPE500 | 7 | **52.1 t** | 56.8 |
-| M60 · PORTICO-T | HEA500 | IPE500 | 7 | **53.3 t** | 58.0 |
-| M60 · PORTICO-F | HEA300 | IPE450 | 7 | **41.8 t** | 45.6 |
-| M60 · CERCHA | HEA200 | IPE220 | 7 | **36.2 t** | 39.4 |
-| M60 · PORTICO | HEA500 | IPE500 | 7 | **52.1 t** | 56.8 |
-| M60 · PORTICO-T | HEA500 | IPE500 | 7 | **53.3 t** | 58.0 |
-| M60 · PORTICO-F | HEA300 | IPE450 | 7 | **41.8 t** | 45.6 |
-| M60 · CERCHA | HEA200 | IPE220 | 7 | **36.2 t** | 39.4 |
-| M60 · PORTICO | HEA500 | IPE500 | 7 | **52.1 t** | 56.8 |
-| M60 · PORTICO-T | HEA500 | IPE500 | 7 | **53.3 t** | 58.0 |
-| M60 · PORTICO-F | HEA300 | IPE450 | 7 | **41.8 t** | 45.6 |
-| M60 · CERCHA | HEA200 | IPE220 | 7 | **36.2 t** | 39.4 |
-| M90 · PORTICO | HEA500 | IPE550 | 5 | **49.1 t** | 53.4 |
-| M90 · PORTICO-T | HEA500 | IPE550 | 5 | **49.9 t** | 54.3 |
-| M90 · PORTICO-F | HEA300 | IPE550 | 5 | **43.1 t** | 46.9 |
-| M90 · CERCHA | HEA200 | IPE220 | 5 | **36.2 t** | 39.4 |
-| M90 · PORTICO | HEA500 | IPE550 | 5 | **49.1 t** | 53.4 |
-| M90 · PORTICO-T | HEA500 | IPE550 | 5 | **49.9 t** | 54.3 |
-| M90 · PORTICO-F | HEA300 | IPE550 | 5 | **43.1 t** | 46.9 |
-| M90 · CERCHA | HEA200 | IPE220 | 5 | **36.2 t** | 39.4 |
-| M90 · PORTICO | HEA500 | IPE550 | 5 | **49.1 t** | 53.4 |
-| M90 · PORTICO-T | HEA500 | IPE550 | 5 | **49.9 t** | 54.3 |
-| M90 · PORTICO-F | HEA300 | IPE550 | 5 | **43.1 t** | 46.9 |
-| M90 · CERCHA | HEA200 | IPE220 | 5 | **36.2 t** | 39.4 |
 | M90 · PORTICO | HEA500 | IPE550 | 5 | **49.1 t** | 53.4 |
 | M90 · PORTICO-T | HEA500 | IPE550 | 5 | **49.9 t** | 54.3 |
 | M90 · PORTICO-F | HEA300 | IPE550 | 5 | **43.1 t** | 46.9 |
@@ -64,46 +28,10 @@
 | M45 · PORTICO-T | 41.0 | 11.4 | 10.7 | 7.5 | 59.9 |
 | M45 · PORTICO-F | 28.7 | 11.4 | 10.7 | 7.5 | 47.7 |
 | M45 · CERCHA | 21.5 | 11.4 | 10.7 | 7.5 | 40.4 |
-| M45 · PORTICO | 39.5 | 11.4 | 10.7 | 7.5 | 58.5 |
-| M45 · PORTICO-T | 41.0 | 11.4 | 10.7 | 7.5 | 59.9 |
-| M45 · PORTICO-F | 28.7 | 11.4 | 10.7 | 7.5 | 47.7 |
-| M45 · CERCHA | 21.5 | 11.4 | 10.7 | 7.5 | 40.4 |
-| M45 · PORTICO | 39.5 | 11.4 | 10.7 | 7.5 | 58.5 |
-| M45 · PORTICO-T | 41.0 | 11.4 | 10.7 | 7.5 | 59.9 |
-| M45 · PORTICO-F | 28.7 | 11.4 | 10.7 | 7.5 | 47.7 |
-| M45 · CERCHA | 21.5 | 11.4 | 10.7 | 7.5 | 40.4 |
-| M45 · PORTICO | 39.5 | 11.4 | 10.7 | 7.5 | 58.5 |
-| M45 · PORTICO-T | 41.0 | 11.4 | 10.7 | 7.5 | 59.9 |
-| M45 · PORTICO-F | 28.7 | 11.4 | 10.7 | 7.5 | 47.7 |
-| M45 · CERCHA | 21.5 | 11.4 | 10.7 | 7.5 | 40.4 |
 | M60 · PORTICO | 32.6 | 12.0 | 13.1 | 7.5 | 52.1 |
 | M60 · PORTICO-T | 33.8 | 12.0 | 13.1 | 7.5 | 53.3 |
 | M60 · PORTICO-F | 22.3 | 12.0 | 13.1 | 7.5 | 41.8 |
 | M60 · CERCHA | 16.7 | 12.0 | 13.1 | 7.5 | 36.2 |
-| M60 · PORTICO | 32.6 | 12.0 | 13.1 | 7.5 | 52.1 |
-| M60 · PORTICO-T | 33.8 | 12.0 | 13.1 | 7.5 | 53.3 |
-| M60 · PORTICO-F | 22.3 | 12.0 | 13.1 | 7.5 | 41.8 |
-| M60 · CERCHA | 16.7 | 12.0 | 13.1 | 7.5 | 36.2 |
-| M60 · PORTICO | 32.6 | 12.0 | 13.1 | 7.5 | 52.1 |
-| M60 · PORTICO-T | 33.8 | 12.0 | 13.1 | 7.5 | 53.3 |
-| M60 · PORTICO-F | 22.3 | 12.0 | 13.1 | 7.5 | 41.8 |
-| M60 · CERCHA | 16.7 | 12.0 | 13.1 | 7.5 | 36.2 |
-| M60 · PORTICO | 32.6 | 12.0 | 13.1 | 7.5 | 52.1 |
-| M60 · PORTICO-T | 33.8 | 12.0 | 13.1 | 7.5 | 53.3 |
-| M60 · PORTICO-F | 22.3 | 12.0 | 13.1 | 7.5 | 41.8 |
-| M60 · CERCHA | 16.7 | 12.0 | 13.1 | 7.5 | 36.2 |
-| M90 · PORTICO | 24.8 | 16.7 | 15.8 | 7.5 | 49.1 |
-| M90 · PORTICO-T | 25.6 | 16.7 | 15.8 | 7.5 | 49.9 |
-| M90 · PORTICO-F | 18.8 | 16.7 | 15.8 | 7.5 | 43.1 |
-| M90 · CERCHA | 11.9 | 16.7 | 15.8 | 7.5 | 36.2 |
-| M90 · PORTICO | 24.8 | 16.7 | 15.8 | 7.5 | 49.1 |
-| M90 · PORTICO-T | 25.6 | 16.7 | 15.8 | 7.5 | 49.9 |
-| M90 · PORTICO-F | 18.8 | 16.7 | 15.8 | 7.5 | 43.1 |
-| M90 · CERCHA | 11.9 | 16.7 | 15.8 | 7.5 | 36.2 |
-| M90 · PORTICO | 24.8 | 16.7 | 15.8 | 7.5 | 49.1 |
-| M90 · PORTICO-T | 25.6 | 16.7 | 15.8 | 7.5 | 49.9 |
-| M90 · PORTICO-F | 18.8 | 16.7 | 15.8 | 7.5 | 43.1 |
-| M90 · CERCHA | 11.9 | 16.7 | 15.8 | 7.5 | 36.2 |
 | M90 · PORTICO | 24.8 | 16.7 | 15.8 | 7.5 | 49.1 |
 | M90 · PORTICO-T | 25.6 | 16.7 | 15.8 | 7.5 | 49.9 |
 | M90 · PORTICO-F | 18.8 | 16.7 | 15.8 | 7.5 | 43.1 |
@@ -112,7 +40,7 @@
 ## Entrepiso P2 — opciones comparadas
 
 La opción **STAGGERED** (cerchas escalonadas de 18 m entre los muros largos, ocultas en las particiones de las suites) elimina por completo las columnas interiores de la zona doméstica de PB (cocina/comedor). La opción METALDECK de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.
-- Cercha staggered (M60): 4 cerchas de 18 m, canto ≈ 1.12 m, cordones HSS120x120x6, flecha ≈ 0.084 m.
+- Cercha staggered (M45): 4 cerchas de 18 m, canto ≈ 1.12 m, cordones HSS120x120x6, flecha ≈ 0.084 m.
 
 ## Objetivos de control (auditoría)
 
@@ -123,9 +51,10 @@ La opción **STAGGERED** (cerchas escalonadas de 18 m entre los muros largos, oc
 
 1. **Los pórticos con bases articuladas quedan gobernados por la deriva de viento (H/200):** columnas HEA500 en las tres modulaciones (peso principal ≈ 30–40 t). El control de la auditoría (HEA300, 23–24 t) no cumple la deriva de servicio con el viento de hipótesis E0; es una decisión del ingeniero en E1 si relaja el límite o introduce arriostramiento/rigidización.
 2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** (ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).
-3. **El pórtico atado (PORTICO-T) y el pórtico con bases fijas (PORTICO-F) reducen la deriva de viento y deben permitir columnas menores que el HEA500 del pórtico articulado; el comparativo numérico aparece en la matriz. El tirante requiere análisis de segundo orden.
-4. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa ≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** elimina esas columnas y mantiene un tonelaje comparable (ver tabla de opciones); la planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.
-5. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.
+3. **Pórtico atado (PORTICO-T):** el tirante entre los apoyos de la cercha queda casi inactivo (≈ 2 kN) porque la deriva de viento es un sway en la misma dirección de ambos muros; el tirante solo resiste la apertura de aleros por empuje gravitatorio, que aquí no gobierna. Añade peso (≈ 1,4 t/pórtico) sin beneficio de deriva: **no es competitivo en este caso de carga.** Su papel clásico (empuje de cubierta en edificios con grúa) no aplica.
+4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva para el sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).
+5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa ≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** elimina esas columnas (cero apoyos interiores) con tonelaje comparable (≈ 10,7–15,8 t según modulación); la planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.
+6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.
 
 ## Supuestos críticos de este modelo
 

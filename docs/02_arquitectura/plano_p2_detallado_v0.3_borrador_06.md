@@ -15,16 +15,19 @@ principal, cuatro baños privados, ventanas altas, zona wellness y ejecución F1
 ## Correcciones de arquitectura
 
 - El dormitorio principal deja de ser una franja angosta: se plantea en **7,40 × 4,20 m
-  = 31,1 m² brutos**, con ventana posterior de 5,50 m y paño lateral de 2,50 m.
-- Los dormitorios de hijos conservan exactamente **26,0 m² brutos** cada uno y ventanas
-  casi piso a techo; la igualdad neta se deberá recalcular al definir muros y trasdosados.
+  = 31,1 m² brutos**, con paño dominante de 5,50 m en el **lateral A** y paño posterior
+  secundario de 2,50 m (corrección H-06: antes se describía al revés).
+- Los dormitorios de hijos tienen **26,0 m² brutos exactos** cada uno, pero al descontar
+  espesores reales quedan **23,46 m² (H1) y 24,04 m² (H2)**: la hard rule 9 **todavía no se
+  cumple**. Ver «Resultado de control».
 - La llegada de escalera, el hall, la galería interior y el mini deck son recintos
   cerrados acústicamente hacia la nave. No existe corredor abierto tipo hotel.
 - La Fase 2 permanece detrás de una frontera única en Y=11,00 m. El cierre temporal debe
   resolver polvo, ruido, incendio e instalaciones durante la ocupación de F1.
 - Los baños H2 y huéspedes recuperan **2,00 m de profundidad bruta**; siguen siendo
   compactos y requieren un detalle 1:25 antes de congelarse.
-- El wellness ocupa 18,0 m² brutos e integra sauna familiar, ducha y zona de relajación.
+- El wellness ocupa 18,0 m² brutos —**15,6 m² netos**, por debajo de la reserva mínima de
+  16 m²— e integra sauna familiar, ducha y zona de relajación.
 - Los aparatos húmedos se concentran por familias para facilitar bajantes, ventilación y
   mantenimiento. La coincidencia exacta con PB todavía debe verificarse mediante shafts.
 
@@ -44,9 +47,38 @@ firmados por los consultores correspondientes.
 
 ## Resultado de control
 
-La emisión automatizada debe cerrar sin fallos geométricos. Se mantiene **abierta** la
-segunda salida independiente del P2: la escalera protegida y su descarga posterior no
-demuestran por sí solas cumplimiento de recorridos, ocupación o evacuación.
+**Estado al 2026-08-11: 7 PASS · 3 FAIL · 3 OPEN.** La emisión **no cierra**, y eso es
+deliberado.
+
+Hasta esta fecha el modelo teselaba la envolvente completa: los veintidós recintos sumaban
+exactamente 270,00 m², es decir, declaraban áreas que no dejaban sitio para un solo muro
+(hallazgo H-04). Al incorporar los espesores que este mismo documento declara —0,18 m de
+envolvente, 0,20 m en húmedos y escalera, 0,15 m en divisiones— la superficie neta real
+resulta ser **239,2 m²**, un 11 % menos que lo rotulado. Tres condiciones que antes
+«pasaban» dejaron de hacerlo:
+
+| Regla | Estado | Lectura |
+|---|---|---|
+| `P2-AREA-CLOSURE` | PASS | 239,2 m² netos ≤ 258,2 m² de interior útil. El modelo ya deja sitio a sus muros. |
+| `P2-CHILD-EQUAL` | **FAIL** | H1 23,46 m² vs. H2 24,04 m² (Δ 0,58 m²). Hard rule 9 incumplida. |
+| `P2-CIRC-MIN` | **FAIL** | `F2-HALL` da 0,85 m libres frente al mínimo propio de 1,20 m. |
+| `P2-WELLNESS` | **FAIL** | 15,6 m² netos frente a los 16 m² de reserva mínima. |
+| `P2-CHILD-PROPORTION` | OPEN | H1 1,04:1 vs. H2 1,62:1. Igualar área no iguala la habitación. |
+| `P2-MASTER-PROGRAM` | OPEN | Vestidor 9,0 m² frente a 15–16; baño principal 12,0 m² frente a 17–18. |
+| `LIFE-EGRESS-2` | OPEN | Segunda salida sujeta a concepto profesional de incendio. |
+
+**Estos tres FAIL no se corrigen moviendo cifras: exigen una decisión de planta.** Y no son
+independientes entre sí. Llevar `F2-HALL` a 1,20 m dentro de la envolvente actual obliga a
+restar 0,20 m a los dormitorios de la Fase 2 o a los baños de 2,00 m, que ya son el punto
+más comprometido de la planta. Igualar los dormitorios de hijos con un ajuste de pocos
+centímetros haría pasar el chequeo sin resolver la diferencia real de proporción, que es lo
+que un hijo notaría al entrar. La revisión de coordinación recomienda **no** hacer ninguna
+de las dos cosas hasta que se decida la vía estructural del entrepiso, porque una planta
+sin apoyos interiores admite un reparto distinto del fondo.
+
+Se mantiene **abierta** la segunda salida independiente del P2: la escalera protegida y su
+descarga posterior no demuestran por sí solas cumplimiento de recorridos, ocupación o
+evacuación.
 
 ## Archivos
 

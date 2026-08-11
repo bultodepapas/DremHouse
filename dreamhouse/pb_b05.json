@@ -4,6 +4,15 @@
   "date": "2026-08-11",
   "units": "m",
   "envelope": {"length": 36.0, "width": 18.0, "exterior_wall": 0.18},
+  "roof": {
+    "_comment": "FUENTE ÚNICA del sentido de cubierta (D-039). Ninguna lámina debe declarar aleros por su cuenta. low_side='A' significa que el lateral Y=0 es el alero bajo y recibe toda el agua.",
+    "low_side": "A",
+    "low_eave": 7.2,
+    "high_eave": 7.8,
+    "rise": 0.6,
+    "slope_percent": 3.33,
+    "status": "reversible hasta predio, orientación y drenaje (D-039)"
+  },
   "great_wall": {"x": 31.5, "thickness": 0.20, "finish": "listón de madera + respaldo acústico registrable"},
   "core": [
     {"id":"PAN","name":"Pantry / apoyo limpio","y0":0.0,"y1":2.4,"gross_area":10.8,"door_y":1.15,"door_width":0.90,"type":"service"},
@@ -35,8 +44,8 @@
     {"id":"GLZ-H1","facade":"A","name":"Dormitorio hijo 1","from":22.0,"to":25.8,"sill":0.10,"height":2.70},
     {"id":"GLZ-H2","facade":"B","name":"Dormitorio hijo 2","from":21.8,"to":26.5,"sill":0.10,"height":2.70},
     {"id":"GLZ-G","facade":"B","name":"Dormitorio huéspedes","from":27.8,"to":32.3,"sill":0.10,"height":2.70},
-    {"id":"GLZ-M-R","facade":"REAR","name":"Suite principal","from":1.0,"to":6.5,"sill":0.10,"height":2.70},
-    {"id":"GLZ-M-A","facade":"A","name":"Suite principal lateral","from":33.0,"to":35.5,"sill":0.10,"height":2.70}
+    {"id":"GLZ-M-A","facade":"A","name":"Suite principal","from":30.0,"to":35.5,"sill":0.10,"height":2.70},
+    {"id":"GLZ-M-R","facade":"REAR","name":"Suite principal posterior","from":0.8,"to":3.3,"sill":0.10,"height":2.70}
   ],
   "design_values": {
     "axis_y0": 7.0,

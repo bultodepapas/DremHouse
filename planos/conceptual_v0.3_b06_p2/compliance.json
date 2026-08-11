@@ -1,8 +1,8 @@
 {
   "revision": "0.3-borrador-06-P2",
-  "passed": 8,
-  "open": 1,
-  "failed": 0,
+  "passed": 7,
+  "open": 3,
+  "failed": 3,
   "checks": [
     {
       "rule_id": "P2-ENV",
@@ -15,14 +15,24 @@
       "message": "Sin solapes de recintos"
     },
     {
+      "rule_id": "P2-AREA-CLOSURE",
+      "status": "PASS",
+      "message": "Σ neta 239.2 m² ≤ interior útil 258.2 m² (bruto teselado 270.0)"
+    },
+    {
       "rule_id": "P2-4-SUITES",
       "status": "PASS",
       "message": "Cuatro suites exactas"
     },
     {
       "rule_id": "P2-CHILD-EQUAL",
-      "status": "PASS",
-      "message": "Dormitorios hijos = 26,0 m²"
+      "status": "FAIL",
+      "message": "Hard rule 9 · dormitorios hijos NETOS: H1 23.46 m² vs H2 24.04 m² (Δ 0.58 m²)"
+    },
+    {
+      "rule_id": "P2-CIRC-MIN",
+      "status": "FAIL",
+      "message": "Circulación mínima declarada 1,20 m · más estrecha: F2-HALL = 0.85 m netos"
     },
     {
       "rule_id": "P2-F2",
@@ -41,8 +51,18 @@
     },
     {
       "rule_id": "P2-WELLNESS",
-      "status": "PASS",
-      "message": "Wellness >=16 m²"
+      "status": "FAIL",
+      "message": "Wellness 15.6 m² netos ≥ 16 m²"
+    },
+    {
+      "rule_id": "P2-CHILD-PROPORTION",
+      "status": "OPEN",
+      "message": "Equivalencia cualitativa (hard rule 9, 2.ª cláusula): H1 1.04:1 vs H2 1.62:1 — igualar área no iguala la habitación"
+    },
+    {
+      "rule_id": "P2-MASTER-PROGRAM",
+      "status": "OPEN",
+      "message": "Programa vs. dibujo (decisión del propietario): vestidor 9.0 m² netos frente a 15–16 · baño principal 12.0 m² frente a 17–18"
     },
     {
       "rule_id": "LIFE-EGRESS-2",

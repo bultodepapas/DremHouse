@@ -1,7 +1,7 @@
 {
   "revision": "0.3-borrador-06-P2",
   "source": "dreamhouse/p2_b06.json",
-  "source_sha256": "d054874345652edaf761a6a31a71909e88a09321dcc9c2cb1b4fba50c994eb49",
+  "source_sha256": "4fa550e18e9dc7eab8ba33f2848be7133c4473cf945735762d42d7a9443335c9",
   "generator": "dreamhouse/generate_p2_b06.py",
   "outputs": [
     "DH-ARQ-PLN-002-R05_P2-DETALLADA.svg",

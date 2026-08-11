@@ -12,10 +12,12 @@ from pathlib import Path
 
 import numpy as np
 
-from dreamhouse.structure.analysis import Frame2D, FrameMember, G, max_moment_in_member, simply_supported_deflection, simply_supported_max_moment
+from dreamhouse.structure.analysis import Frame2D, FrameMember, G, max_axial_in_member, max_moment_in_member, simply_supported_deflection, simply_supported_max_moment
 from dreamhouse.structure.materials import materials_from_json
+from dreamhouse.structure.portal import apply_combo, build_frame_model, size_portal_frame
 from dreamhouse.structure.profiles import profile
 from dreamhouse.structure.quantities import compute_quantities
+from dreamhouse.structure.staggered import size_staggered_floor
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "dreamhouse" / "structure" / "structure_system.json"
@@ -53,15 +55,19 @@ class TestAnalysisReference(unittest.TestCase):
         w = 5.0e3
         iy = profile("IPE300").iy_m4
         area = profile("IPE300").area_m2
-        frame, member = build_simple_beam(span, w, iy, area)
+        frame = Frame2D(
+            nodes=[(0.0, 0.0), (span / 2.0, 0.0), (span, 0.0)],
+            members=[
+                FrameMember(0, 1, E, area, iy, w_y_n_m=w),
+                FrameMember(1, 2, E, area, iy, w_y_n_m=w),
+            ],
+            fixes={0: {"ux", "uz"}, 2: {"ux", "uz"}},
+        )
         f = frame.equivalent_nodal_loads()
         d, _ = frame.solve(f)
-        mid = d[3 * 0 + 1] + (d[3 * 1 + 1] - d[3 * 0 + 1]) / 2.0 - d[3 * 0 + 1]
-        _ = mid
         expected = simply_supported_deflection(w, span, E * iy)
-        m = max_moment_in_member(frame, member, frame.member_end_forces(member, d))
-        self.assertGreater(m, 0.0)
-        self.assertAlmostEqual(expected, expected, delta=0.001)
+        mid = abs(d[3 * 1 + 1])
+        self.assertAlmostEqual(mid, expected, delta=expected * 0.05)
 
     def test_cantilever_tip_deflection(self):
         length = 3.0
@@ -132,6 +138,69 @@ class TestQuantities(unittest.TestCase):
         q45 = compute_quantities(self.cfg, self.steel, 4.5, 8, 0.9, 0.9)
         q90 = compute_quantities(self.cfg, self.steel, 9.0, 4, 0.9, 0.9)
         self.assertGreater(q45["systems"]["PORTICO"]["main_frames_kg"], q90["systems"]["PORTICO"]["main_frames_kg"])
+
+
+class TestStaggeredFloor(unittest.TestCase):
+    def setUp(self):
+        self.cfg = json.loads(DATA.read_text(encoding="utf-8"))
+        self.steel = materials_from_json(self.cfg)["S355"]
+
+    def test_no_interior_columns(self):
+        res = size_staggered_floor(self.cfg, self.steel, 6.0, 0.9, 0.9)
+        self.assertEqual(res["interior_columns"], 0)
+
+    def test_plausible_mass(self):
+        for bay, n in ((4.5, 8), (6.0, 6), (9.0, 4)):
+            res = size_staggered_floor(self.cfg, self.steel, bay, 0.9, 0.9)
+            self.assertGreater(res["total_kg"], 3000.0)
+            self.assertLess(res["total_kg"], 25000.0)
+            self.assertGreater(res["n_trusses"], 1)
+
+    def test_trusses_span_full_width(self):
+        res = size_staggered_floor(self.cfg, self.steel, 6.0, 0.9, 0.9)
+        self.assertLessEqual(res["truss_depth_m"], 18.0 / 12.0)
+
+
+class TestTiedAndFixedPortal(unittest.TestCase):
+    def setUp(self):
+        self.cfg = json.loads(DATA.read_text(encoding="utf-8"))
+        self.steel = materials_from_json(self.cfg)["S355"]
+
+    def test_tie_member_present_and_in_tension(self):
+        col = profile("HEA300")
+        rafter = profile("IPE450")
+        frame, index = build_frame_model(
+            self.steel, 7.2, 7.8, 3.8, True, col, rafter, 6.0, self.cfg,
+            tie=True, tie_area_m2=1.0e-3,
+        )
+        self.assertIsNotNone(index["tie_member"])
+        n = 3 * len(frame.nodes)
+        f_pt = {c: np.zeros(n) for c in ("D", "L", "W", "E")}
+        f = apply_combo(frame, {"D": 1.2, "L": 1.6}, f_pt)
+        d, _ = frame.solve(f)
+        fl = frame.member_end_forces(index["tie_member"], d)
+        tie_axial = max_axial_in_member(fl)
+        self.assertGreater(tie_axial, 0.0)
+
+    def test_tied_portal_heavier_than_pinned(self):
+        pinned = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9)
+        tied = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9, tie=True)
+        self.assertGreater(tied.weight_kg, pinned.weight_kg)
+        self.assertGreater(tied.tie_area_cm2, 0.0)
+
+    def test_fixed_base_reduces_drift_and_column(self):
+        pinned = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9)
+        fixed = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9, fixed_base=True)
+        self.assertLess(fixed.drift_m, pinned.drift_m)
+        self.assertLess(fixed.column.mass_kg_m, pinned.column.mass_kg_m)
+
+
+class TestHssCatalog(unittest.TestCase):
+    def test_hss_profiles_available(self):
+        for name in ("HSS100x100x6", "HSS120x120x6", "HSS150x150x8"):
+            p = profile(name)
+            self.assertGreater(p.area_m2, 0.0)
+            self.assertGreater(p.mass_kg_m, 0.0)
 
 
 if __name__ == "__main__":

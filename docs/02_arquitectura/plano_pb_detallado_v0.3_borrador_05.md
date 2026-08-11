@@ -103,8 +103,17 @@ deslumbramiento, calor, privacidad, arriostramiento y extracción con el predio 
 ### Ventanas de dormitorios casi piso a techo
 
 Los cuatro dormitorios se representan con vidrio de **2,70 m de altura** y antepecho
-técnico de 0,10 m. La suite principal conserva un paño posterior dominante y un paño
-lateral secundario; hijos y huéspedes tienen un evento principal cada uno.
+técnico de 0,10 m. La suite principal tiene un **paño dominante de 5,50 m en el lateral A**
+(X 30,00–35,50) y un **paño posterior secundario de 2,50 m** (Y 0,80–3,30); hijos y
+huéspedes tienen un evento principal cada uno.
+
+> **Corrección 2026-08-11 (hallazgo H-06).** Hasta esta revisión, b05 situaba el paño
+> dominante en la fachada posterior y b06 en el lateral: dos emisiones activas describían
+> la misma ventana en fachadas distintas. Decide la geometría: el dormitorio principal
+> tiene 7,40 m de muro en el lateral A y sólo 4,20 m en el posterior, de modo que un paño
+> de 5,50 m únicamente cabe en el lateral. La versión anterior, además, metía 2,30 m de
+> vidrio de piso a techo dentro del vestidor principal. Ahora ambos modelos coinciden y
+> los chequeos `PB-P2-WINDOW-SYNC` y `PB-GLAZING-IN-ROOM` impiden que vuelvan a divergir.
 
 La franja inferior hasta aproximadamente 1,10 m debe ser fija, laminada y dimensionada
 como protección contra caída, o complementarse con una guarda interior certificada. Las
@@ -133,8 +142,22 @@ El plano diferencia visualmente integración y control de peligros:
 
 ## Cumplimiento y asuntos abiertos
 
-La emisión registra **10 PASS y 0 FAIL** sobre geometría nominal, accesos, continuidad
+La emisión registra **15 PASS y 0 FAIL** sobre geometría nominal, accesos, continuidad
 del núcleo, gran muro, salidas posteriores, cocina, pantry y escalera.
+
+Las tres reglas añadidas el 2026-08-11 tras la revisión de coordinación son:
+
+| Regla | Qué impide |
+|---|---|
+| `PB-CORE-CLOSURE` | Que los recintos del núcleo se dibujen sin dejar sitio a los tabiques declarados. Verifica que netos + tabiques + envolvente sumen 18,00 m exactos. |
+| `PB-P2-WINDOW-SYNC` | Que un mismo vano de dormitorio se describa distinto en `pb_b05.json` y `p2_b06.json`. |
+| `PB-GLAZING-IN-ROOM` | Que un vano desborde el muro del recinto que ilumina. |
+
+**Advertencia sobre el valor de estas cifras.** Un «PASS» significa que el modelo es
+internamente coherente y respeta las decisiones registradas. **No** significa conformidad
+normativa, ni que el proyecto cumpla el programa: las desviaciones frente al programa
+(frente de cocina de 4,50 m contra 7,00–7,50 m, evento principal de vidrio de 4,30 m
+contra 7,00–9,00 m) siguen abiertas y son decisión del propietario.
 
 Permanecen bloqueantes: fichas reales de lift/vehículo/equipos, concepto de incendio,
 segunda salida, extracción y aire de reposición, estructura, juntas de losa, drenajes,

@@ -40,8 +40,7 @@ def main() -> None:
         bay = modulation["bay_m"]
         n_bays = modulation["n_bays"]
         q = compute_quantities(cfg, steel, bay, n_bays, phi_b, phi_c)
-        for system in cfg["systems"]:
-            rows.append({"modulation": modulation["id"], "system": system["id"], "quantities": q})
+        rows.append({"modulation": modulation["id"], "quantities": q})
 
     report = {
         "project": cfg["project"],
@@ -78,7 +77,7 @@ def main() -> None:
             "DH-EST-E0-001_resultados.json",
             "DH-EST-E0-001_resumen.md",
             "DH-EST-E0-001_resumen.csv",
-            *[f"DH-EST-E0-001_PÓRTICO-{s['id']}.svg" for s in cfg["systems"]],
+            *[f"DH-EST-E0-001_{s['id']}.svg" for s in cfg["systems"]],
             *[f"DH-EST-E0-001_SECCION-{m['id']}.svg" for m in cfg["geometry"]["modulations"]],
             "manifest.json",
         ],
@@ -104,6 +103,7 @@ def summarize(rows: list[dict]) -> dict:
                 "column": q["frames"].get("column", "-"),
                 "rafter": q["frames"].get("rafter", q["frames"].get("truss_chord", "-")),
                 "tie_area_cm2": q["frames"].get("tie_area_cm2", 0.0),
+                "tie_force_kn": q["frames"].get("tie_force_kn", 0.0),
                 "drift_m": q["frames"].get("drift_m", None),
             }
     return out
@@ -151,7 +151,7 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.",
     ]
     staggered_first = list(rows[0]["quantities"]["systems"].values())[0]["staggered"]
-    lines.append(f"- Cercha staggered (M60): {staggered_first['n_trusses']} cerchas de 18 m, canto ≈ {staggered_first['truss_depth_m']} m, cordones {staggered_first['chord']}, flecha ≈ {staggered_first['truss_deflection_m']} m.")
+    lines.append(f"- Cercha staggered ({rows[0]['modulation']}): {staggered_first['n_trusses']} cerchas de 18 m, canto ≈ {staggered_first['truss_depth_m']} m, cordones {staggered_first['chord']}, flecha ≈ {staggered_first['truss_deflection_m']} m.")
     lines += [
         "",
         "## Objetivos de control (auditoría)",
@@ -169,14 +169,19 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** "
         "(ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra "
         "de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).",
-        "3. **El pórtico atado (PORTICO-T) y el pórtico con bases fijas (PORTICO-F) reducen la "
-        "deriva de viento y deben permitir columnas menores que el HEA500 del pórtico articulado; "
-        "el comparativo numérico aparece en la matriz. El tirante requiere análisis de segundo orden.",
-        "4. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa "
+        "3. **Pórtico atado (PORTICO-T):** el tirante entre los apoyos de la cercha queda casi "
+        "inactivo (≈ 2 kN) porque la deriva de viento es un sway en la misma dirección de ambos "
+        "muros; el tirante solo resiste la apertura de aleros por empuje gravitatorio, que aquí "
+        "no gobierna. Añade peso (≈ 1,4 t/pórtico) sin beneficio de deriva: **no es competitivo "
+        "en este caso de carga.** Su papel clásico (empuje de cubierta en edificios con grúa) no aplica.",
+        "4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva para el "
+        "sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 "
+        "articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).",
+        "5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa "
         "≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** elimina "
-        "esas columnas y mantiene un tonelaje comparable (ver tabla de opciones); la planta v0.4 "
-        "y el modelo E1 deben verificar peso, canto y vibración.",
-        "5. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
+        "esas columnas (cero apoyos interiores) con tonelaje comparable (≈ 10,7–15,8 t según "
+        "modulación); la planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.",
+        "6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
         "controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.",
         "",
         "## Supuestos críticos de este modelo",
@@ -309,7 +314,7 @@ def write_svg(system_id: str) -> None:
         '<text x="95" y="674" font-family="Arial" font-size="11" fill="#4d5559">Cargas, combinaciones y perfiles son hipótesis de ingeniero (structure_system.json). Sin nieve (Boyacá). Requiere revisión del ingeniero estructural antes de PE-1.</text>'
         "</svg>"
     )
-    (OUT / f"DH-EST-E0-001_PÓRTICO-{system_id}.svg").write_text("".join(parts), encoding="utf-8")
+    (OUT / f"DH-EST-E0-001_{system_id}.svg").write_text("".join(parts), encoding="utf-8")
 
 
 def write_svg_section(name: str) -> None:

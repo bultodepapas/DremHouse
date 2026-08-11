@@ -1,7 +1,7 @@
 {
   "revision": "0.3-borrador-08-CLARABOYAS",
   "source": "dreamhouse/rooflight_b08.json",
-  "source_sha256": "1b35f5546c2a385cd659362c1f9bc47e2bcbdae0d81b761a6e98be77e81a5ba5",
+  "source_sha256": "1e66607da0dd6fb03e38e046f4f6bd344eefad2756ab0dc0dd7b77874acc1d85",
   "generator": "dreamhouse/generate_rooflight_b08.py",
   "outputs": [
     "DH-ARQ-PLN-CUB-001-R07_CLARABOYAS.svg",

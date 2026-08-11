@@ -1,7 +1,7 @@
 {
   "revision": "0.3-borrador-08-CLARABOYAS",
-  "passed": 5,
-  "open": 2,
+  "passed": 6,
+  "open": 3,
   "failed": 0,
   "checks": [
     {
@@ -28,6 +28,16 @@
       "rule_id": "RL-EDGE",
       "status": "PASS",
       "message": "Retiro preliminar de bordes"
+    },
+    {
+      "rule_id": "RL-ROOF-DIRECTION",
+      "status": "PASS",
+      "message": "Sentido de cubierta coincide con la fuente única pb_b05.json (lado bajo = lateral A)"
+    },
+    {
+      "rule_id": "RL-DRAINAGE-ASYMMETRY",
+      "status": "OPEN",
+      "message": "Las dos claraboyas son geométricamente iguales pero NO hidráulicamente: RL-CAR 12.00 m aguas arriba ≈ 28.8 m² de cuenca · RL-RC 1.20 m aguas arriba ≈ 2.9 m² de cuenca. La de mayor cuenca exige desvío tipo cricket, rebose secundario y curb reforzado; no repetir el mismo detalle en ambas."
     },
     {
       "rule_id": "RL-STRUCTURE",

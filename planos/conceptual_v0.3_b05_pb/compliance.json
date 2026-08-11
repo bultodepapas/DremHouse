@@ -22,6 +22,11 @@
       "message": "Núcleo cubre los 18,00 m sin vacíos"
     },
     {
+      "rule_id": "PB-CORE-CLOSURE",
+      "status": "PASS",
+      "message": "Núcleo: 16.94 m netos + 0.70 m de tabiques + 2×0.18 m de envolvente = 18,00 m"
+    },
+    {
       "rule_id": "PB-GREAT-WALL",
       "status": "PASS",
       "message": "Gran muro continuo en X=31,50 m con espesor conceptual 0,20 m"
@@ -60,8 +65,18 @@
       "rule_id": "P2-BEDROOM-GLAZING",
       "status": "PASS",
       "message": "Cuatro dormitorios representan vidrio casi piso a techo"
+    },
+    {
+      "rule_id": "PB-P2-WINDOW-SYNC",
+      "status": "PASS",
+      "message": "Vanos de dormitorio idénticos en pb_b05.json y p2_b06.json"
+    },
+    {
+      "rule_id": "PB-GLAZING-IN-ROOM",
+      "status": "PASS",
+      "message": "Cada vano cae dentro del muro de su dormitorio"
     }
   ],
-  "passed": 12,
+  "passed": 15,
   "failed": 0
 }

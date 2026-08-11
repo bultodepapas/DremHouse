@@ -30,6 +30,24 @@ def sy(y):
     return Y0 + (18 - y) * S
 
 
+def core_net_y(room, p):
+    """Rango neto en Y de un recinto del núcleo, según el tipo de cada borde.
+
+    Antes se descontaba el espesor de envolvente (0,18 m) a los dos lados de todos
+    los recintos, con lo que los tabiques interiores se dibujaban a 0,36 m cuando
+    D-034 los declara a 0,15 m (y 0,20 m contra la caja de escalera) — hallazgo H-13.
+    """
+    ext = p["envelope"]["exterior_wall"]
+    dv = p["design_values"]
+    def half(b):
+        stair = abs(b-7.4) < 1e-9 or abs(b-11.0) < 1e-9
+        return (dv["partition_stair"] if stair else dv["partition_standard"])/2
+    y0, y1 = room["y0"], room["y1"]
+    a = ext if abs(y0) < 1e-9 else half(y0)
+    b = ext if abs(y1-18) < 1e-9 else half(y1)
+    return y0+a, y1-b
+
+
 def plan_rect(x, y, w, d, **attrs):
     return rect(sx(x), sy(y + d), w * S, d * S, **attrs)
 
@@ -143,7 +161,8 @@ def plan_sheet(p):
     partition = p["design_values"]["partition_standard"]
     for room in p["core"]:
         y0, y1 = room["y0"], room["y1"]
-        parts.append(plan_rect(31.7,y0+ext,4.12,max(0.01,y1-y0-2*ext),fill=core_colors[room["type"]],stroke="#536166",stroke_width="1"))
+        ny0,ny1=core_net_y(room,p)
+        parts.append(plan_rect(31.7,ny0,4.12,max(0.01,ny1-ny0),fill=core_colors[room["type"]],stroke="#536166",stroke_width="1"))
         parts.append(text(sx(33.76),sy((y0+y1)/2)-4,room["name"],9,weight=700))
         parts.append(text(sx(33.76),sy((y0+y1)/2)+10,f'{room["gross_area"]:.1f} m² brutos',7,fill="#526168"))
         parts.append(door_on_wall(31.5,room["door_y"],room["door_width"],room["id"]=="ESC"))
@@ -307,17 +326,37 @@ def wall_elevation_sheet(p):
     return ''.join(parts)
 
 
+def roof_profile(p, sc, base):
+    """Perfil del faldón para las láminas que mapean Y=0 a la izquierda.
+
+    Devuelve (a_top, b_top, etiqueta_A, etiqueta_B) en coordenadas de lámina.
+    Toda lámina que dibuje el faldón debe pasar por aquí: es lo único que impide
+    que frontal, posterior y laterales vuelvan a contradecirse (hallazgo H-01).
+    Invertir el faldón es cambiar `roof.low_side` en pb_b05.json, nada más.
+    """
+    r = p["roof"]
+    a_is_low = r["low_side"] == "A"
+    low_top, high_top = base-r["low_eave"]*sc, base-r["high_eave"]*sc
+    a_top, b_top = (low_top, high_top) if a_is_low else (high_top, low_top)
+    com = lambda v: f"{v:.2f}".replace(".", ",")
+    a_eave = r["low_eave"] if a_is_low else r["high_eave"]
+    b_eave = r["high_eave"] if a_is_low else r["low_eave"]
+    a_label = f'LADO {"BAJO" if a_is_low else "ALTO"} ≈ {com(a_eave)} m · LATERAL A'
+    b_label = f'LADO {"ALTO" if a_is_low else "BAJO"} ≈ {com(b_eave)} m · LATERAL B'
+    return a_top, b_top, a_label, b_label
+
+
 def front_elevation_sheet(p):
     parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("ELE-001-R04","FACHADA FRONTAL DETALLADA · TRES ACCESOS","Portón carro + acceso peatonal central + portón RC/aviones · composición nominal 18,00 m")]
     left, base, sc = 140, 645, 62
     width = 18*sc
-    low_top, high_top = base-7.2*sc, base-7.8*sc
-    top = high_top
+    a_top, b_top, a_txt, b_txt = roof_profile(p, sc, base)
+    top = min(a_top, b_top)
     parts.append('<defs><pattern id="metal" width="16" height="16" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="16" stroke="#8e9799" stroke-width=".8"/></pattern><pattern id="doorpanel" width="18" height="18" patternUnits="userSpaceOnUse"><line x1="0" y1="5" x2="18" y2="5" stroke="#65747a" stroke-width="1"/></pattern></defs>')
-    parts.append(f'<polygon points="{left},{base} {left},{low_top} {left+width},{high_top} {left+width},{base}" fill="#aeb5b6" stroke="#172126" stroke-width="4"/>')
-    parts.append(f'<line x1="{left}" y1="{low_top}" x2="{left+width}" y2="{high_top}" stroke="#e6e9e7" stroke-width="4"/>')
-    parts.append(text(left+10,low_top-12,"LADO BAJO ≈ 7,20 m",9,"start",700))
-    parts.append(text(left+width-10,high_top-12,"LADO ALTO ≈ 7,80 m",9,"end",700))
+    parts.append(f'<polygon points="{left},{base} {left},{a_top} {left+width},{b_top} {left+width},{base}" fill="#aeb5b6" stroke="#172126" stroke-width="4"/>')
+    parts.append(f'<line x1="{left}" y1="{a_top}" x2="{left+width}" y2="{b_top}" stroke="#e6e9e7" stroke-width="4"/>')
+    parts.append(text(left+10,a_top-12,a_txt,9,"start",700))
+    parts.append(text(left+width-10,b_top-12,b_txt,9,"end",700))
     labels={"CAR":"PORTÓN CAR PROJECT","PED":"PUERTA PRINCIPAL","RC":"PORTÓN TALLER RC / AVIONES"}
     for op in p["front_openings"]:
         x=left+op["y0"]*sc
@@ -362,13 +401,15 @@ def rear_elevation_sheet(p):
     parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("ELE-002-R04","FACHADA POSTERIOR · SERVICIOS Y NIVEL PRIVADO","Dos salidas PB + ventanas controladas de P2 · posición final sujeta a fachada, estructura y predio")]
     left, base, sc = 140, 645, 62
     width = 18*sc
-    low_top, high_top = base-7.2*sc, base-7.8*sc
-    top=high_top
+    # El eje horizontal de esta lámina mapea Y=0 → izquierda, igual que la fachada frontal:
+    # ambas derivan el perfil de cubierta de la misma fuente para no poder contradecirse.
+    a_top, b_top, a_txt, b_txt = roof_profile(p, sc, base)
+    top=min(a_top, b_top)
     parts.append('<defs><pattern id="metalr" width="16" height="16" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="16" stroke="#8e9799" stroke-width=".8"/></pattern></defs>')
-    parts.append(f'<polygon points="{left},{base} {left},{high_top} {left+width},{low_top} {left+width},{base}" fill="#aeb5b6" stroke="#172126" stroke-width="4"/>')
-    parts.append(f'<line x1="{left}" y1="{high_top}" x2="{left+width}" y2="{low_top}" stroke="#e7e9e7" stroke-width="4"/>')
-    parts.append(text(left+10,high_top-12,"LADO ALTO ≈ 7,80 m",9,"start",700))
-    parts.append(text(left+width-10,low_top-12,"LADO BAJO ≈ 7,20 m",9,"end",700))
+    parts.append(f'<polygon points="{left},{base} {left},{a_top} {left+width},{b_top} {left+width},{base}" fill="#aeb5b6" stroke="#172126" stroke-width="4"/>')
+    parts.append(f'<line x1="{left}" y1="{a_top}" x2="{left+width}" y2="{b_top}" stroke="#e7e9e7" stroke-width="4"/>')
+    parts.append(text(left+10,a_top-12,a_txt,9,"start",700))
+    parts.append(text(left+width-10,b_top-12,b_txt,9,"end",700))
     # Doors correspond to bodega and protected stair discharge.
     for d in p["exterior_doors"]:
         x=left+(d["y"]-.5)*sc
@@ -411,14 +452,16 @@ def side_elevation_sheet(p,side):
     subtitle=("Evento principal de vidrio en sala + ventanas privadas provisionales" if is_a else "Fachada de control: taller/vida doméstica + ventanas privadas provisionales")
     parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block(code,title_value,subtitle+" · orientación cardinal pendiente de predio")]
     left,base,sc=105,645,32.5
-    eave=7.2 if is_a else 7.8
+    # El alero de cada lateral sale de la fuente única de cubierta, no de un literal.
+    is_low = p["roof"]["low_side"] == side
+    eave = p["roof"]["low_eave"] if is_low else p["roof"]["high_eave"]
     length,height=36*sc,eave*sc
     top=base-height
     parts.append('<defs><pattern id="metals" width="14" height="14" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="14" stroke="#90999b" stroke-width=".7"/></pattern></defs>')
     parts.append(rect(left,top,length,height,fill="#aeb5b6",stroke="#172126",stroke_width="4"))
     parts.append(rect(left,top,length,height,fill="url(#metals)",stroke="none",opacity=".65"))
     parts.append(f'<line x1="{left}" y1="{top}" x2="{left+length}" y2="{top}" stroke="#e6e9e7" stroke-width="4"/>')
-    parts.append(text(left+length-10,top-12,f'ALERO {"BAJO" if is_a else "ALTO"} ≈ {eave:.2f} m',9,"end",700))
+    parts.append(text(left+length-10,top-12,f'ALERO {"BAJO" if is_low else "ALTO"} ≈ {eave:.2f} m'+(" · TODA EL AGUA DE CUBIERTA DESCARGA AQUÍ" if is_low else ""),9,"end",700))
     p2x=left+21*sc
     p2y=base-3.8*sc
     parts.append(f'<line x1="{p2x}" y1="{top}" x2="{p2x}" y2="{base}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
@@ -515,7 +558,8 @@ def core_sheet(p):
         yy=y0+room["y0"]*sc
         hh=(room["y1"]-room["y0"])*sc
         parts.append(rect(x0,yy,depth*sc,hh,fill=colors[room["type"]],stroke="#435158",stroke_width="1.2"))
-        net_width=max(0,room["y1"]-room["y0"]-partition)
+        ny0,ny1=core_net_y(room,p)
+        net_width=max(0,ny1-ny0)
         net_area=clear_depth*net_width
         parts.append(text(x0+depth*sc/2,yy+hh/2-5,room["name"],10,weight=700))
         parts.append(text(x0+depth*sc/2,yy+hh/2+12,f"≈ {net_area:.1f} m² netos provisionales",8,fill="#4f5e63"))
@@ -587,6 +631,18 @@ def validate(p):
     checks.append(("PB-FRONT",len(p["front_openings"])==3,"Exactamente tres accesos frontales"))
     checks.append(("PB-CORE-SUM",abs(sum(r["gross_area"] for r in core)-81)<1e-6,"Núcleo conserva 81,00 m² brutos"))
     checks.append(("PB-CORE-COVER",abs(core[0]["y0"])<1e-6 and abs(core[-1]["y1"]-18)<1e-6 and all(abs(a["y1"]-b["y0"])<1e-6 for a,b in zip(core,core[1:])),"Núcleo cubre los 18,00 m sin vacíos"))
+    # Cierre de áreas del núcleo: lo dibujado debe sumar 18,00 m con los espesores declarados.
+    ext=p["envelope"]["exterior_wall"]; dv=p["design_values"]
+    nets=[core_net_y(r,p) for r in core]
+    net_sum=sum(b-a for a,b in nets)
+    gap_sum=sum(nets[i+1][0]-nets[i][1] for i in range(len(nets)-1))
+    wrong=[]
+    for i,(a,b) in enumerate(zip(core,core[1:])):
+        want=dv["partition_stair"] if abs(a["y1"]-7.4)<1e-9 or abs(a["y1"]-11.0)<1e-9 else dv["partition_standard"]
+        got=nets[i+1][0]-nets[i][1]
+        if abs(got-want)>1e-6: wrong.append(f'{a["id"]}|{b["id"]} {got:.3f} m ≠ {want:.2f} m declarados')
+    checks.append(("PB-CORE-CLOSURE",abs(net_sum+gap_sum+2*ext-18.0)<1e-6 and not wrong,
+        f"Núcleo: {net_sum:.2f} m netos + {gap_sum:.2f} m de tabiques + 2×{ext:.2f} m de envolvente = 18,00 m"+("" if not wrong else " · TABIQUES INCORRECTOS: "+" · ".join(wrong))))
     checks.append(("PB-GREAT-WALL",p["great_wall"]["x"]==31.5 and p["great_wall"]["thickness"]>=.20,"Gran muro continuo en X=31,50 m con espesor conceptual 0,20 m"))
     checks.append(("PB-CORE-DOORS",len(core)==5 and all(r["door_width"]>=.9 for r in core),"Cinco accesos del núcleo de mínimo 0,90 m"))
     ids={d["id"] for d in p["exterior_doors"]}
@@ -601,6 +657,39 @@ def validate(p):
     bedrooms=p["bedroom_glazing"]
     required={"GLZ-H1","GLZ-H2","GLZ-G","GLZ-M-R"}
     checks.append(("P2-BEDROOM-GLAZING",required.issubset({g["id"] for g in bedrooms}) and all(g["height"]>=2.65 and g["sill"]<=.10 for g in bedrooms),"Cuatro dormitorios representan vidrio casi piso a techo"))
+    # Los vanos de dormitorio se dibujan en dos emisiones distintas (elevaciones aquí,
+    # planta en b06) y deben describir la misma ventana. Sin este cruce, b05 y b06
+    # llegaron a poner el paño dominante en fachadas opuestas (hallazgo H-06).
+    edge_of={"A":"south","B":"north","REAR":"east"}
+    pair={"GLZ-H1":"W-H1","GLZ-H2":"W-H2","GLZ-G":"W-G","GLZ-M-A":"W-M-LAT-A","GLZ-M-R":"W-M-REAR"}
+    room_of={"GLZ-H1":"H1-D","GLZ-H2":"H2-D","GLZ-G":"G-D","GLZ-M-A":"M-D","GLZ-M-R":"M-D"}
+    try:
+        p2=json.loads(DATA.with_name("p2_b06.json").read_text(encoding="utf-8"))
+    except OSError:
+        p2=None
+    if p2 is None:
+        checks.append(("PB-P2-WINDOW-SYNC",False,"No se pudo leer p2_b06.json para el chequeo cruzado"))
+        checks.append(("PB-GLAZING-IN-ROOM",False,"No se pudo leer p2_b06.json para verificar contención"))
+    else:
+        w2={w["id"]:w for w in p2["windows"]}; sp2={z["id"]:z for z in p2["spaces"]}
+        diffs=[]
+        for g in bedrooms:
+            o=w2.get(pair.get(g["id"],""))
+            if o is None:
+                diffs.append(f'{g["id"]} sin pareja en b06'); continue
+            if o["edge"]!=edge_of[g["facade"]] or abs(o["from"]-g["from"])>1e-6 or abs(o["to"]-g["to"])>1e-6 or abs(o["height"]-g["height"])>1e-6:
+                diffs.append(f'{g["id"]} ({g["facade"]} {g["from"]}–{g["to"]}) ≠ {o["id"]} ({o["edge"]} {o["from"]}–{o["to"]})')
+        checks.append(("PB-P2-WINDOW-SYNC",not diffs,"Vanos de dormitorio idénticos en pb_b05.json y p2_b06.json" if not diffs else "DIVERGENCIA b05↔b06: "+" · ".join(diffs)))
+        # Un vano no puede desbordar el muro del recinto que ilumina: el paño posterior
+        # de 5,50 m metía 2,30 m de vidrio piso-techo dentro del vestidor principal.
+        bad=[]
+        for g in bedrooms:
+            z=sp2.get(room_of.get(g["id"],""))
+            if not z: continue
+            lo,hi=(z["y"],z["y"]+z["d"]) if g["facade"]=="REAR" else (z["x"],z["x"]+z["w"])
+            if g["from"]<lo-1e-6 or g["to"]>hi+1e-6:
+                bad.append(f'{g["id"]} {g["from"]}–{g["to"]} desborda {z["id"]} {lo}–{hi}')
+        checks.append(("PB-GLAZING-IN-ROOM",not bad,"Cada vano cae dentro del muro de su dormitorio" if not bad else "Vano fuera de recinto: "+" · ".join(bad)))
     return [{"rule_id":rid,"status":"PASS" if ok else "FAIL","message":msg} for rid,ok,msg in checks]
 
 

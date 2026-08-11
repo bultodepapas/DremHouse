@@ -37,9 +37,19 @@ automático, fije el tonelaje real.
 | Retícula de coordinación | 6 × 6 m | coordinación; no obliga columnas interiores |
 
 La cubierta es de **un solo faldón** (mono-pitch): la diferencia 7,80 − 7,20 = 0,60 m
-sobre 18,00 m de luz transversal da una pendiente de ≈ 1:30 (≈ 1,9 %). Esta pendiente debe
+sobre 18,00 m de luz transversal da una pendiente de **1:30 = 3,33 %**. Esta pendiente debe
 verificarse con el fabricante de cubierta y el drenaje; si no basta para lámina estándar,
 se evalúa ajustar la eave alta (la unidad formal de la cubierta es hard rule, la cota no).
+
+> **Alerta de compatibilidad (hallazgo H-02).** 3,33 % sobre un faldón continuo de 18,00 m
+> está por debajo del mínimo habitual de los paneles sándwich con solapes (del orden de
+> 5–10 % según fabricante), que es el sistema declarado en `bases_de_diseno.md` y el que
+> carga `structure_system.json`. Con esta pendiente el sistema tiende a forzarse hacia junta
+> alzada engatillada en paños de 18 m con clips deslizantes: otro sistema, otro precio y
+> otro detalle de alero y de curb de claraboya. **Subir la eave alta a ≈ 8,10–8,30 m lleva la
+> pendiente a 5–6 % sin tocar el faldón único, ni las alturas libres, ni la eave baja.** Es
+> una decisión de cota (DCV), no de forma, y requiere registro del propietario antes de
+> aplicarse: este documento no la adopta.
 
 ## 2. Sistemas y modulaciones a comparar (D-019)
 
@@ -283,7 +293,8 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 ### 7.3 Reglas de cuantificación
 
 - Cotas calculadas de la geometría, nunca escritas dos veces.
-- Perfiles de stock estándar (IPE, HEA/HEB) para plazos cortos y mejor precio.
+- Perfiles de stock estándar (IPE, HEA/HEB, HSS tubulares) para plazos cortos y mejor
+  precio.
 - Factor de detalle (placas base, rigidizadores, cartelas, conexiones): ≈ 12–15 % del peso
   de principales.
 - Desperdicio de taller: separado del peso teórico (≈ 3–5 %).
@@ -294,26 +305,33 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 | Puerta | Entregable estructural |
 |---|---|
 | **E0 — esquema (actual)** | ejes, luces, alturas, apoyos hipotéticos, matriz de comparación, lista de datos faltantes (predio, geotecnia, lift, viento/sismo de norma) |
-| **E1 — comparación por ingeniero** | modelo paramétrico (pórticos vs. cerchas, 3 modulaciones), kg/m², costo fabricado/montado, estabilidad y entrepiso |
+| **E1 — comparación por ingeniero** | modelo paramétrico (4 sistemas × 3 modulaciones; entrepiso P2 metaldeck vs. staggered), kg/m², costo fabricado/montado, estabilidad y entrepiso |
 | **E2 — diseño profesional** | memorias firmadas, planos de cimentación/losa/estructura/conexiones, revisión independiente |
 
 ## 9. Resultados del modelo E0 (11-08-2026)
 
 Matriz ejecutada con el motor `dreamhouse/structure/` (datos en
 `structure_system.json`; salidas en `planos/estructura_e0/`). Hipótesis E0,
-**no apto para construir**:
+**no apto para construir**. Acero total con entrepiso METALDECK (línea base);
+el entrepiso STAGGERED no cambia el marco principal.
 
-| Sistema × Modulación | Columnas | Viga / cercha | Acero total | kg/m² | Lectura |
-|---|---|---|---:|---:|---|
-| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | **58,5 t** | 63,7 | deriva de viento gobierna |
-| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | **52,1 t** | 56,8 | referencia de la auditoría |
-| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | **49,1 t** | 53,4 | menos pórticos, vigas mayores |
-| CERCHA · M45 | HEA200 | IPE220 (L/16) | **40,4 t** | 44,1 | — |
-| CERCHA · M60 | HEA200 | IPE220 (L/16) | **36,2 t** | 39,4 | más liviana del grupo |
-| CERCHA · M90 | HEA200 | IPE220 (L/16) | **36,2 t** | 39,4 | — |
+| Sistema × Modulación | Columnas | Viga / cercha | Tirante | Marcos | Entrepiso P2 (metaldeck / staggered) | Acero total | kg/m² | Lectura |
+|---|---|---|---|---|---:|---:|---:|---|---|
+| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 11,5 / 10,7 t | **58,5 t** | 63,7 | deriva de viento gobierna |
+| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,0 / 13,1 t | **52,1 t** | 56,8 | referencia de la auditoría |
+| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 16,7 / 15,8 t | **49,1 t** | 53,4 | menos pórticos, vigas mayores |
+| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 11,5 / 10,7 t | **59,9 t** | 65,3 | tirante casi inactivo: no competitivo |
+| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,0 / 13,1 t | **53,3 t** | 58,0 | tirante ≈ 2 kN; no controla deriva |
+| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 16,7 / 15,8 t | **49,9 t** | 54,3 | — |
+| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 11,5 / 10,7 t | **47,7 t** | 52,0 | bases fijas: deriva 0,016 m |
+| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,0 / 13,1 t | **41,8 t** | 45,6 | marco ≈ 27 % más liviano que articulado |
+| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,9 t | 16,7 / 15,8 t | **43,1 t** | 46,9 | — |
+| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 11,5 / 10,7 t | **40,4 t** | 44,1 | más liviana del grupo |
+| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,0 / 13,1 t | **36,2 t** | 39,4 | — |
+| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 16,7 / 15,8 t | **36,2 t** | 39,4 | — |
 
-Desglose por componente (M60): pórticos 32,6 t (cerchas 16,7 t) + entrepiso
-P2 ≈ 12,0 t + secundaria ≈ 7,5 t.
+Desglose por componente (M60): marcos 32,6 t (cerchas 16,7 t) + entrepiso
+P2 metaldeck ≈ 12,0 t / staggered ≈ 13,1 t + secundaria ≈ 7,5 t.
 
 ### Hallazgos
 
@@ -326,16 +344,25 @@ P2 ≈ 12,0 t + secundaria ≈ 7,5 t.
    (36–40 t vs. 49–58 t). El ahorro de acero debe contrastarse con el costo
    extra de fabricación/montaje antes de decidir (criterio del radar de
    costos y de `bases_estructurales_y_civiles.md`).
-3. **Entrepiso P2:** el esquema con dos apoyos intermedios por pórtico (en la
-   zona cocina/núcleo) da ≈ 12,0 t; sin apoyos intermedios (vigas de 18 m de
-   borde a borde) sube a ≈ 16,2 t y compromete las holguras bajo P2. Los
-   apoyos intermedios caen en la zona doméstica y generan un **conflicto
-   estructural–arquitectónico abierto**. La alternativa investigada para
-   cerrarlo sin columnas es el **staggered truss** (sección 2.3 y 5):
-   cerchas de piso que cruzan los 18 m entre los muros largos, ocultas en las
-   particiones del P2, con la losa entre cerchas — la planta v0.4 y el modelo
-   E1 deben verificar peso y canto.
-4. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
+3. **Pórtico atado (PORTICO-T):** el tirante entre los apoyos de la cercha
+   queda casi inactivo (≈ 2 kN) porque la deriva de viento es un sway en la
+   misma dirección de ambos muros; el tirante solo resiste la apertura de
+   aleros por empuje gravitatorio, que aquí no gobierna. Añade peso
+   (≈ 1,4 t/pórtico) sin beneficio de deriva: **no es competitivo en este caso
+   de carga**. Su papel clásico (empuje de cubierta en edificios con grúa) no
+   aplica. Requeriría análisis de segundo orden si se usara.
+4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva
+   para el sistema de pórticos. Permite columna HEA300 con deriva
+   ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el
+   costo pasa a la cimentación (momento en la base).
+5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por
+   pórtico (zona cocina/núcleo) da ≈ 12,0 t (M60) e introduce **columnas en la
+   zona doméstica**. La opción **STAGGERED** (cerchas escalonadas de 18 m
+   entre los muros largos, ocultas en las particiones de las suites) elimina
+   esas columnas con tonelaje comparable (≈ 10,7–15,8 t según modulación):
+   **cero columnas interiores**, piso compacto y mejor rigidez global del P2.
+   La planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.
+6. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
    por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
    modulación.
 
@@ -362,14 +389,14 @@ puerta PE-1 con cantidades y dos precios de mercado.
 ## 12. Próximos pasos
 
 1. Abrir D-019 con este documento como base.
-2. Construir/validar el modelo E0 en `dreamhouse/structure/` (matriz 2 sistemas ×
-   3 modulaciones, kg/m², tonelaje por componente).
-3. Extender la matriz E1 con los sistemas investigados en la sección 2.3 (cercha tubular
-   expuesta, pórtico atado, staggered truss para P2), cuantificando kg/m² y costo
-   fabricado/montado de cada uno.
-4. Con predio candidato: repetir con geotecnia, viento y sismo de norma (E1, ingeniero).
-5. Registrar el resultado en el registro de decisiones y en la base de costos como insumo
-   PE-1, sin modificar el target.
+2. Validar el modelo E0 en `dreamhouse/structure/` (matriz 4 sistemas × 3 modulaciones:
+   PORTICO, PORTICO-T, PORTICO-F, CERCHA; entrepiso P2 METALDECK vs. STAGGERED).
+3. Extender la matriz E1 con costo fabricado/montado de cada sistema (kg/m² ya
+   calculados en E0) y con geotecnia, viento y sismo de norma cuando exista predio.
+4. Definir con el arquitecto la integración del staggered truss en las particiones
+   del P2 (closets, baños, hall) y la cercha de borde en X = 21,00 m.
+5. Registrar el resultado en el registro de decisiones y en la base de costos como
+   insumo PE-1, sin modificar el target.
 
 ## 13. Fuentes externas de la investigación (acceso 2026-08-11)
 

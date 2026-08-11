@@ -28,8 +28,8 @@
   ],
   "windows": [
     {"id":"W-H1","edge":"south","from":22.0,"to":25.8,"height":2.70,"sill":0.10},
-    {"id":"W-M-REAR","edge":"south","from":30.0,"to":35.5,"height":2.70,"sill":0.10},
-    {"id":"W-M-SIDE","edge":"east","from":0.8,"to":3.3,"height":2.70,"sill":0.10},
+    {"id":"W-M-LAT-A","edge":"south","from":30.0,"to":35.5,"height":2.70,"sill":0.10},
+    {"id":"W-M-REAR","edge":"east","from":0.8,"to":3.3,"height":2.70,"sill":0.10},
     {"id":"W-H2","edge":"north","from":21.8,"to":26.5,"height":2.70,"sill":0.10},
     {"id":"W-G","edge":"north","from":27.8,"to":32.3,"height":2.70,"sill":0.10},
     {"id":"W-WELL","edge":"east","from":13.0,"to":17.0,"height":1.20,"sill":1.40}
