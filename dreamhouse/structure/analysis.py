@@ -23,6 +23,7 @@ class FrameMember:
     iy_m4: float
     w_y_n_m: float = 0.0
     w_x_n_m: float = 0.0
+    w_cases: dict = field(default_factory=dict)
 
 
 @dataclass

@@ -1,0 +1,453 @@
+{
+  "project": {
+    "id": "DH-EST-E0-001",
+    "revision": "0.1",
+    "status": "hypothesis",
+    "date": "2026-08-11",
+    "purpose": "Modelo E0 de esquema estructural: comparar sistemas y modulaciones (D-019). No es diseño profesional ni apto para construir.",
+    "source": [
+      "docs/00_gobernanza/constitucion_del_proyecto.md",
+      "docs/BORN_Legacy/Dream_House_Plano_Conceptual_v0.2.md",
+      "docs/BORN_Legacy/casa_bodega_boyaca_conclusiones_anteproyecto.md",
+      "docs/01_brief/programa_arquitectonico.md",
+      "docs/03_ingenierias/bases_estructurales_y_civiles.md",
+      "docs/03_ingenierias/bases_estructura_metalica.md",
+      "docs/04_costos/auditoria_de_costos_2026_08.md"
+    ],
+    "reviewer_required": "Ingeniero estructural competente antes de cualquier uso de diseño"
+  },
+  "meta": {
+    "generator": "dreamhouse/structure/e0.py",
+    "model": "E0 — esquema estructural (no diseño profesional)",
+    "label": "NO APTO PARA CONSTRUIR",
+    "date": "2026-08-11"
+  },
+  "materials": {
+    "principales": "S355/A572-50",
+    "secundarios": "S235/A36",
+    "E_mpa": 200000
+  },
+  "no_snow": "Altiplano de Boyaca sin nieve de diseno: NO se incluye carga de nieve. Gobiernan viento (NSR-10 B.6), sismo (Titulo A) y lluvia/drenaje. Envoltura responde al frio nocturno, condensacion e infiltracion, no a carga de nieve.",
+  "matrix": [
+    {
+      "modulation": "M45",
+      "system": "PORTICO",
+      "quantities": {
+        "modulation": {
+          "id": "M45",
+          "bay_m": 4.5,
+          "n_bays": 8,
+          "n_portal_lines": 9
+        },
+        "systems": {
+          "PORTICO": {
+            "main_frames_kg": 39491.0,
+            "p2_floor_kg": 11448.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE220",
+            "floor_beam_profile": "IPE240",
+            "edge_beam_profile": "IPE360",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 58460.0,
+            "total_t": 58.5,
+            "kg_m2": 63.7,
+            "frames": {
+              "type": "pórtico portal 18 m, bases articuladas",
+              "column": "HEA500",
+              "rafter": "IPE450",
+              "weight_per_frame_kg": 4387.9,
+              "rafter_moment_knm": 437.0,
+              "column_moment_knm": 211.2,
+              "column_axial_kn": 99.9,
+              "rafter_deflection_m": 0.116,
+              "drift_m": 0.035,
+              "utilization": 0.8
+            }
+          },
+          "CERCHA": {
+            "main_frames_kg": 21473.0,
+            "p2_floor_kg": 11448.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE220",
+            "floor_beam_profile": "IPE240",
+            "edge_beam_profile": "IPE360",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 40442.0,
+            "total_t": 40.4,
+            "kg_m2": 44.1,
+            "frames": {
+              "type": "cercha 18 m / L16 sobre columnas articuladas",
+              "column": "HEA200",
+              "truss_chord": "IPE220",
+              "truss_deflection_m": 0.014,
+              "weight_per_frame_kg": 2385.9
+            }
+          }
+        }
+      }
+    },
+    {
+      "modulation": "M45",
+      "system": "CERCHA",
+      "quantities": {
+        "modulation": {
+          "id": "M45",
+          "bay_m": 4.5,
+          "n_bays": 8,
+          "n_portal_lines": 9
+        },
+        "systems": {
+          "PORTICO": {
+            "main_frames_kg": 39491.0,
+            "p2_floor_kg": 11448.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE220",
+            "floor_beam_profile": "IPE240",
+            "edge_beam_profile": "IPE360",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 58460.0,
+            "total_t": 58.5,
+            "kg_m2": 63.7,
+            "frames": {
+              "type": "pórtico portal 18 m, bases articuladas",
+              "column": "HEA500",
+              "rafter": "IPE450",
+              "weight_per_frame_kg": 4387.9,
+              "rafter_moment_knm": 437.0,
+              "column_moment_knm": 211.2,
+              "column_axial_kn": 99.9,
+              "rafter_deflection_m": 0.116,
+              "drift_m": 0.035,
+              "utilization": 0.8
+            }
+          },
+          "CERCHA": {
+            "main_frames_kg": 21473.0,
+            "p2_floor_kg": 11448.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE220",
+            "floor_beam_profile": "IPE240",
+            "edge_beam_profile": "IPE360",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 40442.0,
+            "total_t": 40.4,
+            "kg_m2": 44.1,
+            "frames": {
+              "type": "cercha 18 m / L16 sobre columnas articuladas",
+              "column": "HEA200",
+              "truss_chord": "IPE220",
+              "truss_deflection_m": 0.014,
+              "weight_per_frame_kg": 2385.9
+            }
+          }
+        }
+      }
+    },
+    {
+      "modulation": "M60",
+      "system": "PORTICO",
+      "quantities": {
+        "modulation": {
+          "id": "M60",
+          "bay_m": 6.0,
+          "n_bays": 6,
+          "n_portal_lines": 7
+        },
+        "systems": {
+          "PORTICO": {
+            "main_frames_kg": 32615.0,
+            "p2_floor_kg": 11978.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE240",
+            "floor_beam_profile": "IPE270",
+            "edge_beam_profile": "IPE400",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 52113.0,
+            "total_t": 52.1,
+            "kg_m2": 56.8,
+            "frames": {
+              "type": "pórtico portal 18 m, bases articuladas",
+              "column": "HEA500",
+              "rafter": "IPE500",
+              "weight_per_frame_kg": 4659.2,
+              "rafter_moment_knm": 565.0,
+              "column_moment_knm": 270.3,
+              "column_axial_kn": 129.9,
+              "rafter_deflection_m": 0.109,
+              "drift_m": 0.036,
+              "utilization": 0.8
+            }
+          },
+          "CERCHA": {
+            "main_frames_kg": 16701.0,
+            "p2_floor_kg": 11978.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE240",
+            "floor_beam_profile": "IPE270",
+            "edge_beam_profile": "IPE400",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 36200.0,
+            "total_t": 36.2,
+            "kg_m2": 39.4,
+            "frames": {
+              "type": "cercha 18 m / L16 sobre columnas articuladas",
+              "column": "HEA200",
+              "truss_chord": "IPE220",
+              "truss_deflection_m": 0.018,
+              "weight_per_frame_kg": 2385.9
+            }
+          }
+        }
+      }
+    },
+    {
+      "modulation": "M60",
+      "system": "CERCHA",
+      "quantities": {
+        "modulation": {
+          "id": "M60",
+          "bay_m": 6.0,
+          "n_bays": 6,
+          "n_portal_lines": 7
+        },
+        "systems": {
+          "PORTICO": {
+            "main_frames_kg": 32615.0,
+            "p2_floor_kg": 11978.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE240",
+            "floor_beam_profile": "IPE270",
+            "edge_beam_profile": "IPE400",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 52113.0,
+            "total_t": 52.1,
+            "kg_m2": 56.8,
+            "frames": {
+              "type": "pórtico portal 18 m, bases articuladas",
+              "column": "HEA500",
+              "rafter": "IPE500",
+              "weight_per_frame_kg": 4659.2,
+              "rafter_moment_knm": 565.0,
+              "column_moment_knm": 270.3,
+              "column_axial_kn": 129.9,
+              "rafter_deflection_m": 0.109,
+              "drift_m": 0.036,
+              "utilization": 0.8
+            }
+          },
+          "CERCHA": {
+            "main_frames_kg": 16701.0,
+            "p2_floor_kg": 11978.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE240",
+            "floor_beam_profile": "IPE270",
+            "edge_beam_profile": "IPE400",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 36200.0,
+            "total_t": 36.2,
+            "kg_m2": 39.4,
+            "frames": {
+              "type": "cercha 18 m / L16 sobre columnas articuladas",
+              "column": "HEA200",
+              "truss_chord": "IPE220",
+              "truss_deflection_m": 0.018,
+              "weight_per_frame_kg": 2385.9
+            }
+          }
+        }
+      }
+    },
+    {
+      "modulation": "M90",
+      "system": "PORTICO",
+      "quantities": {
+        "modulation": {
+          "id": "M90",
+          "bay_m": 9.0,
+          "n_bays": 4,
+          "n_portal_lines": 5
+        },
+        "systems": {
+          "PORTICO": {
+            "main_frames_kg": 24829.0,
+            "p2_floor_kg": 16716.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE330",
+            "floor_beam_profile": "IPE300",
+            "edge_beam_profile": "IPE450",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 49067.0,
+            "total_t": 49.1,
+            "kg_m2": 53.4,
+            "frames": {
+              "type": "pórtico portal 18 m, bases articuladas",
+              "column": "HEA500",
+              "rafter": "IPE550",
+              "weight_per_frame_kg": 4965.8,
+              "rafter_moment_knm": 810.8,
+              "column_moment_knm": 383.6,
+              "column_axial_kn": 190.9,
+              "rafter_deflection_m": 0.117,
+              "drift_m": 0.043,
+              "utilization": 0.91
+            }
+          },
+          "CERCHA": {
+            "main_frames_kg": 11929.0,
+            "p2_floor_kg": 16716.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE330",
+            "floor_beam_profile": "IPE300",
+            "edge_beam_profile": "IPE450",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 36167.0,
+            "total_t": 36.2,
+            "kg_m2": 39.4,
+            "frames": {
+              "type": "cercha 18 m / L16 sobre columnas articuladas",
+              "column": "HEA200",
+              "truss_chord": "IPE220",
+              "truss_deflection_m": 0.028,
+              "weight_per_frame_kg": 2385.9
+            }
+          }
+        }
+      }
+    },
+    {
+      "modulation": "M90",
+      "system": "CERCHA",
+      "quantities": {
+        "modulation": {
+          "id": "M90",
+          "bay_m": 9.0,
+          "n_bays": 4,
+          "n_portal_lines": 5
+        },
+        "systems": {
+          "PORTICO": {
+            "main_frames_kg": 24829.0,
+            "p2_floor_kg": 16716.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE330",
+            "floor_beam_profile": "IPE300",
+            "edge_beam_profile": "IPE450",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 49067.0,
+            "total_t": 49.1,
+            "kg_m2": 53.4,
+            "frames": {
+              "type": "pórtico portal 18 m, bases articuladas",
+              "column": "HEA500",
+              "rafter": "IPE550",
+              "weight_per_frame_kg": 4965.8,
+              "rafter_moment_knm": 810.8,
+              "column_moment_knm": 383.6,
+              "column_axial_kn": 190.9,
+              "rafter_deflection_m": 0.117,
+              "drift_m": 0.043,
+              "utilization": 0.91
+            }
+          },
+          "CERCHA": {
+            "main_frames_kg": 11929.0,
+            "p2_floor_kg": 16716.0,
+            "secondary_kg": 7521.0,
+            "joist_profile": "IPE330",
+            "floor_beam_profile": "IPE300",
+            "edge_beam_profile": "IPE450",
+            "aux_columns_profile": "HEA200",
+            "purlins_m": 504.0,
+            "girts_m": 514.0,
+            "total_kg": 36167.0,
+            "total_t": 36.2,
+            "kg_m2": 39.4,
+            "frames": {
+              "type": "cercha 18 m / L16 sobre columnas articuladas",
+              "column": "HEA200",
+              "truss_chord": "IPE220",
+              "truss_deflection_m": 0.028,
+              "weight_per_frame_kg": 2385.9
+            }
+          }
+        }
+      }
+    }
+  ],
+  "targets": {
+    "total_steel_t_range": [
+      30.0,
+      45.0
+    ],
+    "kg_m2_reference": [
+      31.0,
+      48.0
+    ]
+  },
+  "summary": {
+    "M45-PORTICO": {
+      "total_t": 58.5,
+      "kg_m2": 63.7,
+      "main_t": 39.5,
+      "p2_t": 11.4,
+      "secondary_t": 7.5
+    },
+    "M45-CERCHA": {
+      "total_t": 40.4,
+      "kg_m2": 44.1,
+      "main_t": 21.5,
+      "p2_t": 11.4,
+      "secondary_t": 7.5
+    },
+    "M60-PORTICO": {
+      "total_t": 52.1,
+      "kg_m2": 56.8,
+      "main_t": 32.6,
+      "p2_t": 12.0,
+      "secondary_t": 7.5
+    },
+    "M60-CERCHA": {
+      "total_t": 36.2,
+      "kg_m2": 39.4,
+      "main_t": 16.7,
+      "p2_t": 12.0,
+      "secondary_t": 7.5
+    },
+    "M90-PORTICO": {
+      "total_t": 49.1,
+      "kg_m2": 53.4,
+      "main_t": 24.8,
+      "p2_t": 16.7,
+      "secondary_t": 7.5
+    },
+    "M90-CERCHA": {
+      "total_t": 36.2,
+      "kg_m2": 39.4,
+      "main_t": 11.9,
+      "p2_t": 16.7,
+      "secondary_t": 7.5
+    }
+  }
+}

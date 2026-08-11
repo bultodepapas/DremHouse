@@ -1,0 +1,13 @@
+{
+  "revision": "0.3-borrador-08-CLARABOYAS",
+  "source": "dreamhouse/rooflight_b08.json",
+  "source_sha256": "1b35f5546c2a385cd659362c1f9bc47e2bcbdae0d81b761a6e98be77e81a5ba5",
+  "generator": "dreamhouse/generate_rooflight_b08.py",
+  "outputs": [
+    "DH-ARQ-PLN-CUB-001-R07_CLARABOYAS.svg",
+    "DH-ARQ-SEC-CUB-003-R07_LUZ-CENITAL.svg",
+    "DH-ARQ-DET-CUB-001-R07_BORDE-CLARABOYA.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "revision": "0.3-borrador-08-CLARABOYAS",
+  "passed": 5,
+  "open": 2,
+  "failed": 0,
+  "checks": [
+    {
+      "rule_id": "RL-TWO",
+      "status": "PASS",
+      "message": "Dos claraboyas, una por taller"
+    },
+    {
+      "rule_id": "RL-IN-TECH",
+      "status": "PASS",
+      "message": "Dentro de banda técnica/doble altura"
+    },
+    {
+      "rule_id": "RL-NO-OVERLAP",
+      "status": "PASS",
+      "message": "Paños separados"
+    },
+    {
+      "rule_id": "RL-AREA",
+      "status": "PASS",
+      "message": "Área total 23,04 m²"
+    },
+    {
+      "rule_id": "RL-EDGE",
+      "status": "PASS",
+      "message": "Retiro preliminar de bordes"
+    },
+    {
+      "rule_id": "RL-STRUCTURE",
+      "status": "OPEN",
+      "message": "Coordinación exacta con pórticos/correas pendiente"
+    },
+    {
+      "rule_id": "RL-HYGRO",
+      "status": "OPEN",
+      "message": "Vidrio, control solar y condensación pendientes de cálculo"
+    }
+  ]
+}

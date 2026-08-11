@@ -36,6 +36,8 @@
   suites, privacidad, fases, wellness, ventanas y lógica de egreso coordinadas.
 - [Cubierta v0.3 — borrador 07](02_arquitectura/cubierta_v0.3_borrador_07.md):
   corrige el faldón único transversal, alturas de alero y lectura de las cuatro fachadas.
+- [Claraboyas sobre talleres v0.3 — borrador 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):
+  dos eventos cenitales de vidrio, coordinación estructural y detalle higrotérmico conceptual.
 
 ## 03 — Ingenierías
 
