@@ -1,0 +1,14 @@
+{
+  "input": [
+    "dreamhouse\\structure\\structure_system.json",
+    "dreamhouse\\pb_b05.json"
+  ],
+  "generator": "dreamhouse/generate_structure_plan.py",
+  "revision": "0.1",
+  "mode": "cálculo en vivo (compute_quantities + size_staggered_floor) — sin salidas exportadas",
+  "outputs": [
+    "DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg",
+    "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg"
+  ],
+  "status": "hipótesis de esquema; NO APTO PARA CONSTRUIR"
+}

@@ -29,6 +29,8 @@
     "p2_floor_level_m": 3.8,
     "headroom_below_p2_m": 3.1,
     "p2_headroom_m": 3.0,
+    "great_wall_x_m": 31.5,
+    "great_wall_t_m": 0.2,
     "p2_floor_options": [
       {
         "id": "METALDECK",
@@ -40,6 +42,14 @@
         "truss_depth_m": 0,
         "truss_depth_span_ratio": 0,
         "max_unpropped_panel_span_m": 6.0,
+        "slab_total_m": 0.22,
+        "web_ratio": 0.4
+      },
+      {
+        "id": "GRAN-MURO",
+        "description": "El GRAN MURO de X=31,5 (nucleo) trabaja como muro portante: recibe la franja del nucleo y la mitad del frente; vigas longitudinales de 10,5 m en el plenum (Y=3/9/15) + cercha de borde X=21 de 18 m. CERO columnas interiores; sin re-articular particiones; el muro aporta núcleo de corte longitudinal.",
+        "n_longitudinal_beams": 3,
+        "edge_truss_depth_span_ratio": 16.0,
         "slab_total_m": 0.22,
         "web_ratio": 0.4
       }

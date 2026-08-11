@@ -67,6 +67,12 @@ def main() -> None:
     for m in cfg["geometry"]["modulations"]:
         write_svg_section(f"{m['id']}_SECCION")
 
+    try:
+        from dreamhouse.generate_structure_plan import main as _regenerate_structural_sheets
+        _regenerate_structural_sheets()
+    except Exception as exc:  # pragma: no cover
+        print(f"aviso: no se regeneraron las láminas estructurales ({exc})", file=sys.stderr)
+
     digest = hashlib.sha256(DATA.read_bytes()).hexdigest()
     manifest = {
         "input": str(DATA.relative_to(ROOT)),
@@ -98,7 +104,10 @@ def summarize(rows: list[dict]) -> dict:
                 "main_t": round(q["main_frames_kg"] / 1000.0, 1),
                 "p2_metaldeck_t": round(q["p2_floor_metaldeck_kg"] / 1000.0, 1),
                 "p2_staggered_t": round(q["p2_floor_staggered_kg"] / 1000.0, 1),
+                "p2_greatwall_t": round(q["p2_floor_greatwall_kg"] / 1000.0, 1),
                 "p2_interior_columns": q["staggered"]["interior_columns"],
+                "wall_axial_kn_m": q["great_wall"]["wall_axial_kn_m"],
+                "wall_beam": q["great_wall"]["beam_profile"],
                 "secondary_t": round(q["secondary_kg"] / 1000.0, 1),
                 "column": q["frames"].get("column", "-"),
                 "rafter": q["frames"].get("rafter", q["frames"].get("truss_chord", "-")),
@@ -132,24 +141,35 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "",
         "## Desglose por componente (t)",
         "",
-        "| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Secundaria | Total |",
-        "|---|---|---:|---:|---:|---:|",
+        "| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Entrepiso P2 (gran muro) | Secundaria | Total |",
+        "|---|---|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         mod = row["modulation"]
         for sid, q in row["quantities"]["systems"].items():
             lines.append(
-                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | {q['p2_floor_metaldeck_kg']/1000:.1f} | {q['p2_floor_staggered_kg']/1000:.1f} | {q['secondary_kg']/1000:.1f} | {q['total_t']} |"
+                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | {q['p2_floor_metaldeck_kg']/1000:.1f} | {q['p2_floor_staggered_kg']/1000:.1f} | {q['p2_floor_greatwall_kg']/1000:.1f} | {q['secondary_kg']/1000:.1f} | {q['total_t']} |"
             )
     lines += [
         "",
         "## Entrepiso P2 — opciones comparadas",
         "",
-        "La opción **STAGGERED** (cerchas de piso de **canto completo** — altura del muro P2, "
-        "d/L ≈ 0,13–0,19 — ocultas en las particiones de las suites, con paneles de deck "
-        "profundo sin viguetas entre cerchas) elimina por completo las columnas interiores de "
-        "la zona doméstica de PB (cocina/comedor) y cumple la vibración residencial. La opción "
-        "METALDECK de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.",
+        "Tres esquemas sin columnas interiores en la zona doméstica (el metaldeck con apoyos "
+        "intermedios NO es viable sin columnas en cocina/núcleo):",
+    ]
+    great_first = list(rows[0]["quantities"]["systems"].values())[0]["great_wall"]
+    lines.append(
+        f"- **GRAN-MURO (preferido):** el gran muro de X=31,5 (núcleo) es portante y recibe el P2; "
+        f"{great_first['n_beams']} vigas longitudinales {great_first['beam_profile']} de {great_first['beam_span_m']} m "
+        f"en el plenum (Y≈3/9/15) apoyan en la cercha de borde X=21 (luz 18 m, cordón {great_first['edge_chord']}) y en el muro; "
+        f"franja del núcleo con losa sobre el muro (luz {great_first['nucleus_span_m']} m). Acero ≈ "
+        f"{great_first['total_kg']/1000:.1f} t, axial del muro ≈ {great_first['wall_axial_kn_m']} kN/m, "
+        f"fn del panel ≈ {great_first['panel_frequency_hz']} Hz. El muro aporta núcleo de corte longitudinal."
+    )
+    lines += [
+        "- **STAGGERED:** cerchas de canto completo de 18 m ocultas en particiones; requiere re-articular "
+        "las particiones del P2 (hoy no existe línea continua de 18 m).",
+        "- **METALDECK:** línea base; introduce columnas en cocina/núcleo.",
     ]
     staggered_first = list(rows[0]["quantities"]["systems"].values())[0]["staggered"]
     lines.append(f"- Staggered truss: {staggered_first['n_trusses']} cerchas de 18 m de canto completo "
@@ -182,12 +202,12 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva para el "
         "sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 "
         "articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).",
-        "5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa "
-        "≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** (cerchas "
-        "de canto completo de 18 m entre los muros largos, paneles de deck profundo sin viguetas) "
-        "elimina esas columnas con ≈ 3,3–3,8 t de acero de piso y frecuencia del panel ≈ 15 Hz "
-        "(criterio DG11 ≥ 5 Hz); la planta v0.4 y el modelo E1 deben verificar canto, "
-        "re-articulación de particiones y peso de losa (deck profundo + concreto más pesado).",
+        "5. **Entrepiso P2:** tres esquemas sin columnas interiores — METALDECK (12,0 t, con "
+        "columnas en cocina/núcleo), STAGGERED (≈ 3,8 t, exige re-articular particiones) y "
+        "**GRAN-MURO (≈ 6 t, preferido): el gran muro de X=31,5 trabaja como apoyo del P2**, "
+        "con 3 vigas longitudinales en el plenum + cercha de borde X=21; sin re-articular "
+        "particiones y con el muro actuando como núcleo de corte longitudinal. El peso de la "
+        "losa de deck profundo se verifica en E1.",
         "6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
         "controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.",
         "",
@@ -207,7 +227,7 @@ def write_csv(rows: list[dict]) -> None:
     path = OUT / "DH-EST-E0-001_resumen.csv"
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
-        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "tirante_cm2", "marcos_t", "entrepiso_p2_metaldeck_t", "entrepiso_p2_staggered_t", "secundaria_t", "total_t", "kg_m2", "drift_m"])
+        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "tirante_cm2", "marcos_t", "entrepiso_p2_metaldeck_t", "entrepiso_p2_staggered_t", "entrepiso_p2_granmuro_t", "secundaria_t", "total_t", "kg_m2", "drift_m"])
         for row in rows:
             mod = row["modulation"]
             for sid, q in row["quantities"]["systems"].items():
@@ -218,6 +238,7 @@ def write_csv(rows: list[dict]) -> None:
                     round(q["main_frames_kg"] / 1000.0, 2),
                     round(q["p2_floor_metaldeck_kg"] / 1000.0, 2),
                     round(q["p2_floor_staggered_kg"] / 1000.0, 2),
+                    round(q["p2_floor_greatwall_kg"] / 1000.0, 2),
                     round(q["secondary_kg"] / 1000.0, 2), q["total_t"], q["kg_m2"],
                     f.get("drift_m", ""),
                 ])
