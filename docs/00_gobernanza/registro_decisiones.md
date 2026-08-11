@@ -1,7 +1,7 @@
 # Registro de decisiones
 
 **Estatus:** activo  
-**Versión:** 0.2
+**Versión:** 0.3
 **Fecha:** 2026-08-11
 
 | ID | Decisión | Estado | Fuente/fecha |
@@ -22,6 +22,10 @@
 | D-014 | Cocina bajo P2, próxima al núcleo | Activa | Revisión crítica / plano v0.2 |
 | D-015 | Target económico de trabajo ≈$988,05 M | Activa con reserva crítica | Presupuesto v0.2 |
 | D-016 | Construcción en dos fases: F1 principal + una suite de hijo; F2 hijo 2 + huéspedes + sauna + lift | Activa como base de anteproyecto | Propietario, 2026-08-11 |
+| D-026 | Adoptar b04/R03 como hipótesis activa de coordinación, preservando b03/R02 como antecedente | Activa | Instrucción del propietario y revisión arquitectónica, 2026-08-11 |
+| D-027 | Concentrar toda la zona diferida de P2 detrás de una frontera transversal única en Y=11,00 m | Activa como DCV de fases | Revisión b04, 2026-08-11 |
+| D-028 | Tratar la escalera como recinto protegido con descarga posterior directa; segunda salida pendiente de concepto normativo | Activa con reserva crítica | Revisión b04, 2026-08-11 |
+| D-029 | Liberar el eje peatonal y el frente del núcleo; isla de 3,60 × 1,20 m como nueva envolvente de prueba, no congelada | Activa como hipótesis | Revisión b04, 2026-08-11 |
 
 ## Decisiones que deben abrirse a continuación
 

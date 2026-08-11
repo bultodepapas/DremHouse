@@ -252,3 +252,15 @@ Antes de congelar v0.3 se necesitan:
 5. layout P2 que aisle físicamente la zona F2;
 6. concepto estructural/MEP que demuestre las previsiones;
 7. presupuesto de mercado separado por fases y costos de remobilización.
+
+## Coordinación arquitectónica b04
+
+La revisión `0.3-borrador-04` concentra la zona F2 de P2 detrás de una frontera
+transversal continua en Y=11,00 m. La escalera, hall ocupado, lavandería, linen, suite
+principal y suite hijo 1 quedan en F1. Hijo 2, huéspedes, shaft de apoyo y wellness quedan
+en F2.
+
+Esta organización mejora la posibilidad de un único cerramiento temporal de obra, pero
+todavía exige comprobar acceso de trabajadores y materiales, ventilación del shell,
+protección contra polvo/ruido, rutas MEP, sellos temporales y reparación de acabados. No
+se contabiliza ahorro hasta medir el límite temporal y cotizar remobilización.

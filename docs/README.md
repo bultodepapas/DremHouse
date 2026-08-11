@@ -28,6 +28,8 @@
 - [Plano conceptual v0.3 — primer borrador paramétrico](02_arquitectura/plano_conceptual_v0.3_borrador.md)
 - [Plano conceptual v0.3 — borrador 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
 - [Plano conceptual v0.3 — borrador 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
+- [Plano conceptual v0.3 — borrador 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
+  hipótesis activa de coordinación; corrige circulación, fases, suite principal y descarga posterior.
 
 ## 03 — Ingenierías
 

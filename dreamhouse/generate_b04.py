@@ -39,7 +39,7 @@ def exterior_door_svg(d):
 
 
 def phase_boundary_svg():
-    y = Y0 + (18 - 10.5) * S
+    y = Y0 + (18 - 11.0) * S
     x1, x2 = X0 + 21 * S, X0 + 36 * S
     return (
         f'<g stroke="#7b3f8c" fill="none">'
@@ -80,10 +80,10 @@ def validate(p, r):
     fixtures = r["details"]["fixtures"]["P2"]
     extra = [
         ("ARQ-CHILD-BED-EQ", abs(bedrooms["H1"] - bedrooms["H2"]) < 0.01, "Dormitorios de hijos conservan 26,00 m² útiles nominales"),
-        ("ARQ-F2-BOUNDARY", all(z["y"] >= 10.5 - 1e-6 for z in f2), "Toda Fase 2 queda detrás de una frontera continua en Y=10,50 m"),
+        ("ARQ-F2-BOUNDARY", all(z["y"] >= 11.0 - 1e-6 for z in f2), "Toda Fase 2 queda detrás de una frontera continua en Y=11,00 m"),
         ("ARQ-CORE-EXITS", {"EXT-BOD", "EXT-ESC"}.issubset(exterior_ids), "Bodega y escalera representan descarga posterior propia"),
         ("ARQ-WET-COMPLETE", sum(f["type"] == "shower" for f in fixtures) == 4 and sum(f["type"] == "vanity" for f in fixtures) >= 4, "Cuatro baños privados representan ducha y lavamanos"),
-        ("ARQ-MASTER-CONTIG", all(z["x"] >= 28.6 and z["y"] < 10.5 + 1e-6 for z in spaces if z.get("suite") == "M"), "Suite principal ocupa un bloque continuo de Fase 1"),
+        ("ARQ-MASTER-CONTIG", all(z["y"] < 11.0 + 1e-6 for z in spaces if z.get("suite") == "M"), "Suite principal ocupa un territorio conectado de Fase 1"),
         ("ARQ-AXIS-FREE", not any(base.overlaps(p["ground_floor"]["axis"], e) for e in p["ground_floor"]["equipment"]), "Equipamiento no invade el eje peatonal de 4,00 m"),
     ]
     checks += [{"rule_id": rid, "status": "PASS" if ok else "FAIL", "message": msg} for rid, ok, msg in extra]

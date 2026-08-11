@@ -34,7 +34,7 @@
     {
       "rule_id": "DCV-MASTER",
       "status": "PASS",
-      "message": "Suite principal reserva 77.70 m²"
+      "message": "Suite principal reserva 76.24 m²"
     },
     {
       "rule_id": "DCV-CORE",
@@ -54,7 +54,7 @@
     {
       "rule_id": "ARQ-F2-BOUNDARY",
       "status": "PASS",
-      "message": "Toda Fase 2 queda detrás de una frontera continua en Y=10,50 m"
+      "message": "Toda Fase 2 queda detrás de una frontera continua en Y=11,00 m"
     },
     {
       "rule_id": "ARQ-CORE-EXITS",
@@ -69,7 +69,7 @@
     {
       "rule_id": "ARQ-MASTER-CONTIG",
       "status": "PASS",
-      "message": "Suite principal ocupa un bloque continuo de Fase 1"
+      "message": "Suite principal ocupa un territorio conectado de Fase 1"
     },
     {
       "rule_id": "ARQ-AXIS-FREE",

@@ -1,7 +1,7 @@
 {
   "base": "dreamhouse/project_b02.json",
   "revision_file": "dreamhouse\\revision_b04.json",
-  "revision_sha256": "47290cd5010f6629517384a3063489d0152c1ac4c32688e34ecc965e6d9df720",
+  "revision_sha256": "8c9baa88e14cfb8c3d5d71702207b5cf29bdfc454e0263aefbe4d31ea9aae921",
   "generator": "dreamhouse/generate_b04.py",
   "revision": "0.3-borrador-04",
   "outputs": [
