@@ -44,6 +44,9 @@
 - [Presupuesto desglosado de control](04_costos/presupuesto_desglosado_de_control.md):
   desglose atómico por partida (APU de hipótesis: cantidades, precios unitarios, fases
   F1/F2 y confianza).
+- [Auditoría de costos 2026-08](04_costos/auditoria_de_costos_2026_08.md): verificación de
+  precios y cantidades contra fuentes vivas (CYPE, DANE, proveedores); insumo de PE-1/PE-2.
+  No cambia el target.
 - [Estrategia de construcción en dos fases](04_costos/estrategia_de_construccion_en_dos_fases.md)
 
 ## 05 — Predio y normativa

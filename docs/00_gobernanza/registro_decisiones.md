@@ -26,6 +26,7 @@
 | D-027 | Concentrar toda la zona diferida de P2 detrás de una frontera transversal única en Y=11,00 m | Activa como DCV de fases | Revisión b04, 2026-08-11 |
 | D-028 | Tratar la escalera como recinto protegido con descarga posterior directa; segunda salida pendiente de concepto normativo | Activa con reserva crítica | Revisión b04, 2026-08-11 |
 | D-029 | Liberar el eje peatonal y el frente del núcleo; isla de 3,60 × 1,20 m como nueva envolvente de prueba, no congelada | Activa como hipótesis | Revisión b04, 2026-08-11 |
+| D-030 | Registrar la auditoría independiente de costos (`auditoria_de_costos_2026_08.md`) como insumo de las puertas PE-1/PE-2; no cambia el target v0.2 ni la distribución F1/F2 | Activa | Auditoría de costos, 2026-08-11 |
 
 ## Decisiones que deben abrirse a continuación
 

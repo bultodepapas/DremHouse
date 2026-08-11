@@ -171,6 +171,7 @@ la nueva solución estén documentados y aceptados.
 | 0.2 | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX). |
 | 0.3 | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo. |
 | 0.3-A | 2026-08-11 | Revisión arquitectónica b04: escalera con descarga posterior, puerta exterior de bodega, frontera aislable F1/F2 y ajuste de cocina. Impacto aún no cuantificado; afecta principalmente capítulos 10, 14, 19, 20, 22 y 24. No se modifica el target hasta medir y cotizar. |
+| 0.3-B | 2026-08-11 | Auditoría independiente de costos en `auditoria_de_costos_2026_08.md`: verifica precios contra CYPE/DANE/proveedores (acceso en vivo el 11-08-2026) y cantidades contra la geometría. **No cambia el target ni la contingencia.** Concluye obra física probable ≈$1.050–1.150 M (escenario B) si los tres frentes optimistas (acero 05/06, fachada 09, vidrio 12) y los faltantes (detección de incendios, SG-SST/ensayos, seguros, sauna) se incorporan. Recomienda contingencia de diseño separada hasta PE-2. D-030. |
 
 ## Estrategia de ejecución por fases
 
