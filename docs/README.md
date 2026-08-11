@@ -37,7 +37,11 @@
 
 ## 04 — Costos
 
-- [Base y control de costos](04_costos/base_y_control_de_costos.md)
+- [Base y control de costos](04_costos/base_y_control_de_costos.md): target económico,
+  gobierno del presupuesto y radar de reducción de costos.
+- [Presupuesto desglosado de control](04_costos/presupuesto_desglosado_de_control.md):
+  desglose atómico por partida (APU de hipótesis: cantidades, precios unitarios, fases
+  F1/F2 y confianza).
 - [Estrategia de construcción en dos fases](04_costos/estrategia_de_construccion_en_dos_fases.md)
 
 ## 05 — Predio y normativa

@@ -1,0 +1,88 @@
+{
+  "revision": "0.3-borrador-04",
+  "checks": [
+    {
+      "rule_id": "HR-P2-BOUND",
+      "status": "PASS",
+      "message": "Espacios P2 dentro de su envolvente"
+    },
+    {
+      "rule_id": "HR-P2-TOPO",
+      "status": "PASS",
+      "message": "Espacios P2 sin solapes"
+    },
+    {
+      "rule_id": "HR-4-SUITES",
+      "status": "PASS",
+      "message": "Cuatro suites identificadas"
+    },
+    {
+      "rule_id": "HR-CHILD-EQ",
+      "status": "PASS",
+      "message": "Suites de hijos iguales"
+    },
+    {
+      "rule_id": "HR-CHILD-AREA",
+      "status": "PASS",
+      "message": "Cada suite de hijo reserva 38,00 m²"
+    },
+    {
+      "rule_id": "DCV-GUEST",
+      "status": "PASS",
+      "message": "Suite huéspedes reserva 33,00 m²"
+    },
+    {
+      "rule_id": "DCV-MASTER",
+      "status": "PASS",
+      "message": "Suite principal reserva 77.70 m²"
+    },
+    {
+      "rule_id": "DCV-CORE",
+      "status": "PASS",
+      "message": "Núcleo PB conserva 81,00 m²"
+    },
+    {
+      "rule_id": "HR-DOORS",
+      "status": "PASS",
+      "message": "Tres accesos frontales"
+    },
+    {
+      "rule_id": "ARQ-CHILD-BED-EQ",
+      "status": "PASS",
+      "message": "Dormitorios de hijos conservan 26,00 m² útiles nominales"
+    },
+    {
+      "rule_id": "ARQ-F2-BOUNDARY",
+      "status": "PASS",
+      "message": "Toda Fase 2 queda detrás de una frontera continua en Y=10,50 m"
+    },
+    {
+      "rule_id": "ARQ-CORE-EXITS",
+      "status": "PASS",
+      "message": "Bodega y escalera representan descarga posterior propia"
+    },
+    {
+      "rule_id": "ARQ-WET-COMPLETE",
+      "status": "PASS",
+      "message": "Cuatro baños privados representan ducha y lavamanos"
+    },
+    {
+      "rule_id": "ARQ-MASTER-CONTIG",
+      "status": "PASS",
+      "message": "Suite principal ocupa un bloque continuo de Fase 1"
+    },
+    {
+      "rule_id": "ARQ-AXIS-FREE",
+      "status": "PASS",
+      "message": "Equipamiento no invade el eje peatonal de 4,00 m"
+    },
+    {
+      "rule_id": "LIFE-EGRESS-2",
+      "status": "OPEN",
+      "message": "La necesidad de segunda salida independiente depende de clasificación de uso, ocupación, recorridos y concepto de incendio"
+    }
+  ],
+  "passed": 15,
+  "open": 1,
+  "failed": 0
+}

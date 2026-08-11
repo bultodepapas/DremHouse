@@ -157,6 +157,10 @@ cargas aprobada por el estructural. Lo preferible es seleccionar el modelo exact
 
 ## Desglose de control por capítulo
 
+El reparto F1/F2 por partida atómica (con cantidades y precios unitarios) está en
+[Presupuesto desglosado de control](presupuesto_desglosado_de_control.md). El resumen por
+capítulo:
+
 | Código | Capítulo | Fase 1 | Fase 2 | Criterio |
 |---|---|---:|---:|---|
 | 01 | Preliminares/replanteo | $15 M | $0 | Remobilización F2 no incluida |
@@ -187,7 +191,8 @@ cargas aprobada por el estructural. Lo preferible es seleccionar el modelo exact
 |  | **Total obra física** | **$867 M** | **$74 M** | **$941 M** |
 
 Las asignaciones 14–19, 21, 23 y 25 son hipótesis de reparto. Se reemplazarán con
-cantidades y cotizaciones en el presupuesto v0.3.
+cantidades y cotizaciones en el presupuesto v0.3; el desglose atómico ya las descompone
+partida por partida (ej. 14.01 tabiques P2 → F1 $12,5 M / F2 $6,5 M).
 
 ## Costos que la Fase 2 debe presupuestar adicionalmente
 

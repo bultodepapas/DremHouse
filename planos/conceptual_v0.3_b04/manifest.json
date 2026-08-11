@@ -1,0 +1,16 @@
+{
+  "base": "dreamhouse/project_b02.json",
+  "revision_file": "dreamhouse\\revision_b04.json",
+  "revision_sha256": "47290cd5010f6629517384a3063489d0152c1ac4c32688e34ecc965e6d9df720",
+  "generator": "dreamhouse/generate_b04.py",
+  "revision": "0.3-borrador-04",
+  "outputs": [
+    "DH-ARQ-PLN-001-R03_PB.svg",
+    "DH-ARQ-PLN-002-R03_P2.svg",
+    "DH-ARQ-SEC-001-R03_LONGITUDINAL.svg",
+    "DH-ARQ-SEC-002-R03_TRANSVERSAL.svg",
+    "DH-ARQ-ELE-001-R03_FRONTAL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

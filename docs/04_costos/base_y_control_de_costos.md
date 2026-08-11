@@ -1,9 +1,12 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.2
+**Versión:** 0.3
 **Fecha de precios declarada por la fuente:** 2026-08-11  
-**Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
+**Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
+**Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
+— APU de hipótesis por partida (cantidades, precios unitarios, fases F1/F2 y
+confianza) sobre el mismo target de $941 M.
 
 ## Línea base económica activa
 
@@ -35,36 +38,45 @@ Por tanto:
 - no autoriza reducir seguridad o desempeño;
 - no debe usarse todavía como costo total del promotor ni como base contractual.
 
-## Presupuesto de control v0.2
+## Presupuesto de control (resumen)
 
-| Código | Capítulo | Control |
-|---|---|---:|
-| 01 | Preliminares, campamento, replanteo | $15 M |
-| 02 | Excavaciones y movimientos menores | $7 M |
-| 03 | Zapatas, pedestales, vigas de amarre y anclajes | $35 M |
-| 04 | Losa PB industrial, endurecida y pulida | $83 M |
-| 05 | Estructura metálica principal nave + P2 | $145 M |
-| 06 | Correas, estructura secundaria y arriostramientos | $55 M |
-| 07 | Losa metaldeck P2 | $41 M |
-| 08 | Cubierta metálica aislada | $70 M |
-| 09 | Fachadas de panel metálico aislado | $95 M |
-| 10 | Canales, remates, flashing y sellos | $20 M |
-| 11 | Dos portones industriales grandes | $24 M |
-| 12 | Gran evento principal de vidrio | $38 M |
-| 13 | Ventanas restantes + puerta peatonal | $20 M |
-| 14 | Divisiones P2/núcleo + acústica selectiva | $38 M |
-| 15 | Redes hidrosanitarias principales | $20 M |
-| 16 | Cinco baños + ducha/sauna + acabados húmedos | $35 M |
-| 17 | Electricidad, tableros, iluminación y potencia | $42 M |
-| 18 | Datos, red y preparación Home Assistant | $8 M |
-| 19 | Extracción, ventilación y climatización selectiva | $25 M |
-| 20 | Cocina fija, muebles, mesones y herrajes | $25 M |
-| 21 | Closets + cajoneras y bancos fijos del taller | $30 M |
-| 22 | Escalera metálica + barandas | $12 M |
-| 23 | Acabados residenciales P2 y pintura puntual | $25 M |
-| 24 | Terraza inmediata de concreto + drenajes | $18 M |
-| 25 | Elevador automotriz + instalación/provisión civil | $15 M |
-|  | **Total obra objetivo** | **$941 M** |
+El desglose atómico por partida, con cantidades y precios unitarios, vive en
+[Presupuesto desglosado de control](presupuesto_desglosado_de_control.md). El resumen
+por capítulo es:
+
+| Código | Capítulo | Control | F1 | F2 | Confianza |
+|---|---|---|---:|---:|---:|---|
+| 01 | Preliminares, campamento, replanteo | $15 M | $15 M | $0 | media |
+| 02 | Excavaciones y movimientos menores | $7 M | $7 M | $0 | media |
+| 03 | Zapatas, pedestales, vigas de amarre y anclajes | $35 M | $35 M | $0 | media |
+| 04 | Losa PB industrial, endurecida y pulida | $83 M | $83 M | $0 | media |
+| 05 | Estructura metálica principal nave + P2 | $145 M | $145 M | $0 | baja-media |
+| 06 | Correas, estructura secundaria y arriostramientos | $55 M | $55 M | $0 | baja-media |
+| 07 | Losa metaldeck P2 | $41 M | $41 M | $0 | media-alta |
+| 08 | Cubierta metálica aislada | $70 M | $70 M | $0 | media |
+| 09 | Fachadas de panel metálico aislado | $95 M | $95 M | $0 | media |
+| 10 | Canales, remates, flashing y sellos | $20 M | $20 M | $0 | media |
+| 11 | Dos portones industriales grandes | $24 M | $24 M | $0 | baja-media |
+| 12 | Gran evento principal de vidrio | $38 M | $38 M | $0 | baja-media |
+| 13 | Ventanas restantes + puerta peatonal | $20 M | $20 M | $0 | baja-media |
+| 14 | Divisiones P2/núcleo + acústica selectiva | $38 M | $26 M | $12 M | media |
+| 15 | Redes hidrosanitarias principales | $20 M | $17 M | $3 M | baja |
+| 16 | Cinco baños + ducha/sauna + acabados húmedos | $35 M | $22 M | $13 M | baja-media |
+| 17 | Electricidad, tableros, iluminación y potencia | $42 M | $35 M | $7 M | baja |
+| 18 | Datos, red y preparación Home Assistant | $8 M | $7 M | $1 M | baja |
+| 19 | Extracción, ventilación y climatización selectiva | $25 M | $20 M | $5 M | baja |
+| 20 | Cocina fija, muebles, mesones y herrajes | $25 M | $25 M | $0 | baja-media |
+| 21 | Closets + cajoneras y bancos fijos del taller | $30 M | $17 M | $13 M | baja-media |
+| 22 | Escalera metálica + barandas | $12 M | $12 M | $0 | media |
+| 23 | Acabados residenciales P2 y pintura puntual | $25 M | $16 M | $9 M | baja-media |
+| 24 | Terraza inmediata de concreto + drenajes | $18 M | $18 M | $0 | media |
+| 25 | Elevador automotriz + instalación/provisión civil | $15 M | $4 M | $11 M | media |
+|  | **Total obra objetivo** | **$941 M** | **$867 M** | **$74 M** | baja-media |
+
+El desglose muestra además, partida por partida, el **precio implícito** (por kg, m²,
+ml o punto) que el target supone y su comparación con las referencias CYPE. Ese
+análisis identifica los tres frentes donde el control es más optimista que el mercado:
+**fachada aislada (09), vidrio principal (12) y tonelaje de acero (05/06)**.
 
 ## Costo total del proyecto — estructura obligatoria
 
@@ -87,18 +99,46 @@ Cada partida debe registrar: código, descripción, unidad, cantidad, desperdici
 mano de obra, equipo, transporte, impuestos, subtotal, fuente/proveedor, municipio, fecha,
 confianza, supuestos y documento de medición.
 
-No se admiten incrementos por etiquetas como “premium” o “lujo”; deben responder a
+No se admiten incrementos por etiquetas como "premium" o "lujo"; deben responder a
 cantidad, especificación, riesgo o cotización.
+
+El desglose atómico de control (partidas `capítulo.partida`) es el marco sobre el que se
+miden y cotizan; no se reemplazan partidas globales con APU aislados sin actualizar el
+resumen de capítulo.
+
+## Radar de reducción de costos
+
+Oportunidades priorizadas por ahorro/esfuerzo, con referencia a las partidas atómicas del
+desglose. Los porcentajes son órdenes de magnitud de investigación; ningún ahorro se
+contabiliza hasta documentar alcance y cotización.
+
+| # | Oportunidad | Partidas | Control actual | Potencial | Riesgo |
+|---|---|---|---:|---:|---|
+| 1 | Modulación 6 m, perfiles estándar, acero S355 en principales | 05.01–05.03, 06.01–06.03 | $200 M | −$15 a −$30 M | bajo |
+| 2 | Envolvente por capas vs. panel aislado (solo con punto de rocío) | 08.01, 09.01 | $165 M | −$15 a −$30 M | medio-alto |
+| 3 | Geotecnia temprana, espesores y refuerzos realistas, engrosamiento local | 03.01–03.03, 04.02, 04.09 | $125 M | −$5 a −$15 M | bajo |
+| 4 | Vidrio y portones estándar con 2–3 cotizaciones | 11.01–11.03, 12.01, 13.01 | $82 M | −$5 a −$10 M | bajo |
+| 5 | No climatizar la nave; HVLS + calefacción local; iluminación por capas | 17.03–17.04, 19.02, 19.04 | $67 M | −$5 a −$10 M | bajo |
+| 6 | Cocina y carpintería nacional modular ampliable | 20.01–20.04, 21.04 | $55 M | −$3 a −$6 M | bajo |
+| 7 | Fases F1/F2 (D-016) | Fase 2 | $74 M | ahorro de caja F1 ≈$77,7 M | medio |
+
+Detalle técnico de cada técnica, límites y fuentes en
+[Técnicas constructivas y materiales para abaratar costos](../08_investigacion/tecnicas_que_abaratan_costos.md).
 
 ## Paquetes prioritarios de validación
 
-1. Estructura: toneladas/kg, fabricación, protección, transporte, montaje e izaje.
-2. Losa/cimentación: geotecnia, m³, refuerzo/fibras, subbase, juntas y acabado.
-3. Envolvente: m² netos, espesores, remates, puentes térmicos y montaje.
-4. Vidrio/portones: dimensiones, desempeño y 2–3 cotizaciones comparables.
-5. MEP: cargas, puntos, circuitos, tuberías, equipos, extracción y commissioning.
-6. Baños/sauna: aparatos, impermeabilización, enchapes, ventilación y accesorios.
-7. Cocina/carpintería/taller: metros, herrajes, mesones y prototipos.
+1. Estructura (05/06): toneladas/kg, fabricación, protección, transporte, montaje e
+   izaje; comparar 3 modulaciones (partidas 05.01–05.05, 06.01–06.06).
+2. Losa/cimentación (02/03/04): geotecnia, m³, refuerzo/fibras, subbase, juntas y
+   acabado (partidas 03.01–04.09).
+3. Envolvente (08/09/10): m² netos, espesores, remates, puentes térmicos y montaje
+   (partidas 08.01–10.04).
+4. Vidrio/portones (11/12/13): dimensiones, desempeño y 2–3 cotizaciones comparables
+   (partidas 11.01–13.05).
+5. MEP (15/17/18/19): cargas, puntos, circuitos, tuberías, equipos, extracción y
+   commissioning (partidas 15.01–19.07).
+6. Baños/sauna (16): aparatos, impermeabilización, enchapes, ventilación y accesorios.
+7. Cocina/carpintería/taller (20/21): metros, herrajes, mesones y prototipos.
 
 ## Puertas económicas
 
@@ -124,6 +164,13 @@ Todo cambio debe registrar: origen, necesidad, alternativas, costo, plazo, efect
 decisión y partida afectada. Ningún ahorro se contabiliza hasta que el alcance eliminado y
 la nueva solución estén documentados y aceptados.
 
+## Registro de versiones
+
+| Versión | Fecha | Cambio |
+|---|---|---|
+| 0.2 | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX). |
+| 0.3 | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo. |
+
 ## Estrategia de ejecución por fases
 
 El propietario decidió terminar inicialmente solo la suite principal y una suite de hijo,
@@ -131,5 +178,6 @@ aplazando la segunda suite de hijo, huéspedes, sauna y lift. El reparto técnic
 se desarrolla en [Estrategia de construcción en dos fases](estrategia_de_construccion_en_dos_fases.md).
 
 La línea base preliminar distribuye $867 M de obra física en Fase 1 y $74 M en Fase 2. El
-total de $941 M no disminuye y la Fase 2 deberá añadir escalamiento, remobilización,
-protecciones y trámites que aún no están cuantificados.
+desglose atómico asigna cada partida a su fase (F1/F2) manteniendo esos totales. La Fase 2
+deberá añadir escalamiento, remobilización, protecciones y trámites que aún no están
+cuantificados.

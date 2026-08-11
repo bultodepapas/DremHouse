@@ -1,0 +1,118 @@
+{
+  "schema_version": "0.1",
+  "revision": "0.3-borrador-04",
+  "status": "hypothesis",
+  "base_model": "dreamhouse/project_b02.json",
+  "ground_floor_equipment": [
+    {"id":"EQ-CAR","name":"Vehículo de diseño","x":2.0,"y":1.35,"w":4.8,"d":2.0,"symbol":"car"},
+    {"id":"EQ-LIFT","name":"Lift 2 postes","x":4.0,"y":0.6,"w":4.2,"d":3.5,"symbol":"lift"},
+    {"id":"EQ-CARBENCH","name":"Banco automotriz","x":0.6,"y":5.8,"w":8.8,"d":0.75,"symbol":"bench"},
+    {"id":"EQ-RCBENCH","name":"Banco RC central","x":2.8,"y":12.7,"w":4.5,"d":1.6,"symbol":"table"},
+    {"id":"EQ-RCWALL","name":"Banco RC longitudinal","x":0.6,"y":16.65,"w":9.0,"d":0.75,"symbol":"bench"},
+    {"id":"EQ-SOFA","name":"Sofá modular","x":15.0,"y":2.7,"w":3.8,"d":3.0,"symbol":"sofa"},
+    {"id":"EQ-TABLE","name":"Mesa comedor 12p","x":22.0,"y":2.2,"w":3.6,"d":1.3,"symbol":"table"},
+    {"id":"EQ-ISLAND","name":"Isla racionalizada","x":27.0,"y":2.2,"w":3.6,"d":1.2,"symbol":"island"},
+    {"id":"EQ-KWALL","name":"Muro equipado cocina","x":26.7,"y":0.25,"w":4.5,"d":0.75,"symbol":"cabinet"},
+    {"id":"EQ-RACK","name":"Rack / UPS","x":32.1,"y":12.0,"w":1.0,"d":0.8,"symbol":"rack"}
+  ],
+  "upper_floor_spaces": [
+    {"id":"P2-H1-D","suite":"H1","name":"Dormitorio hijo 1","x":21.0,"y":0.0,"w":5.2,"d":5.0,"kind":"bedroom","phase":1},
+    {"id":"P2-H1-C","suite":"H1","name":"Closet H1","x":26.2,"y":0.0,"w":2.4,"d":2.0,"kind":"closet","phase":1},
+    {"id":"P2-H1-B","suite":"H1","name":"Baño H1","x":26.2,"y":2.0,"w":2.4,"d":3.0,"kind":"bath","phase":1},
+
+    {"id":"P2-DECK","name":"Mini deck cerrado","x":21.0,"y":5.0,"w":3.0,"d":3.0,"kind":"shared","phase":1},
+    {"id":"P2-HALL-A","name":"Hall privado","x":24.0,"y":5.0,"w":4.6,"d":3.0,"kind":"circulation","phase":1},
+    {"id":"P2-LAV","name":"Lavandería","x":21.0,"y":8.0,"w":4.0,"d":2.5,"kind":"service","phase":1},
+    {"id":"P2-LIN","name":"Linen","x":25.0,"y":8.0,"w":2.0,"d":2.5,"kind":"service","phase":1},
+    {"id":"P2-HALL-B","name":"Llegada / distribución","x":27.0,"y":8.0,"w":1.6,"d":2.5,"kind":"circulation","phase":1},
+
+    {"id":"P2-M-E","suite":"M","name":"Estar principal","x":28.6,"y":0.0,"w":7.4,"d":3.0,"kind":"master","phase":1},
+    {"id":"P2-M-B","suite":"M","name":"Baño principal","x":28.6,"y":3.0,"w":4.2,"d":4.4,"kind":"bath","phase":1},
+    {"id":"P2-M-D","suite":"M","name":"Dormitorio principal","x":32.8,"y":3.0,"w":3.2,"d":7.5,"kind":"master","phase":1},
+    {"id":"P2-M-V","suite":"M","name":"Vestíbulo principal","x":28.6,"y":7.4,"w":2.0,"d":3.1,"kind":"master","phase":1},
+    {"id":"P2-M-C","suite":"M","name":"Vestidor principal","x":30.6,"y":7.4,"w":2.2,"d":3.1,"kind":"closet","phase":1},
+
+    {"id":"P2-F2-HALL","name":"Vestíbulo F2 aislable","x":21.0,"y":10.5,"w":15.0,"d":1.5,"kind":"circulation","phase":2},
+    {"id":"P2-H2-D","suite":"H2","name":"Dormitorio hijo 2","x":21.0,"y":12.0,"w":6.5,"d":4.0,"kind":"bedroom","phase":2},
+    {"id":"P2-H2-C","suite":"H2","name":"Closet H2","x":21.0,"y":16.0,"w":2.4,"d":2.0,"kind":"closet","phase":2},
+    {"id":"P2-H2-B","suite":"H2","name":"Baño H2","x":23.4,"y":16.0,"w":3.6,"d":2.0,"kind":"bath","phase":2},
+    {"id":"P2-G-D","suite":"G","name":"Dormitorio huéspedes","x":27.5,"y":12.0,"w":5.5,"d":4.4,"kind":"bedroom","phase":2},
+    {"id":"P2-G-C","suite":"G","name":"Closet huéspedes","x":27.5,"y":16.4,"w":2.0,"d":1.6,"kind":"closet","phase":2},
+    {"id":"P2-G-B","suite":"G","name":"Baño huéspedes","x":29.5,"y":16.4,"w":3.5,"d":1.6,"kind":"bath","phase":2},
+    {"id":"P2-WELL","name":"Wellness / sauna","x":33.0,"y":12.0,"w":3.0,"d":6.0,"kind":"wellness","phase":2}
+  ],
+  "upper_floor_equipment": [
+    {"id":"BED-H1","name":"Cama H1","x":22.0,"y":1.1,"w":2.0,"d":1.4,"symbol":"bed"},
+    {"id":"DESK-H1","name":"Escritorio H1","x":24.8,"y":3.7,"w":1.2,"d":0.6,"symbol":"desk"},
+    {"id":"BED-H2","name":"Cama H2","x":21.6,"y":12.7,"w":2.0,"d":1.4,"symbol":"bed"},
+    {"id":"DESK-H2","name":"Escritorio H2","x":25.6,"y":14.8,"w":1.2,"d":0.6,"symbol":"desk"},
+    {"id":"BED-G","name":"Cama huéspedes","x":28.2,"y":12.8,"w":2.1,"d":1.6,"symbol":"bed"},
+    {"id":"BED-M","name":"Cama principal","x":33.35,"y":5.0,"w":2.1,"d":2.0,"symbol":"bed"},
+    {"id":"SAUNA","name":"Sauna 6p","x":33.2,"y":12.5,"w":2.4,"d":2.4,"symbol":"sauna"},
+    {"id":"LAUNDRY","name":"Lavadora + secadora","x":21.4,"y":8.5,"w":1.4,"d":0.75,"symbol":"appliance"}
+  ],
+  "details": {
+    "doors": {
+      "PB": [
+        {"id":"D-PB-BOD","x":31.5,"y":2.0,"orientation":"vertical","width":0.9,"name":"Bodega"},
+        {"id":"D-PB-BAN","x":31.5,"y":5.8,"orientation":"vertical","width":0.9,"name":"Baño PB"},
+        {"id":"D-PB-ESC","x":31.5,"y":8.3,"orientation":"vertical","width":1.0,"name":"Escalera protegida"},
+        {"id":"D-PB-HOM","x":31.5,"y":12.8,"orientation":"vertical","width":0.9,"name":"Homelab"},
+        {"id":"D-PB-PAN","x":31.5,"y":16.2,"orientation":"vertical","width":0.9,"name":"Pantry"}
+      ],
+      "P2": [
+        {"id":"D-H1","x":24.7,"y":5.0,"orientation":"horizontal","width":0.9,"name":"Suite H1"},
+        {"id":"D-H1-B","x":26.2,"y":3.0,"orientation":"vertical","width":0.8,"name":"Baño H1"},
+        {"id":"D-M","x":28.6,"y":8.8,"orientation":"vertical","width":1.0,"name":"Principal"},
+        {"id":"D-M-B","x":29.2,"y":7.4,"orientation":"horizontal","width":0.9,"name":"Baño principal"},
+        {"id":"D-M-D","x":32.8,"y":8.7,"orientation":"vertical","width":0.9,"name":"Dormitorio principal"},
+        {"id":"D-M-E","x":34.0,"y":3.0,"orientation":"horizontal","width":0.9,"name":"Estar principal"},
+        {"id":"D-F2","x":27.8,"y":10.5,"orientation":"horizontal","width":1.0,"name":"Frontera F2"},
+        {"id":"D-H2","x":24.8,"y":12.0,"orientation":"horizontal","width":0.9,"name":"Suite H2"},
+        {"id":"D-H2-B","x":24.0,"y":16.0,"orientation":"horizontal","width":0.8,"name":"Baño H2"},
+        {"id":"D-G","x":29.5,"y":12.0,"orientation":"horizontal","width":0.9,"name":"Huéspedes"},
+        {"id":"D-G-B","x":30.6,"y":16.4,"orientation":"horizontal","width":0.8,"name":"Baño huéspedes"},
+        {"id":"D-WELL","x":33.8,"y":12.0,"orientation":"horizontal","width":0.9,"name":"Wellness"}
+      ]
+    },
+    "exterior_doors": [
+      {"id":"EXT-BOD","floor":"PB","edge":"right","from":1.6,"to":2.6,"name":"Salida exterior bodega"},
+      {"id":"EXT-ESC","floor":"PB","edge":"right","from":8.6,"to":9.6,"name":"Descarga exterior escalera"}
+    ],
+    "windows": {
+      "PB": [
+        {"id":"W-SALA-1","edge":"bottom","from":16.2,"to":20.5,"name":"Evento de vidrio provisional"},
+        {"id":"W-SALA-2","edge":"top","from":16.2,"to":20.5,"name":"Alternativa según predio"}
+      ],
+      "P2": [
+        {"id":"W-H1","edge":"bottom","from":22.0,"to":25.8,"name":"Hijo 1"},
+        {"id":"W-M-SIDE","edge":"right","from":4.0,"to":9.5,"name":"Principal"},
+        {"id":"W-M-REAR","edge":"bottom","from":30.0,"to":35.0,"name":"Estar principal"},
+        {"id":"W-H2","edge":"top","from":21.8,"to":26.5,"name":"Hijo 2"},
+        {"id":"W-G","edge":"top","from":27.8,"to":32.3,"name":"Huéspedes"},
+        {"id":"W-WELL","edge":"right","from":13.0,"to":17.0,"name":"Wellness"}
+      ]
+    },
+    "fixtures": {
+      "PB": [
+        {"id":"WC-PB","type":"wc","x":34.8,"y":5.35,"w":0.7,"d":0.85},
+        {"id":"SH-PB","type":"shower","x":32.0,"y":5.25,"w":1.2,"d":1.1},
+        {"id":"SNK-PB","type":"vanity","x":33.4,"y":6.65,"w":0.9,"d":0.45}
+      ],
+      "P2": [
+        {"id":"WC-H1","type":"wc","x":27.5,"y":2.3,"w":0.65,"d":0.8},
+        {"id":"SH-H1","type":"shower","x":26.45,"y":3.7,"w":1.1,"d":1.0},
+        {"id":"SNK-H1","type":"vanity","x":26.45,"y":2.25,"w":0.8,"d":0.45},
+        {"id":"WC-H2","type":"wc","x":25.9,"y":16.65,"w":0.65,"d":0.8},
+        {"id":"SH-H2","type":"shower","x":23.75,"y":16.55,"w":1.1,"d":1.0},
+        {"id":"SNK-H2","type":"vanity","x":25.0,"y":17.3,"w":0.8,"d":0.45},
+        {"id":"WC-G","type":"wc","x":31.7,"y":16.75,"w":0.6,"d":0.8},
+        {"id":"SH-G","type":"shower","x":29.55,"y":16.65,"w":1.1,"d":1.0},
+        {"id":"SNK-G","type":"vanity","x":30.75,"y":17.3,"w":0.8,"d":0.45},
+        {"id":"WC-M","type":"wc","x":31.7,"y":3.5,"w":0.65,"d":0.8},
+        {"id":"SH-M","type":"shower","x":29.0,"y":5.3,"w":1.6,"d":1.4},
+        {"id":"VAN-M","type":"vanity","x":29.0,"y":3.35,"w":2.4,"d":0.45}
+      ]
+    }
+  }
+}
