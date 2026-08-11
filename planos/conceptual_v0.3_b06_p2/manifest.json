@@ -1,0 +1,12 @@
+{
+  "revision": "0.3-borrador-06-P2",
+  "source": "dreamhouse/p2_b06.json",
+  "source_sha256": "d054874345652edaf761a6a31a71909e88a09321dcc9c2cb1b4fba50c994eb49",
+  "generator": "dreamhouse/generate_p2_b06.py",
+  "outputs": [
+    "DH-ARQ-PLN-002-R05_P2-DETALLADA.svg",
+    "DH-ARQ-DIA-001-R05_LOGICA-EGRESO-P2.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

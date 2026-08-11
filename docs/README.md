@@ -32,10 +32,15 @@
   hipótesis activa de coordinación; corrige circulación, fases, suite principal y descarga posterior.
 - [Planta baja detallada v0.3 — borrador 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   espesores de estudio, gran muro, núcleo reorganizado, cocina y atelier equipado.
+- [Segundo piso detallado v0.3 — borrador 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
+  suites, privacidad, fases, wellness, ventanas y lógica de egreso coordinadas.
 
 ## 03 — Ingenierías
 
 - [Bases estructurales y civiles](03_ingenierias/bases_estructurales_y_civiles.md)
+- [Bases de la estructura metálica — predimensionamiento conceptual](03_ingenierias/bases_estructura_metalica.md):
+  base para la decisión D-019 (sistemas pórtico/cercha × modulaciones 4,5/6,0/9,0 m),
+  hipótesis de carga sin nieve (Boyacá), estabilidad, entrepiso P2 y criterios de peso.
 - [Bases MEP, confort y automatización](03_ingenierias/bases_mep_confort_y_automatizacion.md)
 - [Seguridad, taller y calidad del aire](03_ingenierias/seguridad_taller_y_calidad_del_aire.md)
 

@@ -1,0 +1,53 @@
+{
+  "revision": "0.3-borrador-06-P2",
+  "passed": 8,
+  "open": 1,
+  "failed": 0,
+  "checks": [
+    {
+      "rule_id": "P2-ENV",
+      "status": "PASS",
+      "message": "Espacios dentro de 18 × 15 m"
+    },
+    {
+      "rule_id": "P2-NO-OVERLAP",
+      "status": "PASS",
+      "message": "Sin solapes de recintos"
+    },
+    {
+      "rule_id": "P2-4-SUITES",
+      "status": "PASS",
+      "message": "Cuatro suites exactas"
+    },
+    {
+      "rule_id": "P2-CHILD-EQUAL",
+      "status": "PASS",
+      "message": "Dormitorios hijos = 26,0 m²"
+    },
+    {
+      "rule_id": "P2-F2",
+      "status": "PASS",
+      "message": "F2 tras frontera única"
+    },
+    {
+      "rule_id": "P2-BED-WINDOWS",
+      "status": "PASS",
+      "message": "Dormitorios secundarios con vidrio alto"
+    },
+    {
+      "rule_id": "P2-MASTER-WIDTH",
+      "status": "PASS",
+      "message": "Dormitorio principal ancho y jerárquico"
+    },
+    {
+      "rule_id": "P2-WELLNESS",
+      "status": "PASS",
+      "message": "Wellness >=16 m²"
+    },
+    {
+      "rule_id": "LIFE-EGRESS-2",
+      "status": "OPEN",
+      "message": "Segunda salida independiente sujeta a concepto profesional de incendio"
+    }
+  ]
+}

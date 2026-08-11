@@ -1,0 +1,128 @@
+{
+  "project": {
+    "id": "DH-EST-E0-001",
+    "revision": "0.1",
+    "status": "hypothesis",
+    "date": "2026-08-11",
+    "purpose": "Modelo E0 de esquema estructural: comparar sistemas y modulaciones (D-019). No es diseño profesional ni apto para construir.",
+    "source": [
+      "docs/00_gobernanza/constitucion_del_proyecto.md",
+      "docs/BORN_Legacy/Dream_House_Plano_Conceptual_v0.2.md",
+      "docs/BORN_Legacy/casa_bodega_boyaca_conclusiones_anteproyecto.md",
+      "docs/01_brief/programa_arquitectonico.md",
+      "docs/03_ingenierias/bases_estructurales_y_civiles.md",
+      "docs/03_ingenierias/bases_estructura_metalica.md",
+      "docs/04_costos/auditoria_de_costos_2026_08.md"
+    ],
+    "reviewer_required": "Ingeniero estructural competente antes de cualquier uso de diseño"
+  },
+  "units": "SI",
+  "geometry": {
+    "nave_length_m": 36.0,
+    "nave_width_m": 18.0,
+    "eave_low_m": 7.2,
+    "eave_high_m": 7.8,
+    "roof_rise_m": 0.6,
+    "roof_type": "un solo faldon (mono-pitch)",
+    "p2_start_x_m": 21.0,
+    "p2_length_m": 15.0,
+    "p2_floor_level_m": 3.8,
+    "headroom_below_p2_m": 3.1,
+    "p2_headroom_m": 3.0,
+    "modulations": [
+      {"id": "M45", "bay_m": 4.5, "n_bays": 8, "n_portal_lines": 9},
+      {"id": "M60", "bay_m": 6.0, "n_bays": 6, "n_portal_lines": 7},
+      {"id": "M90", "bay_m": 9.0, "n_bays": 4, "n_portal_lines": 5}
+    ]
+  },
+  "materials": {
+    "S355": {"name": "A572 Gr.50 / S355", "fy_mpa": 355.0, "fu_mpa": 490.0, "E_mpa": 200000.0, "density_kg_m3": 7850.0, "role": "principales"},
+    "S235": {"name": "A36 / S235", "fy_mpa": 235.0, "fu_mpa": 400.0, "E_mpa": 200000.0, "density_kg_m3": 7850.0, "role": "secundarios"}
+  },
+  "loads": {
+    "note_no_snow": "Altiplano de Boyaca sin nieve de diseno: NO se incluye carga de nieve. Gobiernan viento (NSR-10 B.6), sismo (Titulo A) y lluvia/drenaje. Envoltura responde al frio nocturno, condensacion e infiltracion, no a carga de nieve.",
+    "dead": {
+      "roof_kpa": 0.45,
+      "floor_p2_kpa": 2.5,
+      "partitions_p2_kpa": 1.2,
+      "ceiling_mep_kpa": 0.15,
+      "facade_kpa": 0.2
+    },
+    "live": {
+      "roof_kpa": 0.5,
+      "p2_residential_kpa": 1.8,
+      "workshop_kpa": 3.0,
+      "lift_point_kN_per_column_hypothesis": 25.0,
+      "jacuzzi_kpa_if_adopted_hypothesis": 4.0,
+      "source": "hipotesis de ingeniero; valores definitivos por norma y equipos reales"
+    },
+    "wind": {
+      "v3s_reference_mps_hypothesis": 28.0,
+      "qz_eave_kpa_hypothesis": 0.45,
+      "Cp_wall_windward": 0.8,
+      "Cp_wall_leeward": 0.5,
+      "Cp_roof_windward": -0.6,
+      "Cp_roof_leeward": -0.4,
+      "Cp_internal": 0.2,
+      "note": "Valores provisionales para comparar esquemas; los definitivos los define el ingeniero con NSR-10 B.6 y el municipio"
+    },
+    "seismic": {
+      "cs_base_shear_hypothesis": 0.1,
+      "importance_factor_hypothesis": 1.0,
+      "note": "Coeficiente hipotesis para E0; espectro real por NSR-10 Titulo A segun municipio"
+    },
+    "rain": {
+      "note": "Pendiente 1:30 aprox. y drenaje sin empozamientos; verificar con fabricante de cubierta"
+    }
+  },
+  "combinations": [
+    {"id": "C1", "name": "1.4D", "factors": {"D": 1.4, "L": 0.0, "W": 0.0, "E": 0.0}},
+    {"id": "C2", "name": "1.2D+1.6L", "factors": {"D": 1.2, "L": 1.6, "W": 0.0, "E": 0.0}},
+    {"id": "C3", "name": "1.2D+1.0W+0.5L", "factors": {"D": 1.2, "L": 0.5, "W": 1.0, "E": 0.0}},
+    {"id": "C4", "name": "0.9D+1.0W", "factors": {"D": 0.9, "L": 0.0, "W": 1.0, "E": 0.0}},
+    {"id": "C5", "name": "1.2D+1.0E+0.5L", "factors": {"D": 1.2, "L": 0.5, "W": 0.0, "E": 1.0}},
+    {"id": "C6", "name": "0.9D+1.0E", "factors": {"D": 0.9, "L": 0.0, "W": 0.0, "E": 1.0}}
+  ],
+  "systems": [
+    {
+      "id": "PORTICO",
+      "name": "Porticos portal de luz completa 18 m",
+      "description": "Columnas HEA/HEB con bases articuladas + viga de cubierta IPE con cartela de alero; estabilidad por arriostramiento longitudinal",
+      "profile_rafter": "IPE",
+      "profile_column": "HEA",
+      "preferred_for": "nave de luz media; simplifica fabricacion y conexiones"
+    },
+    {
+      "id": "CERCHA",
+      "name": "Cercha / viga reticulada de 18 m sobre columnas",
+      "description": "Cuerdas IPE/HEA con diagonalizado; menor peso en luz larga, mayor detalle de fabricacion",
+      "profile_rafter": "IPE",
+      "profile_column": "HEA",
+      "truss_depth_span_ratio": 16.0,
+      "preferred_for": "comparacion de peso; decidir por datos con costo fabricado/montado"
+    }
+  ],
+  "criteria": {
+    "phi_bending": 0.9,
+    "phi_axial": 0.9,
+    "deflection_roof_total": "L/180",
+    "deflection_floor_total": "L/240",
+    "deflection_floor_live": "L/360",
+    "drift_allowance": "H/200",
+    "detail_factor_principales": 0.15,
+    "waste_factor": 0.05,
+    "purlin_spacing_m": 1.5,
+    "girt_spacing_m": 1.5,
+    "joist_spacing_m": 1.5,
+    "bracing_roof_bays_per_end": 2,
+    "target_total_steel_t": [30.0, 45.0],
+    "target_kg_m2_reference": [31.0, 48.0],
+    "source": "bases_estructura_metalica.md, auditoria de costos A-01/A-04"
+  },
+  "secondary_profiles": {
+    "purlin_girt": "C200",
+    "bracing": "L50x5",
+    "joist": "IPE220",
+    "source": "perfiles de stock estandar"
+  }
+}

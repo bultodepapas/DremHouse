@@ -1,0 +1,241 @@
+# Bases de la estructura metálica — predimensionamiento conceptual
+
+**Estatus:** base de coordinación; hipótesis de ingeniería; no es memoria de cálculo
+ni diseño profesional
+**Versión:** 0.1
+**Fecha de corte:** 2026-08-11
+**Fuentes:** constitución del proyecto, programa arquitectónico v0.2, plano conceptual
+v0.2, bases estructurales y civiles v0.2, presupuesto desglosado de control, auditoría de
+costos 2026-08, herramientas digitales (modelo E0/E1) y técnicas que abaratan costos.
+**Aprobación pendiente:** ingeniero estructural, arquitecto coordinador, propietario.
+
+## Propósito
+
+Este documento fija las bases conceptuales para abrir la decisión **D-019** (sistema
+estructural conceptual y modulación) y producir el **predimensionamiento de comparación**
+que exige la puerta económica PE-1. Establece qué se comparará, con qué hipótesis de
+carga y con qué criterios de peso, para que el ingeniero estructural, y no un motor
+automático, fije el tonelaje real.
+
+> **Regla del expediente:** aquí no se seleccionan perfiles finales, no se escribe una
+> biblioteca NSR-10 y ningún resultado numérico es apto para construir.
+
+## 1. Geometría de referencia
+
+| Parámetro | Valor | Estatus |
+|---|---:|---|
+| Nave | 18,00 × 36,00 m | DCV fuerte, no hard rule dimensional |
+| Huella PB | 648 m² | DCV |
+| P2 posterior | 18,00 × 15,00 m = 270 m² | DCV |
+| Inicio de P2 | X = 21,00 m | DCV |
+| Doble altura delantera | 18,00 × 21,00 m = 378 m² | DCV |
+| Nivel terminado P2 | ≈ +3,80 m | DCV, ajustar con canto real |
+| Altura libre bajo P2 | ≈ 3,05–3,20 m | DCV |
+| Altura interior de nave | ≈ 7,20–7,80 m | DCV |
+| Eave baja / eave alta | 7,20 m / 7,80 m (cubierta de un solo faldón) | hipótesis de sección |
+| Cubierta | única, continua, simple; sin tragaluces por defecto | hard rule |
+| Retícula de coordinación | 6 × 6 m | coordinación; no obliga columnas interiores |
+
+La cubierta es de **un solo faldón** (mono-pitch): la diferencia 7,80 − 7,20 = 0,60 m
+sobre 18,00 m de luz transversal da una pendiente de ≈ 1:30 (≈ 1,9 %). Esta pendiente debe
+verificarse con el fabricante de cubierta y el drenaje; si no basta para lámina estándar,
+se evalúa ajustar la eave alta (la unidad formal de la cubierta es hard rule, la cota no).
+
+## 2. Sistemas y modulaciones a comparar (D-019)
+
+Matriz de predimensionamiento recomendada: **2 sistemas × 3 modulaciones**.
+
+### 2.1 Sistemas
+
+1. **Pórticos portal de luz completa (18 m).** Columnas HEA/HEB + viga de cubierta
+   (IPE) con cartela de alero; bases articuladas típicas para naves; arriostramiento
+   longitudinal en cubierta y paños opacos. Favorito por simplicidad de fabricación en
+   naves de luz media.
+2. **Cercha / viga reticulada de 18 m sobre columnas.** Cuerdas IPE o HEA con
+   diagonalizado; menor peso de acero en luz larga, mayor detalle y costo de
+   fabricación/conexiones. Decidir por datos (tonelaje + costo fabricado/montado), no por
+   preferencia estética.
+
+### 2.2 Modulaciones longitudinales
+
+| ID | Bay | N.º de pórticos (líneas) | Observación |
+|---|---|---|---|
+| M-45 | 4,50 m | 9 | Más pórticos, piezas ligeras; más cimentaciones |
+| M-60 | 6,00 m | 7 | Referencia de la auditoría y del radar de costos |
+| M-90 | 9,00 m | 5 | Pórticos más pesados, menos fundaciones; vigas P2 mayores |
+
+Se comparará kg/m² (sobre 918 m² conceptuales), tonelaje total, costo fabricado/montado
+estimado y compatibilidad con el programa (P2, lift, vidrios, portones).
+
+## 3. Hipótesis de carga — sin nieve
+
+**Contexto climático:** altiplano boyacense (Tunja–Paipa–Duitama, ≈ 2.600–2.800 m s. n. m.).
+**No existe nieve de diseño** en la zona; **no se incluye carga de nieve**. Las acciones
+que gobiernan son: peso propio, cargas de uso, **viento** (corredores del altiplano) y
+**sismo** (Colombia es país sísmico; Boyacá riesgo sísmico moderado). La respuesta al
+clima es de envolvente (frío nocturno, condensación, infiltración, radiación solar de
+altura), no de carga.
+
+### 3.1 Cargas permanentes (hipótesis)
+
+| Elemento | Valor de hipótesis | Fuente/observación |
+|---|---:|---|
+| Cubierta (panel sándwich ≈ 50 mm o sistema por capas) | 0,15–0,25 kN/m² | CYPE QTM010/FLA030; sistema por capas más liviano |
+| Correas y soportes de cubierta | 0,10 kN/m² | derivado |
+| Cielo, instalaciones, ductos colgados | 0,15 kN/m² | coordinación MEP |
+| Entrepiso P2 (metaldeck + loseta + acabado) | 2,3–2,6 kN/m² | metaldeck 10 cm ≈ 2,5 kN/m² |
+| Particiones y acabados P2 | 1,0–1,5 kN/m² | uso residencial |
+| Fachada/panel sobre girts | 0,15–0,25 kN/m² | vertical |
+
+### 3.2 Cargas vivas (hipótesis)
+
+| Elemento | Valor | Observación |
+|---|---:|---|
+| Cubierta | 0,50 kN/m² | cubierta liviana; sin mantenimiento frecuente |
+| Entrepiso P2 residencial | 1,80–2,00 kN/m² | dormitorios, hall, wellness |
+| Zona técnica PB (carro + taller + racks) | 3,00–5,00 kN/m² | uso industrial-liviano; verificar con equipos |
+| Lift automotriz | carga puntual por poste según ficha (≈ 4 t nominal) | **dato obligatorio pendiente (D-022)** |
+| Sauna/jacuzzi opcional | carga operativa + agua (jacuzzi ≈ 300–500 kg/m² si se adopta) | decisión D-025 |
+
+### 3.3 Viento (hipótesis de altura y presión, por definir con norma)
+
+- Velocidad básica de viento de referencia para el interior del altiplano: orden de
+  **25–30 m/s** (ráfaga 3 s a 10 m), a confirmar con NSR-10 B.6 y el municipio del predio.
+- Presión dinámica qz ≈ 0,40–0,55 kN/m² a la altura de eave (7–8 m).
+- Coeficientes de presión para la nave: barlovento +0,8; sotavento −0,3 a −0,5; cubierta
+  −0,9 a −0,3 según pendiente y zona. Los valores finales son del ingeniero.
+- Efectos: succión de cubierta (controla correas/anclajes), viento transversal sobre
+  pórticos (controla deriva y columnas) y viento longitudinal (arriostramiento de
+  fachadas opacas).
+
+### 3.4 Sismo (hipótesis de espectro, por definir con norma)
+
+- Zona de amenaza sísmica intermedia del altiplano: aceleración espectral de referencia
+  en el orden de Aa ≈ Av ≈ 0,15–0,25 g (confirmar con NSR-10 Título A y microzonificación).
+- Estructura metálica liviana de gran luz con P2 pesado: la masa concentrada del entrepiso
+  a +3,80 m y la deriva de columnas de 7 m controlan.
+- Para el predimensionamiento de comparación (modelo E0/E1) se usa un coeficiente de cortante
+  basal **hipótesis Cs ≈ 0,08–0,12** aplicado a la masa, marcado como supuesto de ingeniero.
+
+### 3.5 Combinaciones de carga (hipótesis típicas de LRFD; el ingeniero las define)
+
+- `1,4·D`
+- `1,2·D + 1,6·L (+ 0,5·Lr)`
+- `1,2·D + 1,0·W + 0,5·L`
+- `0,9·D + 1,0·W`
+- `1,2·D + 1,0·E + 0,5·L`
+- `0,9·D + 1,0·E`
+
+No se incorpora S (nieve). Estas combinaciones se almacenan como hipótesis versionadas,
+**no como biblioteca NSR-10**.
+
+## 4. Estrategia de estabilidad
+
+Se comparan las tres estrategias que pide el concepto (sección 35.2 del documento
+original):
+
+1. **Arriostramiento en paños opacos** (fachadas de servicio, testeros y cubierta) —
+   libera los grandes eventos de vidrio; recomendada como primera línea.
+2. **Diagonales visibles deliberadas** en algunos paños (recurso arquitectónico estudiado
+   por las visualizaciones, no decoración).
+3. **Pórticos resistentes a momento** solo si el costo lo justifica; la nave de 18 m con
+   bases articuladas y arriostramiento suele ser más eficiente.
+
+La longitud de 36 m y los dos testeros opacos permiten colocar el arriostramiento
+longitudinal (cubierta + muros) en los paños de servicio. Los eventos de vidrio (ventanales
+técnicos 7,20 m, vidrio de sala) reducen paños de arriostramiento disponibles y deben
+coordinarse simultáneamente (regla del concepto: estructura, fachada y luz se diseñan juntos).
+
+## 5. Entrepiso P2
+
+- Sistema de referencia: **losa compuesta metaldeck** (lámina + loseta ≈ 10 cm, conectores)
+  con viguetas cada ≈ 1,5 m y vigas principales entre pórticos (bay longitudinal).
+- El frente abierto en X = 21,00 m (borde del P2 hacia la doble altura) requiere una **viga
+  de borde** de luz ≈ 18 m con apoyos puntuales integrados al núcleo/cocina; esta línea es
+  un punto crítico de coordinación con la PB abierta (sin columnas arbitrarias en la nave).
+- Criterio de peso del modelo E0: **9–11 t de acero para el entrepiso P2** (la auditoría
+  A-04 lo estima; el desglose original con 3 t queda superado como hipótesis).
+- Vibración: luz ≈ 6 m, frecuencia objetivo ≥ 8 Hz para uso residencial; verificarla en E1.
+- El lift queda en doble altura (X ≈ 5,5–6,0 m), fuera de la proyección del P2: no carga
+  sobre el entrepiso, solo sobre losa PB local (regla vigente).
+
+## 6. Materiales y protección
+
+| Elemento | Hipótesis de material | Observación |
+|---|---|---|
+| Columnas y vigas principales | **S355 / A572 Gr.50** (Fy ≈ 345–355 MPa) | reduce tonelaje; radar de costos #1 |
+| Correas, girts, arriostramiento | **S235 / A36** (Fy ≈ 235–250 MPa) | secundarios económicos |
+| Pernos | Gr. 8.8 / A325 | conexiones apernadas preferidas |
+| E | 200 GPa; densidad 7850 kg/m³ | acero estructural |
+
+**Durabilidad:** clima seco de altura interior = corrosión moderada, pero la estética de
+acero visible no exime protección. Comparar galvanizado vs. pintura con criterio de
+exposición y mantenimiento; no asumir "premium" ni omitir. Coordinar punto de rocío y
+barrera de vapor para evitar condensación sobre el acero (sección 3 de técnicas de costo).
+
+## 7. Criterios de peso y de desempeño para el comparativo
+
+### 7.1 Objetivos de peso (hipótesis de control)
+
+| Componente | Control desglose v0.2 | Rango realista (auditoría) |
+|---|---:|---:|
+| Pórticos principales + columnas | 15,5 t | ≈ 23–24 t |
+| Entrepiso P2 | 3,0 t | ≈ 9–11 t |
+| Correas, girts, arriostramientos | 9,15 t | ≈ 9 t |
+| **Total estructura metálica** | **≈ 28,35 t** | **≈ 41–44 t** (central ≈ 37 t) |
+| Equivalente | ≈ 31 kg/m² | ≈ 40–48 kg/m² |
+
+El comparativo E0 debe producir un valor de kg/m² por sistema×modulación y un rango total,
+para reconciliar el capítulo 05/06 antes de PE-1.
+
+### 7.2 Criterios de servicio (hipótesis para pre-dimensionar)
+
+- Flecha total de cubierta: ≤ L/180 (bajo combinaciones de servicio).
+- Flecha de entrepiso P2: ≤ L/240 (total) y L/360 (viva) para uso residencial.
+- Deriva de pórtico bajo viento/sismo de servicio: ≤ H/200 (hipótesis; la deriva real es
+  del análisis del ingeniero).
+- Deflexiones compatibles con vidrio fijo y paneles (diferencial entre apoyos ≤ 1/2 de la
+  tolerancia del sistema).
+
+### 7.3 Reglas de cuantificación
+
+- Cotas calculadas de la geometría, nunca escritas dos veces.
+- Perfiles de stock estándar (IPE, HEA/HEB) para plazos cortos y mejor precio.
+- Factor de detalle (placas base, rigidizadores, cartelas, conexiones): ≈ 12–15 % del peso
+  de principales.
+- Desperdicio de taller: separado del peso teórico (≈ 3–5 %).
+- Los resultados se reportan como hipótesis E0, con unidades SI y fuentes declaradas.
+
+## 8. Entregables por puerta (replica de bases estructurales y civiles)
+
+| Puerta | Entregable estructural |
+|---|---|
+| **E0 — esquema (actual)** | ejes, luces, alturas, apoyos hipotéticos, matriz de comparación, lista de datos faltantes (predio, geotecnia, lift, viento/sismo de norma) |
+| **E1 — comparación por ingeniero** | modelo paramétrico (pórticos vs. cerchas, 3 modulaciones), kg/m², costo fabricado/montado, estabilidad y entrepiso |
+| **E2 — diseño profesional** | memorias firmadas, planos de cimentación/losa/estructura/conexiones, revisión independiente |
+
+## 9. Datos faltantes que bloquean el predimensionamiento definitivo
+
+1. Predio, municipio, coordenadas, altitud y topografía (D-017).
+2. Estudio geotécnico (cimentación y losa).
+3. Parámetros normativos de viento y sismo del municipio (NSR-10 B.6 / Título A).
+4. Ficha del lift automotriz: cargas por poste, anclajes y envolvente (D-022).
+5. Vehículo de diseño y equipos del taller (D-022, inventario del propietario).
+6. Decisión jacuzzi (D-025): carga de agua si se adopta.
+7. Sistema de cubierta/fachada y peso real por m² (CYPE local / proveedor Boyacá).
+
+## 10. Regla anti-falsa-precisión
+
+Toda cifra aquí es hipótesis o DCV. Un valor con decimales no es más confiable que su
+fuente. Nada de este documento autoriza compra de acero, cotización contractual ni
+construcción. El cierre de D-019 y la reconciliación del capítulo 05/06 pasan por la
+puerta PE-1 con cantidades y dos precios de mercado.
+
+## 11. Próximos pasos
+
+1. Abrir D-019 con este documento como base.
+2. Construir/validar el modelo E0 en `dreamhouse/structure/` (matriz 2 sistemas ×
+   3 modulaciones, kg/m², tonelaje por componente).
+3. Con predio candidato: repetir con geotecnia, viento y sismo de norma (E1, ingeniero).
+4. Registrar el resultado en el registro de decisiones y en la base de costos como insumo
+   PE-1, sin modificar el target.
