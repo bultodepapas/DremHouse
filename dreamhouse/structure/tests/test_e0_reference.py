@@ -17,7 +17,7 @@ from dreamhouse.structure.materials import materials_from_json
 from dreamhouse.structure.portal import apply_combo, build_frame_model, size_portal_frame
 from dreamhouse.structure.profiles import profile
 from dreamhouse.structure.quantities import compute_quantities
-from dreamhouse.structure.staggered import size_staggered_floor
+from dreamhouse.structure.staggered import size_p2_great_wall, size_staggered_floor
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA = ROOT / "dreamhouse" / "structure" / "structure_system.json"
@@ -202,6 +202,32 @@ class TestTiedAndFixedPortal(unittest.TestCase):
         fixed = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9, fixed_base=True)
         self.assertLess(fixed.drift_m, pinned.drift_m)
         self.assertLess(fixed.column.mass_kg_m, pinned.column.mass_kg_m)
+
+
+class TestGreatWallFloor(unittest.TestCase):
+    def setUp(self):
+        self.cfg = json.loads(DATA.read_text(encoding="utf-8"))
+        self.steel = materials_from_json(self.cfg)["S355"]
+
+    def test_no_interior_columns_and_plausible_mass(self):
+        res = size_p2_great_wall(self.cfg, self.steel, 0.9, 0.9)
+        self.assertEqual(res["interior_columns"], 0)
+        self.assertGreater(res["total_kg"], 4000.0)
+        self.assertLess(res["total_kg"], 12000.0)
+
+    def test_wall_and_beams(self):
+        res = size_p2_great_wall(self.cfg, self.steel, 0.9, 0.9)
+        self.assertEqual(res["wall_x_m"], 31.5)
+        self.assertGreaterEqual(res["n_beams"], 2)
+        self.assertGreater(res["wall_axial_kn_m"], 30.0)
+        self.assertLess(res["wall_axial_kn_m"], 500.0)
+        self.assertGreaterEqual(res["panel_frequency_hz"], 5.0)
+
+    def test_lighter_than_metaldeck(self):
+        res = size_p2_great_wall(self.cfg, self.steel, 0.9, 0.9)
+        from dreamhouse.structure.quantities import compute_quantities
+        q = compute_quantities(self.cfg, self.steel, 6.0, 6, 0.9, 0.9)["systems"]["CERCHA"]
+        self.assertLess(res["total_kg"], q["p2_floor_metaldeck_kg"])
 
 
 class TestHssCatalog(unittest.TestCase):

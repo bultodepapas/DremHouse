@@ -77,7 +77,7 @@ Consecuencia: en los dos muros largos las columnas caen dentro de los vanos de l
 dormitorios. La modulación elegida para la versión definitiva debe dejar los vanos entre
 columnas o absorber las columnas en la composición de fachada.
 
-### 3.3 Particiones del P2 sin líneas continuas de ancho completo
+### 3.3 Particiones del P2 sin líneas continuas de ancho completo — RESUELTO con el gran muro
 
 El sistema staggered truss (cerchas de piso de 18 m entre los muros largos, ocultas en
 particiones) exige líneas de partición continuas en X a todo lo ancho (Y = 0 → 18).
@@ -87,12 +87,12 @@ Comparando las particiones reales por fase:
 - F2 (y = 11–18): X = [21,0, 23,4, 27,5, 29,5, 33,0, 36,0]
 - **Líneas comunes: solo X = 21,0 y X = 36,0 (los bordes).**
 
-Consecuencia: **no existe ninguna partición interior continua de ancho completo** que
-pueda ocultar una cercha de 18 m. El staggered truss, tal como se plantea, no encaja en la
-planta P2 actual: se requiere re-articular particiones de ambas fases sobre una retícula
-común, o dividir el piso en bandas estructurales (p. ej. banda F1 apoyada en la línea
-Y = 11 y banda F2 apoyada en esa misma línea y en el muro norte) — decisión conjunta de
-arquitectura y estructura.
+**Resolución (E0 · 11-08-2026):** el esquema **GRAN-MURO** elimina esta restricción. El
+muro de X = 31,5 (que ya existe, separa baño/escalera/homelab) se convierte en **muro
+portante del P2**: recibe la franja del núcleo (X = 31,5→36) y la mitad del frente
+(X = 21→31,5). El frente se apoya en **3 vigas longitudinales en el plenum**
+(3,20→3,80 m) + la cercha de borde X = 21. No se requieren cerchas de ancho completo ni
+re-articular particiones: las vigas van ocultas en el plenum del cielo de PB.
 
 ### 3.4 Borde de P2 en X = 21,00 m (luz ≈ 18 m) sin resolver en los planos
 
@@ -116,8 +116,11 @@ Estos puntos son las puertas de decisión; no se resuelven aquí:
 
 1. **Módulo estructural compatible con los eventos de vidrio de 7,2 m** (M60 / M90 /
    hit-and-miss 12 m, o vidrio re-modulado a 6 m).
-2. **Re-articulación de particiones del P2 (F1 + F2)** para crear líneas continuas en X
-   que alojen cerchas de piso ocultas (candidatas: 28,6 y 31,5).
+2. **Entrepiso P2 con el gran muro como apoyo (esquema GRAN-MURO, E0):** el muro de
+   X = 31,5 se diseña portante (0,20–0,30 m, continuo al cimiento y hasta la cubierta por
+   la caja de escalera); 3 vigas longitudinales en el plenum + cercha de borde X = 21.
+   Ya no se requiere re-articular particiones del P2. Verificar en E1 la continuidad del
+   muro (vanos de puertas del núcleo) y su fundación corrida.
 3. **Viga/cercha de borde en X = 21,00 m** con apoyo en los muros largos y ménsula de
    media crujía.
 4. **Sentido del faldón con el predio** (D-039) antes de fijar cargas de viento y drenaje.

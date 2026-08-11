@@ -174,11 +174,18 @@ coordination set.
    (≈ 3.0 m = P2 wall height, d/L ≈ 0.167)** + deep-deck panels (5.0 m, no joists) and a
    frequency check ≥ 5 Hz (≈ 14.9 Hz). Result: ≈ 3.8 t of floor steel vs 12.0 t METALDECK,
    zero interior columns. Ver el modelo `dreamhouse/structure/staggered.py`.
-2. Add a **wind girder** + computed bracing weight and document EHF (topic 3).
-3. Document drift limits h/200 vs h/300 for metal-clad and re-check column sizes (topic 4).
-4. Add **R/Cd seismic factors per system** for the CERCHA-vs-portal comparison (topic 8).
-5. Re-run with **stressed-skin diaphragm** load share (topic 1) — validate with the engineer.
-6. Validate weight targets against the 30–50 kg/m² benchmark at E1 (topic 9) and fold the
+2. ✅ **DONE (2026-08-11):** new preferred P2 scheme **GRAN-MURO** — the X = 31.5 great
+   wall acts as a load-bearing wall + longitudinal shear core: nucleus strip on the wall,
+   3 longitudinal IPE450 beams in the 3.20→3.80 m plenum + an 18 m edge truss at X = 21.
+   ≈ 6.1 t of floor steel, zero interior columns, no partition re-articulation needed,
+   wall axial ≈ 76 kN/m. Also fixed a units bug (N/m vs kN/m) in `lightest_member`
+   deflection checks. Best combination: CERCHA·M90 + great wall ≈ 25.5 t ≈ 28 kg/m².
+3. Add a **wind girder** + computed bracing weight and document EHF (topic 3) — the great
+   wall simplifies the longitudinal wind girder.
+4. Document drift limits h/200 vs h/300 for metal-clad and re-check column sizes (topic 4).
+5. Add **R/Cd seismic factors per system** for the CERCHA-vs-portal comparison (topic 8).
+6. Re-run with **stressed-skin diaphragm** load share (topic 1) — validate with the engineer.
+7. Validate weight targets against the 30–50 kg/m² benchmark at E1 (topic 9) and fold the
    thermal-break envelope rule into the coordination doc (topic 10).
 
 All of the above remain hypotheses for the engineer; nothing here is a frozen requirement.

@@ -88,6 +88,12 @@ def staggered_positions(cfg, st) -> list[float]:
     return [geom["p2_start_x_m"] + k * panel for k in range(1, st["n_trusses"] + 1)]
 
 
+def beam_y_positions(gw) -> list[float]:
+    """Posiciones Y de las vigas longitudinales del esquema GRAN-MURO."""
+    spacing = 18.0 / gw["n_beams"]
+    return [(k + 0.5) * spacing for k in range(gw["n_beams"])]
+
+
 def live_results(cfg):
     """Cálculo en vivo: misma vía que e0.py, sin depender de resultados exportados."""
     steel = materials_from_json(cfg)["S355"]
@@ -100,7 +106,7 @@ def live_results(cfg):
 
 # ---------------------------------------------------------------- PLANTA + CORTE
 
-def draw_plan(parts, cfg, pb, st):
+def draw_plan(parts, cfg, pb, gw):
     S = 22.0
     X0, Y0 = 150.0, 170.0
     L, W = 36.0, 18.0
@@ -110,13 +116,11 @@ def draw_plan(parts, cfg, pb, st):
         return rect(sx(x), sy(y + d), w * S, d * S, **attrs)
 
     frames = frame_positions(cfg)
-    stagger_x = staggered_positions(cfg, st)
+    beam_ys = beam_y_positions(gw)
 
     parts.append(pr(0, 0, L, W, fill="none", stroke="#172126", stroke_width=3))
     parts.append(pr(21, 0, 15, 18, fill="none", stroke="#7a8689", stroke_width=1, stroke_dasharray="8 5"))
     parts.append(text(sx(28.5), sy(0.6), "P2 · 18 × 15 m · nivel +3,80", 9, weight=700, fill="#5c676b"))
-    parts.append(line(sx(31.5), sy(18), sx(31.5), sy(0), color="#8b6d4f", width=2, dash="6 4"))
-    parts.append(text(sx(31.5), sy(17.6), "GRAN MURO X=31,5", 6, fill="#7a5f45"))
 
     for y in (3, 6, 9, 12, 15):
         parts.append(line(sx(0), sy(y), sx(36), sy(y), color="#c3c8cb", width=0.6, dash="2 4"))
@@ -133,6 +137,7 @@ def draw_plan(parts, cfg, pb, st):
         parts.append(line(sx(0), sy(op["y0"]), sx(0), sy(op["y0"] + op["width"]), color="#c9a38f", width=5))
     parts.append(pr(1.6, 0.45, 6.4, 5.9, fill="none", stroke="#c9a38f", stroke_width=1.2, stroke_dasharray="6 4"))
 
+    # RETÍCULA: cerchas de cubierta en cada línea de pórtico (M60).
     for x in frames:
         parts.append(line(sx(x), sy(0), sx(x), sy(18), color="#1f2d33", width=5))
     parts.append(text(sx(18), sy(0.6), f"CERCHA DE CUBIERTA 18 m · L/16 · {len(frames)} LÍNEAS (M60)", 9, weight=700, fill="#1f2d33"))
@@ -142,13 +147,17 @@ def draw_plan(parts, cfg, pb, st):
             parts.append(f'<circle cx="{sx(x)}" cy="{sy(y)}" r="5" fill="#172126"/>')
     parts.append(text(sx(36) + 34, sy(18), "COLUMNA HEA200 EN MUROS", 7, weight=700, fill="#172126", anchor="start"))
 
-    for x in stagger_x:
-        parts.append(line(sx(x), sy(0), sx(x), sy(18), color="#3f7d8a", width=7))
-    labels_x = ", ".join(f"X={int(x)}" for x in stagger_x)
-    parts.append(text(sx(28.5), sy(17.6), f"STAGGERED 18 m · CANTO {st['truss_depth_m']} m (d/L {st['truss_d_over_l']}) EN PARTICIONES · {labels_x}", 8, weight=700, fill="#3f7d8a"))
+    # GRAN MURO estructural (apoyo del P2 + núcleo de corte longitudinal).
+    parts.append(line(sx(31.5), sy(0), sx(31.5), sy(18), color="#6b4a2e", width=8))
+    parts.append(text(sx(31.5), sy(17.6), f"GRAN MURO ESTRUCTURAL X=31,5 · t≈{gw['wall_t_m']} m · portante + núcleo de corte", 7, weight=700, fill="#6b4a2e"))
+
+    # Esquema GRAN-MURO del entrepiso P2: cercha de borde X=21 + vigas longitudinales.
     parts.append(line(sx(21), sy(0), sx(21), sy(18), color="#3f7d8a", width=3, dash="9 5"))
     parts.append(text(sx(21), sy(0.6), "CERCHA DE BORDE X=21 (luz 18 m)", 7, weight=700, fill="#3f7d8a", rotate=-90))
-    parts.append(text(sx(23.5), sy(9), f"P2: paneles de losa {st['panel_span_m']} m sin viguetas · fn≈{st['panel_frequency_hz']} Hz", 7, weight=700, fill="#3f7d8a"))
+    for y in beam_ys:
+        parts.append(line(sx(21), sy(y), sx(36), sy(y), color="#3f7d8a", width=3, dash="4 4"))
+    parts.append(text(sx(21.2), sy(beam_ys[0] + 0.6), f"VIGAS LONG. {gw['beam_profile']} ×{gw['n_beams']} EN PLENUM · luz {gw['beam_span_m']} m", 7, weight=700, fill="#3f7d8a", anchor="start"))
+    parts.append(text(sx(28.5), sy(0.6), f"P2: franja núcleo sobre el muro (luz {gw['nucleus_span_m']} m) · paneles deck profundo · fn≈{gw['panel_frequency_hz']} Hz", 7, weight=700, fill="#3f7d8a"))
 
     for i, x in enumerate(frames):
         px = sx(x)
@@ -169,35 +178,28 @@ def draw_plan(parts, cfg, pb, st):
     parts.append(text(dimy - 12, (sy(0) + sy(18)) / 2, "18,00 m", 8, rotate=-90))
 
 
-def draw_section(parts, cfg, st):
+def draw_section(parts, cfg, gw):
     left, base, sc = 1010.0, 470.0, 20.0
     w = 18.0 * sc
     low, high = cfg["geometry"]["eave_low_m"], cfg["geometry"]["eave_high_m"]
-    depth = st["truss_depth_m"]
     def yy(h): return base - h * sc
 
     parts.append(text(left + w / 2, 185, "CORTE TRANSVERSAL ESTRUCTURAL B-B", 15, weight=700))
-    parts.append(text(left + w / 2, 203, f"Mono-pitch {low}→{high} · cercha de cubierta L/16 + staggered P2", 9, fill="#59676c"))
+    parts.append(text(left + w / 2, 203, f"Mono-pitch {low}→{high} · cercha de cubierta L/16 + P2 sobre muro", 9, fill="#59676c"))
 
     parts.append(line(left, base, left + w, base, color="#172126", width=3))
     parts.append(line(left, yy(3.8), left + w, yy(3.8), color="#3f7d8a", width=2, dash="9 5"))
     parts.append(text(left + w + 6, yy(3.8), "+3,80", 9, weight=700, fill="#3f7d8a", anchor="start"))
 
-    t_bot, t_top = yy(3.8), yy(3.8 + depth)
-    parts.append(line(left, t_bot, left + w, t_bot, color="#3f7d8a", width=4))
-    parts.append(line(left, t_top, left + w, t_top, color="#3f7d8a", width=4))
-    steps = 8
-    for i in range(steps):
-        xa = left + w * i / steps
-        xb = left + w * (i + 1) / steps
-        parts.append(line(xa, t_bot, xb, t_top, color="#8fb3bc", width=1.2))
-        parts.append(line(xa, t_top, xb, t_bot, color="#8fb3bc", width=1.2))
-    parts.append(text(left + w / 2, t_top - 10, f"CERCHA STAGGERED · canto ≈{depth} m (en partición del P2) · {st['chord']}", 8, weight=700, fill="#3f7d8a"))
+    # Losa del P2 y vigas longitudinales (de canto, en sección) dentro del plenum 3,20→3,80.
+    panel = 18.0 / gw["n_beams"]
+    for k in range(gw["n_beams"]):
+        px = left + w * (k + 0.5) / gw["n_beams"]
+        parts.append(rect(px - 4, yy(3.2), 8, 0.6 * sc, fill="#3f7d8a", stroke="#274a53", stroke_width=1))
+    parts.append(text(left + w / 2, yy(3.4) - 8, f"{gw['n_beams']} VIGAS LONG. {gw['beam_profile']} EN PLENUM (3,20→3,80) · paneles de losa {panel:.0f} m entre vigas", 8, weight=700, fill="#3f7d8a"))
+    parts.append(text(left + w / 2, yy(3.8) - 24, "El GRAN MURO X=31,5 (perpendicular a este corte) recibe el P2 y aporta núcleo de corte longitudinal", 7, fill="#6b4a2e"))
 
-    ceil_y = yy(3.8 + depth)
-    parts.append(line(left, ceil_y, left + w, ceil_y, color="#b7bcc0", width=1, dash="4 4"))
-    parts.append(text(left + w / 2, ceil_y - 8, f"CIELO P2 ≈ +{3.8 + depth:.2f} · plenum variable", 7, fill="#8a9396"))
-
+    # Cercha de cubierta (L/16 ≈ 1,13 m) bajo el faldón.
     top_c = yy(low)
     truss_h = 1.125 * sc
     parts.append(line(left, top_c, left + w, yy(high), color="#172126", width=4))
@@ -220,11 +222,10 @@ def draw_section(parts, cfg, st):
 
 # ---------------------------------------------------------------- VISTA LATERAL A
 
-def draw_lateral(parts, cfg, pb, q, st):
+def draw_lateral(parts, cfg, pb, q, gw):
     left, base, sc = 140.0, 640.0, 16.0
     L = cfg["geometry"]["nave_length_m"]
     frames = frame_positions(cfg)
-    stagger_x = staggered_positions(cfg, st)
     eave = cfg["geometry"]["eave_low_m"]  # lateral A = lado bajo
     eave_high = cfg["geometry"]["eave_high_m"]
     width = L * sc
@@ -258,16 +259,17 @@ def draw_lateral(parts, cfg, pb, q, st):
     parts.append(text(xx(6), yy(3.0), "X-BRACING VERTICAL", 7, weight=700, fill="#667377"))
     parts.append(text(xx(30), yy(3.0), "X-BRACING VERTICAL", 7, weight=700, fill="#667377"))
 
-    # P2 y cerchas staggered (vistas de canto en el muro A).
+    # P2 y esquema GRAN-MURO (visto en el muro A): borde X=21, vigas longitudinales y muro X=31,5.
     p2x = xx(cfg["geometry"]["p2_start_x_m"])
     p2y = yy(3.8)
     parts.append(line(p2x, top, p2x, base, color="#687579", width=1.2, dash="7 5"))
     parts.append(line(p2x, p2y, xx(36), p2y, color="#3f7d8a", width=2.5, dash="9 5"))
-    parts.append(text(xx(28.5), p2y - 8, f"P2 POSTERIOR · 15,00 m · +3,80 · losa entre cerchas staggered (paneles {st['panel_span_m']} m)", 8, weight=700, fill="#3f7d8a"))
-    for x in stagger_x:
-        px = xx(x)
-        parts.append(line(px, p2y, px, yy(3.8 + st["truss_depth_m"]), color="#3f7d8a", width=6))
-    parts.append(text(xx(26), yy(4.4), "STAGGERED", 6.5, weight=700, fill="#3f7d8a"))
+    parts.append(text(xx(28.5), p2y - 8, f"P2 POSTERIOR · 15,00 m · +3,80 · vigas longitudinales {gw['beam_profile']} + losa (paneles {18.0/gw['n_beams']:.0f} m)", 8, weight=700, fill="#3f7d8a"))
+    # Borde X=21 (cercha de borde de 18 m, de canto) y muro estructural X=31,5 (núcleo de corte).
+    parts.append(rect(xx(21) - 3, p2y - gw['edge_truss_depth_m'] * sc, 6, gw['edge_truss_depth_m'] * sc, fill="#3f7d8a", stroke="#274a53", stroke_width=1))
+    parts.append(text(xx(21), p2y - gw['edge_truss_depth_m'] * sc - 6, "BORDE X=21", 6, weight=700, fill="#3f7d8a"))
+    parts.append(rect(xx(31.5) - 4, top, 8, base - top, fill="#d9c9a0", stroke="#6b4a2e", stroke_width=1.2))
+    parts.append(text(xx(31.5), (base + top) / 2, "MURO ESTRUCTURAL X=31,5 · portante + caja de escalera + núcleo de corte", 6.5, weight=700, fill="#6b4a2e", rotate=-90))
 
     # Aberturas de contexto (tenues) para orientar.
     for g in pb["technical_glazing"]:
@@ -303,27 +305,35 @@ def draw_lateral(parts, cfg, pb, q, st):
     parts.append(text(hdim - 14, (base + top) / 2, f"{eave} m", 8, rotate=-90))
     parts.append(text(hdim - 14, (base + p2y) / 2, "3,80 m", 7, rotate=-90))
 
-    parts.append(text(left + width / 2, 170, f"CUBIERTA: CERCHA {chord} (L/16) EN {len(frames)} LÍNEAS · ENTREPISO P2: {st['n_trusses']} CERCHAS {st['chord']} CANTO {st['truss_depth_m']} m", 9, weight=700, fill="#243238"))
+    parts.append(text(left + width / 2, 170, f"CUBIERTA: CERCHA {chord} (L/16) EN {len(frames)} LÍNEAS · P2: {gw['n_beams']} VIGAS {gw['beam_profile']} + BORDE {gw['edge_chord']} SOBRE GRAN MURO", 9, weight=700, fill="#243238"))
 
 
 # ---------------------------------------------------------------- NOTAS
 
-def note_box(parts, q, st):
+def note_box(parts, q, st, gw):
     lines = [
         "Cálculo EN VIVO: esta lámina se dibuja desde structure_system.json vía el modelo (no usa salidas exportadas).",
     ]
-    if q:
+    if q and gw:
+        total_gw = q["main_frames_kg"] + q["p2_floor_greatwall_kg"] + q["secondary_kg"]
         lines.append(
-            f"Modelo E0 · M60 · CERCHA: {q['total_t']} t · {q['kg_m2']} kg/m² · marcos {q['main_frames_kg']/1000:.1f} t · "
-            f"columnas {q['frames']['column']} · cuerda {q['frames']['truss_chord']}."
+            f"Modelo E0 · M60 · CERCHA: marcos {q['main_frames_kg']/1000:.1f} t · columnas {q['frames']['column']} · "
+            f"cuerda {q['frames']['truss_chord']}. Entrepiso P2: metaldeck {q['p2_floor_metaldeck_kg']/1000:.1f} t "
+            f"(con columnas) · staggered {q['p2_floor_staggered_kg']/1000:.1f} t · GRAN-MURO {q['p2_floor_greatwall_kg']/1000:.1f} t."
         )
         lines.append(
-            f"Entrepiso P2 staggered: {st['n_trusses']} cerchas de 18 m, canto {st['truss_depth_m']} m (d/L {st['truss_d_over_l']}), "
-            f"cordón {st['chord']}, paneles {st['panel_span_m']} m sin viguetas, fn ≈ {st['panel_frequency_hz']} Hz "
-            f"(DG11 ≥ 5 Hz) · {q['p2_floor_staggered_kg']/1000:.1f} t (cero columnas interiores) vs metaldeck {q['p2_floor_metaldeck_kg']/1000:.1f} t."
+            f"GRAN-MURO (preferido): {gw['n_beams']} vigas longitudinales {gw['beam_profile']} de {gw['beam_span_m']} m en el plenum "
+            f"(Y≈3/9/15) + cercha de borde X=21 (luz 18 m, cordón {gw['edge_chord']}) + gran muro portante (axial ≈ "
+            f"{gw['wall_axial_kn_m']} kN/m, núcleo de corte) + franja núcleo sobre el muro (luz {gw['nucleus_span_m']} m). "
+            f"fn del panel ≈ {gw['panel_frequency_hz']} Hz. Total estimado con GRAN-MURO ≈ {total_gw/1000:.1f} t."
         )
+        if st:
+            lines.append(
+                f"Staggered (alternativa): {st['n_trusses']} cerchas de 18 m, canto {st['truss_depth_m']} m (d/L {st['truss_d_over_l']}), "
+                f"paneles {st['panel_span_m']} m sin viguetas, fn ≈ {st['panel_frequency_hz']} Hz — exige re-articular particiones."
+            )
     lines += [
-        "Coordinación pendiente: vidrios 7,2 m vs módulo 6 m; particiones del P2 por re-articular; cercha de borde X=21; sentido del faldón (D-039).",
+        "Cero columnas interiores en los tres esquemas; el gran muro además aporta rigidez lateral longitudinal (wind girder simplificado).",
         "NO APTO PARA CONSTRUIR · hipótesis de esquema para inspección visual, no diseño profesional.",
     ]
     parts.append(rect(70, 780, 1260, 92, fill="#fff4df", stroke="#bd5c3c", stroke_width=1))
@@ -338,16 +348,17 @@ def build_sheets():
     cfg = json.loads(SYSTEM.read_text(encoding="utf-8"))
     pb = json.loads(PB.read_text(encoding="utf-8"))
     q, st = live_results(cfg)
+    gw = q["great_wall"]
 
     # Lámina 1: planta + corte B-B.
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
     parts.append(title_block("PLANTA DE ESTRUCTURA + CORTE B-B · SOLO ESTRUCTURA (E0)",
                              "Inspección visual de coordinación · retícula M60 · perfiles y tonelajes calculados en vivo", SHEET2))
     parts.append('<g font-family="Arial" fill="#20292e">')
-    draw_plan(parts, cfg, pb, st)
-    draw_section(parts, cfg, st)
+    draw_plan(parts, cfg, pb, gw)
+    draw_section(parts, cfg, gw)
     parts.append('</g>')
-    note_box(parts, q, st)
+    note_box(parts, q, st, gw)
     parts.append('</svg>')
 
     # Lámina 2: vista lateral A.
@@ -355,9 +366,9 @@ def build_sheets():
     parts2.append(title_block("VISTA LATERAL A · ESTRUCTURA (E0)",
                               "Elevación estructural del muro Y=0 · perfiles y cotas calculados en vivo", SHEET3))
     parts2.append('<g font-family="Arial" fill="#20292e">')
-    draw_lateral(parts2, cfg, pb, q, st)
+    draw_lateral(parts2, cfg, pb, q, gw)
     parts2.append('</g>')
-    note_box(parts2, q, st)
+    note_box(parts2, q, st, gw)
     parts2.append('</svg>')
 
     return {"DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg": "".join(parts),

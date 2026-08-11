@@ -7,39 +7,42 @@
 
 | Sistema × Modulación | Columnas | Viga/cercha | Pórticos | Acero total | kg/m² |
 |---|---|---|---|---:|---:|
-| M45 · PORTICO | HEA500 | IPE450 | 9 | **58.5 t** | 63.7 |
-| M45 · PORTICO-T | HEA500 | IPE450 | 9 | **59.9 t** | 65.3 |
-| M45 · PORTICO-F | HEA300 | IPE450 | 9 | **47.7 t** | 52.0 |
-| M45 · CERCHA | HEA200 | IPE220 | 9 | **40.4 t** | 44.1 |
-| M60 · PORTICO | HEA500 | IPE500 | 7 | **52.1 t** | 56.8 |
-| M60 · PORTICO-T | HEA500 | IPE500 | 7 | **53.3 t** | 58.0 |
-| M60 · PORTICO-F | HEA300 | IPE450 | 7 | **41.8 t** | 45.6 |
-| M60 · CERCHA | HEA200 | IPE220 | 7 | **36.2 t** | 39.4 |
-| M90 · PORTICO | HEA500 | IPE550 | 5 | **49.1 t** | 53.4 |
-| M90 · PORTICO-T | HEA500 | IPE550 | 5 | **49.9 t** | 54.3 |
-| M90 · PORTICO-F | HEA300 | IPE550 | 5 | **43.1 t** | 46.9 |
-| M90 · CERCHA | HEA200 | IPE220 | 5 | **36.2 t** | 39.4 |
+| M45 · PORTICO | HEA500 | IPE450 | 9 | **57.3 t** | 62.5 |
+| M45 · PORTICO-T | HEA500 | IPE450 | 9 | **58.8 t** | 64.1 |
+| M45 · PORTICO-F | HEA300 | IPE450 | 9 | **46.6 t** | 50.7 |
+| M45 · CERCHA | HEA200 | IPE220 | 9 | **39.3 t** | 42.8 |
+| M60 · PORTICO | HEA500 | IPE500 | 7 | **49.8 t** | 54.2 |
+| M60 · PORTICO-T | HEA500 | IPE500 | 7 | **50.9 t** | 55.4 |
+| M60 · PORTICO-F | HEA300 | IPE450 | 7 | **39.5 t** | 43.0 |
+| M60 · CERCHA | HEA200 | IPE220 | 7 | **33.8 t** | 36.9 |
+| M90 · PORTICO | HEA500 | IPE550 | 5 | **42.3 t** | 46.1 |
+| M90 · PORTICO-T | HEA500 | IPE550 | 5 | **43.2 t** | 47.0 |
+| M90 · PORTICO-F | HEA300 | IPE550 | 5 | **36.4 t** | 39.6 |
+| M90 · CERCHA | HEA200 | IPE220 | 5 | **29.4 t** | 32.1 |
 
 ## Desglose por componente (t)
 
-| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Secundaria | Total |
-|---|---|---:|---:|---:|---:|
-| M45 · PORTICO | 39.5 | 11.4 | 3.8 | 7.5 | 58.5 |
-| M45 · PORTICO-T | 41.0 | 11.4 | 3.8 | 7.5 | 59.9 |
-| M45 · PORTICO-F | 28.7 | 11.4 | 3.8 | 7.5 | 47.7 |
-| M45 · CERCHA | 21.5 | 11.4 | 3.8 | 7.5 | 40.4 |
-| M60 · PORTICO | 32.6 | 12.0 | 3.8 | 7.5 | 52.1 |
-| M60 · PORTICO-T | 33.8 | 12.0 | 3.8 | 7.5 | 53.3 |
-| M60 · PORTICO-F | 22.3 | 12.0 | 3.8 | 7.5 | 41.8 |
-| M60 · CERCHA | 16.7 | 12.0 | 3.8 | 7.5 | 36.2 |
-| M90 · PORTICO | 24.8 | 16.7 | 3.8 | 7.5 | 49.1 |
-| M90 · PORTICO-T | 25.6 | 16.7 | 3.8 | 7.5 | 49.9 |
-| M90 · PORTICO-F | 18.8 | 16.7 | 3.8 | 7.5 | 43.1 |
-| M90 · CERCHA | 11.9 | 16.7 | 3.8 | 7.5 | 36.2 |
+| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Entrepiso P2 (gran muro) | Secundaria | Total |
+|---|---|---:|---:|---:|---:|---:|
+| M45 · PORTICO | 39.5 | 10.3 | 3.8 | 6.1 | 7.5 | 57.3 |
+| M45 · PORTICO-T | 41.0 | 10.3 | 3.8 | 6.1 | 7.5 | 58.8 |
+| M45 · PORTICO-F | 28.7 | 10.3 | 3.8 | 6.1 | 7.5 | 46.6 |
+| M45 · CERCHA | 21.5 | 10.3 | 3.8 | 6.1 | 7.5 | 39.3 |
+| M60 · PORTICO | 32.6 | 9.6 | 3.8 | 6.1 | 7.5 | 49.8 |
+| M60 · PORTICO-T | 33.8 | 9.6 | 3.8 | 6.1 | 7.5 | 50.9 |
+| M60 · PORTICO-F | 22.3 | 9.6 | 3.8 | 6.1 | 7.5 | 39.5 |
+| M60 · CERCHA | 16.7 | 9.6 | 3.8 | 6.1 | 7.5 | 33.8 |
+| M90 · PORTICO | 24.8 | 10.0 | 3.8 | 6.1 | 7.5 | 42.3 |
+| M90 · PORTICO-T | 25.6 | 10.0 | 3.8 | 6.1 | 7.5 | 43.2 |
+| M90 · PORTICO-F | 18.8 | 10.0 | 3.8 | 6.1 | 7.5 | 36.4 |
+| M90 · CERCHA | 11.9 | 10.0 | 3.8 | 6.1 | 7.5 | 29.4 |
 
 ## Entrepiso P2 — opciones comparadas
 
-La opción **STAGGERED** (cerchas de piso de **canto completo** — altura del muro P2, d/L ≈ 0,13–0,19 — ocultas en las particiones de las suites, con paneles de deck profundo sin viguetas entre cerchas) elimina por completo las columnas interiores de la zona doméstica de PB (cocina/comedor) y cumple la vibración residencial. La opción METALDECK de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.
+Tres esquemas sin columnas interiores en la zona doméstica (el metaldeck con apoyos intermedios NO es viable sin columnas en cocina/núcleo):
+- **GRAN-MURO (preferido):** el gran muro de X=31,5 (núcleo) es portante y recibe el P2; 3 vigas longitudinales IPE450 de 10.5 m en el plenum (Y≈3/9/15) apoyan en la cercha de borde X=21 (luz 18 m, cordón HSS150x150x8) y en el muro; franja del núcleo con losa sobre el muro (luz 4.5 m). Acero ≈ 5.3 t, axial del muro ≈ 76.4 kN/m, fn del panel ≈ 10.4 Hz. El muro aporta núcleo de corte longitudinal.
+- **STAGGERED:** cerchas de canto completo de 18 m ocultas en particiones; requiere re-articular las particiones del P2 (hoy no existe línea continua de 18 m).
+- **METALDECK:** línea base; introduce columnas en cocina/núcleo.
 - Staggered truss: 3 cerchas de 18 m de canto completo (≈ 3.0 m, d/L ≈ 0.167), paneles de losa de 5.0 m entre cerchas, cordones HSS100x100x6, flecha de cercha ≈ 0.02 m, frecuencia del panel ≈ 14.9 Hz (criterio DG11 ≥ 5 Hz).
 
 ## Objetivos de control (auditoría)
@@ -53,7 +56,7 @@ La opción **STAGGERED** (cerchas de piso de **canto completo** — altura del m
 2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** (ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).
 3. **Pórtico atado (PORTICO-T):** el tirante entre los apoyos de la cercha queda casi inactivo (≈ 2 kN) porque la deriva de viento es un sway en la misma dirección de ambos muros; el tirante solo resiste la apertura de aleros por empuje gravitatorio, que aquí no gobierna. Añade peso (≈ 1,4 t/pórtico) sin beneficio de deriva: **no es competitivo en este caso de carga.** Su papel clásico (empuje de cubierta en edificios con grúa) no aplica.
 4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva para el sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).
-5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa ≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** (cerchas de canto completo de 18 m entre los muros largos, paneles de deck profundo sin viguetas) elimina esas columnas con ≈ 3,3–3,8 t de acero de piso y frecuencia del panel ≈ 15 Hz (criterio DG11 ≥ 5 Hz); la planta v0.4 y el modelo E1 deben verificar canto, re-articulación de particiones y peso de losa (deck profundo + concreto más pesado).
+5. **Entrepiso P2:** tres esquemas sin columnas interiores — METALDECK (12,0 t, con columnas en cocina/núcleo), STAGGERED (≈ 3,8 t, exige re-articular particiones) y **GRAN-MURO (≈ 6 t, preferido): el gran muro de X=31,5 trabaja como apoyo del P2**, con 3 vigas longitudinales en el plenum + cercha de borde X=21; sin re-articular particiones y con el muro actuando como núcleo de corte longitudinal. El peso de la losa de deck profundo se verifica en E1.
 6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.
 
 ## Supuestos críticos de este modelo

@@ -135,7 +135,7 @@ def size_p2_great_wall(
     m_beam = simply_supported_max_moment(q_beam, front) / 1e3
     beam, _ = lightest_member(
         steel.fy_pa, phi_b, phi_c, m_beam, 0.0, front, "IPE",
-        front * 1000.0 / 240.0, q_beam,
+        front * 1000.0 / 240.0, q_beam / 1e3,
     )
     if beam.mass_kg_m < profile("IPE360").mass_kg_m:
         beam = profile("IPE360")

@@ -388,17 +388,17 @@ def size_joists_and_beams(cfg: dict, steel: Steel, bay_m: float, trib_p2_m: floa
     span = bay_m
 
     q_joist = (floor_d + floor_l) * spacing
-    joist, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_joist, span) / 1e3, 0.0, span, "IPE", span * 1000.0 / 240.0, q_joist)
+    joist, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_joist, span) / 1e3, 0.0, span, "IPE", span * 1000.0 / 240.0, q_joist / 1e3)
     if joist.mass_kg_m < profile("IPE220").mass_kg_m:
         joist = profile("IPE220")
 
     q_beam = (floor_d + floor_l) * trib_p2_m
     beam_span = 18.0 / 4.0
     m_beam = simply_supported_max_moment(q_beam, beam_span) / 1.5
-    beam, _ = lightest_member(steel.fy_pa, phi_b, phi_c, m_beam / 1e3, 0.0, beam_span, "IPE", beam_span * 1000.0 / 240.0, q_beam)
+    beam, _ = lightest_member(steel.fy_pa, phi_b, phi_c, m_beam / 1e3, 0.0, beam_span, "IPE", beam_span * 1000.0 / 240.0, q_beam / 1e3)
 
     q_edge = (floor_d + floor_l) * bay_m / 2.0
-    edge, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_edge, 9.0) / 1e3, 0.0, 9.0, "IPE", 9.0 * 1000.0 / 240.0, q_edge)
+    edge, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_edge, 9.0) / 1e3, 0.0, 9.0, "IPE", 9.0 * 1000.0 / 240.0, q_edge / 1e3)
 
     aux_col = profile("HEA200")
     return {"joist": joist, "beam": beam, "edge": edge, "aux_col": aux_col}
