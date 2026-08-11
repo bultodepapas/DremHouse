@@ -27,6 +27,7 @@
 - [Control de visualizaciones](02_arquitectura/control_de_visualizaciones.md)
 - [Plano conceptual v0.3 — primer borrador paramétrico](02_arquitectura/plano_conceptual_v0.3_borrador.md)
 - [Plano conceptual v0.3 — borrador 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
+- [Plano conceptual v0.3 — borrador 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 
 ## 03 — Ingenierías
 

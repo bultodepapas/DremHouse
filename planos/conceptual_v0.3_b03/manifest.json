@@ -1,0 +1,6 @@
+{
+  "base": "dreamhouse/project_b02.json",
+  "detail_sha256": "57b41d5d7f13290ee44ee4d9bc5f3bbff53dcdaf8998c06b107741c031688754",
+  "generator": "dreamhouse/generate_b03.py",
+  "revision": "0.3-borrador-03"
+}

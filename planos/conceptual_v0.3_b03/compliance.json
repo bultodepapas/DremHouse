@@ -1,0 +1,67 @@
+{
+  "revision": "0.3-borrador-03",
+  "checks": [
+    {
+      "rule_id": "HR-P2-BOUND",
+      "status": "PASS",
+      "message": "Espacios P2 dentro de su envolvente"
+    },
+    {
+      "rule_id": "HR-P2-TOPO",
+      "status": "PASS",
+      "message": "Espacios P2 sin solapes"
+    },
+    {
+      "rule_id": "HR-4-SUITES",
+      "status": "PASS",
+      "message": "Cuatro suites identificadas"
+    },
+    {
+      "rule_id": "HR-CHILD-EQ",
+      "status": "PASS",
+      "message": "Suites de hijos iguales"
+    },
+    {
+      "rule_id": "HR-CHILD-AREA",
+      "status": "PASS",
+      "message": "Cada suite de hijo reserva 38,00 m²"
+    },
+    {
+      "rule_id": "DCV-GUEST",
+      "status": "PASS",
+      "message": "Suite huéspedes reserva 33,00 m²"
+    },
+    {
+      "rule_id": "DCV-MASTER",
+      "status": "PASS",
+      "message": "Suite principal reserva 75.01 m²"
+    },
+    {
+      "rule_id": "DCV-CORE",
+      "status": "PASS",
+      "message": "Núcleo PB conserva 81,00 m²"
+    },
+    {
+      "rule_id": "HR-DOORS",
+      "status": "PASS",
+      "message": "Tres accesos frontales"
+    },
+    {
+      "rule_id": "ARQ-OPENINGS",
+      "status": "PASS",
+      "message": "P2 representa accesos principales"
+    },
+    {
+      "rule_id": "ARQ-DAYLIGHT",
+      "status": "PASS",
+      "message": "Cuatro suites con ventana exterior provisional"
+    },
+    {
+      "rule_id": "ARQ-WET",
+      "status": "PASS",
+      "message": "Cuatro duchas privadas representadas"
+    }
+  ],
+  "passed": 12,
+  "failed": 0
+}
