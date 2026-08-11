@@ -14,8 +14,8 @@ import numpy as np
 
 from dreamhouse.structure.analysis import Frame2D, FrameMember, G, max_axial_in_member, max_moment_in_member, simply_supported_deflection, simply_supported_max_moment
 from dreamhouse.structure.materials import materials_from_json
-from dreamhouse.structure.portal import apply_combo, build_frame_model, size_portal_frame
-from dreamhouse.structure.profiles import profile
+from dreamhouse.structure.portal import apply_combo, build_frame_model, build_point_loads, size_portal_frame
+from dreamhouse.structure.profiles import lightest_member, profile
 from dreamhouse.structure.quantities import compute_quantities
 from dreamhouse.structure.staggered import size_p2_great_wall, size_staggered_floor
 
@@ -228,6 +228,92 @@ class TestGreatWallFloor(unittest.TestCase):
         from dreamhouse.structure.quantities import compute_quantities
         q = compute_quantities(self.cfg, self.steel, 6.0, 6, 0.9, 0.9)["systems"]["CERCHA"]
         self.assertLess(res["total_kg"], q["p2_floor_metaldeck_kg"])
+
+
+class TestLoadDirection(unittest.TestCase):
+    """Sanidad física: gravedad hacia abajo, columnas en compresión, tirante en
+    tensión y proyección vertical de cargas sobre miembros inclinados."""
+
+    def setUp(self):
+        self.cfg = json.loads(DATA.read_text(encoding="utf-8"))
+        self.steel = materials_from_json(self.cfg)["S355"]
+
+    def _frame_d(self):
+        col = profile("HEA300")
+        rafter = profile("IPE450")
+        frame, index = build_frame_model(self.steel, 7.2, 7.8, 3.8, True, col, rafter, 6.0, self.cfg)
+        f_pt = build_point_loads(frame, index, self.cfg, 6.0, 6.0, True, col, rafter)
+        f = apply_combo(frame, {"D": 1.0}, f_pt)
+        d, _ = frame.solve(f)
+        return frame, index, d, f_pt
+
+    def test_roof_deflects_down_under_dead(self):
+        frame, index, d, _ = self._frame_d()
+        for key in ("top_low", "roof_mid", "top_high"):
+            self.assertLess(d[3 * index[key] + 1], 0.0, f"{key} debe hundirse bajo gravedad")
+
+    def test_columns_in_compression_under_dead(self):
+        frame, index, d, _ = self._frame_d()
+        for m in frame.members:
+            fl = frame.member_end_forces(m, d)
+            if m.i in (index["base_low"], index["base_high"]):
+                self.assertGreater(fl[0], 0.0, "convención del motor: axial positivo = compresión")
+
+    def test_tie_is_nearly_inactive_two_force_member(self):
+        col = profile("HEA300")
+        rafter = profile("IPE450")
+        frame, index = build_frame_model(self.steel, 7.2, 7.8, 3.8, True, col, rafter, 6.0, self.cfg,
+                                         tie=True, tie_area_m2=1.0e-3)
+        n = 3 * len(frame.nodes)
+        f_pt = {c: np.zeros(n) for c in ("D", "L", "W", "E")}
+        f = apply_combo(frame, {"D": 1.0, "L": 1.0}, f_pt)
+        d, _ = frame.solve(f)
+        fl = frame.member_end_forces(index["tie_member"], d)
+        self.assertAlmostEqual(fl[0] + fl[3], 0.0, delta=1.0, msg="miembro de dos fuerzas en equilibrio")
+        self.assertLess(abs(fl[0]), 30.0e3, "el faldón 1:30 casi plano no excita el tirante (hallazgo 3)")
+
+    def test_rafter_loads_are_purely_vertical(self):
+        col = profile("HEA300")
+        rafter = profile("IPE450")
+        frame, _index = build_frame_model(self.steel, 7.2, 7.8, 3.8, True, col, rafter, 6.0, self.cfg)
+        f = apply_combo(frame, {"D": 1.0, "L": 1.0}, {})
+        horiz = sum(f[3 * i] for i in range(len(frame.nodes)))
+        vert = sum(f[3 * i + 1] for i in range(len(frame.nodes)))
+        self.assertAlmostEqual(horiz, 0.0, delta=1.0, msg="la carga equivalente de las correas no debe tener componente horizontal")
+        roof_d = self.cfg["loads"]["dead"]["roof_kpa"] * 6.0 * 1e3
+        roof_l = self.cfg["loads"]["live"]["roof_kpa"] * 6.0 * 1e3
+        rafter_sw = rafter.mass_kg_m * G
+        expected = (roof_d + roof_l + rafter_sw) * 18.0
+        self.assertAlmostEqual(-vert, expected, delta=expected * 0.01)
+
+
+class TestDeflectionLimit(unittest.TestCase):
+    def test_lightest_member_enforces_l_over_240_in_meters(self):
+        fy = 355.0e6
+        span = 12.0
+        limit = span / 240.0
+        q_service = 2.0  # kN/m
+        q_factored = 1.2 * 2.0  # kN/m para resistencia
+        m_req = simply_supported_max_moment(q_factored * 1e3, span) / 1e3
+        cand, _ = lightest_member(fy, 0.9, 0.9, m_req, 0.0, span, "IPE", limit, q_service)
+        self.assertEqual(cand.name, "IPE270")
+        delta = simply_supported_deflection(q_service * 1e3, span, 2.0e11 * cand.iy_m4)
+        self.assertLessEqual(delta, limit)
+
+
+class TestQuantitiesSum(unittest.TestCase):
+    def test_total_equals_parts(self):
+        cfg = json.loads(DATA.read_text(encoding="utf-8"))
+        steel = materials_from_json(cfg)["S355"]
+        for mod in cfg["geometry"]["modulations"]:
+            q = compute_quantities(cfg, steel, mod["bay_m"], mod["n_bays"], 0.9, 0.9)
+            for sid, s in q["systems"].items():
+                self.assertAlmostEqual(
+                    s["total_kg"],
+                    s["main_frames_kg"] + s["p2_floor_kg"] + s["secondary_kg"],
+                    delta=1.0,
+                    msg=f"{mod['id']}-{sid}: el total debe ser la suma de las partes",
+                )
 
 
 class TestHssCatalog(unittest.TestCase):

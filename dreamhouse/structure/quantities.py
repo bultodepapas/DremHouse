@@ -33,8 +33,9 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
     positions = frame_positions(n_bays, bay_m)
     tribs = [p2_tributary_m(bay_m, p2_start, length, x) for x in positions]
     n_p2_frames = sum(1 for t in tribs if t > 0.0)
+    avg_trib = sum(tribs) / n_p2_frames if n_p2_frames > 0 else 0.0
 
-    floor = size_joists_and_beams(cfg, steel, bay_m, bay_m, phi_b, phi_c)
+    floor = size_joists_and_beams(cfg, steel, bay_m, avg_trib, phi_b, phi_c)
     staggered = size_staggered_floor(cfg, steel, bay_m, phi_b, phi_c)
     great_wall = size_p2_great_wall(cfg, steel, phi_b, phi_c)
 
@@ -51,9 +52,13 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
         if sid in ("PORTICO", "PORTICO-T", "PORTICO-F"):
             tie = bool(system.get("tie", False))
             fixed = bool(system.get("fixed_base", False))
-            res = size_portal_frame(cfg, steel, bay_m, bay_m, True, phi_b, phi_c, tie=tie, fixed_base=fixed)
+            res = size_portal_frame(cfg, steel, bay_m, avg_trib, True, phi_b, phi_c, tie=tie, fixed_base=fixed)
+            if n_p2_frames in (0, n_lines):
+                main_total = res.weight_kg * n_lines
+            else:
+                res_0 = size_portal_frame(cfg, steel, bay_m, 0.0, True, phi_b, phi_c, tie=tie, fixed_base=fixed)
+                main_total = res.weight_kg * n_p2_frames + res_0.weight_kg * (n_lines - n_p2_frames)
             main_per_frame = res.weight_kg
-            main_total = main_per_frame * n_lines
             frames = {
                 "type": "pórtico portal 18 m" + (" atado (tirante de alero)" if tie else "") + (" con bases fijas" if fixed else " con bases articuladas"),
                 "column": res.column.name,
@@ -82,8 +87,7 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
                 col_roof = q * 18.0 / 2.0
                 col_p2 = 0.0
                 if n_p2_frames > 0:
-                    trib = bay_m
-                    col_p2 = (fac.get("D", 0.0) * floor_d + fac.get("L", 0.0) * floor_l) * trib * 18.0 / 2.0
+                    col_p2 = (fac.get("D", 0.0) * floor_d + fac.get("L", 0.0) * floor_l) * avg_trib * 18.0 / 2.0
                 axial_max = max(axial_max, col_roof + col_p2)
             col = size_cercha_columns(cfg, steel, axial_max / 1e3, col_len, phi_c)
             main_per_frame = (2.0 * col.mass_kg_m * col_len + truss_mass) * (1.0 + detail)
@@ -117,14 +121,21 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
         bracing_total = 1.0 * 1000.0
         secondary_total = (purlin_total + girt_total + bracing_total) * (1.0 + waste)
 
-        total_kg = main_total + floor_total + secondary_total
+        main_round = round(main_total, 0)
+        floor_round = round(floor_total, 0)
+        floor_staggered_round = round(floor_staggered_total, 0)
+        floor_greatwall_round = round(floor_greatwall_total, 0)
+        sec_round = round(secondary_total, 0)
+        total_kg = main_round + floor_round + sec_round
+        total_staggered_kg = main_round + floor_staggered_round + sec_round
+        total_greatwall_kg = main_round + floor_greatwall_round + sec_round
         result["systems"][sid] = {
-            "main_frames_kg": round(main_total, 0),
-            "p2_floor_kg": round(floor_total, 0),
-            "p2_floor_metaldeck_kg": round(floor_total, 0),
-            "p2_floor_staggered_kg": round(floor_staggered_total, 0),
-            "p2_floor_greatwall_kg": round(floor_greatwall_total, 0),
-            "secondary_kg": round(secondary_total, 0),
+            "main_frames_kg": main_round,
+            "p2_floor_kg": floor_round,
+            "p2_floor_metaldeck_kg": floor_round,
+            "p2_floor_staggered_kg": floor_staggered_round,
+            "p2_floor_greatwall_kg": floor_greatwall_round,
+            "secondary_kg": sec_round,
             "joist_profile": joist.name,
             "floor_beam_profile": beam.name,
             "edge_beam_profile": edge.name,
@@ -134,9 +145,14 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
             "great_wall": great_wall,
             "purlins_m": round(purlin_total / profile("C200").mass_kg_m, 0),
             "girts_m": round(girt_total / profile("C200").mass_kg_m / 0.85 / (1.0 + waste), 0),
-            "total_kg": round(total_kg, 0),
+            "total_kg": total_kg,
             "total_t": round(total_kg / 1000.0, 1),
             "kg_m2": round(total_kg / 918.0, 1),
+            "total_staggered_kg": total_staggered_kg,
+            "total_staggered_t": round(total_staggered_kg / 1000.0, 1),
+            "total_greatwall_kg": total_greatwall_kg,
+            "total_greatwall_t": round(total_greatwall_kg / 1000.0, 1),
+            "kg_m2_greatwall": round(total_greatwall_kg / 918.0, 1),
             "frames": frames,
         }
 

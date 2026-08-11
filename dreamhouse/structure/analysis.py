@@ -144,26 +144,6 @@ def max_axial_in_member(f_local: np.ndarray) -> float:
     return max(abs(f_local[0]), abs(f_local[3]))
 
 
-def deflection_at_midspan(frame: Frame2D, m: FrameMember, f_local: np.ndarray) -> float:
-    """Flecha de medio vano relativa a la cuerda, por integración numérica de
-    la elástica a partir de los momentos internos."""
-    length = frame.member_length(m)
-    ei = m.e_pa * m.iy_m4
-    n1, v1, m1 = f_local[0], f_local[1], f_local[2]
-    wy = m.w_y_n_m
-    steps = 40
-    dx = length / steps
-    slope = 0.0
-    defl = 0.0
-    for k in range(1, steps + 1):
-        x = k * dx
-        m_cur = m1 + v1 * x - 0.5 * wy * x**2
-        slope += (m_cur / ei) * dx
-        defl += slope * dx
-    _ = n1
-    return abs(defl)
-
-
 def simply_supported_max_moment(q_n_m: float, span_m: float) -> float:
     return q_n_m * span_m**2 / 8.0
 

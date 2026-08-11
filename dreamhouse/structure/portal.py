@@ -15,7 +15,6 @@ from .analysis import (
     Frame2D,
     FrameMember,
     G,
-    deflection_at_midspan,
     max_axial_in_member,
     max_moment_in_member,
     simply_supported_deflection,
@@ -89,7 +88,7 @@ def build_frame_model(
     roof_d = cfg["loads"]["dead"]["roof_kpa"] * bay_m * 1e3
     roof_l = cfg["loads"]["live"]["roof_kpa"] * bay_m * 1e3
     qz = cfg["loads"]["wind"]["qz_eave_kpa_hypothesis"] * 1e3
-    uplift = -qz * (cfg["loads"]["wind"]["Cp_roof_windward"] + cfg["loads"]["wind"]["Cp_roof_leeward"]) / 2.0 * bay_m
+    uplift = qz * (cfg["loads"]["wind"]["Cp_roof_windward"] + cfg["loads"]["wind"]["Cp_roof_leeward"]) / 2.0 * bay_m
     rafter_sw = rafter.mass_kg_m * G
 
     rafter_members = []
@@ -123,12 +122,19 @@ def build_frame_model(
 
 
 def _set_case_load(m: FrameMember, nodes: list, case: str, w_vert_n_m: float) -> None:
+    """Aplica una carga vertical uniforme por unidad de longitud HORIZONTAL.
+
+    Convención: w_vert_n_m > 0 = gravedad (hacia abajo). La carga se proyecta
+    sobre los ejes locales del miembro (axial y transversal) de modo que el
+    ensamble nodal equivalente quede exactamente vertical, sin componente
+    horizontal espuria, y el total vertical sea w·L_horiz.
+    """
     x1, z1 = nodes[m.i]
     x2, z2 = nodes[m.j]
     length = np.hypot(x2 - x1, z2 - z1)
     c = (x2 - x1) / length
     s = (z2 - z1) / length
-    m.w_cases[case] = (w_vert_n_m * c, -w_vert_n_m * s)
+    m.w_cases[case] = (w_vert_n_m * c * c, -w_vert_n_m * s * c)
 
 
 def build_point_loads(
@@ -150,16 +156,16 @@ def build_point_loads(
 
     col_sw_low = col.mass_kg_m * G * eave_low
     col_sw_high = col.mass_kg_m * G * eave_high
-    f_pt["D"][3 * index["top_low"] + 1] += col_sw_low
-    f_pt["D"][3 * index["top_high"] + 1] += col_sw_high
+    f_pt["D"][3 * index["top_low"] + 1] -= col_sw_low
+    f_pt["D"][3 * index["top_high"] + 1] -= col_sw_high
 
     if has_p2 and trib_p2_m > 0.0:
         floor_d_col = (cfg["loads"]["dead"]["floor_p2_kpa"] + cfg["loads"]["dead"]["partitions_p2_kpa"]) * 1e3 * trib_p2_m * 18.0 * p2_col_share
         floor_l_col = cfg["loads"]["live"]["p2_residential_kpa"] * 1e3 * trib_p2_m * 18.0 * p2_col_share
         for key in ("p2_low", "p2_high"):
             idx = index[key]
-            f_pt["D"][3 * idx + 1] += floor_d_col
-            f_pt["L"][3 * idx + 1] += floor_l_col
+            f_pt["D"][3 * idx + 1] -= floor_d_col
+            f_pt["L"][3 * idx + 1] -= floor_l_col
 
     qz = cfg["loads"]["wind"]["qz_eave_kpa_hypothesis"] * 1e3
     net_wall = qz * (cfg["loads"]["wind"]["Cp_wall_windward"] + cfg["loads"]["wind"]["Cp_wall_leeward"])
@@ -245,7 +251,7 @@ def size_portal_frame(
 
     col_len = max(eave_low, eave_high)
     rafter_len = np.hypot(18.0, eave_high - eave_low)
-    defl_limit = rafter_len * 1000.0 / 180.0
+    defl_limit = rafter_len / 180.0
     drift_limit = col_len / 200.0
 
     def envelope(frame: Frame2D, index: dict, f_pt: dict):
@@ -284,11 +290,13 @@ def size_portal_frame(
         rafter_strength_ok = env_m["rafter"] <= rafter.moment_capacity_knm(steel.fy_pa, phi_b)
         rafter_defl_ok = rafter_defl <= defl_limit
         drift_ok = drift <= drift_limit or col.name in ("HEA500", "HEB400")
-        if rafter_strength_ok and rafter_defl_ok and drift_ok:
+        col_util = env_n["column"] / max(col.axial_capacity_kn(steel.fy_pa, phi_c), 1e-9) + env_m["column"] / max(col.moment_capacity_knm(steel.fy_pa, phi_b), 1e-9)
+        col_ok = col_util <= 1.0 + 1e-9 or col.name in ("HEA500", "HEB400")
+        if rafter_strength_ok and rafter_defl_ok and drift_ok and col_ok:
             break
         if (not rafter_strength_ok or not rafter_defl_ok) and rafter.name != "IPE600":
             rafter = profile(_next_ipe(rafter.name))
-        if not drift_ok:
+        if not drift_ok or not col_ok:
             col = profile(_next_hea(col.name))
         if tie:
             tie_force = env_n["tie"]
@@ -388,17 +396,17 @@ def size_joists_and_beams(cfg: dict, steel: Steel, bay_m: float, trib_p2_m: floa
     span = bay_m
 
     q_joist = (floor_d + floor_l) * spacing
-    joist, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_joist, span) / 1e3, 0.0, span, "IPE", span * 1000.0 / 240.0, q_joist / 1e3)
+    joist, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_joist, span) / 1e3, 0.0, span, "IPE", span / 240.0, q_joist / 1e3, e_pa=steel.e_pa)
     if joist.mass_kg_m < profile("IPE220").mass_kg_m:
         joist = profile("IPE220")
 
     q_beam = (floor_d + floor_l) * trib_p2_m
-    beam_span = 18.0 / 4.0
+    beam_span = 18.0 / 3.0  # dos apoyos intermedios por pórtico -> 3 tramos de 6 m
     m_beam = simply_supported_max_moment(q_beam, beam_span) / 1.5
-    beam, _ = lightest_member(steel.fy_pa, phi_b, phi_c, m_beam / 1e3, 0.0, beam_span, "IPE", beam_span * 1000.0 / 240.0, q_beam / 1e3)
+    beam, _ = lightest_member(steel.fy_pa, phi_b, phi_c, m_beam / 1e3, 0.0, beam_span, "IPE", beam_span / 240.0, q_beam / 1e3, e_pa=steel.e_pa)
 
     q_edge = (floor_d + floor_l) * bay_m / 2.0
-    edge, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_edge, 9.0) / 1e3, 0.0, 9.0, "IPE", 9.0 * 1000.0 / 240.0, q_edge / 1e3)
+    edge, _ = lightest_member(steel.fy_pa, phi_b, phi_c, simply_supported_max_moment(q_edge, 9.0) / 1e3, 0.0, 9.0, "IPE", 9.0 / 240.0, q_edge / 1e3, e_pa=steel.e_pa)
 
     aux_col = profile("HEA200")
     return {"joist": joist, "beam": beam, "edge": edge, "aux_col": aux_col}

@@ -135,11 +135,11 @@ def size_p2_great_wall(
     m_beam = simply_supported_max_moment(q_beam, front) / 1e3
     beam, _ = lightest_member(
         steel.fy_pa, phi_b, phi_c, m_beam, 0.0, front, "IPE",
-        front * 1000.0 / 240.0, q_beam / 1e3,
+        front / 240.0, q_beam / 1e3, e_pa=steel.e_pa,
     )
     if beam.mass_kg_m < profile("IPE360").mass_kg_m:
         beam = profile("IPE360")
-    beams_kg = n_beams * beam.mass_kg_m * p2_length
+    beams_kg = n_beams * beam.mass_kg_m * front
 
     # Cercha de borde X=21 (luz 18 m en Y) que recibe medio frente.
     q_edge = q_total * front / 2.0

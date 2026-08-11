@@ -100,9 +100,15 @@ def lightest_member(
     series_name: str,
     deflection_limit_m: float | None,
     q_service_kn_m: float | None,
+    *,
+    e_pa: float = 2.0e11,
 ) -> tuple[Profile, float]:
     """Selecciona el perfil más liviano que cumple resistencia, interacción
-    axial+flexión y flecha (viga con carga uniforme de servicio). Hipótesis E0."""
+    axial+flexión y flecha (viga con carga uniforme de servicio). Hipótesis E0.
+
+    El límite de flecha se compara en metros (p. ej. L/240 = length_m/240.0);
+    q_service_kn_m en kN/m.
+    """
     best = None
     for cand in series(series_name):
         mcap = cand.moment_capacity_knm(fy, phi_b)
@@ -118,7 +124,7 @@ def lightest_member(
         if interaction > 1.0 + 1e-9:
             continue
         if deflection_limit_m is not None and q_service_kn_m is not None:
-            ei = 2.0e11 * cand.iy_m4
+            ei = e_pa * cand.iy_m4
             delta = 5.0 * q_service_kn_m * 1e3 * length_m**4 / (384.0 * ei)
             if delta > deflection_limit_m:
                 continue

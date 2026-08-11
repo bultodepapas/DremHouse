@@ -105,6 +105,8 @@ def summarize(rows: list[dict]) -> dict:
                 "p2_metaldeck_t": round(q["p2_floor_metaldeck_kg"] / 1000.0, 1),
                 "p2_staggered_t": round(q["p2_floor_staggered_kg"] / 1000.0, 1),
                 "p2_greatwall_t": round(q["p2_floor_greatwall_kg"] / 1000.0, 1),
+                "total_greatwall_t": q["total_greatwall_t"],
+                "kg_m2_greatwall": q["kg_m2_greatwall"],
                 "p2_interior_columns": q["staggered"]["interior_columns"],
                 "wall_axial_kn_m": q["great_wall"]["wall_axial_kn_m"],
                 "wall_beam": q["great_wall"]["beam_profile"],
@@ -127,8 +129,8 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "",
         "> " + cfg["loads"]["note_no_snow"],
         "",
-        "| Sistema × Modulación | Columnas | Viga/cercha | Pórticos | Acero total | kg/m² |",
-        "|---|---|---|---|---:|---:|",
+        "| Sistema × Modulación | Columnas | Viga/cercha | Pórticos | Acero total (metaldeck) | Total (gran muro) | kg/m² |",
+        "|---|---|---|---|---:|---:|---:|",
     ]
     for row in rows:
         mod = row["modulation"]
@@ -136,19 +138,19 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
             f = q["frames"]
             col = f.get("column", "-")
             roof = f.get("rafter", f.get("truss_chord", "-"))
-            lines.append(f"| {mod} · {sid} | {col} | {roof} | {row['quantities']['modulation']['n_portal_lines']} | **{q['total_t']} t** | {q['kg_m2']} |")
+            lines.append(f"| {mod} · {sid} | {col} | {roof} | {row['quantities']['modulation']['n_portal_lines']} | **{q['total_t']} t** | {q['total_greatwall_t']} t | {q['kg_m2_greatwall']} |")
     lines += [
         "",
         "## Desglose por componente (t)",
         "",
-        "| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Entrepiso P2 (gran muro) | Secundaria | Total |",
-        "|---|---|---:|---:|---:|---:|---:|",
+        "| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Entrepiso P2 (gran muro) | Secundaria | Total metaldeck | Total gran muro |",
+        "|---|---|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         mod = row["modulation"]
         for sid, q in row["quantities"]["systems"].items():
             lines.append(
-                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | {q['p2_floor_metaldeck_kg']/1000:.1f} | {q['p2_floor_staggered_kg']/1000:.1f} | {q['p2_floor_greatwall_kg']/1000:.1f} | {q['secondary_kg']/1000:.1f} | {q['total_t']} |"
+                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | {q['p2_floor_metaldeck_kg']/1000:.1f} | {q['p2_floor_staggered_kg']/1000:.1f} | {q['p2_floor_greatwall_kg']/1000:.1f} | {q['secondary_kg']/1000:.1f} | {q['total_t']} | {q['total_greatwall_t']} |"
             )
     lines += [
         "",
@@ -188,28 +190,34 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "## Hallazgos del modelo E0 (11-08-2026)",
         "",
         "1. **Los pórticos con bases articuladas quedan gobernados por la deriva de viento (H/200):** "
-        "columnas HEA500 en las tres modulaciones (peso principal ≈ 30–40 t). El control de la "
-        "auditoría (HEA300, 23–24 t) no cumple la deriva de servicio con el viento de hipótesis "
+        "columnas HEA500 en las tres modulaciones (marcos ≈ 25–41 t). El control de la "
+        "auditoría (HEA300) no cumple la deriva de servicio con el viento de hipótesis "
         "E0; es una decisión del ingeniero en E1 si relaja el límite o introduce arriostramiento/rigidización.",
-        "2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** "
-        "(ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra "
+        "2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 37–41 t** "
+        "(ahorro ≈ 25–40 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra "
         "de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).",
         "3. **Pórtico atado (PORTICO-T):** el tirante entre los apoyos de la cercha queda casi "
-        "inactivo (≈ 2 kN) porque la deriva de viento es un sway en la misma dirección de ambos "
-        "muros; el tirante solo resiste la apertura de aleros por empuje gravitatorio, que aquí "
-        "no gobierna. Añade peso (≈ 1,4 t/pórtico) sin beneficio de deriva: **no es competitivo "
-        "en este caso de carga.** Su papel clásico (empuje de cubierta en edificios con grúa) no aplica.",
+        "inactivo (≈ 1,4 kN) porque el faldón 1:30 es casi plano y la deriva de viento es un sway "
+        "en la misma dirección de ambos muros; el tirante solo resistiría la apertura de aleros por "
+        "empuje gravitatorio, que aquí no gobierna. Añade peso (≈ 1–2 t/pórtico) sin beneficio de "
+        "deriva: **no es competitivo en este caso de carga.**",
         "4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva para el "
         "sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 "
-        "articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).",
-        "5. **Entrepiso P2:** tres esquemas sin columnas interiores — METALDECK (12,0 t, con "
-        "columnas en cocina/núcleo), STAGGERED (≈ 3,8 t, exige re-articular particiones) y "
-        "**GRAN-MURO (≈ 6 t, preferido): el gran muro de X=31,5 trabaja como apoyo del P2**, "
-        "con 3 vigas longitudinales en el plenum + cercha de borde X=21; sin re-articular "
-        "particiones y con el muro actuando como núcleo de corte longitudinal. El peso de la "
-        "losa de deck profundo se verifica en E1.",
-        "6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
-        "controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.",
+        "articulado) y un marco ≈ 25–35 % más liviano; el costo pasa a la cimentación (momento en la base).",
+        "5. **Entrepiso P2:** tres esquemas sin columnas interiores — METALDECK (12,4–17,1 t según "
+        "modulación, con columnas en cocina/núcleo y vigas de 6 m entre apoyos), STAGGERED (≈ 3,8 t, "
+        "exige re-articular particiones) y **GRAN-MURO (≈ 5,9 t, preferido): el gran muro de X=31,5 "
+        "trabaja como apoyo del P2**, con 3 vigas longitudinales en el plenum + cercha de borde X=21; "
+        "sin re-articular particiones y con el muro actuando como núcleo de corte longitudinal. El peso "
+        "de la losa de deck profundo se verifica en E1.",
+        "6. **Cubierta de un solo faldón ≈ 1:30:** verificada por el modelo: la viga de cubierta del "
+        "pórtico queda gobernada por flecha y resistencia con IPE450/500/550 según modulación "
+        "(M45/M60/M90); la cercha IPE220 con flecha despreciable (d/L = 1/16).",
+        "7. **Auditoría de física del modelo (11-08-2026):** corregidos signos de gravedad en cargas "
+        "puntuales y uniformes (antes el pórtico 'flotaba' bajo carga muerta), proyección trigonométrica "
+        "de cargas sobre miembros inclinados (la carga equivalente ahora es exactamente vertical) y "
+        "límites de flecha L/180–L/240 comparados en metros (antes se comparaban con un límite 1000× "
+        "más permisivo, dejando la flecha sin efecto).",
         "",
         "## Supuestos críticos de este modelo",
         "",
@@ -227,7 +235,7 @@ def write_csv(rows: list[dict]) -> None:
     path = OUT / "DH-EST-E0-001_resumen.csv"
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
-        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "tirante_cm2", "marcos_t", "entrepiso_p2_metaldeck_t", "entrepiso_p2_staggered_t", "entrepiso_p2_granmuro_t", "secundaria_t", "total_t", "kg_m2", "drift_m"])
+        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "tirante_cm2", "marcos_t", "entrepiso_p2_metaldeck_t", "entrepiso_p2_staggered_t", "entrepiso_p2_granmuro_t", "secundaria_t", "total_metaldeck_t", "total_granmuro_t", "kg_m2_granmuro", "drift_m"])
         for row in rows:
             mod = row["modulation"]
             for sid, q in row["quantities"]["systems"].items():
@@ -239,8 +247,8 @@ def write_csv(rows: list[dict]) -> None:
                     round(q["p2_floor_metaldeck_kg"] / 1000.0, 2),
                     round(q["p2_floor_staggered_kg"] / 1000.0, 2),
                     round(q["p2_floor_greatwall_kg"] / 1000.0, 2),
-                    round(q["secondary_kg"] / 1000.0, 2), q["total_t"], q["kg_m2"],
-                    f.get("drift_m", ""),
+                    round(q["secondary_kg"] / 1000.0, 2), q["total_t"], q["total_greatwall_t"],
+                    q["kg_m2_greatwall"], f.get("drift_m", ""),
                 ])
 
 

@@ -315,7 +315,7 @@ def note_box(parts, q, st, gw):
         "Cálculo EN VIVO: esta lámina se dibuja desde structure_system.json vía el modelo (no usa salidas exportadas).",
     ]
     if q and gw:
-        total_gw = q["main_frames_kg"] + q["p2_floor_greatwall_kg"] + q["secondary_kg"]
+        total_gw = q["total_greatwall_kg"]
         lines.append(
             f"Modelo E0 · M60 · CERCHA: marcos {q['main_frames_kg']/1000:.1f} t · columnas {q['frames']['column']} · "
             f"cuerda {q['frames']['truss_chord']}. Entrepiso P2: metaldeck {q['p2_floor_metaldeck_kg']/1000:.1f} t "
@@ -325,7 +325,8 @@ def note_box(parts, q, st, gw):
             f"GRAN-MURO (preferido): {gw['n_beams']} vigas longitudinales {gw['beam_profile']} de {gw['beam_span_m']} m en el plenum "
             f"(Y≈3/9/15) + cercha de borde X=21 (luz 18 m, cordón {gw['edge_chord']}) + gran muro portante (axial ≈ "
             f"{gw['wall_axial_kn_m']} kN/m, núcleo de corte) + franja núcleo sobre el muro (luz {gw['nucleus_span_m']} m). "
-            f"fn del panel ≈ {gw['panel_frequency_hz']} Hz. Total estimado con GRAN-MURO ≈ {total_gw/1000:.1f} t."
+            f"fn del panel ≈ {gw['panel_frequency_hz']} Hz. Total estimado con GRAN-MURO ≈ {total_gw/1000:.1f} t "
+            f"(≈ {q['kg_m2_greatwall']} kg/m²)."
         )
         if st:
             lines.append(

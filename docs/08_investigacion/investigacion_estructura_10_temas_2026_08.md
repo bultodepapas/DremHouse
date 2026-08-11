@@ -172,14 +172,17 @@ coordination set.
 
 1. ✅ **DONE (2026-08-11):** re-modeled the staggered P2 floor with **full-depth trusses
    (≈ 3.0 m = P2 wall height, d/L ≈ 0.167)** + deep-deck panels (5.0 m, no joists) and a
-   frequency check ≥ 5 Hz (≈ 14.9 Hz). Result: ≈ 3.8 t of floor steel vs 12.0 t METALDECK,
-   zero interior columns. Ver el modelo `dreamhouse/structure/staggered.py`.
+   frequency check ≥ 5 Hz (≈ 14.9 Hz). Result: ≈ 3.8 t of floor steel vs 12.4–17.1 t
+   METALDECK (corrected L/240 floor beams), zero interior columns. Ver el modelo
+   `dreamhouse/structure/staggered.py`.
 2. ✅ **DONE (2026-08-11):** new preferred P2 scheme **GRAN-MURO** — the X = 31.5 great
    wall acts as a load-bearing wall + longitudinal shear core: nucleus strip on the wall,
-   3 longitudinal IPE450 beams in the 3.20→3.80 m plenum + an 18 m edge truss at X = 21.
-   ≈ 6.1 t of floor steel, zero interior columns, no partition re-articulation needed,
-   wall axial ≈ 76 kN/m. Also fixed a units bug (N/m vs kN/m) in `lightest_member`
-   deflection checks. Best combination: CERCHA·M90 + great wall ≈ 25.5 t ≈ 28 kg/m².
+   3 longitudinal IPE550 beams (10.5 m span, deflection-governed L/240) in the 3.20→3.80 m
+   plenum + an 18 m edge truss at X = 21. ≈ 5.9 t of floor steel, zero interior columns,
+   no partition re-articulation needed, wall axial ≈ 76 kN/m. Physics audit on the same
+   date: fixed gravity signs, inclined-member load projection and L/240 limits in meters
+   (previously 1000× too lenient). Best combination: CERCHA·M90 + great wall ≈ 25.3 t ≈
+   27.6 kg/m².
 3. Add a **wind girder** + computed bracing weight and document EHF (topic 3) — the great
    wall simplifies the longitudinal wind girder.
 4. Document drift limits h/200 vs h/300 for metal-clad and re-check column sizes (topic 4).

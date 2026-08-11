@@ -238,9 +238,10 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - El frente abierto en X = 21,00 m (borde del P2 hacia la doble altura) requiere una **viga
   de borde** de luz ≈ 18 m con apoyos puntuales integrados al núcleo/cocina; esta línea es
   un punto crítico de coordinación con la PB abierta (sin columnas arbitrarias en la nave).
-- Criterio de peso del modelo E0: **≈ 6,1 t de acero para el entrepiso P2 en el esquema
-  GRAN-MURO** (preferido); staggered ≈ 3,8 t; metaldeck ≈ 9,6 t (M60, con columnas en
-  cocina/núcleo). Corrección de unidades de flecha aplicada el 11-08-2026.
+- Criterio de peso del modelo E0: **≈ 5,9 t de acero para el entrepiso P2 en el esquema
+  GRAN-MURO** (preferido); staggered ≈ 3,8 t; metaldeck ≈ 12,8 t (M60, con columnas en
+  cocina/núcleo). Auditoría de física 11-08-2026: signos de gravedad, proyección de
+  cargas y límites de flecha L/240 en metros.
 - Vibración: paneles de losa de ≈ 6,0 m entre vigas longitudinales, frecuencia objetivo
   ≥ 5 Hz (DG11 residencial); el modelo E0 arroja ≈ 10 Hz — verificarla en E1.
 - El lift queda en doble altura (X ≈ 5,5–6,0 m), fuera de la proyección del P2: no carga
@@ -248,9 +249,9 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - **Sistema preferido a estudiar en E1 — GRAN-MURO:** el gran muro de X = 31,5 (núcleo,
   0,20 m) trabaja como **muro portante**: recibe la franja del núcleo (X = 31,5→36, luz
   4,5 m, losa de deck profundo sobre el muro) y la mitad del frente (X = 21→31,5). El
-  frente se resuelve con **3 vigas longitudinales IPE450 en el plenum** (3,20→3,80 m,
-  Y ≈ 3/9/15) que apoyan en la **cercha de borde X = 21** (luz 18 m, cordón HSS) y en el
-  muro. Resultado: **cero columnas en cocina/comedor de PB**, sin necesidad de
+  frente se resuelve con **3 vigas longitudinales IPE550 en el plenum** (3,20→3,80 m,
+  Y ≈ 3/9/15, gobernadas por flecha L/240 sobre 10,5 m) que apoyan en la **cercha de
+  borde X = 21** (luz 18 m, cordón HSS) y en el muro. Resultado: **cero columnas en cocina/comedor de PB**, sin necesidad de
   re-articular particiones, y el muro aporta **núcleo de corte longitudinal** (rigidez
   lateral y simplificación del wind girder). Axial del muro ≈ 76 kN/m. En E1 verificar
   el peso de la losa de deck profundo y la continuidad del muro (escalera) hasta la
@@ -321,27 +322,33 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 Matriz ejecutada con el motor `dreamhouse/structure/` (datos en
 `structure_system.json`; salidas en `planos/estructura_e0/`). Hipótesis E0,
 **no apto para construir**. "Acero total" usa el entrepiso METALDECK (línea
-base); el total con GRAN-MURO se indica en la última columna.
+base); el total con GRAN-MURO se indica en la última columna. Auditoría de
+física 11-08-2026: corregidos signos de gravedad (el pórtico ya no "flota"
+bajo carga muerta), proyección trigonométrica de cargas en miembros inclinados
+(componente horizontal nula) y límites de flecha L/180–L/240 en metros (antes
+1000× más permisivos).
 
 | Sistema × Modulación | Columnas | Viga / cercha | Tirante | Marcos | P2 metaldeck / staggered / gran muro | Acero total (metaldeck) | kg/m² | Total con gran muro | Lectura |
-|---|---|---|---|---|---:|---:|---:|---:|---|
-| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 10,3 / 3,8 / 6,1 t | **57,3 t** | 62,5 | 53,1 t | deriva de viento gobierna |
-| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 9,6 / 3,8 / 6,1 t | **49,8 t** | 54,2 | 46,2 t | referencia de la auditoría |
-| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 10,0 / 3,8 / 6,1 t | **42,3 t** | 46,1 | 38,4 t | menos pórticos, vigas mayores |
-| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 10,3 / 3,8 / 6,1 t | **58,8 t** | 64,1 | 54,6 t | tirante casi inactivo: no competitivo |
-| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 9,6 / 3,8 / 6,1 t | **50,9 t** | 55,4 | 47,4 t | tirante ≈ 2 kN; no controla deriva |
-| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 10,0 / 3,8 / 6,1 t | **43,2 t** | 47,0 | 39,2 t | — |
-| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 10,3 / 3,8 / 6,1 t | **46,6 t** | 50,7 | 42,3 t | bases fijas: deriva 0,016 m |
-| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 9,6 / 3,8 / 6,1 t | **39,5 t** | 43,0 | 35,9 t | marco ≈ 27 % más liviano que articulado |
-| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 10,0 / 3,8 / 6,1 t | **36,4 t** | 39,6 | 32,5 t | — |
-| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 10,3 / 3,8 / 6,1 t | **39,3 t** | 42,8 | 35,1 t | más liviana del grupo |
-| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 9,6 / 3,8 / 6,1 t | **33,8 t** | 36,9 | 30,3 t | — |
-| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 10,0 / 3,8 / 6,1 t | **29,4 t** | 32,1 | 25,5 t | combinación más liviana |
+|---|---|---|---|---|---|---:|---:|---:|---|
+| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 12,4 / 3,8 / 5,9 t | **59,4 t** | 64,7 | 52,9 t | deriva de viento gobierna |
+| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,8 / 3,8 / 5,9 t | **52,9 t** | 57,6 | 46,0 t | referencia de la auditoría |
+| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 17,1 / 3,8 / 5,9 t | **49,5 t** | 53,9 | 38,2 t | menos pórticos, vigas mayores |
+| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 12,4 / 3,8 / 5,9 t | **60,9 t** | 66,3 | 54,4 t | tirante casi inactivo: no competitivo |
+| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,8 / 3,8 / 5,9 t | **54,1 t** | 58,9 | 47,2 t | tirante ≈ 2,3 kN; no controla deriva |
+| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 17,1 / 3,8 / 5,9 t | **50,3 t** | 54,8 | 39,1 t | — |
+| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 12,4 / 3,8 / 5,9 t | **48,6 t** | 53,0 | 42,1 t | bases fijas: deriva 0,015 m |
+| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,8 / 3,8 / 5,9 t | **42,6 t** | 46,5 | 35,8 t | marco ≈ 27 % más liviano que articulado |
+| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 17,1 / 3,8 / 5,9 t | **43,5 t** | 47,4 | 32,3 t | — |
+| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 12,4 / 3,8 / 5,9 t | **41,4 t** | 45,1 | 34,9 t | más liviana del grupo |
+| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,8 / 3,8 / 5,9 t | **37,0 t** | 40,3 | 30,1 t | — |
+| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 17,1 / 3,8 / 5,9 t | **36,6 t** | 39,9 | 25,3 t | combinación más liviana |
 
 Desglose por componente (M60): marcos 32,6 t (cerchas 16,7 t) + entrepiso
-P2 metaldeck ≈ 9,6 t / staggered ≈ 3,8 t / **gran muro ≈ 6,1 t** + secundaria
-≈ 7,5 t. La corrección de unidades de flecha (N/m vs kN/m) redujo el metaldeck
-de ≈ 12,0 t a ≈ 9,6 t.
+P2 metaldeck ≈ 12,8 t / staggered ≈ 3,8 t / **gran muro ≈ 5,9 t** + secundaria
+≈ 7,5 t. El metaldeck subió de ≈ 9,6 t a ≈ 12,8 t al corregir el límite de
+flecha L/240 (antes inoperante) y la luz de viga entre apoyos (18/3 = 6 m); el
+gran muro pasó de ≈ 6,1 t a ≈ 5,9 t al corregir la longitud de las vigas
+longitudinales (10,5 m, no 15 m) — que ahora son IPE550 por flecha L/240.
 
 ### Hallazgos
 
@@ -366,16 +373,16 @@ de ≈ 12,0 t a ≈ 9,6 t.
    ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el
    costo pasa a la cimentación (momento en la base).
 5. **Entrepiso P2 — el gran muro como apoyo:** tres esquemas sin columnas
-   interiores. METALDECK (≈ 9,6 t, M60) introduce columnas en cocina/núcleo.
+   interiores. METALDECK (≈ 12,8 t, M60) introduce columnas en cocina/núcleo.
    STAGGERED (≈ 3,8 t) exige re-articular las particiones del P2 (hoy no hay
-   línea continua de 18 m). El esquema **GRAN-MURO (≈ 6,1 t, preferido)
+   línea continua de 18 m). El esquema **GRAN-MURO (≈ 5,9 t, preferido)
    convierte el muro de X=31,5 en estructura portante**: recibe la franja del
    núcleo (luz 4,5 m) y la mitad del frente; el frente (10,5 m) se resuelve con
-   3 vigas longitudinales IPE450 en el plenum (3,20→3,80 m) y una cercha de
+   3 vigas longitudinales IPE550 en el plenum (3,20→3,80 m) y una cercha de
    borde X=21 de 18 m (HSS). Sin columnas, sin re-articular particiones, y el
    muro aporta **núcleo de corte longitudinal** (simplifica el wind girder).
    Axial del muro ≈ 76 kN/m (holgado). La combinación más liviana es
-   CERCHA·M90 con gran muro: **25,5 t ≈ 28 kg/m²**.
+   CERCHA·M90 con gran muro: **25,3 t ≈ 27,6 kg/m²**.
 6. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
    por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
    modulación.
