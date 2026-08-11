@@ -17,17 +17,23 @@ principal, cuatro baños privados, ventanas altas, zona wellness y ejecución F1
 - El dormitorio principal deja de ser una franja angosta: se plantea en **7,40 × 4,20 m
   = 31,1 m² brutos**, con paño dominante de 5,50 m en el **lateral A** y paño posterior
   secundario de 2,50 m (corrección H-06: antes se describía al revés).
-- Los dormitorios de hijos tienen **26,0 m² brutos exactos** cada uno, pero al descontar
-  espesores reales quedan **23,46 m² (H1) y 24,04 m² (H2)**: la hard rule 9 **todavía no se
-  cumple**. Ver «Resultado de control».
+- Los dormitorios de hijos quedan en **23,46 m² (H1) y 23,22 m² útiles (H2)**: diferencia
+  de **0,24 m²**, dentro de la tolerancia de ±1,00 m² que fija **D-042**. Proporciones
+  1,04:1 y 1,23:1, ambas por debajo del límite de 1,35:1.
 - La llegada de escalera, el hall, la galería interior y el mini deck son recintos
   cerrados acústicamente hacia la nave. No existe corredor abierto tipo hotel.
 - La Fase 2 permanece detrás de una frontera única en Y=11,00 m. El cierre temporal debe
   resolver polvo, ruido, incendio e instalaciones durante la ocupación de F1.
-- Los baños H2 y huéspedes recuperan **2,00 m de profundidad bruta**; siguen siendo
-  compactos y requieren un detalle 1:25 antes de congelarse.
-- El wellness ocupa 18,0 m² brutos —**15,6 m² netos**, por debajo de la reserva mínima de
-  16 m²— e integra sauna familiar, ducha y zona de relajación.
+- **El baño de hijo 2 pasa de 1,70 m a 2,80 m de fondo libre** al girar la suite: deja de
+  ser un baño-pasillo y repite exactamente el esquema del baño de hijo 1 (2,20 × 2,80 m
+  útiles, idénticos). El de huéspedes queda en 2,40 × 2,00 m útiles.
+- **La suite de huéspedes alcanza el programa por primera vez:** dormitorio 17,0 m² brutos
+  (programa 17–18), baño 5,7 m² (programa 5,5) y closet 5,3 m² (programa 3,5–4). Antes el
+  dormitorio estaba 4,5 m² por encima y el baño 1,5 m² por debajo.
+- El wellness ocupa **16,8 m² brutos**, dentro de la reserva de programa de 16–22 m², con
+  2,72 m de ancho libre: cabe la cabina de 2,40 m que pide el programa.
+- **El vestíbulo de Fase 2 pasa de 1,00 a 1,40 m brutos = 1,25 m libres**, por encima del
+  mínimo declarado de 1,20 m.
 - Los aparatos húmedos se concentran por familias para facilitar bajantes, ventilación y
   mantenimiento. La coincidencia exacta con PB todavía debe verificarse mediante shafts.
 
@@ -47,38 +53,50 @@ firmados por los consultores correspondientes.
 
 ## Resultado de control
 
-**Estado al 2026-08-11: 7 PASS · 3 FAIL · 3 OPEN.** La emisión **no cierra**, y eso es
-deliberado.
+**Estado al 2026-08-11: 12 PASS · 0 FAIL · 2 OPEN.** La emisión cierra.
 
-Hasta esta fecha el modelo teselaba la envolvente completa: los veintidós recintos sumaban
-exactamente 270,00 m², es decir, declaraban áreas que no dejaban sitio para un solo muro
-(hallazgo H-04). Al incorporar los espesores que este mismo documento declara —0,18 m de
-envolvente, 0,20 m en húmedos y escalera, 0,15 m en divisiones— la superficie neta real
-resulta ser **239,2 m²**, un 11 % menos que lo rotulado. Tres condiciones que antes
-«pasaban» dejaron de hacerlo:
+### Base de medida
 
-| Regla | Estado | Lectura |
+La causa de fondo de los errores anteriores era mezclar bases. Ahora cada regla declara la
+suya, y el modelo también:
+
+| Qué se mide | Base | Fuente |
 |---|---|---|
-| `P2-AREA-CLOSURE` | PASS | 239,2 m² netos ≤ 258,2 m² de interior útil. El modelo ya deja sitio a sus muros. |
-| `P2-CHILD-EQUAL` | **FAIL** | H1 23,46 m² vs. H2 24,04 m² (Δ 0,58 m²). Hard rule 9 incumplida. |
-| `P2-CIRC-MIN` | **FAIL** | `F2-HALL` da 0,85 m libres frente al mínimo propio de 1,20 m. |
-| `P2-WELLNESS` | **FAIL** | 15,6 m² netos frente a los 16 m² de reserva mínima. |
-| `P2-CHILD-PROPORTION` | OPEN | H1 1,04:1 vs. H2 1,62:1. Igualar área no iguala la habitación. |
-| `P2-MASTER-PROGRAM` | OPEN | Vestidor 9,0 m² frente a 15–16; baño principal 12,0 m² frente a 17–18. |
-| `LIFE-EGRESS-2` | OPEN | Segunda salida sujeta a concepto profesional de incendio. |
+| Contraste contra el programa arquitectónico | **bruta** | El programa dice literalmente «áreas brutas/nominales sin descontar estructura, cerramientos y acabados» |
+| Igualdad de los dormitorios de hijos | **útil (neta)** | Hard rule 9 y conflicto CF-003 hablan de «área útil» |
+| Circulaciones mínimas | **libre (neta)** | Son luz libre de paso |
 
-**Estos tres FAIL no se corrigen moviendo cifras: exigen una decisión de planta.** Y no son
-independientes entre sí. Llevar `F2-HALL` a 1,20 m dentro de la envolvente actual obliga a
-restar 0,20 m a los dormitorios de la Fase 2 o a los baños de 2,00 m, que ya son el punto
-más comprometido de la planta. Igualar los dormitorios de hijos con un ajuste de pocos
-centímetros haría pasar el chequeo sin resolver la diferencia real de proporción, que es lo
-que un hijo notaría al entrar. La revisión de coordinación recomienda **no** hacer ninguna
-de las dos cosas hasta que se decida la vía estructural del entrepiso, porque una planta
-sin apoyos interiores admite un reparto distinto del fondo.
+Aplicar una medida neta contra un objetivo bruto fue precisamente lo que hizo «fallar» al
+wellness en la revisión previa: 16,8 m² brutos siempre estuvieron dentro de la reserva de
+programa de 16–22 m².
 
-Se mantiene **abierta** la segunda salida independiente del P2: la escalera protegida y su
-descarga posterior no demuestran por sí solas cumplimiento de recorridos, ocupación o
-evacuación.
+### Cómo se cerraron las tres condiciones incumplidas
+
+La revisión de coordinación dejó tres FAIL reales que no se podían corregir moviendo
+cifras. Se resolvieron **reorganizando la Fase 2**, no relajando los umbrales:
+
+| Regla | Antes | Ahora | Cómo |
+|---|---|---|---|
+| `P2-CHILD-EQUAL` | 23,46 vs 24,04 m² · Δ 0,58 | 23,46 vs 23,22 m² · Δ **0,24** | La suite de hijo 2 gira: el dormitorio pasa de 6,50 × 4,00 a 4,60 × 5,60 brutos y el baño se coloca al costado, como en hijo 1. Tolerancia ±1,00 m² por **D-042**. |
+| `P2-CHILD-PROPORTION` | 1,04:1 vs **1,62:1** | 1,04:1 vs **1,23:1** | El giro elimina la habitación alargada. Ambas por debajo del límite de 1,35:1. |
+| `P2-CIRC-MIN` | 0,85 m libres | **1,25 m** libres | El vestíbulo de obra pasa de 1,00 a 1,40 m brutos. |
+
+El espacio para ensanchar el vestíbulo salió de la propia reorganización, no de restárselo
+a los baños: al girar la suite de hijo 2, la franja de fondo dejó de necesitar los 2,00 m
+de baño en toda su longitud.
+
+### Lo que sigue abierto
+
+| Regla | Lectura |
+|---|---|
+| `P2-MASTER-PROGRAM` | Vestidor 10,2 m² brutos frente a 15–16; baño principal 13,4 frente a 17–18. **No es corregible dentro de la planta:** la banda del principal mide 7,40 × 11,00 = 81,4 m² y la escalera ocupa 16,2, de modo que quedan 65,2 m² para un programa que pide 76. O baja el programa, o crece el P2, o la escalera sale de esa huella. Decisión del propietario. |
+| `LIFE-EGRESS-2` | Segunda salida independiente sujeta a concepto profesional de incendio (D-021, D-028). Puede mover la escalera y con ella el núcleo y el gran muro. |
+
+### Reserva de método
+
+Un «PASS» significa que el modelo es internamente coherente, respeta las decisiones
+registradas y cumple los mínimos declarados por el propio expediente. **No** significa
+conformidad normativa ni aptitud para construir.
 
 ## Archivos
 

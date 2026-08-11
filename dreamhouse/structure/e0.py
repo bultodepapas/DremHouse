@@ -145,13 +145,18 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "",
         "## Entrepiso P2 — opciones comparadas",
         "",
-        "La opción **STAGGERED** (cerchas escalonadas de 18 m entre los muros largos, "
-        "ocultas en las particiones de las suites) elimina por completo las columnas "
-        "interiores de la zona doméstica de PB (cocina/comedor). La opción METALDECK "
-        "de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.",
+        "La opción **STAGGERED** (cerchas de piso de **canto completo** — altura del muro P2, "
+        "d/L ≈ 0,13–0,19 — ocultas en las particiones de las suites, con paneles de deck "
+        "profundo sin viguetas entre cerchas) elimina por completo las columnas interiores de "
+        "la zona doméstica de PB (cocina/comedor) y cumple la vibración residencial. La opción "
+        "METALDECK de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.",
     ]
     staggered_first = list(rows[0]["quantities"]["systems"].values())[0]["staggered"]
-    lines.append(f"- Cercha staggered ({rows[0]['modulation']}): {staggered_first['n_trusses']} cerchas de 18 m, canto ≈ {staggered_first['truss_depth_m']} m, cordones {staggered_first['chord']}, flecha ≈ {staggered_first['truss_deflection_m']} m.")
+    lines.append(f"- Staggered truss: {staggered_first['n_trusses']} cerchas de 18 m de canto completo "
+                 f"(≈ {staggered_first['truss_depth_m']} m, d/L ≈ {staggered_first['truss_d_over_l']}), "
+                 f"paneles de losa de {staggered_first['panel_span_m']} m entre cerchas, cordones "
+                 f"{staggered_first['chord']}, flecha de cercha ≈ {staggered_first['truss_deflection_m']} m, "
+                 f"frecuencia del panel ≈ {staggered_first['panel_frequency_hz']} Hz (criterio DG11 ≥ 5 Hz).")
     lines += [
         "",
         "## Objetivos de control (auditoría)",
@@ -178,9 +183,11 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 "
         "articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).",
         "5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa "
-        "≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** elimina "
-        "esas columnas (cero apoyos interiores) con tonelaje comparable (≈ 10,7–15,8 t según "
-        "modulación); la planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.",
+        "≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** (cerchas "
+        "de canto completo de 18 m entre los muros largos, paneles de deck profundo sin viguetas) "
+        "elimina esas columnas con ≈ 3,3–3,8 t de acero de piso y frecuencia del panel ≈ 15 Hz "
+        "(criterio DG11 ≥ 5 Hz); la planta v0.4 y el modelo E1 deben verificar canto, "
+        "re-articulación de particiones y peso de losa (deck profundo + concreto más pesado).",
         "6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
         "controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.",
         "",

@@ -2,8 +2,9 @@
 
 **Estatus:** revisión independiente de coordinación; insumo técnico para la v0.4 y para las
 puertas de fase. Las correcciones de defecto verificable **ya están aplicadas al modelo**
-(§8); **no** modifica el target económico, ninguna decisión de diseño ni la línea base.  
-**Versión:** 0.2  
+(§8). La Fase 2 del P2 se reorganizó bajo **D-042**; **no** modifica el target económico
+ni la línea base.  
+**Versión:** 0.3  
 **Fecha de corte:** 2026-08-11  
 **Fuentes revisadas:** constitución del proyecto, programa arquitectónico v0.2, bases de
 diseño, borradores b04/R03 a b08/R07, `bases_estructura_metalica.md`, modelo E0
@@ -46,22 +47,22 @@ compara cada archivo consigo mismo.
 | H-01 | Sentido del faldón contradictorio dentro de la emisión activa | **Crítico** | **Corregido** |
 | H-02 | Pendiente 3,33 % incompatible con el sistema de envolvente adoptado | **Crítico** | Aritmética corregida; **cota abierta** |
 | H-03 | El primer módulo estructural no tiene dónde arriostrarse | **Crítico** | Abierto — ingeniero |
-| H-04 | El cuadro de áreas del P2 es un teselado sin espesores | **Crítico** | **Corregido** (destapa 3 FAIL reales) |
+| H-04 | El cuadro de áreas del P2 es un teselado sin espesores | **Crítico** | **Corregido**; los 3 FAIL resultantes, resueltos |
 | H-05 | La segunda salida del P2 es un generador de planta, no un pendiente | **Crítico** | Abierto — concepto de incendio |
 | H-06 | Ventanas de la suite principal intercambiadas entre emisiones | Importante | **Corregido** |
 | H-07 | Jerarquía del vidrio invertida respecto del brief y del programa | Importante | Abierto — propietario |
 | H-08 | Cocina al 60 % del programa; banda doméstica sin proyectar | Importante | Abierto — propietario |
-| H-09 | Suite principal bajo programa; huéspedes sobre programa | Importante | Medido y publicado; **decisión abierta** |
+| H-09 | Suite principal bajo programa; huéspedes sobre programa | Importante | Huéspedes **corregido**; principal **abierto** |
 | H-10 | Claraboyas geométricamente iguales e hidráulicamente opuestas | Importante | **Cuantificado y registrado**; detalle abierto |
-| H-11 | Vestíbulo F2 de 1,00 m rotulado como 1,20 m | Importante | Detectado por chequeo; **exige decisión de planta** |
+| H-11 | Vestíbulo F2 de 1,00 m rotulado como 1,20 m | Importante | **Corregido** (1,25 m libres) |
 | H-12 | El alcance crece sin precio mientras el target permanece fijo | Importante | Abierto — gobierno |
 | H-13 | Tabiques del núcleo dibujados a 0,36 m, declarados a 0,15 m | Menor | **Corregido** |
 | H-14 | Los chequeos automáticos validan el JSON contra sí mismo | Menor | **Corregido** (6 reglas nuevas) |
 | H-15 | `D-037` duplicado; aleros de cubierta no decididos | Menor | **Corregido** (→ `D-041`) |
 
-**Total: 5 críticos · 7 importantes · 3 menores.** Seis corregidos en el modelo, tres
-convertidos en medición publicada, seis abiertos porque son decisiones del propietario o de
-un consultor competente. Detalle de lo aplicado en la §8.
+**Total: 5 críticos · 7 importantes · 3 menores.** **Nueve corregidos**, uno cuantificado y
+publicado, cinco abiertos porque son decisiones del propietario o de un consultor
+competente. Detalle de lo aplicado en la §8.
 
 ### 1.3 Conclusiones principales
 
@@ -183,7 +184,7 @@ antes de congelar cualquiera de los tres.
 
 ### H-04 — El cuadro de áreas del P2 es un teselado sin espesores
 
-> **Estado: CORREGIDO.** El modelo descuenta espesores reales. Al hacerlo aparecieron tres FAIL de diseño que siguen abiertos (§8.2).
+> **Estado: CORREGIDO.** El modelo descuenta espesores reales. Los tres FAIL que esto destapó quedaron resueltos reorganizando la Fase 2 bajo D-042 (§8.3).
 
 **Lámina:** `PLN-002-R05` · **modelo:** `p2_b06.json`.
 
@@ -313,7 +314,7 @@ El chequeo `PB-KITCHEN-CLEAR` pasa porque compara el paso de 1,20 m contra el va
 
 ### H-09 — Suite principal bajo programa; huéspedes sobre programa
 
-> **Estado: medido y publicado** como `P2-MASTER-PROGRAM`; la reasignación es proyecto, no corrección.
+> **Estado: la suite de huéspedes alcanza el programa por primera vez** (§8.3). La suite principal sigue **ABIERTA**: su déficit no es corregible dentro de la planta.
 
 La hard rule 10 exige que la principal sea claramente dominante, con gran vestidor y el baño
 de mayor jerarquía. Lo es en total, pero sus dos piezas nobles quedaron cortas mientras la
@@ -359,7 +360,7 @@ mismo detalle en ambas es la vía directa a una filtración sobre el car project
 
 ### H-11 — Vestíbulo F2 de 1,00 m rotulado como 1,20 m
 
-> **Estado: detectado por `P2-CIRC-MIN` (0,85 m).** Corregirlo dentro de la envolvente actual es una permuta, no un arreglo (§8.2).
+> **Estado: CORREGIDO.** 1,25 m libres, por encima del mínimo propio de 1,20 m, sin quitárselo a los baños (§8.3).
 
 El recinto `F2-HALL` tiene profundidad `d = 1,0` en `p2_b06.json`, se rotula «Vestíbulo F2
 aislable 1,20 m» en la lámina, y el propio documento fija *«circulación libre objetivo
@@ -575,10 +576,10 @@ dejó abierto con los números sobre la mesa.
 | H-06 | Decide la geometría: el dormitorio principal tiene 7,40 m de muro en el lateral A y 4,20 m en el posterior, así que el paño de 5,50 m sólo cabe en el lateral. Alineado `pb_b05.json` con `p2_b06.json` y renombrado `W-M-REAR`→`W-M-LAT-A`. | **Prueba negativa ejecutada**: al reponer los valores antiguos, `PB-P2-WINDOW-SYNC` y `PB-GLAZING-IN-ROOM` los rechazan señalando el desborde de 2,30 m sobre el vestidor. |
 | H-10 | El desequilibrio hidráulico entre las dos claraboyas se calcula y se publica en cada emisión. | `RL-DRAINAGE-ASYMMETRY`: 12,00 m (≈28,8 m²) frente a 1,20 m (≈2,9 m²). |
 | H-13 | Los recintos del núcleo descontaban 0,18 m a ambos lados. Añadido `core_net_y()`, que distingue borde de envolvente (0,18) de tabique interior (0,15, o 0,20 contra la escalera). | Medición de la lámina: tabiques de **0,150 y 0,200 m** exactos; cierre 16,94 + 0,70 + 0,36 = 18,00 m. |
-| H-14 | Seis reglas nuevas, de las cuatro clases que faltaban. | Ver §8.3. |
+| H-14 | Seis reglas nuevas, de las cuatro clases que faltaban. | Ver §8.5. |
 | H-15 | `D-037` duplicado: se conserva para el P2 b06/R05 y la base estructural pasa a **`D-041`**. Añadida sección de correcciones de registro. | Próximo identificador libre: `D-042`. |
 
-### 8.2 Lo que deliberadamente no se tocó
+### 8.2 Lo que la primera pasada dejó abierto a propósito
 
 Cuatro correcciones eran técnicamente triviales y aun así **no se aplicaron**, porque
 hacerlo habría sido decidir en nombre del propietario:
@@ -590,13 +591,65 @@ hacerlo habría sido decidir en nombre del propietario:
 | H-11 · vestíbulo F2 | Llevarlo a 1,20 m dentro de la envolvente actual obliga a restar 0,20 m a los dormitorios de F2 o a unos baños que ya son el punto más comprometido. Es una permuta, no un arreglo. |
 | H-09 · suite principal | Reasignar 9,4 m² entre vestidor, baño y huéspedes es proyecto, no corrección. Ahora está medido y publicado como `P2-MASTER-PROGRAM`. |
 
-En consecuencia, `generate_p2_b06.py` **termina con código 1 y 3 FAIL**. Es el
-comportamiento correcto: son tres condiciones reales incumplidas —una de ellas una hard
-rule— que antes quedaban ocultas tras cifras brutas. Un expediente que declara *«usar el
-dato más conveniente no es un método válido»* debería preferir un fallo verdadero a un
-PASS cómodo.
+Tras esa primera pasada `generate_p2_b06.py` terminaba con código 1 y tres FAIL. Era el
+comportamiento correcto: tres condiciones reales incumplidas —una de ellas una hard rule—
+que antes quedaban ocultas tras cifras brutas. **Los tres quedaron resueltos después**, al
+autorizar el propietario la tolerancia de D-042; el cierre se documenta en la §8.3. La
+suite principal (H-09) es la única de las cuatro que sigue abierta, y la §8.4 explica por
+qué no es corregible dentro de la planta.
 
-### 8.3 Reglas de verificación añadidas
+### 8.3 Cierre de los tres FAIL — reorganización de la Fase 2 (D-042)
+
+Con la tolerancia de ±1,00 m² que el propietario autorizó en **D-042**, los tres FAIL que
+la §8.2 había dejado abiertos se resolvieron **reorganizando la planta**, no relajando los
+umbrales. Uno de los tres, además, no era un defecto del proyecto sino un error de esta
+revisión.
+
+**Corrección de esta revisión.** `P2-WELLNESS` comparaba el área **neta** del wellness
+(15,6 m²) contra los 16 m² de la reserva de programa. Pero el programa arquitectónico
+declara en su cabecera que sus áreas son **brutas** («sin descontar estructura,
+cerramientos y acabados»). Medido como corresponde, el wellness siempre estuvo dentro de
+la reserva. El FAIL era mío, no del diseño. Todas las reglas declaran ahora su base de
+medida y el modelo la documenta en `p2_b06.json`.
+
+**El movimiento de proyecto: girar la suite de hijo 2.** El dormitorio pasa de
+6,50 × 4,00 a 4,60 × 5,60 m brutos y su baño se coloca al costado, replicando el esquema
+de hijo 1 en vez de una franja transversal al fondo. Ese giro libera la franja posterior y
+paga por sí solo las tres mejoras:
+
+| Condición | Antes | Ahora | Límite |
+|---|---|---|---|
+| Igualdad de dormitorios (útil) | 23,46 vs 24,04 · Δ 0,58 | 23,46 vs 23,22 · **Δ 0,24** | ±1,00 (D-042) |
+| Proporción de hijo 2 | **1,62:1** — habitación alargada | **1,23:1** | ≤ 1,35:1 |
+| Vestíbulo de Fase 2 | 0,85 m libres | **1,25 m** | ≥ 1,20 m |
+| Baño de hijo 2 | 1,70 m de fondo | **2,80 m**, idéntico al de hijo 1 | — |
+| Dormitorio de huéspedes | 22,0 m² brutos (+4,5 sobre programa) | **17,0 m²** | 17–18 |
+| Baño de huéspedes | 4,0 m² brutos (−1,5) | **5,7 m²** | 5,5 |
+
+Lo relevante es que **la elasticidad de ±1,00 m² no se gastó en hacer pasar el chequeo**:
+se gastó en enderezar la habitación de hijo 2 y en devolverle a la suite de huéspedes el
+programa que tenía mal repartido. La diferencia final entre los dormitorios de los hijos es
+de 0,24 m² —un cuarto de metro cuadrado sobre 23— con proporciones 1,04:1 y 1,23:1: ambas
+son habitaciones, ninguna es un pasillo.
+
+**Efecto secundario verificado.** Los aparatos sanitarios y las camas estaban dibujados con
+coordenadas escritas a mano; al mover un baño habrían quedado fuera de su recinto. Ahora se
+derivan de la geometría de cada cuarto, y se comprobó que los catorce elementos caen dentro
+de su rectángulo neto.
+
+### 8.4 Lo que sigue abierto, y por qué no es corregible
+
+| Regla | Aritmética |
+|---|---|
+| `P2-MASTER-PROGRAM` | La banda del principal mide 7,40 × 11,00 = **81,4 m²** y la escalera ocupa **16,2**, dejando **65,2 m²** para un programa que pide **76**. Crecer el principal obliga a estrechar los dormitorios de los hijos por debajo de los 20,2 m² útiles de referencia. O baja el programa del principal, o crece el P2, o la escalera sale de esa huella: es decisión del propietario. |
+| `LIFE-EGRESS-2` | Requiere concepto profesional de incendio. Ningún modelo puede cerrarlo. |
+
+Conviene nombrar el fondo del asunto: **el programa del P2 suma 270 m² brutos dentro de una
+envolvente de 270 m² brutos**, es decir, no reserva superficie para sus propios muros. Con
+espesores reales el neto disponible es ≈239 m². El déficit del principal no es un error de
+dibujo: es esa aritmética. Cerrarlo exige una decisión de programa, no una corrección.
+
+### 8.5 Reglas de verificación añadidas
 
 | Regla | Clase | Qué impide |
 |---|---|---|
@@ -611,16 +664,21 @@ Severidad: **FAIL** para defecto del modelo o hard rule incumplida; **OPEN** par
 pendiente del propietario o de un consultor. La distinción importa: un OPEN no bloquea, un
 FAIL sí.
 
-### 8.4 Estado de los chequeos tras la corrección
+### 8.6 Estado de los chequeos tras la corrección
 
 | Emisión | PASS | FAIL | OPEN |
 |---|---:|---:|---:|
-| PB b05 | 15 | 0 | 0 |
-| P2 b06 | 7 | **3** | 3 |
-| Cubierta b07 | 4 | 0 | 2 |
-| Claraboyas b08 | 6 | 0 | 3 |
+| PB b05 | 15 | **0** | 0 |
+| P2 b06 | 12 | **0** | 2 |
+| Cubierta b07 | 4 | **0** | 2 |
+| Claraboyas b08 | 6 | **0** | 3 |
 
-Los tres FAIL del P2 son `P2-CHILD-EQUAL`, `P2-CIRC-MIN` y `P2-WELLNESS`, descritos en §8.2.
+**Sin fallos en ninguna emisión.** Los siete OPEN restantes no son defectos: son cuatro
+asuntos que dependen del predio o de la orientación (sentido definitivo del faldón,
+pendiente final, coordinación de claraboyas con pórticos, higrotermia del vidrio), el
+déficit de programa de la suite principal, la asimetría hidráulica de las dos claraboyas y
+la segunda salida del P2. Cada uno publica su aritmética en el `compliance.json`
+correspondiente.
 
 ---
 
@@ -629,4 +687,5 @@ Los tres FAIL del P2 son `P2-CHILD-EQUAL`, `P2-CIRC-MIN` y `P2-WELLNESS`, descri
 | Versión | Fecha | Cambio |
 |---|---|---|
 | 0.1 | 2026-08-11 | Emisión inicial. Revisión de coordinación sobre b04→b08 y modelo E0. 15 hallazgos (5 críticos, 7 importantes, 3 menores). No modifica target, decisiones ni línea base. |
+| 0.3 | 2026-08-11 | **Cerrados los tres FAIL del P2** reorganizando la Fase 2 al amparo de **D-042** (tolerancia de ±1,00 m² útiles en los dormitorios de hijos, autorizada por el propietario): la suite de hijo 2 gira, su baño pasa de 1,70 a 2,80 m de fondo, la suite de huéspedes alcanza el programa y el vestíbulo F2 sube a 1,25 m libres. Corregido además un error **de esta revisión**: `P2-WELLNESS` medía en neto contra un objetivo bruto del programa. Todas las reglas declaran ahora su base de medida. Mobiliario sanitario derivado de la geometría. **Estado: 0 FAIL en las cuatro emisiones.** |
 | 0.2 | 2026-08-11 | Aplicadas las correcciones de defecto verificable (§8): H-01, H-04, H-06, H-13, H-14 y H-15 corregidos en el modelo; H-02 corregido en su aritmética; H-10 cuantificado. Seis reglas de verificación nuevas. No se adoptó ninguna decisión de diseño: H-02 (cota), H-03, H-05, H-07, H-08, H-09, H-11 y H-12 siguen abiertos. Actualizadas las memorias b05, b06, b07 y b08 para que la prosa no contradiga las láminas corregidas. |

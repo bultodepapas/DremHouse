@@ -110,14 +110,18 @@ la nave queda 100 % libre.**
 
 **Entrepiso P2 (18 × 15 m) sin columnas en la zona doméstica:**
 
-1. **Staggered truss (cerchas escalonadas)** — desarrollado por MIT / US Steel para
-   hoteles y apartamentos. Cerchas de piso completo que cruzan el ancho (18 m) apoyadas
-   **solo en las columnas de los dos muros largos**, escalonadas en planta (media crujía);
-   la losa apoya entre el cordón superior de una cercha y el inferior de la adyacente.
+1. **Staggered truss (cerchas escalonadas de canto completo)** — desarrollado por MIT /
+   US Steel para hoteles y apartamentos. Cerchas de piso que cruzan el ancho (18 m)
+   apoyadas **solo en las columnas de los dos muros largos**, escalonadas en planta (media
+   crujía), con **canto igual a la altura del muro** (d/L ≈ 0,13–0,19; aquí ≈ 3,0 m); la
+   losa apoya entre el cordón inferior de una cercha y el superior de la adyacente, con
+   paneles de deck profundo (sin viguetas) de hasta ≈ 6 m sin apuntalar.
    Ventajas: áreas libres de hasta ≈ 18 m sin columnas interiores, altura de piso compacta,
    deriva pequeña, gran resistencia al viento y fundaciones concentradas. En el P2 las
    cerchas se esconden dentro de las particiones de las suites (closets, baños, hall), de
-   modo que cocina y comedor en PB quedan 100 % libres.
+   modo que cocina y comedor en PB quedan 100 % libres. Criterio de vibración residencial
+   DG11: frecuencia del panel ≥ 5 Hz (modelo: ≈ 15 Hz). La losa de deck profundo es más
+   pesada que el metaldeck convencional — verificar carga muerta en E1.
 2. **Cercha compuesta de piso (*composite truss*).** Luces > 18 m con la losa como cordón
    superior; más ligera que viga llena, pero exige apuntalamiento temporal y más superficie
    de protección contra incendio.
@@ -234,18 +238,22 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - El frente abierto en X = 21,00 m (borde del P2 hacia la doble altura) requiere una **viga
   de borde** de luz ≈ 18 m con apoyos puntuales integrados al núcleo/cocina; esta línea es
   un punto crítico de coordinación con la PB abierta (sin columnas arbitrarias en la nave).
-- Criterio de peso del modelo E0: **9–11 t de acero para el entrepiso P2** (la auditoría
-  A-04 lo estima; el desglose original con 3 t queda superado como hipótesis).
-- Vibración: luz ≈ 6 m, frecuencia objetivo ≥ 8 Hz para uso residencial; verificarla en E1.
+- Criterio de peso del modelo E0: **≈ 3,8 t de acero para el entrepiso P2 en staggered**
+  (cerchas de canto completo + paneles de deck profundo); el metaldeck con apoyos
+  intermedios pesa ≈ 12 t (M60) pero introduce columnas en cocina/núcleo.
+- Vibración: panel entre cerchas de ≈ 5,0 m, frecuencia objetivo ≥ 5 Hz (DG11 residencial);
+  el modelo E0 arroja ≈ 15 Hz — verificarla en E1.
 - El lift queda en doble altura (X ≈ 5,5–6,0 m), fuera de la proyección del P2: no carga
   sobre el entrepiso, solo sobre losa PB local (regla vigente).
-- **Sistema preferido a estudiar en E1 — staggered truss:** cerchas de piso completo que
-  cruzan los 18 m entre los muros largos, escalonadas en el espesor del P2 y ocultas en
-  las particiones de las suites (closets, baños, hall). La losa (metaldeck composite) apoya
-  entre cordones de cerchas adyacentes. Resultado: **cero columnas en cocina/comedor de PB**
-  y canto de piso compacto; la deriva y la vibración mejoran porque el P2 se comporta como
-  una celosía rígida. Verificar frecuencia ≥ 8 Hz de los paños de losa y el canto de cercha
-  dentro del plenum de la banda doméstica.
+- **Sistema preferido a estudiar en E1 — staggered truss de canto completo:** cerchas de
+  piso con canto igual a la altura del muro del P2 (≈ 3,0 m, d/L ≈ 0,17) que cruzan los
+  18 m entre los muros largos, escalonadas en el espesor del P2 y ocultas en las
+  particiones de las suites (closets, baños, hall). La losa (deck profundo sin viguetas)
+  apoya entre cordones de cerchas adyacentes con paneles de hasta ≈ 6 m sin apuntalar.
+  Resultado: **cero columnas en cocina/comedor de PB**, canto de piso compacto y mejor
+  vibración; el P2 se comporta como una celosía rígida. En E1 verificar el peso de la losa
+  de deck profundo (más pesada que el metaldeck) y la re-articulación de particiones para
+  ocultar las cerchas.
 - **Frontera en X = 21,00 m (viga de borde de ≈ 18 m):** se resuelve como **cercha de
   borde** o como la primera línea del staggered truss, apoyada en las columnas de los muros
   largos; su canto se absorbe en el encuentro con el cielo de la banda doméstica o se
@@ -317,21 +325,21 @@ el entrepiso STAGGERED no cambia el marco principal.
 
 | Sistema × Modulación | Columnas | Viga / cercha | Tirante | Marcos | Entrepiso P2 (metaldeck / staggered) | Acero total | kg/m² | Lectura |
 |---|---|---|---|---|---:|---:|---:|---|---|
-| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 11,5 / 10,7 t | **58,5 t** | 63,7 | deriva de viento gobierna |
-| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,0 / 13,1 t | **52,1 t** | 56,8 | referencia de la auditoría |
-| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 16,7 / 15,8 t | **49,1 t** | 53,4 | menos pórticos, vigas mayores |
-| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 11,5 / 10,7 t | **59,9 t** | 65,3 | tirante casi inactivo: no competitivo |
-| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,0 / 13,1 t | **53,3 t** | 58,0 | tirante ≈ 2 kN; no controla deriva |
-| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 16,7 / 15,8 t | **49,9 t** | 54,3 | — |
-| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 11,5 / 10,7 t | **47,7 t** | 52,0 | bases fijas: deriva 0,016 m |
-| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,0 / 13,1 t | **41,8 t** | 45,6 | marco ≈ 27 % más liviano que articulado |
-| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,9 t | 16,7 / 15,8 t | **43,1 t** | 46,9 | — |
-| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 11,5 / 10,7 t | **40,4 t** | 44,1 | más liviana del grupo |
-| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,0 / 13,1 t | **36,2 t** | 39,4 | — |
-| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 16,7 / 15,8 t | **36,2 t** | 39,4 | — |
+| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 11,5 / 3,8 t | **58,5 t** | 63,7 | deriva de viento gobierna |
+| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,0 / 3,8 t | **52,1 t** | 56,8 | referencia de la auditoría |
+| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 16,7 / 3,8 t | **49,1 t** | 53,4 | menos pórticos, vigas mayores |
+| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 11,5 / 3,8 t | **59,9 t** | 65,3 | tirante casi inactivo: no competitivo |
+| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,0 / 3,8 t | **53,3 t** | 58,0 | tirante ≈ 2 kN; no controla deriva |
+| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 16,7 / 3,8 t | **49,9 t** | 54,3 | — |
+| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 11,5 / 3,8 t | **47,7 t** | 52,0 | bases fijas: deriva 0,016 m |
+| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,0 / 3,8 t | **41,8 t** | 45,6 | marco ≈ 27 % más liviano que articulado |
+| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,9 t | 16,7 / 3,8 t | **43,1 t** | 46,9 | — |
+| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 11,5 / 3,8 t | **40,4 t** | 44,1 | más liviana del grupo |
+| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,0 / 3,8 t | **36,2 t** | 39,4 | — |
+| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 16,7 / 3,8 t | **36,2 t** | 39,4 | — |
 
 Desglose por componente (M60): marcos 32,6 t (cerchas 16,7 t) + entrepiso
-P2 metaldeck ≈ 12,0 t / staggered ≈ 13,1 t + secundaria ≈ 7,5 t.
+P2 metaldeck ≈ 12,0 t / staggered ≈ 3,8 t + secundaria ≈ 7,5 t.
 
 ### Hallazgos
 
@@ -357,11 +365,15 @@ P2 metaldeck ≈ 12,0 t / staggered ≈ 13,1 t + secundaria ≈ 7,5 t.
    costo pasa a la cimentación (momento en la base).
 5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por
    pórtico (zona cocina/núcleo) da ≈ 12,0 t (M60) e introduce **columnas en la
-   zona doméstica**. La opción **STAGGERED** (cerchas escalonadas de 18 m
-   entre los muros largos, ocultas en las particiones de las suites) elimina
-   esas columnas con tonelaje comparable (≈ 10,7–15,8 t según modulación):
-   **cero columnas interiores**, piso compacto y mejor rigidez global del P2.
-   La planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.
+   zona doméstica**. La opción **STAGGERED** — cerchas de piso de **canto
+   completo** (altura del muro P2 ≈ 3,0 m, d/L ≈ 0,17), ocultas en las
+   particiones de las suites, con paneles de deck profundo sin viguetas de
+   ≈ 5,0 m entre cerchas — elimina esas columnas con ≈ **3,8 t** de acero de
+   piso y frecuencia del panel ≈ 15 Hz (criterio DG11 ≥ 5 Hz): **cero columnas
+   interiores**, piso compacto y mejor rigidez global del P2. La planta v0.4
+   debe re-articular particiones para ocultar las cerchas y el modelo E1 debe
+   verificar el peso de la losa (deck profundo + concreto más pesado que el
+   metaldeck convencional).
 6. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
    por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
    modulación.

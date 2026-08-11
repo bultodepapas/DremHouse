@@ -42,8 +42,8 @@
   ],
   "bedroom_glazing": [
     {"id":"GLZ-H1","facade":"A","name":"Dormitorio hijo 1","from":22.0,"to":25.8,"sill":0.10,"height":2.70},
-    {"id":"GLZ-H2","facade":"B","name":"Dormitorio hijo 2","from":21.8,"to":26.5,"sill":0.10,"height":2.70},
-    {"id":"GLZ-G","facade":"B","name":"Dormitorio huéspedes","from":27.8,"to":32.3,"sill":0.10,"height":2.70},
+    {"id":"GLZ-H2","facade":"B","name":"Dormitorio hijo 2","from":21.8,"to":25.2,"sill":0.10,"height":2.70},
+    {"id":"GLZ-G","facade":"B","name":"Dormitorio huéspedes","from":28.8,"to":32.2,"sill":0.10,"height":2.70},
     {"id":"GLZ-M-A","facade":"A","name":"Suite principal","from":30.0,"to":35.5,"sill":0.10,"height":2.70},
     {"id":"GLZ-M-R","facade":"REAR","name":"Suite principal posterior","from":0.8,"to":3.3,"sill":0.10,"height":2.70}
   ],

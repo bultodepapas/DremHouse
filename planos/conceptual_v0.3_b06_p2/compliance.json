@@ -1,8 +1,8 @@
 {
   "revision": "0.3-borrador-06-P2",
-  "passed": 7,
-  "open": 3,
-  "failed": 3,
+  "passed": 12,
+  "open": 2,
+  "failed": 0,
   "checks": [
     {
       "rule_id": "P2-ENV",
@@ -17,7 +17,7 @@
     {
       "rule_id": "P2-AREA-CLOSURE",
       "status": "PASS",
-      "message": "Σ neta 239.2 m² ≤ interior útil 258.2 m² (bruto teselado 270.0)"
+      "message": "[neto] Σ 239.3 m² ≤ interior útil 258.2 m² · bruto teselado 270.0 m²"
     },
     {
       "rule_id": "P2-4-SUITES",
@@ -26,23 +26,28 @@
     },
     {
       "rule_id": "P2-CHILD-EQUAL",
-      "status": "FAIL",
-      "message": "Hard rule 9 · dormitorios hijos NETOS: H1 23.46 m² vs H2 24.04 m² (Δ 0.58 m²)"
+      "status": "PASS",
+      "message": "[neto · hard rule 9 + D-042] H1 23.46 m² vs H2 23.22 m² · Δ 0.24 ≤ 1.00 m²"
+    },
+    {
+      "rule_id": "P2-CHILD-PROPORTION",
+      "status": "PASS",
+      "message": "[neto · equivalencia cualitativa] H1 1.04:1 y H2 1.23:1, ambos ≤ 1.35 y Δ 0.19 ≤ 0.30"
     },
     {
       "rule_id": "P2-CIRC-MIN",
-      "status": "FAIL",
-      "message": "Circulación mínima declarada 1,20 m · más estrecha: F2-HALL = 0.85 m netos"
+      "status": "PASS",
+      "message": "[neto] Circulación más estrecha F2-HALL = 1.25 m ≥ 1.20 m"
     },
     {
       "rule_id": "P2-F2",
       "status": "PASS",
-      "message": "F2 tras frontera única"
+      "message": "F2 tras frontera única en Y=11,00 m"
     },
     {
       "rule_id": "P2-BED-WINDOWS",
       "status": "PASS",
-      "message": "Dormitorios secundarios con vidrio alto"
+      "message": "Los cuatro dormitorios tienen vano sobre fachada exterior"
     },
     {
       "rule_id": "P2-MASTER-WIDTH",
@@ -51,23 +56,23 @@
     },
     {
       "rule_id": "P2-WELLNESS",
-      "status": "FAIL",
-      "message": "Wellness 15.6 m² netos ≥ 16 m²"
+      "status": "PASS",
+      "message": "[bruto · programa 16–22] Wellness 16.8 m² · neto 14.5 m²"
     },
     {
-      "rule_id": "P2-CHILD-PROPORTION",
-      "status": "OPEN",
-      "message": "Equivalencia cualitativa (hard rule 9, 2.ª cláusula): H1 1.04:1 vs H2 1.62:1 — igualar área no iguala la habitación"
+      "rule_id": "P2-SAUNA-FIT",
+      "status": "PASS",
+      "message": "[neto] Ancho libre de wellness 2.72 m ≥ 2,40 m de cabina"
     },
     {
       "rule_id": "P2-MASTER-PROGRAM",
       "status": "OPEN",
-      "message": "Programa vs. dibujo (decisión del propietario): vestidor 9.0 m² netos frente a 15–16 · baño principal 12.0 m² frente a 17–18"
+      "message": "[bruto] Vestidor principal 10.2 m² frente a 15–16 · baño 13.4 m² frente a 17–18. La banda del principal (7,40 × 11,00 = 81,4 m² menos 16,2 de escalera = 65,2) no puede contener los 76 m² del programa: o baja el programa, o crece el P2, o sale la escalera de su huella. Decisión del propietario."
     },
     {
       "rule_id": "LIFE-EGRESS-2",
       "status": "OPEN",
-      "message": "Segunda salida independiente sujeta a concepto profesional de incendio"
+      "message": "Segunda salida independiente sujeta a concepto profesional de incendio (D-021/D-028). Puede mover la escalera y con ella el núcleo y el gran muro."
     }
   ]
 }

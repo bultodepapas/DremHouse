@@ -1,6 +1,6 @@
 {
   "input": "dreamhouse\\structure\\structure_system.json",
-  "input_sha256": "281fc1f18437fbc7ad9a58e060630977a09b11b503e5be9615bc6fc72667c7f7",
+  "input_sha256": "46f28cab81d03e266dfc428af7371e1115fd99c638ec74d60b15705c81f1c35e",
   "generator": "dreamhouse/structure/e0.py",
   "revision": "0.1",
   "outputs": [

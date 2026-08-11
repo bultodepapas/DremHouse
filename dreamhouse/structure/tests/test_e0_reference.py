@@ -152,13 +152,22 @@ class TestStaggeredFloor(unittest.TestCase):
     def test_plausible_mass(self):
         for bay, n in ((4.5, 8), (6.0, 6), (9.0, 4)):
             res = size_staggered_floor(self.cfg, self.steel, bay, 0.9, 0.9)
-            self.assertGreater(res["total_kg"], 3000.0)
-            self.assertLess(res["total_kg"], 25000.0)
+            self.assertGreater(res["total_kg"], 1500.0)
+            self.assertLess(res["total_kg"], 15000.0)
             self.assertGreater(res["n_trusses"], 1)
 
-    def test_trusses_span_full_width(self):
+    def test_full_story_truss_depth(self):
         res = size_staggered_floor(self.cfg, self.steel, 6.0, 0.9, 0.9)
-        self.assertLessEqual(res["truss_depth_m"], 18.0 / 12.0)
+        self.assertEqual(res["truss_depth_m"], self.cfg["geometry"]["p2_headroom_m"])
+        self.assertGreaterEqual(res["truss_d_over_l"], 0.10)
+        self.assertLessEqual(res["truss_d_over_l"], 0.25)
+
+    def test_panel_frequency_above_5hz(self):
+        for bay, n in ((4.5, 8), (6.0, 6), (9.0, 4)):
+            res = size_staggered_floor(self.cfg, self.steel, bay, 0.9, 0.9)
+            self.assertGreaterEqual(res["panel_frequency_hz"], 5.0)
+            self.assertIsNone(res["joist"])
+            self.assertEqual(res["joists_kg"], 0.0)
 
 
 class TestTiedAndFixedPortal(unittest.TestCase):

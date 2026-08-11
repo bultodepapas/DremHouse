@@ -36,9 +36,11 @@
       },
       {
         "id": "STAGGERED",
-        "description": "Cerchas escalonadas de piso completo de 18 m entre los muros largos, ocultas en particiones de las suites; la losa apoya entre cerchas. CERO columnas interiores.",
-        "trusses_ratio_to_bay": 1,
-        "truss_depth_span_ratio": 16.0,
+        "description": "Cerchas escalonadas de piso de CANTO COMPLETO (altura del muro P2, d/L ≈ 0.13-0.19) de 18 m entre los muros largos, ocultas en particiones de las suites; paneles de deck profundo sin viguetas entre cerchas. CERO columnas interiores.",
+        "truss_depth_m": 0,
+        "truss_depth_span_ratio": 0,
+        "max_unpropped_panel_span_m": 6.0,
+        "slab_total_m": 0.22,
         "web_ratio": 0.4
       }
     ],

@@ -29,8 +29,11 @@ La vida técnica del propietario es arquitectura, no un uso que deba ocultarse.
 7. Existirán exactamente cuatro dormitorios permanentes, todos en P2: suite principal,
    dos suites de hijos y suite de huéspedes.
 8. Las cuatro habitaciones tendrán baño completo, privado e independiente con ducha.
-9. Los dormitorios útiles de los dos hijos tendrán exactamente la misma área y se buscará
-   equivalencia cualitativa.
+9. Los dormitorios útiles de los dos hijos tendrán la misma área **dentro de ±1,00 m²** y
+   equivalencia cualitativa medible. *(Texto original: «exactamente la misma área».
+   Elastizado por **D-042**, 2026-08-11, a petición del propietario, para permitir mejorar
+   el resto del P2. La equivalencia cualitativa se verifica como proporción ≤ 1,35:1 en
+   ambos dormitorios y diferencia entre ambos ≤ 0,30.)*
 10. La suite principal será claramente dominante, con gran vestidor y el baño de mayor
     jerarquía.
 11. El P2 será privado y acústicamente cerrado; no será un mezzanine ni una galería de

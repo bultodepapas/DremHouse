@@ -24,23 +24,23 @@
 
 | Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Secundaria | Total |
 |---|---|---:|---:|---:|---:|
-| M45 · PORTICO | 39.5 | 11.4 | 10.7 | 7.5 | 58.5 |
-| M45 · PORTICO-T | 41.0 | 11.4 | 10.7 | 7.5 | 59.9 |
-| M45 · PORTICO-F | 28.7 | 11.4 | 10.7 | 7.5 | 47.7 |
-| M45 · CERCHA | 21.5 | 11.4 | 10.7 | 7.5 | 40.4 |
-| M60 · PORTICO | 32.6 | 12.0 | 13.1 | 7.5 | 52.1 |
-| M60 · PORTICO-T | 33.8 | 12.0 | 13.1 | 7.5 | 53.3 |
-| M60 · PORTICO-F | 22.3 | 12.0 | 13.1 | 7.5 | 41.8 |
-| M60 · CERCHA | 16.7 | 12.0 | 13.1 | 7.5 | 36.2 |
-| M90 · PORTICO | 24.8 | 16.7 | 15.8 | 7.5 | 49.1 |
-| M90 · PORTICO-T | 25.6 | 16.7 | 15.8 | 7.5 | 49.9 |
-| M90 · PORTICO-F | 18.8 | 16.7 | 15.8 | 7.5 | 43.1 |
-| M90 · CERCHA | 11.9 | 16.7 | 15.8 | 7.5 | 36.2 |
+| M45 · PORTICO | 39.5 | 11.4 | 3.8 | 7.5 | 58.5 |
+| M45 · PORTICO-T | 41.0 | 11.4 | 3.8 | 7.5 | 59.9 |
+| M45 · PORTICO-F | 28.7 | 11.4 | 3.8 | 7.5 | 47.7 |
+| M45 · CERCHA | 21.5 | 11.4 | 3.8 | 7.5 | 40.4 |
+| M60 · PORTICO | 32.6 | 12.0 | 3.8 | 7.5 | 52.1 |
+| M60 · PORTICO-T | 33.8 | 12.0 | 3.8 | 7.5 | 53.3 |
+| M60 · PORTICO-F | 22.3 | 12.0 | 3.8 | 7.5 | 41.8 |
+| M60 · CERCHA | 16.7 | 12.0 | 3.8 | 7.5 | 36.2 |
+| M90 · PORTICO | 24.8 | 16.7 | 3.8 | 7.5 | 49.1 |
+| M90 · PORTICO-T | 25.6 | 16.7 | 3.8 | 7.5 | 49.9 |
+| M90 · PORTICO-F | 18.8 | 16.7 | 3.8 | 7.5 | 43.1 |
+| M90 · CERCHA | 11.9 | 16.7 | 3.8 | 7.5 | 36.2 |
 
 ## Entrepiso P2 — opciones comparadas
 
-La opción **STAGGERED** (cerchas escalonadas de 18 m entre los muros largos, ocultas en las particiones de las suites) elimina por completo las columnas interiores de la zona doméstica de PB (cocina/comedor). La opción METALDECK de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.
-- Cercha staggered (M45): 4 cerchas de 18 m, canto ≈ 1.12 m, cordones HSS120x120x6, flecha ≈ 0.084 m.
+La opción **STAGGERED** (cerchas de piso de **canto completo** — altura del muro P2, d/L ≈ 0,13–0,19 — ocultas en las particiones de las suites, con paneles de deck profundo sin viguetas entre cerchas) elimina por completo las columnas interiores de la zona doméstica de PB (cocina/comedor) y cumple la vibración residencial. La opción METALDECK de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.
+- Staggered truss: 3 cerchas de 18 m de canto completo (≈ 3.0 m, d/L ≈ 0.167), paneles de losa de 5.0 m entre cerchas, cordones HSS100x100x6, flecha de cercha ≈ 0.02 m, frecuencia del panel ≈ 14.9 Hz (criterio DG11 ≥ 5 Hz).
 
 ## Objetivos de control (auditoría)
 
@@ -53,7 +53,7 @@ La opción **STAGGERED** (cerchas escalonadas de 18 m entre los muros largos, oc
 2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** (ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).
 3. **Pórtico atado (PORTICO-T):** el tirante entre los apoyos de la cercha queda casi inactivo (≈ 2 kN) porque la deriva de viento es un sway en la misma dirección de ambos muros; el tirante solo resiste la apertura de aleros por empuje gravitatorio, que aquí no gobierna. Añade peso (≈ 1,4 t/pórtico) sin beneficio de deriva: **no es competitivo en este caso de carga.** Su papel clásico (empuje de cubierta en edificios con grúa) no aplica.
 4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva para el sistema de pórticos. Permite columna HEA300 con deriva ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el costo pasa a la cimentación (momento en la base).
-5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa ≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** elimina esas columnas (cero apoyos interiores) con tonelaje comparable (≈ 10,7–15,8 t según modulación); la planta v0.4 y el modelo E1 deben verificar peso, canto y vibración.
+5. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa ≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** (cerchas de canto completo de 18 m entre los muros largos, paneles de deck profundo sin viguetas) elimina esas columnas con ≈ 3,3–3,8 t de acero de piso y frecuencia del panel ≈ 15 Hz (criterio DG11 ≥ 5 Hz); la planta v0.4 y el modelo E1 deben verificar canto, re-articulación de particiones y peso de losa (deck profundo + concreto más pesado).
 6. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.
 
 ## Supuestos críticos de este modelo

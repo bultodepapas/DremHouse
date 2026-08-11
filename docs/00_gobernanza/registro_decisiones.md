@@ -37,6 +37,7 @@
 | D-038 | Mantener la frontera única F1/F2 en Y=11,00 m, exigiendo cierre temporal estanco y dejando abierta la necesidad de segunda salida de P2 | Activa con reserva crítica | Revisión P2 b06, 2026-08-11 |
 | D-039 | Restituir la cubierta canónica de un solo faldón transversal: ≈7,20 m lado bajo, ≈7,80 m lado alto y desnivel preliminar 0,60/18,00 ≈3,33 %; A bajo/B alto es reversible hasta predio y drenaje | Activa como DCV provisional | Fuente conceptual §§27–29 / revisión cubierta b07, 2026-08-11 |
 | D-040 | Incorporar dos claraboyas de vidrio de 2,40 × 4,80 m sobre los talleres de carro y RC, dentro de la doble altura; excepción expresa al criterio de no usar tragaluces por defecto | Activa como hipótesis solicitada | Propietario / revisión claraboyas b08, 2026-08-11 |
+| D-042 | **Elastizar la hard rule 9:** los dormitorios de los dos hijos deben quedar iguales **dentro de ±1,00 m² de área útil**, en vez de exactamente iguales, para poder mejorar el resto de la planta del P2. La equivalencia cualitativa se traduce a un criterio medible: ninguna de las dos habitaciones supera **1,35:1** de proporción y la diferencia entre ambas no supera **0,30**. | Activa; modifica la hard rule 9 y D-006 | Instrucción expresa del propietario, 2026-08-11 |
 | D-041 | Adoptar `bases_estructura_metalica.md` como base para abrir D-019: comparar 2 sistemas (pórticos portal 18 m vs. cerchas) × 3 modulaciones (4,5/6,0/9,0 m) con modelo E0, y **eliminar la carga de nieve de las hipótesis** (altiplano de Boyacá sin nieve de diseño; gobiernan viento B.6, sismo Título A y lluvia/drenaje) | Propuesta | Bases de estructura metálica, 2026-08-11 |
 
 ## Decisiones que deben abrirse a continuación
@@ -60,5 +61,17 @@ Usar la [plantilla de decisión](../07_plantillas/decision.md) para toda nueva e
 |---|---|---|
 | 2026-08-11 | El identificador `D-037` estaba asignado a dos decisiones distintas. Se conserva `D-037` para la adopción del P2 b06/R05 (que va en secuencia con D-036 y D-038) y la base de estructura metálica pasa a **`D-041`**. | Hallazgo H-15 de la [revisión de coordinación](../02_arquitectura/revision_coordinacion_v0.3_2026_08.md). La precedencia del expediente se apoya en decisiones identificadas de forma única. |
 
-**Próximo identificador libre: `D-042`.** Los rangos `D-017` a `D-025` permanecen reservados
+**Próximo identificador libre: `D-043`.** Los rangos `D-017` a `D-025` permanecen reservados
 para las decisiones pendientes listadas arriba.
+
+## Hard rules modificadas por decisión posterior
+
+| Hard rule | Texto original | Modificación vigente | Decisión |
+|---|---|---|---|
+| 9 | «Los dormitorios útiles de los dos hijos tendrán **exactamente la misma área** y se buscará equivalencia cualitativa.» | Iguales dentro de **±1,00 m² de área útil**. La equivalencia cualitativa se mide: proporción ≤ 1,35:1 en ambos y diferencia entre ambos ≤ 0,30. | **D-042**, 2026-08-11 |
+
+La constitución exige que toda modificación de una hard rule quede registrada con su
+efecto. El efecto de D-042 es que la Fase 2 del P2 pudo reorganizarse para que el
+dormitorio de huéspedes alcance el programa (17,0 m² brutos frente a 17–18 exigidos), su
+baño pase de 1,70 m a 2,00 m de fondo libre y el vestíbulo de obra supere el mínimo de
+circulación. Sin la tolerancia, esas tres mejoras eran incompatibles entre sí.

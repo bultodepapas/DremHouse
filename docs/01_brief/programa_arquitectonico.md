@@ -117,8 +117,9 @@ fachadas y ventanas de todo P2 se ejecutan en Fase 1.
 
 ### Reglas de P2
 
-- Los dos dormitorios de hijos: ≈20,2 m² útiles de referencia y **exactamente iguales**
-  al congelar la planta.
+- Los dos dormitorios de hijos: ≈20,2 m² útiles de referencia e iguales **dentro de
+  ±1,00 m² útiles** al congelar la planta (**D-042**), con proporción ≤ 1,35:1 en ambos y
+  diferencia de proporción ≤ 0,30 entre ellos.
 - Cada suite: baño privado completo con ducha.
 - Principal: dormitorio/estar ≈30–32 m², vestidor ≈15–16 m², baño ≈17–18 m²,
   circulación ≈10–12 m²; sin bañera como primera alternativa y ducha doble preferida.

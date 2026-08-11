@@ -2,7 +2,7 @@
   "revision": "0.3-borrador-07-CUBIERTA",
   "generator": "dreamhouse/generate_roof_b07.py",
   "source": "dreamhouse/pb_b05.json + fuentes canónicas",
-  "source_sha256": "ff45ec293d9161e02eded090df8450a754e8ddffd7650b545ceccb192f606100",
+  "source_sha256": "24c2c1913bf64d18911f3a7e4e4ccdfc66a6db6a176406d2f6a7cbd882bea60d",
   "outputs": [
     "DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg",
     "DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg",
