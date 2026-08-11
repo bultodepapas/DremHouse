@@ -185,9 +185,9 @@ capítulos con mejor respaldo de precio.
 | Código | Partida | Un | Cant | P. unitario | Subtotal | Confianza | Fuente/supuesto |
 |---|---|---|--:|---:|---:|---|---|
 | 08.01 | Panel sándwich de cubierta 50 mm | m² | 620 | $101.000 | $62.620.000 | media | CYPE cubierta sándwich ≈$101.010/m² |
-| 08.02 | Cumbreras, cierres y limatesas | ml | 40 | $60.000 | $2.400.000 | media | Sellado de estanqueidad |
+| 08.02 | Remates continuos de alero alto/bajo y cierres de panel | ml | 40 | $60.000 | $2.400.000 | media | Cubierta mono-pendiente: no existe cumbrera central ni limatesa; cantidad por verificar |
 | 08.03 | Fijaciones, soportes y sellos de cubierta | m² | 648 | $6.000 | $3.888.000 | media | Tornillería y sellos de vapor |
-| 08.04 | Ventilación de cumbrera (louvers/turbinas) | ml | 36 | $15.000 | $540.000 | media | Compatible con sellado de aire |
+| 08.04 | Reserva de ventilación alta por fachada/equipo, sin cumbrera | gl | 1 | $540.000 | $540.000 | baja | Estrategia higrotérmica pendiente; no perforar cubierta por defecto |
 | 08.05 | Bajantes de aguas lluvias | gl | 1 | $552.000 | $552.000 | media | Desagües de cubierta a canales |
 
 **Oportunidad de ahorro:** comparar panel sándwich vs. sistema por capas

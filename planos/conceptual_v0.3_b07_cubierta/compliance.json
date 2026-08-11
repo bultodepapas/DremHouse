@@ -1,0 +1,38 @@
+{
+  "revision": "0.3-borrador-07-CUBIERTA",
+  "passed": 4,
+  "open": 2,
+  "failed": 0,
+  "checks": [
+    {
+      "rule_id": "ROOF-ONE-PLANE",
+      "status": "PASS",
+      "message": "Una sola cubierta exterior continua, sin quiebres ni cumbrera"
+    },
+    {
+      "rule_id": "ROOF-CROSS-SLOPE",
+      "status": "PASS",
+      "message": "Pendiente representada transversalmente: 0,60/18,00 ≈ 3,33 %"
+    },
+    {
+      "rule_id": "ROOF-EAVES",
+      "status": "PASS",
+      "message": "Lado bajo ≈7,20 m y lado alto ≈7,80 m"
+    },
+    {
+      "rule_id": "ROOF-LONGITUDINAL",
+      "status": "PASS",
+      "message": "Aleros laterales horizontales a lo largo de 36,00 m"
+    },
+    {
+      "rule_id": "ROOF-DIRECTION",
+      "status": "OPEN",
+      "message": "Asignación A=bajo / B=alto es reversible hasta predio, orientación y drenaje"
+    },
+    {
+      "rule_id": "ROOF-FINAL-SLOPE",
+      "status": "OPEN",
+      "message": "Pendiente final sujeta a fabricante, estructura y cálculo pluvial"
+    }
+  ]
+}

@@ -89,8 +89,8 @@ def section():
 <text x="75" y="48" font-size="25" font-weight="700">CORTE LONGITUDINAL A–A · ANTEPROYECTO</text>
 <text x="75" y="75" font-size="13" fill="#566269">Rev. 0.3-borrador-02 · alturas de estudio · sección por eje peatonal</text>
 <line x1="{sx}" y1="{sy}" x2="{sx+36*sc}" y2="{sy}" stroke="#172126" stroke-width="4"/>
-<polyline points="{sx},{roof+10} {sx+36*sc},{roof}" fill="none" stroke="#172126" stroke-width="5"/>
-<line x1="{sx}" y1="{sy}" x2="{sx}" y2="{roof+10}" stroke="#172126" stroke-width="4"/>
+<polyline points="{sx},{roof} {sx+36*sc},{roof}" fill="none" stroke="#172126" stroke-width="5"/>
+<line x1="{sx}" y1="{sy}" x2="{sx}" y2="{roof}" stroke="#172126" stroke-width="4"/>
 <line x1="{sx+36*sc}" y1="{sy}" x2="{sx+36*sc}" y2="{roof}" stroke="#172126" stroke-width="4"/>
 <rect x="{sx+21*sc}" y="{p2}" width="{15*sc}" height="8" fill="#8f6f5a"/>
 <rect x="{sx+21*sc}" y="{p2+8}" width="{15*sc}" height="{sy-p2-8}" fill="#e0cbb2" opacity=".45"/>
@@ -102,7 +102,7 @@ def section():
 <text x="{sx+15.75*sc}" y="{sy-22}" text-anchor="middle" font-size="11">MONUMENTAL · 10,50 m</text>
 <text x="{sx+26.25*sc}" y="{sy-22}" text-anchor="middle" font-size="11">DOMÉSTICA · 10,50 m</text>
 <text x="{sx+33.75*sc}" y="{sy-22}" text-anchor="middle" font-size="11">NÚCLEO · 4,50 m</text>
-<g stroke="#6c777b" fill="none"><line x1="{sx-30}" y1="{sy}" x2="{sx-30}" y2="{roof+10}"/><line x1="{sx-35}" y1="{p2}" x2="{sx-25}" y2="{p2}"/><line x1="{sx-35}" y1="{roof+10}" x2="{sx-25}" y2="{roof+10}"/></g>
+<g stroke="#6c777b" fill="none"><line x1="{sx-30}" y1="{sy}" x2="{sx-30}" y2="{roof}"/><line x1="{sx-35}" y1="{p2}" x2="{sx-25}" y2="{p2}"/><line x1="{sx-35}" y1="{roof}" x2="{sx-25}" y2="{roof}"/></g>
 <text x="{sx-42}" y="{(sy+p2)/2}" text-anchor="middle" font-size="11" transform="rotate(-90 {sx-42} {(sy+p2)/2})">P2 ≈ +3,80 m</text>
 <text x="{sx-62}" y="{(p2+roof)/2}" text-anchor="middle" font-size="11" transform="rotate(-90 {sx-62} {(p2+roof)/2})">altura interior ≈ 7,50 m</text>
 <rect x="75" y="620" width="970" height="62" fill="#fff3dc" stroke="#b95336"/><text x="95" y="648" font-size="18" font-weight="700" fill="#8e3825">NO APTO PARA CONSTRUIR</text><text x="95" y="671" font-size="11">Cantos, pendiente, estructura, envolvente, drenaje, MEP y niveles dependen de ingeniería y predio.</text>

@@ -1,0 +1,16 @@
+{
+  "revision": "0.3-borrador-07-CUBIERTA",
+  "generator": "dreamhouse/generate_roof_b07.py",
+  "source": "dreamhouse/pb_b05.json + fuentes canónicas",
+  "source_sha256": "621e619cd7e92f46dd9545cc7f1b30150eb78ced1070de86610b395ba22fe93a",
+  "outputs": [
+    "DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg",
+    "DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg",
+    "DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg",
+    "DH-ARQ-ELE-002-R06_FACHADA-POSTERIOR-CUBIERTA.svg",
+    "DH-ARQ-ELE-003-R06_FACHADA-LATERAL-A-CUBIERTA.svg",
+    "DH-ARQ-ELE-004-R06_FACHADA-LATERAL-B-CUBIERTA.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

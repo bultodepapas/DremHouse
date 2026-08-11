@@ -34,6 +34,8 @@
   espesores de estudio, gran muro, núcleo reorganizado, cocina y atelier equipado.
 - [Segundo piso detallado v0.3 — borrador 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   suites, privacidad, fases, wellness, ventanas y lógica de egreso coordinadas.
+- [Cubierta v0.3 — borrador 07](02_arquitectura/cubierta_v0.3_borrador_07.md):
+  corrige el faldón único transversal, alturas de alero y lectura de las cuatro fachadas.
 
 ## 03 — Ingenierías
 

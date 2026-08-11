@@ -35,6 +35,7 @@
 | D-036 | Desarrollar ventanas de dormitorios casi piso a techo: 2,70 m de alto, antepecho técnico de 0,10 m y protección inferior contra caída | Activa como hipótesis de fachada | Instrucción del propietario / revisión b05, 2026-08-11 |
 | D-037 | Adoptar b06/R05 como hipótesis activa específica de P2: principal ensanchada, hall y mini deck acústicamente cerrados, baños diferidos con 2,00 m de profundidad y wellness integrado | Activa como hipótesis de coordinación | Instrucción del propietario / revisión P2 b06, 2026-08-11 |
 | D-038 | Mantener la frontera única F1/F2 en Y=11,00 m, exigiendo cierre temporal estanco y dejando abierta la necesidad de segunda salida de P2 | Activa con reserva crítica | Revisión P2 b06, 2026-08-11 |
+| D-039 | Restituir la cubierta canónica de un solo faldón transversal: ≈7,20 m lado bajo, ≈7,80 m lado alto y desnivel preliminar 0,60/18,00 ≈3,33 %; A bajo/B alto es reversible hasta predio y drenaje | Activa como DCV provisional | Fuente conceptual §§27–29 / revisión cubierta b07, 2026-08-11 |
 | D-037 | Adoptar `bases_estructura_metalica.md` como base para abrir D-019: comparar 2 sistemas (pórticos portal 18 m vs. cerchas) × 3 modulaciones (4,5/6,0/9,0 m) con modelo E0, y **eliminar la carga de nieve de las hipótesis** (altiplano de Boyacá sin nieve de diseño; gobiernan viento B.6, sismo Título A y lluvia/drenaje) | Propuesta | Bases de estructura metálica, 2026-08-11 |
 
 ## Decisiones que deben abrirse a continuación
