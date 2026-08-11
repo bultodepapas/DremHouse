@@ -1,0 +1,14 @@
+{
+  "input": "dreamhouse/pb_b05.json",
+  "input_sha256": "a6fcdb5c743b49fe4ae2a976f8698ecef34feb57423aa0fe21dc86914c2cd6a4",
+  "generator": "dreamhouse/generate_pb_b05.py",
+  "revision": "0.3-borrador-05-PB",
+  "outputs": [
+    "DH-ARQ-PLN-001-R04_PB-DETALLADA.svg",
+    "DH-ARQ-ELE-001-R04_FACHADA-FRONTAL.svg",
+    "DH-ARQ-ELE-INT-001-R04_GRAN-MURO.svg",
+    "DH-ARQ-DET-001-R04_NUCLEO-PB.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

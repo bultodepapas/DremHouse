@@ -1,0 +1,57 @@
+{
+  "revision": "0.3-borrador-05-PB",
+  "checks": [
+    {
+      "rule_id": "PB-ENV",
+      "status": "PASS",
+      "message": "Envolvente nominal 18 × 36 m"
+    },
+    {
+      "rule_id": "PB-FRONT",
+      "status": "PASS",
+      "message": "Exactamente tres accesos frontales"
+    },
+    {
+      "rule_id": "PB-CORE-SUM",
+      "status": "PASS",
+      "message": "Núcleo conserva 81,00 m² brutos"
+    },
+    {
+      "rule_id": "PB-CORE-COVER",
+      "status": "PASS",
+      "message": "Núcleo cubre los 18,00 m sin vacíos"
+    },
+    {
+      "rule_id": "PB-GREAT-WALL",
+      "status": "PASS",
+      "message": "Gran muro continuo en X=31,50 m con espesor conceptual 0,20 m"
+    },
+    {
+      "rule_id": "PB-CORE-DOORS",
+      "status": "PASS",
+      "message": "Cinco accesos del núcleo de mínimo 0,90 m"
+    },
+    {
+      "rule_id": "PB-REAR-EXITS",
+      "status": "PASS",
+      "message": "Bodega y escalera conservan salidas posteriores"
+    },
+    {
+      "rule_id": "PB-KITCHEN-CLEAR",
+      "status": "PASS",
+      "message": "Paso operativo cocina = 1.20 m"
+    },
+    {
+      "rule_id": "PB-PANTRY-ADJ",
+      "status": "PASS",
+      "message": "Pantry se ubica junto al frente de cocina"
+    },
+    {
+      "rule_id": "PB-STAIR-ALIGN",
+      "status": "PASS",
+      "message": "Escalera conserva alineación Y=7,40–11,00 m con P2"
+    }
+  ],
+  "passed": 10,
+  "failed": 0
+}

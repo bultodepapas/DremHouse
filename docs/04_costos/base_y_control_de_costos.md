@@ -125,6 +125,31 @@ contabiliza hasta documentar alcance y cotización.
 Detalle técnico de cada técnica, límites y fuentes en
 [Técnicas constructivas y materiales para abaratar costos](../08_investigacion/tecnicas_que_abaratan_costos.md).
 
+## Hallazgos confirmados de la auditoría (D-030)
+
+Insumo de la [auditoría de costos 2026-08](auditoria_de_costos_2026_08.md), integrado por
+decisión D-030. **No modifica el target ni la contingencia.** Registra lo verificado y
+pendiente de cotización:
+
+1. **Precios verificados en vivo (11-08-2026):** acero A36 $6.587/kg y A572 Gr.50 $7.376/kg;
+   concreto 21 MPa $520.985/m³; piso industrial $177.239/m²; panel fachada $152.266/m²;
+   cubierta sándwich $101.010/m²; metaldeck $150.400/m²; drywall $83.630/m²; muro cortina
+   $1.290.364/m²; elevador 4 t $10,9 M. Los tres frentes optimistas del target quedaron
+   confirmados: **acero 05/06 (tonelaje 28,35 t → 30–45 t realistas), fachada 09
+   ($140.000 → $152.266/m²) y vidrio 12 ($1,18 M → $1,29–1,49 M/m²)**.
+2. **Correcciones de medición documentadas en el desglose:** cubierta 620 → ≈660 m²; fachada
+   neta 640 → ≈680 m²; entrepiso P2 3.000 → 9.000–11.000 kg; cimentación 36 → ≈42–50 m³.
+   Ninguna cambia el total hasta PE-1/PE-2.
+3. **Partidas ausentes por incorporar en v0.4:** protección contra incendio (nuevo cap. 26),
+   SG-SST/laboratorio/residuos (nuevo cap. 27), seguros ($2 M → $5 M), sauna ($3 M →
+   $8–15 M), calentamiento de agua ($2,3 M → $4–5 M) y acometida rural/transformador
+   (costo de predio, +$10–30 M si aplica).
+4. **Contingencia:** se recomienda separar 5 % de obra + 3–5 % de incertidumbre de diseño
+   hasta PE-2 (práctica 10–15 % en la etapa), sin tocar la contingencia heredada de $47,05 M.
+5. **Estimación independiente de obra física (escenario B): ≈$1.050–1.150 M** (central
+   ≈$1.090 M); control con contingencia 8 % ≈$1.135–1.240 M. Costo total del promotor
+   estimado ≈$1.800–2.500 M (obra + blandos + predio + equipamiento + exteriores + reserva).
+
 ## Paquetes prioritarios de validación
 
 1. Estructura (05/06): toneladas/kg, fabricación, protección, transporte, montaje e
@@ -171,7 +196,9 @@ la nueva solución estén documentados y aceptados.
 | 0.2 | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX). |
 | 0.3 | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo. |
 | 0.3-A | 2026-08-11 | Revisión arquitectónica b04: escalera con descarga posterior, puerta exterior de bodega, frontera aislable F1/F2 y ajuste de cocina. Impacto aún no cuantificado; afecta principalmente capítulos 10, 14, 19, 20, 22 y 24. No se modifica el target hasta medir y cotizar. |
+| 0.3-B | 2026-08-11 | Detalle PB b05: gran muro acústico/listonado de 18 m, hojas enrasadas, portal de escalera, zócalo registrable, espesores de estudio y equipamiento técnico coordinado. Afecta capítulos 14, 19, 20, 21, 22 y 23. Es alcance de medición; no se reconoce ahorro ni incremento hasta definir m², sistema, herrajes y muestra. |
 | 0.3-B | 2026-08-11 | Auditoría independiente de costos en `auditoria_de_costos_2026_08.md`: verifica precios contra CYPE/DANE/proveedores (acceso en vivo el 11-08-2026) y cantidades contra la geometría. **No cambia el target ni la contingencia.** Concluye obra física probable ≈$1.050–1.150 M (escenario B) si los tres frentes optimistas (acero 05/06, fachada 09, vidrio 12) y los faltantes (detección de incendios, SG-SST/ensayos, seguros, sauna) se incorporan. Recomienda contingencia de diseño separada hasta PE-2. D-030. |
+| 0.3-C | 2026-08-11 | Integración de los hallazgos confirmados al desglose y a la base (D-031): correcciones de medición (cubierta ≈660 m², fachada neta ≈680 m², entrepiso P2 9–11 t, cimentación 42–50 m³) y partidas ausentes (cap. 26 incendio, cap. 27 SG-SST/ensayos, seguros $5 M, sauna $8–15 M, calentamiento $4–5 M) como **insumo v0.4**. El target sigue intacto hasta PE-1/PE-2. |
 
 ## Estrategia de ejecución por fases
 

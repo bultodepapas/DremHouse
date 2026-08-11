@@ -468,19 +468,20 @@ son órdenes de magnitud de investigación; ningún ahorro se contabiliza hasta 
 ## Precios implícitos vs. referencias de mercado
 
 Detección de "sorpresas" potenciales: dónde el control v0.2 es más agresivo que la
-referencia observada.
+referencia observada. Las referencias marcadas **[V]** fueron re-consultadas en vivo en
+CYPE Colombia / proveedores el **2026-08-11** (ver [auditoría](auditoria_de_costos_2026_08.md)):
 
 | Material/sistema | Precio implícito del desglose | Referencia CYPE/market | Brecha | Lectura |
 |---|---|---|---|---|
-| Acero estructural instalado (kg) | $7.054/kg combinado | $6.587–7.376/kg | dentro del rango | El riesgo es el **tonelaje**, no el $/kg |
-| Concreto cimentación (m³) | $730.000 | $727.665 (zapata) | ≈0 % | Alineado |
-| Losa PB (648 m², sistema completo) | ≈$128.000/m² | $177.239/m² (piso industrial RSI007) | menor | La losa es a la vez estructura; desglose diferente |
-| Panel sándwich fachada (m²) | $140.000 | $150.000–200.000 | **−7 % a −30 %** | Subestimado; cotizar antes de PE-2 |
-| Panel sándwich cubierta (m²) | $101.000 | $101.010 | ≈0 % | Alineado |
-| Evento principal de vidrio (m²) | $1.180.000 | $1.290.000–1.485.000 (muro cortina) | **−8 % a −20 %** | Subestimado; paño "contenido" |
-| Metaldeck P2 (m²) | $152.000 | $150.400 | ≈0 % | Alineado |
-| Tabique drywall (m²) | $95.000 | $83.630 (básico) | +14 % | Incluye lana y refuerzo acústico |
-| Elevador 2 postes 4 t | $10.000.000 | $9,5–10,9 M | dentro del rango | Seleccionar antes de la losa |
+| Acero estructural instalado (kg) | $7.054/kg combinado | [V] $6.587,26 (A36) / $7.375,64 (A572 Gr.50) | dentro del rango | El riesgo es el **tonelaje**, no el $/kg |
+| Concreto cimentación (m³) | $730.000 | [V] $520.984,68 (21 MPa) / $727.665 (zapata armada) | ≈0 % | Alineado (zapata); el 21 MPa del desglose es más caro que la referencia |
+| Losa PB (648 m², sistema completo) | ≈$128.000/m² | [V] $177.239,20/m² (piso industrial RSI007) | menor | La losa es a la vez estructura; desglose más delgado (15 cm, pulido parcial) |
+| Panel sándwich fachada (m²) | $140.000 | [V] $152.266,44 (FLA030) | **−8 %** | **Subestimado**; cotizar antes de PE-2 (sin perfiles térmicos) |
+| Panel sándwich cubierta (m²) | $101.000 | [V] $101.009,74 (QTM010) | ≈0 % | Alineado |
+| Evento principal de vidrio (m²) | $1.180.000 | [V] $1.290.363,67 (muro cortina FMC010) | **−8 % a −20 %** | Subestimado si el evento escala a muro cortina o vidrio templado |
+| Metaldeck P2 (m²) | $152.000 | [V] $150.399,51 (EHX011) | ≈0 % | Alineado |
+| Tabique drywall (m²) | $95.000 | [V] $83.629,82 (FBY010 básico) | +14 % | Incluye lana y refuerzo acústico |
+| Elevador 2 postes 4 t | $10.000.000 | [V] $10.900.000 (Protalleres PT-240SC) | dentro del rango | Seleccionar antes de la losa |
 
 **Conclusión del radar de precios:** los puntos donde el target es más optimista que el
 mercado son **fachada aislada** (09) y **vidrio principal** (12). Junto con el tonelaje
@@ -514,6 +515,50 @@ debe reemplazarse por medición de la zona diferida real. Los costos que la Fase
 añade por remobilización, protección, escalamiento y trámites **no están en esta
 tabla** (se presupuestan aparte en la estrategia de dos fases).
 
+## Correcciones de medición y partidas ausentes — insumo v0.4 (D-030)
+
+Sección incorporada por la [auditoría de costos 2026-08](auditoria_de_costos_2026_08.md).
+**No cambia el target v0.2** ni la distribución F1/F2: registra los puntos donde la medición
+o el alcance difieren de lo que se puede sostener con la geometría del programa y las
+referencias verificadas. Cada ítem debe cotizarse o recalcularse en PE-1/PE-2 antes de
+reemplazar la partida correspondiente.
+
+### Correcciones de medición confirmadas
+
+| Partida | Control v0.2 | Corrección | Evidencia | Efecto |
+|---|---|---|---|---|
+| 05.03 Vigas de entrepiso P2 | 3.000 kg (≈11 kg/m²) | **9.000–11.000 kg** (≈35–40 kg/m² de entrepiso) | Cálculo paramétrico: viguetas cada 1,5 m + vigas de borde y apoyos; rango de entrepisos compuestos 35–55 kg/m² | +$45–60 M (dentro del riesgo de 05/06) |
+| 05.01+05.02 Pórticos y cubierta | 15.500 kg | **≈23–24 t** | 7 pórticos × (columnas HEA 300 + viga 18 m IPE 500 con cartelas) ≈23,3 t; cartelas y placas ≈15 % | +$55–100 M total 05/06 |
+| 08.01 Cubierta | 620 m² | **≈655–665 m²** | 648 m² + solape/pendiente real | +$3–4 M |
+| 09.01 Fachada neta | 640 m² | **≈680 m²** | 810 m² brutos − ~130 m² de vanos | +$5–6 M |
+| 03 Cimentación | 36 m³ (24 zapatas/pedestales + 12 vigas) | **≈42–50 m³** | 16 columnas × (zapata 1,8×1,8×0,5 + pedestal) ≈30 m³ + vigas | +$5–10 M si el suelo no es bueno |
+
+### Partidas ausentes confirmadas (falta partida o está por debajo de mercado)
+
+| Partida | Situación en v0.2 | Corrección propuesta | Nota |
+|---|---|---|---|
+| **Protección contra incendio y vida segura** (detección, alarma, extintores/red en taller, car bay y homelab, señalización) | Sin partida; el v0.2 declara "sistemas de incendio" en F1 | **Nuevo capítulo 26: $8–15 M** | Obligatorio (taller + car bay + sauna + P2); hoy inexistente |
+| **SG-SST, laboratorio/ensayos y gestión de residuos** | Solo $1 M de "ensayos iniciales" en 01.06 | **Nuevo capítulo 27: $8–15 M** | Obligaciones de obra colombiana (Decreto 1072/2015, Resolución 0141, RETIE/RETILAP ya está en 17.06) |
+| Seguros todo riesgo + RC (01.05) | $2 M | **$5 M** | ≈0,3–0,5 % del valor de obra + RC |
+| Sauna familiar F2 (16.08) | $3 M | **$8–15 M** | Cabina, calefactor, bancas, barrera de vapor, ventilación para 6 personas |
+| Calentamiento de agua (15.04) | $2,3 M | **$4–5 M** | Clima frío de altura exige más potencia |
+| Acometida eléctrica rural / transformador | No modelado (R-09) | +$10–30 M | Costo de predio si el lote lo exige; fuera de obra hasta confirmarse |
+| CCTV mínimo (18.05) | $500.000 | $1–2 M o equipamiento | Cámaras pueden clasificarse como equipamiento |
+
+### Propuesta de estructura para v0.4
+
+- **Capítulo 26 — Protección contra incendio y vida segura:** detección, alarma, extintores,
+  red/agente en taller y car bay, señalización y egreso P2 (segunda salida abierta). Separa lo
+  que hoy no tiene partida y es requisito, no acabado.
+- **Capítulo 27 — Seguridad y salud, laboratorio, ensayos y residuos:** SG-SST, ensayos de
+  concreto/suelos, certificaciones y manejo de residuos; sacarlo del capítulo 01 implícito.
+- **Contingencia de diseño separada:** mantener 5 % de obra + reserva de 3–5 % por
+  incertidumbre de diseño hasta PE-2, cuando se reemplace por contingencia real de cantidades.
+
+Cualquier adopción de estas correcciones en los totales del capítulo será un **cambio de
+alcance/costo** y debe pasar por el control de cambios y por la puerta PE-1/PE-2, no editarse
+silenciosamente.
+
 ## Protocolo de validación (orden de cotización recomendado)
 
 1. **Estructura (05/06):** predimensionamiento con 3 modulaciones y 2 sistemas;
@@ -536,11 +581,19 @@ confianza y variación frente a este desglose.
 
 - v0.2 → v0.3: desglose atómico del mismo target ($941 M). No cambia el total ni la
   contingencia; **no** mejora la confianza global (sigue baja-media).
+- v0.3 (D-030/D-031): integración de la auditoría de costos — verificación de precios en
+  vivo (CYPE/proveedores, 11-08-2026), correcciones de medición y partidas ausentes
+  (cap. 26 incendio, cap. 27 SG-SST/ensayos, seguros, sauna, calentamiento) como insumo
+  v0.4. **El target no cambia** hasta cotizar en PE-1/PE-2.
 - Cambios futuros: registrar origen, necesidad, alternativas, costo, plazo, efecto
   técnico, decisión y partida afectada. Ningún ahorro se contabiliza hasta documentar
   el alcance eliminado.
 
 ## Fuentes de precio referenciadas (corte 2026-08-11)
+
+Las fuentes CYPE y el elevador marcadas **[V]** fueron re-consultadas en vivo el 11-08-2026
+en la [auditoría de costos](auditoria_de_costos_2026_08.md) y sus valores coinciden con los
+usados en este desglose.
 
 - DANE ICOCED: https://www.dane.gov.co/index.php/estadisticas-por-tema/precios-y-costos/indice-de-costos-de-la-construccion-de-edificaciones-icoced
 - Boyacá, Resolución 0033 de 2026 (precios regionales):

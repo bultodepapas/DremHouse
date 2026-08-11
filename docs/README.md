@@ -30,6 +30,8 @@
 - [Plano conceptual v0.3 — borrador 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 - [Plano conceptual v0.3 — borrador 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
   hipótesis activa de coordinación; corrige circulación, fases, suite principal y descarga posterior.
+- [Planta baja detallada v0.3 — borrador 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
+  espesores de estudio, gran muro, núcleo reorganizado, cocina y atelier equipado.
 
 ## 03 — Ingenierías
 
