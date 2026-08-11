@@ -42,6 +42,13 @@
 - Acero total realista: **30.0–45.0 t** (desglose v0.2: 28,35 t, subestimado).
 - Equivalente: **31.0–48.0 kg/m²** sobre 918 m².
 
+## Hallazgos del modelo E0 (11-08-2026)
+
+1. **Los pórticos con bases articuladas quedan gobernados por la deriva de viento (H/200):** columnas HEA500 en las tres modulaciones (peso principal ≈ 30–40 t). El control de la auditoría (HEA300, 23–24 t) no cumple la deriva de servicio con el viento de hipótesis E0; es una decisión del ingeniero en E1 si relaja el límite o introduce arriostramiento/rigidización.
+2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** (ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).
+3. **Entrepiso P2:** con dos apoyos intermedios por pórtico (esquema adoptado) el acero del entrepiso es ≈ 12,0 t (M60). Sin apoyos intermedios (vigas de 18 m de borde a borde) sube a ≈ 16,2 t y no cumple holguras; los apoyos intermedios caen en la zona doméstica (cocina/núcleo) y deben coordinarse con la PB abierta (conflicto estructural–arquitectónico abierto).
+4. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.
+
 ## Supuestos críticos de este modelo
 
 - Cargas y combinaciones son **hipótesis de ingeniero**, versionadas en `structure_system.json`; no es biblioteca NSR-10.

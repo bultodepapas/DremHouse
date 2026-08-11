@@ -214,7 +214,48 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 | **E1 — comparación por ingeniero** | modelo paramétrico (pórticos vs. cerchas, 3 modulaciones), kg/m², costo fabricado/montado, estabilidad y entrepiso |
 | **E2 — diseño profesional** | memorias firmadas, planos de cimentación/losa/estructura/conexiones, revisión independiente |
 
-## 9. Datos faltantes que bloquean el predimensionamiento definitivo
+## 9. Resultados del modelo E0 (11-08-2026)
+
+Matriz ejecutada con el motor `dreamhouse/structure/` (datos en
+`structure_system.json`; salidas en `planos/estructura_e0/`). Hipótesis E0,
+**no apto para construir**:
+
+| Sistema × Modulación | Columnas | Viga / cercha | Acero total | kg/m² | Lectura |
+|---|---|---|---:|---:|---|
+| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | **58,5 t** | 63,7 | deriva de viento gobierna |
+| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | **52,1 t** | 56,8 | referencia de la auditoría |
+| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | **49,1 t** | 53,4 | menos pórticos, vigas mayores |
+| CERCHA · M45 | HEA200 | IPE220 (L/16) | **40,4 t** | 44,1 | — |
+| CERCHA · M60 | HEA200 | IPE220 (L/16) | **36,2 t** | 39,4 | más liviana del grupo |
+| CERCHA · M90 | HEA200 | IPE220 (L/16) | **36,2 t** | 39,4 | — |
+
+Desglose por componente (M60): pórticos 32,6 t (cerchas 16,7 t) + entrepiso
+P2 ≈ 12,0 t + secundaria ≈ 7,5 t.
+
+### Hallazgos
+
+1. **Deriva de viento gobierna los pórticos (H/200):** con bases articuladas y
+   el viento de hipótesis (qz ≈ 0,45 kPa), las columnas suben a HEA500 y el
+   peso principal a 30–40 t; el HEA300 de la auditoría no cumple la deriva de
+   servicio. En E1 el ingeniero decide: relajar el límite (H/150–180),
+   rigidizar, o asumir columnas mayores.
+2. **Cercha con columnas articuladas + arriostramiento ≈ 30 % más liviana**
+   (36–40 t vs. 49–58 t). El ahorro de acero debe contrastarse con el costo
+   extra de fabricación/montaje antes de decidir (criterio del radar de
+   costos y de `bases_estructurales_y_civiles.md`).
+3. **Entrepiso P2:** el esquema con dos apoyos intermedios por pórtico (en la
+   zona cocina/núcleo) da ≈ 12,0 t; sin apoyos intermedios (vigas de 18 m de
+   borde a borde) sube a ≈ 16,2 t y compromete las holguras bajo P2. Los
+   apoyos intermedios caen en la zona doméstica y generan un **conflicto
+   estructural–arquitectónico abierto** que la planta v0.4 debe resolver.
+4. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
+   por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
+   modulación.
+
+Estos resultados son insumo de la puerta PE-1 y de la decisión D-019; no
+sustituyen el modelo E1 del ingeniero estructural.
+
+## 10. Datos faltantes que bloquean el predimensionamiento definitivo
 
 1. Predio, municipio, coordenadas, altitud y topografía (D-017).
 2. Estudio geotécnico (cimentación y losa).
@@ -224,14 +265,14 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 6. Decisión jacuzzi (D-025): carga de agua si se adopta.
 7. Sistema de cubierta/fachada y peso real por m² (CYPE local / proveedor Boyacá).
 
-## 10. Regla anti-falsa-precisión
+## 11. Regla anti-falsa-precisión
 
 Toda cifra aquí es hipótesis o DCV. Un valor con decimales no es más confiable que su
 fuente. Nada de este documento autoriza compra de acero, cotización contractual ni
 construcción. El cierre de D-019 y la reconciliación del capítulo 05/06 pasan por la
 puerta PE-1 con cantidades y dos precios de mercado.
 
-## 11. Próximos pasos
+## 12. Próximos pasos
 
 1. Abrir D-019 con este documento como base.
 2. Construir/validar el modelo E0 en `dreamhouse/structure/` (matriz 2 sistemas ×

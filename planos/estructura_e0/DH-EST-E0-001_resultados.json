@@ -61,7 +61,7 @@
               "rafter_moment_knm": 437.0,
               "column_moment_knm": 211.2,
               "column_axial_kn": 99.9,
-              "rafter_deflection_m": 0.116,
+              "rafter_deflection_m": 0.028,
               "drift_m": 0.035,
               "utilization": 0.8
             }
@@ -122,7 +122,7 @@
               "rafter_moment_knm": 437.0,
               "column_moment_knm": 211.2,
               "column_axial_kn": 99.9,
-              "rafter_deflection_m": 0.116,
+              "rafter_deflection_m": 0.028,
               "drift_m": 0.035,
               "utilization": 0.8
             }
@@ -183,7 +183,7 @@
               "rafter_moment_knm": 565.0,
               "column_moment_knm": 270.3,
               "column_axial_kn": 129.9,
-              "rafter_deflection_m": 0.109,
+              "rafter_deflection_m": 0.029,
               "drift_m": 0.036,
               "utilization": 0.8
             }
@@ -244,7 +244,7 @@
               "rafter_moment_knm": 565.0,
               "column_moment_knm": 270.3,
               "column_axial_kn": 129.9,
-              "rafter_deflection_m": 0.109,
+              "rafter_deflection_m": 0.029,
               "drift_m": 0.036,
               "utilization": 0.8
             }
@@ -305,7 +305,7 @@
               "rafter_moment_knm": 810.8,
               "column_moment_knm": 383.6,
               "column_axial_kn": 190.9,
-              "rafter_deflection_m": 0.117,
+              "rafter_deflection_m": 0.033,
               "drift_m": 0.043,
               "utilization": 0.91
             }
@@ -366,7 +366,7 @@
               "rafter_moment_knm": 810.8,
               "column_moment_knm": 383.6,
               "column_axial_kn": 190.9,
-              "rafter_deflection_m": 0.117,
+              "rafter_deflection_m": 0.033,
               "drift_m": 0.043,
               "utilization": 0.91
             }

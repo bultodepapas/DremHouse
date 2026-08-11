@@ -236,7 +236,8 @@ def size_portal_frame(
         f = apply_combo(frame, {"D": 1.0, "L": 1.0}, f_pt)
         d, _k = frame.solve(f)
         _reset_member_loads(frame)
-        rafter_defl = max(deflection_at_midspan(frame, m, frame.member_end_forces(m, d)) for m in index["rafter_members"])
+        uz = {node: d[3 * node + 1] for node in (index["top_low"], index["top_high"], index["roof_mid"])}
+        rafter_defl = abs(uz[index["roof_mid"]] - (uz[index["top_low"]] + uz[index["top_high"]]) / 2.0)
         f_sw = apply_combo(frame, {"D": 1.0, "W": 1.0}, f_pt)
         d_sw, _k = frame.solve(f_sw)
         _reset_member_loads(frame)
