@@ -1,0 +1,14 @@
+# Archivos temporales de oficina y sistema
+~$*
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# QA/renderizados temporales y exportaciones regenerables
+_qa/
+_tmp/
+
+# Cachés locales de herramientas; no ignorar fuentes ni entregables
+.cache/
