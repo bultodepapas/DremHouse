@@ -32,16 +32,19 @@ detalle y desempeño; no de formas gratuitas ni revestimientos superpuestos.
 4. [Programa arquitectónico](docs/01_brief/programa_arquitectonico.md)
 5. [Plan maestro y puertas de fase](docs/06_gestion_y_obra/plan_maestro.md)
 6. [Decisiones y datos pendientes](docs/06_gestion_y_obra/decisiones_y_datos_pendientes.md)
+7. [Construcción en dos fases](docs/04_costos/estrategia_de_construccion_en_dos_fases.md)
 
 ## Fuentes originales preservadas
 
-Los cuatro archivos originales permanecen intactos en la raíz:
+Los cuatro archivos originales permanecen intactos dentro de `BORN/`:
 
-- `casa_bodega_boyaca_conclusiones_anteproyecto.md`: concepto consolidado y hard rules.
-- `Dream_House_Plano_Conceptual_v0.2.md`: control dimensional de anteproyecto.
-- `Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`: referencia
-  económica activa.
-- `Dream_House_Presupuesto_Preliminar_v0.1.md`: referencia económica histórica.
+- [Conclusiones de anteproyecto](BORN/casa_bodega_boyaca_conclusiones_anteproyecto.md):
+  concepto consolidado y hard rules.
+- [Plano conceptual v0.2](BORN/Dream_House_Plano_Conceptual_v0.2.md): control dimensional.
+- [Presupuesto técnico v0.2](<BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx>):
+  referencia económica activa.
+- [Presupuesto preliminar v0.1](BORN/Dream_House_Presupuesto_Preliminar_v0.1.md):
+  referencia económica histórica.
 
 La autoridad entre fuentes y sus contradicciones está definida en
 [Fuentes, precedencia y conflictos](docs/00_gobernanza/fuentes_precedencia_y_conflictos.md).

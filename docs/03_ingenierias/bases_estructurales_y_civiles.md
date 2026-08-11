@@ -1,7 +1,7 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 ## Alcance
@@ -69,6 +69,22 @@ sellado.
 
 El lift y otras cargas puntuales se resolverán localmente si el cálculo lo permite; no se
 sobredimensionarán los 648 m² por comodidad de presupuesto.
+
+## Construcción en dos fases
+
+La estructura se calcula para el edificio final y se ejecuta completa en Fase 1. No se
+acepta que la futura suite, sauna o lift dependan de refuerzos estructurales improvisados
+dentro de la casa ocupada.
+
+Para el lift, antes de la losa se seleccionará el modelo o una envolvente de cargas
+formalmente aprobada. El ingeniero definirá cimentación/engrosamiento local, juntas,
+refuerzo, resistencia, distancias a bordes y estrategia de anclaje. Si el patrón exacto no
+está congelado, no se instalarán pernos embebidos genéricos; se dejará la zona documentada
+para anclajes posteriores aprobados.
+
+Para sauna y jacuzzi opcional, Fase 1 deberá resolver cargas, huecos, pasos y deformaciones.
+Conservar la opción de jacuzzi exige una carga de diseño explícita; no basta una nota de
+“previsión futura”.
 
 ## Durabilidad
 

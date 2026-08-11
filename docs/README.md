@@ -1,7 +1,7 @@
 # Índice del expediente Dream House
 
 **Estatus:** activo  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 ## 00 — Gobierno del proyecto
@@ -35,6 +35,7 @@
 ## 04 — Costos
 
 - [Base y control de costos](04_costos/base_y_control_de_costos.md)
+- [Estrategia de construcción en dos fases](04_costos/estrategia_de_construccion_en_dos_fases.md)
 
 ## 05 — Predio y normativa
 

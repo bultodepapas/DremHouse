@@ -16,13 +16,7 @@ Antes de proponer cambios:
 
 Reglas permanentes:
 
-- Los cuatro documentos originales de la raíz son fuentes históricas y no se editan.
 - Los documentos canónicos derivados sí evolucionan con versión, fecha, estatus y fuente.
-- Ningún plano conceptual de este repositorio autoriza construcción.
-- Cálculos, licencias, diseños firmados y dirección/supervisión de obra corresponden a
-  profesionales legalmente competentes en Colombia.
-- No sacrifiques seguridad, estructura, estanqueidad, aislamiento, ventilación,
-  protección contra incendio o mantenibilidad para cumplir una cifra de costo.
 - Ante contradicciones, no elijas silenciosamente: abre un conflicto o una decisión.
 - Las visualizaciones deben obedecer la geometría y el programa; nunca son autoridad
   dimensional.

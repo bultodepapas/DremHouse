@@ -1,25 +1,29 @@
 # Decisiones y datos pendientes
 
 **Estatus:** activo  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 ## Prioridad inmediata — propietario
 
 1. ¿El techo de $1,0 B cubre solo obra física o toda la inversión?
 2. ¿Qué alcance/calidad se protege si el mercado no valida ese techo?
-3. Municipios y radio de búsqueda del predio; tiempos de compra.
-4. Número/dimensiones de vehículos diarios y estrategia de estacionamiento exterior.
-5. Vehículo proyecto: modelo, peso, dimensiones y trabajos típicos.
-6. Lift preferido o requisitos funcionales para seleccionarlo.
-7. Avión RC máximo de diseño: envergadura, fuselaje y montaje.
-8. Inventario LiPo: cantidad, química, capacidades y rutina de carga.
-9. Procesos reales: pintura, resina, composite, soldadura, CNC, corte o solventes.
-10. Modelos/dimensiones de 2–3 impresoras 3D y previsión de reemplazo.
-11. Cargas/crecimiento del homelab y necesidad real de rack 42U.
-12. Equipos de cocina y refrigeración con dimensiones/fichas.
-13. Confirmar o descartar fuego lineal.
-14. Requisitos de accesibilidad presente/futura, mascotas, seguridad y almacenamiento.
+3. ¿Cuál es la caja máxima disponible para Fase constructiva 1?
+4. ¿Cuándo o bajo qué condición se activaría Fase 2: hijos, plazo o disponibilidad de caja?
+5. Confirmar que la suite hijo 1 será habitación flexible/huéspedes durante los primeros años.
+6. Municipios y radio de búsqueda del predio; tiempos de compra.
+7. Número/dimensiones de vehículos diarios y estrategia de estacionamiento exterior.
+8. Vehículo proyecto: modelo, peso, dimensiones y trabajos típicos.
+9. Lift preferido o requisitos funcionales para seleccionarlo antes de diseñar la losa.
+10. Avión RC máximo de diseño: envergadura, fuselaje y montaje.
+11. Inventario LiPo: cantidad, química, capacidades y rutina de carga.
+12. Procesos reales: pintura, resina, composite, soldadura, CNC, corte o solventes.
+13. Modelos/dimensiones de 2–3 impresoras 3D y previsión de reemplazo.
+14. Cargas/crecimiento del homelab y necesidad real de rack 42U.
+15. Equipos de cocina y refrigeración con dimensiones/fichas.
+16. Confirmar o descartar fuego lineal.
+17. Conservar o descartar definitivamente la opción de jacuzzi.
+18. Requisitos de accesibilidad presente/futura, mascotas, seguridad y almacenamiento.
 
 ## Con predio candidato
 
@@ -41,6 +45,8 @@
 - Cocina/isla/equipos a escala.
 - Cuatro suites, igualdad de hijos y baños coordinados.
 - Sauna/relajación; decisión separada de jacuzzi.
+- Límite continuo y acceso de obra para la zona diferida de Fase 2.
+- Matriz de rough-ins F1/F2 con inspección y as-built.
 - Shafts, rutas MEP y accesos de mantenimiento.
 - Objetivos de acústica, clima y calidad del aire.
 - Cantidades de envolvente, acero y concreto de prediseño.
@@ -54,6 +60,7 @@
 - Plan de seguridad contra incendio/evacuación.
 - Estrategia de pruebas/commissioning.
 - Alcance, exclusiones, garantías y seguros contractuales.
+- Vigencia de licencia y ruta de prórroga/revalidación frente al calendario de Fase 2.
 
 ## Antes de obra
 

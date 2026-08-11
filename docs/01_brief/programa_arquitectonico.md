@@ -1,7 +1,7 @@
 # Programa arquitectónico
 
 **Estatus:** activo para prueba v0.3  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11  
 **Nota:** áreas brutas/nominales sin descontar estructura, cerramientos y acabados.
 
@@ -100,6 +100,21 @@ equipos, accesibilidad, espesores y posibilidad de devolver superficie a otros u
 | Hall + wellness + deck + circulación | ≈54 m² |
 | **Total** | **≈270 m²** |
 
+## Ocupación por fases constructivas
+
+| Zona P2 | Fase 1 | Fase 2 |
+|---|---|---|
+| Suite principal | Terminada y habitable | — |
+| Suite hijo 1 | Terminada; uso inicial flexible/huéspedes | Uso permanente futuro |
+| Suite hijo 2 | Envolvente y rough-ins protegidos | Terminada completa |
+| Suite huéspedes | Envolvente y rough-ins protegidos | Terminada completa |
+| Wellness/sauna | Reserva estructural y MEP | Terminada y equipada |
+| Hall, escalera, lavandería y linen | Terminados | Integración/reparaciones menores |
+
+V0.3 deberá colocar hijo 2, huéspedes y wellness en un territorio contiguo, separable de
+la zona ocupada mediante una sola frontera de obra. La estructura, metaldeck, cubierta,
+fachadas y ventanas de todo P2 se ejecutan en Fase 1.
+
 ### Reglas de P2
 
 - Los dos dormitorios de hijos: ≈20,2 m² útiles de referencia y **exactamente iguales**
@@ -111,6 +126,8 @@ equipos, accesibilidad, espesores y posibilidad de devolver superficie a otros u
 - Sauna: reserva global wellness ≈16–22 m²; cabina inicial ≈2,4 × 2,4 a 2,4 × 2,8 m.
 - Mini deck: ≈8–10 m², cerrado acústicamente del hall.
 - Evitar corredor continuo abierto hacia la nave.
+- La igualdad de los dormitorios de hijos se comprobará sobre la planta final, aunque se
+  terminen en momentos diferentes.
 
 ## Pruebas obligatorias de v0.3
 

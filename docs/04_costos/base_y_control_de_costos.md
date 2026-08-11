@@ -1,9 +1,9 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha de precios declarada por la fuente:** 2026-08-11  
-**Fuente activa:** `Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
+**Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
 
 ## Línea base económica activa
 
@@ -123,3 +123,13 @@ exclusiones, impuestos, transporte, garantías y plazo. No escoger solo el total
 Todo cambio debe registrar: origen, necesidad, alternativas, costo, plazo, efecto técnico,
 decisión y partida afectada. Ningún ahorro se contabiliza hasta que el alcance eliminado y
 la nueva solución estén documentados y aceptados.
+
+## Estrategia de ejecución por fases
+
+El propietario decidió terminar inicialmente solo la suite principal y una suite de hijo,
+aplazando la segunda suite de hijo, huéspedes, sauna y lift. El reparto técnico y económico
+se desarrolla en [Estrategia de construcción en dos fases](estrategia_de_construccion_en_dos_fases.md).
+
+La línea base preliminar distribuye $867 M de obra física en Fase 1 y $74 M en Fase 2. El
+total de $941 M no disminuye y la Fase 2 deberá añadir escalamiento, remobilización,
+protecciones y trámites que aún no están cuantificados.

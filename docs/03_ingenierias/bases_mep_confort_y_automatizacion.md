@@ -1,7 +1,7 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 ## Filosofía
@@ -56,6 +56,23 @@ drenajes, ventilaciones, registros, impermeabilización y pruebas.
 
 La solución de agua/saneamiento depende del predio: redes públicas, almacenamiento,
 bombeo, pozo o tratamiento rural no pueden presupuestarse aún.
+
+## Preparación de zonas diferidas
+
+La Fase 1 dimensionará acometida, tableros, montantes, shafts, bajantes, ventilaciones y
+rutas para el programa final. En las suites/wellness de Fase 2:
+
+- dejar conduits con guía y cajas/espacios accesibles, no cableado abandonado sin uso;
+- probar y documentar redes troncales antes de cerrar;
+- terminar ramales de agua cerca de válvulas accesibles para evitar largos tramos
+  estancados;
+- tapar y proteger desagües/ventilaciones con identificación y coordenadas as-built;
+- reservar potencia, extracción y drenaje del sauna según equipo de diseño, sin comprarlo;
+- mantener condiciones mínimas de ventilación/humedad del shell para no degradar la
+  envolvente.
+
+La Fase 2 repetirá pruebas y commissioning; no se asumirá que una reserva guardada durante
+años continúa limpia, estanca o conforme a la norma vigente.
 
 ## Clima, ventilación y envolvente
 

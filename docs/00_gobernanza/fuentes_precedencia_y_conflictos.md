@@ -1,7 +1,7 @@
 # Fuentes, precedencia y conflictos
 
 **Estatus:** activo  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 ## Precedencia
@@ -24,10 +24,10 @@ sobre una preferencia incompatible.
 
 | Fuente | Rol | Estado |
 |---|---|---|
-| `casa_bodega_boyaca_conclusiones_anteproyecto.md` | Intención, hard rules y síntesis | Activa como fuente conceptual |
-| `Dream_House_Plano_Conceptual_v0.2.md` | Geometría y áreas nominales | Activa para control dimensional |
-| `Dream House — Presupuesto Técnico y Control de Costos v0.2.docx` | Target y capítulos de obra | Activa, confianza baja-media |
-| `Dream_House_Presupuesto_Preliminar_v0.1.md` | Prefactibilidad económica anterior | Histórica / superada |
+| `BORN/casa_bodega_boyaca_conclusiones_anteproyecto.md` | Intención, hard rules y síntesis | Activa como fuente conceptual |
+| `BORN/Dream_House_Plano_Conceptual_v0.2.md` | Geometría y áreas nominales | Activa para control dimensional |
+| `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx` | Target y capítulos de obra | Activa, confianza baja-media |
+| `BORN/Dream_House_Presupuesto_Preliminar_v0.1.md` | Prefactibilidad económica anterior | Histórica / superada |
 
 ## Conflictos detectados
 

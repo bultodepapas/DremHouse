@@ -1,7 +1,7 @@
 # Plan maestro
 
 **Estatus:** activo  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 El proyecto avanza por evidencia y puertas de decisión, no por entusiasmo gráfico.
@@ -79,18 +79,30 @@ y contrato.
 **Puerta G5:** licencia y condiciones previas vigentes; documentos IFC coordinados;
 presupuesto financiado; contratista/equipo idóneos. No iniciar con planos conceptuales.
 
-## Fase 6 — Construcción
+## Fase 6 — Construcción en dos fases
 
 **Objetivo:** ejecutar con seguridad, calidad, costo y trazabilidad.
 
-Secuencia de alto nivel: movilización → tierra/drenaje → cimentación/losa → acero →
-cubierta/envolvente → cierre estanco → MEP oculto → P2/interiores → equipos y acabados →
-exteriores → pruebas.
+### Fase constructiva 1 — casa habitable y preparada
+
+Movilización → tierra/drenaje → cimentación/losa → estructura y P2 completos →
+cubierta/envolvente → cierre estanco → MEP principal y reservas → PB/núcleo → suite
+principal + suite hijo 1 + comunes → pruebas y ocupación.
+
+### Fase constructiva 2 — completamiento
+
+Nueva movilización/protecciones → hijo 2 + huéspedes + sauna/wellness → lift → integración
+MEP → reparaciones → nuevas pruebas y actualización as-built.
+
+El alcance y reparto económico están en
+[Estrategia de construcción en dos fases](../04_costos/estrategia_de_construccion_en_dos_fases.md).
 
 Controles: submittals, planos de taller, RFI, muestras/prototipos, inspecciones, ensayos,
 no conformidades, cambios, costo comprometido, avance real, seguridad y registro diario.
 
 **Puertas de obra:** no cubrir ni continuar trabajos críticos sin inspección documentada.
+La ocupación después de Fase 1 exige que la zona diferida quede segura, cerrada, protegida
+y separada; “obra gris abierta” no es un estado de entrega aceptable dentro de la vivienda.
 
 ## Fase 7 — Commissioning, cierre y operación
 

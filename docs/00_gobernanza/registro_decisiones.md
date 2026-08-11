@@ -1,7 +1,7 @@
 # Registro de decisiones
 
 **Estatus:** activo  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha:** 2026-08-11
 
 | ID | Decisión | Estado | Fuente/fecha |
@@ -21,17 +21,18 @@
 | D-013 | Pocos eventos de vidrio de alto impacto | Activa | Concepto consolidado |
 | D-014 | Cocina bajo P2, próxima al núcleo | Activa | Revisión crítica / plano v0.2 |
 | D-015 | Target económico de trabajo ≈$988,05 M | Activa con reserva crítica | Presupuesto v0.2 |
+| D-016 | Construcción en dos fases: F1 principal + una suite de hijo; F2 hijo 2 + huéspedes + sauna + lift | Activa como base de anteproyecto | Propietario, 2026-08-11 |
 
 ## Decisiones que deben abrirse a continuación
 
-- D-016: predio y municipio.
-- D-017: significado exacto del techo económico.
-- D-018: sistema estructural conceptual y modulación.
-- D-019: estrategia de climatización/ventilación y energía.
-- D-020: clasificación de uso, protección contra incendio y separación de riesgos.
-- D-021: modelo de elevador y vehículo de diseño.
-- D-022: lado RC vs. carro en fachada.
-- D-023: isla y equipamiento definitivo de cocina.
-- D-024: jacuzzi: adoptar o descartar.
+- D-017: predio y municipio.
+- D-018: significado exacto del techo económico y caja máxima de Fase 1.
+- D-019: sistema estructural conceptual y modulación.
+- D-020: estrategia de climatización/ventilación y energía.
+- D-021: clasificación de uso, protección contra incendio y separación de riesgos.
+- D-022: modelo de elevador y vehículo de diseño.
+- D-023: lado RC vs. carro en fachada.
+- D-024: isla y equipamiento definitivo de cocina.
+- D-025: jacuzzi: adoptar o descartar.
 
 Usar la [plantilla de decisión](../07_plantillas/decision.md) para toda nueva entrada.

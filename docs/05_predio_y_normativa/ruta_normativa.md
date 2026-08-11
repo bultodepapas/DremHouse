@@ -1,7 +1,7 @@
 # Ruta normativa y profesional
 
 **Estatus:** guía de debida diligencia; verificación legal/técnica obligatoria  
-**Versión:** 0.1  
+**Versión:** 0.2
 **Fecha de verificación web:** 2026-08-11
 
 ## Alcance
@@ -80,3 +80,12 @@ deben ser asumidos y firmados por personas técnica y legalmente competentes.
 - Aplicabilidad de supervisión técnica, revisión y certificaciones según área, uso y norma
   vigente.
 - Capacidad eléctrica y eventual transformador/soluciones privadas.
+- Tratamiento de la ejecución en dos fases dentro de la licencia: alcance aprobado,
+  condiciones de ocupación de Fase 1, vigencia, modificación, prórroga o revalidación.
+
+Minvivienda define la prórroga como ampliación de la vigencia y la revalidación como una
+nueva licencia destinada a culminar obras aprobadas que no se ejecutaron integralmente.
+La estrategia y fechas deberán confirmarse con la autoridad competente:
+
+- https://www.minvivienda.gov.co/node/1374
+- https://www.minvivienda.gov.co/node/46763
