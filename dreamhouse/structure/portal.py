@@ -38,6 +38,8 @@ class FrameResults:
     drift_m: float
     weight_kg: float
     utilization: float
+    tie_force_kn: float = 0.0
+    tie_area_cm2: float = 0.0
 
 
 def build_frame_model(
@@ -50,26 +52,39 @@ def build_frame_model(
     rafter: Profile,
     bay_m: float,
     cfg: dict,
+    *,
+    tie: bool = False,
+    tie_area_m2: float = 1.0e-3,
+    fixed_base: bool = False,
 ) -> tuple[Frame2D, dict]:
     nodes = [(0.0, 0.0)]
     if has_p2:
         nodes.append((0.0, p2_level))
+    top_low = len(nodes)
     nodes.append((0.0, eave_low))
+    base_high = len(nodes)
     nodes.append((18.0, 0.0))
+    p2_high = None
     if has_p2:
+        p2_high = len(nodes)
         nodes.append((18.0, p2_level))
+    top_high = len(nodes)
     nodes.append((18.0, eave_high))
+    roof_mid = len(nodes)
     nodes.append((9.0, (eave_low + eave_high) / 2.0))
 
     members: list[FrameMember] = []
     if has_p2:
         members.append(FrameMember(0, 1, steel.e_pa, col.area_m2, col.iy_m4))
-        members.append(FrameMember(1, 2, steel.e_pa, col.area_m2, col.iy_m4))
-        members.append(FrameMember(3, 4, steel.e_pa, col.area_m2, col.iy_m4))
-        members.append(FrameMember(4, 5, steel.e_pa, col.area_m2, col.iy_m4))
+        members.append(FrameMember(1, top_low, steel.e_pa, col.area_m2, col.iy_m4))
     else:
-        members.append(FrameMember(0, 2, steel.e_pa, col.area_m2, col.iy_m4))
-        members.append(FrameMember(3, 5, steel.e_pa, col.area_m2, col.iy_m4))
+        members.append(FrameMember(0, top_low, steel.e_pa, col.area_m2, col.iy_m4))
+
+    if has_p2:
+        members.append(FrameMember(base_high, p2_high, steel.e_pa, col.area_m2, col.iy_m4))
+        members.append(FrameMember(p2_high, top_high, steel.e_pa, col.area_m2, col.iy_m4))
+    else:
+        members.append(FrameMember(base_high, top_high, steel.e_pa, col.area_m2, col.iy_m4))
 
     roof_d = cfg["loads"]["dead"]["roof_kpa"] * bay_m * 1e3
     roof_l = cfg["loads"]["live"]["roof_kpa"] * bay_m * 1e3
@@ -78,22 +93,30 @@ def build_frame_model(
     rafter_sw = rafter.mass_kg_m * G
 
     rafter_members = []
-    for m in (FrameMember(2, 6, steel.e_pa, rafter.area_m2, rafter.iy_m4), FrameMember(6, 5, steel.e_pa, rafter.area_m2, rafter.iy_m4)):
+    for m in (FrameMember(top_low, roof_mid, steel.e_pa, rafter.area_m2, rafter.iy_m4), FrameMember(roof_mid, top_high, steel.e_pa, rafter.area_m2, rafter.iy_m4)):
         members.append(m)
         rafter_members.append(m)
         _set_case_load(m, nodes, "D", roof_d + rafter_sw)
         _set_case_load(m, nodes, "L", roof_l)
         _set_case_load(m, nodes, "W", uplift)
 
-    frame = Frame2D(nodes=nodes, members=members, fixes={0: {"ux", "uz"}, 3: {"ux", "uz"}})
+    tie_member = None
+    if tie:
+        tie_member = FrameMember(top_low, top_high, steel.e_pa, tie_area_m2, 1e-10)
+        members.append(tie_member)
+
+    fix_set = {"ux", "uz"} if not fixed_base else {"ux", "uz", "ry"}
+    frame = Frame2D(nodes=nodes, members=members, fixes={0: set(fix_set), base_high: set(fix_set)})
     index = {
         "base_low": 0,
         "p2_low": 1 if has_p2 else None,
-        "top_low": 2,
-        "base_high": 3,
-        "p2_high": 4 if has_p2 else None,
-        "top_high": 5,
-        "roof_mid": 6,
+        "top_low": top_low,
+        "base_high": base_high,
+        "p2_high": p2_high,
+        "top_high": top_high,
+        "roof_mid": roof_mid,
+        "tie_high": None,
+        "tie_member": tie_member,
         "rafter_members": rafter_members,
     }
     return frame, index
@@ -190,8 +213,11 @@ def _reset_member_loads(frame: Frame2D) -> None:
 def _member_region(frame: Frame2D, index: dict, m: FrameMember) -> str:
     tops = {index["top_low"], index["top_high"]}
     rafter_ids = {id(mr) for mr in index["rafter_members"]}
+    tie = index.get("tie_member")
     if id(m) in rafter_ids:
         return "rafter"
+    if tie is not None and id(m) == id(tie):
+        return "tie"
     return "column"
 
 
@@ -204,6 +230,9 @@ def size_portal_frame(
     phi_b: float,
     phi_c: float,
     p2_col_share: float = 0.25,
+    *,
+    tie: bool = False,
+    fixed_base: bool = False,
 ) -> FrameResults:
     eave_low = cfg["geometry"]["eave_low_m"]
     eave_high = cfg["geometry"]["eave_high_m"]
@@ -212,6 +241,7 @@ def size_portal_frame(
 
     col = profile("HEA300")
     rafter = profile("IPE450")
+    tie_area = 1.0e-3
 
     col_len = max(eave_low, eave_high)
     rafter_len = np.hypot(18.0, eave_high - eave_low)
@@ -219,8 +249,8 @@ def size_portal_frame(
     drift_limit = col_len / 200.0
 
     def envelope(frame: Frame2D, index: dict, f_pt: dict):
-        env_m = {"column": 0.0, "rafter": 0.0}
-        env_n = {"column": 0.0, "rafter": 0.0}
+        env_m = {"column": 0.0, "rafter": 0.0, "tie": 0.0}
+        env_n = {"column": 0.0, "rafter": 0.0, "tie": 0.0}
         for combo in combos:
             f = apply_combo(frame, combo["factors"], f_pt)
             d, _k = frame.solve(f)
@@ -244,8 +274,10 @@ def size_portal_frame(
         drift = max(abs(d_sw[3 * index["top_low"]]), abs(d_sw[3 * index["top_high"]]))
         return rafter_defl, drift
 
+    tie_force = 0.0
     for _outer in range(8):
-        frame, index = build_frame_model(steel, eave_low, eave_high, p2_level, has_p2, col, rafter, bay_m, cfg)
+        frame, index = build_frame_model(steel, eave_low, eave_high, p2_level, has_p2, col, rafter, bay_m, cfg,
+                                         tie=tie, tie_area_m2=tie_area, fixed_base=fixed_base)
         f_pt = build_point_loads(frame, index, cfg, bay_m, trib_p2_m, has_p2, col, rafter, p2_col_share)
         env_m, env_n = envelope(frame, index, f_pt)
         rafter_defl, drift = service(frame, index, f_pt)
@@ -258,8 +290,13 @@ def size_portal_frame(
             rafter = profile(_next_ipe(rafter.name))
         if not drift_ok:
             col = profile(_next_hea(col.name))
+        if tie:
+            tie_force = env_n["tie"]
+            need = max(abs(tie_force) * 1e3 / (phi_c * steel.fy_pa), 2.0e-4)
+            tie_area = max(tie_area, need)
 
-    frame, index = build_frame_model(steel, eave_low, eave_high, p2_level, has_p2, col, rafter, bay_m, cfg)
+    frame, index = build_frame_model(steel, eave_low, eave_high, p2_level, has_p2, col, rafter, bay_m, cfg,
+                                     tie=tie, tie_area_m2=tie_area, fixed_base=fixed_base)
     f_pt = build_point_loads(frame, index, cfg, bay_m, trib_p2_m, has_p2, col, rafter, p2_col_share)
     env_m, env_n = envelope(frame, index, f_pt)
     rafter_defl, drift = service(frame, index, f_pt)
@@ -269,7 +306,8 @@ def size_portal_frame(
     utilization = max(env_n["column"] / max(acap, 1e-9) + env_m["column"] / max(col.moment_capacity_knm(steel.fy_pa, phi_b), 1e-9), env_m["rafter"] / max(mcap, 1e-9))
 
     detail = cfg["criteria"]["detail_factor_principales"]
-    weight = (2.0 * col.mass_kg_m * col_len + rafter.mass_kg_m * rafter_len) * (1.0 + detail)
+    tie_kg = 18.0 * tie_area * steel.density_kg_m3 if tie else 0.0
+    weight = (2.0 * col.mass_kg_m * col_len + rafter.mass_kg_m * rafter_len + tie_kg) * (1.0 + detail)
 
     return FrameResults(
         column=col,
@@ -281,6 +319,8 @@ def size_portal_frame(
         drift_m=drift,
         weight_kg=weight,
         utilization=utilization,
+        tie_force_kn=env_n["tie"],
+        tie_area_cm2=tie_area * 1e4 if tie else 0.0,
     )
 
 

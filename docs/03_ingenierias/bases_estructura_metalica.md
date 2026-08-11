@@ -67,6 +67,60 @@ Matriz de predimensionamiento recomendada: **2 sistemas × 3 modulaciones**.
 Se comparará kg/m² (sobre 918 m² conceptuales), tonelaje total, costo fabricado/montado
 estimado y compatibilidad con el programa (P2, lift, vidrios, portones).
 
+### 2.3 Sistemas adicionales investigados — eliminar columnas interiores (insumo E1)
+
+Investigación externa (SCI / steelconstruction.info, AISC / US Steel) para ampliar la
+matriz de D-019. Todo es **hipótesis para el modelo E1**: el ingeniero estructural fija el
+sistema con tonelaje y costo fabricado/montado. Principio rector: **todas las columnas se
+concentran en los dos muros laterales (Y = 0 y Y = 18) o dentro de las particiones del P2;
+la nave queda 100 % libre.**
+
+**Cubierta de 18 m — un solo faldón:**
+
+1. **Cercha tubular expuesta (Warren/Pratt), canto L/12–L/15 (≈ 1,20–1,50 m).**
+   Opción más liviana del E0 (36–40 t vs. 49–58 t del pórtico). Columnas solo en muros
+   laterales (HEA/HEB200), bases articuladas. Servicios pasan por el alma. Es la estética
+   "estructura visible" del concepto. El pórtico mono-pitch eficiente suele limitarse a
+   ≈ 15 m; con 18 m y pendiente 1:30 la cercha es más racional.
+2. **Pórtico portal atado (*tied portal*).** Un tirante/tensor horizontal entre las
+   cabezas de columna reduce el desplazamiento de alero (deriva de viento) y los momentos
+   de columna y viga; requiere análisis de segundo orden. Permite bajar de HEA500 a
+   secciones menores conservando la continuidad del pórtico. El tirante es visible:
+   estudiarlo como recurso arquitectónico o llevarlo oculto en el plano de cubierta.
+3. **Pórtico con cartela de alero (haunch ≈ 10 % de la luz) + columnas laced/battened.**
+   La cartela aumenta rigidez y resistencia donde el momento es máximo; la columna de
+   celosía (dos perfiles con presillas) es mucho más rígida en plano por igual peso, lo
+   que ataca la deriva sin columnas interiores.
+4. **Cable-stayed (mast + tensores).** Se descarta como solución principal: bracing muy
+   conspicuo, mantenimiento alto y puntos de paso por la envolvente; no encaja en la
+   lectura de "nave simple" del concepto.
+5. **Space frame sobre la doble altura (18 × 21 m).** Posible gesto moderno con apoyos
+   solo en perímetro; nudos esféricos, costo y complejidad de fabricación altos; solo si
+   el propietario lo valida como pieza arquitectónica deliberada.
+
+**Entrepiso P2 (18 × 15 m) sin columnas en la zona doméstica:**
+
+1. **Staggered truss (cerchas escalonadas)** — desarrollado por MIT / US Steel para
+   hoteles y apartamentos. Cerchas de piso completo que cruzan el ancho (18 m) apoyadas
+   **solo en las columnas de los dos muros largos**, escalonadas en planta (media crujía);
+   la losa apoya entre el cordón superior de una cercha y el inferior de la adyacente.
+   Ventajas: áreas libres de hasta ≈ 18 m sin columnas interiores, altura de piso compacta,
+   deriva pequeña, gran resistencia al viento y fundaciones concentradas. En el P2 las
+   cerchas se esconden dentro de las particiones de las suites (closets, baños, hall), de
+   modo que cocina y comedor en PB quedan 100 % libres.
+2. **Cercha compuesta de piso (*composite truss*).** Luces > 18 m con la losa como cordón
+   superior; más ligera que viga llena, pero exige apuntalamiento temporal y más superficie
+   de protección contra incendio.
+3. **Vigas celulares (10–16 m) y girders de canto variable (10–20 m).** Integran servicios
+   en su propio canto; respaldo para vigas secundarias y de borde.
+4. **Mezzanine colgado de la cubierta.** El P2 se apoya en la estructura de techo en vez de
+   en columnas de PB; útil si la frontera de P2 debe quedar totalmente despejada; coordinar
+   cargas colgadas con la cercha de cubierta.
+5. **Viga de borde en X = 21,00 m (luz ≈ 18 m).** Debe resolverse como **cercha de borde**
+   o primera línea del staggered truss; su canto puede absorber el plenum del cielo de la
+   banda doméstica (soffit puntual) o expresarse como elemento estructural legible hacia la
+   doble altura.
+
 ## 3. Hipótesis de carga — sin nieve
 
 **Contexto climático:** altiplano boyacense (Tunja–Paipa–Duitama, ≈ 2.600–2.800 m s. n. m.).
@@ -146,6 +200,23 @@ longitudinal (cubierta + muros) en los paños de servicio. Los eventos de vidrio
 técnicos 7,20 m, vidrio de sala) reducen paños de arriostramiento disponibles y deben
 coordinarse simultáneamente (regla del concepto: estructura, fachada y luz se diseñan juntos).
 
+Medidas adicionales para controlar la deriva **sin columnas interiores** (todas hipótesis
+E1; el E0 mostró que la deriva de viento gobierna las columnas):
+
+- **Cordón / viga longitudinal de cubierta (wind girder)** en el plano del faldón para
+  repartir el viento transversal hacia los arriostramientos de testeros y reducir la
+  deriva individual de cada pórtico.
+- **Tirante de alero (*tied portal*)** si se conserva la continuidad de pórtico: atar las
+  cabezas de columna reduce el desplazamiento lateral y los momentos de base.
+- **Knee braces / diagonales cortas** en el encuentro columna–cercha en pórticos testeros
+  (refuerzo local sin ocupar la nave).
+- **Bases fijas en los pórticos testeros (gable frames) / portalized bays** en las
+  fachadas opacas: entregan rigidez longitudinal sin columnas en el interior.
+- **La caja rígida del P2 como diafragma**: con staggered truss o cerchas de piso, el
+  volumen P2 actúa como núcleo rígido (celosía de gran altura) que rigidiza todo el
+  edificio en dirección longitudinal y reduce la deriva general — beneficio estructural
+  adicional del sistema.
+
 ## 5. Entrepiso P2
 
 - Sistema de referencia: **losa compuesta metaldeck** (lámina + loseta ≈ 10 cm, conectores)
@@ -158,6 +229,18 @@ coordinarse simultáneamente (regla del concepto: estructura, fachada y luz se d
 - Vibración: luz ≈ 6 m, frecuencia objetivo ≥ 8 Hz para uso residencial; verificarla en E1.
 - El lift queda en doble altura (X ≈ 5,5–6,0 m), fuera de la proyección del P2: no carga
   sobre el entrepiso, solo sobre losa PB local (regla vigente).
+- **Sistema preferido a estudiar en E1 — staggered truss:** cerchas de piso completo que
+  cruzan los 18 m entre los muros largos, escalonadas en el espesor del P2 y ocultas en
+  las particiones de las suites (closets, baños, hall). La losa (metaldeck composite) apoya
+  entre cordones de cerchas adyacentes. Resultado: **cero columnas en cocina/comedor de PB**
+  y canto de piso compacto; la deriva y la vibración mejoran porque el P2 se comporta como
+  una celosía rígida. Verificar frecuencia ≥ 8 Hz de los paños de losa y el canto de cercha
+  dentro del plenum de la banda doméstica.
+- **Frontera en X = 21,00 m (viga de borde de ≈ 18 m):** se resuelve como **cercha de
+  borde** o como la primera línea del staggered truss, apoyada en las columnas de los muros
+  largos; su canto se absorbe en el encuentro con el cielo de la banda doméstica o se
+  expresa como pieza estructural legible hacia la doble altura. Esta alternativa reemplaza
+  los apoyos intermedios en cocina/núcleo que el E0 registró como conflicto abierto.
 
 ## 6. Materiales y protección
 
@@ -247,7 +330,11 @@ P2 ≈ 12,0 t + secundaria ≈ 7,5 t.
    zona cocina/núcleo) da ≈ 12,0 t; sin apoyos intermedios (vigas de 18 m de
    borde a borde) sube a ≈ 16,2 t y compromete las holguras bajo P2. Los
    apoyos intermedios caen en la zona doméstica y generan un **conflicto
-   estructural–arquitectónico abierto** que la planta v0.4 debe resolver.
+   estructural–arquitectónico abierto**. La alternativa investigada para
+   cerrarlo sin columnas es el **staggered truss** (sección 2.3 y 5):
+   cerchas de piso que cruzan los 18 m entre los muros largos, ocultas en las
+   particiones del P2, con la losa entre cerchas — la planta v0.4 y el modelo
+   E1 deben verificar peso y canto.
 4. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
    por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
    modulación.
@@ -277,6 +364,28 @@ puerta PE-1 con cantidades y dos precios de mercado.
 1. Abrir D-019 con este documento como base.
 2. Construir/validar el modelo E0 en `dreamhouse/structure/` (matriz 2 sistemas ×
    3 modulaciones, kg/m², tonelaje por componente).
-3. Con predio candidato: repetir con geotecnia, viento y sismo de norma (E1, ingeniero).
-4. Registrar el resultado en el registro de decisiones y en la base de costos como insumo
+3. Extender la matriz E1 con los sistemas investigados en la sección 2.3 (cercha tubular
+   expuesta, pórtico atado, staggered truss para P2), cuantificando kg/m² y costo
+   fabricado/montado de cada uno.
+4. Con predio candidato: repetir con geotecnia, viento y sismo de norma (E1, ingeniero).
+5. Registrar el resultado en el registro de decisiones y en la base de costos como insumo
    PE-1, sin modificar el target.
+
+## 13. Fuentes externas de la investigación (acceso 2026-08-11)
+
+- steelconstruction.info — Trusses (tipos Pratt/Warren/Fink, canto L/10–L/15, wind
+  girders, integración de servicios). https://www.steelconstruction.info/Trusses
+- steelconstruction.info — Portal frames (cartelas de alero ≈ 10 % de la luz, tied
+  portal, propped portal, bases articuladas/fijas, bracing). https://www.steelconstruction.info/Portal_frames
+- steelconstruction.info — Single storey industrial buildings (pórtico como opción
+  económica hasta ≈ 50 m, costo mínimo a 30–35 m de luz, mezzanines apoyados en
+  cubierta, hit-and-miss). https://www.steelconstruction.info/Single_storey_industrial_buildings
+- steelconstruction.info — Long-span beams (vigas celulares 10–16 m, tapered girders
+  10–20 m, cerchas y vigas compuestas > 20 m, stub girders). https://www.steelconstruction.info/Long-span_beams
+- Wikipedia — Staggered truss system (MIT / US Steel; cerchas de piso completo,
+  columnas solo en fachadas, áreas libres hasta ≈ 18 m, deriva pequeña, hoteles).
+  https://en.wikipedia.org/wiki/Staggered_truss_system
+
+Todas las técnicas citadas son referencias conceptuales para el comparativo E1; la
+verificación normativa y la decisión final corresponden al ingeniero estructural según
+NSR-10.

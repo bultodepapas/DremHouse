@@ -1,6 +1,6 @@
 {
   "input": "dreamhouse\\structure\\structure_system.json",
-  "input_sha256": "a547767ae2f6c93867f0f508bcd892364550c0ffd1fd95536a51cb8395c307c4",
+  "input_sha256": "281fc1f18437fbc7ad9a58e060630977a09b11b503e5be9615bc6fc72667c7f7",
   "generator": "dreamhouse/structure/e0.py",
   "revision": "0.1",
   "outputs": [
@@ -8,6 +8,8 @@
     "DH-EST-E0-001_resumen.md",
     "DH-EST-E0-001_resumen.csv",
     "DH-EST-E0-001_PÓRTICO-PORTICO.svg",
+    "DH-EST-E0-001_PÓRTICO-PORTICO-T.svg",
+    "DH-EST-E0-001_PÓRTICO-PORTICO-F.svg",
     "DH-EST-E0-001_PÓRTICO-CERCHA.svg",
     "DH-EST-E0-001_SECCION-M45.svg",
     "DH-EST-E0-001_SECCION-M60.svg",

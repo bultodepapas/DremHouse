@@ -29,6 +29,19 @@
     "p2_floor_level_m": 3.8,
     "headroom_below_p2_m": 3.1,
     "p2_headroom_m": 3.0,
+    "p2_floor_options": [
+      {
+        "id": "METALDECK",
+        "description": "Viguetas IPE + vigas transversales de 18 m por linea de portico + viga de borde en X=21 con apoyos intermedios en cocina/nucleo (linea base E0)"
+      },
+      {
+        "id": "STAGGERED",
+        "description": "Cerchas escalonadas de piso completo de 18 m entre los muros largos, ocultas en particiones de las suites; la losa apoya entre cerchas. CERO columnas interiores.",
+        "trusses_ratio_to_bay": 1,
+        "truss_depth_span_ratio": 16.0,
+        "web_ratio": 0.4
+      }
+    ],
     "modulations": [
       {"id": "M45", "bay_m": 4.5, "n_bays": 8, "n_portal_lines": 9},
       {"id": "M60", "bay_m": 6.0, "n_bays": 6, "n_portal_lines": 7},
@@ -93,11 +106,30 @@
       "preferred_for": "nave de luz media; simplifica fabricacion y conexiones"
     },
     {
-      "id": "CERCHA",
-      "name": "Cercha / viga reticulada de 18 m sobre columnas",
-      "description": "Cuerdas IPE/HEA con diagonalizado; menor peso en luz larga, mayor detalle de fabricacion",
+      "id": "PORTICO-T",
+      "name": "Portico portal atado (tirante de alero)",
+      "description": "Portico de 18 m con tirante/tensor horizontal entre las cabezas de columna a nivel de alero bajo; reduce la deriva de viento y los momentos de columna. Analisis de segundo orden pendiente en E1.",
       "profile_rafter": "IPE",
       "profile_column": "HEA",
+      "tie": true,
+      "preferred_for": "control de deriva sin columnas interiores; el tirante puede ser detalle arquitectonico o ir oculto en cubierta"
+    },
+    {
+      "id": "PORTICO-F",
+      "name": "Portico portal con bases fijas",
+      "description": "Portico de 18 m con bases empotradas (momento en la base); reduce deriva a costa de mayores fundaciones",
+      "profile_rafter": "IPE",
+      "profile_column": "HEA",
+      "fixed_base": true,
+      "preferred_for": "comparacion de deriva y costo de fundacion"
+    },
+    {
+      "id": "CERCHA",
+      "name": "Cercha / viga reticulada de 18 m sobre columnas",
+      "description": "Cuerdas tubulares HSS o IPE con diagonalizado (Warren/Pratt); menor peso en luz larga, mayor detalle de fabricacion. El portico mono-pitch eficiente suele limitarse a ~15 m; a 18 m con faldon 1:30 la cercha es mas racional.",
+      "profile_rafter": "IPE",
+      "profile_column": "HEA",
+      "profile_chord": "HSS",
       "truss_depth_span_ratio": 16.0,
       "preferred_for": "comparacion de peso; decidir por datos con costo fabricado/montado"
     }

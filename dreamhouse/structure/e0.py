@@ -97,8 +97,14 @@ def summarize(rows: list[dict]) -> dict:
                 "total_t": q["total_t"],
                 "kg_m2": q["kg_m2"],
                 "main_t": round(q["main_frames_kg"] / 1000.0, 1),
-                "p2_t": round(q["p2_floor_kg"] / 1000.0, 1),
+                "p2_metaldeck_t": round(q["p2_floor_metaldeck_kg"] / 1000.0, 1),
+                "p2_staggered_t": round(q["p2_floor_staggered_kg"] / 1000.0, 1),
+                "p2_interior_columns": q["staggered"]["interior_columns"],
                 "secondary_t": round(q["secondary_kg"] / 1000.0, 1),
+                "column": q["frames"].get("column", "-"),
+                "rafter": q["frames"].get("rafter", q["frames"].get("truss_chord", "-")),
+                "tie_area_cm2": q["frames"].get("tie_area_cm2", 0.0),
+                "drift_m": q["frames"].get("drift_m", None),
             }
     return out
 
@@ -126,15 +132,26 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "",
         "## Desglose por componente (t)",
         "",
-        "| Sistema × Modulación | Marcos principales | Entrepiso P2 | Secundaria | Total |",
+        "| Sistema × Modulación | Marcos principales | Entrepiso P2 (metaldeck) | Entrepiso P2 (staggered) | Secundaria | Total |",
         "|---|---|---:|---:|---:|---:|",
     ]
     for row in rows:
         mod = row["modulation"]
         for sid, q in row["quantities"]["systems"].items():
             lines.append(
-                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | {q['p2_floor_kg']/1000:.1f} | {q['secondary_kg']/1000:.1f} | {q['total_t']} |"
+                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | {q['p2_floor_metaldeck_kg']/1000:.1f} | {q['p2_floor_staggered_kg']/1000:.1f} | {q['secondary_kg']/1000:.1f} | {q['total_t']} |"
             )
+    lines += [
+        "",
+        "## Entrepiso P2 — opciones comparadas",
+        "",
+        "La opción **STAGGERED** (cerchas escalonadas de 18 m entre los muros largos, "
+        "ocultas en las particiones de las suites) elimina por completo las columnas "
+        "interiores de la zona doméstica de PB (cocina/comedor). La opción METALDECK "
+        "de la línea base requiere dos apoyos intermedios por pórtico en cocina/núcleo.",
+    ]
+    staggered_first = list(rows[0]["quantities"]["systems"].values())[0]["staggered"]
+    lines.append(f"- Cercha staggered (M60): {staggered_first['n_trusses']} cerchas de 18 m, canto ≈ {staggered_first['truss_depth_m']} m, cordones {staggered_first['chord']}, flecha ≈ {staggered_first['truss_deflection_m']} m.")
     lines += [
         "",
         "## Objetivos de control (auditoría)",
@@ -152,19 +169,23 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "2. **El sistema de cerchas con columnas articuladas y arriostramiento pesa ≈ 36–40 t** "
         "(ahorro ≈ 30 % sobre pórticos) y resuelve la deriva con columnas HEA200; el costo extra "
         "de fabricación de la cercha debe cotizarse antes de decidir (E1, puerta PE-1).",
-        "3. **Entrepiso P2:** con dos apoyos intermedios por pórtico (esquema adoptado) el acero "
-        "del entrepiso es ≈ 12,0 t (M60). Sin apoyos intermedios (vigas de 18 m de borde a borde) "
-        "sube a ≈ 16,2 t y no cumple holguras; los apoyos intermedios caen en la zona doméstica "
-        "(cocina/núcleo) y deben coordinarse con la PB abierta (conflicto estructural–arquitectónico abierto).",
-        "4. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
+        "3. **El pórtico atado (PORTICO-T) y el pórtico con bases fijas (PORTICO-F) reducen la "
+        "deriva de viento y deben permitir columnas menores que el HEA500 del pórtico articulado; "
+        "el comparativo numérico aparece en la matriz. El tirante requiere análisis de segundo orden.",
+        "4. **Entrepiso P2:** la línea base METALDECK con dos apoyos intermedios por pórtico pesa "
+        "≈ 12,0 t (M60) pero introduce columnas en cocina/núcleo. La opción **STAGGERED** elimina "
+        "esas columnas y mantiene un tonelaje comparable (ver tabla de opciones); la planta v0.4 "
+        "y el modelo E1 deben verificar peso, canto y vibración.",
+        "5. **Cubierta de un solo faldón ≈ 1:30:** la flecha de la viga de cubierta queda "
         "controlada por resistencia (viento/succión), no por flecha, con IPE450–IPE550 según modulación.",
         "",
         "## Supuestos críticos de este modelo",
         "",
         "- Cargas y combinaciones son **hipótesis de ingeniero**, versionadas en `structure_system.json`; no es biblioteca NSR-10.",
         "- Sin carga de nieve (Boyacá). Viento y sismo como hipótesis E0 hasta definir municipio.",
-        "- Pórticos con bases articuladas; entrepiso P2 con viguetas continuas, vigas transversales de 18 m y viga de borde en X=21 con dos apoyos interiores.",
-        "- Factor de detalle 15 % y desperdicio 5 %; perfiles de stock IPE/HEA.",
+        "- Pórticos con bases articuladas por defecto; PORTICO-T añade tirante de alero; PORTICO-F empotra las bases.",
+        "- Entrepiso P2: METALDECK (viguetas + vigas de 18 m + apoyos intermedios) vs. STAGGERED (cerchas escalonadas sin columnas interiores).",
+        "- Factor de detalle 15 % y desperdicio 5 %; perfiles de stock IPE/HEA/HSS.",
         "- Cada resultado debe ser revisado por el ingeniero estructural antes de cruzar PE-1.",
     ]
     return "\n".join(lines) + "\n"
@@ -174,15 +195,19 @@ def write_csv(rows: list[dict]) -> None:
     path = OUT / "DH-EST-E0-001_resumen.csv"
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
-        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "marcos_t", "entrepiso_p2_t", "secundaria_t", "total_t", "kg_m2"])
+        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "tirante_cm2", "marcos_t", "entrepiso_p2_metaldeck_t", "entrepiso_p2_staggered_t", "secundaria_t", "total_t", "kg_m2", "drift_m"])
         for row in rows:
             mod = row["modulation"]
             for sid, q in row["quantities"]["systems"].items():
                 f = q["frames"]
                 writer.writerow([
                     mod, sid, f.get("column", "-"), f.get("rafter", f.get("truss_chord", "-")),
-                    round(q["main_frames_kg"] / 1000.0, 2), round(q["p2_floor_kg"] / 1000.0, 2),
+                    f.get("tie_area_cm2", 0.0),
+                    round(q["main_frames_kg"] / 1000.0, 2),
+                    round(q["p2_floor_metaldeck_kg"] / 1000.0, 2),
+                    round(q["p2_floor_staggered_kg"] / 1000.0, 2),
                     round(q["secondary_kg"] / 1000.0, 2), q["total_t"], q["kg_m2"],
+                    f.get("drift_m", ""),
                 ])
 
 
@@ -222,25 +247,30 @@ def write_svg(system_id: str) -> None:
     p2_level = cfg["geometry"]["p2_floor_level_m"]
     has_p2 = True
 
-    if system_id == "PORTICO":
+    if system_id.startswith("PORTICO"):
+        cfg_sys = next(s for s in cfg["systems"] if s["id"] == system_id)
         col = profile("HEA300")
         rafter = profile("IPE500")
         nodes = _frame_node_coords(eave_low, eave_high, has_p2, p2_level)
-        parts = _svg_header(f"PÓRTICO TRANSVERSAL — {system_id}", "Esquema E0 · columna HEA + viga IPE con cartela de alero · bases articuladas")
+        label = "PÓRTICO TRANSVERSAL"
+        sub = "Esquema E0 · columna HEA + viga IPE con cartela de alero · bases articuladas"
+        if cfg_sys.get("tie"):
+            sub = "Esquema E0 · pórtico atado con tirante entre los apoyos de la cercha (triángulo rígido) · bases articuladas"
+        if cfg_sys.get("fixed_base"):
+            sub = "Esquema E0 · columna HEA + viga IPE con cartela · bases empotradas"
+        parts = _svg_header(f"{label} — {system_id}", sub)
     else:
         col = profile("HEA200")
         rafter = profile("IPE220")
         nodes = _frame_node_coords(eave_low, eave_high, has_p2, p2_level)
         nodes["roof_mid"] = (nodes["top_low"][0] + 9 * 30.0, nodes["top_low"][1] - 30.0 * 1.125)
-        parts = _svg_header(f"CERCHA TRANSVERSAL — {system_id}", "Esquema E0 · cuerda IPE + diagonalizado · profundidad L/16 ≈ 1,13 m")
+        parts = _svg_header(f"CERCHA TRANSVERSAL — {system_id}", "Esquema E0 · cuerdas tubulares HSS + diagonalizado · profundidad L/16 ≈ 1,13 m")
     _ = (col, rafter)
 
     parts.append('<g font-family="Arial" fill="#20292e">')
     for name, (px, py) in nodes.items():
         parts.append(f'<circle cx="{px}" cy="{py}" r="4.5" fill="#b8841e"/>')
-        if name == "base_low":
-            parts.append(f'<path d="M {px-14} {py} L {px+14} {py} L {px-8} {py+9} L {px+8} {py+9}" fill="none" stroke="#566269" stroke-width="1.5"/>')
-        if name == "base_high":
+        if name in ("base_low", "base_high"):
             parts.append(f'<path d="M {px-14} {py} L {px+14} {py} L {px-8} {py+9} L {px+8} {py+9}" fill="none" stroke="#566269" stroke-width="1.5"/>')
 
     def line(a: str, b: str, color: str = "#172126", width: float = 7.0):
@@ -255,12 +285,10 @@ def write_svg(system_id: str) -> None:
         line("p2_low", "top_low")
         line("base_high", "p2_high")
         line("p2_high", "top_high")
-    if system_id == "PORTICO":
-        line("top_low", "roof_mid")
-        line("roof_mid", "top_high")
-    else:
-        line("top_low", "roof_mid")
-        line("roof_mid", "top_high")
+    if system_id.endswith("-T"):
+        line("top_low", "top_high", color="#27859a", width=3.0)
+    line("top_low", "roof_mid")
+    line("roof_mid", "top_high")
 
     x0, y0 = nodes["base_low"]
     parts.append(f'<line x1="{x0}" y1="{y0+20}" x2="{x0+540}" y2="{y0+20}" stroke="#566269" stroke-width="1"/>')

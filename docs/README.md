@@ -38,6 +38,10 @@
   corrige el faldón único transversal, alturas de alero y lectura de las cuatro fachadas.
 - [Claraboyas sobre talleres v0.3 — borrador 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):
   dos eventos cenitales de vidrio, coordinación estructural y detalle higrotérmico conceptual.
+- [Revisión de coordinación arquitectónica v0.3](02_arquitectura/revision_coordinacion_v0.3_2026_08.md):
+  revisión independiente de b04→b08 y del modelo E0 contra constitución, programa y hard rules;
+  15 hallazgos verificados sobre la geometría paramétrica y las láminas emitidas. Insumo de la
+  v0.4. No modifica el target, las decisiones ni la línea base.
 
 ## 03 — Ingenierías
 

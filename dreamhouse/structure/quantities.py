@@ -7,6 +7,7 @@ import math
 from .materials import Steel
 from .portal import size_cercha_columns, size_cercha_roof, size_joists_and_beams, size_portal_frame
 from .profiles import profile
+from .staggered import size_staggered_floor
 
 
 def p2_tributary_m(bay_m: float, p2_start: float, length: float, x: float) -> float:
@@ -34,6 +35,7 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
     n_p2_frames = sum(1 for t in tribs if t > 0.0)
 
     floor = size_joists_and_beams(cfg, steel, bay_m, bay_m, phi_b, phi_c)
+    staggered = size_staggered_floor(cfg, steel, bay_m, phi_b, phi_c)
 
     detail = crit["detail_factor_principales"]
     waste = crit["waste_factor"]
@@ -45,14 +47,18 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
 
     for system in cfg["systems"]:
         sid = system["id"]
-        if sid == "PORTICO":
-            res = size_portal_frame(cfg, steel, bay_m, bay_m, True, phi_b, phi_c)
+        if sid in ("PORTICO", "PORTICO-T", "PORTICO-F"):
+            tie = bool(system.get("tie", False))
+            fixed = bool(system.get("fixed_base", False))
+            res = size_portal_frame(cfg, steel, bay_m, bay_m, True, phi_b, phi_c, tie=tie, fixed_base=fixed)
             main_per_frame = res.weight_kg
             main_total = main_per_frame * n_lines
             frames = {
-                "type": "pórtico portal 18 m, bases articuladas",
+                "type": "pórtico portal 18 m" + (" atado (tirante de alero)" if tie else "") + (" con bases fijas" if fixed else " con bases articuladas"),
                 "column": res.column.name,
                 "rafter": res.rafter.name,
+                "tie_area_cm2": round(res.tie_area_cm2, 1),
+                "tie_force_kn": round(res.tie_force_kn, 1),
                 "weight_per_frame_kg": round(main_per_frame, 1),
                 "rafter_moment_knm": round(res.rafter_moment_knm, 1),
                 "column_moment_knm": round(res.column_moment_knm, 1),
@@ -99,6 +105,7 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
         aux_total = 2.0 * 3.8 * aux_col.mass_kg_m
         interior_columns_total = n_p2_frames * 2 * 3.8 * aux_col.mass_kg_m
         floor_total = (joist_total + beam_total + edge_total + aux_total + interior_columns_total) * (1.0 + detail)
+        floor_staggered_total = staggered["total_kg"] * (1.0 + detail)
 
         roof_width = math.hypot(18.0, geom["roof_rise_m"])
         purlin_lines = math.ceil(roof_width / crit["purlin_spacing_m"]) + 1
@@ -112,11 +119,15 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
         result["systems"][sid] = {
             "main_frames_kg": round(main_total, 0),
             "p2_floor_kg": round(floor_total, 0),
+            "p2_floor_metaldeck_kg": round(floor_total, 0),
+            "p2_floor_staggered_kg": round(floor_staggered_total, 0),
             "secondary_kg": round(secondary_total, 0),
             "joist_profile": joist.name,
             "floor_beam_profile": beam.name,
             "edge_beam_profile": edge.name,
             "aux_columns_profile": aux_col.name,
+            "p2_floor_mode": "STAGGERED (sin columnas interiores)",
+            "staggered": staggered,
             "purlins_m": round(purlin_total / profile("C200").mass_kg_m, 0),
             "girts_m": round(girt_total / profile("C200").mass_kg_m / 0.85 / (1.0 + waste), 0),
             "total_kg": round(total_kg, 0),
