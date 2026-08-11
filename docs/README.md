@@ -26,6 +26,7 @@
 - [Bases de diseño arquitectónico](02_arquitectura/bases_de_diseno.md)
 - [Control de visualizaciones](02_arquitectura/control_de_visualizaciones.md)
 - [Plano conceptual v0.3 — primer borrador paramétrico](02_arquitectura/plano_conceptual_v0.3_borrador.md)
+- [Plano conceptual v0.3 — borrador 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
 
 ## 03 — Ingenierías
 
@@ -61,6 +62,9 @@
 
 - [Herramientas digitales para planos, BIM y estructuras](08_investigacion/herramientas_planos_bim_y_estructuras.md):
   arquitectura propuesta del modelo, formatos, validaciones y ruta de prototipos.
+- [Técnicas constructivas y materiales para abaratar costos](08_investigacion/tecnicas_que_abaratan_costos.md):
+  investigación de técnicas de bajo costo aplicables a la nave, con riesgos y orden de
+  magnitud para value engineering.
 
 ## Uso del expediente
 

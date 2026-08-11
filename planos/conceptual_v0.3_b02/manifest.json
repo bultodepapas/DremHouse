@@ -1,0 +1,12 @@
+{
+  "input": "dreamhouse\\project_b02.json",
+  "sha256": "c892cdca2eca3363dc2891b6f43ec56eaca202e1d602a556f3db7c4197181322",
+  "generator": "dreamhouse/generate_detailed_plans.py",
+  "outputs": [
+    "DH-ARQ-PLN-001-R01_PB.svg",
+    "DH-ARQ-PLN-002-R01_P2.svg",
+    "DH-ARQ-SEC-001-R01_LONGITUDINAL.svg",
+    "DH-ARQ-ELE-001-R01_FRONTAL.svg",
+    "compliance.json"
+  ]
+}
