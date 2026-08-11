@@ -375,14 +375,21 @@ def rear_elevation_sheet(p):
         parts.append(rect(x,y,w,h,fill=fill,stroke="#172126",stroke_width="2.5"))
         label="DESCARGA ESCALERA" if d["id"]=="EXT-ESC" else "SALIDA BODEGA"
         parts.append(text(x+w/2,y+h/2,label,8,weight=700,fill="#f5f3ed"))
-    # P2 windows: principal and wellness reserves, aligned above PB.
-    for a,b,label in ((1.0,6.5,"SUITE PRINCIPAL"),(13.0,17.0,"WELLNESS")):
-        x=left+a*sc; w=(b-a)*sc; y=top+58; h=1.65*sc
+    # P2 principal glazing is nearly floor-to-ceiling; wellness remains more contained.
+    master=next(g for g in p["bedroom_glazing"] if g["facade"]=="REAR")
+    rear_openings=[(master["from"],master["to"],master["name"].upper(),master["sill"],master["height"],True),(13.0,17.0,"WELLNESS",1.05,1.65,False)]
+    for a,b,label,sill,opening_h,is_bedroom in rear_openings:
+        x=left+a*sc; w=(b-a)*sc; h=opening_h*sc
+        floor_y=base-3.8*sc
+        y=floor_y-(sill+opening_h)*sc
         parts.append(rect(x,y,w,h,fill="#426671",stroke="#172126",stroke_width="2.2"))
         for m in range(1,max(1,int((b-a)/1.25))):
             xx=x+w*m/max(1,int((b-a)/1.25))
             parts.append(f'<line x1="{xx}" y1="{y}" x2="{xx}" y2="{y+h}" stroke="#88a2a8"/>')
-        parts.append(text(x+w/2,y+h/2+3,label+" · PROVISIONAL",8,weight=700,fill="#eff5f5"))
+        if is_bedroom:
+            guard_y=floor_y-(sill+1.0)*sc
+            parts.append(f'<line x1="{x}" y1="{guard_y}" x2="{x+w}" y2="{guard_y}" stroke="#d2e0e2" stroke-width="1.5"/>')
+        parts.append(text(x+w/2,y+h/2+3,label+(" · PISO A TECHO" if is_bedroom else " · PROVISIONAL"),8,weight=700,fill="#eff5f5"))
     parts.append(f'<line x1="{left}" y1="{base-3.8*sc}" x2="{left+width}" y2="{base-3.8*sc}" stroke="#6f7a7d" stroke-width="1" stroke-dasharray="7 5"/>')
     parts.append(text(left+width-8,base-3.8*sc-8,"NIVEL P2 ≈ +3,80",8,"end",700,"#5c676b"))
     parts.append(rect(left-45,base,width+90,42,fill="#d6d2ca",stroke="#858b89"))
@@ -445,11 +452,16 @@ def side_elevation_sheet(p,side):
     parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2"))
     parts.append(text(wx+ww/2,wy+wh/2+3,"TRABAJO "+("1" if is_a else "2"),7,weight=700,fill="#eff5f5"))
     # P2 bedroom windows differ by side but retain few, repeated openings.
-    wins=((22.0,25.8,"HIJO 1"),(33.0,35.5,"PRINCIPAL")) if is_a else ((21.8,26.5,"HIJO 2"),(27.8,32.3,"HUÉSPEDES"))
-    for a,b,label in wins:
-        x=left+a*sc; w=(b-a)*sc; y=top+45; h=1.55*sc
+    wins=[g for g in p["bedroom_glazing"] if g["facade"]==side]
+    for g in wins:
+        a,b,label=g["from"],g["to"],g["name"].upper()
+        x=left+a*sc; w=(b-a)*sc; h=g["height"]*sc
+        floor_y=base-3.8*sc
+        y=floor_y-(g["sill"]+g["height"])*sc
         parts.append(rect(x,y,w,h,fill="#426671",stroke="#172126",stroke_width="2"))
-        parts.append(text(x+w/2,y+h/2+3,label+" · PROVISIONAL",7,weight=700,fill="#eff5f5"))
+        guard_y=floor_y-(g["sill"]+1.0)*sc
+        parts.append(f'<line x1="{x}" y1="{guard_y}" x2="{x+w}" y2="{guard_y}" stroke="#d2e0e2" stroke-width="1.4"/>')
+        parts.append(text(x+w/2,y+h/2+3,label+" · PISO A TECHO",7,weight=700,fill="#eff5f5"))
     # Downpipes as coordinated vertical elements, not final positions.
     for mx in (10.5,21.0,31.5):
         x=left+mx*sc
@@ -580,6 +592,9 @@ def validate(p):
     checks.append(("PB-STAIR-ALIGN",next(r for r in core if r["id"]=="ESC")["y0"]==7.4,"Escalera conserva alineación Y=7,40–11,00 m con P2"))
     glazing=p["technical_glazing"]
     checks.append(("PB-TECH-GLAZING",len(glazing)==2 and all(g["x1"]-g["x0"]>=6.0 and g["height"]>=2.5 for g in glazing),"Dos ventanales técnicos grandes, modulados y equivalentes"))
+    bedrooms=p["bedroom_glazing"]
+    required={"GLZ-H1","GLZ-H2","GLZ-G","GLZ-M-R"}
+    checks.append(("P2-BEDROOM-GLAZING",required.issubset({g["id"] for g in bedrooms}) and all(g["height"]>=2.65 and g["sill"]<=.10 for g in bedrooms),"Cuatro dormitorios representan vidrio casi piso a techo"))
     return [{"rule_id":rid,"status":"PASS" if ok else "FAIL","message":msg} for rid,ok,msg in checks]
 
 

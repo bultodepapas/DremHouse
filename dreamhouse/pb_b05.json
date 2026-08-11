@@ -31,6 +31,13 @@
     {"id":"GLZ-CAR","side":"A","name":"Ventanal car project","x0":1.5,"x1":8.7,"sill":0.90,"height":2.90,"modules":6},
     {"id":"GLZ-RC","side":"B","name":"Ventanal taller RC / aviones","x0":1.5,"x1":8.7,"sill":0.90,"height":2.90,"modules":6}
   ],
+  "bedroom_glazing": [
+    {"id":"GLZ-H1","facade":"A","name":"Dormitorio hijo 1","from":22.0,"to":25.8,"sill":0.10,"height":2.70},
+    {"id":"GLZ-H2","facade":"B","name":"Dormitorio hijo 2","from":21.8,"to":26.5,"sill":0.10,"height":2.70},
+    {"id":"GLZ-G","facade":"B","name":"Dormitorio huéspedes","from":27.8,"to":32.3,"sill":0.10,"height":2.70},
+    {"id":"GLZ-M-R","facade":"REAR","name":"Suite principal","from":1.0,"to":6.5,"sill":0.10,"height":2.70},
+    {"id":"GLZ-M-A","facade":"A","name":"Suite principal lateral","from":33.0,"to":35.5,"sill":0.10,"height":2.70}
+  ],
   "design_values": {
     "axis_y0": 7.0,
     "axis_y1": 11.0,

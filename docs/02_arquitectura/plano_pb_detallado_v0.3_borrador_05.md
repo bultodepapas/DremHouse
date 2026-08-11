@@ -100,6 +100,18 @@ La igualdad geométrica favorece fabricación y orden exterior, pero no obliga a
 mismo vidrio o control solar en ambos lados. Deben verificarse seguridad, impacto,
 deslumbramiento, calor, privacidad, arriostramiento y extracción con el predio real.
 
+### Ventanas de dormitorios casi piso a techo
+
+Los cuatro dormitorios se representan con vidrio de **2,70 m de altura** y antepecho
+técnico de 0,10 m. La suite principal conserva un paño posterior dominante y un paño
+lateral secundario; hijos y huéspedes tienen un evento principal cada uno.
+
+La franja inferior hasta aproximadamente 1,10 m debe ser fija, laminada y dimensionada
+como protección contra caída, o complementarse con una guarda interior certificada. Las
+partes operables se definirán arriba o lateralmente. No se adoptan balcones ni puertas al
+vacío. Control solar, privacidad nocturna, cortinas, condensación, limpieza y reposición
+de paños deben resolverse con la orientación real.
+
 ## Cocina
 
 La isla de prueba mide 3,60 × 1,20 m, con cuatro puestos. Se representan 1,20 m de paso

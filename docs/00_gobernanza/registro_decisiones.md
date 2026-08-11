@@ -32,6 +32,7 @@
 | D-033 | Desarrollar gran muro en X=31,50 m como superficie continua de madera/absorción; cuatro puertas enrasadas y portal de escalera legible | Activa como intención arquitectónica | Revisión PB b05, 2026-08-11 |
 | D-034 | Usar 0,18 m exterior, 0,20 m gran muro/escalera y 0,15 m divisiones como espesores de estudio, no IFC | Activa como DCV provisional | Revisión PB b05, 2026-08-11 |
 | D-035 | Incorporar dos ventanales técnicos laterales de prueba de 7,20 × 2,90 m, modulados, con antepecho de 0,90 m | Activa como hipótesis de fachada | Instrucción del propietario / revisión PB b05, 2026-08-11 |
+| D-036 | Desarrollar ventanas de dormitorios casi piso a techo: 2,70 m de alto, antepecho técnico de 0,10 m y protección inferior contra caída | Activa como hipótesis de fachada | Instrucción del propietario / revisión b05, 2026-08-11 |
 
 ## Decisiones que deben abrirse a continuación
 

@@ -55,8 +55,13 @@
       "rule_id": "PB-TECH-GLAZING",
       "status": "PASS",
       "message": "Dos ventanales técnicos grandes, modulados y equivalentes"
+    },
+    {
+      "rule_id": "P2-BEDROOM-GLAZING",
+      "status": "PASS",
+      "message": "Cuatro dormitorios representan vidrio casi piso a techo"
     }
   ],
-  "passed": 11,
+  "passed": 12,
   "failed": 0
 }
