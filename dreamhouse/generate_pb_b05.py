@@ -227,6 +227,13 @@ def plan_sheet(p):
         parts.append(f'<line x1="{sx(0)}" y1="{y1}" x2="{sx(0)}" y2="{y2}" stroke="#b95336" stroke-width="8"/>')
         parts.append(text(sx(-.25), (y1+y2)/2, op["name"], 6, rotate=-90, fill="#873923"))
 
+    # Large technical glazing on both long façades.
+    for g in p["technical_glazing"]:
+        yy=sy(0) if g["side"]=="A" else sy(18)
+        parts.append(f'<line x1="{sx(g["x0"])}" y1="{yy}" x2="{sx(g["x1"])}" y2="{yy}" stroke="#27859a" stroke-width="8"/>')
+        offset=-13 if g["side"]=="A" else 18
+        parts.append(text((sx(g["x0"])+sx(g["x1"]))/2,yy+offset,g["name"].upper()+" · 7,20 m",7,weight=700,fill="#246b7a"))
+
     # Grid and dimensions.
     for i,x in enumerate((0,6,12,18,24,30,36)):
         px=sx(x)
@@ -386,7 +393,7 @@ def rear_elevation_sheet(p):
     return ''.join(parts)
 
 
-def side_elevation_sheet(side):
+def side_elevation_sheet(p,side):
     is_a=side=="A"
     code="ELE-003-R04" if is_a else "ELE-004-R04"
     title_value=f"FACHADA LATERAL {side} · NAVE DE 36 m"
@@ -404,6 +411,24 @@ def side_elevation_sheet(side):
     parts.append(f'<line x1="{p2x}" y1="{top}" x2="{p2x}" y2="{base}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
     parts.append(f'<line x1="{p2x}" y1="{p2y}" x2="{left+length}" y2="{p2y}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
     parts.append(text(p2x+7.5*sc,p2y-9,"P2 POSTERIOR · 15,00 m",9,weight=700,fill="#59666a"))
+    tech=next(g for g in p["technical_glazing"] if g["side"]==side)
+    tx=left+tech["x0"]*sc
+    tw=(tech["x1"]-tech["x0"])*sc
+    th=tech["height"]*sc
+    ty=base-(tech["sill"]+tech["height"])*sc
+    parts.append(rect(tx,ty,tw,th,fill="#345e69",stroke="#172126",stroke_width="2.8"))
+    for i in range(1,tech["modules"]):
+        xx=tx+tw*i/tech["modules"]
+        parts.append(f'<line x1="{xx}" y1="{ty}" x2="{xx}" y2="{ty+th}" stroke="#8eabb1" stroke-width="1.2"/>')
+    transom=ty+th*.72
+    parts.append(f'<line x1="{tx}" y1="{transom}" x2="{tx+tw}" y2="{transom}" stroke="#8eabb1" stroke-width="1.2"/>')
+    for i in (1,4):
+        ax=tx+tw*(i+.15)/tech["modules"]
+        aw=tw*.7/tech["modules"]
+        ah=th*.20
+        parts.append(f'<path d="M {ax} {transom+4} L {ax+aw/2} {transom+ah} L {ax+aw} {transom+4}" fill="none" stroke="#d4e1e3" stroke-width="1.4"/>')
+    parts.append(text(tx+tw/2,ty+th/2-4,tech["name"].upper(),9,weight=700,fill="#eff5f5"))
+    parts.append(text(tx+tw/2,ty+th/2+15,f'{tech["x1"]-tech["x0"]:.2f} × {tech["height"]:.2f} m · antepecho {tech["sill"]:.2f} m',7,fill="#eff5f5"))
     # PB glazing: A carries the primary event; B remains a reversible alternative.
     gx=left+16.2*sc; gw=4.3*sc; gy=base-3.15*sc; gh=3.15*sc
     if is_a:
@@ -553,6 +578,8 @@ def validate(p):
     checks.append(("PB-KITCHEN-CLEAR",clearance>=k["operating_clearance"]-1e-6,f"Paso operativo cocina = {clearance:.2f} m"))
     checks.append(("PB-PANTRY-ADJ",core[0]["id"]=="PAN","Pantry se ubica junto al frente de cocina"))
     checks.append(("PB-STAIR-ALIGN",next(r for r in core if r["id"]=="ESC")["y0"]==7.4,"Escalera conserva alineación Y=7,40–11,00 m con P2"))
+    glazing=p["technical_glazing"]
+    checks.append(("PB-TECH-GLAZING",len(glazing)==2 and all(g["x1"]-g["x0"]>=6.0 and g["height"]>=2.5 for g in glazing),"Dos ventanales técnicos grandes, modulados y equivalentes"))
     return [{"rule_id":rid,"status":"PASS" if ok else "FAIL","message":msg} for rid,ok,msg in checks]
 
 
@@ -564,8 +591,8 @@ def main():
         "DH-ARQ-PLN-001-R04_PB-DETALLADA.svg":plan_sheet(p),
         "DH-ARQ-ELE-001-R04_FACHADA-FRONTAL.svg":front_elevation_sheet(p),
         "DH-ARQ-ELE-002-R04_FACHADA-POSTERIOR.svg":rear_elevation_sheet(p),
-        "DH-ARQ-ELE-003-R04_FACHADA-LATERAL-A.svg":side_elevation_sheet("A"),
-        "DH-ARQ-ELE-004-R04_FACHADA-LATERAL-B.svg":side_elevation_sheet("B"),
+        "DH-ARQ-ELE-003-R04_FACHADA-LATERAL-A.svg":side_elevation_sheet(p,"A"),
+        "DH-ARQ-ELE-004-R04_FACHADA-LATERAL-B.svg":side_elevation_sheet(p,"B"),
         "DH-ARQ-ELE-INT-001-R04_GRAN-MURO.svg":wall_elevation_sheet(p),
         "DH-ARQ-DET-001-R04_NUCLEO-PB.svg":core_sheet(p)
     }

@@ -50,8 +50,13 @@
       "rule_id": "PB-STAIR-ALIGN",
       "status": "PASS",
       "message": "Escalera conserva alineación Y=7,40–11,00 m con P2"
+    },
+    {
+      "rule_id": "PB-TECH-GLAZING",
+      "status": "PASS",
+      "message": "Dos ventanales técnicos grandes, modulados y equivalentes"
     }
   ],
-  "passed": 10,
+  "passed": 11,
   "failed": 0
 }

@@ -1,6 +1,6 @@
 {
   "input": "dreamhouse/pb_b05.json",
-  "input_sha256": "a6fcdb5c743b49fe4ae2a976f8698ecef34feb57423aa0fe21dc86914c2cd6a4",
+  "input_sha256": "5fbae88b7fbef32090baff1d4dbbf39a70549b83420663a5e4f62adf328ec968",
   "generator": "dreamhouse/generate_pb_b05.py",
   "revision": "0.3-borrador-05-PB",
   "outputs": [

@@ -86,6 +86,20 @@ Solo la fachada frontal tiene composición congelada en cuanto al número y orde
 accesos. Los vidrios laterales, ventanas posteriores, bajantes y control solar permanecen
 sujetos a orientación, vistas, clima, estructura y predio.
 
+### Grandes ventanales de la banda técnica
+
+Los dos laterales incorporan ahora un ventanal industrial de prueba de **7,20 × 2,90 m**,
+con antepecho de 0,90 m y seis módulos repetibles:
+
+- lateral A: iluminación y presencia del car project;
+- lateral B: iluminación del taller RC/aviones;
+- dos módulos superiores operables de estudio por fachada;
+- modulación compatible con bancos bajos y protección inferior contra impactos.
+
+La igualdad geométrica favorece fabricación y orden exterior, pero no obliga a usar el
+mismo vidrio o control solar en ambos lados. Deben verificarse seguridad, impacto,
+deslumbramiento, calor, privacidad, arriostramiento y extracción con el predio real.
+
 ## Cocina
 
 La isla de prueba mide 3,60 × 1,20 m, con cuatro puestos. Se representan 1,20 m de paso
