@@ -349,6 +349,116 @@ def front_elevation_sheet(p):
     return ''.join(parts)
 
 
+def rear_elevation_sheet(p):
+    parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("ELE-002-R04","FACHADA POSTERIOR · SERVICIOS Y NIVEL PRIVADO","Dos salidas PB + ventanas controladas de P2 · posición final sujeta a fachada, estructura y predio")]
+    left, base, sc = 140, 645, 62
+    width, height = 18*sc, 7.5*sc
+    top=base-height
+    parts.append('<defs><pattern id="metalr" width="16" height="16" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="16" stroke="#8e9799" stroke-width=".8"/></pattern></defs>')
+    parts.append(rect(left,top,width,height,fill="#aeb5b6",stroke="#172126",stroke_width="4"))
+    parts.append(rect(left,top,width,height,fill="url(#metalr)",stroke="none",opacity=".65"))
+    parts.append(f'<line x1="{left}" y1="{top+10}" x2="{left+width}" y2="{top}" stroke="#e7e9e7" stroke-width="4"/>')
+    # Doors correspond to bodega and protected stair discharge.
+    for d in p["exterior_doors"]:
+        x=left+(d["y"]-.5)*sc
+        w=d["width"]*sc
+        h=(2.40 if d["id"]=="EXT-ESC" else 2.30)*sc
+        y=base-h
+        fill="#37454a" if d["id"]=="EXT-ESC" else "#59666a"
+        parts.append(rect(x,y,w,h,fill=fill,stroke="#172126",stroke_width="2.5"))
+        label="DESCARGA ESCALERA" if d["id"]=="EXT-ESC" else "SALIDA BODEGA"
+        parts.append(text(x+w/2,y+h/2,label,8,weight=700,fill="#f5f3ed"))
+    # P2 windows: principal and wellness reserves, aligned above PB.
+    for a,b,label in ((1.0,6.5,"SUITE PRINCIPAL"),(13.0,17.0,"WELLNESS")):
+        x=left+a*sc; w=(b-a)*sc; y=top+58; h=1.65*sc
+        parts.append(rect(x,y,w,h,fill="#426671",stroke="#172126",stroke_width="2.2"))
+        for m in range(1,max(1,int((b-a)/1.25))):
+            xx=x+w*m/max(1,int((b-a)/1.25))
+            parts.append(f'<line x1="{xx}" y1="{y}" x2="{xx}" y2="{y+h}" stroke="#88a2a8"/>')
+        parts.append(text(x+w/2,y+h/2+3,label+" · PROVISIONAL",8,weight=700,fill="#eff5f5"))
+    parts.append(f'<line x1="{left}" y1="{base-3.8*sc}" x2="{left+width}" y2="{base-3.8*sc}" stroke="#6f7a7d" stroke-width="1" stroke-dasharray="7 5"/>')
+    parts.append(text(left+width-8,base-3.8*sc-8,"NIVEL P2 ≈ +3,80",8,"end",700,"#5c676b"))
+    parts.append(rect(left-45,base,width+90,42,fill="#d6d2ca",stroke="#858b89"))
+    parts.append(text(left+width/2,base+27,"FRANJA POSTERIOR DE SERVICIO · drenaje, acceso y paisaje por definir",9,weight=700))
+    elevation_dims(parts,left,base,width,sc,18,"18,00 m")
+    parts.append(note_box("Fachada contenida: los servicios permanecen opacos y el vidrio se concentra en espacios privados. Las ventanas son reservas; orientación, antepechos, control solar y estructura no están congelados."))
+    parts.append('</svg>')
+    return ''.join(parts)
+
+
+def side_elevation_sheet(side):
+    is_a=side=="A"
+    code="ELE-003-R04" if is_a else "ELE-004-R04"
+    title_value=f"FACHADA LATERAL {side} · NAVE DE 36 m"
+    subtitle=("Evento principal de vidrio en sala + ventanas privadas provisionales" if is_a else "Fachada de control: taller/vida doméstica + ventanas privadas provisionales")
+    parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block(code,title_value,subtitle+" · orientación cardinal pendiente de predio")]
+    left,base,sc=105,645,32.5
+    length,height=36*sc,7.5*sc
+    top=base-height
+    parts.append('<defs><pattern id="metals" width="14" height="14" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="14" stroke="#90999b" stroke-width=".7"/></pattern></defs>')
+    parts.append(rect(left,top,length,height,fill="#aeb5b6",stroke="#172126",stroke_width="4"))
+    parts.append(rect(left,top,length,height,fill="url(#metals)",stroke="none",opacity=".65"))
+    parts.append(f'<polyline points="{left},{top+10} {left+length},{top}" fill="none" stroke="#e6e9e7" stroke-width="4"/>')
+    p2x=left+21*sc
+    p2y=base-3.8*sc
+    parts.append(f'<line x1="{p2x}" y1="{top}" x2="{p2x}" y2="{base}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
+    parts.append(f'<line x1="{p2x}" y1="{p2y}" x2="{left+length}" y2="{p2y}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
+    parts.append(text(p2x+7.5*sc,p2y-9,"P2 POSTERIOR · 15,00 m",9,weight=700,fill="#59666a"))
+    # PB glazing: A carries the primary event; B remains a reversible alternative.
+    gx=left+16.2*sc; gw=4.3*sc; gy=base-3.15*sc; gh=3.15*sc
+    if is_a:
+        parts.append(rect(gx,gy,gw,gh,fill="#416771",stroke="#172126",stroke_width="2.5"))
+        for i in range(1,4):
+            xx=gx+gw*i/4
+            parts.append(f'<line x1="{xx}" y1="{gy}" x2="{xx}" y2="{base}" stroke="#8aa4a9"/>')
+        parts.append(text(gx+gw/2,gy+gh/2,"EVENTO PRINCIPAL SALA",9,weight=700,fill="#eff5f5"))
+    else:
+        parts.append(rect(gx,gy,gw,gh,fill="none",stroke="#27859a",stroke_width="2",stroke_dasharray="9 5"))
+        parts.append(text(gx+gw/2,gy+gh/2,"ALTERNATIVA SEGÚN PREDIO",8,weight=700,fill="#246b7a"))
+    # Workstation opening toward the chosen landscape side.
+    wx=left+13.0*sc; wy=base-2.35*sc; ww=3.0*sc; wh=1.65*sc
+    parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2"))
+    parts.append(text(wx+ww/2,wy+wh/2+3,"TRABAJO "+("1" if is_a else "2"),7,weight=700,fill="#eff5f5"))
+    # P2 bedroom windows differ by side but retain few, repeated openings.
+    wins=((22.0,25.8,"HIJO 1"),(33.0,35.5,"PRINCIPAL")) if is_a else ((21.8,26.5,"HIJO 2"),(27.8,32.3,"HUÉSPEDES"))
+    for a,b,label in wins:
+        x=left+a*sc; w=(b-a)*sc; y=top+45; h=1.55*sc
+        parts.append(rect(x,y,w,h,fill="#426671",stroke="#172126",stroke_width="2"))
+        parts.append(text(x+w/2,y+h/2+3,label+" · PROVISIONAL",7,weight=700,fill="#eff5f5"))
+    # Downpipes as coordinated vertical elements, not final positions.
+    for mx in (10.5,21.0,31.5):
+        x=left+mx*sc
+        parts.append(f'<line x1="{x}" y1="{top+15}" x2="{x}" y2="{base}" stroke="#536166" stroke-width="3"/>')
+        parts.append(f'<rect x="{x-5}" y="{base-18}" width="10" height="18" fill="#536166"/>')
+    parts.append(rect(left-25,base,length+50,38,fill="#d6d2ca",stroke="#858b89"))
+    parts.append(text(left+length/2,base+25,"COTA EXTERIOR / DRENAJE PERIMETRAL PENDIENTE DE TOPOGRAFÍA",8,weight=700))
+    # Band dimensions 10.5 + 10.5 + 10.5 + 4.5.
+    dimy=base+90
+    parts.append(f'<line x1="{left}" y1="{dimy}" x2="{left+length}" y2="{dimy}" stroke="#536166"/>')
+    bounds=(0,10.5,21,31.5,36)
+    labels=("10,50 técnica","10,50 monumental","10,50 doméstica","4,50 núcleo")
+    for i,b in enumerate(bounds):
+        x=left+b*sc
+        parts.append(f'<line x1="{x}" y1="{dimy-7}" x2="{x}" y2="{dimy+7}" stroke="#536166"/>')
+        if i<len(labels):
+            parts.append(text(left+(bounds[i]+bounds[i+1])/2*sc,dimy-9,labels[i],8))
+    parts.append(text(left+length/2,dimy+27,"36,00 m",11,weight=700))
+    parts.append(note_box("La posición de vidrio, ventanas, bajantes y panelización es una hipótesis coordinable. No adoptar orientación cardinal, protección solar ni huecos definitivos antes de seleccionar el predio."))
+    parts.append('</svg>')
+    return ''.join(parts)
+
+
+def elevation_dims(parts,left,base,width,sc,total,label):
+    dimy=base+100
+    parts.append(f'<line x1="{left}" y1="{dimy}" x2="{left+width}" y2="{dimy}" stroke="#536166"/>')
+    parts.append(f'<line x1="{left}" y1="{dimy-7}" x2="{left}" y2="{dimy+7}" stroke="#536166"/><line x1="{left+width}" y1="{dimy-7}" x2="{left+width}" y2="{dimy+7}" stroke="#536166"/>')
+    parts.append(text(left+width/2,dimy-9,label,10,weight=700))
+
+
+def note_box(message):
+    return rect(140,790,1116,62,fill="#fff4df",stroke="#bd5c3c")+text(160,814,"NOTA DE COORDINACIÓN",11,"start",700,"#8e3825")+text(160,836,message,8,"start")
+
+
 def core_sheet(p):
     parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("DET-001-R04","DETALLE AMPLIADO · NÚCLEO POSTERIOR PB","Planta de coordinación 1:50 conceptual · áreas netas provisionales con cerramientos de estudio")]
     x0,y0,sc=300,115,36
@@ -453,6 +563,9 @@ def main():
     outputs={
         "DH-ARQ-PLN-001-R04_PB-DETALLADA.svg":plan_sheet(p),
         "DH-ARQ-ELE-001-R04_FACHADA-FRONTAL.svg":front_elevation_sheet(p),
+        "DH-ARQ-ELE-002-R04_FACHADA-POSTERIOR.svg":rear_elevation_sheet(p),
+        "DH-ARQ-ELE-003-R04_FACHADA-LATERAL-A.svg":side_elevation_sheet("A"),
+        "DH-ARQ-ELE-004-R04_FACHADA-LATERAL-B.svg":side_elevation_sheet("B"),
         "DH-ARQ-ELE-INT-001-R04_GRAN-MURO.svg":wall_elevation_sheet(p),
         "DH-ARQ-DET-001-R04_NUCLEO-PB.svg":core_sheet(p)
     }

@@ -74,6 +74,18 @@ La fachada exterior conserva la composición canónica exacta:
 
 La lámina separada evita confundir esta fachada con el gran muro interior posterior.
 
+## Juego de cuatro fachadas exteriores
+
+La emisión incorpora frontal, posterior y dos laterales. Mientras no exista predio, los
+laterales se denominan **A** y **B**, no norte/sur. La fachada posterior representa las
+salidas propias de bodega y escalera, más reservas controladas de ventanas del nivel
+privado. Los laterales muestran la longitud real de 36 m, la doble altura delantera, el
+inicio de P2 en X=21 m y ventanas provisionales.
+
+Solo la fachada frontal tiene composición congelada en cuanto al número y orden de
+accesos. Los vidrios laterales, ventanas posteriores, bajantes y control solar permanecen
+sujetos a orientación, vistas, clima, estructura y predio.
+
 ## Cocina
 
 La isla de prueba mide 3,60 × 1,20 m, con cuatro puestos. Se representan 1,20 m de paso
@@ -106,6 +118,9 @@ shafts de P2, orientación y predio.
 
 - `planos/conceptual_v0.3_b05_pb/DH-ARQ-PLN-001-R04_PB-DETALLADA.svg`
 - `planos/conceptual_v0.3_b05_pb/DH-ARQ-ELE-001-R04_FACHADA-FRONTAL.svg`
+- `planos/conceptual_v0.3_b05_pb/DH-ARQ-ELE-002-R04_FACHADA-POSTERIOR.svg`
+- `planos/conceptual_v0.3_b05_pb/DH-ARQ-ELE-003-R04_FACHADA-LATERAL-A.svg`
+- `planos/conceptual_v0.3_b05_pb/DH-ARQ-ELE-004-R04_FACHADA-LATERAL-B.svg`
 - `planos/conceptual_v0.3_b05_pb/DH-ARQ-ELE-INT-001-R04_GRAN-MURO.svg`
 - `planos/conceptual_v0.3_b05_pb/DH-ARQ-DET-001-R04_NUCLEO-PB.svg`
 - `planos/conceptual_v0.3_b05_pb/compliance.json`

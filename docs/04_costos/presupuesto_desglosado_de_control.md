@@ -449,7 +449,7 @@ son órdenes de magnitud de investigación; ningún ahorro se contabiliza hasta 
 | # | Oportunidad | Partidas afectadas | Control actual | Potencial estimado | Riesgo | Acción |
 |---|---|---|---|---|---|---|
 | 1 | Modulación bays 6 m, perfiles estándar, acero S355 en principales | 05.01, 05.02, 06.01–06.03 | $200 M | −$15 a −$30 M | bajo | Predimensionar 3 modulaciones (D-019) |
-| 2 | Envolvente por capas (teja + lana facing + liner) vs. panel aislado | 08.01, 09.01 | $165 M | −$15 a −$30 M | medio-alto (condensación) | Cotizar local + punto de rocío (D-020) |
+| 2 | Envolvente por capas (teja + lana facing + liner) vs. panel aislado — **precios verificados** [V] | 08.01, 09.01 | $165 M | −$20 a −$35 M | medio-alto (condensación) | Doble hoja FLA020 $91.466/m² vs. panel FLA030 $152.266/m²; ver `tecnicas_que_abaratan_costos.md` §3.2.1; cotizar local + punto de rocío (D-020) |
 | 3 | Geotecnia temprana; espesor y refuerzo realistas; engrosamiento local | 03.01–03.03, 04.02, 04.09 | $125 M | −$5 a −$15 M | bajo | Estudio de suelo antes de PE-1 |
 | 4 | Vidrio/portones en medidas estándar con 2–3 cotizaciones | 11.01–11.03, 12.01, 13.01 | $82 M | −$5 a −$10 M | bajo | Cotizaciones comparables PE-2 |
 | 5 | No climatizar la nave; HVLS + calefacción local; iluminación por capas | 17.03, 17.04, 19.02, 19.04 | $67 M | −$5 a −$10 M | bajo | Modelo térmico por zonas |
@@ -477,6 +477,8 @@ CYPE Colombia / proveedores el **2026-08-11** (ver [auditoría](auditoria_de_cos
 | Concreto cimentación (m³) | $730.000 | [V] $520.984,68 (21 MPa) / $727.665 (zapata armada) | ≈0 % | Alineado (zapata); el 21 MPa del desglose es más caro que la referencia |
 | Losa PB (648 m², sistema completo) | ≈$128.000/m² | [V] $177.239,20/m² (piso industrial RSI007) | menor | La losa es a la vez estructura; desglose más delgado (15 cm, pulido parcial) |
 | Panel sándwich fachada (m²) | $140.000 | [V] $152.266,44 (FLA030) | **−8 %** | **Subestimado**; cotizar antes de PE-2 (sin perfiles térmicos) |
+| Fachada por capas / doble hoja (m²) | — (alternativa) | [V] $91.465,77 (FLA020, bandeja + lana 100 mm + lámina) | −40 % vs. panel | **Oportunidad de ahorro** §3.2.1 de `tecnicas_que_abaratan_costos.md`; requiere barrera de vapor lado cálido |
+| Fachada simple de lámina (m²) | — (sin aislamiento) | [V] $29.438,34 (FLA010) | −81 % vs. panel | Solo para zonas no acondicionadas o secundarias |
 | Panel sándwich cubierta (m²) | $101.000 | [V] $101.009,74 (QTM010) | ≈0 % | Alineado |
 | Evento principal de vidrio (m²) | $1.180.000 | [V] $1.290.363,67 (muro cortina FMC010) | **−8 % a −20 %** | Subestimado si el evento escala a muro cortina o vidrio templado |
 | Metaldeck P2 (m²) | $152.000 | [V] $150.399,51 (EHX011) | ≈0 % | Alineado |

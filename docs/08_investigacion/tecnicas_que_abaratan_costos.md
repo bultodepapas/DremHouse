@@ -224,6 +224,60 @@ luz y aguanta impacto en el taller; la lana con facing cuesta menos y se instala
 correas y girts. Esta comparación debe hacerse con precios locales (Construdata /
 proveedores de Boyacá), no con los rangos USD genéricos.
 
+### 3.2.1 Precios colombianos verificados (CYPE Colombia, acceso 11-08-2026)
+
+La [auditoría de costos 2026-08](../04_costos/auditoria_de_costos_2026_08.md) re-consultó en
+vivo las referencias CYPE que cierran la comparación con precios locales:
+
+| Sistema de fachada (0,6 mm + aislamiento) | Ref. CYPE | Costo/m² | Delta vs. panel |
+|---|---:|---:|---:|
+| Fachada simple de lámina perfilada de acero (sin aislamiento) | FLA010 | $29.438 | −81 % |
+| Fachada de doble hoja: bandeja + lana de vidrio 100 mm (R=2,25) + lámina | FLA020 | $91.466 | **−40 %** |
+| Panel sándwich aislante 50 mm, lana de roca, fijación oculta | FLA030 | $152.266 | base |
+| Cubierta sándwich 50 mm, lana de roca | QTM010 | $101.010 | — |
+| Cubierta de lámina perfilada simple (sin aislamiento) | QTA010 | ≈$29.000–31.000 (estimado de FLA010) | — |
+
+**Aplicado a la envolvente real de la nave (fachada neta ≈680 m², cubierta ≈660 m²):**
+
+| Escenario | Fachada (680 m²) | Cubierta (660 m²) | Total envolvente |
+|---|---:|---:|---:|
+| Control v0.2 (panel sándwich en ambas) | $95 M | $70 M | **$165 M** |
+| Fachada por capas (doble hoja FLA020) + barrera de vapor/separadores térmicos/remates (+$8–12 k/m²) | **$70–75 M** | $70 M | **$140–145 M** |
+| Envolvente por capas en fachada **y** cubierta (lámina + lana facing + liner) | **$70–75 M** | **$59–63 M** | **≈$130–140 M** |
+
+**Conclusión de cantidades:** el ahorro real de la envolvente por capas está **en la fachada
+(−$20–25 M)**, no tanto en la cubierta (−$7–10 M, porque el sándwich QTM010 ya cotiza bajo).
+El total potencial **$165 M → ≈$130–140 M (−$25–35 M)** confirma el radar v0.2 (oportunidad
+#2, −$15 a −$30 M) y lo sube al borde superior con la doble hoja.
+
+**Requisitos no negociables si se adopta (clima frío de Boyacá):**
+- Barrera de vapor/facing en el **lado cálido (interior)**: el FLA020 no la incluye; hay que
+  sumarla (cinta de sellado de vapor en todas las costuras).
+- Separadores térmicos en girts/correas: el acero de la estructura reduce el R efectivo
+  30–50 % si no se interrumpe (BSD-163).
+- Lana con facing clase I o II solo en un lado del ensamble; nunca en ambos.
+- La fachada de doble hoja con lámina exterior **refuerza la lectura industrial de nave**,
+  coherente con la constitución; el liner/bandeja interior da acabado plano y limpio.
+
+### 3.2.2 Economía del vidrio y los lucernarios (respuesta a "más vidrio")
+
+El vidrio es el material **más caro por m²** de toda la envolvente: muro cortina CYPE FMC010
+verificado en **$1.290.364/m²** — es decir **8–14 veces** el costo del panel sándwich
+($152 k/m²) o de la doble hoja ($91 k/m²). Por tanto:
+
+- **Aumentar fachada de vidrio encarece la envolvente**, no la abarata: 1 m² más de muro
+  cortina equivale a ~8–14 m² de envolvente opaca por capas. La constitución descartó además
+  "fachadas indiscriminadamente acristaladas" (hard rule) y D-013 fija "pocos eventos de vidrio
+  de alto impacto".
+- **La vía barata de "más luz" son lucernarios/tragaluces de policarbonato celular** en
+  cubierta o paneles translúcidos de policarbonato en la zona monumental: rango orientativo
+  $250–400 k/m² instalado — mucho menor que muro cortina, y se financia con una fracción del
+  ahorro de la envolvente por capas. Ejemplo: 20 m² de lucernarios = $5–8 M, cubiertos por el
+  ahorro de la fachada por capas.
+- El gran evento de vidrio (28 m²) sigue siendo hard rule: optimizar dimensión y especificación
+  (ventana fija industrial, no muro cortina) para mantenerse cerca de $1,18 M/m², y destinar
+  cualquier ahorro neto de envolvente a luz estratégica si el propietario lo desea.
+
 ### 3.3 Aislamiento continuo vs. cavidad en clima frío
 
 Según Building Science (BSD-163), en clima frío el **aislamiento continuo exterior
