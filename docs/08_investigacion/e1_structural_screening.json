@@ -6,7 +6,7 @@
     "date": "2026-08-12",
     "purpose": "Expose E1 member, joint, stability, diaphragm, vertical-continuity, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
   },
-  "input_sha256": "225f10ac3fe38431eeb8381ef55bab8bc70b42324b74452cc1d0cdff6d72074f",
+  "input_sha256": "0a8dcd56e2e85470d54ee75eee9cf5918bdb47d649fd630f93b31b5336069f1c",
   "reference_truss": {
     "role": "neutral_M60_test_specimen_not_a_selected_system",
     "candidate": {
@@ -396,7 +396,7 @@
               "relation": "boundary"
             },
             {
-              "space_id": "M-V",
+              "space_id": "ARR",
               "relation": "boundary"
             },
             {
@@ -419,7 +419,7 @@
           "existing_to_p2": true,
           "space_relations": [
             {
-              "space_id": "M-V",
+              "space_id": "ARR",
               "relation": "boundary"
             },
             {

@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+from itertools import pairwise
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -404,7 +405,6 @@ def rear_elevation_sheet(p):
     # El eje horizontal de esta lámina mapea Y=0 → izquierda, igual que la fachada frontal:
     # ambas derivan el perfil de cubierta de la misma fuente para no poder contradecirse.
     a_top, b_top, a_txt, b_txt = roof_profile(p, sc, base)
-    top=min(a_top, b_top)
     parts.append('<defs><pattern id="metalr" width="16" height="16" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="16" stroke="#8e9799" stroke-width=".8"/></pattern></defs>')
     parts.append(f'<polygon points="{left},{base} {left},{a_top} {left+width},{b_top} {left+width},{base}" fill="#aeb5b6" stroke="#172126" stroke-width="4"/>')
     parts.append(f'<line x1="{left}" y1="{a_top}" x2="{left+width}" y2="{b_top}" stroke="#e7e9e7" stroke-width="4"/>')
@@ -527,7 +527,7 @@ def side_elevation_sheet(p,side):
         x=left+b*sc
         parts.append(f'<line x1="{x}" y1="{dimy-7}" x2="{x}" y2="{dimy+7}" stroke="#536166"/>')
         if i<len(labels):
-            parts.append(text(left+(bounds[i]+bounds[i+1])/2*sc,dimy-9,labels[i],8))
+            parts.append(text(left+(b+bounds[i+1])/2*sc,dimy-9,labels[i],8))
     parts.append(text(left+length/2,dimy+27,"36,00 m",11,weight=700))
     parts.append(note_box("La posición de vidrio, ventanas, bajantes y panelización es una hipótesis coordinable. No adoptar orientación cardinal, protección solar ni huecos definitivos antes de seleccionar el predio."))
     parts.append('</svg>')
@@ -553,7 +553,6 @@ def core_sheet(p):
     colors={"service":"#ded5ba","storage":"#ccd3cb","stair":"#d3c5b8","wet":"#bdd6d3","technical":"#c2d0cb"}
     clear_depth=p["design_values"]["core_depth_clear"]
     ext=p["envelope"]["exterior_wall"]
-    partition=p["design_values"]["partition_standard"]
     for room in p["core"]:
         yy=y0+room["y0"]*sc
         hh=(room["y1"]-room["y0"])*sc
@@ -630,14 +629,14 @@ def validate(p):
     checks.append(("PB-ENV",p["envelope"]["length"]==36 and p["envelope"]["width"]==18,"Envolvente nominal 18 × 36 m"))
     checks.append(("PB-FRONT",len(p["front_openings"])==3,"Exactamente tres accesos frontales"))
     checks.append(("PB-CORE-SUM",abs(sum(r["gross_area"] for r in core)-81)<1e-6,"Núcleo conserva 81,00 m² brutos"))
-    checks.append(("PB-CORE-COVER",abs(core[0]["y0"])<1e-6 and abs(core[-1]["y1"]-18)<1e-6 and all(abs(a["y1"]-b["y0"])<1e-6 for a,b in zip(core,core[1:])),"Núcleo cubre los 18,00 m sin vacíos"))
+    checks.append(("PB-CORE-COVER",abs(core[0]["y0"])<1e-6 and abs(core[-1]["y1"]-18)<1e-6 and all(abs(a["y1"]-b["y0"])<1e-6 for a,b in pairwise(core)),"Núcleo cubre los 18,00 m sin vacíos"))
     # Cierre de áreas del núcleo: lo dibujado debe sumar 18,00 m con los espesores declarados.
     ext=p["envelope"]["exterior_wall"]; dv=p["design_values"]
     nets=[core_net_y(r,p) for r in core]
     net_sum=sum(b-a for a,b in nets)
     gap_sum=sum(nets[i+1][0]-nets[i][1] for i in range(len(nets)-1))
     wrong=[]
-    for i,(a,b) in enumerate(zip(core,core[1:])):
+    for i,(a,b) in enumerate(pairwise(core)):
         want=dv["partition_stair"] if abs(a["y1"]-7.4)<1e-9 or abs(a["y1"]-11.0)<1e-9 else dv["partition_standard"]
         got=nets[i+1][0]-nets[i][1]
         if abs(got-want)>1e-6: wrong.append(f'{a["id"]}|{b["id"]} {got:.3f} m ≠ {want:.2f} m declarados')
@@ -658,28 +657,28 @@ def validate(p):
     required={"GLZ-H1","GLZ-H2","GLZ-G","GLZ-M-R"}
     checks.append(("P2-BEDROOM-GLAZING",required.issubset({g["id"] for g in bedrooms}) and all(g["height"]>=2.65 and g["sill"]<=.10 for g in bedrooms),"Cuatro dormitorios representan vidrio casi piso a techo"))
     # Los vanos de dormitorio se dibujan en dos emisiones distintas (elevaciones aquí,
-    # planta en b06) y deben describir la misma ventana. Sin este cruce, b05 y b06
+    # planta P2 activa) y deben describir la misma ventana. Sin este cruce, b05 y P2
     # llegaron a poner el paño dominante en fachadas opuestas (hallazgo H-06).
     edge_of={"A":"south","B":"north","REAR":"east"}
     pair={"GLZ-H1":"W-H1","GLZ-H2":"W-H2","GLZ-G":"W-G","GLZ-M-A":"W-M-LAT-A","GLZ-M-R":"W-M-REAR"}
     room_of={"GLZ-H1":"H1-D","GLZ-H2":"H2-D","GLZ-G":"G-D","GLZ-M-A":"M-D","GLZ-M-R":"M-D"}
     try:
-        p2=json.loads(DATA.with_name("p2_b06.json").read_text(encoding="utf-8"))
+        p2=json.loads(DATA.with_name("p2_b09.json").read_text(encoding="utf-8"))
     except OSError:
         p2=None
     if p2 is None:
-        checks.append(("PB-P2-WINDOW-SYNC",False,"No se pudo leer p2_b06.json para el chequeo cruzado"))
-        checks.append(("PB-GLAZING-IN-ROOM",False,"No se pudo leer p2_b06.json para verificar contención"))
+        checks.append(("PB-P2-WINDOW-SYNC",False,"No se pudo leer p2_b09.json para el chequeo cruzado"))
+        checks.append(("PB-GLAZING-IN-ROOM",False,"No se pudo leer p2_b09.json para verificar contención"))
     else:
         w2={w["id"]:w for w in p2["windows"]}; sp2={z["id"]:z for z in p2["spaces"]}
         diffs=[]
         for g in bedrooms:
             o=w2.get(pair.get(g["id"],""))
             if o is None:
-                diffs.append(f'{g["id"]} sin pareja en b06'); continue
+                diffs.append(f'{g["id"]} sin pareja en b09'); continue
             if o["edge"]!=edge_of[g["facade"]] or abs(o["from"]-g["from"])>1e-6 or abs(o["to"]-g["to"])>1e-6 or abs(o["height"]-g["height"])>1e-6:
                 diffs.append(f'{g["id"]} ({g["facade"]} {g["from"]}–{g["to"]}) ≠ {o["id"]} ({o["edge"]} {o["from"]}–{o["to"]})')
-        checks.append(("PB-P2-WINDOW-SYNC",not diffs,"Vanos de dormitorio idénticos en pb_b05.json y p2_b06.json" if not diffs else "DIVERGENCIA b05↔b06: "+" · ".join(diffs)))
+        checks.append(("PB-P2-WINDOW-SYNC",not diffs,"Vanos de dormitorio idénticos en pb_b05.json y p2_b09.json" if not diffs else "DIVERGENCIA b05↔b09: "+" · ".join(diffs)))
         # Un vano no puede desbordar el muro del recinto que ilumina: el paño posterior
         # de 5,50 m metía 2,30 m de vidrio piso-techo dentro del vestidor principal.
         bad=[]

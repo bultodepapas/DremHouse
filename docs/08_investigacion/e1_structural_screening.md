@@ -3,7 +3,7 @@
 **Status:** research screening complete; design remains blocked
 **Version:** 0.2
 **Date:** 2026-08-12
-**Input SHA-256:** `225f10ac3fe38431eeb8381ef55bab8bc70b42324b74452cc1d0cdff6d72074f`
+**Input SHA-256:** `0a8dcd56e2e85470d54ee75eee9cf5918bdb47d649fd630f93b31b5336069f1c`
 **Authority:** not for system selection, pricing, fabrication, or construction
 
 ## Reference test specimen

@@ -43,7 +43,7 @@ from .vertical_continuity import evaluate_vertical_continuity
 
 DEFAULT_E1_SPACE = Path(__file__).with_name("e1_screening_space.json")
 DEFAULT_PB = ROOT / "dreamhouse/pb_b05.json"
-DEFAULT_P2 = ROOT / "dreamhouse/p2_b06.json"
+DEFAULT_P2 = ROOT / "dreamhouse/p2_b09.json"
 DEFAULT_JSON_OUTPUT = ROOT / "docs/08_investigacion/e1_structural_screening.json"
 DEFAULT_REPORT_OUTPUT = ROOT / "docs/08_investigacion/e1_structural_screening.md"
 

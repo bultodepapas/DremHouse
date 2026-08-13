@@ -1,0 +1,14 @@
+{
+  "revision": "0.3-draft-09-P2",
+  "status": "active schematic coordination hypothesis; not for construction",
+  "source": "dreamhouse/p2_b09.json",
+  "source_sha256": "ac38156ff6e61e62420f769d6a4a6488c2f34e0b3cb5a2ac709bb942771d569c",
+  "generator": "dreamhouse/generate_p2_b09.py",
+  "supersedes": "0.3-borrador-06-P2 / R05",
+  "outputs": [
+    "DH-ARQ-PLN-002-R08_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R08_P2-ACCESS-EGRESS.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

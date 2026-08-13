@@ -1,10 +1,11 @@
 # Decision Register
 
 **Status:** active  
-**Version:** 0.10
-**Date:** 2026-08-12  
+**Version:** 0.11
+**Date:** 2026-08-13
 **Language note:** controlled English translation under D-044; decision content unchanged
-except for the additions of D-044 to D-048.
+except for the additions of D-044 to D-049 and the explicit supersession statuses of
+D-026 and D-037.
 
 | ID | Decision | Status | Source/date |
 |---|---|---|---|
@@ -24,7 +25,7 @@ except for the additions of D-044 to D-048.
 | D-014 | Kitchen below P2 and close to the core | Active | Critical review / plan v0.2 |
 | D-015 | Working cost target of approximately COP 988.05 million | Active with critical reservation | Budget v0.2 |
 | D-016 | Two-stage construction: F1 includes the primary suite and one child's suite; F2 includes the second child's suite, guest suite, sauna, and automotive lift | Active schematic-design basis | Owner, 2026-08-11 |
-| D-026 | Adopt b04/R03 as the active coordination hypothesis while retaining b03/R02 as its predecessor | Active | Owner instruction and architectural review, 2026-08-11 |
+| D-026 | Adopt b04/R03 as the active coordination hypothesis while retaining b03/R02 as its predecessor | Superseded by later discipline-specific revisions; its P2 spatial centre is selectively carried into D-049 | Owner instruction and architectural review, 2026-08-11 |
 | D-027 | Place the entire deferred P2 area behind a single transverse boundary at Y=11.00 m | Active as a phasing DCV | b04 review, 2026-08-11 |
 | D-028 | Treat the stair as a protected enclosure with direct discharge to the rear; a second exit remains subject to a regulatory fire and life-safety assessment | Active with critical reservation | b04 review, 2026-08-11 |
 | D-029 | Clear the pedestrian axis and the front of the core; use a 3.60 × 1.20 m island as the new test envelope, not as a frozen dimension | Active as a hypothesis | b04 review, 2026-08-11 |
@@ -35,7 +36,7 @@ except for the additions of D-044 to D-048.
 | D-034 | Use 0.18 m for exterior walls, 0.20 m for the Great Wall/stair enclosure, and 0.15 m for partitions as study thicknesses, not IFC specifications | Active as a provisional DCV | PB b05 review, 2026-08-11 |
 | D-035 | Introduce two test side windows, each 7.20 × 2.90 m, with a coordinated module and a 0.90 m sill | Active façade hypothesis | Owner instruction / PB b05 review, 2026-08-11 |
 | D-036 | Develop near-floor-to-ceiling bedroom windows: 2.70 m high, with a 0.10 m technical sill and lower fall protection | Active façade hypothesis | Owner instruction / b05 review, 2026-08-11 |
-| D-037 | Adopt b06/R05 as the active P2-specific hypothesis: enlarged primary suite, acoustically enclosed hall and mini deck, deferred bathrooms with 2.00 m clear depth, and integrated wellness area | Active coordination hypothesis | Owner instruction / P2 b06 review, 2026-08-11 |
+| D-037 | Adopt b06/R05 as the active P2-specific hypothesis: enlarged primary suite, acoustically enclosed hall and mini deck, deferred bathrooms with 2.00 m clear depth, and integrated wellness area | Superseded by D-049; retained as a traceable predecessor | Owner instruction / P2 b06 review, 2026-08-11 |
 | D-038 | Maintain the single F1/F2 boundary at Y=11.00 m, requiring a weather- and air-tight temporary closure while leaving the need for a second P2 exit open | Active with critical reservation | P2 b06 review, 2026-08-11 |
 | D-039 | Reinstate the canonical single transverse roof pitch: approximately 7.20 m at the low side, 7.80 m at the high side, and a preliminary rise of 0.60/18.00 ≈ 3.33%; low side A/high side B may be reversed once the site and drainage strategy are known | Active as a provisional DCV | Concept source §§27–29 / roof b07 review, 2026-08-11 |
 | D-040 | Introduce two 2.40 × 4.80 m glazed rooflights over the project-car and RC workshops within the double-height volume; this is an explicit exception to the default no-rooflight criterion | Active requested hypothesis | Owner / rooflight b08 review, 2026-08-11 |
@@ -47,6 +48,7 @@ except for the additions of D-044 to D-048.
 | D-046 | Add a structural-exploration layer that remains separate from the canonical E0 model: generate explicit roof-truss candidates, enumerate catalogue profiles deterministically, retain non-dominated alternatives through declared Pareto metrics, and preserve rejected candidates and an input hash. Optimization results may inform E1 but cannot select D-019, modify geometry, establish quantities for pricing, or authorize fabrication/construction without competent structural-engineer review. | Active computational-workflow rule; structural alternatives remain research hypotheses | Explicit owner instruction to proceed after optimization research, 2026-08-12 |
 | D-047 | Extend the separate structural-exploration layer with fail-closed E1 gates for HSS local/biaxial member stability, chord load-introduction bending, axial–flexural interaction, member second-order sensitivity, generic connection components, diaphragm demand, elevated-temperature sensitivity, erection/lifting, and foundation sensitivity. A passing component screen does not resolve the system: D-019, PE-1 quantities, procurement, fabrication, or construction remain blocked until site actions, the three-dimensional lateral model, manufacturer deck data, complete HSS joints, D-021 fire criteria, erection engineering, geotechnical parameters, anchors, and reinforced-concrete foundations are approved by the responsible professionals. The M60 Warren specimen is a neutral computational test and not a selected structural scheme. | Active computational-gate rule; no structural system, profile, joint, deck, fire protection, erection method, or foundation adopted | Explicit owner instruction to continue the missing E1 checks, 2026-08-12 |
 | D-048 | Study a continuous four-column steel frame around the protected stair enclosure, from foundations through P2 to roof level. Reuse the two existing Great Wall stair-jamb lines at (31.50, 7.40) and (31.50, 11.00) and add rear lines at (36.00, 7.40) and (36.00, 11.00), subject to the architectural, egress, fire, structural, erection, and foundation gates recorded in E1. Treat the enclosure frame—not the stair flights or stringers—as the preferred primary-system study. Stair connections must accommodate relative drift unless their stiffness and forces are explicitly included in the global model. Reaching roof level does not assign roof gravity support; P2/roof collector roles and the complete orthogonal lateral system remain unresolved. | Active geometry and structural-coordination hypothesis; no section, bracing topology, collector, joint, base, foundation, fire protection, or lateral system selected | Explicit owner proposal and structural geometry audit, 2026-08-12 |
+| D-049 | Adopt b09/R08 as the active P2 coordination hypothesis, superseding b06/R05 while retaining it as a traceable predecessor. Restore the b04/R03 spatial centre—acoustic mini deck, family lounge/library, private gallery, laundry, and shared protected stair arrival—while retaining the verified b06 controls for child-bedroom equivalence, the Phase 2 lobby, guest/wellness sizing, and declared net/gross measurement bases. Require explicit door topology and whole-floor connectivity to the protected stair, and preserve the four D-048 stair-enclosure column coordinates. This decision does not resolve the undersized primary bathroom/dressing room, second independent exit, X=21 edge-truss interface, site orientation, or fire/life-safety design. | Active schematic coordination hypothesis; not for construction | Explicit owner preference and instruction to issue a new version, 2026-08-13 |
 
 ## Decisions to open next
 
@@ -70,7 +72,7 @@ Use the [decision template](../07_plantillas/decision.md) for every new entry.
 |---|---|---|
 | 2026-08-11 | Identifier `D-037` had been assigned to two different decisions. `D-037` remains assigned to adoption of P2 b06/R05, continuing the sequence from D-036 to D-038; the steel-structure basis becomes **D-041**. | Finding H-15 in the [coordination review](../02_arquitectura/revision_coordinacion_v0.3_2026_08.md). Document precedence relies on unique decision identifiers. |
 
-**Next available identifier: `D-049`.** The D-017 to D-025 range remains reserved for the
+**Next available identifier: `D-050`.** The D-017 to D-025 range remains reserved for the
 pending decisions listed above.
 
 ## Hard rules modified by a later decision

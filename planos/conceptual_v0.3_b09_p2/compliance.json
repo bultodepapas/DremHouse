@@ -1,0 +1,108 @@
+{
+  "revision": "0.3-draft-09-P2",
+  "passed": 16,
+  "open": 4,
+  "failed": 0,
+  "checks": [
+    {
+      "rule_id": "P2-IDS",
+      "status": "PASS",
+      "message": "Space identifiers are unique"
+    },
+    {
+      "rule_id": "P2-FINITE",
+      "status": "PASS",
+      "message": "All room dimensions are finite and positive"
+    },
+    {
+      "rule_id": "P2-ENVELOPE",
+      "status": "PASS",
+      "message": "All spaces remain inside the 18 x 15 m P2 envelope"
+    },
+    {
+      "rule_id": "P2-NO-OVERLAP",
+      "status": "PASS",
+      "message": "No room overlaps"
+    },
+    {
+      "rule_id": "P2-AREA-CLOSURE",
+      "status": "PASS",
+      "message": "Gross room tessellation 270.000 m2 = envelope 270.000 m2"
+    },
+    {
+      "rule_id": "P2-CHILD-EQUAL",
+      "status": "PASS",
+      "message": "D-042 net bedrooms: H1 23.46 m2, H2 23.22 m2, delta 0.24 m2"
+    },
+    {
+      "rule_id": "P2-CHILD-PROPORTION",
+      "status": "PASS",
+      "message": "Child-bedroom ratios 1.04:1 and 1.23:1"
+    },
+    {
+      "rule_id": "P2-CIRCULATION",
+      "status": "PASS",
+      "message": "Narrowest declared circulation is G-ENTRY at 1.20 m clear"
+    },
+    {
+      "rule_id": "P2-PHASING",
+      "status": "PASS",
+      "message": "F1 and F2 meet at one isolatable Y=11.00 m boundary"
+    },
+    {
+      "rule_id": "P2-DOOR-GEOMETRY",
+      "status": "PASS",
+      "message": "All 23 doors/openings lie on the boundaries they connect"
+    },
+    {
+      "rule_id": "P2-ACCESS-GRAPH",
+      "status": "PASS",
+      "message": "Every enclosed space is connected to the protected stair"
+    },
+    {
+      "rule_id": "P2-WINDOWS",
+      "status": "PASS",
+      "message": "Every bedroom window lies on its room's exterior wall"
+    },
+    {
+      "rule_id": "P2-STAIR-ALIGNMENT",
+      "status": "PASS",
+      "message": "Protected stair remains aligned 1:1 with the PB core"
+    },
+    {
+      "rule_id": "P2-D048-COLUMNS",
+      "status": "PASS",
+      "message": "Four D-048 full-height column reservations remain at stair corners"
+    },
+    {
+      "rule_id": "P2-GUEST-PROGRAMME",
+      "status": "PASS",
+      "message": "Guest bedroom, bathroom and wardrobe remain within coordinated programme bands"
+    },
+    {
+      "rule_id": "P2-WELLNESS",
+      "status": "PASS",
+      "message": "Wellness is 16.8 m2 gross and fits a 2.40 m sauna"
+    },
+    {
+      "rule_id": "P2-PRIMARY-PROGRAMME",
+      "status": "OPEN",
+      "message": "Primary bathroom 9.8 m2 and dressing room 9.6 m2 remain below the original 17-18 and 15-16 m2 targets"
+    },
+    {
+      "rule_id": "LIFE-EGRESS-2",
+      "status": "OPEN",
+      "message": "Second independent P2 exit awaits D-021 occupancy and fire review"
+    },
+    {
+      "rule_id": "P2-EDGE-TRUSS",
+      "status": "OPEN",
+      "message": "The X=21 edge truss must preserve the mini-deck view, doors, ceiling and services"
+    },
+    {
+      "rule_id": "P2-SITE-ORIENTATION",
+      "status": "OPEN",
+      "message": "Solar control, privacy and final glazing await the selected site and orientation"
+    }
+  ]
+}

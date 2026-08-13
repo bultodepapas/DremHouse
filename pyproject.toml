@@ -33,7 +33,7 @@ dev = [
 include = ["dreamhouse*"]
 
 [tool.setuptools.package-data]
-"dreamhouse" = ["pb_b05.json", "p2_b06.json", "rooflight_b08.json"]
+"dreamhouse" = ["pb_b05.json", "p2_b06.json", "p2_b09.json", "rooflight_b08.json"]
 "dreamhouse.structure" = ["*.json"]
 
 [tool.ruff]

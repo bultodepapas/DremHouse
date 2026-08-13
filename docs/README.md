@@ -2,7 +2,7 @@
 
 **Status:** active  
 **Version:** 0.3  
-**Date:** 2026-08-12
+**Date:** 2026-08-13
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -36,12 +36,15 @@
 - [Concept plan v0.3 — draft 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 - [Concept plan v0.3 — draft 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
-  active coordination hypothesis; corrects circulation, phasing, the primary suite, and
-  rear stair discharge.
+  predecessor whose preferred upper-floor spatial centre is carried into D-049/R08.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   study wall thicknesses, Great Wall, reorganized core, kitchen, and equipped workshop.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
-  coordinated suites, privacy, phasing, wellness, windows, and egress logic.
+  superseded R05 predecessor; its verified dimensional, phasing, and programme controls
+  are retained in R08.
+- [Coordinated upper floor v0.3 — draft 09](02_arquitectura/plano_p2_coordinado_v0.3_borrador_09.md):
+  active D-049/R08 hypothesis combining b04's spatial centre with b06 controls, explicit
+  door topology, whole-floor access validation, and D-048 stair-column reservations.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):

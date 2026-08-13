@@ -13,10 +13,9 @@ import json
 import re
 import shutil
 import sys
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
-
 
 ROOT = Path(__file__).resolve().parents[2]
 README = ROOT / "README.md"
@@ -47,10 +46,14 @@ RULES = (
     GalleryRule(
         "segundo-piso",
         "Architecture · upper floor",
-        "Privacy anchored at the rear",
-        "Four suites, wellness spaces, and services preserve the front double-height volume and the phase boundary.",
+        "The family centre returns, with explicit access",
+        "The preferred b04 mini-deck, lounge, and gallery are combined with verified suites, phasing, and stair-column coordination.",
         "Detailed Dream House upper-floor technical drawing",
-        lambda name: "PLN-002" in name and "P2" in name and "DETALLADA" in name,
+        lambda name: (
+            "PLN-002" in name
+            and "P2" in name
+            and ("DETALLADA" in name or "COORDINATED" in name)
+        ),
     ),
     GalleryRule(
         "cubierta",
@@ -67,6 +70,22 @@ RULES = (
         "The roof specimen, P2 gravity path, diaphragm, joints, erection, fire, and foundations are integrated without implying design release.",
         "Dream House integrated E1 structural screening drawing",
         lambda name: "SINTESIS-ESTRUCTURAL" in name,
+    ),
+    GalleryRule(
+        "continuidad-vertical",
+        "Engineering · D-048 study",
+        "Four continuous lines around the protected stair",
+        "The protected stair enclosure reserves four foundation-to-roof column lines without assigning a final lateral system.",
+        "Dream House vertical column continuity and stair-enclosure frame study",
+        lambda name: "CONTINUIDAD-VERTICAL-ESCALERA" in name,
+    ),
+    GalleryRule(
+        "pared-hibrida",
+        "Engineering · hybrid wall",
+        "The architectural wall carries a traceable gravity study",
+        "A concealed steel frame gives the Great Wall a coordinated gravity role while its lateral function remains open.",
+        "Dream House concealed Great Wall steel-frame study",
+        lambda name: "PARED-HIBRIDA" in name,
     ),
 )
 

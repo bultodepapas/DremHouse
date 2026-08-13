@@ -46,7 +46,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>41</strong> vector drawings · <strong>49</strong> documents · <strong>39</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>43</strong> vector drawings · <strong>50</strong> documents · <strong>40</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -57,9 +57,9 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><strong>The industrial hall as one continuous room</strong>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/conceptual_v0.3_b06_p2/DH-ARQ-PLN-002-R05_P2-DETALLADA.svg"><img src="planos/conceptual_v0.3_b06_p2/DH-ARQ-PLN-002-R05_P2-DETALLADA.svg" alt="Detailed Dream House upper-floor technical drawing" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-borrador-06-P2</sub>
-  <br><strong>Privacy anchored at the rear</strong>
+  <a href="planos/conceptual_v0.3_b09_p2/DH-ARQ-PLN-002-R08_P2-COORDINATED.svg"><img src="planos/conceptual_v0.3_b09_p2/DH-ARQ-PLN-002-R08_P2-COORDINATED.svg" alt="Detailed Dream House upper-floor technical drawing" width="100%"></a>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-09-P2</sub>
+  <br><strong>The family centre returns, with explicit access</strong>
 </td>
 </tr>
 <tr>
@@ -77,12 +77,12 @@ structure, and performance—not from arbitrary forms or decorative layers.
 <tr>
 <td width="50%" valign="top">
   <a href="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg"><img src="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg" alt="Dream House vertical column continuity and stair-enclosure frame study" width="100%"></a>
-  <br><sub><strong>Engineering · D-048 study</strong> · E1 0.2</sub>
+  <br><sub><strong>Engineering · D-048 study</strong> · 0.3 + E1 0.2</sub>
   <br><strong>Four continuous lines around the protected stair</strong>
 </td>
 <td width="50%" valign="top">
   <a href="planos/estructura/DH-EST-E0-004_PARED-HIBRIDA.svg"><img src="planos/estructura/DH-EST-E0-004_PARED-HIBRIDA.svg" alt="Dream House concealed Great Wall steel-frame study" width="100%"></a>
-  <br><sub><strong>Engineering · hybrid wall</strong> · E0 0.3</sub>
+  <br><sub><strong>Engineering · hybrid wall</strong> · 0.3 + E1 0.2</sub>
   <br><strong>The architectural wall carries a traceable gravity study</strong>
 </td>
 </tr>

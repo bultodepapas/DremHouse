@@ -2,10 +2,10 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.3
-**Date:** 2026-08-12
-**Sources:** D-039, D-040, D-043, D-045, D-046, D-047, D-048; architectural drafts
-b05–b08; `pb_b05.json`; `p2_b06.json`; `structure_system.json`;
+**Version:** 0.4
+**Date:** 2026-08-13
+**Sources:** D-039, D-040, D-043, D-045, D-046, D-047, D-048, D-049;
+architectural drafts b05–b09; `pb_b05.json`; `p2_b09.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
 evidence
 **Approval pending:** responsible structural engineer, architect of record, fire and
@@ -29,6 +29,11 @@ view. It answers three questions:
 D-048 records the owner's new vertical-continuity and stair-frame study direction. It
 does not select the complete structural system or convert the geometry screen into
 professional design.
+
+D-049 changes the active P2 room and door organization but deliberately preserves the
+D-048 stair footprint and four corner coordinates. The structural generators now read
+`p2_b09.json`; their deterministic re-run retains the same four compatible stair-frame
+lines and the previously declared conflicts outside that enclosure.
 
 ## 2. New integrated evidence sheet
 
@@ -203,7 +208,7 @@ declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
 This revision corrects superseded derived statements under the project precedence rules:
 
 - The prior text said that no structural layer existed in the drawings. Dedicated E0
-  structural sheets and the two E1 sheets now exist; architectural b05–b08
+  structural sheets and the two E1 sheets now exist; architectural b05–b09
   remain separate drafts and are not silently converted into structural issue drawings.
 - The prior text described **three** P2 beams, a wall continuing as a shear core, and a
   strip foundation. Those statements were not supported by the active model or later
@@ -213,8 +218,9 @@ This revision corrects superseded derived statements under the project precedenc
   Only the P2 gravity intent is active; trial sections, weights, lateral behavior, and
   foundations remain open.
 
-The corrections remain precedence work. The separate new owner direction is explicitly
-recorded as D-048 rather than hidden in the drawing.
+The corrections remain precedence work. The owner's vertical-continuity direction is
+recorded as D-048, and the later architectural reorganization as D-049, rather than
+being hidden in the drawings.
 
 ## 8. Required progression to design
 

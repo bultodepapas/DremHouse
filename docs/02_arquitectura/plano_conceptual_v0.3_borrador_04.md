@@ -1,6 +1,7 @@
 # Plano conceptual v0.3 — borrador 04
 
-**Estatus:** anteproyecto / hipótesis activa de coordinación; no apto para construir  
+**Estatus:** antecedente de coordinación; su lógica central de P2 se incorpora en D-049 /
+b09-R08; no apto para construir
 **Versión:** 0.3-borrador-04  
 **Fecha:** 2026-08-11  
 **Fuente:** auditoría integral del borrador 03, constitución y documentos activos.  

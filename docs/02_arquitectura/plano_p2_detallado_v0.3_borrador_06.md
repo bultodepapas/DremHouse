@@ -1,10 +1,13 @@
 # Segundo piso detallado v0.3 — borrador 06
 
-**Estatus:** anteproyecto / hipótesis activa de coordinación; no apto para construir  
+**Estatus:** antecedente superado por D-049 / b09-R08; no apto para construir
 **Versión:** 0.3-borrador-06-P2  
 **Fecha:** 2026-08-11  
 **Fuente:** constitución, programa activo, b04/R03 y ventanas de fachada b05/R04.  
 **Aprobación pendiente:** propietario, arquitecto coordinador y consultores.
+
+> **Control de precedencia:** esta emisión se conserva como antecedente trazable. El
+> modelo activo del segundo piso es b09/R08 bajo D-049.
 
 ## Objeto
 

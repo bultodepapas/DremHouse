@@ -41,7 +41,7 @@ from dreamhouse.structure.vertical_continuity_sheet import build_vertical_contin
 
 SYSTEM = Path(__file__).with_name("structure") / "structure_system.json"
 PB = Path(__file__).with_name("pb_b05.json")
-P2 = Path(__file__).with_name("p2_b06.json")
+P2 = Path(__file__).with_name("p2_b09.json")
 ROOFLIGHTS = Path(__file__).with_name("rooflight_b08.json")
 ROOF_SPACE = Path(__file__).with_name("structure") / "roof_truss_space.json"
 E1_SPACE = Path(__file__).with_name("structure") / "e1_screening_space.json"

@@ -1,0 +1,114 @@
+{
+  "revision": "0.3-draft-09-P2",
+  "drawing_revision": "R08",
+  "status": "active schematic coordination hypothesis; not for construction",
+  "date": "2026-08-13",
+  "supersedes": "0.3-borrador-06-P2 / R05",
+  "design_basis": [
+    "Owner preference for the spatial organization of b04/R03",
+    "Verified dimensional corrections from b06/R05",
+    "D-042 child-bedroom equivalence",
+    "D-048 stair-enclosure column continuity"
+  ],
+  "envelope": {
+    "x": 21.0,
+    "length": 15.0,
+    "width": 18.0,
+    "exterior_wall": 0.18,
+    "partition": 0.15,
+    "wet_wall": 0.20
+  },
+  "phase_boundary_y": 11.0,
+  "measurement": {
+    "programme_basis": "gross",
+    "child_equivalence_basis": "net",
+    "circulation_clearance_basis": "net"
+  },
+  "tolerances": {
+    "geometry_m": 0.000001,
+    "child_area_delta_m2": 1.0,
+    "child_ratio_max": 1.35,
+    "child_ratio_delta": 0.30,
+    "circulation_min_clear_m": 1.20
+  },
+  "spaces": [
+    {"id":"H1-D","name":"Child 1 bedroom","suite":"H1","kind":"bedroom","phase":1,"x":21.0,"y":0.0,"w":5.2,"d":5.0},
+    {"id":"H1-C","name":"Child 1 wardrobe","suite":"H1","kind":"closet","phase":1,"x":26.2,"y":0.0,"w":2.4,"d":2.0},
+    {"id":"H1-B","name":"Child 1 bathroom","suite":"H1","kind":"bath","phase":1,"x":26.2,"y":2.0,"w":2.4,"d":3.0},
+
+    {"id":"DECK","name":"Acoustic mini deck","kind":"deck","phase":1,"x":21.0,"y":5.0,"w":2.8,"d":3.5},
+    {"id":"FAM","name":"Family lounge / library","kind":"shared","phase":1,"x":23.8,"y":5.0,"w":4.8,"d":2.1},
+    {"id":"HALL-A","name":"Private gallery","kind":"circulation","phase":1,"x":23.8,"y":7.1,"w":4.8,"d":1.4},
+    {"id":"LAV","name":"Laundry","kind":"service","phase":1,"x":21.0,"y":8.5,"w":4.0,"d":2.5},
+    {"id":"LIN","name":"Linen / cleaning","kind":"service","phase":1,"x":25.0,"y":8.5,"w":2.0,"d":2.5},
+    {"id":"HALL-C","name":"Private hall","kind":"circulation","phase":1,"x":27.0,"y":8.5,"w":1.6,"d":2.5},
+
+    {"id":"M-D","name":"Primary bedroom","suite":"M","kind":"master","phase":1,"x":28.6,"y":0.0,"w":7.4,"d":4.2},
+    {"id":"M-PASS","name":"Primary suite filter","suite":"M","kind":"circulation","phase":1,"x":28.6,"y":4.2,"w":1.35,"d":3.2},
+    {"id":"M-B","name":"Primary bathroom","suite":"M","kind":"bath","phase":1,"x":29.95,"y":4.2,"w":3.05,"d":3.2},
+    {"id":"M-C","name":"Primary dressing room","suite":"M","kind":"closet","phase":1,"x":33.0,"y":4.2,"w":3.0,"d":3.2},
+    {"id":"ARR","name":"Protected arrival","kind":"circulation","phase":1,"x":28.6,"y":7.4,"w":2.9,"d":3.6},
+    {"id":"ESC","name":"Protected stair","kind":"vertical","phase":1,"x":31.5,"y":7.4,"w":4.5,"d":3.6},
+
+    {"id":"F2-HALL","name":"Isolatable Phase 2 lobby","kind":"circulation","phase":2,"x":21.0,"y":11.0,"w":15.0,"d":1.4},
+    {"id":"H2-D","name":"Child 2 bedroom","suite":"H2","kind":"bedroom","phase":2,"x":21.0,"y":12.4,"w":4.6,"d":5.6},
+    {"id":"H2-B","name":"Child 2 bathroom","suite":"H2","kind":"bath","phase":2,"x":25.6,"y":12.4,"w":2.2,"d":3.1},
+    {"id":"H2-C","name":"Child 2 wardrobe","suite":"H2","kind":"closet","phase":2,"x":25.6,"y":15.5,"w":2.2,"d":2.5},
+    {"id":"G-ENTRY","name":"Guest suite filter","suite":"G","kind":"circulation","phase":2,"x":27.8,"y":12.4,"w":1.35,"d":2.34},
+    {"id":"G-B","name":"Guest bathroom","suite":"G","kind":"bath","phase":2,"x":29.15,"y":12.4,"w":2.33,"d":2.34},
+    {"id":"G-C","name":"Guest wardrobe","suite":"G","kind":"closet","phase":2,"x":31.48,"y":12.4,"w":1.52,"d":2.34},
+    {"id":"G-D","name":"Guest bedroom","suite":"G","kind":"bedroom","phase":2,"x":27.8,"y":14.74,"w":5.2,"d":3.26},
+    {"id":"WELL","name":"Wellness / sauna / shower","kind":"wellness","phase":2,"x":33.0,"y":12.4,"w":3.0,"d":5.6}
+  ],
+  "doors": [
+    {"id":"D-STAIR","connects":["ESC","ARR"],"wall":"vertical","x":31.5,"at":8.70,"width":1.00,"swing":"west","kind":"door"},
+    {"id":"D-ARR-HALL","connects":["ARR","HALL-C"],"wall":"vertical","x":28.6,"at":9.15,"width":1.00,"swing":"west","kind":"door"},
+    {"id":"D-M","connects":["ARR","M-PASS"],"wall":"horizontal","y":7.4,"at":28.75,"width":1.00,"swing":"south","kind":"door"},
+    {"id":"D-M-D","connects":["M-PASS","M-D"],"wall":"horizontal","y":4.2,"at":28.75,"width":0.90,"swing":"south","kind":"door"},
+    {"id":"D-M-B","connects":["M-PASS","M-B"],"wall":"vertical","x":29.95,"at":5.10,"width":0.90,"swing":"east","kind":"door"},
+    {"id":"D-M-C","connects":["M-D","M-C"],"wall":"horizontal","y":4.2,"at":34.00,"width":0.90,"swing":"north","kind":"door"},
+    {"id":"D-HALL-C","connects":["HALL-C","HALL-A"],"wall":"horizontal","y":8.5,"at":27.20,"width":1.20,"swing":"north","kind":"opening"},
+    {"id":"D-FAM","connects":["HALL-A","FAM"],"wall":"horizontal","y":7.1,"at":25.60,"width":1.20,"swing":"south","kind":"opening"},
+    {"id":"D-DECK","connects":["DECK","FAM"],"wall":"vertical","x":23.8,"at":6.05,"width":1.00,"swing":"west","kind":"door"},
+    {"id":"D-H1","connects":["H1-D","FAM"],"wall":"horizontal","y":5.0,"at":24.70,"width":0.90,"swing":"south","kind":"door"},
+    {"id":"D-H1-B","connects":["H1-D","H1-B"],"wall":"vertical","x":26.2,"at":3.00,"width":0.80,"swing":"east","kind":"door"},
+    {"id":"D-H1-C","connects":["H1-D","H1-C"],"wall":"vertical","x":26.2,"at":0.55,"width":0.80,"swing":"east","kind":"door"},
+    {"id":"D-LAV","connects":["HALL-A","LAV"],"wall":"horizontal","y":8.5,"at":24.00,"width":0.90,"swing":"north","kind":"door"},
+    {"id":"D-LIN","connects":["HALL-A","LIN"],"wall":"horizontal","y":8.5,"at":25.50,"width":0.80,"swing":"north","kind":"door"},
+    {"id":"D-F2","connects":["HALL-C","F2-HALL"],"wall":"horizontal","y":11.0,"at":27.30,"width":1.00,"swing":"north","kind":"door"},
+    {"id":"D-H2","connects":["F2-HALL","H2-D"],"wall":"horizontal","y":12.4,"at":23.30,"width":0.90,"swing":"north","kind":"door"},
+    {"id":"D-H2-B","connects":["H2-D","H2-B"],"wall":"vertical","x":25.6,"at":13.45,"width":0.80,"swing":"east","kind":"door"},
+    {"id":"D-H2-C","connects":["H2-D","H2-C"],"wall":"vertical","x":25.6,"at":16.20,"width":0.80,"swing":"east","kind":"door"},
+    {"id":"D-G","connects":["F2-HALL","G-ENTRY"],"wall":"horizontal","y":12.4,"at":27.95,"width":0.90,"swing":"north","kind":"door"},
+    {"id":"D-G-D","connects":["G-ENTRY","G-D"],"wall":"horizontal","y":14.74,"at":27.95,"width":0.90,"swing":"north","kind":"door"},
+    {"id":"D-G-B","connects":["G-ENTRY","G-B"],"wall":"vertical","x":29.15,"at":13.00,"width":0.80,"swing":"east","kind":"door"},
+    {"id":"D-G-C","connects":["G-D","G-C"],"wall":"horizontal","y":14.74,"at":31.80,"width":0.80,"swing":"south","kind":"door"},
+    {"id":"D-WELL","connects":["F2-HALL","WELL"],"wall":"horizontal","y":12.4,"at":34.00,"width":0.90,"swing":"north","kind":"door"}
+  ],
+  "windows": [
+    {"id":"W-H1","room_id":"H1-D","edge":"south","from":22.0,"to":25.8,"height":2.70,"sill":0.10},
+    {"id":"W-M-LAT-A","room_id":"M-D","edge":"south","from":30.0,"to":35.5,"height":2.70,"sill":0.10},
+    {"id":"W-M-REAR","room_id":"M-D","edge":"east","from":0.8,"to":3.3,"height":2.70,"sill":0.10},
+    {"id":"W-H2","room_id":"H2-D","edge":"north","from":21.8,"to":25.2,"height":2.70,"sill":0.10},
+    {"id":"W-G","room_id":"G-D","edge":"north","from":28.8,"to":32.2,"height":2.70,"sill":0.10},
+    {"id":"W-WELL","room_id":"WELL","edge":"east","from":13.0,"to":17.0,"height":1.20,"sill":1.40}
+  ],
+  "internal_glazing": [
+    {"id":"GLZ-DECK","room_id":"DECK","edge":"west","from":5.25,"to":8.20,"acoustic":true,"guard_height_m":1.10}
+  ],
+  "structural_reservations": [
+    {"id":"GW-STAIR-S","x":31.5,"y":7.4,"role":"D-048 full-height column study"},
+    {"id":"GW-STAIR-N","x":31.5,"y":11.0,"role":"D-048 full-height column study"},
+    {"id":"STAIR-REAR-S","x":36.0,"y":7.4,"role":"D-048 full-height column study"},
+    {"id":"STAIR-REAR-N","x":36.0,"y":11.0,"role":"D-048 full-height column study"}
+  ],
+  "design_notes": [
+    "b04 spatial centre restored: mini deck, family lounge, gallery, laundry and protected stair arrival.",
+    "Every enclosed room has an explicit, geometrically validated door or opening.",
+    "Child bedrooms retain D-042 net-area and proportion equivalence.",
+    "Phase 2 remains behind one 1.25 m clear isolatable lobby.",
+    "Four D-048 column reservations remain at the stair-enclosure corners; no section is selected.",
+    "Primary-suite bathroom and dressing-room programme remain below the original target.",
+    "A second independent P2 exit remains subject to the fire and occupancy decision."
+  ]
+}

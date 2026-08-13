@@ -150,7 +150,7 @@ Las tres reglas añadidas el 2026-08-11 tras la revisión de coordinación son:
 | Regla | Qué impide |
 |---|---|
 | `PB-CORE-CLOSURE` | Que los recintos del núcleo se dibujen sin dejar sitio a los tabiques declarados. Verifica que netos + tabiques + envolvente sumen 18,00 m exactos. |
-| `PB-P2-WINDOW-SYNC` | Que un mismo vano de dormitorio se describa distinto en `pb_b05.json` y `p2_b06.json`. |
+| `PB-P2-WINDOW-SYNC` | Que un mismo vano de dormitorio se describa distinto en `pb_b05.json` y el modelo P2 activo `p2_b09.json`. |
 | `PB-GLAZING-IN-ROOM` | Que un vano desborde el muro del recinto que ilumina. |
 
 **Advertencia sobre el valor de estas cifras.** Un «PASS» significa que el modelo es
