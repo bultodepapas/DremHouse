@@ -238,6 +238,12 @@ class TestGreatWallFloor(unittest.TestCase):
         self.assertIsNone(res["panel_frequency_hz"])
         self.assertGreater(res["hidden_frame_kg"], 0.0)
         self.assertEqual(len(res["hidden_column_y_m"]), 6)
+        self.assertEqual(res["n_beams"], 6)
+        self.assertEqual(res["beam_profile"], "IPE450")
+        self.assertGreater(res["rear_beams_kg"], 0.0)
+        self.assertTrue(res["rear_beam_profile"].startswith("IPE"))
+        self.assertAlmostEqual(res["trial_floor_zone_m"], 0.60, places=2)
+        self.assertGreaterEqual(res["floor_zone_margin_m"], 0.10)
         self.assertIn("active_gravity", res["approval_status"])
         self.assertIn("does_not_stabilize_longitudinal_x", res["lateral_role"])
 

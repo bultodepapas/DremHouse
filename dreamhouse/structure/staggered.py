@@ -142,7 +142,27 @@ def size_p2_great_wall(
     )
     if beam.mass_kg_m < profile("IPE360").mass_kg_m:
         beam = profile("IPE360")
-    beams_kg = n_beams * beam.mass_kg_m * front
+    front_beams_kg = n_beams * beam.mass_kg_m * front
+
+    # Continuación posterior X=31,5→36. La revisión anterior llevaba su
+    # reacción al muro, pero omitía físicamente estos 4,5 m de viga del peso.
+    m_rear = simply_supported_max_moment(q_strength_beam, rear) / 1e3
+    rear_beam, _ = lightest_member(
+        steel.fy_pa,
+        phi_b,
+        phi_c,
+        m_rear,
+        0.0,
+        rear,
+        "IPE",
+        rear / 240.0,
+        q_service_beam / 1e3,
+        e_pa=steel.e_pa,
+    )
+    if rear_beam.mass_kg_m < profile("IPE220").mass_kg_m:
+        rear_beam = profile("IPE220")
+    rear_beams_kg = n_beams * rear_beam.mass_kg_m * rear
+    beams_kg = front_beams_kg + rear_beams_kg
 
     # Cercha de borde X=21 (luz 18 m en Y) que recibe medio frente.
     q_strength_edge = q_strength * front / 2.0
@@ -289,6 +309,10 @@ def size_p2_great_wall(
         "n_beams": n_beams,
         "beam_profile": beam.name,
         "beam_span_m": round(front, 2),
+        "front_beams_kg": round(front_beams_kg, 0),
+        "rear_beam_profile": rear_beam.name,
+        "rear_beam_span_m": round(rear, 2),
+        "rear_beams_kg": round(rear_beams_kg, 0),
         "beams_kg": round(beams_kg, 0),
         "edge_chord": chord.name,
         "edge_kg": round(edge_kg, 0),

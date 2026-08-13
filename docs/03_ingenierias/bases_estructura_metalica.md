@@ -252,7 +252,9 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
   coordinando las puertas enrasadas. Se estudian seis líneas longitudinales cada 3,00 m
   (Y ≈ 1,5/4,5/7,5/10,5/13,5/16,5) para reducir el canto de IPE550 a IPE450 de prueba y
   alojar viga + losa en la zona disponible; descargan entre machones, por lo que la
-  transferencia superior es un elemento real, no un detalle menor.
+  transferencia superior es un elemento real, no un detalle menor. Cada línea continúa
+  4,50 m desde el muro hasta la fachada posterior con un perfil menor de prueba; ambos
+  tramos deben figurar en cantidades y conexiones.
   Los perfiles que arroja E0 son pruebas de cabida por fluencia bruta, no selección.
   El espesor 0,20 m es arquitectónico y puede crecer a una envolvente preliminar de
   0,25–0,35 m por acero, uniones, tolerancias, acústica y fuego.

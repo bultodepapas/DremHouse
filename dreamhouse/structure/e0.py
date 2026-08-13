@@ -315,7 +315,8 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         f"madera/absorción delante de bastidor oculto {great_wall['hidden_column_trial_profile']} "
         f"+ viga de transferencia {great_wall['transfer_girder_trial_profile']}; "
         f"{great_wall['n_beams']} vigas {great_wall['beam_profile']} a "
-        f"{18.0/great_wall['n_beams']:.1f} m dejan un canto conceptual de "
+        f"{18.0/great_wall['n_beams']:.1f} m en el tramo de 10,5 m y "
+        f"{great_wall['rear_beam_profile']} en el tramo posterior de 4,5 m dejan un canto conceptual de "
         f"{great_wall['trial_floor_zone_m']:.2f} m. El subtotal "
         f"({great_wall['total_kg']/1000:.1f} t) es una prueba de cabida y no verifica pandeo, "
         f"uniones, fuego, diafragma, cimentación ni acción lateral.",

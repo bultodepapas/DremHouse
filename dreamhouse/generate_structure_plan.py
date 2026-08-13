@@ -161,7 +161,7 @@ def draw_plan(parts, cfg, pb, gw):
     parts.append(text(sx(21), sy(0.6), "CERCHA DE BORDE X=21 (luz 18 m)", 7, weight=700, fill="#3f7d8a", rotate=-90))
     for y in beam_ys:
         parts.append(line(sx(21), sy(y), sx(36), sy(y), color="#3f7d8a", width=3, dash="4 4"))
-    parts.append(text(sx(21.2), sy(beam_ys[0] + 0.6), f"VIGAS LONG. {gw['beam_profile']} ×{gw['n_beams']} EN PLENUM · luz {gw['beam_span_m']} m", 7, weight=700, fill="#3f7d8a", anchor="start"))
+    parts.append(text(sx(21.2), sy(beam_ys[0] + 0.6), f"{gw['n_beams']} LÍNEAS: {gw['beam_profile']} × {gw['beam_span_m']} m + {gw['rear_beam_profile']} × {gw['rear_beam_span_m']} m", 7, weight=700, fill="#3f7d8a", anchor="start"))
     parts.append(text(sx(28.5), sy(0.6), f"P2 D-043: franja {gw['nucleus_span_m']} m · DECK/FRECUENCIA NO ANALIZADOS", 7, weight=700, fill="#8e3825"))
 
     for i, x in enumerate(frames):
