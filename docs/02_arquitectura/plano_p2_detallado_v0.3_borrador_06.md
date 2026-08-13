@@ -63,11 +63,11 @@ firmados por los consultores correspondientes.
 La causa de fondo de los errores anteriores era mezclar bases. Ahora cada regla declara la
 suya, y el modelo también:
 
-| Qué se mide | Base | Fuente |
-|---|---|---|
-| Contraste contra el programa arquitectónico | **bruta** | El programa dice literalmente «áreas brutas/nominales sin descontar estructura, cerramientos y acabados» |
-| Igualdad de los dormitorios de hijos | **útil (neta)** | Hard rule 9 y conflicto CF-003 hablan de «área útil» |
-| Circulaciones mínimas | **libre (neta)** | Son luz libre de paso |
+| Qué se mide                                 | Base             | Fuente                                                                                                   |
+| ------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| Contraste contra el programa arquitectónico | **bruta**        | El programa dice literalmente «áreas brutas/nominales sin descontar estructura, cerramientos y acabados» |
+| Igualdad de los dormitorios de hijos        | **útil (neta)**  | Hard rule 9 y conflicto CF-003 hablan de «área útil»                                                     |
+| Circulaciones mínimas                       | **libre (neta)** | Son luz libre de paso                                                                                    |
 
 Aplicar una medida neta contra un objetivo bruto fue precisamente lo que hizo «fallar» al
 wellness en la revisión previa: 16,8 m² brutos siempre estuvieron dentro de la reserva de
@@ -78,11 +78,11 @@ programa de 16–22 m².
 La revisión de coordinación dejó tres FAIL reales que no se podían corregir moviendo
 cifras. Se resolvieron **reorganizando la Fase 2**, no relajando los umbrales:
 
-| Regla | Antes | Ahora | Cómo |
-|---|---|---|---|
-| `P2-CHILD-EQUAL` | 23,46 vs 24,04 m² · Δ 0,58 | 23,46 vs 23,22 m² · Δ **0,24** | La suite de hijo 2 gira: el dormitorio pasa de 6,50 × 4,00 a 4,60 × 5,60 brutos y el baño se coloca al costado, como en hijo 1. Tolerancia ±1,00 m² por **D-042**. |
-| `P2-CHILD-PROPORTION` | 1,04:1 vs **1,62:1** | 1,04:1 vs **1,23:1** | El giro elimina la habitación alargada. Ambas por debajo del límite de 1,35:1. |
-| `P2-CIRC-MIN` | 0,85 m libres | **1,25 m** libres | El vestíbulo de obra pasa de 1,00 a 1,40 m brutos. |
+| Regla                 | Antes                      | Ahora                          | Cómo                                                                                                                                                               |
+| --------------------- | -------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `P2-CHILD-EQUAL`      | 23,46 vs 24,04 m² · Δ 0,58 | 23,46 vs 23,22 m² · Δ **0,24** | La suite de hijo 2 gira: el dormitorio pasa de 6,50 × 4,00 a 4,60 × 5,60 brutos y el baño se coloca al costado, como en hijo 1. Tolerancia ±1,00 m² por **D-042**. |
+| `P2-CHILD-PROPORTION` | 1,04:1 vs **1,62:1**       | 1,04:1 vs **1,23:1**           | El giro elimina la habitación alargada. Ambas por debajo del límite de 1,35:1.                                                                                     |
+| `P2-CIRC-MIN`         | 0,85 m libres              | **1,25 m** libres              | El vestíbulo de obra pasa de 1,00 a 1,40 m brutos.                                                                                                                 |
 
 El espacio para ensanchar el vestíbulo salió de la propia reorganización, no de restárselo
 a los baños: al girar la suite de hijo 2, la franja de fondo dejó de necesitar los 2,00 m
@@ -90,10 +90,10 @@ de baño en toda su longitud.
 
 ### Lo que sigue abierto
 
-| Regla | Lectura |
-|---|---|
+| Regla               | Lectura                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `P2-MASTER-PROGRAM` | Vestidor 10,2 m² brutos frente a 15–16; baño principal 13,4 frente a 17–18. **No es corregible dentro de la planta:** la banda del principal mide 7,40 × 11,00 = 81,4 m² y la escalera ocupa 16,2, de modo que quedan 65,2 m² para un programa que pide 76. O baja el programa, o crece el P2, o la escalera sale de esa huella. Decisión del propietario. |
-| `LIFE-EGRESS-2` | Segunda salida independiente sujeta a concepto profesional de incendio (D-021, D-028). Puede mover la escalera y con ella el núcleo y el gran muro. |
+| `LIFE-EGRESS-2`     | Segunda salida independiente sujeta a concepto profesional de incendio (D-021, D-028). Puede mover la escalera y con ella el núcleo y el gran muro.                                                                                                                                                                                                        |
 
 ### Reserva de método
 

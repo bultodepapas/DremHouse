@@ -9,13 +9,13 @@
 
 ## Decisiones
 
-| ID | Decisión | Responsable de actualizar | Fecha |
-|---|---|---|---|
+| ID  | Decisión | Responsable de actualizar | Fecha |
+| --- | -------- | ------------------------- | ----- |
 
 ## Acciones
 
-| ID | Acción/entregable | Responsable | Fecha | Estado |
-|---|---|---|---|---|
+| ID  | Acción/entregable | Responsable | Fecha | Estado |
+| --- | ----------------- | ----------- | ----- | ------ |
 
 ## Riesgos, RFI y cambios
 

@@ -1,4 +1,5 @@
 # DREAM HOUSE — CASA BODEGA / WAREHOUSE HOUSE EN BOYACÁ
+
 ## Plano conceptual y anteproyecto dimensional — Versión 0.2
 
 **Fecha:** 11 de agosto de 2026  
@@ -6,7 +7,7 @@
 **Base preferida de estudio:** **18.00 m × 36.00 m**  
 **Huella planta baja:** **648 m²**  
 **Segundo piso preliminar:** **18.00 m × 15.00 m = 270 m²**  
-**Área construida conceptual:** **≈ 918 m²**  
+**Área construida conceptual:** **≈ 918 m²**
 
 > Esta versión 0.2 reemplaza dimensionalmente la hipótesis 14 × 36 m como base preferida de estudio. **18 × 36 m queda adoptado como Design Control Value fuerte y decisión de anteproyecto, pero no como hard rule absoluta**: se diseñará desde esta caja salvo que el desarrollo a escala demuestre una mejora real mediante un ajuste moderado. Se preservan todas las hard rules canónicas del proyecto: una sola nave, una sola cubierta, planta baja abierta, núcleo posterior oculto, segundo piso parcial al fondo, cuatro dormitorios exactos arriba y jerarquía programática previamente definida.
 
@@ -33,13 +34,13 @@ La intención sigue siendo mantener una gran nave abierta y estudiar posteriorme
 
 ## 1.2 Cuadro general de áreas
 
-| Nivel / zona | Dimensiones | Área nominal |
-|---|---:|---:|
-| Planta baja | 18 × 36 m | **648 m²** |
-| Segundo piso | 18 × 15 m | **270 m²** |
-| Doble altura delante de P2 | 18 × 21 m | **378 m²** |
-| Área bajo P2 | 18 × 15 m | **270 m²** |
-| Área construida conceptual | 648 + 270 | **≈918 m²** |
+| Nivel / zona               | Dimensiones | Área nominal |
+| -------------------------- | ----------: | -----------: |
+| Planta baja                |   18 × 36 m |   **648 m²** |
+| Segundo piso               |   18 × 15 m |   **270 m²** |
+| Doble altura delante de P2 |   18 × 21 m |   **378 m²** |
+| Área bajo P2               |   18 × 15 m |   **270 m²** |
+| Área construida conceptual |   648 + 270 |  **≈918 m²** |
 
 ---
 
@@ -92,11 +93,11 @@ Chequeo:
 
 ## 3.1 Dimensiones preliminares de puertas
 
-| Acceso | Luz preliminar |
-|---|---:|
-| Car project bay | **4.80 × 4.80 m** |
+| Acceso                  |    Luz preliminar |
+| ----------------------- | ----------------: |
+| Car project bay         | **4.80 × 4.80 m** |
 | Puerta peatonal central | **1.60 × 2.50 m** |
-| Taller RC / DIY | **4.80 × 4.80 m** |
+| Taller RC / DIY         | **4.80 × 4.80 m** |
 
 Las dos puertas industriales se proponen idénticas para simplificar construcción y reforzar simetría, repetición y carácter monolítico.
 
@@ -870,17 +871,17 @@ Se buscarán:
 
 # 28. CUADRO PRELIMINAR DE ÁREAS P2
 
-| Programa | Área objetivo |
-|---|---:|
-| Suite principal | **≈76 m²** |
-| Hijo 1 | **≈38 m²** |
-| Hijo 2 | **≈38 m²** |
-| Huéspedes | **≈33 m²** |
-| Lavandería | **≈10 m²** |
-| Linen / storage | **≈5 m²** |
-| Escalera | **≈16 m²** |
-| Hall / **wellness / sauna / relajación** / deck / circulación | **≈54 m²** |
-| **TOTAL** | **≈270 m²** |
+| Programa                                                      | Área objetivo |
+| ------------------------------------------------------------- | ------------: |
+| Suite principal                                               |    **≈76 m²** |
+| Hijo 1                                                        |    **≈38 m²** |
+| Hijo 2                                                        |    **≈38 m²** |
+| Huéspedes                                                     |    **≈33 m²** |
+| Lavandería                                                    |    **≈10 m²** |
+| Linen / storage                                               |     **≈5 m²** |
+| Escalera                                                      |    **≈16 m²** |
+| Hall / **wellness / sauna / relajación** / deck / circulación |    **≈54 m²** |
+| **TOTAL**                                                     |   **≈270 m²** |
 
 Los aproximadamente 54 m² comunes no deben convertirse en pasillos. Ahora deberán absorber de forma inteligente:
 
@@ -897,13 +898,13 @@ La distribución exacta entre estos usos se reajustará en v0.3; el sauna tiene 
 
 # 29. ALTURAS V0.2
 
-| Elemento | Cota preliminar |
-|---|---:|
-| Planta baja | **±0.00** |
-| Nivel terminado P2 | **≈ +3.80 m** |
-| Altura libre bajo P2 | **≈3.05–3.20 m** |
-| Altura libre dormitorios P2 | **≈3.00–3.15 m** |
-| Nave doble altura | **≈7.20–7.80 m interiores** |
+| Elemento                    |             Cota preliminar |
+| --------------------------- | --------------------------: |
+| Planta baja                 |                   **±0.00** |
+| Nivel terminado P2          |               **≈ +3.80 m** |
+| Altura libre bajo P2        |            **≈3.05–3.20 m** |
+| Altura libre dormitorios P2 |            **≈3.00–3.15 m** |
+| Nave doble altura           | **≈7.20–7.80 m interiores** |
 
 La transición de altura es deliberada:
 

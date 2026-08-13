@@ -25,12 +25,12 @@ precedence over any incompatible preference.
 
 The original files remain unchanged and in Spanish under `docs/BORN_Legacy/`.
 
-| Source | Role | Status |
-|---|---|---|
-| `casa_bodega_boyaca_conclusiones_anteproyecto.md` | Intent, hard rules, and synthesis | Active conceptual source |
-| `Dream_House_Plano_Conceptual_v0.2.md` | Geometry and nominal areas | Active for dimensional control |
+| Source                                                            | Role                              | Status                           |
+| ----------------------------------------------------------------- | --------------------------------- | -------------------------------- |
+| `casa_bodega_boyaca_conclusiones_anteproyecto.md`                 | Intent, hard rules, and synthesis | Active conceptual source         |
+| `Dream_House_Plano_Conceptual_v0.2.md`                            | Geometry and nominal areas        | Active for dimensional control   |
 | `Dream House — Presupuesto Técnico y Control de Costos v0.2.docx` | Target and construction divisions | Active; low-to-medium confidence |
-| `Dream_House_Presupuesto_Preliminar_v0.1.md` | Earlier feasibility estimate | Historical / superseded |
+| `Dream_House_Presupuesto_Preliminar_v0.1.md`                      | Earlier feasibility estimate      | Historical / superseded          |
 
 ## Identified conflicts
 

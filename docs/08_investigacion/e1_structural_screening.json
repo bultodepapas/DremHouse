@@ -6,7 +6,7 @@
     "date": "2026-08-12",
     "purpose": "Expose E1 member, joint, stability, diaphragm, vertical-continuity, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
   },
-  "input_sha256": "0a8dcd56e2e85470d54ee75eee9cf5918bdb47d649fd630f93b31b5336069f1c",
+  "input_sha256": "47c32728c61adedfea223d7bfca6aa8aeb0a8d453f9e9fbd13fb2b0bd80a8c2e",
   "reference_truss": {
     "role": "neutral_M60_test_specimen_not_a_selected_system",
     "candidate": {
@@ -73,91 +73,61 @@
       "combinations": [
         {
           "id": "C1",
-          "support_vertical_reactions_kn": [
-            42.539886,
-            42.539886
-          ],
+          "support_vertical_reactions_kn": [42.539886, 42.539886],
           "maximum_abs_member_force_kn": 112.058049,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C2",
-          "support_vertical_reactions_kn": [
-            79.662759,
-            79.662759
-          ],
+          "support_vertical_reactions_kn": [79.662759, 79.662759],
           "maximum_abs_member_force_kn": 209.846672,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C3+",
-          "support_vertical_reactions_kn": [
-            32.952759,
-            32.952759
-          ],
+          "support_vertical_reactions_kn": [32.952759, 32.952759],
           "maximum_abs_member_force_kn": 86.803757,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C3-",
-          "support_vertical_reactions_kn": [
-            32.952759,
-            32.952759
-          ],
+          "support_vertical_reactions_kn": [32.952759, 32.952759],
           "maximum_abs_member_force_kn": 86.803757,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C4+",
-          "support_vertical_reactions_kn": [
-            10.337069,
-            10.337069
-          ],
+          "support_vertical_reactions_kn": [10.337069, 10.337069],
           "maximum_abs_member_force_kn": 27.229782,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C4-",
-          "support_vertical_reactions_kn": [
-            10.337069,
-            10.337069
-          ],
+          "support_vertical_reactions_kn": [10.337069, 10.337069],
           "maximum_abs_member_force_kn": 27.229782,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C5+",
-          "support_vertical_reactions_kn": [
-            49.962759,
-            49.962759
-          ],
+          "support_vertical_reactions_kn": [49.962759, 49.962759],
           "maximum_abs_member_force_kn": 131.611293,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C5-",
-          "support_vertical_reactions_kn": [
-            49.962759,
-            49.962759
-          ],
+          "support_vertical_reactions_kn": [49.962759, 49.962759],
           "maximum_abs_member_force_kn": 131.611293,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C6+",
-          "support_vertical_reactions_kn": [
-            27.347069,
-            27.347069
-          ],
+          "support_vertical_reactions_kn": [27.347069, 27.347069],
           "maximum_abs_member_force_kn": 72.037318,
           "maximum_abs_member_force_index": 9
         },
         {
           "id": "C6-",
-          "support_vertical_reactions_kn": [
-            27.347069,
-            27.347069
-          ],
+          "support_vertical_reactions_kn": [27.347069, 27.347069],
           "maximum_abs_member_force_kn": 72.037318,
           "maximum_abs_member_force_index": 9
         }
@@ -349,16 +319,11 @@
             }
           ],
           "interior_nonstair_spaces": [],
-          "window_conflicts": [
-            "W-M-LAT-A"
-          ],
+          "window_conflicts": ["W-M-LAT-A"],
           "door_conflicts": [],
           "aligned_with_stair_enclosure_corner": false,
           "geometry_compatible_for_full_height_study": false,
-          "rejection_reasons": [
-            "not_on_stair_enclosure_corner",
-            "interrupts_glazing:W-M-LAT-A"
-          ]
+          "rejection_reasons": ["not_on_stair_enclosure_corner", "interrupts_glazing:W-M-LAT-A"]
         },
         {
           "id": "GW-Y2.4",
@@ -372,17 +337,12 @@
               "relation": "interior"
             }
           ],
-          "interior_nonstair_spaces": [
-            "M-D"
-          ],
+          "interior_nonstair_spaces": ["M-D"],
           "window_conflicts": [],
           "door_conflicts": [],
           "aligned_with_stair_enclosure_corner": false,
           "geometry_compatible_for_full_height_study": false,
-          "rejection_reasons": [
-            "not_on_stair_enclosure_corner",
-            "crosses_p2_space:M-D"
-          ]
+          "rejection_reasons": ["not_on_stair_enclosure_corner", "crosses_p2_space:M-D"]
         },
         {
           "id": "GW-STAIR-S",
@@ -392,7 +352,7 @@
           "existing_to_p2": true,
           "space_relations": [
             {
-              "space_id": "M-B",
+              "space_id": "M-C",
               "relation": "boundary"
             },
             {
@@ -450,17 +410,12 @@
               "relation": "interior"
             }
           ],
-          "interior_nonstair_spaces": [
-            "G-C"
-          ],
+          "interior_nonstair_spaces": ["G-C"],
           "window_conflicts": [],
           "door_conflicts": [],
           "aligned_with_stair_enclosure_corner": false,
           "geometry_compatible_for_full_height_study": false,
-          "rejection_reasons": [
-            "not_on_stair_enclosure_corner",
-            "crosses_p2_space:G-C"
-          ]
+          "rejection_reasons": ["not_on_stair_enclosure_corner", "crosses_p2_space:G-C"]
         },
         {
           "id": "GW-NORTH",
@@ -475,16 +430,11 @@
             }
           ],
           "interior_nonstair_spaces": [],
-          "window_conflicts": [
-            "W-G"
-          ],
+          "window_conflicts": ["W-G"],
           "door_conflicts": [],
           "aligned_with_stair_enclosure_corner": false,
           "geometry_compatible_for_full_height_study": false,
-          "rejection_reasons": [
-            "not_on_stair_enclosure_corner",
-            "interrupts_glazing:W-G"
-          ]
+          "rejection_reasons": ["not_on_stair_enclosure_corner", "interrupts_glazing:W-G"]
         },
         {
           "id": "STAIR-REAR-S",
@@ -533,12 +483,7 @@
           "rejection_reasons": []
         }
       ],
-      "compatible_column_ids": [
-        "GW-STAIR-S",
-        "GW-STAIR-N",
-        "STAIR-REAR-S",
-        "STAIR-REAR-N"
-      ],
+      "compatible_column_ids": ["GW-STAIR-S", "GW-STAIR-N", "STAIR-REAR-S", "STAIR-REAR-N"],
       "compatible_column_count": 4,
       "existing_great_wall_columns_reused": 2,
       "new_rear_columns_required": 2,

@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3
+**Versión:** 0.3.1
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -10,12 +10,12 @@ confianza) sobre el mismo target de $941 M.
 
 ## Línea base económica activa
 
-| Concepto | Valor |
-|---|---:|
-| Obra física objetivo | $941.000.000 COP |
-| Contingencia declarada 5% | $47.050.000 COP |
-| **Target total de construcción** | **$988.050.000 COP** |
-| Equivalente conceptual sobre 918 m² | ≈$1.076.000 COP/m² |
+| Concepto                            |                Valor |
+| ----------------------------------- | -------------------: |
+| Obra física objetivo                |     $941.000.000 COP |
+| Contingencia declarada 5%           |      $47.050.000 COP |
+| **Target total de construcción**    | **$988.050.000 COP** |
+| Equivalente conceptual sobre 918 m² |   ≈$1.076.000 COP/m² |
 
 Bandas declaradas por la fuente:
 
@@ -44,34 +44,34 @@ El desglose atómico por partida, con cantidades y precios unitarios, vive en
 [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md). El resumen
 por capítulo es:
 
-| Código | Capítulo | Control | F1 | F2 | Confianza |
-|---|---|---|---:|---:|---:|---|
-| 01 | Preliminares, campamento, replanteo | $15 M | $15 M | $0 | media |
-| 02 | Excavaciones y movimientos menores | $7 M | $7 M | $0 | media |
-| 03 | Zapatas, pedestales, vigas de amarre y anclajes | $35 M | $35 M | $0 | media |
-| 04 | Losa PB industrial, endurecida y pulida | $83 M | $83 M | $0 | media |
-| 05 | Estructura metálica principal nave + P2 | $145 M | $145 M | $0 | baja-media |
-| 06 | Correas, estructura secundaria y arriostramientos | $55 M | $55 M | $0 | baja-media |
-| 07 | Losa metaldeck P2 | $41 M | $41 M | $0 | media-alta |
-| 08 | Cubierta metálica aislada | $70 M | $70 M | $0 | media |
-| 09 | Fachadas de panel metálico aislado | $95 M | $95 M | $0 | media |
-| 10 | Canales, remates, flashing y sellos | $20 M | $20 M | $0 | media |
-| 11 | Dos portones industriales grandes | $24 M | $24 M | $0 | baja-media |
-| 12 | Gran evento principal de vidrio | $38 M | $38 M | $0 | baja-media |
-| 13 | Ventanas restantes + puerta peatonal | $20 M | $20 M | $0 | baja-media |
-| 14 | Divisiones P2/núcleo + acústica selectiva | $38 M | $26 M | $12 M | media |
-| 15 | Redes hidrosanitarias principales | $20 M | $17 M | $3 M | baja |
-| 16 | Cinco baños + ducha/sauna + acabados húmedos | $35 M | $22 M | $13 M | baja-media |
-| 17 | Electricidad, tableros, iluminación y potencia | $42 M | $35 M | $7 M | baja |
-| 18 | Datos, red y preparación Home Assistant | $8 M | $7 M | $1 M | baja |
-| 19 | Extracción, ventilación y climatización selectiva | $25 M | $20 M | $5 M | baja |
-| 20 | Cocina fija, muebles, mesones y herrajes | $25 M | $25 M | $0 | baja-media |
-| 21 | Closets + cajoneras y bancos fijos del taller | $30 M | $17 M | $13 M | baja-media |
-| 22 | Escalera metálica + barandas | $12 M | $12 M | $0 | media |
-| 23 | Acabados residenciales P2 y pintura puntual | $25 M | $16 M | $9 M | baja-media |
-| 24 | Terraza inmediata de concreto + drenajes | $18 M | $18 M | $0 | media |
-| 25 | Elevador automotriz + instalación/provisión civil | $15 M | $4 M | $11 M | media |
-|  | **Total obra objetivo** | **$941 M** | **$867 M** | **$74 M** | baja-media |
+| Código | Capítulo                                          | Control    |         F1 |        F2 |  Confianza |
+| ------ | ------------------------------------------------- | ---------- | ---------: | --------: | ---------: |
+| 01     | Preliminares, campamento, replanteo               | $15 M      |      $15 M |        $0 |      media |
+| 02     | Excavaciones y movimientos menores                | $7 M       |       $7 M |        $0 |      media |
+| 03     | Zapatas, pedestales, vigas de amarre y anclajes   | $35 M      |      $35 M |        $0 |      media |
+| 04     | Losa PB industrial, endurecida y pulida           | $83 M      |      $83 M |        $0 |      media |
+| 05     | Estructura metálica principal nave + P2           | $145 M     |     $145 M |        $0 | baja-media |
+| 06     | Correas, estructura secundaria y arriostramientos | $55 M      |      $55 M |        $0 | baja-media |
+| 07     | Losa metaldeck P2                                 | $41 M      |      $41 M |        $0 | media-alta |
+| 08     | Cubierta metálica aislada                         | $70 M      |      $70 M |        $0 |      media |
+| 09     | Fachadas de panel metálico aislado                | $95 M      |      $95 M |        $0 |      media |
+| 10     | Canales, remates, flashing y sellos               | $20 M      |      $20 M |        $0 |      media |
+| 11     | Dos portones industriales grandes                 | $24 M      |      $24 M |        $0 | baja-media |
+| 12     | Gran evento principal de vidrio                   | $38 M      |      $38 M |        $0 | baja-media |
+| 13     | Ventanas restantes + puerta peatonal              | $20 M      |      $20 M |        $0 | baja-media |
+| 14     | Divisiones P2/núcleo + acústica selectiva         | $38 M      |      $26 M |     $12 M |      media |
+| 15     | Redes hidrosanitarias principales                 | $20 M      |      $17 M |      $3 M |       baja |
+| 16     | Cinco baños + ducha/sauna + acabados húmedos      | $35 M      |      $22 M |     $13 M | baja-media |
+| 17     | Electricidad, tableros, iluminación y potencia    | $42 M      |      $35 M |      $7 M |       baja |
+| 18     | Datos, red y preparación Home Assistant           | $8 M       |       $7 M |      $1 M |       baja |
+| 19     | Extracción, ventilación y climatización selectiva | $25 M      |      $20 M |      $5 M |       baja |
+| 20     | Cocina fija, muebles, mesones y herrajes          | $25 M      |      $25 M |        $0 | baja-media |
+| 21     | Closets + cajoneras y bancos fijos del taller     | $30 M      |      $17 M |     $13 M | baja-media |
+| 22     | Escalera metálica + barandas                      | $12 M      |      $12 M |        $0 |      media |
+| 23     | Acabados residenciales P2 y pintura puntual       | $25 M      |      $16 M |      $9 M | baja-media |
+| 24     | Terraza inmediata de concreto + drenajes          | $18 M      |      $18 M |        $0 |      media |
+| 25     | Elevador automotriz + instalación/provisión civil | $15 M      |       $4 M |     $11 M |      media |
+|        | **Total obra objetivo**                           | **$941 M** | **$867 M** | **$74 M** | baja-media |
 
 El desglose muestra además, partida por partida, el **precio implícito** (por kg, m²,
 ml o punto) que el target supone y su comparación con las referencias CYPE. Ese
@@ -112,15 +112,15 @@ Oportunidades priorizadas por ahorro/esfuerzo, con referencia a las partidas at�
 desglose. Los porcentajes son órdenes de magnitud de investigación; ningún ahorro se
 contabiliza hasta documentar alcance y cotización.
 
-| # | Oportunidad | Partidas | Control actual | Potencial | Riesgo |
-|---|---|---|---:|---:|---|
-| 1 | Modulación 6 m, perfiles estándar, acero S355 en principales | 05.01–05.03, 06.01–06.03 | $200 M | −$15 a −$30 M | bajo |
-| 2 | Envolvente por capas vs. panel aislado (solo con punto de rocío) | 08.01, 09.01 | $165 M | −$15 a −$30 M | medio-alto |
-| 3 | Geotecnia temprana, espesores y refuerzos realistas, engrosamiento local | 03.01–03.03, 04.02, 04.09 | $125 M | −$5 a −$15 M | bajo |
-| 4 | Vidrio y portones estándar con 2–3 cotizaciones | 11.01–11.03, 12.01, 13.01 | $82 M | −$5 a −$10 M | bajo |
-| 5 | No climatizar la nave; HVLS + calefacción local; iluminación por capas | 17.03–17.04, 19.02, 19.04 | $67 M | −$5 a −$10 M | bajo |
-| 6 | Cocina y carpintería nacional modular ampliable | 20.01–20.04, 21.04 | $55 M | −$3 a −$6 M | bajo |
-| 7 | Fases F1/F2 (D-016) | Fase 2 | $74 M | ahorro de caja F1 ≈$77,7 M | medio |
+| #   | Oportunidad                                                              | Partidas                  | Control actual |                  Potencial | Riesgo     |
+| --- | ------------------------------------------------------------------------ | ------------------------- | -------------: | -------------------------: | ---------- |
+| 1   | Modulación 6 m, perfiles estándar, acero S355 en principales             | 05.01–05.03, 06.01–06.03  |         $200 M |              −$15 a −$30 M | bajo       |
+| 2   | Envolvente por capas vs. panel aislado (solo con punto de rocío)         | 08.01, 09.01              |         $165 M |              −$15 a −$30 M | medio-alto |
+| 3   | Geotecnia temprana, espesores y refuerzos realistas, engrosamiento local | 03.01–03.03, 04.02, 04.09 |         $125 M |               −$5 a −$15 M | bajo       |
+| 4   | Vidrio y portones estándar con 2–3 cotizaciones                          | 11.01–11.03, 12.01, 13.01 |          $82 M |               −$5 a −$10 M | bajo       |
+| 5   | No climatizar la nave; HVLS + calefacción local; iluminación por capas   | 17.03–17.04, 19.02, 19.04 |          $67 M |               −$5 a −$10 M | bajo       |
+| 6   | Cocina y carpintería nacional modular ampliable                          | 20.01–20.04, 21.04        |          $55 M |                −$3 a −$6 M | bajo       |
+| 7   | Fases F1/F2 (D-016)                                                      | Fase 2                    |          $74 M | ahorro de caja F1 ≈$77,7 M | medio      |
 
 Detalle técnico de cada técnica, límites y fuentes en
 [Técnicas constructivas y materiales para abaratar costos](../08_investigacion/tecnicas_que_abaratan_costos.md).
@@ -191,20 +191,21 @@ la nueva solución estén documentados y aceptados.
 
 ## Registro de versiones
 
-| Versión | Fecha | Cambio |
-|---|---|---|
-| 0.2 | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX). |
-| 0.3 | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo. |
-| 0.3-A | 2026-08-11 | Revisión arquitectónica b04: escalera con descarga posterior, puerta exterior de bodega, frontera aislable F1/F2 y ajuste de cocina. Impacto aún no cuantificado; afecta principalmente capítulos 10, 14, 19, 20, 22 y 24. No se modifica el target hasta medir y cotizar. |
-| 0.3-B | 2026-08-11 | Detalle PB b05: gran muro acústico/listonado de 18 m, hojas enrasadas, portal de escalera, zócalo registrable, espesores de estudio y equipamiento técnico coordinado. Afecta capítulos 14, 19, 20, 21, 22 y 23. Es alcance de medición; no se reconoce ahorro ni incremento hasta definir m², sistema, herrajes y muestra. |
-| 0.3-B | 2026-08-11 | Auditoría independiente de costos en `auditoria_de_costos_2026_08.md`: verifica precios contra CYPE/DANE/proveedores (acceso en vivo el 11-08-2026) y cantidades contra la geometría. **No cambia el target ni la contingencia.** Concluye obra física probable ≈$1.050–1.150 M (escenario B) si los tres frentes optimistas (acero 05/06, fachada 09, vidrio 12) y los faltantes (detección de incendios, SG-SST/ensayos, seguros, sauna) se incorporan. Recomienda contingencia de diseño separada hasta PE-2. D-030. |
-| 0.3-D | 2026-08-11 | Dos ventanales técnicos laterales de prueba, 7,20 × 2,90 m cada uno (≈41,8 m² brutos combinados). Afectan estructura/arriostramiento, capítulo 13, control solar, seguridad y climatización. No se incorporan al target hasta comparar sistemas fijo/operable y cotizaciones. |
-| 0.3-E | 2026-08-11 | Ventanas de cuatro dormitorios casi piso a techo, 2,70 m de alto y antepecho técnico de 0,10 m; principal con paño posterior y lateral. Afecta capítulos 09/13, vidrio laminado de seguridad, guardas, cortinas, control solar y climatización. Cantidad y costo pendientes de cuadro de vanos y cotización. |
-| 0.3-F | 2026-08-11 | Precisión P2 b06: suite principal reconfigurada, divisiones acústicas, cierre temporal F1/F2, cuatro baños coordinados y wellness de 18 m². Afecta capítulos 10, 14, 16, 17, 19, 21, 22, 23 y 26. No modifica el target hasta medir muros, puertas, impermeabilización, ventilación, shafts y protección contra incendio. |
-| 0.3-G | 2026-08-11 | Corrección de cubierta b07: faldón único transversal ≈3,33 %, sin cumbrera ni limatesas; remates alto/bajo y drenaje concentrado en alero bajo. Reclasifica 08.02/08.04 y afecta 05, 06, 08 y 10. No cambia el target: paneles, canal, reboses, bajantes y remates deben medirse después del cálculo pluvial y selección de fabricante. |
-| 0.3-H | 2026-08-11 | Dos claraboyas de vidrio de 2,40 × 4,80 m, 23,04 m² totales, sobre talleres en doble altura. Afectan 05/06/08/10/13/19/22: estructura secundaria, curb, vidrio de seguridad, control solar, impermeabilización, drenaje, acceso y limpieza. Es incremento de alcance sin precio incorporado; requiere cotización especializada y reserva de contingencia antes de congelar. |
-| 0.3-C | 2026-08-11 | Integración de los hallazgos confirmados al desglose y a la base (D-031): correcciones de medición (cubierta ≈660 m², fachada neta ≈680 m², entrepiso P2 9–11 t, cimentación 42–50 m³) y partidas ausentes (cap. 26 incendio, cap. 27 SG-SST/ensayos, seguros $5 M, sauna $8–15 M, calentamiento $4–5 M) como **insumo v0.4**. El target sigue intacto hasta PE-1/PE-2. |
-| 0.3-I | 2026-08-12 | Second E0 audit / D-045: removes the undefined rear support at X=36 and models six continuous overhanging beams, self-weight, the transfer beam, and two perimeter columns at X=21. The lower-bound Great Wall floor-steel subtotal increases from approximately 10.8 t to 11.6 t. This affects chapters 05/06 and connection/foundation scope; it **does not change the target** or authorize a cost until E1/PE-1. |
+| Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.2     | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| 0.3     | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 0.3-A   | 2026-08-11 | Revisión arquitectónica b04: escalera con descarga posterior, puerta exterior de bodega, frontera aislable F1/F2 y ajuste de cocina. Impacto aún no cuantificado; afecta principalmente capítulos 10, 14, 19, 20, 22 y 24. No se modifica el target hasta medir y cotizar.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| 0.3-B   | 2026-08-11 | Detalle PB b05: gran muro acústico/listonado de 18 m, hojas enrasadas, portal de escalera, zócalo registrable, espesores de estudio y equipamiento técnico coordinado. Afecta capítulos 14, 19, 20, 21, 22 y 23. Es alcance de medición; no se reconoce ahorro ni incremento hasta definir m², sistema, herrajes y muestra.                                                                                                                                                                                                                                                                                                                                                                                       |
+| 0.3-B   | 2026-08-11 | Auditoría independiente de costos en `auditoria_de_costos_2026_08.md`: verifica precios contra CYPE/DANE/proveedores (acceso en vivo el 11-08-2026) y cantidades contra la geometría. **No cambia el target ni la contingencia.** Concluye obra física probable ≈$1.050–1.150 M (escenario B) si los tres frentes optimistas (acero 05/06, fachada 09, vidrio 12) y los faltantes (detección de incendios, SG-SST/ensayos, seguros, sauna) se incorporan. Recomienda contingencia de diseño separada hasta PE-2. D-030.                                                                                                                                                                                           |
+| 0.3-D   | 2026-08-11 | Dos ventanales técnicos laterales de prueba, 7,20 × 2,90 m cada uno (≈41,8 m² brutos combinados). Afectan estructura/arriostramiento, capítulo 13, control solar, seguridad y climatización. No se incorporan al target hasta comparar sistemas fijo/operable y cotizaciones.                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| 0.3-E   | 2026-08-11 | Ventanas de cuatro dormitorios casi piso a techo, 2,70 m de alto y antepecho técnico de 0,10 m; principal con paño posterior y lateral. Afecta capítulos 09/13, vidrio laminado de seguridad, guardas, cortinas, control solar y climatización. Cantidad y costo pendientes de cuadro de vanos y cotización.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 0.3-F   | 2026-08-11 | Precisión P2 b06: suite principal reconfigurada, divisiones acústicas, cierre temporal F1/F2, cuatro baños coordinados y wellness de 18 m². Afecta capítulos 10, 14, 16, 17, 19, 21, 22, 23 y 26. No modifica el target hasta medir muros, puertas, impermeabilización, ventilación, shafts y protección contra incendio.                                                                                                                                                                                                                                                                                                                                                                                         |
+| 0.3-G   | 2026-08-11 | Corrección de cubierta b07: faldón único transversal ≈3,33 %, sin cumbrera ni limatesas; remates alto/bajo y drenaje concentrado en alero bajo. Reclasifica 08.02/08.04 y afecta 05, 06, 08 y 10. No cambia el target: paneles, canal, reboses, bajantes y remates deben medirse después del cálculo pluvial y selección de fabricante.                                                                                                                                                                                                                                                                                                                                                                           |
+| 0.3-H   | 2026-08-11 | Dos claraboyas de vidrio de 2,40 × 4,80 m, 23,04 m² totales, sobre talleres en doble altura. Afectan 05/06/08/10/13/19/22: estructura secundaria, curb, vidrio de seguridad, control solar, impermeabilización, drenaje, acceso y limpieza. Es incremento de alcance sin precio incorporado; requiere cotización especializada y reserva de contingencia antes de congelar.                                                                                                                                                                                                                                                                                                                                       |
+| 0.3-C   | 2026-08-11 | Integración de los hallazgos confirmados al desglose y a la base (D-031): correcciones de medición (cubierta ≈660 m², fachada neta ≈680 m², entrepiso P2 9–11 t, cimentación 42–50 m³) y partidas ausentes (cap. 26 incendio, cap. 27 SG-SST/ensayos, seguros $5 M, sauna $8–15 M, calentamiento $4–5 M) como **insumo v0.4**. El target sigue intacto hasta PE-1/PE-2.                                                                                                                                                                                                                                                                                                                                           |
+| 0.3-I   | 2026-08-12 | Second E0 audit / D-045: removes the undefined rear support at X=36 and models six continuous overhanging beams, self-weight, the transfer beam, and two perimeter columns at X=21. The lower-bound Great Wall floor-steel subtotal increases from approximately 10.8 t to 11.6 t. This affects chapters 05/06 and connection/foundation scope; it **does not change the target** or authorize a cost until E1/PE-1.                                                                                                                                                                                                                                                                                              |
+| 0.3-J   | 2026-08-13 | Owner-priority coordination D-050→D-053: P2 is reorganized within the unchanged 270 m² envelope; laundry moves to a concealed PB storage reserve; a rear retractable exterior-stair reserve is added; the X=21 truss receives a large-exposed-structure architectural brief; and the unchanged 23.04 m² rooflight pair moves to the exact centre of the double-height hall. Affects 05/06/08/10/13/14/15/16/17/19/21/22/23/26. This is a scope and coordination change, including a potentially new stair/mechanism and renewed roof trimmers; **no saving or increase is recognized and the target remains unchanged** until quantities, specifications, professional fire review, and quotations are available. |
 
 ## Estrategia de ejecución por fases
 

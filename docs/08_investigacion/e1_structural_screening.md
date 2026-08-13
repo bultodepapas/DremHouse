@@ -3,7 +3,7 @@
 **Status:** research screening complete; design remains blocked
 **Version:** 0.2
 **Date:** 2026-08-12
-**Input SHA-256:** `0a8dcd56e2e85470d54ee75eee9cf5918bdb47d649fd630f93b31b5336069f1c`
+**Input SHA-256:** `47c32728c61adedfea223d7bfca6aa8aeb0a8d453f9e9fbd13fb2b0bd80a8c2e`
 **Authority:** not for system selection, pricing, fabrication, or construction
 
 ## Reference test specimen
@@ -12,18 +12,18 @@ The neutral specimen is M60 WARREN_MODIFIED with 6 panels, 1.80 m centre depth, 
 
 ## Screening matrix
 
-| Phenomenon | Calculated result | Current status |
-|---|---|---|
-| HSS local and biaxial buckling | local slenderness 0.696; axial 0.325 | trial screen passes; design unresolved |
-| Chord local bending | M=12.51 kN·m; local bending ratio=0.369; combined ratio=0.653 | included; joint/load-introduction detail unresolved |
-| Member second order | reduced-Euler ratio 0.203; B1 screen=1.255 | member screen included; global direct analysis unresolved |
-| Trial gusset components | demand 209.8 kN; capacity 542.9 kN; ratio 0.387 | generic components pass; HSS wall limit states unresolved |
-| Trial longitudinal braced bays | diagonal demand 63.2 kN; L50×5 gross-yield ratio 0.622 | trial bar strength passes; locations, buckling in reversal, connections, collectors, and openings unresolved |
-| Vertical continuity / stair enclosure | 4 compatible corner lines; 2 existing Great Wall + 2 new rear columns | geometry screen passes; complete orthogonal system, collectors, bases, drift joints, fire, and egress unresolved |
-| Roof diaphragm | required unit shear 8.77 kN/m; chord force 39.5 kN | blocked by manufacturer system, openings, fasteners, collectors, and stiffness |
-| Erection | hook load 15.8 kN; sling tension 9.1 kN; minimum transport pieces 2 | crane chart, lift lugs, weather limit, splices, and temporary bracing unresolved |
-| Trial foundation sensitivity | gravity qmax 37.3 kPa; gravity bearing ratio 0.249; uplift net vertical 69.6 kN | no foundation adopted; geotechnical and RC/anchor design unresolved |
-| Trial base plate | concrete-bearing ratio 0.057; required/provided plate thickness 4.1/20.0 mm | centred compression components pass; anchor group, shear, moment, grout, pedestal, and concrete anchor limit states unresolved |
+| Phenomenon                            | Calculated result                                                               | Current status                                                                                                                 |
+| ------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| HSS local and biaxial buckling        | local slenderness 0.696; axial 0.325                                            | trial screen passes; design unresolved                                                                                         |
+| Chord local bending                   | M=12.51 kN·m; local bending ratio=0.369; combined ratio=0.653                   | included; joint/load-introduction detail unresolved                                                                            |
+| Member second order                   | reduced-Euler ratio 0.203; B1 screen=1.255                                      | member screen included; global direct analysis unresolved                                                                      |
+| Trial gusset components               | demand 209.8 kN; capacity 542.9 kN; ratio 0.387                                 | generic components pass; HSS wall limit states unresolved                                                                      |
+| Trial longitudinal braced bays        | diagonal demand 63.2 kN; L50×5 gross-yield ratio 0.622                          | trial bar strength passes; locations, buckling in reversal, connections, collectors, and openings unresolved                   |
+| Vertical continuity / stair enclosure | 4 compatible corner lines; 2 existing Great Wall + 2 new rear columns           | geometry screen passes; complete orthogonal system, collectors, bases, drift joints, fire, and egress unresolved               |
+| Roof diaphragm                        | required unit shear 8.77 kN/m; chord force 39.5 kN                              | blocked by manufacturer system, openings, fasteners, collectors, and stiffness                                                 |
+| Erection                              | hook load 15.8 kN; sling tension 9.1 kN; minimum transport pieces 2             | crane chart, lift lugs, weather limit, splices, and temporary bracing unresolved                                               |
+| Trial foundation sensitivity          | gravity qmax 37.3 kPa; gravity bearing ratio 0.249; uplift net vertical 69.6 kN | no foundation adopted; geotechnical and RC/anchor design unresolved                                                            |
+| Trial base plate                      | concrete-bearing ratio 0.057; required/provided plate thickness 4.1/20.0 mm     | centred compression components pass; anchor group, shear, moment, grout, pedestal, and concrete anchor limit states unresolved |
 
 ## Lateral-stability assumptions
 
@@ -43,11 +43,11 @@ Column continuity to roof level does not automatically create a roof gravity sup
 
 The ambient governing ratio is conservatively divided by the Appendix 4 material-retention factors. This does not model a time–temperature curve, section factor, thermal gradients, restraint, load redistribution, or protection thickness.
 
-| Trial steel temperature | Fy retention | E retention | Conservative strength ratio | Trial result |
-|---:|---:|---:|---:|---|
-| 400 °C | 1.000 | 0.700 | 0.653 | passes sensitivity only |
-| 550 °C | 0.625 | 0.455 | 1.046 | fails sensitivity |
-| 700 °C | 0.230 | 0.130 | 2.841 | fails sensitivity |
+| Trial steel temperature | Fy retention | E retention | Conservative strength ratio | Trial result            |
+| ----------------------: | -----------: | ----------: | --------------------------: | ----------------------- |
+|                  400 °C |        1.000 |       0.700 |                       0.653 | passes sensitivity only |
+|                  550 °C |        0.625 |       0.455 |                       1.046 | fails sensitivity       |
+|                  700 °C |        0.230 |       0.130 |                       2.841 | fails sensitivity       |
 
 D-021 must establish occupancy, required fire-resistance period, fire scenarios, compartmentation, and a tested protection system before fire design can close.
 

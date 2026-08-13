@@ -19,13 +19,13 @@ colombianas antes de influir en el presupuesto.
 El target v0.2 de $941 M de obra física se concentra en pocos capítulos. Cuatro de ellos
 suman más de la mitad del presupuesto:
 
-| Capítulo | Control v0.2 | Participación |
-|---|---:|---:|
-| 05+06 Estructura principal + secundaria | $200 M | 21 % |
-| 08+09 Cubierta + fachadas aisladas | $165 M | 18 % |
-| 04 Losa PB industrial | $83 M | 9 % |
-| 12+13 Vidrio + ventanas/puerta | $58 M | 6 % |
-| Resto | $435 M | 46 % |
+| Capítulo                                | Control v0.2 | Participación |
+| --------------------------------------- | -----------: | ------------: |
+| 05+06 Estructura principal + secundaria |       $200 M |          21 % |
+| 08+09 Cubierta + fachadas aisladas      |       $165 M |          18 % |
+| 04 Losa PB industrial                   |        $83 M |           9 % |
+| 12+13 Vidrio + ventanas/puerta          |        $58 M |           6 % |
+| Resto                                   |       $435 M |          46 % |
 
 Por tanto, el ahorro más grande no está en recortar acabados sino en **estructura,
 envolvente y cimentación**, y se decide casi por completo en el diseño (las fuentes de
@@ -209,13 +209,13 @@ internacional, los paneles aislados (IMP, PUR/PIR) son de los sistemas más caro
 **teja metálica + lana de vidrio con facing de vapor + liner interior** es el más
 económico y es el estándar de fábricas y bodegas. Los rangos referenciales de instalación:
 
-| Sistema | Costo instalado ref. (USD/ft²) | Notas |
-|---|---:|---|
-| Lana de vidrio con facing (blanket) | $0,45–1,15 | La opción más barata; R-3,2–3,8 por pulgada |
-| Barrera reflectiva/radiant | $0,15–0,50 | Suplementaria, no sustituye aislamiento en clima frío |
-| Tablero rígido (rigid foam, continuo) | $0,80–2,00 | R-5,0–6,5 por pulgada; elimina puentes térmicos |
-| Espuma cerrada (spray foam) | $1,50–3,50 | Sella aire y vapor, pero la más cara y puede anular garantías de panel |
-| Panel aislado IMP (PUR/PIR) | $12–35 | El más caro; R alto en perfil delgado |
+| Sistema                               | Costo instalado ref. (USD/ft²) | Notas                                                                  |
+| ------------------------------------- | -----------------------------: | ---------------------------------------------------------------------- |
+| Lana de vidrio con facing (blanket)   |                     $0,45–1,15 | La opción más barata; R-3,2–3,8 por pulgada                            |
+| Barrera reflectiva/radiant            |                     $0,15–0,50 | Suplementaria, no sustituye aislamiento en clima frío                  |
+| Tablero rígido (rigid foam, continuo) |                     $0,80–2,00 | R-5,0–6,5 por pulgada; elimina puentes térmicos                        |
+| Espuma cerrada (spray foam)           |                     $1,50–3,50 | Sella aire y vapor, pero la más cara y puede anular garantías de panel |
+| Panel aislado IMP (PUR/PIR)           |                         $12–35 | El más caro; R alto en perfil delgado                                  |
 
 Esto sugiere una **línea de investigación de cantidades** para el capítulo 09: comparar
 "panel aislado" contra "teja/lámina + lana con facing + liner interior", manteniendo la
@@ -229,21 +229,21 @@ proveedores de Boyacá), no con los rangos USD genéricos.
 La [auditoría de costos 2026-08](../04_costos/auditoria_de_costos_2026_08.md) re-consultó en
 vivo las referencias CYPE que cierran la comparación con precios locales:
 
-| Sistema de fachada (0,6 mm + aislamiento) | Ref. CYPE | Costo/m² | Delta vs. panel |
-|---|---:|---:|---:|
-| Fachada simple de lámina perfilada de acero (sin aislamiento) | FLA010 | $29.438 | −81 % |
-| Fachada de doble hoja: bandeja + lana de vidrio 100 mm (R=2,25) + lámina | FLA020 | $91.466 | **−40 %** |
-| Panel sándwich aislante 50 mm, lana de roca, fijación oculta | FLA030 | $152.266 | base |
-| Cubierta sándwich 50 mm, lana de roca | QTM010 | $101.010 | — |
-| Cubierta de lámina perfilada simple (sin aislamiento) | QTA010 | ≈$29.000–31.000 (estimado de FLA010) | — |
+| Sistema de fachada (0,6 mm + aislamiento)                                | Ref. CYPE |                             Costo/m² | Delta vs. panel |
+| ------------------------------------------------------------------------ | --------: | -----------------------------------: | --------------: |
+| Fachada simple de lámina perfilada de acero (sin aislamiento)            |    FLA010 |                              $29.438 |           −81 % |
+| Fachada de doble hoja: bandeja + lana de vidrio 100 mm (R=2,25) + lámina |    FLA020 |                              $91.466 |       **−40 %** |
+| Panel sándwich aislante 50 mm, lana de roca, fijación oculta             |    FLA030 |                             $152.266 |            base |
+| Cubierta sándwich 50 mm, lana de roca                                    |    QTM010 |                             $101.010 |               — |
+| Cubierta de lámina perfilada simple (sin aislamiento)                    |    QTA010 | ≈$29.000–31.000 (estimado de FLA010) |               — |
 
 **Aplicado a la envolvente real de la nave (fachada neta ≈680 m², cubierta ≈660 m²):**
 
-| Escenario | Fachada (680 m²) | Cubierta (660 m²) | Total envolvente |
-|---|---:|---:|---:|
-| Control v0.2 (panel sándwich en ambas) | $95 M | $70 M | **$165 M** |
-| Fachada por capas (doble hoja FLA020) + barrera de vapor/separadores térmicos/remates (+$8–12 k/m²) | **$70–75 M** | $70 M | **$140–145 M** |
-| Envolvente por capas en fachada **y** cubierta (lámina + lana facing + liner) | **$70–75 M** | **$59–63 M** | **≈$130–140 M** |
+| Escenario                                                                                           | Fachada (680 m²) | Cubierta (660 m²) | Total envolvente |
+| --------------------------------------------------------------------------------------------------- | ---------------: | ----------------: | ---------------: |
+| Control v0.2 (panel sándwich en ambas)                                                              |            $95 M |             $70 M |       **$165 M** |
+| Fachada por capas (doble hoja FLA020) + barrera de vapor/separadores térmicos/remates (+$8–12 k/m²) |     **$70–75 M** |             $70 M |   **$140–145 M** |
+| Envolvente por capas en fachada **y** cubierta (lámina + lana facing + liner)                       |     **$70–75 M** |      **$59–63 M** |  **≈$130–140 M** |
 
 **Conclusión de cantidades:** el ahorro real de la envolvente por capas está **en la fachada
 (−$20–25 M)**, no tanto en la cubierta (−$7–10 M, porque el sándwich QTM010 ya cotiza bajo).
@@ -251,6 +251,7 @@ El total potencial **$165 M → ≈$130–140 M (−$25–35 M)** confirma el ra
 #2, −$15 a −$30 M) y lo sube al borde superior con la doble hoja.
 
 **Requisitos no negociables si se adopta (clima frío de Boyacá):**
+
 - Barrera de vapor/facing en el **lado cálido (interior)**: el FLA020 no la incluye; hay que
   sumarla (cinta de sellado de vapor en todas las costuras).
 - Separadores térmicos en girts/correas: el acero de la estructura reduce el R efectivo
@@ -371,20 +372,20 @@ internacionales para naves de gran altura coinciden con esa filosofía:
 
 ## 8. Tabla resumen: técnicas priorizadas
 
-| # | Técnica | Capítulo v0.2 | Impacto estimado | Riesgo | Esencia preservada | Estado |
-|---|---|---|---|---|---|---|
-| 1 | Modulación bays 6 m + perfiles estándar | 05, 06 | Alto (tonelaje) | Bajo | Sí | Investigar |
-| 2 | Pórticos vs. cerchas por cálculo | 05 | Alto | Medio | Sí | Investigar |
-| 3 | Acero grado superior en principales, inferior en secundarios | 05, 06 | Medio | Bajo | Sí | Ingeniero |
-| 4 | Ingeniero estructural desde el esquema | 05–07 | 10–20 % reportado | Bajo | Sí | Acción |
-| 5 | Geotecnia temprana | 02, 03 | Alto (evita sobrediseño) | Bajo | Sí | Acción |
-| 6 | Envolvente por capas vs. panel aislado | 08, 09 | Alto | Medio-alto (condensación) | Sí | Cotizar |
-| 7 | Barrera de vapor lado cálido + sellos | 08, 09, 10 | Medio (vida útil) | Alto si se omite | Sí | Requisito |
-| 8 | Lana con facing + liner interior (taller) | 09 | Medio | Medio | Sí | Cotizar |
-| 9 | Vidrio/portones estándar, 2–3 cotizaciones | 11, 12, 13 | Medio | Bajo | Sí | Cotizar |
-| 10 | HVLS + calefacción local, no climatizar la nave | 19 | Medio | Bajo | Sí | Mantener |
-| 11 | Concreto pulido único piso | 04 | Bajo (ya en plan) | Bajo | Sí | Mantener |
-| 12 | Bases de precios colombianas | Todos | Control | Bajo | Sí | Acción |
+| #   | Técnica                                                      | Capítulo v0.2 | Impacto estimado         | Riesgo                    | Esencia preservada | Estado     |
+| --- | ------------------------------------------------------------ | ------------- | ------------------------ | ------------------------- | ------------------ | ---------- |
+| 1   | Modulación bays 6 m + perfiles estándar                      | 05, 06        | Alto (tonelaje)          | Bajo                      | Sí                 | Investigar |
+| 2   | Pórticos vs. cerchas por cálculo                             | 05            | Alto                     | Medio                     | Sí                 | Investigar |
+| 3   | Acero grado superior en principales, inferior en secundarios | 05, 06        | Medio                    | Bajo                      | Sí                 | Ingeniero  |
+| 4   | Ingeniero estructural desde el esquema                       | 05–07         | 10–20 % reportado        | Bajo                      | Sí                 | Acción     |
+| 5   | Geotecnia temprana                                           | 02, 03        | Alto (evita sobrediseño) | Bajo                      | Sí                 | Acción     |
+| 6   | Envolvente por capas vs. panel aislado                       | 08, 09        | Alto                     | Medio-alto (condensación) | Sí                 | Cotizar    |
+| 7   | Barrera de vapor lado cálido + sellos                        | 08, 09, 10    | Medio (vida útil)        | Alto si se omite          | Sí                 | Requisito  |
+| 8   | Lana con facing + liner interior (taller)                    | 09            | Medio                    | Medio                     | Sí                 | Cotizar    |
+| 9   | Vidrio/portones estándar, 2–3 cotizaciones                   | 11, 12, 13    | Medio                    | Bajo                      | Sí                 | Cotizar    |
+| 10  | HVLS + calefacción local, no climatizar la nave              | 19            | Medio                    | Bajo                      | Sí                 | Mantener   |
+| 11  | Concreto pulido único piso                                   | 04            | Bajo (ya en plan)        | Bajo                      | Sí                 | Mantener   |
+| 12  | Bases de precios colombianas                                 | Todos         | Control                  | Bajo                      | Sí                 | Acción     |
 
 **Lectura del riesgo en el clima de Boyacá:** la técnica #6 ahorra dinero pero cambia el
 detalle de la envolvente; solo se adopta con cálculo de punto de rocío, sellado de aire y

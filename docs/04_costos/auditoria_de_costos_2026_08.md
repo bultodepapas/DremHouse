@@ -23,20 +23,20 @@ es un precio contractual; sirve para decidir qué cotizar primero y dónde está
 
 ### 1.1 Veredicto por frente
 
-| Frente | Capítulos | Veredicto |
-|---|---|---|
-| Precio del acero $/kg | 05, 06 | **Alineado** ($7.054/kg del desglose dentro del rango CYPE verificado $6.587–7.376/kg) |
-| **Tonelaje de acero** | 05, 06 | **Subestimado** (el riesgo no es el $/kg, es el peso: 28,35 t asumidas vs. 30–45 t realistas) |
-| Concreto $/m³ y volúmenes | 02, 03, 04, 07 | **Precio alineado** (CYPE $520.985/m³ 21 MPa; zapata $727.665/m³); **volumen de cimentación ligero** |
-| Losa PB sistema | 04 | **Apretado** (≈$128.000/m² vs. CYPE sistema industrial $177.239/m²; explicado por losa = estructura + acabado) |
-| Panel fachada $/m² | 09 | **Subestimado** ($140.000 vs. CYPE verificado $152.266; más perfiles térmicos y remates) |
-| Cubierta sándwich $/m² | 08 | **Alineado** ($101.010 CYPE = $101.000 del desglose) |
-| Metaldeck | 07 | **Alineado** ($150.400 CYPE = $152.000 del desglose) |
-| Vidrio principal | 12 | **Apretado a subestimado** ($1.180.000 vs. CYPE muro cortina $1.290.000–1.485.000) |
-| Drywall | 14 | **Alineado** ($95.000 con lana vs. CYPE básico $83.630) |
-| Elevador automotriz | 25 | **Alineado** (equipo verificado $10,9 M vs. $10,0 M del desglose) |
-| Partidas ausentes | 01, 16, 17 | **Faltan o están bajas:** SG-SST/ensayos, detección de incendios, sauna, seguros |
-| Contingencia | — | **Baja para la etapa** (5 % sobre confianza baja-media; práctica 10–15 % hasta PE-2) |
+| Frente                    | Capítulos      | Veredicto                                                                                                      |
+| ------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------- |
+| Precio del acero $/kg     | 05, 06         | **Alineado** ($7.054/kg del desglose dentro del rango CYPE verificado $6.587–7.376/kg)                         |
+| **Tonelaje de acero**     | 05, 06         | **Subestimado** (el riesgo no es el $/kg, es el peso: 28,35 t asumidas vs. 30–45 t realistas)                  |
+| Concreto $/m³ y volúmenes | 02, 03, 04, 07 | **Precio alineado** (CYPE $520.985/m³ 21 MPa; zapata $727.665/m³); **volumen de cimentación ligero**           |
+| Losa PB sistema           | 04             | **Apretado** (≈$128.000/m² vs. CYPE sistema industrial $177.239/m²; explicado por losa = estructura + acabado) |
+| Panel fachada $/m²        | 09             | **Subestimado** ($140.000 vs. CYPE verificado $152.266; más perfiles térmicos y remates)                       |
+| Cubierta sándwich $/m²    | 08             | **Alineado** ($101.010 CYPE = $101.000 del desglose)                                                           |
+| Metaldeck                 | 07             | **Alineado** ($150.400 CYPE = $152.000 del desglose)                                                           |
+| Vidrio principal          | 12             | **Apretado a subestimado** ($1.180.000 vs. CYPE muro cortina $1.290.000–1.485.000)                             |
+| Drywall                   | 14             | **Alineado** ($95.000 con lana vs. CYPE básico $83.630)                                                        |
+| Elevador automotriz       | 25             | **Alineado** (equipo verificado $10,9 M vs. $10,0 M del desglose)                                              |
+| Partidas ausentes         | 01, 16, 17     | **Faltan o están bajas:** SG-SST/ensayos, detección de incendios, sauna, seguros                               |
+| Contingencia              | —              | **Baja para la etapa** (5 % sobre confianza baja-media; práctica 10–15 % hasta PE-2)                           |
 
 ### 1.2 Conclusiones principales
 
@@ -51,8 +51,8 @@ es un precio contractual; sirve para decidir qué cotizar primero y dónde está
    ($1,6–2,5 M/m²).** Eso es defendible solo porque ≈648 m² de PB son nave industrial abierta y
    sin acabados; el P2 residencial (270 m²) y los baños/cocina no pueden leerse con esa tarifa
    única. La descomposición por capítulo es la única lectura honesta.
-4. **El conflicto CF-001 se explica por alcance:** v0.1 estimaba *todo* el proyecto (obra +
-   equipamiento + blandos + exteriores) con precios altos; v0.2 es *solo obra física* con precios
+4. **El conflicto CF-001 se explica por alcance:** v0.1 estimaba _todo_ el proyecto (obra +
+   equipamiento + blandos + exteriores) con precios altos; v0.2 es _solo obra física_ con precios
    optimistas. La inversión total del promotor, con esta auditoría, se estima en **≈$1.800–2.500 M**.
 5. **Fase 1 concentra todos los frentes de riesgo** (acero, fachada, vidrio, cimentación están en
    F1). El ahorro de caja F2 ($77,7 M) no protege a F1. Validar estructura → envolvente → vidrio
@@ -60,11 +60,11 @@ es un precio contractual; sirve para decidir qué cotizar primero y dónde está
 
 ### 1.3 Escenarios de obra física (control, sin costos blandos)
 
-| Escenario | Obra física | Contingencia | Control total | Condición |
-|---|---:|---:|---:|---|
-| A — optimista (target) | $941 M | 5 % ($47 M) | $988 M | Se cumplen precios verificados bajos y el 100 % del radar |
-| B — más probable | $1.050–1.150 M | 8 % ($84–92 M) | **$1.135–1.240 M** | Precios reales en los 3 frentes + faltantes incorporados |
-| C — adverso | $1.200–1.320 M | 10 % ($120–132 M) | $1.320–1.450 M | Acero 45 t, geotecnia pobre, envolvente/vidrio crecen |
+| Escenario              |    Obra física |      Contingencia |      Control total | Condición                                                 |
+| ---------------------- | -------------: | ----------------: | -----------------: | --------------------------------------------------------- |
+| A — optimista (target) |         $941 M |       5 % ($47 M) |             $988 M | Se cumplen precios verificados bajos y el 100 % del radar |
+| B — más probable       | $1.050–1.150 M |    8 % ($84–92 M) | **$1.135–1.240 M** | Precios reales en los 3 frentes + faltantes incorporados  |
+| C — adverso            | $1.200–1.320 M | 10 % ($120–132 M) |     $1.320–1.450 M | Acero 45 t, geotecnia pobre, envolvente/vidrio crecen     |
 
 ---
 
@@ -73,21 +73,21 @@ es un precio contractual; sirve para decidir qué cotizar primero y dónde está
 Todas las referencias CYPE fueron consultadas directamente en el Generador de Precios Colombia
 en esta fecha.
 
-| Ítem | Precio del desglose | Referencia verificada | Brecha | Veredicto |
-|---|---:|---:|---:|---|
-| Acero A36 estructural instalado | $7.054/kg (combinado) | **$6.587,26/kg** — CYPE EAP020 (perfil laminado A36, imprimación, soldado, ≤3 m) | dentro del rango | OK; el riesgo es el peso |
-| Acero A572 Gr. 50 instalado | $7.054/kg (combinado) | **$7.375,64/kg** — CYPE EAP020 (piezas compuestas, atornillado) | dentro del rango | OK |
-| Concreto 21 MPa (21 MPa) | $420.000/m³ (losa 04.02) | **$520.984,68/m³** — CYPE CHH030 (losas de cimentación, obra, manual) | −19 % | Apretado; ver §3.4 |
-| Zapata de concreto armado | $730.000/m³ (03.01) | **$727.665/m³** — CYPE CSZ010 (v0.1) | ≈0 % | OK |
-| Piso industrial tratado/pulido | ≈$128.000/m² sistema (04) | **$177.239,20/m²** — CYPE RSI007 (solera 20 cm + endurecedor + fratasado + pulido) | −28 % | Sistema del desglose más delgado (15 cm, pulido parcial); explicable, apretado |
-| Panel sándwich fachada 50 mm | $140.000/m² (09.01) | **$152.266,44/m²** — CYPE FLA030 (50 mm, lana de roca, fijación oculta) | **−8 %** | **Subestimado**; sin perfiles térmicos ni puntos singulares |
-| Panel sándwich cubierta 50 mm | $101.000/m² (08.01) | **$101.009,74/m²** — CYPE QTM010 (50 mm, lana de roca, pendiente >10 %) | ≈0 % | OK |
-| Losa metaldeck e=10 cm | $152.000/m² (07) | **$150.399,51/m²** — CYPE EHX011 (lámina 0,75 mm, 21 MPa, conectores) | ≈0 % | OK |
-| Muro divisorio drywall | $95.000/m² (14.01) | **$83.629,82/m²** — CYPE FBY010 (básico, sin aislamiento) | +14 % | OK; el +14 % es lana y refuerzo acústico |
-| Muro cortina de aluminio | $1.180.000/m² (12.01) | **$1.290.363,67/m²** — CYPE FMC010 (sistema de tapetas) | **−8 % a −20 %** | **Apretado**; solo sostiene si el evento es ventana fija industrial, no muro cortina |
-| Elevador automotriz 2 columnas ≈4 t | $10.000.000 (25.01) | **$10.900.000** — Protalleres PT-240SC (sin instalación/envío) | +9 % | OK; el desglose suma obra civil + instalación aparte |
-| Variación ICOCED (contexto de fecha) | — | **+0,20 % mensual jun-2026**; casas +0,12 %; bodegas +0,19 % (DANE, publicado 31-jul-2026) | — | Inflación de costos estable; no corrige precios base |
-| Costo por m² 2026 (referencia externa) | $1.076.000/m² (target) | VIS **$1,6–2,5 M/m²**; estrato medio **$2,2–3,2 M/m²**; residencial **$3,2–5,0 M/m²** (CalculaConstrucción); VIS $1,8–2,5 M, media $2,8–4,2 M (Exacon) | target por debajo de VIS | Explicable por PB de nave industrial; ver §3.6 |
+| Ítem                                   |       Precio del desglose |                                                                                                                                  Referencia verificada |                   Brecha | Veredicto                                                                            |
+| -------------------------------------- | ------------------------: | -----------------------------------------------------------------------------------------------------------------------------------------------------: | -----------------------: | ------------------------------------------------------------------------------------ |
+| Acero A36 estructural instalado        |     $7.054/kg (combinado) |                                                                       **$6.587,26/kg** — CYPE EAP020 (perfil laminado A36, imprimación, soldado, ≤3 m) |         dentro del rango | OK; el riesgo es el peso                                                             |
+| Acero A572 Gr. 50 instalado            |     $7.054/kg (combinado) |                                                                                        **$7.375,64/kg** — CYPE EAP020 (piezas compuestas, atornillado) |         dentro del rango | OK                                                                                   |
+| Concreto 21 MPa (21 MPa)               |  $420.000/m³ (losa 04.02) |                                                                                  **$520.984,68/m³** — CYPE CHH030 (losas de cimentación, obra, manual) |                    −19 % | Apretado; ver §3.4                                                                   |
+| Zapata de concreto armado              |       $730.000/m³ (03.01) |                                                                                                                   **$727.665/m³** — CYPE CSZ010 (v0.1) |                     ≈0 % | OK                                                                                   |
+| Piso industrial tratado/pulido         | ≈$128.000/m² sistema (04) |                                                                     **$177.239,20/m²** — CYPE RSI007 (solera 20 cm + endurecedor + fratasado + pulido) |                    −28 % | Sistema del desglose más delgado (15 cm, pulido parcial); explicable, apretado       |
+| Panel sándwich fachada 50 mm           |       $140.000/m² (09.01) |                                                                                **$152.266,44/m²** — CYPE FLA030 (50 mm, lana de roca, fijación oculta) |                 **−8 %** | **Subestimado**; sin perfiles térmicos ni puntos singulares                          |
+| Panel sándwich cubierta 50 mm          |       $101.000/m² (08.01) |                                                                                **$101.009,74/m²** — CYPE QTM010 (50 mm, lana de roca, pendiente >10 %) |                     ≈0 % | OK                                                                                   |
+| Losa metaldeck e=10 cm                 |          $152.000/m² (07) |                                                                                  **$150.399,51/m²** — CYPE EHX011 (lámina 0,75 mm, 21 MPa, conectores) |                     ≈0 % | OK                                                                                   |
+| Muro divisorio drywall                 |        $95.000/m² (14.01) |                                                                                              **$83.629,82/m²** — CYPE FBY010 (básico, sin aislamiento) |                    +14 % | OK; el +14 % es lana y refuerzo acústico                                             |
+| Muro cortina de aluminio               |     $1.180.000/m² (12.01) |                                                                                                **$1.290.363,67/m²** — CYPE FMC010 (sistema de tapetas) |         **−8 % a −20 %** | **Apretado**; solo sostiene si el evento es ventana fija industrial, no muro cortina |
+| Elevador automotriz 2 columnas ≈4 t    |       $10.000.000 (25.01) |                                                                                         **$10.900.000** — Protalleres PT-240SC (sin instalación/envío) |                     +9 % | OK; el desglose suma obra civil + instalación aparte                                 |
+| Variación ICOCED (contexto de fecha)   |                         — |                                                             **+0,20 % mensual jun-2026**; casas +0,12 %; bodegas +0,19 % (DANE, publicado 31-jul-2026) |                        — | Inflación de costos estable; no corrige precios base                                 |
+| Costo por m² 2026 (referencia externa) |    $1.076.000/m² (target) | VIS **$1,6–2,5 M/m²**; estrato medio **$2,2–3,2 M/m²**; residencial **$3,2–5,0 M/m²** (CalculaConstrucción); VIS $1,8–2,5 M, media $2,8–4,2 M (Exacon) | target por debajo de VIS | Explicable por PB de nave industrial; ver §3.6                                       |
 
 ---
 
@@ -99,6 +99,7 @@ El desglose asume **28.350 kg** totales (19.200 principal + 9.150 secundaria), e
 ≈31 kg/m² de proyecto. Cálculo paramétrico independiente sobre la geometría del programa:
 
 **Pórticos principales (nave 18 × 36 m, 6 bays de 6 m, cumbrera ≈7,8 m):**
+
 - 7 líneas de pórticos (6 bays + 2 testeros).
 - Columnas: 2 × 6 m × ~88 kg/m (HEA 300) ≈ 1.060 kg/pórtico → ≈7,4 t.
 - Vigas de cubierta 18 m con cartelas: ~18 m × ~90 kg/m (IPE 500) ≈ 1.630 kg/pórtico + cartelas
@@ -107,6 +108,7 @@ El desglose asume **28.350 kg** totales (19.200 principal + 9.150 secundaria), e
 - **Subtotal pórticos y columnas: ≈23–24 t** (el desglose tiene 15,5 t en 05.01+05.02).
 
 **Entrepiso P2 (270 m², luces de 6 m entre pórticos, carga residencial + particiones):**
+
 - Viguetas cada 1,5 m: ≈180 ml × ~26 kg/m (IPE 220) ≈ 4,7 t.
 - Vigas de borde y apoyos en la línea abierta (X=21) + columnas auxiliares: ≈4–6 t.
 - **Subtotal entrepiso: ≈9–11 t** (el desglose tiene 3,0 t en 05.03).
@@ -160,14 +162,14 @@ El desglose asume **28.350 kg** totales (19.200 principal + 9.150 secundaria), e
 
 ### 3.6 Lectura del costo por m² (descomposición honesta)
 
-| Zona | Área | Costo unitario implícito realista | Lectura |
-|---|---:|---:|---|
-| PB nave industrial abierta (cáscara: cim., losa, acero, envolvente) | 648 m² | ≈$700–900.000/m² | Coherente con naves metálicas aisladas |
-| P2 residencial (4 suites, 4 baños, wellness, acabados, MEP asociado) | 270 m² | ≈$1,6–2,2 M/m² | Se acerca a VIS/media residencial |
-| Frentes singulares (vidrio, portones, escalera, terraza) | — | — | Distribuidos sobre el total |
+| Zona                                                                 |   Área | Costo unitario implícito realista | Lectura                                |
+| -------------------------------------------------------------------- | -----: | --------------------------------: | -------------------------------------- |
+| PB nave industrial abierta (cáscara: cim., losa, acero, envolvente)  | 648 m² |                  ≈$700–900.000/m² | Coherente con naves metálicas aisladas |
+| P2 residencial (4 suites, 4 baños, wellness, acabados, MEP asociado) | 270 m² |                    ≈$1,6–2,2 M/m² | Se acerca a VIS/media residencial      |
+| Frentes singulares (vidrio, portones, escalera, terraza)             |      — |                                 — | Distribuidos sobre el total            |
 
-El blended de $1.076.000/m² del target y el de ≈$1.190.000/m² del escenario B son bajos *en
-promedio* precisamente por la participación de la PB industrial; no son comparables con una
+El blended de $1.076.000/m² del target y el de ≈$1.190.000/m² del escenario B son bajos _en
+promedio_ precisamente por la participación de la PB industrial; no son comparables con una
 vivienda convencional del mismo metraje. La descomposición por capítulo es la métrica de control.
 
 ---
@@ -176,73 +178,73 @@ vivienda convencional del mismo metraje. La descomposición por capítulo es la 
 
 ### 4.1 Severidad ALTA
 
-| ID | Hallazgo | Evidencia | Impacto estimado |
-|---|---|---|---|
-| **A-01** | Tonelaje de acero subestimado (28,35 t vs. 30–45 t realistas) | §3.1; el propio v0.2 lo declara | **+$55–100 M** (cap. 05/06) |
-| **A-02** | Fachada a $140.000/m², −8 % bajo CYPE verificado $152.266/m²; falta perfilería térmica | §2, CYPE FLA030 vivo | **+$10–25 M** (cap. 09) |
-| **A-03** | Vidrio principal apretado ($1,18 M/m² vs. $1,29–1,49 M/m² muro cortina) | §2, CYPE FMC010 vivo | **+$3–10 M** (cap. 12) |
-| **A-04** | Entrepiso P2 con 3.000 kg de vigas; cálculo paramétrico ≈9–11 t | §3.1 | **+$45–60 M** (dentro de A-01) |
-| **A-05** | **Detección de incendios ausente** del desglose (taller, car bay, homelab, sauna, P2); el v0.2 declara "sistemas de incendio" en F1 sin partida | DOCX §2 y estrategia F1 | **+$8–15 M** (cap. 17 o capítulo nuevo) |
+| ID       | Hallazgo                                                                                                                                        | Evidencia                       | Impacto estimado                        |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | --------------------------------------- |
+| **A-01** | Tonelaje de acero subestimado (28,35 t vs. 30–45 t realistas)                                                                                   | §3.1; el propio v0.2 lo declara | **+$55–100 M** (cap. 05/06)             |
+| **A-02** | Fachada a $140.000/m², −8 % bajo CYPE verificado $152.266/m²; falta perfilería térmica                                                          | §2, CYPE FLA030 vivo            | **+$10–25 M** (cap. 09)                 |
+| **A-03** | Vidrio principal apretado ($1,18 M/m² vs. $1,29–1,49 M/m² muro cortina)                                                                         | §2, CYPE FMC010 vivo            | **+$3–10 M** (cap. 12)                  |
+| **A-04** | Entrepiso P2 con 3.000 kg de vigas; cálculo paramétrico ≈9–11 t                                                                                 | §3.1                            | **+$45–60 M** (dentro de A-01)          |
+| **A-05** | **Detección de incendios ausente** del desglose (taller, car bay, homelab, sauna, P2); el v0.2 declara "sistemas de incendio" en F1 sin partida | DOCX §2 y estrategia F1         | **+$8–15 M** (cap. 17 o capítulo nuevo) |
 
 ### 4.2 Severidad MEDIA
 
-| ID | Hallazgo | Evidencia | Impacto estimado |
-|---|---|---|---|
-| **A-06** | SG-SST, laboratorio/ensayos y gestión de residuos sin partida explícita (obligatorio en obra colombiana: Decreto 1072/2015, Resolución 0141, etc.) | DOCX cap. 01 solo $2 M seguros + $1 M ensayos iniciales | **+$8–15 M** (cap. 01) |
-| **A-07** | Seguros bajos: $2 M para todo riesgo + RC de una obra de $941 M (≈0,3–0,5 % del valor) | Cap. 01.05 | **+$2–4 M** |
-| **A-08** | Sauna F2 en $3 M (16.08); una sauna finlandesa para 6 personas (cabina, calefactor, bancas, barrera de vapor, ventilación) cuesta $8–15 M | §2 y mercado | **+$5–8 M** (F2) |
-| **A-09** | Calentamiento de agua $2,3 M para todo el programa (clima frío de altura exige más potencia) | Cap. 15.04 | **+$2–4 M** |
-| **A-10** | Cubierta medida en 620 m² cuando el área real es ≈655–665 m² | §3.2 | **+$3–4 M** (cap. 08) |
-| **A-11** | Cimentación ligera (36 m³) vs. ≈42–50 m³ paramétrico; depende de geotecnia | §3.3 | **+$5–10 M** (cap. 03) |
-| **A-12** | Acometida eléctrica rural y posible transformador no modelados (R-09); el DOCX asume "capacidad para programa final" | DOCX §2 | +$10–30 M si aplica (costo de predio) |
-| **A-13** | Fase 2 con $74 M sin remobilización, escalamiento ni protección de casa ocupada | Estrategia F1/F2 §"costos que F2 debe presupuestar" | F2 real ≈$90–120 M |
-| **A-14** | Contingencia 5 % baja para confianza baja-media; práctica 10–15 % hasta PE-2 | Guías 2026 (mín. 15 % con imprevistos) | +$45–90 M sobre el control si se corrige |
+| ID       | Hallazgo                                                                                                                                           | Evidencia                                               | Impacto estimado                         |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------- |
+| **A-06** | SG-SST, laboratorio/ensayos y gestión de residuos sin partida explícita (obligatorio en obra colombiana: Decreto 1072/2015, Resolución 0141, etc.) | DOCX cap. 01 solo $2 M seguros + $1 M ensayos iniciales | **+$8–15 M** (cap. 01)                   |
+| **A-07** | Seguros bajos: $2 M para todo riesgo + RC de una obra de $941 M (≈0,3–0,5 % del valor)                                                             | Cap. 01.05                                              | **+$2–4 M**                              |
+| **A-08** | Sauna F2 en $3 M (16.08); una sauna finlandesa para 6 personas (cabina, calefactor, bancas, barrera de vapor, ventilación) cuesta $8–15 M          | §2 y mercado                                            | **+$5–8 M** (F2)                         |
+| **A-09** | Calentamiento de agua $2,3 M para todo el programa (clima frío de altura exige más potencia)                                                       | Cap. 15.04                                              | **+$2–4 M**                              |
+| **A-10** | Cubierta medida en 620 m² cuando el área real es ≈655–665 m²                                                                                       | §3.2                                                    | **+$3–4 M** (cap. 08)                    |
+| **A-11** | Cimentación ligera (36 m³) vs. ≈42–50 m³ paramétrico; depende de geotecnia                                                                         | §3.3                                                    | **+$5–10 M** (cap. 03)                   |
+| **A-12** | Acometida eléctrica rural y posible transformador no modelados (R-09); el DOCX asume "capacidad para programa final"                               | DOCX §2                                                 | +$10–30 M si aplica (costo de predio)    |
+| **A-13** | Fase 2 con $74 M sin remobilización, escalamiento ni protección de casa ocupada                                                                    | Estrategia F1/F2 §"costos que F2 debe presupuestar"     | F2 real ≈$90–120 M                       |
+| **A-14** | Contingencia 5 % baja para confianza baja-media; práctica 10–15 % hasta PE-2                                                                       | Guías 2026 (mín. 15 % con imprevistos)                  | +$45–90 M sobre el control si se corrige |
 
 ### 4.3 Severidad BAJA / notas
 
-| ID | Nota |
-|---|---|
+| ID   | Nota                                                                                                                                                                              |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A-15 | Impacto de la revisión b04 (puerta posterior de bodega, descarga de escalera, frontera F1/F2, isla 3,60 × 1,20 m) sigue sin cuantificar; afecta 10, 14, 19, 20, 22 y 24 (v0.3-A). |
-| A-16 | Puertas interiores: 9 en el desglose; un programa de 4 suites + wellness + lavandería + núcleo razonablemente necesita 12–14. |
-| A-17 | Tabiques P2: 200 m² + 80 m² PB = 280 m²; las particiones reales de P2 pueden requerir 250–300 m². |
-| A-18 | Protección anticorrosiva (05.05 $6,9 M) calculada para 19,2 t; si el acero crece, crece con él. Decidir galvanizado vs. pintura por exposición (clima seco de altura interior). |
-| A-19 | CCTV en $500.000 (18.05): insuficiente para una propiedad rural de 918 m² si se incluyen cámaras (puede considerarse equipamiento, fuera de obra). |
-| A-20 | Venta de excedentes de excavación/relleno y manejo de aguas de obra (02.04 $600.000) dependen del predio. |
+| A-16 | Puertas interiores: 9 en el desglose; un programa de 4 suites + wellness + lavandería + núcleo razonablemente necesita 12–14.                                                     |
+| A-17 | Tabiques P2: 200 m² + 80 m² PB = 280 m²; las particiones reales de P2 pueden requerir 250–300 m².                                                                                 |
+| A-18 | Protección anticorrosiva (05.05 $6,9 M) calculada para 19,2 t; si el acero crece, crece con él. Decidir galvanizado vs. pintura por exposición (clima seco de altura interior).   |
+| A-19 | CCTV en $500.000 (18.05): insuficiente para una propiedad rural de 918 m² si se incluyen cámaras (puede considerarse equipamiento, fuera de obra).                                |
+| A-20 | Venta de excedentes de excavación/relleno y manejo de aguas de obra (02.04 $600.000) dependen del predio.                                                                         |
 
 ---
 
 ## 5. Estimación ajustada por capítulo (escenario B — más probable)
 
-| Código | Capítulo | Control v0.2 | Ajuste | Control ajustado | Evidencia principal |
-|---|---|---:|---:|---:|---|
-| 01 | Preliminares, campamento, replanteo | $15 M | +$10 M | $25 M | Seguros +$3 M; SG-SST/ensayos/residuos +$7 M |
-| 02 | Excavaciones y movimientos | $7 M | +$3 M | $10 M | Mejoramiento/rellenos según geotecnia |
-| 03 | Cimentaciones, pedestales y anclajes | $35 M | +$10 M | $45 M | Volumen 36→~46 m³; suelo incierto (R-05) |
-| 04 | Losa PB industrial | $83 M | +$5 M | $88 M | Concreto $460–500 k/m³ vs. $420 k |
-| 05 | Estructura principal nave + P2 | $145 M | +$65 M | $210 M | Acero 19,2→~28 t (pórticos + entrepiso) |
-| 06 | Correas, secundaria, arriostramientos | $55 M | +$3 M | $58 M | Áreas reales de girts/correas |
-| 07 | Losa metaldeck P2 | $41 M | $0 | $41 M | CYPE $150.400/m² ✓ |
-| 08 | Cubierta metálica aislada | $70 M | +$3 M | $73 M | 620→~660 m² reales |
-| 09 | Fachadas de panel aislado | $95 M | +$15 M | $110 M | 680 m² × $152 k (CYPE) + remates |
-| 10 | Canales, remates, flashing y sellos | $20 M | +$2 M | $22 M | Perímetro y encuentros reales |
-| 11 | Dos portones industriales | $24 M | +$2 M | $26 M | Altura 4,80 m + motorización; cotizar |
-| 12 | Gran evento de vidrio | $38 M | +$4 M | $42 M | Sistema real $1,29 M/m² o templado |
-| 13 | Ventanas restantes + puerta peatonal | $20 M | +$2 M | $22 M | Cotización de carpintería |
-| 14 | Divisiones P2/núcleo + acústica | $38 M | +$4 M | $42 M | 280→~330 m² + puertas 12–14 |
-| 15 | Redes hidrosanitarias | $20 M | +$4 M | $24 M | Calentamiento +$2 M; red según predio |
-| 16 | Baños + ducha/sauna + húmedos | $35 M | +$7 M | $42 M | Sauna real +$5 M; griferías/aparatos |
-| 17 | Electricidad, tableros, iluminación | $42 M | +$5 M | $47 M | Detección de incendios +$5 M (A-05) |
-| 18 | Datos, red, Home Assistant | $8 M | +$1 M | $9 M | Puntos/cámaras mínimos reales |
-| 19 | Extracción, ventilación, climatización | $25 M | +$2 M | $27 M | Balanceo y ductería reales |
-| 20 | Cocina fija, muebles, mesones | $25 M | $0 | $25 M | Fabricación nacional modular ✓ |
-| 21 | Closets + cajoneras + bancos taller | $30 M | $0 | $30 M | Nacional modular ✓ |
-| 22 | Escalera metálica + barandas | $12 M | $0 | $12 M | Rango de mercado ✓ |
-| 23 | Acabados P2 y pintura puntual | $25 M | +$2 M | $27 M | P2 residencial real |
-| 24 | Terraza inmediata + drenajes | $18 M | $0 | $18 M | Rango de mercado ✓ |
-| 25 | Elevador automotriz + provisión civil | $15 M | $0 | $15 M | Equipo $10,9 M verificado ✓ |
-| | **Total obra física** | **$941 M** | **+$149 M** | **≈$1.090 M** | rango $1.050–1.150 M |
-| | Contingencia 5 % v0.2 | $47 M | — | — | recomendado 8 % → $87 M |
-| | **Control de obra** | **$988 M** | | **≈$1.135–1.240 M** | según contingencia |
+| Código | Capítulo                               | Control v0.2 |      Ajuste |    Control ajustado | Evidencia principal                          |
+| ------ | -------------------------------------- | -----------: | ----------: | ------------------: | -------------------------------------------- |
+| 01     | Preliminares, campamento, replanteo    |        $15 M |      +$10 M |               $25 M | Seguros +$3 M; SG-SST/ensayos/residuos +$7 M |
+| 02     | Excavaciones y movimientos             |         $7 M |       +$3 M |               $10 M | Mejoramiento/rellenos según geotecnia        |
+| 03     | Cimentaciones, pedestales y anclajes   |        $35 M |      +$10 M |               $45 M | Volumen 36→~46 m³; suelo incierto (R-05)     |
+| 04     | Losa PB industrial                     |        $83 M |       +$5 M |               $88 M | Concreto $460–500 k/m³ vs. $420 k            |
+| 05     | Estructura principal nave + P2         |       $145 M |      +$65 M |              $210 M | Acero 19,2→~28 t (pórticos + entrepiso)      |
+| 06     | Correas, secundaria, arriostramientos  |        $55 M |       +$3 M |               $58 M | Áreas reales de girts/correas                |
+| 07     | Losa metaldeck P2                      |        $41 M |          $0 |               $41 M | CYPE $150.400/m² ✓                           |
+| 08     | Cubierta metálica aislada              |        $70 M |       +$3 M |               $73 M | 620→~660 m² reales                           |
+| 09     | Fachadas de panel aislado              |        $95 M |      +$15 M |              $110 M | 680 m² × $152 k (CYPE) + remates             |
+| 10     | Canales, remates, flashing y sellos    |        $20 M |       +$2 M |               $22 M | Perímetro y encuentros reales                |
+| 11     | Dos portones industriales              |        $24 M |       +$2 M |               $26 M | Altura 4,80 m + motorización; cotizar        |
+| 12     | Gran evento de vidrio                  |        $38 M |       +$4 M |               $42 M | Sistema real $1,29 M/m² o templado           |
+| 13     | Ventanas restantes + puerta peatonal   |        $20 M |       +$2 M |               $22 M | Cotización de carpintería                    |
+| 14     | Divisiones P2/núcleo + acústica        |        $38 M |       +$4 M |               $42 M | 280→~330 m² + puertas 12–14                  |
+| 15     | Redes hidrosanitarias                  |        $20 M |       +$4 M |               $24 M | Calentamiento +$2 M; red según predio        |
+| 16     | Baños + ducha/sauna + húmedos          |        $35 M |       +$7 M |               $42 M | Sauna real +$5 M; griferías/aparatos         |
+| 17     | Electricidad, tableros, iluminación    |        $42 M |       +$5 M |               $47 M | Detección de incendios +$5 M (A-05)          |
+| 18     | Datos, red, Home Assistant             |         $8 M |       +$1 M |                $9 M | Puntos/cámaras mínimos reales                |
+| 19     | Extracción, ventilación, climatización |        $25 M |       +$2 M |               $27 M | Balanceo y ductería reales                   |
+| 20     | Cocina fija, muebles, mesones          |        $25 M |          $0 |               $25 M | Fabricación nacional modular ✓               |
+| 21     | Closets + cajoneras + bancos taller    |        $30 M |          $0 |               $30 M | Nacional modular ✓                           |
+| 22     | Escalera metálica + barandas           |        $12 M |          $0 |               $12 M | Rango de mercado ✓                           |
+| 23     | Acabados P2 y pintura puntual          |        $25 M |       +$2 M |               $27 M | P2 residencial real                          |
+| 24     | Terraza inmediata + drenajes           |        $18 M |          $0 |               $18 M | Rango de mercado ✓                           |
+| 25     | Elevador automotriz + provisión civil  |        $15 M |          $0 |               $15 M | Equipo $10,9 M verificado ✓                  |
+|        | **Total obra física**                  |   **$941 M** | **+$149 M** |       **≈$1.090 M** | rango $1.050–1.150 M                         |
+|        | Contingencia 5 % v0.2                  |        $47 M |           — |                   — | recomendado 8 % → $87 M                      |
+|        | **Control de obra**                    |   **$988 M** |             | **≈$1.135–1.240 M** | según contingencia                           |
 
 Conciliación con el radar v0.2: las oportunidades 1–6 suman −$48 a −$101 M potenciales sobre los
 capítulos que hoy están apretados. Si la ingeniería y las cotizaciones las confirman, el
@@ -256,18 +258,18 @@ value engineering formal (banda declarada del propio v0.2).
 La auditoría refuerza la regla del expediente: no mezclar "obra física" con "costo total del
 promotor". Estimación de rango con esta auditoría (no cotización):
 
-| Componente | Estimación | Observaciones |
-|---|---:|---|
-| Obra física de control (escenario B) | $1.135–1.240 M | incluye contingencia 8 % |
-| Costos blandos (diseños, geotecnia, topografía, licencia, interventoría/supervisión, seguros finales) | $250–400 M | arquitectura 8–10 %, estructura, MEP, geotecnia $8–15 M, licencia 1–3 %, interventoría 4–6 % |
-| Conexiones y soluciones del predio (acometida/transformador, agua pozo o red, PTAR, acceso) | $100–280 M | dependen 100 % del predio; externos a obra |
-| Equipamiento (electrodomésticos, taller, homelab, mobiliario suelto) | $160–400 M | separado por regla v0.2 §6.6 |
-| Exteriores no inmediatos (cerramiento, vías, paisaje) | $70–180 M | fuera de la obra inmediata |
-| Escalamiento temporal + reserva del promotor | $180–300 M | 10–15 % del subtotal; la Fase 2 tendrá su propia fecha base |
-| **Total promotor estimado** | **≈$1.800–2.500 M** | central ≈$2.100 M; lote en $0 (propiedad del promotor) |
+| Componente                                                                                            |          Estimación | Observaciones                                                                                |
+| ----------------------------------------------------------------------------------------------------- | ------------------: | -------------------------------------------------------------------------------------------- |
+| Obra física de control (escenario B)                                                                  |      $1.135–1.240 M | incluye contingencia 8 %                                                                     |
+| Costos blandos (diseños, geotecnia, topografía, licencia, interventoría/supervisión, seguros finales) |          $250–400 M | arquitectura 8–10 %, estructura, MEP, geotecnia $8–15 M, licencia 1–3 %, interventoría 4–6 % |
+| Conexiones y soluciones del predio (acometida/transformador, agua pozo o red, PTAR, acceso)           |          $100–280 M | dependen 100 % del predio; externos a obra                                                   |
+| Equipamiento (electrodomésticos, taller, homelab, mobiliario suelto)                                  |          $160–400 M | separado por regla v0.2 §6.6                                                                 |
+| Exteriores no inmediatos (cerramiento, vías, paisaje)                                                 |           $70–180 M | fuera de la obra inmediata                                                                   |
+| Escalamiento temporal + reserva del promotor                                                          |          $180–300 M | 10–15 % del subtotal; la Fase 2 tendrá su propia fecha base                                  |
+| **Total promotor estimado**                                                                           | **≈$1.800–2.500 M** | central ≈$2.100 M; lote en $0 (propiedad del promotor)                                       |
 
 Lectura del conflicto: v0.1 ($4,3–4,8 B) era una capacidad de planeación con precios altos y
-alcance total; v0.2 ($988 M) es un objetivo de *obra física* optimista. El rango probable está
+alcance total; v0.2 ($988 M) es un objetivo de _obra física_ optimista. El rango probable está
 entre ambos y mucho más cerca de v0.2 para la obra física, con el total del promotor en el
 rango de $1,8–2,5 B. **Ninguna de las dos cifras heredadas es un precio de mercado validado.**
 

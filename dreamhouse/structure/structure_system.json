@@ -50,7 +50,7 @@
       },
       {
         "id": "GRAN-MURO",
-      "description": "Pared estructural híbrida adoptada conceptualmente para gravedad por D-043. D-045 fija solo para E0 la hipótesis de seis vigas longitudinales continuas de 15,0 m a 3,0 m, apoyadas en X=21 y X=31,5 y en voladizo 4,5 m hasta X=36, sin inventar apoyo posterior. El acabado de madera/absorción D-033 oculta una viga de transferencia y columnas HSS en machones; X=21 usa una cercha de canto completo sobre dos columnas perimetrales. No se atribuye resistencia longitudinal X al muro transversal.",
+        "description": "Pared estructural híbrida adoptada conceptualmente para gravedad por D-043. D-045 fija solo para E0 la hipótesis de seis vigas longitudinales continuas de 15,0 m a 3,0 m, apoyadas en X=21 y X=31,5 y en voladizo 4,5 m hasta X=36, sin inventar apoyo posterior. El acabado de madera/absorción D-033 oculta una viga de transferencia y columnas HSS en machones; X=21 usa una cercha de canto completo sobre dos columnas perimetrales. No se atribuye resistencia longitudinal X al muro transversal.",
         "n_longitudinal_beams": 6,
         "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
         "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
@@ -63,14 +63,28 @@
       }
     ],
     "modulations": [
-      {"id": "M45", "bay_m": 4.5, "n_bays": 8, "n_portal_lines": 9},
-      {"id": "M60", "bay_m": 6.0, "n_bays": 6, "n_portal_lines": 7},
-      {"id": "M90", "bay_m": 9.0, "n_bays": 4, "n_portal_lines": 5}
+      { "id": "M45", "bay_m": 4.5, "n_bays": 8, "n_portal_lines": 9 },
+      { "id": "M60", "bay_m": 6.0, "n_bays": 6, "n_portal_lines": 7 },
+      { "id": "M90", "bay_m": 9.0, "n_bays": 4, "n_portal_lines": 5 }
     ]
   },
   "materials": {
-    "S355": {"name": "A572 Gr.50 / S355", "fy_mpa": 355.0, "fu_mpa": 490.0, "E_mpa": 200000.0, "density_kg_m3": 7850.0, "role": "principales"},
-    "S235": {"name": "A36 / S235", "fy_mpa": 235.0, "fu_mpa": 400.0, "E_mpa": 200000.0, "density_kg_m3": 7850.0, "role": "secundarios"}
+    "S355": {
+      "name": "A572 Gr.50 / S355",
+      "fy_mpa": 355.0,
+      "fu_mpa": 490.0,
+      "E_mpa": 200000.0,
+      "density_kg_m3": 7850.0,
+      "role": "principales"
+    },
+    "S235": {
+      "name": "A36 / S235",
+      "fy_mpa": 235.0,
+      "fu_mpa": 400.0,
+      "E_mpa": 200000.0,
+      "density_kg_m3": 7850.0,
+      "role": "secundarios"
+    }
   },
   "loads": {
     "note_no_snow": "Altiplano de Boyaca sin nieve de diseno: NO se incluye carga de nieve. Gobiernan viento (NSR-10 B.6), sismo (Titulo A) y lluvia/drenaje. Envoltura responde al frio nocturno, condensacion e infiltracion, no a carga de nieve.",
@@ -109,16 +123,24 @@
     }
   },
   "combinations": [
-    {"id": "C1", "name": "1.4D", "factors": {"D": 1.4}},
-    {"id": "C2", "name": "1.2D+1.6L", "factors": {"D": 1.2, "L": 1.6}},
-    {"id": "C3+", "name": "1.2D+WU+WX+ +0.5L", "factors": {"D": 1.2, "L": 0.5, "WU": 1.0, "WX+": 1.0}},
-    {"id": "C3-", "name": "1.2D+WU+WX- +0.5L", "factors": {"D": 1.2, "L": 0.5, "WU": 1.0, "WX-": 1.0}},
-    {"id": "C4+", "name": "0.9D+WU+WX+", "factors": {"D": 0.9, "WU": 1.0, "WX+": 1.0}},
-    {"id": "C4-", "name": "0.9D+WU+WX-", "factors": {"D": 0.9, "WU": 1.0, "WX-": 1.0}},
-    {"id": "C5+", "name": "1.2D+EX+ +0.5L", "factors": {"D": 1.2, "L": 0.5, "EX+": 1.0}},
-    {"id": "C5-", "name": "1.2D+EX- +0.5L", "factors": {"D": 1.2, "L": 0.5, "EX-": 1.0}},
-    {"id": "C6+", "name": "0.9D+EX+", "factors": {"D": 0.9, "EX+": 1.0}},
-    {"id": "C6-", "name": "0.9D+EX-", "factors": {"D": 0.9, "EX-": 1.0}}
+    { "id": "C1", "name": "1.4D", "factors": { "D": 1.4 } },
+    { "id": "C2", "name": "1.2D+1.6L", "factors": { "D": 1.2, "L": 1.6 } },
+    {
+      "id": "C3+",
+      "name": "1.2D+WU+WX+ +0.5L",
+      "factors": { "D": 1.2, "L": 0.5, "WU": 1.0, "WX+": 1.0 }
+    },
+    {
+      "id": "C3-",
+      "name": "1.2D+WU+WX- +0.5L",
+      "factors": { "D": 1.2, "L": 0.5, "WU": 1.0, "WX-": 1.0 }
+    },
+    { "id": "C4+", "name": "0.9D+WU+WX+", "factors": { "D": 0.9, "WU": 1.0, "WX+": 1.0 } },
+    { "id": "C4-", "name": "0.9D+WU+WX-", "factors": { "D": 0.9, "WU": 1.0, "WX-": 1.0 } },
+    { "id": "C5+", "name": "1.2D+EX+ +0.5L", "factors": { "D": 1.2, "L": 0.5, "EX+": 1.0 } },
+    { "id": "C5-", "name": "1.2D+EX- +0.5L", "factors": { "D": 1.2, "L": 0.5, "EX-": 1.0 } },
+    { "id": "C6+", "name": "0.9D+EX+", "factors": { "D": 0.9, "EX+": 1.0 } },
+    { "id": "C6-", "name": "0.9D+EX-", "factors": { "D": 0.9, "EX-": 1.0 } }
   ],
   "systems": [
     {

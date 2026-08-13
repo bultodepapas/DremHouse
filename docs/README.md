@@ -36,20 +36,23 @@
 - [Concept plan v0.3 — draft 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 - [Concept plan v0.3 — draft 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
-  predecessor whose preferred upper-floor spatial centre is carried into D-049/R08.
+  predecessor whose preferred upper-floor spatial centre is carried through D-049 into
+  active D-050/R09.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   study wall thicknesses, Great Wall, reorganized core, kitchen, and equipped workshop.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
-  are retained in R08.
+  are retained in active R09.
 - [Coordinated upper floor v0.3 — draft 09](02_arquitectura/plano_p2_coordinado_v0.3_borrador_09.md):
-  active D-049/R08 hypothesis combining b04's spatial centre with b06 controls, explicit
-  door topology, whole-floor access validation, and D-048 stair-column reservations.
+  superseded D-049/R08 predecessor combining b04's spatial centre with b06 controls,
+  explicit door topology, and D-048 stair-column reservations.
+- [Owner-priority coordination — drafts 10 and 11](02_arquitectura/coordinacion_prioridades_propietario_v0.3_b10_b11.md):
+  active D-050→D-053 hypotheses for the enlarged primary suite, PB laundry, retractable
+  exterior-stair reserve, large exposed edge-truss brief, and exactly centred rooflights.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):
-  two glazed overhead daylight elements, structural coordination, and a conceptual
-  hygrothermal detail.
+  superseded positional predecessor retaining the two-event glazing and assembly study.
 - [Architectural coordination review v0.3](02_arquitectura/revision_coordinacion_v0.3_2026_08.md):
   independent review of b04→b08 and model E0 against the Constitution, program, and hard
   rules. It records 15 verified findings on the parametric geometry and issued sheets as
@@ -64,7 +67,7 @@
 - [Structural model E0](03_ingenierias/modelo_estructural_e0.md): scope, assumptions,
   verification limits, and required progression toward E1/E2.
 - [Structural-to-drawing integration study — E1 screening](03_ingenierias/estudio_integracion_estructura_planos.md):
-  reconciles the roof specimen, D-040 rooflights, D-043/D-045 P2 gravity path, lateral
+  reconciles the roof specimen, D-053 rooflights, D-043/D-045 P2 gravity path, lateral
   demand, and every unresolved design gate.
 - [Integrated structural E1 evidence sheet](../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg):
   calculation-linked plan, exact truss grammar, evidence matrix, connection, base,

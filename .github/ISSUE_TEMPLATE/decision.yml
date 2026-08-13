@@ -1,6 +1,6 @@
 name: Project decision
 description: Record a choice that changes criteria, scope, geometry, cost, or phase.
-title: "[DECISION] "
+title: '[DECISION] '
 body:
   - type: markdown
     attributes:

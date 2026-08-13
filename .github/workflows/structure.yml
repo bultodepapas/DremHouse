@@ -4,28 +4,28 @@ on:
   push:
     branches: [main]
     paths:
-      - "dreamhouse/generate_structure_plan.py"
-      - "dreamhouse/rooflight_b08.json"
-      - "dreamhouse/structure/**"
-      - "docs/03_ingenierias/**"
-      - "docs/08_investigacion/**"
-      - "planos/estructura/**"
-      - "README.md"
-      - ".github/scripts/build_showcase.py"
-      - "pyproject.toml"
-      - ".github/workflows/structure.yml"
+      - 'dreamhouse/generate_structure_plan.py'
+      - 'dreamhouse/rooflight_b08.json'
+      - 'dreamhouse/structure/**'
+      - 'docs/03_ingenierias/**'
+      - 'docs/08_investigacion/**'
+      - 'planos/estructura/**'
+      - 'README.md'
+      - '.github/scripts/build_showcase.py'
+      - 'pyproject.toml'
+      - '.github/workflows/structure.yml'
   pull_request:
     paths:
-      - "dreamhouse/generate_structure_plan.py"
-      - "dreamhouse/rooflight_b08.json"
-      - "dreamhouse/structure/**"
-      - "docs/03_ingenierias/**"
-      - "docs/08_investigacion/**"
-      - "planos/estructura/**"
-      - "README.md"
-      - ".github/scripts/build_showcase.py"
-      - "pyproject.toml"
-      - ".github/workflows/structure.yml"
+      - 'dreamhouse/generate_structure_plan.py'
+      - 'dreamhouse/rooflight_b08.json'
+      - 'dreamhouse/structure/**'
+      - 'docs/03_ingenierias/**'
+      - 'docs/08_investigacion/**'
+      - 'planos/estructura/**'
+      - 'README.md'
+      - '.github/scripts/build_showcase.py'
+      - 'pyproject.toml'
+      - '.github/workflows/structure.yml'
   workflow_dispatch:
 
 permissions:
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.13"]
+        python-version: ['3.11', '3.13']
     steps:
       - name: Checkout
         uses: actions/checkout@v7

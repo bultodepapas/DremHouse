@@ -1,0 +1,58 @@
+{
+  "revision": "0.3-draft-11-ROOFLIGHTS",
+  "passed": 7,
+  "open": 3,
+  "failed": 0,
+  "checks": [
+    {
+      "rule_id": "RL-TWO",
+      "status": "PASS",
+      "message": "Two equal central rooflights"
+    },
+    {
+      "rule_id": "RL-IN-DOUBLE-HEIGHT",
+      "status": "PASS",
+      "message": "Both rooflights lie fully inside the 21 x 18 m double-height zone"
+    },
+    {
+      "rule_id": "RL-GROUP-CENTRE-X",
+      "status": "PASS",
+      "message": "Group centre X=10.50 m versus double-height centre X=10.50 m"
+    },
+    {
+      "rule_id": "RL-GROUP-CENTRE-Y",
+      "status": "PASS",
+      "message": "Group centre Y=9.00 m versus double-height centre Y=9.00 m"
+    },
+    {
+      "rule_id": "RL-NO-OVERLAP",
+      "status": "PASS",
+      "message": "Central rooflights remain separated"
+    },
+    {
+      "rule_id": "RL-AREA",
+      "status": "PASS",
+      "message": "Total rooflight area remains 23.04 m2"
+    },
+    {
+      "rule_id": "RL-ROOF-DIRECTION",
+      "status": "PASS",
+      "message": "Roof direction matches pb_b05.json"
+    },
+    {
+      "rule_id": "RL-DRAINAGE",
+      "status": "OPEN",
+      "message": "Central geometry is fixed but hydraulic loading remains different: RL-CAR 9.60 m upstream / approx. 46.1 m2 catchment; RL-RC 6.00 m upstream / approx. 28.8 m2 catchment"
+    },
+    {
+      "rule_id": "RL-STRUCTURE",
+      "status": "OPEN",
+      "message": "Trimmers, purlins and roof-diaphragm interruption remain undesigned"
+    },
+    {
+      "rule_id": "RL-HYGRO",
+      "status": "OPEN",
+      "message": "Glass build-up, solar control and condensation remain subject to calculation"
+    }
+  ]
+}

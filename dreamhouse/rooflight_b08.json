@@ -1,20 +1,55 @@
 {
   "revision": "0.3-borrador-08-CLARABOYAS",
   "status": "hipotesis activa por instruccion del propietario; no apto para construir",
-  "roof": {"_comment":"Debe coincidir con roof.low_side de pb_b05.json, que es la fuente única (D-039). El chequeo RL-ROOF-DIRECTION lo verifica.","length":36.0,"width":18.0,"low_eave":7.2,"high_eave":7.8,"rise":0.6,"slope_percent":3.33,"low_side":"A"},
-  "structural_grid_hypothesis": {"longitudinal_bay":6.0,"purlin_spacing":1.5},
+  "roof": {
+    "_comment": "Debe coincidir con roof.low_side de pb_b05.json, que es la fuente única (D-039). El chequeo RL-ROOF-DIRECTION lo verifica.",
+    "length": 36.0,
+    "width": 18.0,
+    "low_eave": 7.2,
+    "high_eave": 7.8,
+    "rise": 0.6,
+    "slope_percent": 3.33,
+    "low_side": "A"
+  },
+  "structural_grid_hypothesis": { "longitudinal_bay": 6.0, "purlin_spacing": 1.5 },
   "rooflights": [
-    {"id":"RL-CAR","name":"Claraboya taller carro","x":2.4,"y":1.2,"length":2.4,"width":4.8,"area":11.52,"below":"CAR PROJECT"},
-    {"id":"RL-RC","name":"Claraboya taller RC / aviones","x":2.4,"y":12.0,"length":2.4,"width":4.8,"area":11.52,"below":"RC / DIY"}
+    {
+      "id": "RL-CAR",
+      "name": "Claraboya taller carro",
+      "x": 2.4,
+      "y": 1.2,
+      "length": 2.4,
+      "width": 4.8,
+      "area": 11.52,
+      "below": "CAR PROJECT"
+    },
+    {
+      "id": "RL-RC",
+      "name": "Claraboya taller RC / aviones",
+      "x": 2.4,
+      "y": 12.0,
+      "length": 2.4,
+      "width": 4.8,
+      "area": 11.52,
+      "below": "RC / DIY"
+    }
   ],
   "assembly_hypothesis": {
-    "type":"unidad de vidrio aislante laminado de seguridad, en curb elevado y drenado",
-    "external_layer":"templado heat-soaked con control solar / frita ceramica",
-    "cavity":"camara sellada; composicion por calculo higrotermico",
-    "internal_layer":"laminado de seguridad retenido mecanicamente",
-    "curb_min_height_m":0.20,
-    "operability":"fijas por defecto; ventilacion separada",
-    "solar_control":"frita o serigrafia 40-60% como rango de estudio"
+    "type": "unidad de vidrio aislante laminado de seguridad, en curb elevado y drenado",
+    "external_layer": "templado heat-soaked con control solar / frita ceramica",
+    "cavity": "camara sellada; composicion por calculo higrotermico",
+    "internal_layer": "laminado de seguridad retenido mecanicamente",
+    "curb_min_height_m": 0.2,
+    "operability": "fijas por defecto; ventilacion separada",
+    "solar_control": "frita o serigrafia 40-60% como rango de estudio"
   },
-  "open_items":["orientacion solar real","coordinacion exacta con porticos y correas","calculo de vidrio y succion de viento","condensacion y puente termico del curb","canal de rebose y drenaje","acceso de limpieza y reemplazo","proteccion interior durante trabajos en altura"]
+  "open_items": [
+    "orientacion solar real",
+    "coordinacion exacta con porticos y correas",
+    "calculo de vidrio y succion de viento",
+    "condensacion y puente termico del curb",
+    "canal de rebose y drenaje",
+    "acceso de limpieza y reemplazo",
+    "proteccion interior durante trabajos en altura"
+  ]
 }

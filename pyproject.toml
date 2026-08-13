@@ -7,9 +7,7 @@ name = "dreamhouse-project-record"
 version = "0.3.0"
 description = "Parametric coordination and structural-screening tools for Dream House."
 requires-python = ">=3.11"
-dependencies = [
-  "numpy>=2.0,<3",
-]
+dependencies = ["numpy>=2.0,<3"]
 
 [project.scripts]
 dreamhouse-optimize-roof = "dreamhouse.structure.optimize_roof:main"
@@ -17,23 +15,22 @@ dreamhouse-ground-structure = "dreamhouse.structure.ground_structure:main"
 dreamhouse-e1-screening = "dreamhouse.structure.e1_screening:main"
 
 [project.optional-dependencies]
-optimization = [
-  "scipy>=1.17,<1.18",
-  "pymoo>=0.6.2,<0.7",
-  "SALib>=1.5,<2",
-]
-verification = [
-  "openseespy>=3.7,<4",
-]
-dev = [
-  "ruff>=0.12,<1",
-]
+optimization = ["scipy>=1.17,<1.18", "pymoo>=0.6.2,<0.7", "SALib>=1.5,<2"]
+verification = ["openseespy>=3.7,<4"]
+dev = ["ruff>=0.12,<1"]
 
 [tool.setuptools.packages.find]
 include = ["dreamhouse*"]
 
 [tool.setuptools.package-data]
-"dreamhouse" = ["pb_b05.json", "p2_b06.json", "p2_b09.json", "rooflight_b08.json"]
+"dreamhouse" = [
+  "pb_b05.json",
+  "p2_b06.json",
+  "p2_b09.json",
+  "p2_b10.json",
+  "rooflight_b08.json",
+  "rooflight_b11.json",
+]
 "dreamhouse.structure" = ["*.json"]
 
 [tool.ruff]

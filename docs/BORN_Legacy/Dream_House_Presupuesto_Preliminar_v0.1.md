@@ -1,4 +1,5 @@
 # DREAM HOUSE — PRESUPUESTO PRELIMINAR DE CONSTRUCCIÓN
+
 ## Borrador de costos v0.1 — basado en anteproyecto arquitectónico v0.2
 
 **Fecha de corte:** 11 de agosto de 2026  
@@ -54,24 +55,29 @@ Cada capítulo identifica cuál de los tres casos aplica.
 Para la Dream House v0.2 de **≈918 m² construidos**, el primer modelo económico arroja:
 
 ### Materiales + equipos, orden de magnitud
+
 **≈ $2.2–3.1 mil millones COP**
 
 Valor central preliminar:
 **≈ $2.48 mil millones COP**
 
 ### Construcción / suministro + instalación, suma preliminar por capítulos
+
 **≈ $3.7–4.0 mil millones COP**
 
 Valor central de la tabla de capítulos:
 **≈ $3.74 mil millones COP**
 
 ### Rango que considero más realista para planear el proyecto hoy
+
 # **≈ $4.3–4.8 mil millones COP**
 
 ### Presupuesto mental / target de anteproyecto
+
 # **≈ $4.5 mil millones COP**
 
 ### Reserva financiera prudente mientras el proyecto madura
+
 # **≈ $5.0 mil millones COP**
 
 Esta reserva NO significa que sea obligatorio gastar $5.0 B. Significa que, en una etapa con tanta incertidumbre, no es prudente diseñar suponiendo que el valor central será exacto.
@@ -186,6 +192,7 @@ Sus configuraciones específicas no son idénticas a lo que construiremos.
 ## 4.1 Acero estructural
 
 ### Acero A36 — perfil laminado
+
 Referencia consultada:
 **$6.587,26 COP/kg** para una configuración específica de acero A36 estructural con imprimación y montaje.
 
@@ -193,6 +200,7 @@ Fuente:
 https://colombia.generadordeprecios.info/obra_nueva/Estructuras/Acero/Perfiles_estructurales/Acero_en_perfiles_laminados_en_caliente.html
 
 ### Acero A572 Grado 50 — perfil compuesto/atornillado
+
 Referencia:
 **$7.375,64 COP/kg**
 
@@ -200,6 +208,7 @@ Fuente:
 https://colombia.generadordeprecios.info/obra_nueva/Estructuras/Acero/Perfiles_estructurales/Acero_en_perfiles_laminados_en_caliente_1_0_0_2_0_0_0_1_0.html
 
 ### Perfil hueco S355J2H galvanizado
+
 Referencia observada:
 **$13.401,75 COP/kg**
 
@@ -265,12 +274,14 @@ Esto se utiliza únicamente como **sanity check minorista**, no como precio de c
 Referencias observadas:
 
 ### Panel sándwich fachada aluminio/acero, 50 mm
+
 **≈$159.965 COP/m²**
 
 Fuente:
 https://colombia.generadordeprecios.info/obra_nueva/Fachadas/Ligeras/Paneles_sandwich/FLM020_Fachada_de_panel_sandwich__aislante.html
 
 ### Panel sándwich fachada acero + lana de roca, 50 mm
+
 Una configuración consultada:
 **≈$200.748 COP/m²**
 
@@ -393,21 +404,21 @@ Por ello usamos un **costo blended** propio, no un simple “918 m² × precio p
 
 # 6. PRESUPUESTO PARAMÉTRICO CENTRAL
 
-| Capítulo | Materiales/equipos aprox. | Ejecutado/instalado aprox. | Tipo de cifra |
-|---|---:|---:|---|
-| Cimentaciones + losa PB + refuerzo | $240 M | **$320 M** | cálculo preliminar + reserva |
-| Estructura metálica nave + P2 | $300 M | **$650 M** | supuesto crítico |
-| Cubierta + fachada metálica aislada | $240 M | **$350 M** | precios observados + cantidad preliminar |
-| Vidrio + ventanería + puertas industriales | $280 M | **$380 M** | reserva de diseño |
-| Metaldeck P2 + particiones/acústica | $140 M | **$260 M** | precio observado + reserva |
-| Electricidad + hidráulica + extracción + climatización | $300 M | **$480 M** | supuesto de arquitecto |
-| 5 baños completos | $135 M | **$190 M** | supuesto de nivel de acabado |
-| Cocina + electrodomésticos | $270 M | **$300 M** | supuesto de nivel de acabado |
-| Closets + carpintería + mobiliario fijo RC/taller | $190 M | **$250 M** | supuesto de diseño |
-| Pisos + acabados + tratamiento acústico | $220 M | **$330 M** | reserva preliminar |
-| Obras exteriores inmediatas / drenajes / terraza | $100 M | **$160 M** | reserva preliminar |
-| Lift + infraestructura especializada de taller | $60 M | **$70 M** | placeholder hasta elegir equipo |
-| **TOTAL CENTRAL** | **≈$2.48 B** | **≈$3.74 B** | orden de magnitud |
+| Capítulo                                               | Materiales/equipos aprox. | Ejecutado/instalado aprox. | Tipo de cifra                            |
+| ------------------------------------------------------ | ------------------------: | -------------------------: | ---------------------------------------- |
+| Cimentaciones + losa PB + refuerzo                     |                    $240 M |                 **$320 M** | cálculo preliminar + reserva             |
+| Estructura metálica nave + P2                          |                    $300 M |                 **$650 M** | supuesto crítico                         |
+| Cubierta + fachada metálica aislada                    |                    $240 M |                 **$350 M** | precios observados + cantidad preliminar |
+| Vidrio + ventanería + puertas industriales             |                    $280 M |                 **$380 M** | reserva de diseño                        |
+| Metaldeck P2 + particiones/acústica                    |                    $140 M |                 **$260 M** | precio observado + reserva               |
+| Electricidad + hidráulica + extracción + climatización |                    $300 M |                 **$480 M** | supuesto de arquitecto                   |
+| 5 baños completos                                      |                    $135 M |                 **$190 M** | supuesto de nivel de acabado             |
+| Cocina + electrodomésticos                             |                    $270 M |                 **$300 M** | supuesto de nivel de acabado             |
+| Closets + carpintería + mobiliario fijo RC/taller      |                    $190 M |                 **$250 M** | supuesto de diseño                       |
+| Pisos + acabados + tratamiento acústico                |                    $220 M |                 **$330 M** | reserva preliminar                       |
+| Obras exteriores inmediatas / drenajes / terraza       |                    $100 M |                 **$160 M** | reserva preliminar                       |
+| Lift + infraestructura especializada de taller         |                     $60 M |                  **$70 M** | placeholder hasta elegir equipo          |
+| **TOTAL CENTRAL**                                      |              **≈$2.48 B** |               **≈$3.74 B** | orden de magnitud                        |
 
 ---
 
@@ -484,6 +495,7 @@ Pero aún no conocemos:
 - transporte/montaje.
 
 ### Acción futura
+
 Pedir a ingeniero estructural una primera predimensión y obtener:
 **kg totales de acero / m² y toneladas totales.**
 
@@ -507,6 +519,7 @@ Un terreno plano visualmente puede tener:
 - necesidad de cimentaciones más profundas.
 
 ### Acción futura
+
 Estudio geotécnico antes de tomar la cifra como confiable.
 
 ---
@@ -531,6 +544,7 @@ Todavía desconocemos:
 - alturas especiales.
 
 ### Acción futura
+
 Diseñar fachada y pedir cotización a 2–3 sistemas/fabricantes.
 
 ---
@@ -674,25 +688,25 @@ No considero que este escenario sea necesario para alcanzar la calidad arquitect
 
 # 13. NIVEL DE CONFIANZA POR CAPÍTULO
 
-| Capítulo | Confianza actual | Motivo |
-|---|---|---|
-| Área 18×36 + P2 270 m² | **Alta** | dato de anteproyecto |
-| Concreto $/m³ | **Media-Alta** | referencias unitarias actuales |
-| Cantidad de concreto | **Baja** | falta geotecnia/estructura |
-| Acero $/kg | **Media-Alta** | referencias actuales |
-| Toneladas de acero | **Baja** | falta cálculo |
-| Panel fachada $/m² | **Media-Alta** | precio de sistema conocido |
-| m² exactos de panel | **Media** | falta fachada definitiva |
-| Cubierta $/m² | **Media** | especificación aún abierta |
-| Vidrio $/m² | **Media** | sistema de referencia, no cotización |
-| m² / geometría del vidrio | **Baja** | diseño no congelado |
-| Metaldeck $/m² | **Media-Alta** | referencia clara |
-| Baños | **Baja-Media** | depende de selección |
-| Cocina | **Baja-Media** | depende de marca/especificación |
-| MEP | **Baja** | diseño inexistente todavía |
-| Carpintería/taller | **Baja** | falta diseño ejecutivo |
-| Lift | **Baja** | equipo no seleccionado |
-| Total $4.3–4.8 B | **Baja-Media** | orden de magnitud, no presupuesto |
+| Capítulo                  | Confianza actual | Motivo                               |
+| ------------------------- | ---------------- | ------------------------------------ |
+| Área 18×36 + P2 270 m²    | **Alta**         | dato de anteproyecto                 |
+| Concreto $/m³             | **Media-Alta**   | referencias unitarias actuales       |
+| Cantidad de concreto      | **Baja**         | falta geotecnia/estructura           |
+| Acero $/kg                | **Media-Alta**   | referencias actuales                 |
+| Toneladas de acero        | **Baja**         | falta cálculo                        |
+| Panel fachada $/m²        | **Media-Alta**   | precio de sistema conocido           |
+| m² exactos de panel       | **Media**        | falta fachada definitiva             |
+| Cubierta $/m²             | **Media**        | especificación aún abierta           |
+| Vidrio $/m²               | **Media**        | sistema de referencia, no cotización |
+| m² / geometría del vidrio | **Baja**         | diseño no congelado                  |
+| Metaldeck $/m²            | **Media-Alta**   | referencia clara                     |
+| Baños                     | **Baja-Media**   | depende de selección                 |
+| Cocina                    | **Baja-Media**   | depende de marca/especificación      |
+| MEP                       | **Baja**         | diseño inexistente todavía           |
+| Carpintería/taller        | **Baja**         | falta diseño ejecutivo               |
+| Lift                      | **Baja**         | equipo no seleccionado               |
+| Total $4.3–4.8 B          | **Baja-Media**   | orden de magnitud, no presupuesto    |
 
 ---
 
@@ -701,6 +715,7 @@ No considero que este escenario sea necesario para alcanzar la calidad arquitect
 Este archivo debe evolucionar junto con los planos.
 
 ## Presupuesto v0.2
+
 Después de planta v0.3:
 
 - cantidades aproximadas de muro;
@@ -713,6 +728,7 @@ Después de planta v0.3:
 - longitudes aproximadas de cocina.
 
 ## Presupuesto v0.3
+
 Después de prediseño estructural:
 
 - toneladas de acero;
@@ -722,6 +738,7 @@ Después de prediseño estructural:
 - cimentaciones.
 
 ## Presupuesto v0.4
+
 Después de MEP:
 
 - tableros;
@@ -736,6 +753,7 @@ Después de MEP:
 - automatización.
 
 ## Presupuesto v0.5
+
 Con cotizaciones reales:
 
 - acero;

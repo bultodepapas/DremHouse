@@ -1,0 +1,14 @@
+{
+  "revision": "0.3-draft-11-ROOFLIGHTS",
+  "status": "active owner-directed schematic hypothesis; not for construction",
+  "source": "dreamhouse/rooflight_b11.json",
+  "source_sha256": "3423d5b9b01b5d51225a3fb0b1e94595b56e344cb3e3751c6e35a19ecdec0786",
+  "generator": "dreamhouse/generate_rooflight_b11.py",
+  "supersedes": "0.3-borrador-08-CLARABOYAS / R07",
+  "outputs": [
+    "DH-ARQ-PLN-CUB-001-R10_CENTRAL-ROOFLIGHTS.svg",
+    "DH-ARQ-SEC-CUB-003-R10_CENTRAL-DAYLIGHT.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

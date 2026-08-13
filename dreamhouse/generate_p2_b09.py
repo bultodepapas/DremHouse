@@ -54,6 +54,29 @@ COLORS = {
 }
 
 
+def output_names(model: dict[str, Any]) -> tuple[str, str, str | None]:
+    """Return revision-aware output names while preserving the issued b09 names."""
+
+    drawing_revision = model["drawing_revision"]
+    detail = None
+    if model.get("relocated_laundry") or model.get("egress_reserve"):
+        detail = f"DH-ARQ-DET-002-{drawing_revision}_OWNER-PRIORITIES.svg"
+    return (
+        f"DH-ARQ-PLN-002-{drawing_revision}_P2-COORDINATED.svg",
+        f"DH-ARQ-DIA-001-{drawing_revision}_P2-ACCESS-EGRESS.svg",
+        detail,
+    )
+
+
+def sheet_ids(model: dict[str, Any]) -> tuple[str, str, str]:
+    drawing_revision = model["drawing_revision"]
+    return (
+        f"DH-ARQ-PLN-002-{drawing_revision}",
+        f"DH-ARQ-DIA-001-{drawing_revision}",
+        f"DH-ARQ-DET-002-{drawing_revision}",
+    )
+
+
 class P2ModelError(ValueError):
     """The P2 model cannot be validated or safely rendered."""
 
@@ -346,7 +369,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         (
             "P2-DOOR-GEOMETRY",
             not door_errors,
-            "All 23 doors/openings lie on the boundaries they connect"
+            f"All {len(model['doors'])} doors/openings lie on the boundaries they connect"
             if not door_errors
             else "Door errors: " + "; ".join(door_errors),
         )
@@ -431,31 +454,109 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         )
     )
 
+    laundry = model.get("relocated_laundry")
+    if laundry:
+        laundry_ok = (
+            laundry.get("floor") == "PB"
+            and laundry.get("container") == "BOD"
+            and 31.7 - tolerance <= float(laundry["x"])
+            and float(laundry["x"]) + float(laundry["w"]) <= 35.82 + tolerance
+            and 2.4 - tolerance <= float(laundry["y"])
+            and float(laundry["y"]) + float(laundry["d"]) <= 7.4 + tolerance
+        )
+        checks.append(
+            (
+                "PB-LAUNDRY-RESERVE",
+                laundry_ok,
+                "Laundry is reserved inside PB storage behind the Great Wall and below the primary wet band",
+            )
+        )
+
+    egress = model.get("egress_reserve")
+    if egress:
+        access_space = by_id.get(egress.get("access_space"))
+        start = float(egress["from"])
+        width = float(egress["width"])
+        egress_ok = (
+            egress.get("edge") == "east"
+            and access_space is not None
+            and math.isclose(
+                float(access_space["x"] + access_space["w"]), x_max, abs_tol=tolerance
+            )
+            and start >= float(access_space["y"]) - tolerance
+            and start + width <= float(access_space["y"] + access_space["d"]) + tolerance
+            and width >= 0.90 - tolerance
+            and float(egress["retracted_clearance_above_grade_m"]) > 0.0
+            and start >= 11.25 - tolerance
+        )
+        checks.append(
+            (
+                "P2-RETRACTABLE-STAIR-RESERVE",
+                egress_ok,
+                "Rear-facade retractable stair reserve is reached directly from the Phase 2 lobby and clears the D-048 corner",
+            )
+        )
+
+    edge_intent = model.get("edge_truss_intent")
+    if edge_intent:
+        edge_ok = (
+            math.isclose(float(edge_intent["x"]), 21.0, abs_tol=tolerance)
+            and edge_intent.get("view_priority") == "primary"
+            and edge_intent.get("expression") == "single large exposed industrial truss"
+        )
+        checks.append(
+            (
+                "P2-EDGE-TRUSS-BRIEF",
+                edge_ok,
+                "X=21 architectural brief requires one large exposed industrial truss while protecting the mini-deck view",
+            )
+        )
+
     results = [
         {"rule_id": rule_id, "status": "PASS" if passed else "FAIL", "message": message}
         for rule_id, passed, message in checks
     ]
-    primary_bath = by_id["M-B"]["w"] * by_id["M-B"]["d"]
-    primary_closet = by_id["M-C"]["w"] * by_id["M-C"]["d"]
+    primary_bath = sum(
+        space["w"] * space["d"]
+        for space in spaces
+        if space.get("suite") == "M" and space["kind"] == "bath"
+    )
+    primary_closet = sum(
+        space["w"] * space["d"]
+        for space in spaces
+        if space.get("suite") == "M" and space["kind"] == "closet"
+    )
+    primary_ok = primary_bath >= 17.0 and primary_closet >= 15.0
     results.extend(
         [
             {
                 "rule_id": "P2-PRIMARY-PROGRAMME",
-                "status": "OPEN",
+                "status": "PASS" if primary_ok else "OPEN",
                 "message": (
                     f"Primary bathroom {primary_bath:.1f} m2 and dressing room "
+                    f"{primary_closet:.1f} m2 meet or exceed the original programme minimums"
+                    if primary_ok
+                    else f"Primary bathroom {primary_bath:.1f} m2 and dressing room "
                     f"{primary_closet:.1f} m2 remain below the original 17-18 and 15-16 m2 targets"
                 ),
             },
             {
                 "rule_id": "LIFE-EGRESS-2",
                 "status": "OPEN",
-                "message": "Second independent P2 exit awaits D-021 occupancy and fire review",
+                "message": (
+                    "A rear retractable stair is reserved, but its acceptance as a second exit awaits D-021 and professional fire review"
+                    if egress
+                    else "Second independent P2 exit awaits D-021 occupancy and fire review"
+                ),
             },
             {
                 "rule_id": "P2-EDGE-TRUSS",
                 "status": "OPEN",
-                "message": "The X=21 edge truss must preserve the mini-deck view, doors, ceiling and services",
+                "message": (
+                    "The large exposed X=21 truss must preserve the mini-deck view; members, joints, fire protection and services remain undesigned"
+                    if edge_intent
+                    else "The X=21 edge truss must preserve the mini-deck view, doors, ceiling and services"
+                ),
             },
             {
                 "rule_id": "P2-SITE-ORIENTATION",
@@ -624,12 +725,13 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
             )
         )
 
-    laundry = by_id["LAV"]
-    for offset, label in ((0.35, "W"), (1.20, "D")):
-        x = _sx(laundry["x"] + offset)
-        y = _sy(laundry["y"] + laundry["d"] - 0.25)
-        parts.append(_rect(x, y, 0.70 * SCALE, 0.70 * SCALE, fill="#f5f5f1", stroke="#708087", stroke_width=1, rx=3, css_class="furniture appliance"))
-        parts.append(_text(x + 14, y + 18, label, 7, anchor="middle", weight=700))
+    laundry = by_id.get("LAV")
+    if laundry:
+        for offset, label in ((0.35, "W"), (1.20, "D")):
+            x = _sx(laundry["x"] + offset)
+            y = _sy(laundry["y"] + laundry["d"] - 0.25)
+            parts.append(_rect(x, y, 0.70 * SCALE, 0.70 * SCALE, fill="#f5f5f1", stroke="#708087", stroke_width=1, rx=3, css_class="furniture appliance"))
+            parts.append(_text(x + 14, y + 18, label, 7, anchor="middle", weight=700))
 
     wellness = by_id["WELL"]
     sauna_x = _sx(wellness["x"] + 0.30)
@@ -646,11 +748,12 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
 
 def _draw_bath_fixtures(parts: list[str], model: dict[str, Any]) -> None:
     by_id = _space_index(model)
-    for room_id in ("H1-B", "H2-B", "G-B", "M-B"):
+    room_ids = [room_id for room_id in ("H1-B", "H2-B", "G-B", "M-B", "M-B-A") if room_id in by_id]
+    for room_id in room_ids:
         room = by_id[room_id]
         clear_x = room["x"] + 0.16
         clear_y = room["y"] + 0.16
-        shower = 1.0 if room_id != "M-B" else 1.25
+        shower = 1.25 if room_id in {"M-B", "M-B-A"} else 1.0
         parts.append(
             _rect(
                 _sx(clear_x),
@@ -664,7 +767,7 @@ def _draw_bath_fixtures(parts: list[str], model: dict[str, Any]) -> None:
                 css_class="fixture shower",
             )
         )
-        vanity_w = min(1.6 if room_id == "M-B" else 0.95, room["w"] - 0.35)
+        vanity_w = min(1.6 if room_id in {"M-B", "M-B-A"} else 0.95, room["w"] - 0.35)
         parts.append(
             _rect(
                 _sx(clear_x),
@@ -771,6 +874,34 @@ def _draw_windows(parts: list[str], model: dict[str, Any]) -> None:
         parts.append(_line(x, y0, x, y1, stroke="#fff1d9", stroke_width=2, css_class="window-glass"))
 
 
+def _draw_egress_reserve(parts: list[str], model: dict[str, Any]) -> None:
+    reserve = model.get("egress_reserve")
+    if not reserve:
+        return
+    x = _sx(36.0)
+    y0 = _sy(float(reserve["from"]) + float(reserve["width"]))
+    y1 = _sy(float(reserve["from"]))
+    parts.extend(
+        [
+            _line(x, y0, x, y1, stroke=PAPER, stroke_width=7, css_class="egress-door-opening"),
+            _line(x, y0, x, y1, stroke=RED, stroke_width=3, css_class="egress-door"),
+            _rect(
+                x + 8,
+                y0 - 4,
+                58,
+                y1 - y0 + 8,
+                fill="none",
+                stroke=RED,
+                stroke_width=1.6,
+                stroke_dasharray="7 4",
+                css_class="retractable-stair-reserve",
+            ),
+            _text(x + 37, (y0 + y1) / 2 - 1, "RETRACTABLE", 5.6, anchor="middle", weight=700, fill=RED),
+            _text(x + 37, (y0 + y1) / 2 + 9, "EXT. STAIR", 5.6, anchor="middle", weight=700, fill=RED),
+        ]
+    )
+
+
 def _draw_columns(parts: list[str], model: dict[str, Any]) -> None:
     for column in model["structural_reservations"]:
         x, y = _sx(column["x"]), _sy(column["y"])
@@ -824,15 +955,25 @@ def _panel_title(parts: list[str], x: float, y: float, number: str, title: str) 
 def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]) -> None:
     x = 785.0
     _panel_title(parts, x, 166, "01", "ARCHITECTURAL POSITION")
+    owner_priority_revision = bool(model.get("relocated_laundry"))
+    position_lines = (
+        [
+            "Prioritize the primary suite without enlarging P2.",
+            "Move laundry into PB storage behind the Great Wall.",
+            "Protect the view while allowing one large exposed industrial truss.",
+        ]
+        if owner_priority_revision
+        else [
+            "Carry forward the spatial centre of b04/R03.",
+            "Retain the verified dimensional corrections of b06/R05.",
+            "The previous R05 remains superseded, not erased.",
+        ]
+    )
     parts.append(
         _multiline(
             x,
             198,
-            [
-                "Carry forward the spatial centre of b04/R03.",
-                "Retain the verified dimensional corrections of b06/R05.",
-                "The previous R05 remains superseded, not erased.",
-            ],
+            position_lines,
             9.2,
             leading=1.55,
         )
@@ -854,13 +995,23 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     envelope = model["envelope"]
     _panel_title(parts, x, 376, "02", "WHAT THIS REVISION FIXES")
     child_delta = abs(net_area(by_id["H1-D"], envelope) - net_area(by_id["H2-D"], envelope))
-    fixes = [
-        ("ACCESS", "23 doors/openings are located and checked against shared walls."),
-        ("CENTRE", "Mini deck -> family lounge -> gallery -> protected arrival."),
-        ("CHILDREN", f"Net-bedroom difference {child_delta:.2f} m2 under D-042."),
-        ("PHASING", "One 1.25 m clear isolatable Phase 2 lobby."),
-        ("STRUCTURE", "Four D-048 column reservations retained at stair corners."),
-    ]
+    fixes = (
+        [
+            ("PRIMARY", "Bathroom 17.6 m2 + dressing/filter 17.6 m2 meet the brief."),
+            ("LAUNDRY", "Washer, dryer and sink move to PB storage behind the Great Wall."),
+            ("EGRESS", "A theft-resistant retractable exterior-stair envelope is reserved."),
+            ("VIEW", "Mini-deck sightline governs the single large X=21 truss."),
+            ("STRUCTURE", "Four D-048 column reservations remain at stair corners."),
+        ]
+        if owner_priority_revision
+        else [
+            ("ACCESS", f"{len(model['doors'])} doors/openings are checked against shared walls."),
+            ("CENTRE", "Mini deck -> family lounge -> gallery -> protected arrival."),
+            ("CHILDREN", f"Net-bedroom difference {child_delta:.2f} m2 under D-042."),
+            ("PHASING", "One 1.25 m clear isolatable Phase 2 lobby."),
+            ("STRUCTURE", "Four D-048 column reservations retained at stair corners."),
+        ]
+    )
     for index, (tag, note) in enumerate(fixes):
         y = 410 + index * 44
         parts.append(_rect(x, y - 16, 84, 25, fill="#deedf0", stroke="none", rx=12))
@@ -912,12 +1063,17 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
+    outcome = (
+        "PRIMARY SUITE PRIORITY · PB LAUNDRY · RETRACTABLE STAIR RESERVE"
+        if model.get("relocated_laundry")
+        else "b04 SPATIAL LOGIC · b06 VERIFIED CORRECTIONS · EXPLICIT ACCESS"
+    )
     parts.extend(
         [
             _rect(36, 1060, 1612, 106, fill=INK),
             _rect(36, 1060, 1612, 7, fill=TEAL),
             _text(56, 1092, "CONTROLLED OUTCOME", 8, weight=700, fill="#9fc4cc"),
-            _text(56, 1120, "b04 SPATIAL LOGIC · b06 VERIFIED CORRECTIONS · EXPLICIT ACCESS", 13, weight=700, fill="#ffffff"),
+            _text(56, 1120, outcome, 13, weight=700, fill="#ffffff"),
             _text(56, 1145, "Current architectural coordination hypothesis. It does not authorize procurement, fabrication or construction.", 7.8, fill="#d3dfe2"),
             _line(1160, 1067, 1160, 1166, stroke="#536970", stroke_width=1),
             _text(1180, 1092, "SHEET", 8, weight=700, fill="#9fc4cc"),
@@ -937,8 +1093,10 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     digest = hashlib.sha256(
         json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
+    plan_sheet_id, _, _ = sheet_ids(model)
+    owner_priority_revision = bool(model.get("relocated_laundry"))
     metadata = {
-        "drawing": "DH-ARQ-PLN-002-R08",
+        "drawing": plan_sheet_id,
         "revision": model["revision"],
         "model_sha256": digest,
         "status": model["status"],
@@ -946,15 +1104,23 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     }
     parts = _svg_start(
         "Dream House coordinated upper-floor plan",
-        "A b04-led upper-floor revision with explicit access, b06 dimensional corrections and D-048 stair-column reservations. Not for construction.",
+        (
+            "An upper-floor revision prioritizing the primary suite, relocating laundry to PB and reserving a retractable exterior stair. Not for construction."
+            if owner_priority_revision
+            else "A b04-led upper-floor revision with explicit access, b06 dimensional corrections and D-048 stair-column reservations. Not for construction."
+        ),
         metadata,
     )
     _header(
         parts,
         model,
-        "DH-ARQ-PLN-002-R08",
+        plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
-        "b04 spatial logic + b06 controls + D-048 coordination",
+        (
+            "primary-suite priority + PB laundry + exterior-stair reserve"
+            if owner_priority_revision
+            else "b04 spatial logic + b06 controls + D-048 coordination"
+        ),
     )
     parts.append(_text(72, 165, "P2 PLAN · 18.00 x 15.00 m · +3.80 m STUDY LEVEL", 12, weight=700))
     parts.append(_text(72, 188, "FRONT / DOUBLE HEIGHT", 7.5, weight=700, fill=AMBER))
@@ -965,6 +1131,7 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     _draw_stair(parts)
     _draw_room_labels(parts, model)
     _draw_windows(parts, model)
+    _draw_egress_reserve(parts, model)
     phase_y = _sy(model["phase_boundary_y"])
     parts.append(_line(_sx(21), phase_y, _sx(36), phase_y, stroke=PURPLE, stroke_width=3, stroke_dasharray="9 6", css_class="phase-boundary"))
     parts.append(_text((_sx(21) + _sx(36)) / 2, phase_y - 8, "ONE ISOLATABLE F1 / F2 BOUNDARY", 7.4, anchor="middle", weight=700, fill=PURPLE))
@@ -973,7 +1140,7 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     _draw_columns(parts, model)
     _draw_plan_dimensions(parts, model)
     _right_notes(parts, model, report)
-    _footer(parts, model, digest, "DH-ARQ-PLN-002-R08")
+    _footer(parts, model, digest, plan_sheet_id)
     parts.append("</svg>\n")
     output = "".join(parts)
     ET.fromstring(output)
@@ -995,8 +1162,9 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
     digest = hashlib.sha256(
         json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
     ).hexdigest()
+    _, access_sheet_id, _ = sheet_ids(model)
     metadata = {
-        "drawing": "DH-ARQ-DIA-001-R08",
+        "drawing": access_sheet_id,
         "revision": model["revision"],
         "model_sha256": digest,
         "status": model["status"],
@@ -1010,7 +1178,7 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
     _header(
         parts,
         model,
-        "DH-ARQ-DIA-001-R08",
+        access_sheet_id,
         "UPPER-FLOOR ACCESS + EGRESS LOGIC",
         "topology verified · life-safety design remains open",
     )
@@ -1035,8 +1203,16 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         parts.append(_text(cx, cy + 2, space["id"], 6.5, anchor="middle", weight=700))
 
     route_ids = {
-        "H1-D": ["H1-D", "FAM", "HALL-A", "HALL-C", "ARR", "ESC"],
-        "M-D": ["M-D", "M-PASS", "ARR", "ESC"],
+        "H1-D": (
+            ["H1-D", "FAM", "HALL-A", "HALL-C", "ARR", "ESC"]
+            if "HALL-A" in by_id
+            else ["H1-D", "DECK", "FAM", "HALL-C", "ARR", "ESC"]
+        ),
+        "M-D": (
+            ["M-D", "M-PASS", "ARR", "ESC"]
+            if "M-PASS" in by_id
+            else ["M-D", "M-C", "ARR", "ESC"]
+        ),
         "H2-D": ["H2-D", "F2-HALL", "HALL-C", "ARR", "ESC"],
         "G-D": ["G-D", "G-ENTRY", "F2-HALL", "HALL-C", "ARR", "ESC"],
         "WELL": ["WELL", "F2-HALL", "HALL-C", "ARR", "ESC"],
@@ -1048,6 +1224,31 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
             f'<polyline points="{point_text}" fill="none" stroke="{RED}" stroke-width="{2.6 if index == 0 else 1.7}" opacity="{0.92 if index == 0 else 0.62}" marker-end="url(#route-arrow)" class="egress-route"/>'
         )
 
+    egress = model.get("egress_reserve")
+    if egress:
+        lobby = _plan_point(by_id[egress["access_space"]], origin=origin, bottom=bottom, scale=scale)
+        exterior = (
+            _sx(36.0, origin=origin, scale=scale) + 76,
+            _sy(float(egress["from"]) + float(egress["width"]) / 2, bottom=bottom, scale=scale),
+        )
+        parts.extend(
+            [
+                f'<polyline points="{lobby[0]:.1f},{lobby[1]:.1f} {exterior[0]:.1f},{exterior[1]:.1f}" fill="none" stroke="{TEAL}" stroke-width="3" stroke-dasharray="7 4" marker-end="url(#route-arrow)" class="reserved-second-route"/>',
+                _rect(
+                    exterior[0] - 56,
+                    exterior[1] - 20,
+                    70,
+                    40,
+                    fill="none",
+                    stroke=TEAL,
+                    stroke_width=1.8,
+                    stroke_dasharray="6 4",
+                    css_class="retractable-stair-reserve",
+                ),
+                _text(exterior[0] - 21, exterior[1] - 27, "RESERVED SECOND ROUTE", 6.8, anchor="middle", weight=700, fill=TEAL),
+            ]
+        )
+
     phase_y = _sy(model["phase_boundary_y"], bottom=bottom, scale=scale)
     parts.append(_line(origin, phase_y, origin + 15 * scale, phase_y, stroke=PURPLE, stroke_width=3, stroke_dasharray="9 6"))
     _panel_title(parts, 760, 176, "01", "VERIFIED ACCESS TOPOLOGY")
@@ -1055,12 +1256,21 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         _multiline(
             760,
             213,
-            [
-                "Every enclosed room reaches ESC through a declared door/opening.",
-                "Suite filters prevent bathroom doors from becoming suite entrances.",
-                "The stair arrives in a shared protected lobby, not inside the primary suite.",
-                "The mini deck remains acoustically enclosed from the double-height hall.",
-            ],
+            (
+                [
+                    "Every enclosed room reaches ESC through a declared door/opening.",
+                    "The Phase 2 lobby also reaches a reserved rear retractable stair.",
+                    "That exterior device is a geometric reserve, not an approved exit.",
+                    "The main stair still arrives in a shared protected lobby.",
+                ]
+                if egress
+                else [
+                    "Every enclosed room reaches ESC through a declared door/opening.",
+                    "Suite filters prevent bathroom doors from becoming suite entrances.",
+                    "The stair arrives in a shared protected lobby, not inside the primary suite.",
+                    "The mini deck remains acoustically enclosed from the double-height hall.",
+                ]
+            ),
             9.2,
             leading=1.65,
         )
@@ -1086,9 +1296,13 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
             782,
             572,
             [
-                "The arrows converge on the only stair currently represented.",
+                (
+                    "A retractable exterior stair reserve is shown, but is not yet an accepted exit."
+                    if egress
+                    else "The arrows converge on the only stair currently represented."
+                ),
                 "This diagram does not validate travel distance, occupant load, fire rating,",
-                "smoke control, accessibility or the required number of exits.",
+                "deployment under fire/power loss, accessibility or the required number of exits.",
                 "D-021 and the professional fire review remain mandatory before freezing P2.",
             ],
             8.7,
@@ -1111,21 +1325,195 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         )
     )
     parts.append(_text(95, 960, f"ACCESS GRAPH: {report['passed']} PASS · {report['failed']} FAIL · {report['open']} OPEN", 9, weight=700, fill=GREEN))
-    _footer(parts, model, digest, "DH-ARQ-DIA-001-R08")
+    _footer(parts, model, digest, access_sheet_id)
     parts.append("</svg>\n")
     output = "".join(parts)
     ET.fromstring(output)
     return output
 
 
-def generate(model: dict[str, Any] | None = None, out_dir: Path = OUT) -> dict[str, Any]:
+def build_owner_priorities_detail(model: dict[str, Any]) -> str:
+    """Draw the PB laundry, retractable-stair and exposed-truss coordination brief."""
+
+    laundry = model.get("relocated_laundry")
+    egress = model.get("egress_reserve")
+    edge = model.get("edge_truss_intent")
+    if not (laundry and egress and edge):
+        raise P2ModelError("Owner-priorities detail requires laundry, egress and edge-truss data")
+    report = _report(model)
+    _assert_renderable(report)
+    digest = hashlib.sha256(
+        json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    _, _, detail_sheet_id = sheet_ids(model)
+    metadata = {
+        "drawing": detail_sheet_id,
+        "revision": model["revision"],
+        "model_sha256": digest,
+        "status": model["status"],
+        "construction_authority": False,
+        "life_safety_design_resolved": False,
+    }
+    parts = _svg_start(
+        "Dream House owner-priority coordination details",
+        "PB laundry relocation, retractable exterior stair reserve and large exposed edge-truss architectural brief.",
+        metadata,
+    )
+    _header(
+        parts,
+        model,
+        detail_sheet_id,
+        "OWNER PRIORITIES · ARCHITECTURAL INTERFACES",
+        "PB laundry + retractable stair + large exposed X=21 truss",
+    )
+
+    _panel_title(parts, 70, 166, "01", "PB LAUNDRY BEHIND THE GREAT WALL")
+    core_x, core_y, scale = 105.0, 215.0, 52.0
+    core_width = 4.5 * scale
+    core_height = 7.4 * scale
+    parts.extend(
+        [
+            _rect(core_x, core_y, core_width, core_height, fill="#eef0eb", stroke=INK, stroke_width=2),
+            _rect(core_x, core_y, 0.20 * scale, core_height, fill="#b88c64", stroke="#6f4e34", stroke_width=1.2),
+            _rect(core_x + 0.20 * scale, core_y, 4.30 * scale, 2.4 * scale, fill="#e5dcc7", stroke=MUTED, stroke_width=1),
+            _rect(core_x + 0.20 * scale, core_y + 2.4 * scale, 4.30 * scale, 5.0 * scale, fill="#dce2dc", stroke=MUTED, stroke_width=1),
+            _text(core_x + core_width / 2, core_y + 1.2 * scale, "PANTRY / CLEAN SUPPORT", 8, anchor="middle", weight=700),
+            _text(core_x + core_width / 2, core_y + 3.0 * scale, "STORAGE + CONCEALED LAUNDRY", 8, anchor="middle", weight=700),
+        ]
+    )
+    lx = core_x + (float(laundry["x"]) - 31.5) * scale
+    ly = core_y + float(laundry["y"]) * scale
+    lw = float(laundry["w"]) * scale
+    ld = float(laundry["d"]) * scale
+    parts.extend(
+        [
+            _rect(lx, ly, lw, ld, fill="#c7ddd8", stroke=TEAL, stroke_width=2, css_class="pb-laundry-reserve"),
+            _text(lx + lw / 2, ly + 15, "W + D + SINK + TALL STORE", 7, anchor="middle", weight=700, fill="#1e6673"),
+            _line(lx + lw / 2, ly + ld, lx + lw / 2, ly + ld + 56, stroke=TEAL, stroke_width=1.6, stroke_dasharray="6 4"),
+            _text(lx + lw / 2, ly + ld + 72, "STACK BELOW PRIMARY WET BAND", 7.2, anchor="middle", weight=700, fill=TEAL),
+            _text(core_x - 18, core_y + core_height / 2, "GREAT WALL", 8, anchor="middle", weight=700, fill="#6f4e34"),
+        ]
+    )
+    parts.append(
+        _multiline(
+            375,
+            238,
+            [
+                "Preferred location: inside the existing PB storage room.",
+                "The open hall remains free of a new enclosed box.",
+                "Laundry noise and visual clutter stay behind the flush Great Wall door.",
+                "The reserve aligns below the enlarged primary bathroom/service band.",
+                "Drainage, trap primer, ventilation, waterproofing and appliance access remain MEP tasks.",
+            ],
+            8.8,
+            leading=1.55,
+        )
+    )
+
+    _panel_title(parts, 830, 166, "02", "REAR RETRACTABLE EXTERIOR STAIR RESERVE")
+    facade_x, ground_y, landing_y = 1020.0, 610.0, 365.0
+    parts.extend(
+        [
+            _line(870, ground_y, 1510, ground_y, stroke=INK, stroke_width=2),
+            _line(facade_x, 220, facade_x, ground_y, stroke=INK, stroke_width=6),
+            _rect(facade_x - 8, landing_y - 56, 16, 56, fill="#f5ded8", stroke=RED, stroke_width=2, css_class="egress-door"),
+            _line(facade_x, landing_y, 1130, landing_y, stroke=RED, stroke_width=5),
+            _text(1075, landing_y - 12, "P2 LANDING", 7.5, anchor="middle", weight=700, fill=RED),
+            _line(1130, landing_y, 1210, 465, stroke=RED, stroke_width=7, css_class="retracted-stair"),
+            _line(1210, 465, 1125, 520, stroke=RED, stroke_width=7, css_class="retracted-stair"),
+            _text(1218, 493, "RETRACTED", 8, weight=700, fill=RED),
+            _text(1218, 508, "LOWER END ABOVE GRADE", 7, weight=700, fill=RED),
+            _line(1130, landing_y, 1450, ground_y, stroke=TEAL, stroke_width=3, stroke_dasharray="10 6", css_class="deployed-stair"),
+            _line(1100, landing_y + 6, 1420, ground_y + 6, stroke=TEAL, stroke_width=3, stroke_dasharray="10 6", css_class="deployed-stair"),
+            _text(1380, 555, "DEPLOYED STUDY POSITION", 8, anchor="middle", weight=700, fill=TEAL),
+        ]
+    )
+    for index in range(9):
+        x = 1140 + index * 34
+        y = landing_y + 14 + index * 25.5
+        parts.append(_line(x, y, x + 24, y + 2, stroke=TEAL, stroke_width=1.2, stroke_dasharray="5 3"))
+    parts.append(
+        _multiline(
+            845,
+            655,
+            [
+                "Security intent: the lower flight does not touch grade while stored.",
+                "Access is directly from the common Phase 2 lobby, not through a bedroom.",
+                "Required study: counterbalanced/manual fail-safe deployment without a key from inside.",
+                "Do not count as a compliant second exit until fire, egress, accessibility and rescue review.",
+            ],
+            8.4,
+            leading=1.45,
+        )
+    )
+
+    _panel_title(parts, 70, 790, "03", "X=21 EDGE · ONE LARGE INDUSTRIAL TRUSS")
+    tx0, tx1, top_y, bottom_y = 105.0, 740.0, 845.0, 965.0
+    parts.extend(
+        [
+            _line(tx0, top_y, tx1, top_y, stroke=INK, stroke_width=9),
+            _line(tx0, bottom_y, tx1, bottom_y, stroke=INK, stroke_width=9),
+        ]
+    )
+    panels = 6
+    panel = (tx1 - tx0) / panels
+    for index in range(panels):
+        xa, xb = tx0 + index * panel, tx0 + (index + 1) * panel
+        parts.append(
+            _line(
+                xa,
+                bottom_y if index % 2 == 0 else top_y,
+                xb,
+                top_y if index % 2 == 0 else bottom_y,
+                stroke="#4d626a",
+                stroke_width=6,
+                css_class="large-exposed-truss-web",
+            )
+        )
+    parts.extend(
+        [
+            _rect(tx0 + 135, bottom_y + 18, 360, 48, fill="#e6d5b9", stroke=AMBER, stroke_width=1.5),
+            _text(tx0 + 315, bottom_y + 47, "MINI-DECK VIEW CONE KEPT CLEAR", 8.5, anchor="middle", weight=700, fill=AMBER),
+            _text(805, 846, "ARCHITECTURAL BRIEF", 9, weight=700, fill=TEAL),
+            _multiline(
+                805,
+                875,
+                [
+                    "A visible truss is acceptable—and desirable—when it reads as one large,",
+                    "deep, load-bearing industrial object. Small decorative trusses are rejected.",
+                    "The mini-deck view remains primary; member topology, depth, joints, fire",
+                    "protection, vibration and services still require structural coordination.",
+                ],
+                9.1,
+                leading=1.45,
+            ),
+        ]
+    )
+
+    _footer(parts, model, digest, detail_sheet_id)
+    parts.append("</svg>\n")
+    output = "".join(parts)
+    ET.fromstring(output)
+    return output
+
+
+def generate(
+    model: dict[str, Any] | None = None,
+    out_dir: Path = OUT,
+    *,
+    source_path: Path = DATA,
+    generator_name: str = "dreamhouse/generate_p2_b09.py",
+) -> dict[str, Any]:
     model = load_model() if model is None else model
     report = _report(model)
     _assert_renderable(report)
+    plan_name, access_name, detail_name = output_names(model)
     outputs = {
-        PLAN_NAME: build_plan(model, report),
-        ACCESS_NAME: build_access_diagram(model, report),
+        plan_name: build_plan(model, report),
+        access_name: build_access_diagram(model, report),
     }
+    if detail_name:
+        outputs[detail_name] = build_owner_priorities_detail(model)
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, content in outputs.items():
         out_dir.joinpath(name).write_text(content, encoding="utf-8")
@@ -1135,11 +1523,11 @@ def generate(model: dict[str, Any] | None = None, out_dir: Path = OUT) -> dict[s
     manifest = {
         "revision": model["revision"],
         "status": model["status"],
-        "source": "dreamhouse/p2_b09.json",
-        "source_sha256": hashlib.sha256(DATA.read_bytes()).hexdigest(),
-        "generator": "dreamhouse/generate_p2_b09.py",
+        "source": f"dreamhouse/{source_path.name}",
+        "source_sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
+        "generator": generator_name,
         "supersedes": model["supersedes"],
-        "outputs": [PLAN_NAME, ACCESS_NAME, "compliance.json", "manifest.json"],
+        "outputs": [*outputs, "compliance.json", "manifest.json"],
     }
     out_dir.joinpath("manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"

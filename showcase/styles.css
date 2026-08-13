@@ -22,7 +22,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -97,7 +97,9 @@ a:focus-visible {
   padding: 0 var(--gutter);
   color: #f3eee5;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  transition: background 220ms ease, height 220ms ease;
+  transition:
+    background 220ms ease,
+    height 220ms ease;
 }
 
 .site-header.is-scrolled {
@@ -241,7 +243,11 @@ a:focus-visible {
   letter-spacing: 0.1em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
 }
 
 .button:hover {
@@ -294,7 +300,7 @@ a:focus-visible {
 }
 
 .metrics strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(1.8rem, 3vw, 3.15rem);
   font-weight: 400;
   letter-spacing: -0.045em;
@@ -354,7 +360,7 @@ a:focus-visible {
 
 h2 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(3rem, 7vw, 7.2rem);
   font-weight: 400;
   line-height: 0.94;
@@ -437,7 +443,7 @@ h2 {
 .status-list__wide dd {
   max-width: 42rem;
   color: #fff;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.35rem;
   line-height: 1.35;
   text-align: left;
@@ -487,7 +493,9 @@ h2 {
   cursor: pointer;
   font: inherit;
   text-align: left;
-  transition: color 180ms ease, padding-left 180ms ease;
+  transition:
+    color 180ms ease,
+    padding-left 180ms ease;
 }
 
 .gallery__nav button::before {
@@ -507,7 +515,7 @@ h2 {
 }
 
 .gallery__nav button:hover,
-.gallery__nav button[aria-selected="true"] {
+.gallery__nav button[aria-selected='true'] {
   padding-left: 0.7rem;
   color: var(--ink);
 }
@@ -535,7 +543,9 @@ h2 {
   aspect-ratio: 14 / 9;
   display: block;
   object-fit: contain;
-  transition: transform 420ms cubic-bezier(.2, .7, .2, 1), opacity 180ms ease;
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 180ms ease;
 }
 
 .gallery__zoom:hover img {
@@ -577,7 +587,7 @@ h2 {
 }
 
 .gallery__stage figcaption h3 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.35rem;
   font-weight: 400;
 }
@@ -632,7 +642,7 @@ h2 {
 }
 
 .pipeline strong {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.6rem;
   font-weight: 400;
 }
@@ -739,7 +749,9 @@ footer {
 [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 620ms ease, transform 620ms cubic-bezier(.2, .7, .2, 1);
+  transition:
+    opacity 620ms ease,
+    transform 620ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 [data-reveal].is-visible {

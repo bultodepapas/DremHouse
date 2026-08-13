@@ -52,16 +52,16 @@ municipio.
 
 Calificar cada candidato de 1 a 5 y documentar evidencia:
 
-| Dimensión | Peso inicial |
-|---|---:|
-| Compatibilidad normativa y jurídica | 20% |
-| Planitud/geotecnia/drenaje | 20% |
-| Implantación, orientación y vistas | 15% |
-| Acceso y logística de obra | 10% |
-| Servicios y energía/datos | 15% |
-| Campo posterior/pista RC | 10% |
-| Vecindad, ruido y privacidad | 5% |
-| Costos externos inducidos | 5% |
+| Dimensión                           | Peso inicial |
+| ----------------------------------- | -----------: |
+| Compatibilidad normativa y jurídica |          20% |
+| Planitud/geotecnia/drenaje          |          20% |
+| Implantación, orientación y vistas  |          15% |
+| Acceso y logística de obra          |          10% |
+| Servicios y energía/datos           |          15% |
+| Campo posterior/pista RC            |          10% |
+| Vecindad, ruido y privacidad        |           5% |
+| Costos externos inducidos           |           5% |
 
 Los pesos son una propuesta y deben ser aprobados por el propietario. Una condición
 eliminatoria no se compensa con un puntaje alto en paisaje.

@@ -32,11 +32,11 @@ garage. The owner's technical life is part of the architecture, not a use to be 
    children's suites, and one guest suite.
 8. All four bedrooms will have a complete, private, independent bathroom with a shower.
 9. The usable bedroom areas of the two children will be equal **within ±1.00 m²** and will
-   provide measurable qualitative equivalence. *(Original wording: “exactly the same
+   provide measurable qualitative equivalence. _(Original wording: “exactly the same
    area.” Relaxed by **D-042**, 2026-08-11, at the owner's request, to allow improvements
    elsewhere on P2. Qualitative equivalence is verified by requiring both bedrooms to
    remain at or below a 1.35:1 aspect ratio, with no more than 0.30 difference between
-   their respective ratios.)*
+   their respective ratios.)_
 10. The primary suite will be clearly dominant, with a large dressing room and the most
     substantial bathroom.
 11. P2 will be private and acoustically enclosed. It will not be a mezzanine or a hotel-like

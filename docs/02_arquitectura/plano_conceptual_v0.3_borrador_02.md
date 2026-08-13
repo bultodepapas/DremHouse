@@ -26,13 +26,13 @@ coordinación MEP; no es todavía una decisión adoptada.
 
 ## Áreas de control resultantes
 
-| Conjunto | Área bruta de reserva |
-|---|---:|
-| Suite hijo 1 | 38,00 m² |
-| Suite hijo 2 | 38,00 m² |
-| Suite huéspedes | 33,00 m² |
-| Suite principal | 75,01 m² |
-| Núcleo PB | 81,00 m² |
+| Conjunto        | Área bruta de reserva |
+| --------------- | --------------------: |
+| Suite hijo 1    |              38,00 m² |
+| Suite hijo 2    |              38,00 m² |
+| Suite huéspedes |              33,00 m² |
+| Suite principal |              75,01 m² |
+| Núcleo PB       |              81,00 m² |
 
 La igualdad se comprueba sobre reservas brutas de suite. La regla congelada exige igualdad
 del área útil de los dormitorios; esa comprobación se hará al introducir espesores reales.

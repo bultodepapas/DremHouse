@@ -46,7 +46,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>43</strong> vector drawings · <strong>50</strong> documents · <strong>40</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>48</strong> vector drawings · <strong>51</strong> documents · <strong>44</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -57,8 +57,8 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><strong>The industrial hall as one continuous room</strong>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/conceptual_v0.3_b09_p2/DH-ARQ-PLN-002-R08_P2-COORDINATED.svg"><img src="planos/conceptual_v0.3_b09_p2/DH-ARQ-PLN-002-R08_P2-COORDINATED.svg" alt="Detailed Dream House upper-floor technical drawing" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-09-P2</sub>
+  <a href="planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg"><img src="planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg" alt="Detailed Dream House upper-floor technical drawing" width="100%"></a>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-10-P2</sub>
   <br><strong>The family centre returns, with explicit access</strong>
 </td>
 </tr>
@@ -119,14 +119,14 @@ services behind an acoustically enclosed envelope.
 
 ## Navigate the project record
 
-| Area | Entry document | Governs |
-|---|---|---|
-| **Governance** | [Project Constitution](docs/00_gobernanza/constitucion_del_proyecto.md) | Hard rules, precedence, and controlled change |
-| **Architecture** | [Design Basis](docs/02_arquitectura/bases_de_diseno.md) | Space, materiality, and geometric coordination |
-| **Engineering** | [Structural and Civil Design Basis](docs/03_ingenierias/bases_estructurales_y_civiles.md) | Assumptions, systems, and professional validation |
-| **Cost** | [Cost Baseline and Control](docs/04_costos/base_y_control_de_costos.md) | Target, confidence, gaps, and cost gates |
-| **Site** | [Site Criteria](docs/05_predio_y_normativa/criterios_del_predio.md) | Location, regulations, and pending studies |
-| **Delivery** | [Master Plan](docs/06_gestion_y_obra/plan_maestro.md) | Phases, deliverables, and decision gates |
+| Area             | Entry document                                                                            | Governs                                           |
+| ---------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **Governance**   | [Project Constitution](docs/00_gobernanza/constitucion_del_proyecto.md)                   | Hard rules, precedence, and controlled change     |
+| **Architecture** | [Design Basis](docs/02_arquitectura/bases_de_diseno.md)                                   | Space, materiality, and geometric coordination    |
+| **Engineering**  | [Structural and Civil Design Basis](docs/03_ingenierias/bases_estructurales_y_civiles.md) | Assumptions, systems, and professional validation |
+| **Cost**         | [Cost Baseline and Control](docs/04_costos/base_y_control_de_costos.md)                   | Target, confidence, gaps, and cost gates          |
+| **Site**         | [Site Criteria](docs/05_predio_y_normativa/criterios_del_predio.md)                       | Location, regulations, and pending studies        |
+| **Delivery**     | [Master Plan](docs/06_gestion_y_obra/plan_maestro.md)                                     | Phases, deliverables, and decision gates          |
 
 [View the complete index →](docs/README.md)
 
@@ -158,7 +158,7 @@ python -m http.server 8000 --directory .build/showcase
 ## Status and limitations
 
 - **Phase:** consolidated definition and dimensional schematic design.
-- **Document cutoff:** 11 August 2026.
+- **Document cutoff:** 13 August 2026.
 - **Primary blocker:** exact site, topographic survey, geotechnical investigation, and planning assessment.
 - **Cost alert:** the active control target for physical construction is
   **≈COP 988.05 million**, with a critical gap against the historical estimate;

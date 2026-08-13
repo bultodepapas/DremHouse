@@ -224,13 +224,13 @@ NetworkX trabaja precisamente con nodos, aristas y algoritmos de grafos. ([Netwo
 
 Entonces podemos calcular programáticamente:
 
-* cuántas puertas hay entre dos espacios;
-* longitud aproximada de circulación;
-* dormitorios demasiado conectados con zona pública;
-* espacios sin salida;
-* recorridos;
-* accesibilidad;
-* redundancia de circulación.
+- cuántas puertas hay entre dos espacios;
+- longitud aproximada de circulación;
+- dormitorios demasiado conectados con zona pública;
+- espacios sin salida;
+- recorridos;
+- accesibilidad;
+- redundancia de circulación.
 
 Y podríamos definir algo como:
 
@@ -680,26 +680,26 @@ Y estudiaría **COMPAS** como referencia de cómo profesionales e investigadores
 
 **Creo que este camino vale mucho la pena para el proyecto.** El siguiente paso que yo haría sería construir el primer `dreamhouse` en Python: el modelo de datos, Shapely, las hard rules y un render 2D con cotas. A partir de ahí podríamos hacer que cada cambio en dimensiones regenere toda la planta y nos diga inmediatamente qué reglas cumple, cuáles rompe y cuántos metros cuadrados resultan.
 
-[1]: https://shapely.readthedocs.io/en/stable/?utm_source=chatgpt.com "Shapely — Shapely 2.1.2 documentation"
-[2]: https://networkx.org/documentation/stable/reference/introduction.html?utm_source=chatgpt.com "Introduction — NetworkX 3.6.1 documentation"
-[3]: https://developers.google.com/optimization/introduction/python?utm_source=chatgpt.com "Get Started with OR-Tools for Python | Google for Developers"
-[4]: https://ezdxf.readthedocs.io/?utm_source=chatgpt.com "Quick-Info — ezdxf 1.4.4 documentation"
-[5]: https://docs.ifcopenshell.org/autoapi/ifcopenshell/geom/index.html?utm_source=chatgpt.com "ifcopenshell.geom - IfcOpenShell 0.8.5 documentation"
-[6]: https://cadquery.readthedocs.io/en/latest/?utm_source=chatgpt.com "CadQuery Documentation — CadQuery Documentation"
-[7]: https://build123d.readthedocs.io/?utm_source=chatgpt.com "About — build123d 0.11.2.dev201+g698198005 documentation"
-[8]: https://compas.dev/compas/latest/index.html?utm_source=chatgpt.com "COMPAS Documentation — COMPAS"
-[9]: https://wiki.freecad.org/Python_scripting_tutorial?utm_source=chatgpt.com "Python scripting tutorial - FreeCAD Documentation"
-[10]: https://pynite.readthedocs.io/?utm_source=chatgpt.com "Welcome to Pynite’s Documentation — Pynite 3.0.0 documentation"
-[11]: https://openseespydoc.readthedocs.io/?utm_source=chatgpt.com "The OpenSeesPy Library — OpenSeesPy 3.5.1.3 documentation"
-[12]: https://sectionproperties.readthedocs.io/en/latest/?utm_source=chatgpt.com "sectionproperties documentation"
-[13]: https://gmsh.info/?utm_source=chatgpt.com "Gmsh: a three-dimensional finite element mesh generator with built-in pre- and post-processing facilities"
-[14]: https://www.ladybug.tools/ladybug-geometry/docs/?utm_source=chatgpt.com "Welcome to Ladybug Geometry’s documentation! — ladybug geometry documentation"
-[15]: https://networkx.org/documentation/stable/reference/classes/graph.html?utm_source=chatgpt.com "Graph—Undirected graphs with self loops — NetworkX 3.6.1 documentation"
-[16]: https://github.com/mozman/ezdxf/tree/master?utm_source=chatgpt.com "GitHub - mozman/ezdxf: Python interface to DXF · GitHub"
-[17]: https://github.com/mozman/ezdxf/blob/master/README.md?utm_source=chatgpt.com "ezdxf/README.md at master · mozman/ezdxf · GitHub"
-[18]: https://github.com/IfcOpenShell/IfcOpenShell/blob/v0.8.0/README.md?utm_source=chatgpt.com "IfcOpenShell/README.md at v0.8.0 · IfcOpenShell/IfcOpenShell · GitHub"
-[19]: https://github.com/compas-dev/compas/tree/main/src/compas?utm_source=chatgpt.com "compas/src/compas at main · compas-dev/compas · GitHub"
-[20]: https://github.com/zhuminjie/OpenSeesPy/blob/master/README.md?utm_source=chatgpt.com "OpenSeesPy/README.md at openseespy · zhuminjie/OpenSeesPy · GitHub"
-[21]: https://www.ladybug.tools/honeybee-energy/docs/honeybee_energy.load.daylight.html?utm_source=chatgpt.com "honeybee_energy.load.daylight module — honeybee energy documentation"
-[22]: https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=39255&utm_source=chatgpt.com "Decreto 926 de 2010 - Gestor Normativo - Función Pública"
-[23]: https://compas.dev/compas/latest/userguide/introduction.html?utm_source=chatgpt.com "Introduction — COMPAS"
+[1]: https://shapely.readthedocs.io/en/stable/?utm_source=chatgpt.com 'Shapely — Shapely 2.1.2 documentation'
+[2]: https://networkx.org/documentation/stable/reference/introduction.html?utm_source=chatgpt.com 'Introduction — NetworkX 3.6.1 documentation'
+[3]: https://developers.google.com/optimization/introduction/python?utm_source=chatgpt.com 'Get Started with OR-Tools for Python | Google for Developers'
+[4]: https://ezdxf.readthedocs.io/?utm_source=chatgpt.com 'Quick-Info — ezdxf 1.4.4 documentation'
+[5]: https://docs.ifcopenshell.org/autoapi/ifcopenshell/geom/index.html?utm_source=chatgpt.com 'ifcopenshell.geom - IfcOpenShell 0.8.5 documentation'
+[6]: https://cadquery.readthedocs.io/en/latest/?utm_source=chatgpt.com 'CadQuery Documentation — CadQuery Documentation'
+[7]: https://build123d.readthedocs.io/?utm_source=chatgpt.com 'About — build123d 0.11.2.dev201+g698198005 documentation'
+[8]: https://compas.dev/compas/latest/index.html?utm_source=chatgpt.com 'COMPAS Documentation — COMPAS'
+[9]: https://wiki.freecad.org/Python_scripting_tutorial?utm_source=chatgpt.com 'Python scripting tutorial - FreeCAD Documentation'
+[10]: https://pynite.readthedocs.io/?utm_source=chatgpt.com 'Welcome to Pynite’s Documentation — Pynite 3.0.0 documentation'
+[11]: https://openseespydoc.readthedocs.io/?utm_source=chatgpt.com 'The OpenSeesPy Library — OpenSeesPy 3.5.1.3 documentation'
+[12]: https://sectionproperties.readthedocs.io/en/latest/?utm_source=chatgpt.com 'sectionproperties documentation'
+[13]: https://gmsh.info/?utm_source=chatgpt.com 'Gmsh: a three-dimensional finite element mesh generator with built-in pre- and post-processing facilities'
+[14]: https://www.ladybug.tools/ladybug-geometry/docs/?utm_source=chatgpt.com 'Welcome to Ladybug Geometry’s documentation! — ladybug geometry documentation'
+[15]: https://networkx.org/documentation/stable/reference/classes/graph.html?utm_source=chatgpt.com 'Graph—Undirected graphs with self loops — NetworkX 3.6.1 documentation'
+[16]: https://github.com/mozman/ezdxf/tree/master?utm_source=chatgpt.com 'GitHub - mozman/ezdxf: Python interface to DXF · GitHub'
+[17]: https://github.com/mozman/ezdxf/blob/master/README.md?utm_source=chatgpt.com 'ezdxf/README.md at master · mozman/ezdxf · GitHub'
+[18]: https://github.com/IfcOpenShell/IfcOpenShell/blob/v0.8.0/README.md?utm_source=chatgpt.com 'IfcOpenShell/README.md at v0.8.0 · IfcOpenShell/IfcOpenShell · GitHub'
+[19]: https://github.com/compas-dev/compas/tree/main/src/compas?utm_source=chatgpt.com 'compas/src/compas at main · compas-dev/compas · GitHub'
+[20]: https://github.com/zhuminjie/OpenSeesPy/blob/master/README.md?utm_source=chatgpt.com 'OpenSeesPy/README.md at openseespy · zhuminjie/OpenSeesPy · GitHub'
+[21]: https://www.ladybug.tools/honeybee-energy/docs/honeybee_energy.load.daylight.html?utm_source=chatgpt.com 'honeybee_energy.load.daylight module — honeybee energy documentation'
+[22]: https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=39255&utm_source=chatgpt.com 'Decreto 926 de 2010 - Gestor Normativo - Función Pública'
+[23]: https://compas.dev/compas/latest/userguide/introduction.html?utm_source=chatgpt.com 'Introduction — COMPAS'

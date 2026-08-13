@@ -1,7 +1,14 @@
 {
   "revision": "0.3-borrador-06-P2",
   "status": "anteproyecto / hipotesis activa; no apto para construir",
-  "envelope": {"x": 21.0, "length": 15.0, "width": 18.0, "exterior_wall": 0.18, "partition": 0.15, "wet_wall": 0.20},
+  "envelope": {
+    "x": 21.0,
+    "length": 15.0,
+    "width": 18.0,
+    "exterior_wall": 0.18,
+    "partition": 0.15,
+    "wet_wall": 0.2
+  },
   "phase_boundary_y": 11.0,
   "measurement": {
     "_comment": "Cada chequeo declara su base de medida. El programa arquitectonico dice literalmente 'areas brutas/nominales sin descontar estructura, cerramientos y acabados', asi que todo contraste contra el programa se hace en BRUTO. La hard rule 9 y CF-003 hablan de 'area util', asi que la igualdad de los dormitorios de hijos se mide en NETO.",
@@ -11,42 +18,244 @@
   },
   "tolerances": {
     "_comment": "D-042 relaja la igualdad exacta de la hard rule 9 a +-1,00 m2 utiles para permitir mejorar el resto de la planta. Los limites de proporcion traducen la segunda clausula ('se buscara equivalencia cualitativa'): ninguna habitacion debe leerse como pasillo, y ninguna debe ser cualitativamente distinta de la otra.",
-    "child_area_delta_m2": 1.00,
+    "child_area_delta_m2": 1.0,
     "child_ratio_max": 1.35,
-    "child_ratio_delta": 0.30,
-    "circulation_min_clear_m": 1.20
+    "child_ratio_delta": 0.3,
+    "circulation_min_clear_m": 1.2
   },
   "spaces": [
-    {"id":"H1-D","name":"Dormitorio hijo 1","suite":"H1","kind":"bedroom","phase":1,"x":21.0,"y":0.0,"w":5.2,"d":5.0},
-    {"id":"H1-C","name":"Vestidor H1","suite":"H1","kind":"closet","phase":1,"x":26.2,"y":0.0,"w":2.4,"d":2.0},
-    {"id":"H1-B","name":"Baño H1","suite":"H1","kind":"bath","phase":1,"x":26.2,"y":2.0,"w":2.4,"d":3.0},
-    {"id":"DECK","name":"Mini deck acústico","kind":"deck","phase":1,"x":21.0,"y":5.0,"w":3.2,"d":3.2},
-    {"id":"HALL-DECK","name":"Galería interior cerrada","kind":"circulation","phase":1,"x":24.2,"y":5.0,"w":4.4,"d":3.2},
-    {"id":"LAV","name":"Lavandería","kind":"service","phase":1,"x":21.0,"y":8.2,"w":4.0,"d":2.8},
-    {"id":"LIN","name":"Linen / aseo","kind":"service","phase":1,"x":25.0,"y":8.2,"w":1.6,"d":2.8},
-    {"id":"HALL","name":"Hall privado cerrado","kind":"circulation","phase":1,"x":26.6,"y":8.2,"w":2.0,"d":2.8},
-    {"id":"M-D","name":"Dormitorio principal","suite":"M","kind":"master","phase":1,"x":28.6,"y":0.0,"w":7.4,"d":4.2},
-    {"id":"M-B","name":"Baño principal","suite":"M","kind":"bath","phase":1,"x":28.6,"y":4.2,"w":4.2,"d":3.2},
-    {"id":"M-C","name":"Vestidor principal","suite":"M","kind":"closet","phase":1,"x":32.8,"y":4.2,"w":3.2,"d":3.2},
-    {"id":"M-V","name":"Vestíbulo / estar principal","suite":"M","kind":"master","phase":1,"x":28.6,"y":7.4,"w":2.9,"d":3.6},
-    {"id":"ESC","name":"Escalera protegida","kind":"vertical","phase":1,"x":31.5,"y":7.4,"w":4.5,"d":3.6},
+    {
+      "id": "H1-D",
+      "name": "Dormitorio hijo 1",
+      "suite": "H1",
+      "kind": "bedroom",
+      "phase": 1,
+      "x": 21.0,
+      "y": 0.0,
+      "w": 5.2,
+      "d": 5.0
+    },
+    {
+      "id": "H1-C",
+      "name": "Vestidor H1",
+      "suite": "H1",
+      "kind": "closet",
+      "phase": 1,
+      "x": 26.2,
+      "y": 0.0,
+      "w": 2.4,
+      "d": 2.0
+    },
+    {
+      "id": "H1-B",
+      "name": "Baño H1",
+      "suite": "H1",
+      "kind": "bath",
+      "phase": 1,
+      "x": 26.2,
+      "y": 2.0,
+      "w": 2.4,
+      "d": 3.0
+    },
+    {
+      "id": "DECK",
+      "name": "Mini deck acústico",
+      "kind": "deck",
+      "phase": 1,
+      "x": 21.0,
+      "y": 5.0,
+      "w": 3.2,
+      "d": 3.2
+    },
+    {
+      "id": "HALL-DECK",
+      "name": "Galería interior cerrada",
+      "kind": "circulation",
+      "phase": 1,
+      "x": 24.2,
+      "y": 5.0,
+      "w": 4.4,
+      "d": 3.2
+    },
+    {
+      "id": "LAV",
+      "name": "Lavandería",
+      "kind": "service",
+      "phase": 1,
+      "x": 21.0,
+      "y": 8.2,
+      "w": 4.0,
+      "d": 2.8
+    },
+    {
+      "id": "LIN",
+      "name": "Linen / aseo",
+      "kind": "service",
+      "phase": 1,
+      "x": 25.0,
+      "y": 8.2,
+      "w": 1.6,
+      "d": 2.8
+    },
+    {
+      "id": "HALL",
+      "name": "Hall privado cerrado",
+      "kind": "circulation",
+      "phase": 1,
+      "x": 26.6,
+      "y": 8.2,
+      "w": 2.0,
+      "d": 2.8
+    },
+    {
+      "id": "M-D",
+      "name": "Dormitorio principal",
+      "suite": "M",
+      "kind": "master",
+      "phase": 1,
+      "x": 28.6,
+      "y": 0.0,
+      "w": 7.4,
+      "d": 4.2
+    },
+    {
+      "id": "M-B",
+      "name": "Baño principal",
+      "suite": "M",
+      "kind": "bath",
+      "phase": 1,
+      "x": 28.6,
+      "y": 4.2,
+      "w": 4.2,
+      "d": 3.2
+    },
+    {
+      "id": "M-C",
+      "name": "Vestidor principal",
+      "suite": "M",
+      "kind": "closet",
+      "phase": 1,
+      "x": 32.8,
+      "y": 4.2,
+      "w": 3.2,
+      "d": 3.2
+    },
+    {
+      "id": "M-V",
+      "name": "Vestíbulo / estar principal",
+      "suite": "M",
+      "kind": "master",
+      "phase": 1,
+      "x": 28.6,
+      "y": 7.4,
+      "w": 2.9,
+      "d": 3.6
+    },
+    {
+      "id": "ESC",
+      "name": "Escalera protegida",
+      "kind": "vertical",
+      "phase": 1,
+      "x": 31.5,
+      "y": 7.4,
+      "w": 4.5,
+      "d": 3.6
+    },
 
-    {"id":"F2-HALL","name":"Vestíbulo F2 aislable","kind":"circulation","phase":2,"x":21.0,"y":11.0,"w":15.0,"d":1.4},
-    {"id":"H2-D","name":"Dormitorio hijo 2","suite":"H2","kind":"bedroom","phase":2,"x":21.0,"y":12.4,"w":4.6,"d":5.6},
-    {"id":"H2-B","name":"Baño H2","suite":"H2","kind":"bath","phase":2,"x":25.6,"y":12.4,"w":2.4,"d":3.0},
-    {"id":"H2-C","name":"Vestidor H2","suite":"H2","kind":"closet","phase":2,"x":25.6,"y":15.4,"w":2.4,"d":2.6},
-    {"id":"G-B","name":"Baño huéspedes","suite":"G","kind":"bath","phase":2,"x":28.0,"y":12.4,"w":2.6,"d":2.2},
-    {"id":"G-C","name":"Closet huéspedes","suite":"G","kind":"closet","phase":2,"x":30.6,"y":12.4,"w":2.4,"d":2.2},
-    {"id":"G-D","name":"Dormitorio huéspedes","suite":"G","kind":"bedroom","phase":2,"x":28.0,"y":14.6,"w":5.0,"d":3.4},
-    {"id":"WELL","name":"Wellness: sauna + ducha + relax","kind":"wellness","phase":2,"x":33.0,"y":12.4,"w":3.0,"d":5.6}
+    {
+      "id": "F2-HALL",
+      "name": "Vestíbulo F2 aislable",
+      "kind": "circulation",
+      "phase": 2,
+      "x": 21.0,
+      "y": 11.0,
+      "w": 15.0,
+      "d": 1.4
+    },
+    {
+      "id": "H2-D",
+      "name": "Dormitorio hijo 2",
+      "suite": "H2",
+      "kind": "bedroom",
+      "phase": 2,
+      "x": 21.0,
+      "y": 12.4,
+      "w": 4.6,
+      "d": 5.6
+    },
+    {
+      "id": "H2-B",
+      "name": "Baño H2",
+      "suite": "H2",
+      "kind": "bath",
+      "phase": 2,
+      "x": 25.6,
+      "y": 12.4,
+      "w": 2.4,
+      "d": 3.0
+    },
+    {
+      "id": "H2-C",
+      "name": "Vestidor H2",
+      "suite": "H2",
+      "kind": "closet",
+      "phase": 2,
+      "x": 25.6,
+      "y": 15.4,
+      "w": 2.4,
+      "d": 2.6
+    },
+    {
+      "id": "G-B",
+      "name": "Baño huéspedes",
+      "suite": "G",
+      "kind": "bath",
+      "phase": 2,
+      "x": 28.0,
+      "y": 12.4,
+      "w": 2.6,
+      "d": 2.2
+    },
+    {
+      "id": "G-C",
+      "name": "Closet huéspedes",
+      "suite": "G",
+      "kind": "closet",
+      "phase": 2,
+      "x": 30.6,
+      "y": 12.4,
+      "w": 2.4,
+      "d": 2.2
+    },
+    {
+      "id": "G-D",
+      "name": "Dormitorio huéspedes",
+      "suite": "G",
+      "kind": "bedroom",
+      "phase": 2,
+      "x": 28.0,
+      "y": 14.6,
+      "w": 5.0,
+      "d": 3.4
+    },
+    {
+      "id": "WELL",
+      "name": "Wellness: sauna + ducha + relax",
+      "kind": "wellness",
+      "phase": 2,
+      "x": 33.0,
+      "y": 12.4,
+      "w": 3.0,
+      "d": 5.6
+    }
   ],
   "windows": [
-    {"id":"W-H1","edge":"south","from":22.0,"to":25.8,"height":2.70,"sill":0.10},
-    {"id":"W-M-LAT-A","edge":"south","from":30.0,"to":35.5,"height":2.70,"sill":0.10},
-    {"id":"W-M-REAR","edge":"east","from":0.8,"to":3.3,"height":2.70,"sill":0.10},
-    {"id":"W-H2","edge":"north","from":21.8,"to":25.2,"height":2.70,"sill":0.10},
-    {"id":"W-G","edge":"north","from":28.8,"to":32.2,"height":2.70,"sill":0.10},
-    {"id":"W-WELL","edge":"east","from":13.0,"to":17.0,"height":1.20,"sill":1.40}
+    { "id": "W-H1", "edge": "south", "from": 22.0, "to": 25.8, "height": 2.7, "sill": 0.1 },
+    { "id": "W-M-LAT-A", "edge": "south", "from": 30.0, "to": 35.5, "height": 2.7, "sill": 0.1 },
+    { "id": "W-M-REAR", "edge": "east", "from": 0.8, "to": 3.3, "height": 2.7, "sill": 0.1 },
+    { "id": "W-H2", "edge": "north", "from": 21.8, "to": 25.2, "height": 2.7, "sill": 0.1 },
+    { "id": "W-G", "edge": "north", "from": 28.8, "to": 32.2, "height": 2.7, "sill": 0.1 },
+    { "id": "W-WELL", "edge": "east", "from": 13.0, "to": 17.0, "height": 1.2, "sill": 1.4 }
   ],
   "design_notes": [
     "Areas del programa = BRUTAS; igualdad de dormitorios de hijos = UTIL (neta). Cada chequeo declara su base.",

@@ -26,6 +26,7 @@ Fielders SlimDek, Building Science Corp (BSD-011, BSI-062), ASCE 7-16 / NSR-10 A
 
 Profiled steel sheeting, positively fastened to purlins/rails/frames, acts as a shear
 diaphragm (roof = deep plate girder; sheeting = web, braced/sheeted gables = flanges).
+
 - Savings: roof plan bracing eliminated and/or frame sizes reduced; frame sidesway moments
   can drop by large factors depending on relative stiffness (psi = c/k).
 - Validity: mechanical fastening (screws, not friction); sheet shear stress ≤ 25% of bending;

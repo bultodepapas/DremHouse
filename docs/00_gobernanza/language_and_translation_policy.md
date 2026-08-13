@@ -43,20 +43,20 @@ their meaning is not obvious.
 
 Use one technical term consistently within a document. Preferred translations include:
 
-| Spanish source term | Preferred English term |
-|---|---|
-| nave | industrial hall / hall, according to context |
-| planta baja (PB) | ground floor (PB) |
-| segundo piso (P2) | upper floor (P2) |
-| núcleo | service core / core |
-| gran muro | Great Wall, when naming the project element |
-| anteproyecto | schematic design |
-| predimensionamiento | preliminary sizing |
-| emitido para coordinación | issued for coordination |
-| no apto para construir | not for construction |
-| presupuesto de control | control estimate |
-| partida | cost item / work item |
-| puerta de fase | stage gate |
+| Spanish source term       | Preferred English term                       |
+| ------------------------- | -------------------------------------------- |
+| nave                      | industrial hall / hall, according to context |
+| planta baja (PB)          | ground floor (PB)                            |
+| segundo piso (P2)         | upper floor (P2)                             |
+| núcleo                    | service core / core                          |
+| gran muro                 | Great Wall, when naming the project element  |
+| anteproyecto              | schematic design                             |
+| predimensionamiento       | preliminary sizing                           |
+| emitido para coordinación | issued for coordination                      |
+| no apto para construir    | not for construction                         |
+| presupuesto de control    | control estimate                             |
+| partida                   | cost item / work item                        |
+| puerta de fase            | stage gate                                   |
 
 Derived English documents use a decimal point and English number formatting. Monetary
 values retain `COP` and their original magnitude. Conversion of `18,00 m` to `18.00 m`,

@@ -1,6 +1,6 @@
 # Claraboyas sobre talleres v0.3 — borrador 08
 
-**Estatus:** anteproyecto / hipótesis activa solicitada por el propietario; no apto para construir  
+**Estatus:** antecedente superado en posición por D-053 / b11-R10; no apto para construir
 **Versión:** 0.3-borrador-08-CLARABOYAS  
 **Fecha:** 2026-08-11  
 **Fuente:** instrucción del propietario, cubierta b07 y programa de talleres.  
@@ -24,7 +24,7 @@ Se prefieren dos eventos separados frente a una franja continua porque:
 > vidrio, el marco y el curb, pero **no para el agua**. El faldón corre en Y, y las dos
 > claraboyas están en extremos opuestos de la pendiente: con el lado bajo en el lateral A,
 > la del taller del carro tiene **12,00 m de recorrido aguas arriba (≈28,8 m² de cuenca)** y
-> la del taller RC apenas **1,20 m (≈2,9 m²)**. Una exige desvío tipo *cricket*, rebose
+> la del taller RC apenas **1,20 m (≈2,9 m²)**. Una exige desvío tipo _cricket_, rebose
 > secundario y curb reforzado; la otra prácticamente no. Repetir el mismo detalle en ambas
 > es la vía directa a una filtración sobre el car project. El chequeo
 > `RL-DRAINAGE-ASYMMETRY` calcula y publica ambas cuencas en cada emisión.

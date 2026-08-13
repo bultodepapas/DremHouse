@@ -58,21 +58,21 @@ reescribir lógica ni ocultar una decisión dimensional.
 
 ## Stack mínimo recomendado
 
-| Función | Herramienta/formato | Adopción propuesta | Motivo |
-|---|---|---|---|
-| Datos canónicos | JSON + JSON Schema | MVP | Diff legible, validación, interoperabilidad y uso simple por agentes |
-| Modelo Python | `dataclasses` o Pydantic | MVP | Tipos, unidades explícitas, mensajes de error y serialización |
-| Geometría 2D | Shapely | MVP | Áreas, intersecciones, contención, distancias y offsets |
-| Vista inmediata | SVG + HTML | MVP | Abre en navegador, inspeccionable, liviano y apto para CI |
-| Tablas/reportes | CSV + Markdown/HTML | MVP | Áreas, reglas, trazabilidad y cantidades preliminares |
-| CAD 2D | ezdxf | Piloto 2 | Layers, cotas y entrega interoperable; DXF es salida, no fuente |
-| BIM abierto | IfcOpenShell + IFC | Piloto 3 | Objetos y propiedades AEC; lectura/escritura y validación |
-| Requisitos BIM | IDS + IfcTester | Piloto 3 | Requisitos IFC comprobables y reportes automáticos |
-| Revisión BIM | Bonsai | Piloto 3 | Interfaz gráfica recomendada por IfcOpenShell para no programadores |
-| Relaciones | NetworkX | Cuando haya puertas/recorridos | Egreso, accesibilidad y conectividad; no sustituye distancias métricas |
-| Optimización | OR-Tools CP-SAT | Después de v0.3 válida | Variantes restringidas y reproducibles, con objetivos aprobados |
-| Estructura exploratoria | PyNite | Piloto paralelo controlado | Pórticos 3D, combinaciones, estabilidad, P-Delta y visualización |
-| Estructura avanzada | OpenSeesPy | Solo por necesidad del ingeniero | No linealidad/dinámica; complejidad y licencia requieren control |
+| Función                 | Herramienta/formato      | Adopción propuesta               | Motivo                                                                 |
+| ----------------------- | ------------------------ | -------------------------------- | ---------------------------------------------------------------------- |
+| Datos canónicos         | JSON + JSON Schema       | MVP                              | Diff legible, validación, interoperabilidad y uso simple por agentes   |
+| Modelo Python           | `dataclasses` o Pydantic | MVP                              | Tipos, unidades explícitas, mensajes de error y serialización          |
+| Geometría 2D            | Shapely                  | MVP                              | Áreas, intersecciones, contención, distancias y offsets                |
+| Vista inmediata         | SVG + HTML               | MVP                              | Abre en navegador, inspeccionable, liviano y apto para CI              |
+| Tablas/reportes         | CSV + Markdown/HTML      | MVP                              | Áreas, reglas, trazabilidad y cantidades preliminares                  |
+| CAD 2D                  | ezdxf                    | Piloto 2                         | Layers, cotas y entrega interoperable; DXF es salida, no fuente        |
+| BIM abierto             | IfcOpenShell + IFC       | Piloto 3                         | Objetos y propiedades AEC; lectura/escritura y validación              |
+| Requisitos BIM          | IDS + IfcTester          | Piloto 3                         | Requisitos IFC comprobables y reportes automáticos                     |
+| Revisión BIM            | Bonsai                   | Piloto 3                         | Interfaz gráfica recomendada por IfcOpenShell para no programadores    |
+| Relaciones              | NetworkX                 | Cuando haya puertas/recorridos   | Egreso, accesibilidad y conectividad; no sustituye distancias métricas |
+| Optimización            | OR-Tools CP-SAT          | Después de v0.3 válida           | Variantes restringidas y reproducibles, con objetivos aprobados        |
+| Estructura exploratoria | PyNite                   | Piloto paralelo controlado       | Pórticos 3D, combinaciones, estabilidad, P-Delta y visualización       |
+| Estructura avanzada     | OpenSeesPy               | Solo por necesidad del ingeniero | No linealidad/dinámica; complejidad y licencia requieren control       |
 
 Speckle puede evaluarse más adelante para colaboración y automatizaciones remotas. Su SDK
 Python intercambia objetos y geometría y su plataforma ejecuta funciones ante cambios de
@@ -89,8 +89,8 @@ Cada entidad debe tener como mínimo:
   "type": "room",
   "name": "Dormitorio hijo 1",
   "storey": "P2",
-  "geometry": {"kind": "rectangle", "x_m": 0, "y_m": 21, "width_m": 4.6, "depth_m": 4.4},
-  "requirements": {"target_area_m2": 20.2, "equal_area_group": "HIJOS"},
+  "geometry": { "kind": "rectangle", "x_m": 0, "y_m": 21, "width_m": 4.6, "depth_m": 4.4 },
+  "requirements": { "target_area_m2": 20.2, "equal_area_group": "HIJOS" },
   "status": "hypothesis",
   "source": "docs/01_brief/programa_arquitectonico.md#reglas-de-p2",
   "revision": "0.1"
@@ -210,15 +210,15 @@ envolvente fija— y presentar varias soluciones con métricas, nunca una “gan
 
 ## Riesgos antes de adoptar
 
-| Riesgo | Control propuesto |
-|---|---|
-| Construir demasiada plataforma antes de diseñar | limitar P0 a una envolvente, bandas y reglas críticas |
-| IFC complejo/inestable para autoría temprana | esquema interno pequeño; IFC como exportación validada |
-| Optimización produce plantas absurdas | variante humana válida y objetivos aprobados antes de CP-SAT |
-| Agente cambia una hard rule | estatus/fuente obligatorios, validación y revisión por diff |
-| Confundir análisis con diseño | rótulos, puertas de fase y aprobación profesional |
-| Dependencias/versiones rompen reproducibilidad | lockfile, entorno aislado y manifest de generación |
-| Unidades/signos causan errores estructurales | tipos/unidades explícitos y casos de referencia |
+| Riesgo                                          | Control propuesto                                            |
+| ----------------------------------------------- | ------------------------------------------------------------ |
+| Construir demasiada plataforma antes de diseñar | limitar P0 a una envolvente, bandas y reglas críticas        |
+| IFC complejo/inestable para autoría temprana    | esquema interno pequeño; IFC como exportación validada       |
+| Optimización produce plantas absurdas           | variante humana válida y objetivos aprobados antes de CP-SAT |
+| Agente cambia una hard rule                     | estatus/fuente obligatorios, validación y revisión por diff  |
+| Confundir análisis con diseño                   | rótulos, puertas de fase y aprobación profesional            |
+| Dependencias/versiones rompen reproducibilidad  | lockfile, entorno aislado y manifest de generación           |
+| Unidades/signos causan errores estructurales    | tipos/unidades explícitos y casos de referencia              |
 
 ## Decisiones pendientes antes de programar más allá de P0
 

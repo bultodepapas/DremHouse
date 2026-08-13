@@ -50,19 +50,19 @@ longitudinal lateral role is adopted.
 
 ## 1. Geometría de referencia
 
-| Parámetro | Valor | Estatus |
-|---|---:|---|
-| Nave | 18,00 × 36,00 m | DCV fuerte, no hard rule dimensional |
-| Huella PB | 648 m² | DCV |
-| P2 posterior | 18,00 × 15,00 m = 270 m² | DCV |
-| Inicio de P2 | X = 21,00 m | DCV |
-| Doble altura delantera | 18,00 × 21,00 m = 378 m² | DCV |
-| Nivel terminado P2 | ≈ +3,80 m | DCV, ajustar con canto real |
-| Altura libre bajo P2 | ≈ 3,05–3,20 m | DCV |
-| Altura interior de nave | ≈ 7,20–7,80 m | DCV |
-| Eave baja / eave alta | 7,20 m / 7,80 m (cubierta de un solo faldón) | hipótesis de sección |
-| Cubierta | única, continua, simple; sin tragaluces por defecto | hard rule |
-| Retícula de coordinación | 6 × 6 m | coordinación; no obliga columnas interiores |
+| Parámetro                |                                               Valor | Estatus                                     |
+| ------------------------ | --------------------------------------------------: | ------------------------------------------- |
+| Nave                     |                                     18,00 × 36,00 m | DCV fuerte, no hard rule dimensional        |
+| Huella PB                |                                              648 m² | DCV                                         |
+| P2 posterior             |                            18,00 × 15,00 m = 270 m² | DCV                                         |
+| Inicio de P2             |                                         X = 21,00 m | DCV                                         |
+| Doble altura delantera   |                            18,00 × 21,00 m = 378 m² | DCV                                         |
+| Nivel terminado P2       |                                           ≈ +3,80 m | DCV, ajustar con canto real                 |
+| Altura libre bajo P2     |                                       ≈ 3,05–3,20 m | DCV                                         |
+| Altura interior de nave  |                                       ≈ 7,20–7,80 m | DCV                                         |
+| Eave baja / eave alta    |        7,20 m / 7,80 m (cubierta de un solo faldón) | hipótesis de sección                        |
+| Cubierta                 | única, continua, simple; sin tragaluces por defecto | hard rule                                   |
+| Retícula de coordinación |                                             6 × 6 m | coordinación; no obliga columnas interiores |
 
 La cubierta es de **un solo faldón** (mono-pitch): la diferencia 7,80 − 7,20 = 0,60 m
 sobre 18,00 m de luz transversal da una pendiente de **1:30 = 3,33 %**. Esta pendiente debe
@@ -96,11 +96,11 @@ Matriz de predimensionamiento recomendada: **2 sistemas × 3 modulaciones**.
 
 ### 2.2 Modulaciones longitudinales
 
-| ID | Bay | N.º de pórticos (líneas) | Observación |
-|---|---|---|---|
-| M-45 | 4,50 m | 9 | Más pórticos, piezas ligeras; más cimentaciones |
-| M-60 | 6,00 m | 7 | Referencia de la auditoría y del radar de costos |
-| M-90 | 9,00 m | 5 | Pórticos más pesados, menos fundaciones; vigas P2 mayores |
+| ID   | Bay    | N.º de pórticos (líneas) | Observación                                               |
+| ---- | ------ | ------------------------ | --------------------------------------------------------- |
+| M-45 | 4,50 m | 9                        | Más pórticos, piezas ligeras; más cimentaciones           |
+| M-60 | 6,00 m | 7                        | Referencia de la auditoría y del radar de costos          |
+| M-90 | 9,00 m | 5                        | Pórticos más pesados, menos fundaciones; vigas P2 mayores |
 
 Se comparará kg/m² (sobre 918 m² conceptuales), tonelaje total, costo fabricado/montado
 estimado y compatibilidad con el programa (P2, lift, vidrios, portones).
@@ -120,7 +120,7 @@ la nave queda 100 % libre.**
    laterales (HEA/HEB200), bases articuladas. Servicios pasan por el alma. Es la estética
    "estructura visible" del concepto. El pórtico mono-pitch eficiente suele limitarse a
    ≈ 15 m; con 18 m y pendiente 1:30 la cercha es más racional.
-2. **Pórtico portal atado (*tied portal*).** Un tirante/tensor horizontal entre las
+2. **Pórtico portal atado (_tied portal_).** Un tirante/tensor horizontal entre las
    cabezas de columna reduce el desplazamiento de alero (deriva de viento) y los momentos
    de columna y viga; requiere análisis de segundo orden. Permite bajar de HEA500 a
    secciones menores conservando la continuidad del pórtico. El tirante es visible:
@@ -150,7 +150,7 @@ la nave queda 100 % libre.**
    modo que cocina y comedor en PB quedan 100 % libres. La frecuencia del panel no se
    calcula sin ficha de deck y sección compuesta; vibración y carga muerta se verifican
    en E1 con el criterio normativo aplicable.
-2. **Cercha compuesta de piso (*composite truss*).** Luces > 18 m con la losa como cordón
+2. **Cercha compuesta de piso (_composite truss_).** Luces > 18 m con la losa como cordón
    superior; más ligera que viga llena, pero exige apuntalamiento temporal y más superficie
    de protección contra incendio.
 3. **Vigas celulares (10–16 m) y girders de canto variable (10–20 m).** Integran servicios
@@ -173,24 +173,24 @@ altura), no de carga.
 
 ### 3.1 Cargas permanentes (hipótesis)
 
-| Elemento | Valor de hipótesis | Fuente/observación |
-|---|---:|---|
-| Cubierta (panel sándwich ≈ 50 mm o sistema por capas) | 0,15–0,25 kN/m² | CYPE QTM010/FLA030; sistema por capas más liviano |
-| Correas y soportes de cubierta | 0,10 kN/m² | derivado |
-| Cielo, instalaciones, ductos colgados | 0,15 kN/m² | coordinación MEP |
-| Entrepiso P2 (metaldeck + loseta + acabado) | 2,3–2,6 kN/m² | metaldeck 10 cm ≈ 2,5 kN/m² |
-| Particiones y acabados P2 | 1,0–1,5 kN/m² | uso residencial |
-| Fachada/panel sobre girts | 0,15–0,25 kN/m² | vertical |
+| Elemento                                              | Valor de hipótesis | Fuente/observación                                |
+| ----------------------------------------------------- | -----------------: | ------------------------------------------------- |
+| Cubierta (panel sándwich ≈ 50 mm o sistema por capas) |    0,15–0,25 kN/m² | CYPE QTM010/FLA030; sistema por capas más liviano |
+| Correas y soportes de cubierta                        |         0,10 kN/m² | derivado                                          |
+| Cielo, instalaciones, ductos colgados                 |         0,15 kN/m² | coordinación MEP                                  |
+| Entrepiso P2 (metaldeck + loseta + acabado)           |      2,3–2,6 kN/m² | metaldeck 10 cm ≈ 2,5 kN/m²                       |
+| Particiones y acabados P2                             |      1,0–1,5 kN/m² | uso residencial                                   |
+| Fachada/panel sobre girts                             |    0,15–0,25 kN/m² | vertical                                          |
 
 ### 3.2 Cargas vivas (hipótesis)
 
-| Elemento | Valor | Observación |
-|---|---:|---|
-| Cubierta | 0,50 kN/m² | cubierta liviana; sin mantenimiento frecuente |
-| Entrepiso P2 residencial | 1,80–2,00 kN/m² | dormitorios, hall, wellness |
-| Zona técnica PB (carro + taller + racks) | 3,00–5,00 kN/m² | uso industrial-liviano; verificar con equipos |
-| Lift automotriz | carga puntual por poste según ficha (≈ 4 t nominal) | **dato obligatorio pendiente (D-022)** |
-| Sauna/jacuzzi opcional | carga operativa + agua (jacuzzi ≈ 300–500 kg/m² si se adopta) | decisión D-025 |
+| Elemento                                 |                                                         Valor | Observación                                   |
+| ---------------------------------------- | ------------------------------------------------------------: | --------------------------------------------- |
+| Cubierta                                 |                                                    0,50 kN/m² | cubierta liviana; sin mantenimiento frecuente |
+| Entrepiso P2 residencial                 |                                               1,80–2,00 kN/m² | dormitorios, hall, wellness                   |
+| Zona técnica PB (carro + taller + racks) |                                               3,00–5,00 kN/m² | uso industrial-liviano; verificar con equipos |
+| Lift automotriz                          |           carga puntual por poste según ficha (≈ 4 t nominal) | **dato obligatorio pendiente (D-022)**        |
+| Sauna/jacuzzi opcional                   | carga operativa + agua (jacuzzi ≈ 300–500 kg/m² si se adopta) | decisión D-025                                |
 
 ### 3.3 Viento (hipótesis de altura y presión, por definir con norma)
 
@@ -247,7 +247,7 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - **Cordón / viga longitudinal de cubierta (wind girder)** en el plano del faldón para
   repartir el viento transversal hacia los arriostramientos de testeros y reducir la
   deriva individual de cada pórtico.
-- **Tirante de alero (*tied portal*)** si se conserva la continuidad de pórtico: atar las
+- **Tirante de alero (_tied portal_)** si se conserva la continuidad de pórtico: atar las
   cabezas de columna reduce el desplazamiento lateral y los momentos de base.
 - **Knee braces / diagonales cortas** en el encuentro columna–cercha en pórticos testeros
   (refuerzo local sin ocupar la nave).
@@ -303,12 +303,12 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 
 ## 6. Materiales y protección
 
-| Elemento | Hipótesis de material | Observación |
-|---|---|---|
-| Columnas y vigas principales | **S355 / A572 Gr.50** (Fy ≈ 345–355 MPa) | reduce tonelaje; radar de costos #1 |
-| Correas, girts, arriostramiento | **S235 / A36** (Fy ≈ 235–250 MPa) | secundarios económicos |
-| Pernos | Gr. 8.8 / A325 | conexiones apernadas preferidas |
-| E | 200 GPa; densidad 7850 kg/m³ | acero estructural |
+| Elemento                        | Hipótesis de material                    | Observación                         |
+| ------------------------------- | ---------------------------------------- | ----------------------------------- |
+| Columnas y vigas principales    | **S355 / A572 Gr.50** (Fy ≈ 345–355 MPa) | reduce tonelaje; radar de costos #1 |
+| Correas, girts, arriostramiento | **S235 / A36** (Fy ≈ 235–250 MPa)        | secundarios económicos              |
+| Pernos                          | Gr. 8.8 / A325                           | conexiones apernadas preferidas     |
+| E                               | 200 GPa; densidad 7850 kg/m³             | acero estructural                   |
 
 **Durabilidad:** clima seco de altura interior = corrosión moderada, pero la estética de
 acero visible no exime protección. Comparar galvanizado vs. pintura con criterio de
@@ -319,13 +319,13 @@ barrera de vapor para evitar condensación sobre el acero (sección 3 de técnic
 
 ### 7.1 Objetivos de peso (hipótesis de control)
 
-| Componente | Control desglose v0.2 | Rango realista (auditoría) |
-|---|---:|---:|
-| Pórticos principales + columnas | 15,5 t | ≈ 23–24 t |
-| Entrepiso P2 | 3,0 t | ≈ 9–11 t |
-| Correas, girts, arriostramientos | 9,15 t | ≈ 9 t |
-| **Total estructura metálica** | **≈ 28,35 t** | **≈ 41–44 t** (central ≈ 37 t) |
-| Equivalente | ≈ 31 kg/m² | ≈ 40–48 kg/m² |
+| Componente                       | Control desglose v0.2 |     Rango realista (auditoría) |
+| -------------------------------- | --------------------: | -----------------------------: |
+| Pórticos principales + columnas  |                15,5 t |                      ≈ 23–24 t |
+| Entrepiso P2                     |                 3,0 t |                       ≈ 9–11 t |
+| Correas, girts, arriostramientos |                9,15 t |                          ≈ 9 t |
+| **Total estructura metálica**    |         **≈ 28,35 t** | **≈ 41–44 t** (central ≈ 37 t) |
+| Equivalente                      |            ≈ 31 kg/m² |                  ≈ 40–48 kg/m² |
 
 El comparativo E0 debe producir un valor de kg/m² por sistema×modulación y un rango total,
 para reconciliar el capítulo 05/06 antes de PE-1.
@@ -351,11 +351,11 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 
 ## 8. Entregables por puerta (replica de bases estructurales y civiles)
 
-| Puerta | Entregable estructural |
-|---|---|
-| **E0 — esquema (actual)** | ejes, luces, alturas, apoyos hipotéticos, matriz de comparación, lista de datos faltantes (predio, geotecnia, lift, viento/sismo de norma) |
+| Puerta                             | Entregable estructural                                                                                                                                                                                           |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **E0 — esquema (actual)**          | ejes, luces, alturas, apoyos hipotéticos, matriz de comparación, lista de datos faltantes (predio, geotecnia, lift, viento/sismo de norma)                                                                       |
 | **E1 — comparación por ingeniero** | modelo paramétrico (sistemas de cubierta × modulaciones; entrepiso P2 con pared híbrida D-043 frente a alternativas), camino lateral completo, kg/m², costo fabricado/montado, estabilidad y entrepiso compuesto |
-| **E2 — diseño profesional** | memorias firmadas, planos de cimentación/losa/estructura/conexiones, revisión independiente |
+| **E2 — diseño profesional**        | memorias firmadas, planos de cimentación/losa/estructura/conexiones, revisión independiente                                                                                                                      |
 
 ## 9. Resultados históricos E0 v0.1 y auditoría v0.2 (12-08-2026)
 
@@ -375,20 +375,20 @@ bajo carga muerta), proyección trigonométrica de cargas en miembros inclinados
 (componente horizontal nula) y límites de flecha L/180–L/240 en metros (antes
 1000× más permisivos).
 
-| Sistema × Modulación | Columnas | Viga / cercha | Tirante | Marcos | P2 metaldeck / staggered / gran muro | Acero total (metaldeck) | kg/m² | Total con gran muro | Lectura |
-|---|---|---|---|---|---|---:|---:|---:|---|
-| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 12,3 / 3,9 / 11,6 t | **59,3 t** | 64,6 | 58,6 t | deriva de viento gobierna |
-| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,5 / 3,9 / 11,6 t | **52,7 t** | 57,4 | 51,7 t | referencia de la auditoría |
-| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 17,0 / 3,9 / 11,6 t | **49,3 t** | 53,7 | 44,0 t | **falla H/200; catálogo agotado** |
-| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 12,3 / 3,9 / 11,6 t | **60,7 t** | 66,2 | 60,1 t | tirante casi inactivo: no competitivo |
-| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,5 / 3,9 / 11,6 t | **53,8 t** | 58,6 | 52,9 t | tirante ≈ 2,3 kN; no controla deriva |
-| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 17,0 / 3,9 / 11,6 t | **50,1 t** | 54,6 | 44,8 t | **falla H/200; catálogo agotado** |
-| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 12,3 / 3,9 / 11,6 t | **48,5 t** | 52,9 | 47,9 t | bases fijas: deriva 0,015 m |
-| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,5 / 3,9 / 11,6 t | **42,4 t** | 46,2 | 41,5 t | marco ≈ 27 % más liviano que articulado |
-| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 17,0 / 3,9 / 11,6 t | **43,3 t** | 47,2 | 38,0 t | deriva 0,025 m en cribado |
-| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 12,3 / 3,9 / 11,6 t | **41,3 t** | 45,0 | 40,6 t | sin análisis lateral |
-| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,5 / 3,9 / 11,6 t | **36,7 t** | 40,0 | 35,8 t | sin análisis lateral |
-| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 17,0 / 3,9 / 11,6 t | **36,4 t** | 39,7 | 31,1 t | sin análisis lateral |
+| Sistema × Modulación  | Columnas   | Viga / cercha | Tirante | Marcos | P2 metaldeck / staggered / gran muro | Acero total (metaldeck) | kg/m² | Total con gran muro | Lectura                                 |
+| --------------------- | ---------- | ------------- | ------- | ------ | ------------------------------------ | ----------------------: | ----: | ------------------: | --------------------------------------- |
+| PÓRTICO · M45 (4,5 m) | HEA500     | IPE450        | —       | 39,5 t | 12,3 / 3,9 / 11,6 t                  |              **59,3 t** |  64,6 |              58,6 t | deriva de viento gobierna               |
+| PÓRTICO · M60 (6,0 m) | HEA500     | IPE500        | —       | 32,6 t | 12,5 / 3,9 / 11,6 t                  |              **52,7 t** |  57,4 |              51,7 t | referencia de la auditoría              |
+| PÓRTICO · M90 (9,0 m) | HEA500     | IPE550        | —       | 24,8 t | 17,0 / 3,9 / 11,6 t                  |              **49,3 t** |  53,7 |              44,0 t | **falla H/200; catálogo agotado**       |
+| PÓRTICO-T · M45       | HEA500     | IPE450        | 10 cm²  | 41,0 t | 12,3 / 3,9 / 11,6 t                  |              **60,7 t** |  66,2 |              60,1 t | tirante casi inactivo: no competitivo   |
+| PÓRTICO-T · M60       | HEA500     | IPE500        | 10 cm²  | 33,8 t | 12,5 / 3,9 / 11,6 t                  |              **53,8 t** |  58,6 |              52,9 t | tirante ≈ 2,3 kN; no controla deriva    |
+| PÓRTICO-T · M90       | HEA500     | IPE550        | 10 cm²  | 25,6 t | 17,0 / 3,9 / 11,6 t                  |              **50,1 t** |  54,6 |              44,8 t | **falla H/200; catálogo agotado**       |
+| PÓRTICO-F · M45       | **HEA300** | IPE450        | —       | 28,7 t | 12,3 / 3,9 / 11,6 t                  |              **48,5 t** |  52,9 |              47,9 t | bases fijas: deriva 0,015 m             |
+| PÓRTICO-F · M60       | **HEA300** | IPE450        | —       | 22,3 t | 12,5 / 3,9 / 11,6 t                  |              **42,4 t** |  46,2 |              41,5 t | marco ≈ 27 % más liviano que articulado |
+| PÓRTICO-F · M90       | **HEA300** | IPE550        | —       | 18,8 t | 17,0 / 3,9 / 11,6 t                  |              **43,3 t** |  47,2 |              38,0 t | deriva 0,025 m en cribado               |
+| CERCHA · M45          | HEA200     | IPE220 (L/16) | —       | 21,5 t | 12,3 / 3,9 / 11,6 t                  |              **41,3 t** |  45,0 |              40,6 t | sin análisis lateral                    |
+| CERCHA · M60          | HEA200     | IPE220 (L/16) | —       | 16,7 t | 12,5 / 3,9 / 11,6 t                  |              **36,7 t** |  40,0 |              35,8 t | sin análisis lateral                    |
+| CERCHA · M90          | HEA200     | IPE220 (L/16) | —       | 11,9 t | 17,0 / 3,9 / 11,6 t                  |              **36,4 t** |  39,7 |              31,1 t | sin análisis lateral                    |
 
 Desglose por componente (M60): marcos 32,6 t (cerchas 16,7 t) + entrepiso
 P2 metaldeck ≈ 12,5 t / staggered ≈ 3,9 t / **gran muro ≈ 11,6 t** + secundaria

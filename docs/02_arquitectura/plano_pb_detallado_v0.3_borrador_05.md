@@ -36,13 +36,13 @@ ajustarse con estructura, acústica, fuego, fabricantes y desempeño higrotérmi
 
 De sur a norte, mirando el gran muro:
 
-| Espacio | Banda bruta | Área bruta nominal | Razón |
-|---|---:|---:|---|
-| Pantry / apoyo limpio | 2,40 × 4,50 m | 10,80 m² | Queda contiguo a cocina y refrigeración. |
-| Bodega | 5,00 × 4,50 m | 22,50 m² | Conserva acceso interior y salida posterior. |
-| Escalera protegida | 3,60 × 4,50 m | 16,20 m² | Mantiene alineación exacta con P2 y descarga posterior. |
-| Baño PB | 2,40 × 4,50 m | 10,80 m² | Sale del frente culinario y sirve nave/taller. |
-| Homelab / técnico | 4,60 × 4,50 m | 20,70 m² | Se separa de bodega; agrupa rack, UPS y tableros. |
+| Espacio               |   Banda bruta | Área bruta nominal | Razón                                                   |
+| --------------------- | ------------: | -----------------: | ------------------------------------------------------- |
+| Pantry / apoyo limpio | 2,40 × 4,50 m |           10,80 m² | Queda contiguo a cocina y refrigeración.                |
+| Bodega                | 5,00 × 4,50 m |           22,50 m² | Conserva acceso interior y salida posterior.            |
+| Escalera protegida    | 3,60 × 4,50 m |           16,20 m² | Mantiene alineación exacta con P2 y descarga posterior. |
+| Baño PB               | 2,40 × 4,50 m |           10,80 m² | Sale del frente culinario y sirve nave/taller.          |
+| Homelab / técnico     | 4,60 × 4,50 m |           20,70 m² | Se separa de bodega; agrupa rack, UPS y tableros.       |
 
 El total bruto continúa siendo 81,00 m². Con los cerramientos de estudio, las áreas netas
 dibujadas son provisionales y se recalcularán cuando existan sistemas reales.
@@ -58,7 +58,7 @@ subestructura registrable y respaldo acústico oscuro.
   y luz cálida.
 - Un zócalo técnico continuo permite retorno de sombra, tolerancias y acceso modular.
 - Reacción al fuego, absorción, herrajes, ventilación, registros y muestra 1:1 permanecen
-pendientes.
+  pendientes.
 
 Esta elevación es **interior** y mira hacia el núcleo al fondo de la nave. No representa
 la fachada frontal exterior.
@@ -147,11 +147,11 @@ del núcleo, gran muro, salidas posteriores, cocina, pantry y escalera.
 
 Las tres reglas añadidas el 2026-08-11 tras la revisión de coordinación son:
 
-| Regla | Qué impide |
-|---|---|
-| `PB-CORE-CLOSURE` | Que los recintos del núcleo se dibujen sin dejar sitio a los tabiques declarados. Verifica que netos + tabiques + envolvente sumen 18,00 m exactos. |
-| `PB-P2-WINDOW-SYNC` | Que un mismo vano de dormitorio se describa distinto en `pb_b05.json` y el modelo P2 activo `p2_b09.json`. |
-| `PB-GLAZING-IN-ROOM` | Que un vano desborde el muro del recinto que ilumina. |
+| Regla                | Qué impide                                                                                                                                          |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PB-CORE-CLOSURE`    | Que los recintos del núcleo se dibujen sin dejar sitio a los tabiques declarados. Verifica que netos + tabiques + envolvente sumen 18,00 m exactos. |
+| `PB-P2-WINDOW-SYNC`  | Que un mismo vano de dormitorio se describa distinto en `pb_b05.json` y el modelo P2 activo `p2_b10.json`.                                          |
+| `PB-GLAZING-IN-ROOM` | Que un vano desborde el muro del recinto que ilumina.                                                                                               |
 
 **Advertencia sobre el valor de estas cifras.** Un «PASS» significa que el modelo es
 internamente coherente y respeta las decisiones registradas. **No** significa conformidad

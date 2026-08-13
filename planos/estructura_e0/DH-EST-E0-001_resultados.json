@@ -128,35 +128,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE220",
             "floor_beam_profile": "IPE300",
-            "floor_beam_profiles_by_active_line": [
-              "IPE300",
-              "IPE300",
-              "IPE300",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              3.75,
-              4.5,
-              4.5,
-              2.25
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE300", "IPE300", "IPE300", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 0.0, 3.75, 4.5, 4.5, 2.25],
             "edge_beam_profile": "IPE360",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -180,10 +160,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -194,14 +171,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -232,30 +202,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -333,35 +282,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE220",
             "floor_beam_profile": "IPE300",
-            "floor_beam_profiles_by_active_line": [
-              "IPE300",
-              "IPE300",
-              "IPE300",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              3.75,
-              4.5,
-              4.5,
-              2.25
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE300", "IPE300", "IPE300", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 0.0, 3.75, 4.5, 4.5, 2.25],
             "edge_beam_profile": "IPE360",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -385,10 +314,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -399,14 +325,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -437,30 +356,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -539,35 +437,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE220",
             "floor_beam_profile": "IPE300",
-            "floor_beam_profiles_by_active_line": [
-              "IPE300",
-              "IPE300",
-              "IPE300",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              3.75,
-              4.5,
-              4.5,
-              2.25
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE300", "IPE300", "IPE300", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 0.0, 3.75, 4.5, 4.5, 2.25],
             "edge_beam_profile": "IPE360",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -591,10 +469,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -605,14 +480,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -643,30 +511,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -744,35 +591,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE220",
             "floor_beam_profile": "IPE300",
-            "floor_beam_profiles_by_active_line": [
-              "IPE300",
-              "IPE300",
-              "IPE300",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              3.75,
-              4.5,
-              4.5,
-              2.25
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE300", "IPE300", "IPE300", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 0.0, 3.75, 4.5, 4.5, 2.25],
             "edge_beam_profile": "IPE360",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -796,10 +623,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -810,14 +634,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -848,30 +665,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -952,32 +748,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE240",
             "floor_beam_profile": "IPE330",
-            "floor_beam_profiles_by_active_line": [
-              "IPE330",
-              "IPE330",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              6.0,
-              6.0,
-              3.0
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE330", "IPE330", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 6.0, 6.0, 3.0],
             "edge_beam_profile": "IPE400",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -1001,10 +780,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -1015,14 +791,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -1053,30 +822,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -1154,32 +902,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE240",
             "floor_beam_profile": "IPE330",
-            "floor_beam_profiles_by_active_line": [
-              "IPE330",
-              "IPE330",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              6.0,
-              6.0,
-              3.0
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE330", "IPE330", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 6.0, 6.0, 3.0],
             "edge_beam_profile": "IPE400",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -1203,10 +934,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -1217,14 +945,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -1255,30 +976,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -1357,32 +1057,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE240",
             "floor_beam_profile": "IPE330",
-            "floor_beam_profiles_by_active_line": [
-              "IPE330",
-              "IPE330",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              6.0,
-              6.0,
-              3.0
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE330", "IPE330", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 6.0, 6.0, 3.0],
             "edge_beam_profile": "IPE400",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -1406,10 +1089,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -1420,14 +1100,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -1458,30 +1131,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -1559,32 +1211,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE240",
             "floor_beam_profile": "IPE330",
-            "floor_beam_profiles_by_active_line": [
-              "IPE330",
-              "IPE330",
-              "IPE270"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              0.0,
-              0.0,
-              6.0,
-              6.0,
-              3.0
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE330", "IPE330", "IPE270"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 0.0, 0.0, 6.0, 6.0, 3.0],
             "edge_beam_profile": "IPE400",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -1608,10 +1243,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -1622,14 +1254,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -1660,30 +1285,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -1764,30 +1368,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE330",
             "floor_beam_profile": "IPE400",
-            "floor_beam_profiles_by_active_line": [
-              "IPE240",
-              "IPE400",
-              "IPE300"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              1.5,
-              9.0,
-              4.5
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE240", "IPE400", "IPE300"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 1.5, 9.0, 4.5],
             "edge_beam_profile": "IPE450",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -1811,10 +1400,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -1825,14 +1411,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -1863,30 +1442,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -1952,9 +1510,7 @@
                 "frame_drift": false,
                 "column_gross_yield_interaction": true
               },
-              "governing_issues": [
-                "frame_drift"
-              ]
+              "governing_issues": ["frame_drift"]
             }
           },
           "PORTICO-T": {
@@ -1966,30 +1522,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE330",
             "floor_beam_profile": "IPE400",
-            "floor_beam_profiles_by_active_line": [
-              "IPE240",
-              "IPE400",
-              "IPE300"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              1.5,
-              9.0,
-              4.5
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE240", "IPE400", "IPE300"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 1.5, 9.0, 4.5],
             "edge_beam_profile": "IPE450",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -2013,10 +1554,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -2027,14 +1565,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -2065,30 +1596,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -2155,9 +1665,7 @@
                 "column_gross_yield_interaction": true,
                 "tie_gross_yield": true
               },
-              "governing_issues": [
-                "frame_drift"
-              ]
+              "governing_issues": ["frame_drift"]
             }
           },
           "PORTICO-F": {
@@ -2169,30 +1677,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE330",
             "floor_beam_profile": "IPE400",
-            "floor_beam_profiles_by_active_line": [
-              "IPE240",
-              "IPE400",
-              "IPE300"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              1.5,
-              9.0,
-              4.5
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE240", "IPE400", "IPE300"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 1.5, 9.0, 4.5],
             "edge_beam_profile": "IPE450",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -2216,10 +1709,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -2230,14 +1720,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -2268,30 +1751,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -2369,30 +1831,15 @@
             "secondary_kg": 7521.0,
             "joist_profile": "IPE330",
             "floor_beam_profile": "IPE400",
-            "floor_beam_profiles_by_active_line": [
-              "IPE240",
-              "IPE400",
-              "IPE300"
-            ],
-            "p2_tributaries_by_frame_m": [
-              0.0,
-              0.0,
-              1.5,
-              9.0,
-              4.5
-            ],
+            "floor_beam_profiles_by_active_line": ["IPE240", "IPE400", "IPE300"],
+            "p2_tributaries_by_frame_m": [0.0, 0.0, 1.5, 9.0, 4.5],
             "edge_beam_profile": "IPE450",
             "aux_columns_profile": "HEA200",
             "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": {
               "n_trusses": 4,
               "n_panels": 3,
-              "support_x_m": [
-                21.0,
-                26.0,
-                31.0,
-                36.0
-              ],
+              "support_x_m": [21.0, 26.0, 31.0, 36.0],
               "panel_span_m": 5.0,
               "truss_depth_m": 3.0,
               "truss_d_over_l": 0.167,
@@ -2416,10 +1863,7 @@
             "great_wall": {
               "wall_x_m": 31.5,
               "wall_t_m": 0.2,
-              "structural_envelope_m": [
-                0.25,
-                0.35
-              ],
+              "structural_envelope_m": [0.25, 0.35],
               "n_beams": 6,
               "beam_profile": "IPE400",
               "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
@@ -2430,14 +1874,7 @@
               "rear_beam_span_m": 4.5,
               "rear_beams_kg": 1790.0,
               "beams_kg": 5967.0,
-              "beam_tributary_widths_m": [
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0,
-                3.0
-              ],
+              "beam_tributary_widths_m": [3.0, 3.0, 3.0, 3.0, 3.0, 3.0],
               "beam_max_moment_knm": 230.2,
               "beam_support_moment_knm": -230.2,
               "beam_main_span_deflection_m": 0.0332,
@@ -2468,30 +1905,9 @@
               "wall_axial_kn_m": 81.2,
               "wall_gravity_reaction_kn_m": 81.2,
               "wall_point_reaction_kn": 243.6,
-              "wall_point_reactions_kn": [
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6,
-                243.6
-              ],
-              "beam_y_m": [
-                1.5,
-                4.5,
-                7.5,
-                10.5,
-                13.5,
-                16.5
-              ],
-              "hidden_column_y_m": [
-                0.0,
-                2.4,
-                7.4,
-                11.0,
-                13.4,
-                18.0
-              ],
+              "wall_point_reactions_kn": [243.6, 243.6, 243.6, 243.6, 243.6, 243.6],
+              "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+              "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
               "hidden_column_trial_profile": "HSS150x150x8",
               "hidden_column_max_reaction_kn": 378.8,
               "hidden_column_gross_yield_ratio": 0.261,
@@ -2555,14 +1971,8 @@
     }
   ],
   "targets": {
-    "total_steel_t_range": [
-      30.0,
-      45.0
-    ],
-    "kg_m2_reference": [
-      31.0,
-      48.0
-    ]
+    "total_steel_t_range": [30.0, 45.0],
+    "kg_m2_reference": [31.0, 48.0]
   },
   "summary": {
     "M45-PORTICO": {

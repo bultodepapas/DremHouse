@@ -1,6 +1,6 @@
 # Coordinated Upper Floor v0.3 — Draft 09
 
-**Status:** active schematic coordination hypothesis; not for construction  
+**Status:** superseded by D-050 / b10-R09; retained as the direct predecessor
 **Version:** 0.3-draft-09-P2 / R08  
 **Date:** 2026-08-13  
 **Source:** D-049; owner preference for b04/R03; verified b06/R05 controls; D-042;
@@ -41,16 +41,16 @@ floor area. It therefore creates no independent cost-baseline change.
 
 ## Programme and measurement snapshot
 
-| Element | Coordinated value | Reading |
-|---|---:|---|
-| Child Suite 1 | 38.0 m² gross | Bedroom, wardrobe, and private bathroom |
-| Child Suite 2 | 38.1 m² gross | Bedroom, wardrobe, and private bathroom |
-| Child bedrooms | 23.46 / 23.22 m² net | Difference 0.24 m²; D-042 passes |
-| Guest suite | 29.1 m² gross | Bedroom, filter, bathroom, and wardrobe |
-| Primary private rooms | 54.8 m² gross | Bedroom, filter, bathroom, and dressing room |
-| Mini deck | 9.8 m² gross | Acoustically glazed toward the double-height hall |
-| Wellness | 16.8 m² gross | Includes a 2.40 m sauna study reserve |
-| Narrowest declared circulation | 1.20 m clear | Guest-suite filter; Phase 2 lobby is 1.25 m clear |
+| Element                        |    Coordinated value | Reading                                           |
+| ------------------------------ | -------------------: | ------------------------------------------------- |
+| Child Suite 1                  |        38.0 m² gross | Bedroom, wardrobe, and private bathroom           |
+| Child Suite 2                  |        38.1 m² gross | Bedroom, wardrobe, and private bathroom           |
+| Child bedrooms                 | 23.46 / 23.22 m² net | Difference 0.24 m²; D-042 passes                  |
+| Guest suite                    |        29.1 m² gross | Bedroom, filter, bathroom, and wardrobe           |
+| Primary private rooms          |        54.8 m² gross | Bedroom, filter, bathroom, and dressing room      |
+| Mini deck                      |         9.8 m² gross | Acoustically glazed toward the double-height hall |
+| Wellness                       |        16.8 m² gross | Includes a 2.40 m sauna study reserve             |
+| Narrowest declared circulation |         1.20 m clear | Guest-suite filter; Phase 2 lobby is 1.25 m clear |
 
 Programme comparisons use gross areas, child-bedroom equivalence uses net usable area,
 and circulation uses net clear width. These bases are declared in the parametric model

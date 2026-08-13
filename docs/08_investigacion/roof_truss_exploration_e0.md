@@ -10,26 +10,26 @@
 The deterministic explorer evaluated **144** geometries; **144** passed the defined enhanced roof subproblem and **18** remain non-dominated under the three declared proxies.
 No candidate selects D-019. The table is a shortlist for a competent structural engineer and a later E1 model.
 
-| Candidate | Module | Topology | Panels | Depth | Chord / web | Roof truss mass | Members + crossings | Governing ratio |
-|---|---|---|---:|---:|---|---:|---:|---:|
-| M90-HOWE-3bdc910d7303 | M90 | HOWE / VARIABLE | 10 | 1.50 m | HSS100x100x6 / HSS100x100x6 | 6729.1 kg | 41 + 0 | 0.954 |
-| M90-WARREN_MODIFIED-f166d3ae441c | M90 | WARREN_MODIFIED / VARIABLE | 10 | 1.50 m | HSS100x100x6 / HSS100x100x6 | 6771.0 kg | 41 + 0 | 0.932 |
-| M90-HOWE-dada4f7a017e | M90 | HOWE / VARIABLE | 10 | 1.80 m | HSS100x100x6 / HSS100x100x6 | 7090.5 kg | 41 + 0 | 0.832 |
-| M90-WARREN_MODIFIED-e461c27f472e | M90 | WARREN_MODIFIED / VARIABLE | 10 | 1.80 m | HSS100x100x6 / HSS100x100x6 | 7147.3 kg | 41 + 0 | 0.814 |
-| M90-HOWE-9dcd9d6d990f | M90 | HOWE / VARIABLE | 8 | 1.50 m | HSS120x120x6 / HSS100x100x6 | 7204.7 kg | 33 + 0 | 0.793 |
-| M90-HOWE-42df12c7e5b8 | M90 | HOWE / VARIABLE | 8 | 1.80 m | HSS120x120x6 / HSS100x100x6 | 7481.7 kg | 33 + 0 | 0.696 |
-| M60-HOWE-db90adfb4327 | M60 | HOWE / VARIABLE | 10 | 1.50 m | HSS100x100x6 / HSS100x100x6 | 9420.7 kg | 41 + 0 | 0.633 |
-| M60-WARREN_MODIFIED-e27ac59dbcae | M60 | WARREN_MODIFIED / VARIABLE | 10 | 1.50 m | HSS100x100x6 / HSS100x100x6 | 9479.4 kg | 41 + 0 | 0.619 |
-| M60-HOWE-9f884166a9d5 | M60 | HOWE / VARIABLE | 6 | 1.50 m | HSS120x120x6 / HSS100x100x6 | 9649.6 kg | 25 + 0 | 0.756 |
-| M60-WARREN_MODIFIED-d03ad67a517b | M60 | WARREN_MODIFIED / VARIABLE | 6 | 1.50 m | HSS120x120x6 / HSS100x100x6 | 9693.2 kg | 25 + 0 | 0.734 |
-| M60-HOWE-6d02d14551ed | M60 | HOWE / VARIABLE | 6 | 1.80 m | HSS120x120x6 / HSS100x100x6 | 9926.7 kg | 25 + 0 | 0.672 |
-| M60-HOWE-55b6e7b141fe | M60 | HOWE / VARIABLE | 10 | 1.80 m | HSS100x100x6 / HSS100x100x6 | 9926.7 kg | 41 + 0 | 0.555 |
-| M60-WARREN_MODIFIED-6ed6749977a0 | M60 | WARREN_MODIFIED / VARIABLE | 6 | 1.80 m | HSS120x120x6 / HSS100x100x6 | 9987.6 kg | 25 + 0 | 0.653 |
-| M60-WARREN_MODIFIED-6f28eb546646 | M60 | WARREN_MODIFIED / VARIABLE | 10 | 1.80 m | HSS100x100x6 / HSS100x100x6 | 10006.2 kg | 41 + 0 | 0.544 |
-| M90-WARREN_MODIFIED-02ca47195595 | M90 | WARREN_MODIFIED / VARIABLE | 6 | 1.50 m | HSS150x150x8 / HSS100x100x6 | 10034.8 kg | 25 + 0 | 0.506 |
-| M90-WARREN_MODIFIED-c42968ca2e38 | M90 | WARREN_MODIFIED / VARIABLE | 6 | 1.80 m | HSS150x150x8 / HSS100x100x6 | 10247.0 kg | 25 + 0 | 0.451 |
-| M45-HOWE-f229c612ef25 | M45 | HOWE / VARIABLE | 10 | 1.80 m | HSS100x100x6 / HSS100x100x6 | 12762.9 kg | 41 + 0 | 0.423 |
-| M45-WARREN_MODIFIED-ae23bdcfdf03 | M45 | WARREN_MODIFIED / VARIABLE | 10 | 1.80 m | HSS100x100x6 / HSS100x100x6 | 12865.1 kg | 41 + 0 | 0.415 |
+| Candidate                        | Module | Topology                   | Panels |  Depth | Chord / web                 | Roof truss mass | Members + crossings | Governing ratio |
+| -------------------------------- | ------ | -------------------------- | -----: | -----: | --------------------------- | --------------: | ------------------: | --------------: |
+| M90-HOWE-3bdc910d7303            | M90    | HOWE / VARIABLE            |     10 | 1.50 m | HSS100x100x6 / HSS100x100x6 |       6729.1 kg |              41 + 0 |           0.954 |
+| M90-WARREN_MODIFIED-f166d3ae441c | M90    | WARREN_MODIFIED / VARIABLE |     10 | 1.50 m | HSS100x100x6 / HSS100x100x6 |       6771.0 kg |              41 + 0 |           0.932 |
+| M90-HOWE-dada4f7a017e            | M90    | HOWE / VARIABLE            |     10 | 1.80 m | HSS100x100x6 / HSS100x100x6 |       7090.5 kg |              41 + 0 |           0.832 |
+| M90-WARREN_MODIFIED-e461c27f472e | M90    | WARREN_MODIFIED / VARIABLE |     10 | 1.80 m | HSS100x100x6 / HSS100x100x6 |       7147.3 kg |              41 + 0 |           0.814 |
+| M90-HOWE-9dcd9d6d990f            | M90    | HOWE / VARIABLE            |      8 | 1.50 m | HSS120x120x6 / HSS100x100x6 |       7204.7 kg |              33 + 0 |           0.793 |
+| M90-HOWE-42df12c7e5b8            | M90    | HOWE / VARIABLE            |      8 | 1.80 m | HSS120x120x6 / HSS100x100x6 |       7481.7 kg |              33 + 0 |           0.696 |
+| M60-HOWE-db90adfb4327            | M60    | HOWE / VARIABLE            |     10 | 1.50 m | HSS100x100x6 / HSS100x100x6 |       9420.7 kg |              41 + 0 |           0.633 |
+| M60-WARREN_MODIFIED-e27ac59dbcae | M60    | WARREN_MODIFIED / VARIABLE |     10 | 1.50 m | HSS100x100x6 / HSS100x100x6 |       9479.4 kg |              41 + 0 |           0.619 |
+| M60-HOWE-9f884166a9d5            | M60    | HOWE / VARIABLE            |      6 | 1.50 m | HSS120x120x6 / HSS100x100x6 |       9649.6 kg |              25 + 0 |           0.756 |
+| M60-WARREN_MODIFIED-d03ad67a517b | M60    | WARREN_MODIFIED / VARIABLE |      6 | 1.50 m | HSS120x120x6 / HSS100x100x6 |       9693.2 kg |              25 + 0 |           0.734 |
+| M60-HOWE-6d02d14551ed            | M60    | HOWE / VARIABLE            |      6 | 1.80 m | HSS120x120x6 / HSS100x100x6 |       9926.7 kg |              25 + 0 |           0.672 |
+| M60-HOWE-55b6e7b141fe            | M60    | HOWE / VARIABLE            |     10 | 1.80 m | HSS100x100x6 / HSS100x100x6 |       9926.7 kg |              41 + 0 |           0.555 |
+| M60-WARREN_MODIFIED-6ed6749977a0 | M60    | WARREN_MODIFIED / VARIABLE |      6 | 1.80 m | HSS120x120x6 / HSS100x100x6 |       9987.6 kg |              25 + 0 |           0.653 |
+| M60-WARREN_MODIFIED-6f28eb546646 | M60    | WARREN_MODIFIED / VARIABLE |     10 | 1.80 m | HSS100x100x6 / HSS100x100x6 |      10006.2 kg |              41 + 0 |           0.544 |
+| M90-WARREN_MODIFIED-02ca47195595 | M90    | WARREN_MODIFIED / VARIABLE |      6 | 1.50 m | HSS150x150x8 / HSS100x100x6 |      10034.8 kg |              25 + 0 |           0.506 |
+| M90-WARREN_MODIFIED-c42968ca2e38 | M90    | WARREN_MODIFIED / VARIABLE |      6 | 1.80 m | HSS150x150x8 / HSS100x100x6 |      10247.0 kg |              25 + 0 |           0.451 |
+| M45-HOWE-f229c612ef25            | M45    | HOWE / VARIABLE            |     10 | 1.80 m | HSS100x100x6 / HSS100x100x6 |      12762.9 kg |              41 + 0 |           0.423 |
+| M45-WARREN_MODIFIED-ae23bdcfdf03 | M45    | WARREN_MODIFIED / VARIABLE |     10 | 1.80 m | HSS100x100x6 / HSS100x100x6 |      12865.1 kg |              41 + 0 |           0.415 |
 
 ## Objective interpretation
 

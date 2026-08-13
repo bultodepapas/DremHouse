@@ -13,20 +13,20 @@ matrícula profesional.
 
 ## Equipo mínimo a conformar
 
-| Rol | Responsabilidad central |
-|---|---|
-| Propietario/promotor | Alcance, presupuesto, prioridades, predio y decisiones |
-| Arquitecto coordinador | Diseño integral, programa, coordinación y licencia |
-| Geotecnista | Suelo, cimentación, excavación, agua y recomendaciones |
-| Ingeniero estructural | Sistema, cálculos, planos, detalles y soporte de obra |
-| Ingenierías MEP | Electricidad, iluminación, hidráulica, sanitaria, HVAC/extracción |
-| Especialista incendio/egreso | Clasificación, estrategia y coordinación de vida segura |
-| Envolvente/higrotermia | Aislamiento, aire, vapor, condensación, sellos y puentes |
-| Acústica | Nave, P2, lluvia, equipos y criterios de aislamiento/absorción |
-| Presupuestador/QS | Cantidades, precios, conciliación, cambios y proyección final |
-| Constructor/director de obra | Métodos, seguridad, calidad, plazo, costo y ejecución |
-| Supervisión/interventoría | Verificación independiente según alcance/norma/contrato |
-| Commissioning | Plan y verificación integrada de sistemas |
+| Rol                          | Responsabilidad central                                           |
+| ---------------------------- | ----------------------------------------------------------------- |
+| Propietario/promotor         | Alcance, presupuesto, prioridades, predio y decisiones            |
+| Arquitecto coordinador       | Diseño integral, programa, coordinación y licencia                |
+| Geotecnista                  | Suelo, cimentación, excavación, agua y recomendaciones            |
+| Ingeniero estructural        | Sistema, cálculos, planos, detalles y soporte de obra             |
+| Ingenierías MEP              | Electricidad, iluminación, hidráulica, sanitaria, HVAC/extracción |
+| Especialista incendio/egreso | Clasificación, estrategia y coordinación de vida segura           |
+| Envolvente/higrotermia       | Aislamiento, aire, vapor, condensación, sellos y puentes          |
+| Acústica                     | Nave, P2, lluvia, equipos y criterios de aislamiento/absorción    |
+| Presupuestador/QS            | Cantidades, precios, conciliación, cambios y proyección final     |
+| Constructor/director de obra | Métodos, seguridad, calidad, plazo, costo y ejecución             |
+| Supervisión/interventoría    | Verificación independiente según alcance/norma/contrato           |
+| Commissioning                | Plan y verificación integrada de sistemas                         |
 
 Una persona puede cubrir más de un rol solo si es legalmente competente, tiene capacidad y
 el contrato evita conflictos de interés inaceptables.

@@ -22,12 +22,12 @@ El programa final de cuatro suites no cambia. Cambia el momento en que se termin
 
 Esta es una **redistribución del target existente**, no una nueva cotización:
 
-| Control | Fase 1 | Fase 2 | Total base |
-|---|---:|---:|---:|
-| Obra física | **$867 M** | **$74 M** | **$941 M** |
-| Contingencia heredada 5% | $43,35 M | $3,70 M | $47,05 M |
-| **Control por fase** | **$910,35 M** | **$77,70 M** | **$988,05 M** |
-| Participación | **≈92,1%** | **≈7,9%** | 100% |
+| Control                  |        Fase 1 |       Fase 2 |    Total base |
+| ------------------------ | ------------: | -----------: | ------------: |
+| Obra física              |    **$867 M** |    **$74 M** |    **$941 M** |
+| Contingencia heredada 5% |      $43,35 M |      $3,70 M |      $47,05 M |
+| **Control por fase**     | **$910,35 M** | **$77,70 M** | **$988,05 M** |
+| Participación            |    **≈92,1%** |    **≈7,9%** |          100% |
 
 El ahorro de caja inicial sería aproximadamente **$77,7 M** dentro del modelo v0.2. No
 es un ahorro del costo total: la segunda fase añade remobilización, protección de la casa
@@ -130,17 +130,17 @@ Ventajas:
 
 ## Previsiones que deben quedar en Fase 1
 
-| Sistema diferido | Ejecutar en Fase 1 | Completar en Fase 2 |
-|---|---|---|
-| Suites | Fachada, ventana, estructura, aislamiento, shaft, desagües/ventilaciones y conduits | Aparatos, ramales finales, puertas, closets, luminarias y acabados |
-| Baños | Bajantes, ventilaciones, reservas estructurales, pendientes/ubicaciones verificadas | Impermeabilización final, enchapes, aparatos y griferías |
-| Sauna | Carga estructural, volumen, rutas de potencia/ventilación y drenaje previsto | Cabina, calefactor, ducha, impermeabilización, extracción y controles |
-| Jacuzzi opcional | Carga y ubicación solo si se conserva la opción; no improvisar después | Equipo únicamente tras decisión, detalle y prueba |
-| Elevador | Modelo o envolvente de cargas; cimentación/losa local; geometría libre; conduit/ruta | Equipo, anclajes conforme al fabricante, cableado final, instalación y certificación |
-| Electricidad | Acometida/tableros/capacidad, tierra, canalizaciones y espacios | Conductores/interruptores/equipos finales según diseño vigente |
-| Hidráulica | Shafts y redes troncales probadas; válvulas accesibles | Ramales cortos y aparatos; evitar tramos de agua estancada |
-| Datos/HA | Backbone, rack, PoE y conduits con guía | Dispositivos y puntos activos de espacios terminados |
-| HVAC/extracción | Capacidad, rutas, pasos y reservas coordinadas | Terminales/equipos de zonas diferidas |
+| Sistema diferido | Ejecutar en Fase 1                                                                   | Completar en Fase 2                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| Suites           | Fachada, ventana, estructura, aislamiento, shaft, desagües/ventilaciones y conduits  | Aparatos, ramales finales, puertas, closets, luminarias y acabados                   |
+| Baños            | Bajantes, ventilaciones, reservas estructurales, pendientes/ubicaciones verificadas  | Impermeabilización final, enchapes, aparatos y griferías                             |
+| Sauna            | Carga estructural, volumen, rutas de potencia/ventilación y drenaje previsto         | Cabina, calefactor, ducha, impermeabilización, extracción y controles                |
+| Jacuzzi opcional | Carga y ubicación solo si se conserva la opción; no improvisar después               | Equipo únicamente tras decisión, detalle y prueba                                    |
+| Elevador         | Modelo o envolvente de cargas; cimentación/losa local; geometría libre; conduit/ruta | Equipo, anclajes conforme al fabricante, cableado final, instalación y certificación |
+| Electricidad     | Acometida/tableros/capacidad, tierra, canalizaciones y espacios                      | Conductores/interruptores/equipos finales según diseño vigente                       |
+| Hidráulica       | Shafts y redes troncales probadas; válvulas accesibles                               | Ramales cortos y aparatos; evitar tramos de agua estancada                           |
+| Datos/HA         | Backbone, rack, PoE y conduits con guía                                              | Dispositivos y puntos activos de espacios terminados                                 |
+| HVAC/extracción  | Capacidad, rutas, pasos y reservas coordinadas                                       | Terminales/equipos de zonas diferidas                                                |
 
 ## Elevador automotriz — regla específica
 
@@ -161,34 +161,34 @@ El reparto F1/F2 por partida atómica (con cantidades y precios unitarios) está
 [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md). El resumen por
 capítulo:
 
-| Código | Capítulo | Fase 1 | Fase 2 | Criterio |
-|---|---|---:|---:|---|
-| 01 | Preliminares/replanteo | $15 M | $0 | Remobilización F2 no incluida |
-| 02 | Excavaciones | $7 M | $0 | Toda infraestructura enterrada en F1 |
-| 03 | Cimentaciones/anclajes | $35 M | $0 | Diseñadas para edificio final |
-| 04 | Losa PB industrial | $83 M | $0 | Incluye previsión civil del bay |
-| 05 | Estructura principal | $145 M | $0 | Completa en F1 |
-| 06 | Secundaria/arriostramiento | $55 M | $0 | Completa en F1 |
-| 07 | Metaldeck P2 | $41 M | $0 | Los 270 m² en F1 |
-| 08 | Cubierta aislada | $70 M | $0 | Completa/estanca |
-| 09 | Fachadas aisladas | $95 M | $0 | Completa/estanca |
-| 10 | Remates y sellos | $20 M | $0 | No diferir estanqueidad |
-| 11 | Dos portones | $24 M | $0 | Cierre y uso de PB |
-| 12 | Evento principal de vidrio | $38 M | $0 | Experiencia y envolvente final |
-| 13 | Ventanas + puerta | $20 M | $0 | Incluye ventanas de zonas F2 |
-| 14 | Divisiones/acústica | $26 M | $12 M | Separar shell F2; completar interiores después |
-| 15 | Redes hidrosanitarias | $17 M | $3 M | Troncales/shafts ahora, terminales después |
-| 16 | Baños + sauna húmeda | $22 M | $13 M | PB, principal e hijo 1 ahora |
-| 17 | Electricidad/iluminación | $35 M | $7 M | Capacidad final y zonas F1 |
-| 18 | Datos/Home Assistant | $7 M | $1 M | Backbone ahora, puntos finales después |
-| 19 | Ventilación/climatización | $20 M | $5 M | Sistemas troncales y zonas activas |
-| 20 | Cocina fija | $25 M | $0 | Necesaria para habitar |
-| 21 | Closets/taller fijo | $17 M | $13 M | Principal, hijo 1 y taller mínimo |
-| 22 | Escalera/barandas | $12 M | $0 | Vida segura; completa en F1 |
-| 23 | Acabados P2 | $16 M | $9 M | Áreas ocupadas/comunes primero |
-| 24 | Terraza inmediata/drenajes | $18 M | $0 | Acceso y manejo de agua |
-| 25 | Lift + provisión civil | $4 M | $11 M | Base/rutas ahora; equipo después |
-|  | **Total obra física** | **$867 M** | **$74 M** | **$941 M** |
+| Código | Capítulo                   |     Fase 1 |    Fase 2 | Criterio                                       |
+| ------ | -------------------------- | ---------: | --------: | ---------------------------------------------- |
+| 01     | Preliminares/replanteo     |      $15 M |        $0 | Remobilización F2 no incluida                  |
+| 02     | Excavaciones               |       $7 M |        $0 | Toda infraestructura enterrada en F1           |
+| 03     | Cimentaciones/anclajes     |      $35 M |        $0 | Diseñadas para edificio final                  |
+| 04     | Losa PB industrial         |      $83 M |        $0 | Incluye previsión civil del bay                |
+| 05     | Estructura principal       |     $145 M |        $0 | Completa en F1                                 |
+| 06     | Secundaria/arriostramiento |      $55 M |        $0 | Completa en F1                                 |
+| 07     | Metaldeck P2               |      $41 M |        $0 | Los 270 m² en F1                               |
+| 08     | Cubierta aislada           |      $70 M |        $0 | Completa/estanca                               |
+| 09     | Fachadas aisladas          |      $95 M |        $0 | Completa/estanca                               |
+| 10     | Remates y sellos           |      $20 M |        $0 | No diferir estanqueidad                        |
+| 11     | Dos portones               |      $24 M |        $0 | Cierre y uso de PB                             |
+| 12     | Evento principal de vidrio |      $38 M |        $0 | Experiencia y envolvente final                 |
+| 13     | Ventanas + puerta          |      $20 M |        $0 | Incluye ventanas de zonas F2                   |
+| 14     | Divisiones/acústica        |      $26 M |     $12 M | Separar shell F2; completar interiores después |
+| 15     | Redes hidrosanitarias      |      $17 M |      $3 M | Troncales/shafts ahora, terminales después     |
+| 16     | Baños + sauna húmeda       |      $22 M |     $13 M | PB, principal e hijo 1 ahora                   |
+| 17     | Electricidad/iluminación   |      $35 M |      $7 M | Capacidad final y zonas F1                     |
+| 18     | Datos/Home Assistant       |       $7 M |      $1 M | Backbone ahora, puntos finales después         |
+| 19     | Ventilación/climatización  |      $20 M |      $5 M | Sistemas troncales y zonas activas             |
+| 20     | Cocina fija                |      $25 M |        $0 | Necesaria para habitar                         |
+| 21     | Closets/taller fijo        |      $17 M |     $13 M | Principal, hijo 1 y taller mínimo              |
+| 22     | Escalera/barandas          |      $12 M |        $0 | Vida segura; completa en F1                    |
+| 23     | Acabados P2                |      $16 M |      $9 M | Áreas ocupadas/comunes primero                 |
+| 24     | Terraza inmediata/drenajes |      $18 M |        $0 | Acceso y manejo de agua                        |
+| 25     | Lift + provisión civil     |       $4 M |     $11 M | Base/rutas ahora; equipo después               |
+|        | **Total obra física**      | **$867 M** | **$74 M** | **$941 M**                                     |
 
 Las asignaciones 14–19, 21, 23 y 25 son hipótesis de reparto. Se reemplazarán con
 cantidades y cotizaciones en el presupuesto v0.3; el desglose atómico ya las descompone

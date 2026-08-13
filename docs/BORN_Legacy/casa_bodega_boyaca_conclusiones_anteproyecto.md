@@ -1,4 +1,5 @@
 # DREAM HOUSE — CASA BODEGA / WAREHOUSE HOUSE EN BOYACÁ
+
 ## Documento conceptual de anteproyecto — versión consolidada actualizada
 
 **Fecha de actualización:** 11 de agosto de 2026  
@@ -8,7 +9,7 @@
 **Tipología:** warehouse house / loft industrial residencial / atelier técnico + car project bay  
 **Dimensión base actual de estudio:** **18.00 m × 36.00 m = 648 m² de huella**  
 **Segundo piso preliminar:** **18.00 m × 15.00 m = 270 m²**  
-**Área cubierta/construida conceptual:** **≈ 918 m²**  
+**Área cubierta/construida conceptual:** **≈ 918 m²**
 
 > **Nota de estatus:** **18 × 36 m** queda adoptado como **Design Control Value fuerte y base de trabajo del anteproyecto**, pero **no como hard rule dimensional absoluta**. A partir de ahora se diseña sobre esta caja salvo que una planta desarrollada, la estructura, el lote o una mejora funcional demostrable justifiquen moverla moderadamente —por ejemplo, ganar o perder algunos decímetros o incluso alrededor de un metro donde exista una razón arquitectónica real—. El segundo piso de referencia es **18 × 15 m ≈ 270 m²** y el núcleo posterior conserva aproximadamente **4.5 m de profundidad**. Las hard rules siguen siendo las decisiones espaciales, funcionales y de jerarquía, no la cifra exacta de ancho.
 
@@ -1765,25 +1766,25 @@ Este número no debe interpretarse como una casa convencional de 918 m² llena d
 
 # 38. RESUMEN PRELIMINAR DE ÁREAS
 
-| Espacio / sistema | Área objetivo preliminar |
-|---|---:|
-| Huella total PB | **648 m²** |
-| Segundo piso total | **≈270 m²** |
-| Suite principal | **≈75–78 m²** |
-| Suite hijo 1 | **≈38 m²** |
-| Suite hijo 2 | **≈38 m²** |
-| Suite huéspedes | **≈32–33 m²** |
-| Sauna + relajación | **≈16–22 m²** |
-| Lavandería P2 | **≈10–11 m²** |
-| Linen / almacenamiento P2 | **≈4–5 m²** |
-| Escalera P2 | **≈16 m²** |
-| Hall / circulación / mini deck y reservas comunes | área restante hasta ≈270 m² |
-| Bodega posterior | **≈22.5 m²** como referencia v0.2 |
-| Homelab / técnico | **≈20.7 m²** como referencia v0.2 |
-| Baño PB completo | **≈10.8 m²** como referencia v0.2 |
-| Franja total de servicios PB | **≈81 m² brutos (18 × 4.5 m)** |
-| Car project bay | territorio funcional ≈**7 × 10.5 m**; prisma de lift ≈**6 × 8.5 m** |
-| Taller RC / DIY | territorio funcional ≈**7 × 10.5 m** |
+| Espacio / sistema                                 |                                            Área objetivo preliminar |
+| ------------------------------------------------- | ------------------------------------------------------------------: |
+| Huella total PB                                   |                                                          **648 m²** |
+| Segundo piso total                                |                                                         **≈270 m²** |
+| Suite principal                                   |                                                       **≈75–78 m²** |
+| Suite hijo 1                                      |                                                          **≈38 m²** |
+| Suite hijo 2                                      |                                                          **≈38 m²** |
+| Suite huéspedes                                   |                                                       **≈32–33 m²** |
+| Sauna + relajación                                |                                                       **≈16–22 m²** |
+| Lavandería P2                                     |                                                       **≈10–11 m²** |
+| Linen / almacenamiento P2                         |                                                         **≈4–5 m²** |
+| Escalera P2                                       |                                                          **≈16 m²** |
+| Hall / circulación / mini deck y reservas comunes |                                         área restante hasta ≈270 m² |
+| Bodega posterior                                  |                                   **≈22.5 m²** como referencia v0.2 |
+| Homelab / técnico                                 |                                   **≈20.7 m²** como referencia v0.2 |
+| Baño PB completo                                  |                                   **≈10.8 m²** como referencia v0.2 |
+| Franja total de servicios PB                      |                                      **≈81 m² brutos (18 × 4.5 m)** |
+| Car project bay                                   | territorio funcional ≈**7 × 10.5 m**; prisma de lift ≈**6 × 8.5 m** |
+| Taller RC / DIY                                   |                                territorio funcional ≈**7 × 10.5 m** |
 
 Todas estas áreas son objetivos de anteproyecto, no cotas contractuales.
 
@@ -1888,7 +1889,6 @@ Fuentes y precedentes revisados durante el desarrollo conceptual incluyen:
 > Las fuentes internacionales se utilizan como referencias conceptuales y técnicas. El proyecto definitivo deberá verificarse contra normativa colombiana vigente, NSR aplicable, RETIE/RETILAP cuando corresponda, requisitos contra incendio, reglamentación local y condiciones específicas del municipio y del predio.
 
 ---
-
 
 # 42. REVISIÓN CRÍTICA DEL ANTEPROYECTO — DIEZ DECISIONES ARQUITECTÓNICAS
 

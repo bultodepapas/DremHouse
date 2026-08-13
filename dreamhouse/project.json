@@ -13,57 +13,344 @@
       "north": "pendiente hasta seleccionar predio"
     }
   },
-  "envelope": {"width_y_m": 18.0, "depth_x_m": 36.0, "p2_start_x_m": 21.0},
+  "envelope": { "width_y_m": 18.0, "depth_x_m": 36.0, "p2_start_x_m": 21.0 },
   "ground_floor": {
     "zones": [
-      {"id":"PB-CAR","name":"Car project + lift","x":0,"y":0,"w":10.5,"d":7.0,"kind":"technical","status":"dcv"},
-      {"id":"PB-EJE","name":"Eje peatonal libre","x":0,"y":7.0,"w":36.0,"d":4.0,"kind":"circulation","status":"hard_rule"},
-      {"id":"PB-RC","name":"RC / DIY","x":0,"y":11.0,"w":10.5,"d":7.0,"kind":"technical","status":"dcv"},
-      {"id":"PB-RESP","name":"Franja de respiración","x":10.5,"y":0,"w":2.0,"d":18.0,"kind":"buffer","status":"hypothesis"},
-      {"id":"PB-SALA","name":"Sala monumental","x":12.5,"y":2.0,"w":8.5,"d":14.0,"kind":"social","status":"hypothesis"},
-      {"id":"PB-ESC-1","name":"Puesto de trabajo 1","x":13.0,"y":0,"w":3.0,"d":2.0,"kind":"work","status":"hypothesis"},
-      {"id":"PB-ESC-2","name":"Puesto de trabajo 2","x":13.0,"y":16.0,"w":3.0,"d":2.0,"kind":"work","status":"hypothesis"},
-      {"id":"PB-COM","name":"Comedor","x":21.0,"y":1.0,"w":5.5,"d":7.0,"kind":"domestic","status":"hypothesis"},
-      {"id":"PB-COC","name":"Cocina + isla","x":26.5,"y":0,"w":5.0,"d":14.4,"kind":"domestic","status":"hypothesis"},
-      {"id":"PB-ESTAR","name":"Transición doméstica","x":21.0,"y":11.0,"w":5.5,"d":7.0,"kind":"domestic","status":"hypothesis"}
+      {
+        "id": "PB-CAR",
+        "name": "Car project + lift",
+        "x": 0,
+        "y": 0,
+        "w": 10.5,
+        "d": 7.0,
+        "kind": "technical",
+        "status": "dcv"
+      },
+      {
+        "id": "PB-EJE",
+        "name": "Eje peatonal libre",
+        "x": 0,
+        "y": 7.0,
+        "w": 36.0,
+        "d": 4.0,
+        "kind": "circulation",
+        "status": "hard_rule"
+      },
+      {
+        "id": "PB-RC",
+        "name": "RC / DIY",
+        "x": 0,
+        "y": 11.0,
+        "w": 10.5,
+        "d": 7.0,
+        "kind": "technical",
+        "status": "dcv"
+      },
+      {
+        "id": "PB-RESP",
+        "name": "Franja de respiración",
+        "x": 10.5,
+        "y": 0,
+        "w": 2.0,
+        "d": 18.0,
+        "kind": "buffer",
+        "status": "hypothesis"
+      },
+      {
+        "id": "PB-SALA",
+        "name": "Sala monumental",
+        "x": 12.5,
+        "y": 2.0,
+        "w": 8.5,
+        "d": 14.0,
+        "kind": "social",
+        "status": "hypothesis"
+      },
+      {
+        "id": "PB-ESC-1",
+        "name": "Puesto de trabajo 1",
+        "x": 13.0,
+        "y": 0,
+        "w": 3.0,
+        "d": 2.0,
+        "kind": "work",
+        "status": "hypothesis"
+      },
+      {
+        "id": "PB-ESC-2",
+        "name": "Puesto de trabajo 2",
+        "x": 13.0,
+        "y": 16.0,
+        "w": 3.0,
+        "d": 2.0,
+        "kind": "work",
+        "status": "hypothesis"
+      },
+      {
+        "id": "PB-COM",
+        "name": "Comedor",
+        "x": 21.0,
+        "y": 1.0,
+        "w": 5.5,
+        "d": 7.0,
+        "kind": "domestic",
+        "status": "hypothesis"
+      },
+      {
+        "id": "PB-COC",
+        "name": "Cocina + isla",
+        "x": 26.5,
+        "y": 0,
+        "w": 5.0,
+        "d": 14.4,
+        "kind": "domestic",
+        "status": "hypothesis"
+      },
+      {
+        "id": "PB-ESTAR",
+        "name": "Transición doméstica",
+        "x": 21.0,
+        "y": 11.0,
+        "w": 5.5,
+        "d": 7.0,
+        "kind": "domestic",
+        "status": "hypothesis"
+      }
     ],
     "core": [
-      {"id":"PB-BOD","name":"Bodega","x":31.5,"y":0.0,"w":4.5,"d":5.0,"kind":"service","status":"dcv"},
-      {"id":"PB-BAN","name":"Baño PB","x":31.5,"y":5.0,"w":4.5,"d":2.4,"kind":"service","status":"dcv"},
-      {"id":"PB-HOM","name":"Homelab","x":31.5,"y":7.4,"w":4.5,"d":4.6,"kind":"service","status":"dcv"},
-      {"id":"PB-PAN","name":"Pantry / limpieza","x":31.5,"y":12.0,"w":4.5,"d":2.4,"kind":"service","status":"dcv"},
-      {"id":"PB-ESC","name":"Escalera","x":31.5,"y":14.4,"w":4.5,"d":3.6,"kind":"vertical","status":"dcv"}
+      {
+        "id": "PB-BOD",
+        "name": "Bodega",
+        "x": 31.5,
+        "y": 0.0,
+        "w": 4.5,
+        "d": 5.0,
+        "kind": "service",
+        "status": "dcv"
+      },
+      {
+        "id": "PB-BAN",
+        "name": "Baño PB",
+        "x": 31.5,
+        "y": 5.0,
+        "w": 4.5,
+        "d": 2.4,
+        "kind": "service",
+        "status": "dcv"
+      },
+      {
+        "id": "PB-HOM",
+        "name": "Homelab",
+        "x": 31.5,
+        "y": 7.4,
+        "w": 4.5,
+        "d": 4.6,
+        "kind": "service",
+        "status": "dcv"
+      },
+      {
+        "id": "PB-PAN",
+        "name": "Pantry / limpieza",
+        "x": 31.5,
+        "y": 12.0,
+        "w": 4.5,
+        "d": 2.4,
+        "kind": "service",
+        "status": "dcv"
+      },
+      {
+        "id": "PB-ESC",
+        "name": "Escalera",
+        "x": 31.5,
+        "y": 14.4,
+        "w": 4.5,
+        "d": 3.6,
+        "kind": "vertical",
+        "status": "dcv"
+      }
     ],
     "front_openings": [
-      {"id":"F-CAR","name":"Portón carro","y0":1.2,"width":4.8,"height":4.8},
-      {"id":"F-PED","name":"Puerta peatonal","y0":8.2,"width":1.6,"height":2.5},
-      {"id":"F-RC","name":"Portón RC","y0":12.0,"width":4.8,"height":4.8}
+      { "id": "F-CAR", "name": "Portón carro", "y0": 1.2, "width": 4.8, "height": 4.8 },
+      { "id": "F-PED", "name": "Puerta peatonal", "y0": 8.2, "width": 1.6, "height": 2.5 },
+      { "id": "F-RC", "name": "Portón RC", "y0": 12.0, "width": 4.8, "height": 4.8 }
     ]
   },
   "upper_floor": {
     "zones": [
-      {"id":"P2-H1","name":"Suite hijo 1","x":21.0,"y":0.0,"w":5.0,"d":7.6,"kind":"suite","status":"hypothesis","phase":1,"target_area":38.0},
-      {"id":"P2-H2","name":"Suite hijo 2","x":21.0,"y":7.6,"w":5.0,"d":7.6,"kind":"suite","status":"hypothesis","phase":2,"target_area":38.0},
-      {"id":"P2-DECK","name":"Mini deck cerrado","x":21.0,"y":15.2,"w":3.0,"d":2.8,"kind":"shared","status":"hypothesis","phase":1,"target_area":8.4},
-      {"id":"P2-HALL-A","name":"Hall privado","x":24.0,"y":15.2,"w":2.0,"d":2.8,"kind":"circulation","status":"hypothesis","phase":1,"target_area":5.6},
-      {"id":"P2-PPAL-B","name":"Anexo suite principal","x":26.0,"y":0.0,"w":5.5,"d":2.0363636364,"kind":"master","status":"hypothesis","phase":1,"target_area":11.2},
-      {"id":"P2-HSP","name":"Suite huéspedes","x":26.0,"y":2.0363636364,"w":5.5,"d":6.0,"kind":"suite","status":"hypothesis","phase":2,"target_area":33.0},
-      {"id":"P2-WELL","name":"Wellness / sauna","x":26.0,"y":8.0363636364,"w":5.5,"d":3.6363636364,"kind":"wellness","status":"hypothesis","phase":2,"target_area":20.0},
-      {"id":"P2-LAV","name":"Lavandería","x":26.0,"y":11.6727272728,"w":5.5,"d":1.8181818182,"kind":"service","status":"hypothesis","phase":1,"target_area":10.0},
-      {"id":"P2-LIN","name":"Linen","x":26.0,"y":13.490909091,"w":5.5,"d":0.9090909091,"kind":"service","status":"hypothesis","phase":1,"target_area":5.0},
-      {"id":"P2-HALL-B","name":"Hall + shafts","x":26.0,"y":14.4,"w":5.5,"d":3.6,"kind":"circulation","status":"hypothesis","phase":1,"target_area":19.8},
-      {"id":"P2-PPAL-A","name":"Suite principal","x":31.5,"y":0.0,"w":4.5,"d":14.4,"kind":"master","status":"hypothesis","phase":1,"target_area":64.8},
-      {"id":"P2-ESC","name":"Escalera","x":31.5,"y":14.4,"w":4.5,"d":3.6,"kind":"vertical","status":"dcv","phase":1,"target_area":16.2}
+      {
+        "id": "P2-H1",
+        "name": "Suite hijo 1",
+        "x": 21.0,
+        "y": 0.0,
+        "w": 5.0,
+        "d": 7.6,
+        "kind": "suite",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 38.0
+      },
+      {
+        "id": "P2-H2",
+        "name": "Suite hijo 2",
+        "x": 21.0,
+        "y": 7.6,
+        "w": 5.0,
+        "d": 7.6,
+        "kind": "suite",
+        "status": "hypothesis",
+        "phase": 2,
+        "target_area": 38.0
+      },
+      {
+        "id": "P2-DECK",
+        "name": "Mini deck cerrado",
+        "x": 21.0,
+        "y": 15.2,
+        "w": 3.0,
+        "d": 2.8,
+        "kind": "shared",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 8.4
+      },
+      {
+        "id": "P2-HALL-A",
+        "name": "Hall privado",
+        "x": 24.0,
+        "y": 15.2,
+        "w": 2.0,
+        "d": 2.8,
+        "kind": "circulation",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 5.6
+      },
+      {
+        "id": "P2-PPAL-B",
+        "name": "Anexo suite principal",
+        "x": 26.0,
+        "y": 0.0,
+        "w": 5.5,
+        "d": 2.0363636364,
+        "kind": "master",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 11.2
+      },
+      {
+        "id": "P2-HSP",
+        "name": "Suite huéspedes",
+        "x": 26.0,
+        "y": 2.0363636364,
+        "w": 5.5,
+        "d": 6.0,
+        "kind": "suite",
+        "status": "hypothesis",
+        "phase": 2,
+        "target_area": 33.0
+      },
+      {
+        "id": "P2-WELL",
+        "name": "Wellness / sauna",
+        "x": 26.0,
+        "y": 8.0363636364,
+        "w": 5.5,
+        "d": 3.6363636364,
+        "kind": "wellness",
+        "status": "hypothesis",
+        "phase": 2,
+        "target_area": 20.0
+      },
+      {
+        "id": "P2-LAV",
+        "name": "Lavandería",
+        "x": 26.0,
+        "y": 11.6727272728,
+        "w": 5.5,
+        "d": 1.8181818182,
+        "kind": "service",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 10.0
+      },
+      {
+        "id": "P2-LIN",
+        "name": "Linen",
+        "x": 26.0,
+        "y": 13.490909091,
+        "w": 5.5,
+        "d": 0.9090909091,
+        "kind": "service",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 5.0
+      },
+      {
+        "id": "P2-HALL-B",
+        "name": "Hall + shafts",
+        "x": 26.0,
+        "y": 14.4,
+        "w": 5.5,
+        "d": 3.6,
+        "kind": "circulation",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 19.8
+      },
+      {
+        "id": "P2-PPAL-A",
+        "name": "Suite principal",
+        "x": 31.5,
+        "y": 0.0,
+        "w": 4.5,
+        "d": 14.4,
+        "kind": "master",
+        "status": "hypothesis",
+        "phase": 1,
+        "target_area": 64.8
+      },
+      {
+        "id": "P2-ESC",
+        "name": "Escalera",
+        "x": 31.5,
+        "y": 14.4,
+        "w": 4.5,
+        "d": 3.6,
+        "kind": "vertical",
+        "status": "dcv",
+        "phase": 1,
+        "target_area": 16.2
+      }
     ]
   },
   "rules": [
-    {"id":"HR-ENV","type":"envelope","severity":"error"},
-    {"id":"HR-P2","type":"p2_envelope","severity":"error"},
-    {"id":"HR-P2-TOPO","type":"no_overlap","scope":"upper_floor","severity":"error"},
-    {"id":"HR-DOORS","type":"front_opening_count","expected":3,"severity":"error"},
-    {"id":"HR-SUITES","type":"suite_count","expected":4,"severity":"error"},
-    {"id":"HR-CHILD-EQ","type":"equal_target_area","ids":["P2-H1","P2-H2"],"tolerance_m2":0.001,"severity":"error"},
-    {"id":"DCV-CORE","type":"sum_area","scope":"core","expected_m2":81.0,"tolerance_m2":0.001,"severity":"error"},
-    {"id":"DCV-P2-AREA","type":"sum_area","scope":"upper_floor","expected_m2":270.0,"tolerance_m2":0.001,"severity":"error"}
+    { "id": "HR-ENV", "type": "envelope", "severity": "error" },
+    { "id": "HR-P2", "type": "p2_envelope", "severity": "error" },
+    { "id": "HR-P2-TOPO", "type": "no_overlap", "scope": "upper_floor", "severity": "error" },
+    { "id": "HR-DOORS", "type": "front_opening_count", "expected": 3, "severity": "error" },
+    { "id": "HR-SUITES", "type": "suite_count", "expected": 4, "severity": "error" },
+    {
+      "id": "HR-CHILD-EQ",
+      "type": "equal_target_area",
+      "ids": ["P2-H1", "P2-H2"],
+      "tolerance_m2": 0.001,
+      "severity": "error"
+    },
+    {
+      "id": "DCV-CORE",
+      "type": "sum_area",
+      "scope": "core",
+      "expected_m2": 81.0,
+      "tolerance_m2": 0.001,
+      "severity": "error"
+    },
+    {
+      "id": "DCV-P2-AREA",
+      "type": "sum_area",
+      "scope": "upper_floor",
+      "expected_m2": 270.0,
+      "tolerance_m2": 0.001,
+      "severity": "error"
+    }
   ]
 }

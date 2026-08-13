@@ -4,24 +4,24 @@ on:
   push:
     branches: [main]
     paths:
-      - "README.md"
-      - "showcase/**"
-      - "planos/**"
-      - "dreamhouse/project.json"
-      - "docs/**"
-      - ".github/assets/**"
-      - ".github/scripts/build_showcase.py"
-      - ".github/workflows/showcase.yml"
+      - 'README.md'
+      - 'showcase/**'
+      - 'planos/**'
+      - 'dreamhouse/project.json'
+      - 'docs/**'
+      - '.github/assets/**'
+      - '.github/scripts/build_showcase.py'
+      - '.github/workflows/showcase.yml'
   pull_request:
     paths:
-      - "README.md"
-      - "showcase/**"
-      - "planos/**"
-      - "dreamhouse/project.json"
-      - "docs/**"
-      - ".github/assets/**"
-      - ".github/scripts/build_showcase.py"
-      - ".github/workflows/showcase.yml"
+      - 'README.md'
+      - 'showcase/**'
+      - 'planos/**'
+      - 'dreamhouse/project.json'
+      - 'docs/**'
+      - '.github/assets/**'
+      - '.github/scripts/build_showcase.py'
+      - '.github/workflows/showcase.yml'
   workflow_dispatch:
 
 permissions:
@@ -42,7 +42,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.13"
+          python-version: '3.13'
 
       - name: Validate generated presentation
         run: python .github/scripts/build_showcase.py --check-readme --site-dir .build/showcase
@@ -61,7 +61,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.13"
+          python-version: '3.13'
 
       - name: Regenerate README gallery
         run: python .github/scripts/build_showcase.py --write-readme
@@ -92,7 +92,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
-          python-version: "3.13"
+          python-version: '3.13'
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6

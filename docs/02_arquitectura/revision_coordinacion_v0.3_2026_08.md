@@ -42,23 +42,23 @@ compara cada archivo consigo mismo.
 
 ### 1.2 Cuadro de hallazgos
 
-| ID | Hallazgo | Severidad | Estado al 2026-08-11 |
-|---|---|---|---|
-| H-01 | Sentido del faldón contradictorio dentro de la emisión activa | **Crítico** | **Corregido** |
-| H-02 | Pendiente 3,33 % incompatible con el sistema de envolvente adoptado | **Crítico** | Aritmética corregida; **cota abierta** |
-| H-03 | El primer módulo estructural no tiene dónde arriostrarse | **Crítico** | Abierto — ingeniero |
-| H-04 | El cuadro de áreas del P2 es un teselado sin espesores | **Crítico** | **Corregido**; los 3 FAIL resultantes, resueltos |
-| H-05 | La segunda salida del P2 es un generador de planta, no un pendiente | **Crítico** | Abierto — concepto de incendio |
-| H-06 | Ventanas de la suite principal intercambiadas entre emisiones | Importante | **Corregido** |
-| H-07 | Jerarquía del vidrio invertida respecto del brief y del programa | Importante | Abierto — propietario |
-| H-08 | Cocina al 60 % del programa; banda doméstica sin proyectar | Importante | Abierto — propietario |
-| H-09 | Suite principal bajo programa; huéspedes sobre programa | Importante | Huéspedes **corregido**; principal **abierto** |
-| H-10 | Claraboyas geométricamente iguales e hidráulicamente opuestas | Importante | **Cuantificado y registrado**; detalle abierto |
-| H-11 | Vestíbulo F2 de 1,00 m rotulado como 1,20 m | Importante | **Corregido** (1,25 m libres) |
-| H-12 | El alcance crece sin precio mientras el target permanece fijo | Importante | Abierto — gobierno |
-| H-13 | Tabiques del núcleo dibujados a 0,36 m, declarados a 0,15 m | Menor | **Corregido** |
-| H-14 | Los chequeos automáticos validan el JSON contra sí mismo | Menor | **Corregido** (6 reglas nuevas) |
-| H-15 | `D-037` duplicado; aleros de cubierta no decididos | Menor | **Corregido** (→ `D-041`) |
+| ID   | Hallazgo                                                            | Severidad   | Estado al 2026-08-11                             |
+| ---- | ------------------------------------------------------------------- | ----------- | ------------------------------------------------ |
+| H-01 | Sentido del faldón contradictorio dentro de la emisión activa       | **Crítico** | **Corregido**                                    |
+| H-02 | Pendiente 3,33 % incompatible con el sistema de envolvente adoptado | **Crítico** | Aritmética corregida; **cota abierta**           |
+| H-03 | El primer módulo estructural no tiene dónde arriostrarse            | **Crítico** | Abierto — ingeniero                              |
+| H-04 | El cuadro de áreas del P2 es un teselado sin espesores              | **Crítico** | **Corregido**; los 3 FAIL resultantes, resueltos |
+| H-05 | La segunda salida del P2 es un generador de planta, no un pendiente | **Crítico** | Abierto — concepto de incendio                   |
+| H-06 | Ventanas de la suite principal intercambiadas entre emisiones       | Importante  | **Corregido**                                    |
+| H-07 | Jerarquía del vidrio invertida respecto del brief y del programa    | Importante  | Abierto — propietario                            |
+| H-08 | Cocina al 60 % del programa; banda doméstica sin proyectar          | Importante  | Abierto — propietario                            |
+| H-09 | Suite principal bajo programa; huéspedes sobre programa             | Importante  | Huéspedes **corregido**; principal **abierto**   |
+| H-10 | Claraboyas geométricamente iguales e hidráulicamente opuestas       | Importante  | **Cuantificado y registrado**; detalle abierto   |
+| H-11 | Vestíbulo F2 de 1,00 m rotulado como 1,20 m                         | Importante  | **Corregido** (1,25 m libres)                    |
+| H-12 | El alcance crece sin precio mientras el target permanece fijo       | Importante  | Abierto — gobierno                               |
+| H-13 | Tabiques del núcleo dibujados a 0,36 m, declarados a 0,15 m         | Menor       | **Corregido**                                    |
+| H-14 | Los chequeos automáticos validan el JSON contra sí mismo            | Menor       | **Corregido** (6 reglas nuevas)                  |
+| H-15 | `D-037` duplicado; aleros de cubierta no decididos                  | Menor       | **Corregido** (→ `D-041`)                        |
 
 **Total: 5 críticos · 7 importantes · 3 menores.** **Nueve corregidos**, uno cuantificado y
 publicado, cinco abiertos porque son decisiones del propietario o de un consultor
@@ -93,13 +93,13 @@ aplicó bien. Pero al reemitir las cuatro caras, **la fachada posterior quedó e
 respecto de las otras tres**, y la planta de cubierta del borrador 08 heredó ese mismo
 espejo.
 
-| Lámina | Declara en Y = 0 | Declara en Y = 18 |
-|---|---|---|
-| `ELE-001-R06` fachada frontal | lado bajo ≈ 7,20 m | lado alto ≈ 7,80 m |
-| `ELE-003-R06` lateral A | alero bajo ≈ 7,20 m | — |
-| `ELE-004-R06` lateral B | — | alero alto ≈ 7,80 m |
-| `ELE-002-R06` fachada posterior | **lado alto ≈ 7,80 m** | **lado bajo ≈ 7,20 m** |
-| `PLN-CUB-001-R07` planta de cubierta | **subida hacia lado alto** | — |
+| Lámina                               | Declara en Y = 0           | Declara en Y = 18      |
+| ------------------------------------ | -------------------------- | ---------------------- |
+| `ELE-001-R06` fachada frontal        | lado bajo ≈ 7,20 m         | lado alto ≈ 7,80 m     |
+| `ELE-003-R06` lateral A              | alero bajo ≈ 7,20 m        | —                      |
+| `ELE-004-R06` lateral B              | —                          | alero alto ≈ 7,80 m    |
+| `ELE-002-R06` fachada posterior      | **lado alto ≈ 7,80 m**     | **lado bajo ≈ 7,20 m** |
+| `PLN-CUB-001-R07` planta de cubierta | **subida hacia lado alto** | —                      |
 
 **Verificación.** En `ELE-001-R06` el polígono de fachada mide 446,4 px de alto en el
 vértice de Y = 0 y 483,6 px en el de Y = 18; en `ELE-002-R06` esos dos valores están
@@ -109,8 +109,8 @@ identifica el lateral A, y la ventana de wellness (Y 13,00–17,00) identifica e
 izquierdo de la fachada posterior como Y = 0.
 
 **Consecuencia.** Tal como está dibujada, la cubierta no es un faldón: es una superficie
-alabeada. Y el efecto no es de representación. El b07 establece que *«la totalidad del agua
-se concentra en el alero bajo»*: son unos **660 m² de captación descargando sobre una sola
+alabeada. Y el efecto no es de representación. El b07 establece que _«la totalidad del agua
+se concentra en el alero bajo»_: son unos **660 m² de captación descargando sobre una sola
 fachada**, y el expediente hoy no sabe cuál.
 
 **Acción.** Congelar el lado bajo como enmienda registrada a D-039 y regenerar las cinco
@@ -125,8 +125,8 @@ caer del lado opuesto a la plataforma social y a la vida exterior de la familia.
 
 **Fuentes:** `bases_de_diseno.md`, `structure_system.json`, `cubierta_v0.3_borrador_07.md`.
 
-Las bases de diseño especifican *«panel metálico aislado como envolvente terminada»* y el
-modelo estructural carga *panel sándwich ≈ 50 mm*. Los paneles sándwich de cubierta con
+Las bases de diseño especifican _«panel metálico aislado como envolvente terminada»_ y el
+modelo estructural carga _panel sándwich ≈ 50 mm_. Los paneles sándwich de cubierta con
 solapes suelen exigir del orden de **5–10 % de pendiente** para conservar garantía de
 fabricante. Aquí hay 3,33 % sobre un faldón continuo de 18,00 m sin cumbrera intermedia, en
 clima andino de lluvia intensa: recorrido muy largo con pendiente muy baja.
@@ -135,7 +135,7 @@ Esto obliga, en la práctica, a junta alzada engatillada mecánicamente en paño
 clips deslizantes por dilatación. Es otro sistema, otro precio y otro detalle de alero y de
 curb de claraboya.
 
-**Error aritmético asociado.** `bases_estructura_metalica.md` §1 dice *«≈ 1:30 (≈ 1,9 %)»*.
+**Error aritmético asociado.** `bases_estructura_metalica.md` §1 dice _«≈ 1:30 (≈ 1,9 %)»_.
 1:30 es 3,33 %; 1,9 % sería ≈ 1:53. El resto del expediente usa 3,33 % correctamente; el
 paréntesis es el que está mal y debe corregirse para que nadie predimensione drenaje con él.
 
@@ -153,20 +153,20 @@ devuelve el sistema al rango donde existe garantía. Es el ajuste de menor daño
 **Láminas:** `PLN-001-R04`, `ELE-001/003/004-R06`, `PLN-CUB-001-R07`.
 
 Este hallazgo no aparece en ninguna lámina porque está repartido entre cinco. Las bases
-estructurales fijan la estrategia de estabilidad: *«arriostramiento en paños opacos …
-recomendada como primera línea»*. Al superponer todo lo decidido, **en los primeros 8,70 m
+estructurales fijan la estrategia de estabilidad: _«arriostramiento en paños opacos …
+recomendada como primera línea»_. Al superponer todo lo decidido, **en los primeros 8,70 m
 de nave no queda un solo paño opaco**.
 
-| Elemento | Extensión | Fuente |
-|---|---|---|
-| Portón car project | 4,80 × 4,80 m | D-008 |
-| Puerta peatonal central | 1,60 × 2,50 m | D-008 |
-| Portón taller RC | 4,80 × 4,80 m | D-008 |
-| Machones del testero frontal | 1,20 m en esquinas · 2,20 m intermedios | programa |
-| Ventanal lateral A | 7,20 × 2,90 m · X 1,50 → 8,70 · antepecho 0,90 | D-035 |
-| Ventanal lateral B | 7,20 × 2,90 m · X 1,50 → 8,70 · antepecho 0,90 | D-035 |
-| Claraboyas | 23,04 m² · X 2,40 → 4,80 | D-040 |
-| **Paño arriostrable restante** | **solo por encima de +3,80 m en los laterales** | — |
+| Elemento                       | Extensión                                       | Fuente   |
+| ------------------------------ | ----------------------------------------------- | -------- |
+| Portón car project             | 4,80 × 4,80 m                                   | D-008    |
+| Puerta peatonal central        | 1,60 × 2,50 m                                   | D-008    |
+| Portón taller RC               | 4,80 × 4,80 m                                   | D-008    |
+| Machones del testero frontal   | 1,20 m en esquinas · 2,20 m intermedios         | programa |
+| Ventanal lateral A             | 7,20 × 2,90 m · X 1,50 → 8,70 · antepecho 0,90  | D-035    |
+| Ventanal lateral B             | 7,20 × 2,90 m · X 1,50 → 8,70 · antepecho 0,90  | D-035    |
+| Claraboyas                     | 23,04 m² · X 2,40 → 4,80                        | D-040    |
+| **Paño arriostrable restante** | **solo por encima de +3,80 m en los laterales** | —        |
 
 Y esta es exactamente la crujía donde el modelo E0 concluyó que **la deriva de viento
 gobierna** y empujó las columnas a HEA500.
@@ -193,20 +193,20 @@ nominal exterior completa de 18,00 × 15,00 m. No hay holgura para un solo muro.
 dibuja tabiques y la memoria declara espesores de 0,18 / 0,20 / 0,15 m, pero el modelo que
 produce las cifras no los descuenta en ninguna parte.
 
-| Concepto | Valor |
-|---|---:|
-| Σ recintos de `p2_b06.json` | 270,000 m² |
+| Concepto                               |                     Valor |
+| -------------------------------------- | ------------------------: |
+| Σ recintos de `p2_b06.json`            |                270,000 m² |
 | Interior real con muro exterior 0,18 m | 17,64 × 14,64 = 258,25 m² |
-| Neto estimado con tabiques 0,15 m | ≈ 240–245 m² |
-| Superficie rotulada que no existe | **≈ 10–11 %** |
+| Neto estimado con tabiques 0,15 m      |              ≈ 240–245 m² |
+| Superficie rotulada que no existe      |             **≈ 10–11 %** |
 
-**Efecto sobre la hard rule 9.** La lámina rotula *«Dormitorios hijos: 26,0 m² exactos cada
-uno»* y el chequeo `P2-CHILD-EQUAL` pasa. Pero uno es 5,20 × 5,00 y el otro 6,50 × 4,00:
+**Efecto sobre la hard rule 9.** La lámina rotula _«Dormitorios hijos: 26,0 m² exactos cada
+uno»_ y el chequeo `P2-CHILD-EQUAL` pasa. Pero uno es 5,20 × 5,00 y el otro 6,50 × 4,00:
 
-| Dormitorio | Bruto | Neto estimado (0,15/lado) | Proporción |
-|---|---:|---:|---|
-| Hijo 1 (`H1-D`) | 26,00 m² | 23,03 m² | 1,04 : 1 — casi cuadrado |
-| Hijo 2 (`H2-D`) | 26,00 m² | 22,94 m² | 1,63 : 1 — alargado |
+| Dormitorio      |    Bruto | Neto estimado (0,15/lado) | Proporción               |
+| --------------- | -------: | ------------------------: | ------------------------ |
+| Hijo 1 (`H1-D`) | 26,00 m² |                  23,03 m² | 1,04 : 1 — casi cuadrado |
+| Hijo 2 (`H2-D`) | 26,00 m² |                  22,94 m² | 1,63 : 1 — alargado      |
 
 La igualdad exacta que el propietario congeló como hard rule **aún no está demostrada**, ni
 en área neta ni en equivalencia cualitativa, y la lámina afirma que sí. Esto también invalida
@@ -253,15 +253,15 @@ Los dos modelos activos coinciden en que la suite principal tiene un paño de 5,
 de 2,50 m. Discrepan en cuál va dónde, y las elevaciones siguen a uno mientras la planta
 sigue al otro.
 
-| Modelo | Identificador | Fachada | Rango | Ancho |
-|---|---|---|---|---:|
-| `pb_b05.json` | `GLZ-M-R` | posterior (X=36) | Y 1,00 → 6,50 | 5,50 m |
-| `pb_b05.json` | `GLZ-M-A` | lateral A (Y=0) | X 33,00 → 35,50 | 2,50 m |
-| `p2_b06.json` | `W-M-REAR` | lateral A (*edge* `south`) | X 30,00 → 35,50 | 5,50 m |
-| `p2_b06.json` | `W-M-SIDE` | posterior (*edge* `east`) | Y 0,80 → 3,30 | 2,50 m |
+| Modelo        | Identificador | Fachada                    | Rango           |  Ancho |
+| ------------- | ------------- | -------------------------- | --------------- | -----: |
+| `pb_b05.json` | `GLZ-M-R`     | posterior (X=36)           | Y 1,00 → 6,50   | 5,50 m |
+| `pb_b05.json` | `GLZ-M-A`     | lateral A (Y=0)            | X 33,00 → 35,50 | 2,50 m |
+| `p2_b06.json` | `W-M-REAR`    | lateral A (_edge_ `south`) | X 30,00 → 35,50 | 5,50 m |
+| `p2_b06.json` | `W-M-SIDE`    | posterior (_edge_ `east`)  | Y 0,80 → 3,30   | 2,50 m |
 
 Nótese que el identificador `W-M-REAR` de b06 está asignado a una fachada lateral, mientras
-las memorias de b05 y b06 describen ambas el paño de 5,50 m como *posterior*. Las
+las memorias de b05 y b06 describen ambas el paño de 5,50 m como _posterior_. Las
 elevaciones `ELE-002-R06` y `ELE-003-R06` siguen a b05.
 
 **Segundo problema dentro del primero.** El dormitorio principal ocupa Y 0,00 → 4,20 y el
@@ -276,14 +276,14 @@ en `ELE-002-R06`, rotulado «SUITE PRINCIPAL · PISO A TECHO».
 > **Estado: ABIERTO.** Decisión de diseño del propietario.
 
 El brief coloca la sala en doble altura y el evento principal de vidrio como tercer valor
-del proyecto, y describe el momento rector de entrar y descubrir *«la sala monumental y el
-principal evento de vidrio»*. El programa le asigna 7–9 m de ancho. Lo dibujado es otra cosa.
+del proyecto, y describe el momento rector de entrar y descubrir _«la sala monumental y el
+principal evento de vidrio»_. El programa le asigna 7–9 m de ancho. Lo dibujado es otra cosa.
 
-| Paño | Dibujado | Área | Dintel | Programa |
-|---|---|---:|---:|---|
+| Paño                    | Dibujado      |    Área |  Dintel | Programa        |
+| ----------------------- | ------------- | ------: | ------: | --------------- |
 | Evento principal · sala | 4,30 × 3,15 m | 13,5 m² | +3,15 m | **7,00–9,00 m** |
-| Ventanal taller carro | 7,20 × 2,90 m | 20,9 m² | +3,80 m | — |
-| Ventanal taller RC | 7,20 × 2,90 m | 20,9 m² | +3,80 m | — |
+| Ventanal taller carro   | 7,20 × 2,90 m | 20,9 m² | +3,80 m | —               |
+| Ventanal taller RC      | 7,20 × 2,90 m | 20,9 m² | +3,80 m | —               |
 
 Cada ventanal de taller es **un 55 % más grande** que el gran evento de la sala, y su dintel
 está 0,65 m más alto. En un recinto de 7,20 m de altura, un vano que muere a 3,15 m deja
@@ -320,13 +320,13 @@ La hard rule 10 exige que la principal sea claramente dominante, con gran vestid
 de mayor jerarquía. Lo es en total, pero sus dos piezas nobles quedaron cortas mientras la
 suite de huéspedes creció.
 
-| Recinto | Dibujado | Programa | Δ |
-|---|---:|---:|---:|
-| Suite principal · total | 65,2 m² | ≈ 76 m² | −10,8 |
-| Vestidor principal | 10,24 m² | 15–16 m² | −5,3 |
-| Baño principal | 13,44 m² | 17–18 m² | −4,1 |
-| Dormitorio principal | 31,08 m² | 30–32 m² | dentro de rango |
-| Dormitorio huéspedes | 22,00 m² | 17–18 m² | +4,5 |
+| Recinto                 | Dibujado | Programa |               Δ |
+| ----------------------- | -------: | -------: | --------------: |
+| Suite principal · total |  65,2 m² |  ≈ 76 m² |           −10,8 |
+| Vestidor principal      | 10,24 m² | 15–16 m² |            −5,3 |
+| Baño principal          | 13,44 m² | 17–18 m² |            −4,1 |
+| Dormitorio principal    | 31,08 m² | 30–32 m² | dentro de rango |
+| Dormitorio huéspedes    | 22,00 m² | 17–18 m² |            +4,5 |
 
 Hay 4,5 m² de más en huéspedes y 9,4 m² de menos entre vestidor y baño principal. La
 corrección es un ajuste interno de tabiques, sin tocar la envolvente. Pero mientras el
@@ -343,16 +343,16 @@ en el mismo movimiento.
 
 > **Estado: CUANTIFICADO Y REGISTRADO** como `RL-DRAINAGE-ASYMMETRY`; el detalle de cada curb sigue pendiente.
 
-El b08 justifica dos paños iguales en parte porque *«permiten repetir sistema»*.
+El b08 justifica dos paños iguales en parte porque _«permiten repetir sistema»_.
 Geométricamente es cierto. Pero el faldón es transversal y las claraboyas están en extremos
 opuestos de la pendiente.
 
-| Paño | Recorrido aguas arriba | Cuenca aproximada |
-|---|---:|---:|
-| Claraboya junto al alero alto | 1,20 m | ≈ 3 m² |
-| Claraboya junto al alero bajo | 12,00 m | ≈ 29 m² |
+| Paño                          | Recorrido aguas arriba | Cuenca aproximada |
+| ----------------------------- | ---------------------: | ----------------: |
+| Claraboya junto al alero alto |                 1,20 m |            ≈ 3 m² |
+| Claraboya junto al alero bajo |                12,00 m |           ≈ 29 m² |
 
-Una necesita desvío tipo *cricket*, rebose secundario y curb reforzado; la otra
+Una necesita desvío tipo _cricket_, rebose secundario y curb reforzado; la otra
 prácticamente no. **Y hoy no se sabe cuál es cuál, porque depende de H-01.** Repetir el
 mismo detalle en ambas es la vía directa a una filtración sobre el car project.
 
@@ -363,8 +363,8 @@ mismo detalle en ambas es la vía directa a una filtración sobre el car project
 > **Estado: CORREGIDO.** 1,25 m libres, por encima del mínimo propio de 1,20 m, sin quitárselo a los baños (§8.3).
 
 El recinto `F2-HALL` tiene profundidad `d = 1,0` en `p2_b06.json`, se rotula «Vestíbulo F2
-aislable 1,20 m» en la lámina, y el propio documento fija *«circulación libre objetivo
-≥ 1,20 m»*. Con tabiques descontados quedan del orden de 0,70–0,85 m libres.
+aislable 1,20 m» en la lámina, y el propio documento fija _«circulación libre objetivo
+≥ 1,20 m»_. Con tabiques descontados quedan del orden de 0,70–0,85 m libres.
 
 Es el único acceso a dos suites y a la zona de bienestar, y es además el plano donde va el
 cierre temporal estanco entre fases (D-038).
@@ -377,20 +377,20 @@ cierre temporal estanco entre fases (D-038).
 
 La auditoría propia estima la obra física real en **$1.050–1.150 M** frente a un target de
 $988,05 M, y el costo total del promotor en $1.800–2.500 M. La regla de no tocar el target
-hasta PE-1 es correcta y disciplinada. El problema es lo que ha ocurrido *debajo* de esa
+hasta PE-1 es correcta y disciplinada. El problema es lo que ha ocurrido _debajo_ de esa
 regla: las últimas cuatro decisiones son todas aditivas y ninguna tiene precio incorporado.
 
-| Decisión | Alcance añadido | Precio incorporado |
-|---|---|---|
-| D-033 · gran muro | ≈ 58 m² de listón + respaldo acústico registrable | no |
-| D-035 · ventanales técnicos | 2 × 7,20 × 2,90 m ≈ 41,8 m² | no |
-| D-036 · ventanas de dormitorio | 4 paños de 2,70 m + guardas laminadas | no |
-| D-040 · claraboyas | 23,04 m² de vidrio cenital + curbs aislados | no |
+| Decisión                       | Alcance añadido                                   | Precio incorporado |
+| ------------------------------ | ------------------------------------------------- | ------------------ |
+| D-033 · gran muro              | ≈ 58 m² de listón + respaldo acústico registrable | no                 |
+| D-035 · ventanales técnicos    | 2 × 7,20 × 2,90 m ≈ 41,8 m²                       | no                 |
+| D-036 · ventanas de dormitorio | 4 paños de 2,70 m + guardas laminadas             | no                 |
+| D-040 · claraboyas             | 23,04 m² de vidrio cenital + curbs aislados       | no                 |
 
 Las claraboyas solas —unidad aislante laminada sobre curb aislado y drenado, con acceso de
 mantenimiento en altura— son plausiblemente del orden del 3–4 % del target completo. La
-bitácora de `base_y_control_de_costos.md` lo dice con todas las letras (*«es incremento de
-alcance sin precio incorporado»*) y aun así el borrador siguiente continuó añadiendo.
+bitácora de `base_y_control_de_costos.md` lo dice con todas las letras (_«es incremento de
+alcance sin precio incorporado»_) y aun así el borrador siguiente continuó añadiendo.
 
 **El expediente está protegiendo el número y dejando que el alcance se aleje de él.**
 
@@ -419,13 +419,13 @@ Los «12 PASS / 0 FAIL» de la planta baja y los «8 PASS» del P2 transmiten un
 que la revisión manual no confirma. La razón es estructural: los tests leen el modelo y lo
 comparan con constantes del mismo modelo.
 
-| Regla | Qué verifica realmente |
-|---|---|
-| `PB-KITCHEN-CLEAR` | compara el paso contra `operating_clearance` del propio JSON |
-| `PB-CORE-SUM` | suma el campo `gross_area` declarado, no la geometría dibujada |
-| `PB-TECH-GLAZING` | comprueba que existen dos ventanales, no su efecto sobre estabilidad |
-| `P2-CHILD-EQUAL` | compara `w × d` bruto, sin muros |
-| `P2-ENV` | comprueba que los recintos caben, no que quede sitio para tabiques |
+| Regla              | Qué verifica realmente                                               |
+| ------------------ | -------------------------------------------------------------------- |
+| `PB-KITCHEN-CLEAR` | compara el paso contra `operating_clearance` del propio JSON         |
+| `PB-CORE-SUM`      | suma el campo `gross_area` declarado, no la geometría dibujada       |
+| `PB-TECH-GLAZING`  | comprueba que existen dos ventanales, no su efecto sobre estabilidad |
+| `P2-CHILD-EQUAL`   | compara `w × d` bruto, sin muros                                     |
+| `P2-ENV`           | comprueba que los recintos caben, no que quede sitio para tabiques   |
 
 Reglas ausentes que habrían atrapado siete de los quince hallazgos:
 
@@ -445,7 +445,7 @@ cumple el programa.
 > **Estado: CORREGIDO.** La base estructural pasó a `D-041`; próximo identificador libre `D-042`.
 
 `registro_decisiones.md` v0.4 asigna **`D-037` dos veces**: a la adopción del P2 b06/R05
-(estado *Activa*) y a las bases de estructura metálica (estado *Propuesta*). En un
+(estado _Activa_) y a las bases de estructura metálica (estado _Propuesta_). En un
 expediente cuya precedencia se apoya en «decisión expresa posterior, registrada y fechada»,
 un identificador duplicado es un defecto de la columna vertebral, no una errata de formato.
 
@@ -463,8 +463,8 @@ los quince. Sería este, y ya está escrito en el propio modelo E0:
 
 > El borde del P2 en X = 21,00 m necesita una viga de 18 m de luz. Sin apoyos intermedios el
 > entrepiso pasa de 12,0 a 16,2 t y compromete las alturas libres. Con apoyos intermedios,
-> **esos apoyos caen en la zona doméstica**. El E0 lo registra como *«conflicto
-> estructural–arquitectónico abierto»*.
+> **esos apoyos caen en la zona doméstica**. El E0 lo registra como _«conflicto
+> estructural–arquitectónico abierto»_.
 
 El expediente lo trata como un problema a resolver. Esta revisión propone leerlo al revés:
 **es la oportunidad de que la planta baja deje de ser un diagrama de bandas.**
@@ -495,7 +495,7 @@ Ese es el movimiento que hace que la v0.4 sea un proyecto y no una corrección d
 ### 5.1 Nota de estado — vía alternativa en curso
 
 A la fecha de corte hay trabajo estructural en curso sobre una tercera vía:
-`dreamhouse/structure/staggered.py` explora **cerchas escalonadas** (*staggered truss*) para
+`dreamhouse/structure/staggered.py` explora **cerchas escalonadas** (_staggered truss_) para
 el entrepiso del P2, un sistema que resuelve luces del orden de 18 m **sin apoyos interiores
 de ningún tipo**.
 
@@ -503,10 +503,10 @@ Si esa vía se confirma, invalida la premisa de esta sección: no habría dos ap
 convertir en arquitectura, porque no habría apoyos. Las dos rutas son legítimas y llevan a
 plantas distintas:
 
-| Vía | Efecto en la banda doméstica | Riesgo principal |
-|---|---|---|
-| Apoyos intermedios convertidos en programa (§5) | obliga a proyectar cocina y despensa; aporta rigidez al conjunto | condiciona la libertad de la planta abierta |
-| Cerchas escalonadas sin apoyos interiores | libera la planta por completo | canto, fabricación, costo y coordinación MEP a verificar |
+| Vía                                             | Efecto en la banda doméstica                                     | Riesgo principal                                         |
+| ----------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------- |
+| Apoyos intermedios convertidos en programa (§5) | obliga a proyectar cocina y despensa; aporta rigidez al conjunto | condiciona la libertad de la planta abierta              |
+| Cerchas escalonadas sin apoyos interiores       | libera la planta por completo                                    | canto, fabricación, costo y coordinación MEP a verificar |
 
 **Esta sección debe releerse cuando el modelo E0 entregue tonelaje y canto de la vía
 escalonada.** El hallazgo H-08 (cocina bajo programa, banda doméstica sin proyectar) es
@@ -516,18 +516,18 @@ independiente de cuál de las dos gane: hay que proyectar esa franja de todos mo
 
 ## 6. Orden de trabajo propuesto
 
-| # | Acción | Desbloquea |
-|---|---|---|
-| 1 | **Congelar el lado bajo de la cubierta** como enmienda registrada a D-039 y regenerar las cinco láminas afectadas. Criterio: el alero bajo debe caer del lado opuesto a la plataforma social. | H-01, H-10, drenaje, bajantes, franja perimetral |
-| 2 | **Subir el alero alto a ≈ 8,10–8,30 m** para llevar la pendiente a 5–6 %. Corregir el «1,9 %» de las bases estructurales. | H-02, selección de sistema de cubierta |
-| 3 | **Incorporar espesores reales al modelo del P2** y volver a medir todas las áreas. | H-04, H-09, H-11, CF-003, hard rule 9 |
-| 4 | **Consultar el concepto profesional de incendio antes de dibujar la v0.4.** | H-05, D-021, D-028, R-03, R-10 |
-| 5 | **Resolver el primer módulo como un problema único** con el ingeniero estructural: portones, ventanales, claraboyas y arriostramiento en una sola lámina. | H-03, D-019 |
-| 6 | **Crecer el evento principal de vidrio a programa** (7–9 m de ancho, altura acorde a un recinto de 7,20 m) y ajustar el protagonismo relativo de los ventanales de taller. | H-07, jerarquía de valor del brief |
-| 7 | **Proyectar la banda doméstica** aplicando la estrategia de la sección 5. | H-08, conflicto E0 abierto |
-| 8 | **Reapuntar el motor de verificación** con las cuatro reglas de H-14. | H-14, y prevención sistemática |
-| 9 | **Abrir el registro de alcance añadido** con orden de magnitud para D-033, D-035, D-036 y D-040, sin tocar el target. | H-12, PE-1, R-02 |
-| 10 | **Corregir el `D-037` duplicado** y registrar la decisión de aleros. | H-15, integridad del registro |
+| #   | Acción                                                                                                                                                                                        | Desbloquea                                       |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| 1   | **Congelar el lado bajo de la cubierta** como enmienda registrada a D-039 y regenerar las cinco láminas afectadas. Criterio: el alero bajo debe caer del lado opuesto a la plataforma social. | H-01, H-10, drenaje, bajantes, franja perimetral |
+| 2   | **Subir el alero alto a ≈ 8,10–8,30 m** para llevar la pendiente a 5–6 %. Corregir el «1,9 %» de las bases estructurales.                                                                     | H-02, selección de sistema de cubierta           |
+| 3   | **Incorporar espesores reales al modelo del P2** y volver a medir todas las áreas.                                                                                                            | H-04, H-09, H-11, CF-003, hard rule 9            |
+| 4   | **Consultar el concepto profesional de incendio antes de dibujar la v0.4.**                                                                                                                   | H-05, D-021, D-028, R-03, R-10                   |
+| 5   | **Resolver el primer módulo como un problema único** con el ingeniero estructural: portones, ventanales, claraboyas y arriostramiento en una sola lámina.                                     | H-03, D-019                                      |
+| 6   | **Crecer el evento principal de vidrio a programa** (7–9 m de ancho, altura acorde a un recinto de 7,20 m) y ajustar el protagonismo relativo de los ventanales de taller.                    | H-07, jerarquía de valor del brief               |
+| 7   | **Proyectar la banda doméstica** aplicando la estrategia de la sección 5.                                                                                                                     | H-08, conflicto E0 abierto                       |
+| 8   | **Reapuntar el motor de verificación** con las cuatro reglas de H-14.                                                                                                                         | H-14, y prevención sistemática                   |
+| 9   | **Abrir el registro de alcance añadido** con orden de magnitud para D-033, D-035, D-036 y D-040, sin tocar el target.                                                                         | H-12, PE-1, R-02                                 |
+| 10  | **Corregir el `D-037` duplicado** y registrar la decisión de aleros.                                                                                                                          | H-15, integridad del registro                    |
 
 ---
 
@@ -568,28 +568,28 @@ dejó abierto con los números sobre la mesa.
 
 ### 8.1 Defectos corregidos
 
-| ID | Qué se hizo | Verificación |
-|---|---|---|
-| H-01 | El sentido del faldón vivía hardcodeado en cada lámina. Ahora vive **una sola vez** en `roof` de `pb_b05.json` y las cinco láminas lo derivan de ahí. Corregidos el espejo de la fachada posterior, la flecha de la planta de cubierta y un **error de signo en el corte de claraboyas** que dibujaba el alero alto a 6,60 m. | Medición de los cinco polígonos generados: Y=0 → 7,20 m y Y=18 → 7,80 m en todas. Invertir el faldón es hoy cambiar `roof.low_side` y regenerar. |
-| H-02 | Corregido «≈ 1:30 (≈ 1,9 %)» → **1:30 = 3,33 %** y añadida alerta de compatibilidad con el panel sándwich. | La cota sigue **abierta**: subir la eave alta es decisión del propietario (§8.2). |
-| H-04 | El modelo teselaba 270,00 m² exactos sin sitio para muros. Añadidos `net_dims()` / `net_area()`, que descuentan envolvente en el perímetro y medio tabique en los bordes interiores. Los rótulos de la lámina se calculan; ya no se escriben a mano. | Σ neta **239,2 m²** ≤ 258,2 m² de interior útil. Regla `P2-AREA-CLOSURE` en PASS. |
-| H-06 | Decide la geometría: el dormitorio principal tiene 7,40 m de muro en el lateral A y 4,20 m en el posterior, así que el paño de 5,50 m sólo cabe en el lateral. Alineado `pb_b05.json` con `p2_b06.json` y renombrado `W-M-REAR`→`W-M-LAT-A`. | **Prueba negativa ejecutada**: al reponer los valores antiguos, `PB-P2-WINDOW-SYNC` y `PB-GLAZING-IN-ROOM` los rechazan señalando el desborde de 2,30 m sobre el vestidor. |
-| H-10 | El desequilibrio hidráulico entre las dos claraboyas se calcula y se publica en cada emisión. | `RL-DRAINAGE-ASYMMETRY`: 12,00 m (≈28,8 m²) frente a 1,20 m (≈2,9 m²). |
-| H-13 | Los recintos del núcleo descontaban 0,18 m a ambos lados. Añadido `core_net_y()`, que distingue borde de envolvente (0,18) de tabique interior (0,15, o 0,20 contra la escalera). | Medición de la lámina: tabiques de **0,150 y 0,200 m** exactos; cierre 16,94 + 0,70 + 0,36 = 18,00 m. |
-| H-14 | Seis reglas nuevas, de las cuatro clases que faltaban. | Ver §8.5. |
-| H-15 | `D-037` duplicado: se conserva para el P2 b06/R05 y la base estructural pasa a **`D-041`**. Añadida sección de correcciones de registro. | Próximo identificador libre: `D-042`. |
+| ID   | Qué se hizo                                                                                                                                                                                                                                                                                                                   | Verificación                                                                                                                                                               |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| H-01 | El sentido del faldón vivía hardcodeado en cada lámina. Ahora vive **una sola vez** en `roof` de `pb_b05.json` y las cinco láminas lo derivan de ahí. Corregidos el espejo de la fachada posterior, la flecha de la planta de cubierta y un **error de signo en el corte de claraboyas** que dibujaba el alero alto a 6,60 m. | Medición de los cinco polígonos generados: Y=0 → 7,20 m y Y=18 → 7,80 m en todas. Invertir el faldón es hoy cambiar `roof.low_side` y regenerar.                           |
+| H-02 | Corregido «≈ 1:30 (≈ 1,9 %)» → **1:30 = 3,33 %** y añadida alerta de compatibilidad con el panel sándwich.                                                                                                                                                                                                                    | La cota sigue **abierta**: subir la eave alta es decisión del propietario (§8.2).                                                                                          |
+| H-04 | El modelo teselaba 270,00 m² exactos sin sitio para muros. Añadidos `net_dims()` / `net_area()`, que descuentan envolvente en el perímetro y medio tabique en los bordes interiores. Los rótulos de la lámina se calculan; ya no se escriben a mano.                                                                          | Σ neta **239,2 m²** ≤ 258,2 m² de interior útil. Regla `P2-AREA-CLOSURE` en PASS.                                                                                          |
+| H-06 | Decide la geometría: el dormitorio principal tiene 7,40 m de muro en el lateral A y 4,20 m en el posterior, así que el paño de 5,50 m sólo cabe en el lateral. Alineado `pb_b05.json` con `p2_b06.json` y renombrado `W-M-REAR`→`W-M-LAT-A`.                                                                                  | **Prueba negativa ejecutada**: al reponer los valores antiguos, `PB-P2-WINDOW-SYNC` y `PB-GLAZING-IN-ROOM` los rechazan señalando el desborde de 2,30 m sobre el vestidor. |
+| H-10 | El desequilibrio hidráulico entre las dos claraboyas se calcula y se publica en cada emisión.                                                                                                                                                                                                                                 | `RL-DRAINAGE-ASYMMETRY`: 12,00 m (≈28,8 m²) frente a 1,20 m (≈2,9 m²).                                                                                                     |
+| H-13 | Los recintos del núcleo descontaban 0,18 m a ambos lados. Añadido `core_net_y()`, que distingue borde de envolvente (0,18) de tabique interior (0,15, o 0,20 contra la escalera).                                                                                                                                             | Medición de la lámina: tabiques de **0,150 y 0,200 m** exactos; cierre 16,94 + 0,70 + 0,36 = 18,00 m.                                                                      |
+| H-14 | Seis reglas nuevas, de las cuatro clases que faltaban.                                                                                                                                                                                                                                                                        | Ver §8.5.                                                                                                                                                                  |
+| H-15 | `D-037` duplicado: se conserva para el P2 b06/R05 y la base estructural pasa a **`D-041`**. Añadida sección de correcciones de registro.                                                                                                                                                                                      | Próximo identificador libre: `D-042`.                                                                                                                                      |
 
 ### 8.2 Lo que la primera pasada dejó abierto a propósito
 
 Cuatro correcciones eran técnicamente triviales y aun así **no se aplicaron**, porque
 hacerlo habría sido decidir en nombre del propietario:
 
-| Hallazgo | Por qué no se corrigió |
-|---|---|
-| H-02 · pendiente | Subir la eave alta a 8,10–8,30 m altera un DCV. La forma es hard rule, la cota no, pero el cambio necesita registro del propietario. |
+| Hallazgo                       | Por qué no se corrigió                                                                                                                                                                           |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| H-02 · pendiente               | Subir la eave alta a 8,10–8,30 m altera un DCV. La forma es hard rule, la cota no, pero el cambio necesita registro del propietario.                                                             |
 | H-04 · igualdad de dormitorios | Igualar el área neta requiere ~9 cm de ajuste. Pero H1 es 1,04:1 y H2 es 1,62:1: **el ajuste haría pasar el chequeo sin igualar la habitación**, que es exactamente el vicio denunciado en H-14. |
-| H-11 · vestíbulo F2 | Llevarlo a 1,20 m dentro de la envolvente actual obliga a restar 0,20 m a los dormitorios de F2 o a unos baños que ya son el punto más comprometido. Es una permuta, no un arreglo. |
-| H-09 · suite principal | Reasignar 9,4 m² entre vestidor, baño y huéspedes es proyecto, no corrección. Ahora está medido y publicado como `P2-MASTER-PROGRAM`. |
+| H-11 · vestíbulo F2            | Llevarlo a 1,20 m dentro de la envolvente actual obliga a restar 0,20 m a los dormitorios de F2 o a unos baños que ya son el punto más comprometido. Es una permuta, no un arreglo.              |
+| H-09 · suite principal         | Reasignar 9,4 m² entre vestidor, baño y huéspedes es proyecto, no corrección. Ahora está medido y publicado como `P2-MASTER-PROGRAM`.                                                            |
 
 Tras esa primera pasada `generate_p2_b06.py` terminaba con código 1 y tres FAIL. Era el
 comportamiento correcto: tres condiciones reales incumplidas —una de ellas una hard rule—
@@ -617,14 +617,14 @@ medida y el modelo la documenta en `p2_b06.json`.
 de hijo 1 en vez de una franja transversal al fondo. Ese giro libera la franja posterior y
 paga por sí solo las tres mejoras:
 
-| Condición | Antes | Ahora | Límite |
-|---|---|---|---|
-| Igualdad de dormitorios (útil) | 23,46 vs 24,04 · Δ 0,58 | 23,46 vs 23,22 · **Δ 0,24** | ±1,00 (D-042) |
-| Proporción de hijo 2 | **1,62:1** — habitación alargada | **1,23:1** | ≤ 1,35:1 |
-| Vestíbulo de Fase 2 | 0,85 m libres | **1,25 m** | ≥ 1,20 m |
-| Baño de hijo 2 | 1,70 m de fondo | **2,80 m**, idéntico al de hijo 1 | — |
-| Dormitorio de huéspedes | 22,0 m² brutos (+4,5 sobre programa) | **17,0 m²** | 17–18 |
-| Baño de huéspedes | 4,0 m² brutos (−1,5) | **5,7 m²** | 5,5 |
+| Condición                      | Antes                                | Ahora                             | Límite        |
+| ------------------------------ | ------------------------------------ | --------------------------------- | ------------- |
+| Igualdad de dormitorios (útil) | 23,46 vs 24,04 · Δ 0,58              | 23,46 vs 23,22 · **Δ 0,24**       | ±1,00 (D-042) |
+| Proporción de hijo 2           | **1,62:1** — habitación alargada     | **1,23:1**                        | ≤ 1,35:1      |
+| Vestíbulo de Fase 2            | 0,85 m libres                        | **1,25 m**                        | ≥ 1,20 m      |
+| Baño de hijo 2                 | 1,70 m de fondo                      | **2,80 m**, idéntico al de hijo 1 | —             |
+| Dormitorio de huéspedes        | 22,0 m² brutos (+4,5 sobre programa) | **17,0 m²**                       | 17–18         |
+| Baño de huéspedes              | 4,0 m² brutos (−1,5)                 | **5,7 m²**                        | 5,5           |
 
 Lo relevante es que **la elasticidad de ±1,00 m² no se gastó en hacer pasar el chequeo**:
 se gastó en enderezar la habitación de hijo 2 y en devolverle a la suite de huéspedes el
@@ -639,10 +639,10 @@ de su rectángulo neto.
 
 ### 8.4 Lo que sigue abierto, y por qué no es corregible
 
-| Regla | Aritmética |
-|---|---|
+| Regla               | Aritmética                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `P2-MASTER-PROGRAM` | La banda del principal mide 7,40 × 11,00 = **81,4 m²** y la escalera ocupa **16,2**, dejando **65,2 m²** para un programa que pide **76**. Crecer el principal obliga a estrechar los dormitorios de los hijos por debajo de los 20,2 m² útiles de referencia. O baja el programa del principal, o crece el P2, o la escalera sale de esa huella: es decisión del propietario. |
-| `LIFE-EGRESS-2` | Requiere concepto profesional de incendio. Ningún modelo puede cerrarlo. |
+| `LIFE-EGRESS-2`     | Requiere concepto profesional de incendio. Ningún modelo puede cerrarlo.                                                                                                                                                                                                                                                                                                       |
 
 Conviene nombrar el fondo del asunto: **el programa del P2 suma 270 m² brutos dentro de una
 envolvente de 270 m² brutos**, es decir, no reserva superficie para sus propios muros. Con
@@ -651,14 +651,14 @@ dibujo: es esa aritmética. Cerrarlo exige una decisión de programa, no una cor
 
 ### 8.5 Reglas de verificación añadidas
 
-| Regla | Clase | Qué impide |
-|---|---|---|
-| `P2-AREA-CLOSURE` | cierre de áreas | Que los recintos ocupen la envolvente sin dejar sitio a los muros |
-| `PB-CORE-CLOSURE` | cierre de áreas | Que los tabiques dibujados no coincidan con los declarados |
-| `PB-P2-WINDOW-SYNC` | coherencia entre emisiones | Que un vano se describa distinto en b05 y en b06 |
-| `PB-GLAZING-IN-ROOM` | contención geométrica | Que un vano desborde el muro del recinto que ilumina |
-| `RL-ROOF-DIRECTION` | coherencia de cubierta | Que una lámina declare un sentido de faldón distinto al de la fuente única |
-| `P2-CIRC-MIN`, `P2-MASTER-PROGRAM`, `P2-CHILD-PROPORTION` | contraste contra el programa | Que el dibujo se aleje del programa sin que nadie lo mida |
+| Regla                                                     | Clase                        | Qué impide                                                                 |
+| --------------------------------------------------------- | ---------------------------- | -------------------------------------------------------------------------- |
+| `P2-AREA-CLOSURE`                                         | cierre de áreas              | Que los recintos ocupen la envolvente sin dejar sitio a los muros          |
+| `PB-CORE-CLOSURE`                                         | cierre de áreas              | Que los tabiques dibujados no coincidan con los declarados                 |
+| `PB-P2-WINDOW-SYNC`                                       | coherencia entre emisiones   | Que un vano se describa distinto en b05 y en b06                           |
+| `PB-GLAZING-IN-ROOM`                                      | contención geométrica        | Que un vano desborde el muro del recinto que ilumina                       |
+| `RL-ROOF-DIRECTION`                                       | coherencia de cubierta       | Que una lámina declare un sentido de faldón distinto al de la fuente única |
+| `P2-CIRC-MIN`, `P2-MASTER-PROGRAM`, `P2-CHILD-PROPORTION` | contraste contra el programa | Que el dibujo se aleje del programa sin que nadie lo mida                  |
 
 Severidad: **FAIL** para defecto del modelo o hard rule incumplida; **OPEN** para decisión
 pendiente del propietario o de un consultor. La distinción importa: un OPEN no bloquea, un
@@ -666,12 +666,12 @@ FAIL sí.
 
 ### 8.6 Estado de los chequeos tras la corrección
 
-| Emisión | PASS | FAIL | OPEN |
-|---|---:|---:|---:|
-| PB b05 | 15 | **0** | 0 |
-| P2 b06 | 12 | **0** | 2 |
-| Cubierta b07 | 4 | **0** | 2 |
-| Claraboyas b08 | 6 | **0** | 3 |
+| Emisión        | PASS |  FAIL | OPEN |
+| -------------- | ---: | ----: | ---: |
+| PB b05         |   15 | **0** |    0 |
+| P2 b06         |   12 | **0** |    2 |
+| Cubierta b07   |    4 | **0** |    2 |
+| Claraboyas b08 |    6 | **0** |    3 |
 
 **Sin fallos en ninguna emisión.** Los siete OPEN restantes no son defectos: son cuatro
 asuntos que dependen del predio o de la orientación (sentido definitivo del faldón,
@@ -684,8 +684,8 @@ correspondiente.
 
 ## 9. Registro de versiones
 
-| Versión | Fecha | Cambio |
-|---|---|---|
-| 0.1 | 2026-08-11 | Emisión inicial. Revisión de coordinación sobre b04→b08 y modelo E0. 15 hallazgos (5 críticos, 7 importantes, 3 menores). No modifica target, decisiones ni línea base. |
-| 0.3 | 2026-08-11 | **Cerrados los tres FAIL del P2** reorganizando la Fase 2 al amparo de **D-042** (tolerancia de ±1,00 m² útiles en los dormitorios de hijos, autorizada por el propietario): la suite de hijo 2 gira, su baño pasa de 1,70 a 2,80 m de fondo, la suite de huéspedes alcanza el programa y el vestíbulo F2 sube a 1,25 m libres. Corregido además un error **de esta revisión**: `P2-WELLNESS` medía en neto contra un objetivo bruto del programa. Todas las reglas declaran ahora su base de medida. Mobiliario sanitario derivado de la geometría. **Estado: 0 FAIL en las cuatro emisiones.** |
-| 0.2 | 2026-08-11 | Aplicadas las correcciones de defecto verificable (§8): H-01, H-04, H-06, H-13, H-14 y H-15 corregidos en el modelo; H-02 corregido en su aritmética; H-10 cuantificado. Seis reglas de verificación nuevas. No se adoptó ninguna decisión de diseño: H-02 (cota), H-03, H-05, H-07, H-08, H-09, H-11 y H-12 siguen abiertos. Actualizadas las memorias b05, b06, b07 y b08 para que la prosa no contradiga las láminas corregidas. |
+| Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 0.1     | 2026-08-11 | Emisión inicial. Revisión de coordinación sobre b04→b08 y modelo E0. 15 hallazgos (5 críticos, 7 importantes, 3 menores). No modifica target, decisiones ni línea base.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| 0.3     | 2026-08-11 | **Cerrados los tres FAIL del P2** reorganizando la Fase 2 al amparo de **D-042** (tolerancia de ±1,00 m² útiles en los dormitorios de hijos, autorizada por el propietario): la suite de hijo 2 gira, su baño pasa de 1,70 a 2,80 m de fondo, la suite de huéspedes alcanza el programa y el vestíbulo F2 sube a 1,25 m libres. Corregido además un error **de esta revisión**: `P2-WELLNESS` medía en neto contra un objetivo bruto del programa. Todas las reglas declaran ahora su base de medida. Mobiliario sanitario derivado de la geometría. **Estado: 0 FAIL en las cuatro emisiones.** |
+| 0.2     | 2026-08-11 | Aplicadas las correcciones de defecto verificable (§8): H-01, H-04, H-06, H-13, H-14 y H-15 corregidos en el modelo; H-02 corregido en su aritmética; H-10 cuantificado. Seis reglas de verificación nuevas. No se adoptó ninguna decisión de diseño: H-02 (cota), H-03, H-05, H-07, H-08, H-09, H-11 y H-12 siguen abiertos. Actualizadas las memorias b05, b06, b07 y b08 para que la prosa no contradiga las láminas corregidas.                                                                                                                                                              |

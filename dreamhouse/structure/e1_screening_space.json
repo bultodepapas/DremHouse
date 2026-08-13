@@ -101,12 +101,7 @@
         "existing_to_p2": false
       }
     ],
-    "expected_compatible_column_ids": [
-      "GW-STAIR-S",
-      "GW-STAIR-N",
-      "STAIR-REAR-S",
-      "STAIR-REAR-N"
-    ],
+    "expected_compatible_column_ids": ["GW-STAIR-S", "GW-STAIR-N", "STAIR-REAR-S", "STAIR-REAR-N"],
     "stair_flights_primary_lateral_role": false,
     "preferred_concept": "independent_four_column_stair_enclosure_frame_with_drift_compatible_stair_connections",
     "roof_gravity_support_role": "not_assigned",

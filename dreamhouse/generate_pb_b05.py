@@ -241,6 +241,7 @@ def plan_sheet(p):
     parts.append(text(sx(34.725),sy(1.15)+3,"LIMPIEZA",6,weight=700))
     parts.append(stair_symbol())
 
+
     # Front openings.
     for op in p["front_openings"]:
         y1, y2 = sy(op["y0"]+op["width"]), sy(op["y0"])
@@ -663,22 +664,22 @@ def validate(p):
     pair={"GLZ-H1":"W-H1","GLZ-H2":"W-H2","GLZ-G":"W-G","GLZ-M-A":"W-M-LAT-A","GLZ-M-R":"W-M-REAR"}
     room_of={"GLZ-H1":"H1-D","GLZ-H2":"H2-D","GLZ-G":"G-D","GLZ-M-A":"M-D","GLZ-M-R":"M-D"}
     try:
-        p2=json.loads(DATA.with_name("p2_b09.json").read_text(encoding="utf-8"))
+        p2=json.loads(DATA.with_name("p2_b10.json").read_text(encoding="utf-8"))
     except OSError:
         p2=None
     if p2 is None:
-        checks.append(("PB-P2-WINDOW-SYNC",False,"No se pudo leer p2_b09.json para el chequeo cruzado"))
-        checks.append(("PB-GLAZING-IN-ROOM",False,"No se pudo leer p2_b09.json para verificar contención"))
+        checks.append(("PB-P2-WINDOW-SYNC",False,"No se pudo leer p2_b10.json para el chequeo cruzado"))
+        checks.append(("PB-GLAZING-IN-ROOM",False,"No se pudo leer p2_b10.json para verificar contención"))
     else:
         w2={w["id"]:w for w in p2["windows"]}; sp2={z["id"]:z for z in p2["spaces"]}
         diffs=[]
         for g in bedrooms:
             o=w2.get(pair.get(g["id"],""))
             if o is None:
-                diffs.append(f'{g["id"]} sin pareja en b09'); continue
+                diffs.append(f'{g["id"]} sin pareja en b10'); continue
             if o["edge"]!=edge_of[g["facade"]] or abs(o["from"]-g["from"])>1e-6 or abs(o["to"]-g["to"])>1e-6 or abs(o["height"]-g["height"])>1e-6:
                 diffs.append(f'{g["id"]} ({g["facade"]} {g["from"]}–{g["to"]}) ≠ {o["id"]} ({o["edge"]} {o["from"]}–{o["to"]})')
-        checks.append(("PB-P2-WINDOW-SYNC",not diffs,"Vanos de dormitorio idénticos en pb_b05.json y p2_b09.json" if not diffs else "DIVERGENCIA b05↔b09: "+" · ".join(diffs)))
+        checks.append(("PB-P2-WINDOW-SYNC",not diffs,"Vanos de dormitorio idénticos en pb_b05.json y p2_b10.json" if not diffs else "DIVERGENCIA b05↔b10: "+" · ".join(diffs)))
         # Un vano no puede desbordar el muro del recinto que ilumina: el paño posterior
         # de 5,50 m metía 2,30 m de vidrio piso-techo dentro del vestidor principal.
         bad=[]

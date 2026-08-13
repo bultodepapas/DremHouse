@@ -11,10 +11,10 @@
   "topologies": ["WARREN_MODIFIED", "PRATT", "HOWE", "X"],
   "panel_counts": [6, 8, 10],
   "depth_options": [
-    {"shape": "CONSTANT", "centre_depth_span_ratio": 12.0, "end_depth_fraction": 1.0},
-    {"shape": "CONSTANT", "centre_depth_span_ratio": 15.0, "end_depth_fraction": 1.0},
-    {"shape": "VARIABLE", "centre_depth_span_ratio": 10.0, "end_depth_fraction": 0.55},
-    {"shape": "VARIABLE", "centre_depth_span_ratio": 12.0, "end_depth_fraction": 0.55}
+    { "shape": "CONSTANT", "centre_depth_span_ratio": 12.0, "end_depth_fraction": 1.0 },
+    { "shape": "CONSTANT", "centre_depth_span_ratio": 15.0, "end_depth_fraction": 1.0 },
+    { "shape": "VARIABLE", "centre_depth_span_ratio": 10.0, "end_depth_fraction": 0.55 },
+    { "shape": "VARIABLE", "centre_depth_span_ratio": 12.0, "end_depth_fraction": 0.55 }
   ],
   "profile_choices": {
     "chord": ["HSS100x100x6", "HSS120x120x6", "HSS150x150x8"],
@@ -27,11 +27,7 @@
     "stiffness_reduction_for_second_order": 0.8,
     "local_chord_bending_model": "simply_supported_between_truss_nodes_under_vertical_line_load",
     "fabrication_crossing_penalty": 2.0,
-    "pareto_objectives": [
-      "total_roof_truss_mass_kg",
-      "fabrication_proxy",
-      "governing_ratio"
-    ]
+    "pareto_objectives": ["total_roof_truss_mass_kg", "fabrication_proxy", "governing_ratio"]
   },
   "ground_structure": {
     "modulation_id": "M60",
