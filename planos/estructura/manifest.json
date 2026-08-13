@@ -4,11 +4,12 @@
     "dreamhouse\\pb_b05.json"
   ],
   "generator": "dreamhouse/generate_structure_plan.py",
-  "revision": "0.1",
-  "mode": "cálculo en vivo (compute_quantities + size_staggered_floor) — sin salidas exportadas",
+  "revision": "0.2",
+  "mode": "cribado en vivo (compute_quantities + size_staggered_floor) — subtotales inferiores",
   "outputs": [
     "DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg",
-    "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg"
+    "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg",
+    "DH-EST-E0-004_PARED-HIBRIDA.svg"
   ],
-  "status": "hipótesis de esquema; NO APTO PARA CONSTRUIR"
+  "status": "D-043 adopta el camino gravitacional del P2; perfiles, cantidades y sistema lateral siguen sin adoptar y no son aptos para PE-1, fabricación o construcción"
 }

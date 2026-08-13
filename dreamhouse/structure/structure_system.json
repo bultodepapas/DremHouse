@@ -1,10 +1,10 @@
 {
   "project": {
     "id": "DH-EST-E0-001",
-    "revision": "0.1",
+    "revision": "0.2",
     "status": "hypothesis",
-    "date": "2026-08-11",
-    "purpose": "Modelo E0 de esquema estructural: comparar sistemas y modulaciones (D-019). No es diseño profesional ni apto para construir.",
+    "date": "2026-08-12",
+    "purpose": "Modelo E0 de cribado estructural: coordinar geometría e identificar conflictos. No demuestra cumplimiento, no permite cerrar D-019, no produce cantidades de diseño y no es apto para presupuestar PE-1 ni construir.",
     "source": [
       "docs/00_gobernanza/constitucion_del_proyecto.md",
       "docs/BORN_Legacy/Dream_House_Plano_Conceptual_v0.2.md",
@@ -14,7 +14,8 @@
       "docs/03_ingenierias/bases_estructura_metalica.md",
       "docs/04_costos/auditoria_de_costos_2026_08.md"
     ],
-    "reviewer_required": "Ingeniero estructural competente antes de cualquier uso de diseño"
+    "reviewer_required": "Ingeniero estructural competente antes de cualquier uso de diseño",
+    "model_validity": "screening_only_not_eligible_for_selection_or_budget"
   },
   "units": "SI",
   "geometry": {
@@ -31,6 +32,7 @@
     "p2_headroom_m": 3.0,
     "great_wall_x_m": 31.5,
     "great_wall_t_m": 0.2,
+    "great_wall_structural_envelope_m": [0.25, 0.35],
     "p2_floor_options": [
       {
         "id": "METALDECK",
@@ -43,15 +45,21 @@
         "truss_depth_span_ratio": 0,
         "max_unpropped_panel_span_m": 6.0,
         "slab_total_m": 0.22,
-        "web_ratio": 0.4
+        "web_ratio": 0.4,
+        "approval_status": "not_adopted"
       },
       {
         "id": "GRAN-MURO",
-        "description": "El GRAN MURO de X=31,5 (nucleo) trabaja como muro portante: recibe la franja del nucleo y la mitad del frente; vigas longitudinales de 10,5 m en el plenum (Y=3/9/15) + cercha de borde X=21 de 18 m. CERO columnas interiores; sin re-articular particiones; el muro aporta núcleo de corte longitudinal.",
-        "n_longitudinal_beams": 3,
+        "description": "Pared estructural híbrida adoptada conceptualmente para gravedad por D-043: acabado de madera/absorción de D-033 delante de bastidor de acero oculto. Seis vigas longitudinales de 10,5 m a 3,0 m descargan en una viga superior de transferencia y columnas HSS escondidas en machones; el menor espaciamiento busca encajar viga + losa dentro del canto disponible sin columnas en PB. El borde X=21 usa una cercha de canto completo integrada sobre el nivel P2. No se atribuye resistencia longitudinal X al muro transversal.",
+        "n_longitudinal_beams": 6,
+        "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
+        "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],
+        "hidden_column_trial_profile": "HSS150x150x8",
+        "transfer_girder_min_profile": "IPE400",
         "edge_truss_depth_span_ratio": 16.0,
-        "slab_total_m": 0.22,
-        "web_ratio": 0.4
+        "slab_total_m": 0.15,
+        "web_ratio": 0.4,
+        "approval_status": "active_gravity_concept_D-043_design_pending"
       }
     ],
     "modulations": [
@@ -85,11 +93,11 @@
       "v3s_reference_mps_hypothesis": 28.0,
       "qz_eave_kpa_hypothesis": 0.45,
       "Cp_wall_windward": 0.8,
-      "Cp_wall_leeward": 0.5,
+      "Cp_wall_leeward": -0.5,
       "Cp_roof_windward": -0.6,
       "Cp_roof_leeward": -0.4,
       "Cp_internal": 0.2,
-      "note": "Valores provisionales para comparar esquemas; los definitivos los define el ingeniero con NSR-10 B.6 y el municipio"
+      "note": "Valores provisionales: WX+ y WX- son laterales independientes; WU conserva la peor succión media con presión interna positiva. No sustituye zonas locales, componentes/revestimientos ni NSR-10 B.6."
     },
     "seismic": {
       "cs_base_shear_hypothesis": 0.1,
@@ -101,12 +109,16 @@
     }
   },
   "combinations": [
-    {"id": "C1", "name": "1.4D", "factors": {"D": 1.4, "L": 0.0, "W": 0.0, "E": 0.0}},
-    {"id": "C2", "name": "1.2D+1.6L", "factors": {"D": 1.2, "L": 1.6, "W": 0.0, "E": 0.0}},
-    {"id": "C3", "name": "1.2D+1.0W+0.5L", "factors": {"D": 1.2, "L": 0.5, "W": 1.0, "E": 0.0}},
-    {"id": "C4", "name": "0.9D+1.0W", "factors": {"D": 0.9, "L": 0.0, "W": 1.0, "E": 0.0}},
-    {"id": "C5", "name": "1.2D+1.0E+0.5L", "factors": {"D": 1.2, "L": 0.5, "W": 0.0, "E": 1.0}},
-    {"id": "C6", "name": "0.9D+1.0E", "factors": {"D": 0.9, "L": 0.0, "W": 0.0, "E": 1.0}}
+    {"id": "C1", "name": "1.4D", "factors": {"D": 1.4}},
+    {"id": "C2", "name": "1.2D+1.6L", "factors": {"D": 1.2, "L": 1.6}},
+    {"id": "C3+", "name": "1.2D+WU+WX+ +0.5L", "factors": {"D": 1.2, "L": 0.5, "WU": 1.0, "WX+": 1.0}},
+    {"id": "C3-", "name": "1.2D+WU+WX- +0.5L", "factors": {"D": 1.2, "L": 0.5, "WU": 1.0, "WX-": 1.0}},
+    {"id": "C4+", "name": "0.9D+WU+WX+", "factors": {"D": 0.9, "WU": 1.0, "WX+": 1.0}},
+    {"id": "C4-", "name": "0.9D+WU+WX-", "factors": {"D": 0.9, "WU": 1.0, "WX-": 1.0}},
+    {"id": "C5+", "name": "1.2D+EX+ +0.5L", "factors": {"D": 1.2, "L": 0.5, "EX+": 1.0}},
+    {"id": "C5-", "name": "1.2D+EX- +0.5L", "factors": {"D": 1.2, "L": 0.5, "EX-": 1.0}},
+    {"id": "C6+", "name": "0.9D+EX+", "factors": {"D": 0.9, "EX+": 1.0}},
+    {"id": "C6-", "name": "0.9D+EX-", "factors": {"D": 0.9, "EX-": 1.0}}
   ],
   "systems": [
     {
@@ -159,6 +171,7 @@
     "girt_spacing_m": 1.5,
     "joist_spacing_m": 1.5,
     "bracing_roof_bays_per_end": 2,
+    "bracing_mass_allowance_kg": 1000.0,
     "target_total_steel_t": [30.0, 45.0],
     "target_kg_m2_reference": [31.0, 48.0],
     "source": "bases_estructura_metalica.md, auditoria de costos A-01/A-04"

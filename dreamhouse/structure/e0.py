@@ -11,6 +11,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .checks import build_model_audit
 from .materials import materials_from_json
 from .portal import build_frame_model
 from .quantities import compute_quantities
@@ -19,12 +20,13 @@ from .profiles import profile
 ROOT = Path(__file__).resolve().parents[2]
 DATA = Path(__file__).with_name("structure_system.json")
 OUT = ROOT / "planos" / "estructura_e0"
+DOC_OUT = ROOT / "docs" / "03_ingenierias" / "modelo_estructural_e0.md"
 
 META = {
     "generator": "dreamhouse/structure/e0.py",
     "model": "E0 — esquema estructural (no diseño profesional)",
-    "label": "NO APTO PARA CONSTRUIR",
-    "date": "2026-08-11",
+    "label": "NO APTO PARA SELECCIONAR / PRESUPUESTAR / CONSTRUIR",
+    "date": "2026-08-12",
 }
 
 
@@ -47,6 +49,7 @@ def main() -> None:
         "meta": META,
         "materials": {"principales": "S355/A572-50", "secundarios": "S235/A36", "E_mpa": 200000},
         "no_snow": cfg["loads"]["note_no_snow"],
+        "model_audit": build_model_audit(cfg),
         "matrix": rows,
         "targets": {
             "total_steel_t_range": cfg["criteria"]["target_total_steel_t"],
@@ -59,7 +62,9 @@ def main() -> None:
     report["summary"] = summary
 
     (OUT / "DH-EST-E0-001_resultados.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    (OUT / "DH-EST-E0-001_resumen.md").write_text(markdown_report(cfg, rows, summary), encoding="utf-8")
+    report_md = markdown_report(cfg, rows, summary)
+    (OUT / "DH-EST-E0-001_resumen.md").write_text(report_md, encoding="utf-8")
+    DOC_OUT.write_text(report_md, encoding="utf-8")
     write_csv(rows)
     for system in cfg["systems"]:
         write_svg(system["id"])
@@ -79,6 +84,7 @@ def main() -> None:
         "input_sha256": digest,
         "generator": META["generator"],
         "revision": cfg["project"]["revision"],
+        "canonical_report": str(DOC_OUT.relative_to(ROOT)),
         "outputs": [
             "DH-EST-E0-001_resultados.json",
             "DH-EST-E0-001_resumen.md",
@@ -116,11 +122,15 @@ def summarize(rows: list[dict]) -> dict:
                 "tie_area_cm2": q["frames"].get("tie_area_cm2", 0.0),
                 "tie_force_kn": q["frames"].get("tie_force_kn", 0.0),
                 "drift_m": q["frames"].get("drift_m", None),
+                "analysis_status": q["frames"].get("analysis_status"),
+                "screening_passed": q["frames"].get("screening_passed", False),
+                "ranking_eligible": q["ranking_eligible"],
             }
     return out
 
 
-def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
+def _markdown_report_v01(cfg: dict, rows: list[dict], summary: dict) -> str:
+    """Generador histórico de la revisión 0.1; se conserva solo para trazabilidad."""
     lines = [
         "# Modelo E0 — comparación estructural (D-019)",
         "",
@@ -231,11 +241,124 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
+    """Reporte auditado que falla cerrado frente a los límites del E0."""
+
+    audit = build_model_audit(cfg)
+    lines = [
+        "# Modelo E0 — cribado estructural auditado (D-019)",
+        "",
+        "**Estatus:** hipótesis de esquema · **NO APTO PARA SELECCIONAR SISTEMA, "
+        "PRESUPUESTAR PE-1, DIMENSIONAR PERFILES NI CONSTRUIR**",
+        f'**Fecha:** {META["date"]} · **Revisión:** {cfg["project"]["revision"]}',
+        "",
+        "> " + cfg["loads"]["note_no_snow"],
+        "",
+        "> **Dictamen:** ninguna fila es elegible para cerrar D-019 o fijar tonelaje. "
+        "Son subtotales inferiores que omiten estados límite y componentes críticos.",
+        "",
+        "| Sistema × modulación | Columnas* | Cubierta* | Líneas | Subtotal metaldeck* | Subtotal gran muro* | Estado |",
+        "|---|---|---|---:|---:|---:|---|",
+    ]
+    for row in rows:
+        mod = row["modulation"]
+        for sid, q in row["quantities"]["systems"].items():
+            frame = q["frames"]
+            roof = frame.get("rafter", frame.get("truss_chord", "-"))
+            if sid == "CERCHA":
+                status = "INCOMPLETO: sin análisis lateral/estabilidad"
+            elif frame.get("screening_passed"):
+                status = "pasa cribado 2D limitado; no demuestra diseño"
+            else:
+                status = "FALLA cribado o agota catálogo E0"
+            lines.append(
+                f"| {mod} · {sid} | {frame.get('column', '-')} | {roof} | "
+                f"{row['quantities']['modulation']['n_portal_lines']} | {q['total_t']} t | "
+                f"{q['total_greatwall_t']} t | {status} |"
+            )
+
+    lines += [
+        "",
+        "\* Perfil y masa de cribado; no son selección ni cantidad de diseño. D-043 "
+        "adopta el camino gravitacional GRAN-MURO, no los perfiles ni el tonelaje del E0.",
+        "",
+        "## Desglose de subtotales inferiores (t)",
+        "",
+        "| Sistema × modulación | Marcos | P2 metaldeck | P2 staggered* | P2 gran muro* | Secundaria/reserva* | Total metaldeck | Total gran muro* |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for row in rows:
+        mod = row["modulation"]
+        for sid, q in row["quantities"]["systems"].items():
+            lines.append(
+                f"| {mod} · {sid} | {q['main_frames_kg']/1000:.1f} | "
+                f"{q['p2_floor_metaldeck_kg']/1000:.1f} | "
+                f"{q['p2_floor_staggered_kg']/1000:.1f} | "
+                f"{q['p2_floor_greatwall_kg']/1000:.1f} | "
+                f"{q['secondary_kg']/1000:.1f} | {q['total_t']} | "
+                f"{q['total_greatwall_t']} |"
+            )
+
+    first = list(rows[0]["quantities"]["systems"].values())[0]
+    staggered = first["staggered"]
+    great_wall = first["great_wall"]
+    lines += [
+        "",
+        "## Entrepiso P2 — estado de alternativas",
+        "",
+        "- **METALDECK con apoyos:** subtotal gravitacional; introduce apoyos en la banda "
+        "doméstica y no incluye diseño compuesto, conectores, vibración ni fuego.",
+        f"- **STAGGERED — NO ADOPTADO:** {staggered['n_trusses']} cerchas de 18 m, "
+        f"canto {staggered['truss_depth_m']} m. La frecuencia del panel queda sin calcular "
+        "hasta definir deck y sección compuesta.",
+        f"- **GRAN-MURO — CONCEPTO GRAVITACIONAL ACTIVO D-043:** superficie de "
+        f"madera/absorción delante de bastidor oculto {great_wall['hidden_column_trial_profile']} "
+        f"+ viga de transferencia {great_wall['transfer_girder_trial_profile']}; "
+        f"{great_wall['n_beams']} vigas {great_wall['beam_profile']} a "
+        f"{18.0/great_wall['n_beams']:.1f} m dejan un canto conceptual de "
+        f"{great_wall['trial_floor_zone_m']:.2f} m. El subtotal "
+        f"({great_wall['total_kg']/1000:.1f} t) es una prueba de cabida y no verifica pandeo, "
+        f"uniones, fuego, diafragma, cimentación ni acción lateral.",
+        "",
+        "## Defectos corregidos en revisión 0.2",
+        "",
+        "1. Se calcula el momento interior para carga uniforme de ambos signos; la revisión "
+        "0.1 devolvía cero en una viga simple bajo succión.",
+        "2. La succión `WU` se separa de `WX+`/`WX-`; el sismo conceptual usa `EX+`/`EX-`.",
+        "3. Los miembros de piso usan demanda factorizada para resistencia y servicio sin "
+        "factor para flecha; se eliminó la reducción `/1,5` no sustentada.",
+        "4. El catálogo ya no acepta silenciosamente su perfil mayor y el pórtico no ignora "
+        "deriva/interacción al llegar a HEA500/HEB400.",
+        "5. El rafter incorpora interacción axial-flexión en el cribado de fluencia bruta.",
+        "6. Se retiró la frecuencia ficticia del deck modelado como losa maciza de 220 mm. "
+        "D-043 adopta el camino gravitacional del gran muro, pero no valida perfiles ni cantidades.",
+        "",
+        "## Bloqueadores",
+        "",
+    ]
+    for blocker in audit["blockers"]:
+        lines.append(
+            f"- **{blocker['id']} · {blocker['severity'].upper()}:** "
+            f"{blocker['description']}"
+        )
+    lines += [
+        "",
+        "## Uso permitido",
+        "",
+        "El E0 sirve para coordinación geométrica, detección de conflictos y definición del "
+        "alcance del E1. Los objetivos históricos de 30–45 t y 31–48 kg/m² no validan un "
+        "resultado por coincidencia. D-019 y PE-1 siguen abiertos hasta contar con modelo "
+        "normativo, camino lateral completo, entrepiso de fabricante, geotecnia y cantidades "
+        "revisadas por ingeniero competente.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_csv(rows: list[dict]) -> None:
     path = OUT / "DH-EST-E0-001_resumen.csv"
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
-        writer.writerow(["modulacion", "sistema", "columnas", "viga_cercha", "tirante_cm2", "marcos_t", "entrepiso_p2_metaldeck_t", "entrepiso_p2_staggered_t", "entrepiso_p2_granmuro_t", "secundaria_t", "total_metaldeck_t", "total_granmuro_t", "kg_m2_granmuro", "drift_m"])
+        writer.writerow(["modulacion", "sistema", "columnas_cribado", "viga_cercha_cribado", "tirante_cm2", "marcos_t_subtotal", "entrepiso_p2_metaldeck_t_subtotal", "entrepiso_p2_staggered_t_subtotal_no_adoptado", "entrepiso_p2_granmuro_t_subtotal_concepto_D043", "secundaria_t_reserva", "total_metaldeck_t_subtotal", "total_granmuro_t_subtotal_concepto_D043", "kg_m2_granmuro_concepto_D043", "drift_m_cribado", "estado_analisis", "elegible_ranking"])
         for row in rows:
             mod = row["modulation"]
             for sid, q in row["quantities"]["systems"].items():
@@ -249,6 +372,7 @@ def write_csv(rows: list[dict]) -> None:
                     round(q["p2_floor_greatwall_kg"] / 1000.0, 2),
                     round(q["secondary_kg"] / 1000.0, 2), q["total_t"], q["total_greatwall_t"],
                     q["kg_m2_greatwall"], f.get("drift_m", ""),
+                    f.get("analysis_status", "incomplete"), q["ranking_eligible"],
                 ])
 
 
@@ -288,24 +412,30 @@ def write_svg(system_id: str) -> None:
     p2_level = cfg["geometry"]["p2_floor_level_m"]
     has_p2 = True
 
-    if system_id.startswith("PORTICO"):
+    is_truss = not system_id.startswith("PORTICO")
+    if not is_truss:
         cfg_sys = next(s for s in cfg["systems"] if s["id"] == system_id)
         col = profile("HEA300")
         rafter = profile("IPE500")
         nodes = _frame_node_coords(eave_low, eave_high, has_p2, p2_level)
         label = "PÓRTICO TRANSVERSAL"
-        sub = "Esquema E0 · columna HEA + viga IPE con cartela de alero · bases articuladas"
+        sub = "Cribado E0 · columna HEA + viga IPE uniforme (cartela NO modelada) · bases articuladas"
         if cfg_sys.get("tie"):
-            sub = "Esquema E0 · pórtico atado con tirante entre los apoyos de la cercha (triángulo rígido) · bases articuladas"
+            sub = "Cribado E0 · pórtico atado con tirante entre cabezas de columna · bases articuladas"
         if cfg_sys.get("fixed_base"):
-            sub = "Esquema E0 · columna HEA + viga IPE con cartela · bases empotradas"
+            sub = "Cribado E0 · viga IPE uniforme (cartela NO modelada) · base fija ideal sin cimentación"
         parts = _svg_header(f"{label} — {system_id}", sub)
     else:
         col = profile("HEA200")
         rafter = profile("IPE220")
         nodes = _frame_node_coords(eave_low, eave_high, has_p2, p2_level)
-        nodes["roof_mid"] = (nodes["top_low"][0] + 9 * 30.0, nodes["top_low"][1] - 30.0 * 1.125)
-        parts = _svg_header(f"CERCHA TRANSVERSAL — {system_id}", "Esquema E0 · cuerdas tubulares HSS + diagonalizado · profundidad L/16 ≈ 1,13 m")
+        truss_depth = 18.0 / 16.0
+        nodes.update({
+            "bottom_low": (nodes["top_low"][0], nodes["top_low"][1] + truss_depth * 30.0),
+            "bottom_mid": (nodes["roof_mid"][0], nodes["roof_mid"][1] + truss_depth * 30.0),
+            "bottom_high": (nodes["top_high"][0], nodes["top_high"][1] + truss_depth * 30.0),
+        })
+        parts = _svg_header(f"CERCHA TRANSVERSAL — {system_id}", "Alternativa E0 monopendiente incompleta · sin análisis lateral, estabilidad de barras ni conexiones")
     _ = (col, rafter)
 
     parts.append('<g font-family="Arial" fill="#20292e">')
@@ -319,17 +449,39 @@ def write_svg(system_id: str) -> None:
         x2, y2 = nodes[b]
         parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{width}"/>')
 
-    line("base_low", "top_low")
-    line("base_high", "top_high")
+    left_column_top = "bottom_low" if is_truss else "top_low"
+    right_column_top = "bottom_high" if is_truss else "top_high"
+    line("base_low", left_column_top)
+    line("base_high", right_column_top)
     if has_p2:
         line("base_low", "p2_low")
-        line("p2_low", "top_low")
+        line("p2_low", left_column_top)
         line("base_high", "p2_high")
-        line("p2_high", "top_high")
+        line("p2_high", right_column_top)
     if system_id.endswith("-T"):
         line("top_low", "top_high", color="#27859a", width=3.0)
     line("top_low", "roof_mid")
     line("roof_mid", "top_high")
+    if is_truss:
+        line("bottom_low", "bottom_mid", width=5.0)
+        line("bottom_mid", "bottom_high", width=5.0)
+        line("bottom_low", "top_low", width=3.0)
+        line("bottom_high", "top_high", width=3.0)
+        # Warren conceptual, siguiendo el faldón único. Las barras son solo
+        # representación geométrica; el E0 no analiza fuerzas de la cercha.
+        top_left_x, top_left_y = nodes["top_low"]
+        bot_left_x, bot_left_y = nodes["bottom_low"]
+        for i in range(8):
+            x1 = top_left_x + i * 540.0 / 8.0
+            x2 = top_left_x + (i + 1) * 540.0 / 8.0
+            top_y1 = top_left_y + i * (nodes["top_high"][1] - top_left_y) / 8.0
+            top_y2 = top_left_y + (i + 1) * (nodes["top_high"][1] - top_left_y) / 8.0
+            bot_y1 = bot_left_y + i * (nodes["bottom_high"][1] - bot_left_y) / 8.0
+            bot_y2 = bot_left_y + (i + 1) * (nodes["bottom_high"][1] - bot_left_y) / 8.0
+            if i % 2 == 0:
+                parts.append(f'<line x1="{x1}" y1="{bot_y1}" x2="{x2}" y2="{top_y2}" stroke="#566269" stroke-width="2"/>')
+            else:
+                parts.append(f'<line x1="{x1}" y1="{top_y1}" x2="{x2}" y2="{bot_y2}" stroke="#566269" stroke-width="2"/>')
 
     x0, y0 = nodes["base_low"]
     parts.append(f'<line x1="{x0}" y1="{y0+20}" x2="{x0+540}" y2="{y0+20}" stroke="#566269" stroke-width="1"/>')

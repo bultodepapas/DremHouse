@@ -1,8 +1,8 @@
 # Registro de decisiones
 
 **Estatus:** activo  
-**Versión:** 0.4
-**Fecha:** 2026-08-11
+**Versión:** 0.5
+**Fecha:** 2026-08-12
 
 | ID | Decisión | Estado | Fuente/fecha |
 |---|---|---|---|
@@ -39,6 +39,7 @@
 | D-040 | Incorporar dos claraboyas de vidrio de 2,40 × 4,80 m sobre los talleres de carro y RC, dentro de la doble altura; excepción expresa al criterio de no usar tragaluces por defecto | Activa como hipótesis solicitada | Propietario / revisión claraboyas b08, 2026-08-11 |
 | D-042 | **Elastizar la hard rule 9:** los dormitorios de los dos hijos deben quedar iguales **dentro de ±1,00 m² de área útil**, en vez de exactamente iguales, para poder mejorar el resto de la planta del P2. La equivalencia cualitativa se traduce a un criterio medible: ninguna de las dos habitaciones supera **1,35:1** de proporción y la diferencia entre ambas no supera **0,30**. | Activa; modifica la hard rule 9 y D-006 | Instrucción expresa del propietario, 2026-08-11 |
 | D-041 | Adoptar `bases_estructura_metalica.md` como base para abrir D-019: comparar 2 sistemas (pórticos portal 18 m vs. cerchas) × 3 modulaciones (4,5/6,0/9,0 m) con modelo E0, y **eliminar la carga de nieve de las hipótesis** (altiplano de Boyacá sin nieve de diseño; gobiernan viento B.6, sismo Título A y lluvia/drenaje) | Propuesta | Bases de estructura metálica, 2026-08-11 |
+| D-043 | Incorporar el gran muro de X=31,50 m al camino gravitacional del P2 como **pared estructural híbrida**: acabado continuo de madera/absorción de D-033 delante de un bastidor de acero oculto, con viga superior de transferencia y columnas HSS ubicadas en machones entre puertas y a los lados del portal de escalera. El borde X=21,00 m se estudia como cercha de canto completo integrada por encima del nivel de piso, sin reducir la altura libre de PB. El espesor de 0,20 m deja de ser condicionante estructural y podrá crecer por acero, conexiones, fuego y acústica. Esta decisión adopta la función gravitacional, pero **no** convierte por sí sola el muro transversal en arriostramiento longitudinal; diafragma y sistemas laterales se resuelven separadamente en E1/E2. | Activa como intención estructural de anteproyecto; perfiles, apoyos, espesor y función lateral pendientes de E1/E2 | Instrucción expresa del propietario y coordinación estructural, 2026-08-12 |
 
 ## Decisiones que deben abrirse a continuación
 
@@ -61,7 +62,7 @@ Usar la [plantilla de decisión](../07_plantillas/decision.md) para toda nueva e
 |---|---|---|
 | 2026-08-11 | El identificador `D-037` estaba asignado a dos decisiones distintas. Se conserva `D-037` para la adopción del P2 b06/R05 (que va en secuencia con D-036 y D-038) y la base de estructura metálica pasa a **`D-041`**. | Hallazgo H-15 de la [revisión de coordinación](../02_arquitectura/revision_coordinacion_v0.3_2026_08.md). La precedencia del expediente se apoya en decisiones identificadas de forma única. |
 
-**Próximo identificador libre: `D-043`.** Los rangos `D-017` a `D-025` permanecen reservados
+**Próximo identificador libre: `D-044`.** Los rangos `D-017` a `D-025` permanecen reservados
 para las decisiones pendientes listadas arriba.
 
 ## Hard rules modificadas por decisión posterior

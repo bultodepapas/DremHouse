@@ -44,6 +44,10 @@ _TABLE = {
 }
 
 
+class ProfileSelectionError(RuntimeError):
+    """El catálogo E0 no contiene un perfil que satisfaga el cribado pedido."""
+
+
 @dataclass(frozen=True)
 class Profile:
     name: str
@@ -131,5 +135,9 @@ def lightest_member(
         best = cand
         break
     if best is None:
-        best = series(series_name)[-1]
+        raise ProfileSelectionError(
+            "Ningún perfil de la serie "
+            f"{series_name} satisface el cribado solicitado; ampliar el catálogo "
+            "o cambiar el esquema. No se acepta silenciosamente el perfil máximo."
+        )
     return best, best.mass_kg_m

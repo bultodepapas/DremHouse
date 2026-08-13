@@ -1,8 +1,9 @@
 {
   "input": "dreamhouse\\structure\\structure_system.json",
-  "input_sha256": "9b648740257a9b90fafec35dad30130792b9e299cf797c1199eb1f7dbcfbfdba",
+  "input_sha256": "9af45e75b42c424c64ac2b46b964dcece534786a5a50563e910c621e8a39d323",
   "generator": "dreamhouse/structure/e0.py",
-  "revision": "0.1",
+  "revision": "0.2",
+  "canonical_report": "docs\\03_ingenierias\\modelo_estructural_e0.md",
   "outputs": [
     "DH-EST-E0-001_resultados.json",
     "DH-EST-E0-001_resumen.md",

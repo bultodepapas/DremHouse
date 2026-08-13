@@ -1,4 +1,8 @@
-"""Cuantificación de tonelaje E0 por sistema y modulación."""
+"""Subtotales de masa E0 por sistema y modulación.
+
+No son cantidades de diseño: omiten o reservan componentes todavía no
+dimensionados y no son elegibles para seleccionar D-019 ni presupuestar PE-1.
+"""
 
 from __future__ import annotations
 
@@ -67,11 +71,17 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
                 "tie_force_kn": round(res.tie_force_kn, 1),
                 "weight_per_frame_kg": round(main_per_frame, 1),
                 "rafter_moment_knm": round(res.rafter_moment_knm, 1),
+                "rafter_axial_kn": round(res.rafter_axial_kn, 1),
                 "column_moment_knm": round(res.column_moment_knm, 1),
                 "column_axial_kn": round(res.column_axial_kn, 1),
                 "rafter_deflection_m": round(res.rafter_deflection_m, 3),
                 "drift_m": round(res.drift_m, 3),
-                "utilization": round(res.utilization, 2),
+                "gross_section_screening_ratio": round(res.utilization, 2),
+                "screening_passed": res.screening_passed,
+                "design_adequate": False,
+                "analysis_status": res.analysis_status,
+                "screening_checks": res.screening_checks,
+                "governing_issues": list(res.governing_issues),
             }
         else:
             chord, truss_mass, truss_defl = size_cercha_roof(cfg, steel, bay_m, phi_b, phi_c)
@@ -98,6 +108,14 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
                 "truss_chord": chord.name,
                 "truss_deflection_m": round(truss_defl, 3),
                 "weight_per_frame_kg": round(main_per_frame, 1),
+                "screening_passed": False,
+                "design_adequate": False,
+                "analysis_status": "incomplete_no_lateral_or_member_stability_analysis",
+                "lateral_analysis_performed": False,
+                "governing_issues": [
+                    "lateral_system_not_analyzed",
+                    "member_buckling_and_connections_not_checked",
+                ],
             }
 
         joist = floor["joist"]
@@ -118,7 +136,7 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
         purlin_total = purlin_lines * length * profile("C200").mass_kg_m
         girt_lines = math.ceil((eave_low + eave_high) / 2.0 / crit["girt_spacing_m"])
         girt_total = girt_lines * (2.0 * (length + 18.0)) * profile("C200").mass_kg_m * 0.85
-        bracing_total = 1.0 * 1000.0
+        bracing_total = float(crit["bracing_mass_allowance_kg"])
         secondary_total = (purlin_total + girt_total + bracing_total) * (1.0 + waste)
 
         main_round = round(main_total, 0)
@@ -140,7 +158,7 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
             "floor_beam_profile": beam.name,
             "edge_beam_profile": edge.name,
             "aux_columns_profile": aux_col.name,
-            "p2_floor_mode": "GRAN-MURO (muro estructural X=31,5) · staggered · metaldeck",
+            "p2_floor_mode": "D-043 activo para gravedad: pared híbrida de acero oculto · comparadores: metaldeck con apoyos y staggered",
             "staggered": staggered,
             "great_wall": great_wall,
             "purlins_m": round(purlin_total / profile("C200").mass_kg_m, 0),
@@ -153,6 +171,17 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
             "total_greatwall_kg": total_greatwall_kg,
             "total_greatwall_t": round(total_greatwall_kg / 1000.0, 1),
             "kg_m2_greatwall": round(total_greatwall_kg / 918.0, 1),
+            "estimate_class": "screening_lower_bound_not_design_quantity",
+            "ranking_eligible": False,
+            "design_compliance_demonstrated": False,
+            "bracing_basis": "mass_allowance_only_no_force_design",
+            "excluded_or_unverified": [
+                "member buckling and second-order effects",
+                "connections, base plates, anchors and foundations",
+                "designed longitudinal bracing, diaphragm and collectors",
+                "rooflight/opening framing and local wind zones",
+                "composite deck, studs, reinforcement and fire protection",
+            ],
             "frames": frames,
         }
 

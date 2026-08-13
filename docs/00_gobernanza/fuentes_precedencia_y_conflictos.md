@@ -1,8 +1,8 @@
 # Fuentes, precedencia y conflictos
 
 **Estatus:** activo  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Versión:** 0.3
+**Fecha:** 2026-08-12
 
 ## Precedencia
 
@@ -94,6 +94,24 @@ logística especial, seguros, interventoría, escalamiento o contingencias de pr
 - **Regla:** separar siempre obra física, costos blandos, equipamiento, predio/exteriores
   y reserva del promotor.
 - **Estado:** crítico, abierto.
+
+### CF-008 — Gran muro arquitectónico frente a apoyo estructural del P2
+
+D-033 definió el gran muro de X=31,50 m como superficie continua de madera/absorción
+con puertas enrasadas. El E0 inicial lo convirtió silenciosamente en muro portante y
+«núcleo de corte longitudinal», sin bastidor, transferencias, conexiones ni compatibilidad
+con los cinco accesos de la elevación interior.
+
+- **Resolución gravitacional:** D-043 adopta una pared híbrida: el acabado arquitectónico
+  permanece y un bastidor de acero oculto recibe el P2 mediante viga superior y columnas
+  en machones coordinados con las puertas.
+- **Reserva geométrica:** el espesor conceptual de 0,20 m puede aumentar; no gobierna
+  sobre conexiones, protección contra incendio, tolerancias ni acústica.
+- **Reserva lateral:** por estar en el plano X=31,50 m y extenderse en Y, el muro no
+  aporta automáticamente estabilidad longitudinal X. No descontar arriostramientos de
+  fachadas, diafragma o colectores hasta el modelo E1.
+- **Estado:** conflicto de autoridad resuelto por D-043 para la función gravitacional;
+  diseño y función lateral continúan abiertos.
 
 ## Regla de resolución
 

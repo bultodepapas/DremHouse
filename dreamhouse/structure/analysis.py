@@ -132,7 +132,10 @@ def max_moment_in_member(frame: Frame2D, m: FrameMember, f_local: np.ndarray) ->
     m2 = f_local[5]
     wy = m.w_y_n_m
     candidates = [abs(m1), abs(m2)]
-    if wy > 1e-9:
+    # El extremo interior existe con carga uniforme de cualquier signo. La
+    # condición anterior (wy > 0) omitía por completo el momento máximo bajo
+    # succión/carga ascendente cuando los momentos de extremo eran nulos.
+    if abs(wy) > 1e-9:
         x_star = v1 / wy
         if 0.0 < x_star < frame.member_length(m):
             m_star = m1 + v1 * x_star - 0.5 * wy * x_star**2

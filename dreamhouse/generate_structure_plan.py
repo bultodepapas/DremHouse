@@ -1,15 +1,16 @@
 """Generador de láminas ESTRUCTURALES conectadas a los cálculos E0.
 
 Las láminas se dibujan **calculando en vivo** desde `structure_system.json` a
-través del modelo (`compute_quantities`, `size_staggered_floor`): perfiles,
-canto, tonelajes, paneles, frecuencia y posiciones de cerchas salen del estado
-actual de los cálculos. Si los cálculos cambian, basta re-ejecutar
+través del modelo (`compute_quantities`, `size_staggered_floor`). Los perfiles y
+masas mostrados son subtotales de cribado, no dimensionamiento. Si el modelo
+cambia, basta re-ejecutar
 `python -m dreamhouse.structure.e0` (que regenera todo) o
 `python dreamhouse/generate_structure_plan.py`.
 
 Láminas:
 - DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg : planta estructural + corte B-B.
 - DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg  : vista lateral A (elevación estructural).
+- DH-EST-E0-004_PARED-HIBRIDA.svg         : bastidor oculto detrás del gran muro.
 
 NO APTO PARA CONSTRUIR. Solo inspección visual de coordinación.
 """
@@ -36,6 +37,7 @@ OUT = ROOT / "planos" / "estructura"
 
 SHEET2 = "EST-002-R00"
 SHEET3 = "EST-003-R00"
+SHEET4 = "EST-004-R00"
 
 
 def esc(value: str) -> str:
@@ -130,8 +132,8 @@ def draw_plan(parts, cfg, pb, gw):
         xa, xb = zone
         parts.append(line(sx(xa), sy(0), sx(xb), sy(18), color="#7a8689", width=1.0, dash="7 4"))
         parts.append(line(sx(xa), sy(18), sx(xb), sy(0), color="#7a8689", width=1.0, dash="7 4"))
-    parts.append(text(sx(6), sy(9), "ARRIOSTRAMIENTO LONGITUDINAL · WIND GIRDER", 7, weight=700, fill="#667377", rotate=-56))
-    parts.append(text(sx(30), sy(9), "ARRIOSTRAMIENTO LONGITUDINAL · WIND GIRDER", 7, weight=700, fill="#667377", rotate=56))
+    parts.append(text(sx(6), sy(9), "ZONA DE ESTUDIO · ARRIOSTRAMIENTO NO DISEÑADO", 7, weight=700, fill="#8e3825", rotate=-56))
+    parts.append(text(sx(30), sy(9), "ZONA DE ESTUDIO · CONFLICTO VANOS/CLARABOYAS", 7, weight=700, fill="#8e3825", rotate=56))
 
     for op in pb["front_openings"]:
         parts.append(line(sx(0), sy(op["y0"]), sx(0), sy(op["y0"] + op["width"]), color="#c9a38f", width=5))
@@ -140,16 +142,19 @@ def draw_plan(parts, cfg, pb, gw):
     # RETÍCULA: cerchas de cubierta en cada línea de pórtico (M60).
     for x in frames:
         parts.append(line(sx(x), sy(0), sx(x), sy(18), color="#1f2d33", width=5))
-    parts.append(text(sx(18), sy(0.6), f"CERCHA DE CUBIERTA 18 m · L/16 · {len(frames)} LÍNEAS (M60)", 9, weight=700, fill="#1f2d33"))
+    parts.append(text(sx(18), sy(0.6), f"ALTERNATIVA CERCHA 18 m · L/16 · {len(frames)} LÍNEAS · SIN ANÁLISIS LATERAL", 9, weight=700, fill="#1f2d33"))
 
     for x in frames:
         for y in (0, 18):
             parts.append(f'<circle cx="{sx(x)}" cy="{sy(y)}" r="5" fill="#172126"/>')
-    parts.append(text(sx(36) + 34, sy(18), "COLUMNA HEA200 EN MUROS", 7, weight=700, fill="#172126", anchor="start"))
+    parts.append(text(sx(36) + 34, sy(18), "HEA200: MÍNIMO GRAVITACIONAL, NO DISEÑO", 7, weight=700, fill="#8e3825", anchor="start"))
 
-    # GRAN MURO estructural (apoyo del P2 + núcleo de corte longitudinal).
+    # Pared híbrida D-043: el acabado arquitectónico D-033 permanece y el
+    # bastidor de acero se oculta en machones coordinados con las puertas.
     parts.append(line(sx(31.5), sy(0), sx(31.5), sy(18), color="#6b4a2e", width=8))
-    parts.append(text(sx(31.5), sy(17.6), f"GRAN MURO ESTRUCTURAL X=31,5 · t≈{gw['wall_t_m']} m · portante + núcleo de corte", 7, weight=700, fill="#6b4a2e"))
+    for column_y in gw["hidden_column_y_m"]:
+        parts.append(f'<circle cx="{sx(31.5)}" cy="{sy(column_y)}" r="6" fill="#27859a" stroke="#173f48" stroke-width="1"/>')
+    parts.append(text(sx(31.5), sy(17.6), f"PARED HÍBRIDA D-043 · {gw['hidden_column_trial_profile']} OCULTAS + {gw['transfer_girder_trial_profile']} DE PRUEBA", 7, weight=700, fill="#6b4a2e"))
 
     # Esquema GRAN-MURO del entrepiso P2: cercha de borde X=21 + vigas longitudinales.
     parts.append(line(sx(21), sy(0), sx(21), sy(18), color="#3f7d8a", width=3, dash="9 5"))
@@ -157,7 +162,7 @@ def draw_plan(parts, cfg, pb, gw):
     for y in beam_ys:
         parts.append(line(sx(21), sy(y), sx(36), sy(y), color="#3f7d8a", width=3, dash="4 4"))
     parts.append(text(sx(21.2), sy(beam_ys[0] + 0.6), f"VIGAS LONG. {gw['beam_profile']} ×{gw['n_beams']} EN PLENUM · luz {gw['beam_span_m']} m", 7, weight=700, fill="#3f7d8a", anchor="start"))
-    parts.append(text(sx(28.5), sy(0.6), f"P2: franja núcleo sobre el muro (luz {gw['nucleus_span_m']} m) · paneles deck profundo · fn≈{gw['panel_frequency_hz']} Hz", 7, weight=700, fill="#3f7d8a"))
+    parts.append(text(sx(28.5), sy(0.6), f"P2 D-043: franja {gw['nucleus_span_m']} m · DECK/FRECUENCIA NO ANALIZADOS", 7, weight=700, fill="#8e3825"))
 
     for i, x in enumerate(frames):
         px = sx(x)
@@ -185,7 +190,7 @@ def draw_section(parts, cfg, gw):
     def yy(h): return base - h * sc
 
     parts.append(text(left + w / 2, 185, "CORTE TRANSVERSAL ESTRUCTURAL B-B", 15, weight=700))
-    parts.append(text(left + w / 2, 203, f"Mono-pitch {low}→{high} · cercha de cubierta L/16 + P2 sobre muro", 9, fill="#59676c"))
+    parts.append(text(left + w / 2, 203, f"Mono-pitch {low}→{high} · alternativas de cribado NO ADOPTADAS", 9, fill="#59676c"))
 
     parts.append(line(left, base, left + w, base, color="#172126", width=3))
     parts.append(line(left, yy(3.8), left + w, yy(3.8), color="#3f7d8a", width=2, dash="9 5"))
@@ -193,11 +198,14 @@ def draw_section(parts, cfg, gw):
 
     # Losa del P2 y vigas longitudinales (de canto, en sección) dentro del plenum 3,20→3,80.
     panel = 18.0 / gw["n_beams"]
+    beam_depth = float(gw["beam_profile"].removeprefix("IPE")) / 1000.0
+    beam_top = 3.8 - gw["slab_total_m"]
+    beam_bottom = beam_top - beam_depth
     for k in range(gw["n_beams"]):
         px = left + w * (k + 0.5) / gw["n_beams"]
-        parts.append(rect(px - 4, yy(3.2), 8, 0.6 * sc, fill="#3f7d8a", stroke="#274a53", stroke_width=1))
-    parts.append(text(left + w / 2, yy(3.4) - 8, f"{gw['n_beams']} VIGAS LONG. {gw['beam_profile']} EN PLENUM (3,20→3,80) · paneles de losa {panel:.0f} m entre vigas", 8, weight=700, fill="#3f7d8a"))
-    parts.append(text(left + w / 2, yy(3.8) - 24, "El GRAN MURO X=31,5 (perpendicular a este corte) recibe el P2 y aporta núcleo de corte longitudinal", 7, fill="#6b4a2e"))
+        parts.append(rect(px - 4, yy(beam_top), 8, beam_depth * sc, fill="#3f7d8a", stroke="#274a53", stroke_width=1))
+    parts.append(text(left + w / 2, yy((beam_top + beam_bottom) / 2) - 8, f"{gw['n_beams']} VIGAS {gw['beam_profile']} @ {panel:.1f} m · losa prueba {gw['slab_total_m']:.2f} m · cielo objetivo +3,10", 8, weight=700, fill="#3f7d8a"))
+    parts.append(text(left + w / 2, yy(3.8) - 24, "PARED HÍBRIDA D-043: apoyo gravitacional activo; lateral, uniones y cimentación sin diseño", 7, fill="#8e3825"))
 
     # Cercha de cubierta (L/16 ≈ 1,13 m) bajo el faldón.
     top_c = yy(low)
@@ -216,7 +224,7 @@ def draw_section(parts, cfg, gw):
     for px in (left, left + w):
         parts.append(line(px, base, px, top_c + truss_h, color="#172126", width=7))
         parts.append(poly([(px - 10, base), (px + 10, base), (px, base + 12), (px - 10, base)], color="#536166", width=1.5))
-    parts.append(text(left + w / 2, base + 24, "COLUMNA HEA200 · base articulada · solo en muros largos", 8, weight=700))
+    parts.append(text(left + w / 2, base + 24, "HEA200 = mínimo gravitacional · estabilidad/lateral NO verificados", 8, weight=700, fill="#8e3825"))
     parts.append(text(left + w / 2, base + 46, "18,00 m", 10, weight=700))
 
 
@@ -244,32 +252,32 @@ def draw_lateral(parts, cfg, pb, q, gw):
     # Eave alta (B) en línea discontinua para leer el monopitch.
     parts.append(line(left, yy(eave_high), left + width, yy(eave_high), color="#8a9396", width=1.5, dash="10 5"))
 
-    # Columnas HEA200 del sistema CERCHA en los pórticos M60.
+    # Perfiles mínimos del subtotal gravitacional; no diseño de columnas.
     for x in frames:
         px = xx(x)
         parts.append(line(px, base, px, top, color="#172126", width=6))
         parts.append(poly([(px - 8, base), (px + 8, base), (px, base + 10), (px - 8, base)], color="#536166", width=1.2))
-    parts.append(text(left + width + 8, top, f"{len(frames)} COLUMNAS {col} EN M60", 8, weight=700, fill="#172126", anchor="start"))
+    parts.append(text(left + width + 8, top, f"{len(frames)} × {col} · CRIBADO GRAVITACIONAL", 8, weight=700, fill="#8e3825", anchor="start"))
 
     # Arriostramiento vertical en los paños de borde (estabilidad longitudinal).
     for zone in ((0, 12), (24, 36)):
         xa, xb = zone
         parts.append(line(xx(xa), base, xx(xb), top, color="#7a8689", width=1.2, dash="7 4"))
         parts.append(line(xx(xa), top, xx(xb), base, color="#7a8689", width=1.2, dash="7 4"))
-    parts.append(text(xx(6), yy(3.0), "X-BRACING VERTICAL", 7, weight=700, fill="#667377"))
-    parts.append(text(xx(30), yy(3.0), "X-BRACING VERTICAL", 7, weight=700, fill="#667377"))
+    parts.append(text(xx(6), yy(3.0), "TRAZO NO DISEÑADO · CONFLICTO CON VANO", 7, weight=700, fill="#8e3825"))
+    parts.append(text(xx(30), yy(3.0), "TRAZO NO DISEÑADO · CONFLICTO CON P2", 7, weight=700, fill="#8e3825"))
 
-    # P2 y esquema GRAN-MURO (visto en el muro A): borde X=21, vigas longitudinales y muro X=31,5.
+    # P2 y pared híbrida D-043 (vista de canto): borde X=21, vigas y bastidor X=31,5.
     p2x = xx(cfg["geometry"]["p2_start_x_m"])
     p2y = yy(3.8)
     parts.append(line(p2x, top, p2x, base, color="#687579", width=1.2, dash="7 5"))
     parts.append(line(p2x, p2y, xx(36), p2y, color="#3f7d8a", width=2.5, dash="9 5"))
-    parts.append(text(xx(28.5), p2y - 8, f"P2 POSTERIOR · 15,00 m · +3,80 · vigas longitudinales {gw['beam_profile']} + losa (paneles {18.0/gw['n_beams']:.0f} m)", 8, weight=700, fill="#3f7d8a"))
-    # Borde X=21 (cercha de borde de 18 m, de canto) y muro estructural X=31,5 (núcleo de corte).
+    parts.append(text(xx(28.5), p2y - 8, f"P2 D-043 · {gw['beam_profile']} DE CRIBADO · DECK NO ANALIZADO", 8, weight=700, fill="#8e3825"))
+    # Borde y pared: camino gravitacional activo, dimensionamiento pendiente.
     parts.append(rect(xx(21) - 3, p2y - gw['edge_truss_depth_m'] * sc, 6, gw['edge_truss_depth_m'] * sc, fill="#3f7d8a", stroke="#274a53", stroke_width=1))
     parts.append(text(xx(21), p2y - gw['edge_truss_depth_m'] * sc - 6, "BORDE X=21", 6, weight=700, fill="#3f7d8a"))
     parts.append(rect(xx(31.5) - 4, top, 8, base - top, fill="#d9c9a0", stroke="#6b4a2e", stroke_width=1.2))
-    parts.append(text(xx(31.5), (base + top) / 2, "MURO ESTRUCTURAL X=31,5 · portante + caja de escalera + núcleo de corte", 6.5, weight=700, fill="#6b4a2e", rotate=-90))
+    parts.append(text(xx(31.5), (base + top) / 2, "PARED HÍBRIDA D-043 · GRAVEDAD SÍ · LATERAL X NO", 6.5, weight=700, fill="#8e3825", rotate=-90))
 
     # Aberturas de contexto (tenues) para orientar.
     for g in pb["technical_glazing"]:
@@ -285,7 +293,7 @@ def draw_lateral(parts, cfg, pb, q, gw):
         x1 = xx(g["from"]); x2 = xx(g["to"])
         y1 = yy(3.8 + g["sill"] + g["height"]); y2 = yy(3.8 + g["sill"])
         parts.append(rect(x1, y1, x2 - x1, y2 - y1, fill="#cfe0e3", stroke="#8aa4a9", stroke_width=0.8, opacity="0.45"))
-    # Claraboya del taller (solo afecta correas).
+    # Claraboya de contexto; su bastidor y efecto en diafragma no están modelados.
     parts.append(rect(xx(2.4), yy(eave), xx(4.8) - xx(2.4), 10, fill="#d9c9a0", stroke="#8a7a4f", stroke_width=0.8, opacity="0.7"))
     parts.append(text(xx(3.6), yy(eave) - 6, "CLARABOYA 2,40 m (b08)", 6, fill="#8a7a4f"))
 
@@ -305,42 +313,89 @@ def draw_lateral(parts, cfg, pb, q, gw):
     parts.append(text(hdim - 14, (base + top) / 2, f"{eave} m", 8, rotate=-90))
     parts.append(text(hdim - 14, (base + p2y) / 2, "3,80 m", 7, rotate=-90))
 
-    parts.append(text(left + width / 2, 170, f"CUBIERTA: CERCHA {chord} (L/16) EN {len(frames)} LÍNEAS · P2: {gw['n_beams']} VIGAS {gw['beam_profile']} + BORDE {gw['edge_chord']} SOBRE GRAN MURO", 9, weight=700, fill="#243238"))
+    parts.append(text(left + width / 2, 170, f"D-043 GRAVEDAD: P2 {gw['beam_profile']} + {gw['transfer_girder_trial_profile']} · SIN LATERAL/DECK/CONEXIONES", 9, weight=700, fill="#8e3825"))
 
 
 # ---------------------------------------------------------------- NOTAS
 
 def note_box(parts, q, st, gw):
     lines = [
-        "Cálculo EN VIVO: esta lámina se dibuja desde structure_system.json vía el modelo (no usa salidas exportadas).",
+        "Modelo E0 v0.2 en vivo: cribado geométrico y subtotales inferiores; no produce cantidades de diseño.",
     ]
     if q and gw:
-        total_gw = q["total_greatwall_kg"]
         lines.append(
-            f"Modelo E0 · M60 · CERCHA: marcos {q['main_frames_kg']/1000:.1f} t · columnas {q['frames']['column']} · "
-            f"cuerda {q['frames']['truss_chord']}. Entrepiso P2: metaldeck {q['p2_floor_metaldeck_kg']/1000:.1f} t "
-            f"(con columnas) · staggered {q['p2_floor_staggered_kg']/1000:.1f} t · GRAN-MURO {q['p2_floor_greatwall_kg']/1000:.1f} t."
+            f"CERCHA M60: {q['main_frames_kg']/1000:.1f} t de subtotal; NO tiene análisis lateral, estabilidad de barras ni conexiones."
         )
         lines.append(
-            f"GRAN-MURO (preferido): {gw['n_beams']} vigas longitudinales {gw['beam_profile']} de {gw['beam_span_m']} m en el plenum "
-            f"(Y≈3/9/15) + cercha de borde X=21 (luz 18 m, cordón {gw['edge_chord']}) + gran muro portante (axial ≈ "
-            f"{gw['wall_axial_kn_m']} kN/m, núcleo de corte) + franja núcleo sobre el muro (luz {gw['nucleus_span_m']} m). "
-            f"fn del panel ≈ {gw['panel_frequency_hz']} Hz. Total estimado con GRAN-MURO ≈ {total_gw/1000:.1f} t "
-            f"(≈ {q['kg_m2_greatwall']} kg/m²)."
+            f"GRAN-MURO D-043: apoyo gravitacional híbrido activo; {gw['hidden_column_trial_profile']} ocultas + "
+            f"{gw['transfer_girder_trial_profile']} son pruebas de cabida, no perfiles seleccionados."
         )
         if st:
             lines.append(
-                f"Staggered (alternativa): {st['n_trusses']} cerchas de 18 m, canto {st['truss_depth_m']} m (d/L {st['truss_d_over_l']}), "
-                f"paneles {st['panel_span_m']} m sin viguetas, fn ≈ {st['panel_frequency_hz']} Hz — exige re-articular particiones."
+                "STAGGERED/DECK: alternativas no adoptadas; panel compuesto, vibración, diafragma y fuego no analizados."
             )
     lines += [
-        "Cero columnas interiores en los tres esquemas; el gran muro además aporta rigidez lateral longitudinal (wind girder simplificado).",
-        "NO APTO PARA CONSTRUIR · hipótesis de esquema para inspección visual, no diseño profesional.",
+        "D-043 FIJA EL CAMINO GRAVITACIONAL, NO EL TONELAJE. NO APTO PARA PRESUPUESTAR, FABRICAR O CONSTRUIR.",
     ]
-    parts.append(rect(70, 780, 1260, 92, fill="#fff4df", stroke="#bd5c3c", stroke_width=1))
-    parts.append(text(90, 803, "RESUMEN DE CÁLCULO (modelo E0 · en vivo)", 12, "start", 700, "#8e3825"))
+    parts.append(rect(70, 760, 1260, 125, fill="#fff4df", stroke="#bd5c3c", stroke_width=1))
+    parts.append(text(90, 783, "DICTAMEN DE AUDITORÍA (modelo E0 · en vivo)", 12, "start", 700, "#8e3825"))
     for i, n in enumerate(lines):
-        parts.append(text(90, 826 + i * 14, "• " + n, 8.5, "start", 700 if i == len(lines) - 1 else 400, "#8e3825" if i == len(lines) - 1 else "#3f4c51"))
+        parts.append(text(90, 806 + i * 16, "• " + n, 8.5, "start", 700 if i == len(lines) - 1 else 400, "#8e3825" if i == len(lines) - 1 else "#3f4c51"))
+
+
+# ------------------------------------------------------------- PARED D-043
+
+def draw_hybrid_wall_elevation(parts, pb, gw):
+    """Superpone el bastidor gravitacional de prueba a la elevación b05."""
+
+    left, base = 125.0, 675.0
+    sx, sz = 63.0, 88.0
+    floor_y = base - 3.8 * sz
+    ceiling_y = base - 3.1 * sz
+
+    parts.append('<defs><pattern id="slats-struct" width="10" height="10" patternUnits="userSpaceOnUse"><line x1="2" y1="0" x2="2" y2="10" stroke="#835e3e" stroke-width="1"/></pattern></defs>')
+    # Fondo y acabado semitransparente: el acero se dibuja detrás del listón.
+    parts.append(rect(left, floor_y, 18 * sx, base - floor_y, fill="#c7a47e", stroke="#332a24", stroke_width=2, opacity="0.40"))
+
+    # Viga superior y columnas ocultas de la prueba de cabida E0.
+    parts.append(line(left, floor_y + 22, left + 18 * sx, floor_y + 22, color="#246b7a", width=18))
+    for column_y in gw["hidden_column_y_m"]:
+        px = left + column_y * sx
+        parts.append(line(px, base, px, floor_y + 22, color="#27859a", width=12))
+        parts.append(f'<circle cx="{px}" cy="{floor_y + 22}" r="8" fill="#1e5f6c"/>')
+
+    # Tres reacciones de las vigas longitudinales sobre la transferencia.
+    for beam_y in gw["beam_y_m"]:
+        px = left + beam_y * sx
+        parts.append(line(px, floor_y - 44, px, floor_y + 5, color="#b05a38", width=3))
+        parts.append(poly([(px - 8, floor_y - 2), (px + 8, floor_y - 2), (px, floor_y + 10)], color="#b05a38", width=1.5, fill="#b05a38"))
+    parts.append(text(left + 9 * sx, floor_y - 54, f"{len(gw['beam_y_m'])} REACCIONES DE VIGAS P2 · ≈{gw['wall_point_reaction_kn']:.0f} kN C/U EN CRIBADO", 10, weight=700, fill="#8e3825"))
+
+    # Puertas y portal se conservan; ninguna columna atraviesa un acceso.
+    for room in pb["core"]:
+        door_w = room["door_width"] * sx
+        door_x = left + (room["door_y"] - 0.1) * sx
+        door_h = (2.45 if room["id"] == "ESC" else 2.30) * sz
+        parts.append(rect(door_x, base - door_h, door_w, door_h, fill="#fbfaf7", stroke="#6b4a2e", stroke_width=3 if room["id"] == "ESC" else 1.5, opacity="0.93"))
+        center = (room["y0"] + room["y1"]) / 2.0
+        parts.append(text(left + center * sx, base + 28, room["name"].upper(), 7.5, weight=700))
+
+    parts.append(rect(left, floor_y, 18 * sx, base - floor_y, fill="url(#slats-struct)", stroke="none", opacity="0.55"))
+    parts.append(line(left, ceiling_y, left + 18 * sx, ceiling_y, color="#6b4a2e", width=1.2, dash="8 5"))
+    parts.append(text(left + 9 * sx, ceiling_y - 10, f"CIELO +3,10 · ZONA ESTRUCTURAL HASTA +3,80 · TRANSFERENCIA {gw['transfer_girder_trial_profile']} DE PRUEBA", 10, weight=700, fill="#246b7a"))
+
+    # Cotas y lectura del espesor coordinado.
+    dim_y = base + 78
+    parts.append(line(left, dim_y, left + 18 * sx, dim_y, color="#536166"))
+    for column_y in gw["hidden_column_y_m"]:
+        px = left + column_y * sx
+        parts.append(line(px, dim_y - 7, px, dim_y + 7, color="#536166"))
+    parts.append(text(left + 9 * sx, dim_y + 25, "18,00 m · columnas en límites 0 / 2,4 / 7,4 / 11,0 / 13,4 / 18,0", 10, weight=700))
+
+    parts.append(rect(125, 795, 1134, 72, fill="#fff4df", stroke="#bd5c3c", stroke_width=1))
+    parts.append(text(145, 819, "LECTURA OBLIGATORIA", 11, "start", 700, "#8e3825"))
+    parts.append(text(145, 841, f"D-043 adopta el camino gravitacional. {gw['hidden_column_trial_profile']} y {gw['transfer_girder_trial_profile']} solo demuestran cabida; envolvente de muro 0,25–0,35 m.", 8.5, "start"))
+    parts.append(text(145, 860, "Sin pandeo, uniones, anclajes, fuego, cimentación ni función lateral. Las puertas y el portal de escalera permanecen libres.", 8.5, "start", 700, "#8e3825"))
 
 
 # ---------------------------------------------------------------- MAIN
@@ -353,8 +408,8 @@ def build_sheets():
 
     # Lámina 1: planta + corte B-B.
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
-    parts.append(title_block("PLANTA DE ESTRUCTURA + CORTE B-B · SOLO ESTRUCTURA (E0)",
-                             "Inspección visual de coordinación · retícula M60 · perfiles y tonelajes calculados en vivo", SHEET2))
+    parts.append(title_block("ALTERNATIVAS ESTRUCTURALES + CORTE B-B (E0)",
+                             "Camino gravitacional D-043 activo · perfiles/subtotales no adoptados · sin diseño lateral", SHEET2))
     parts.append('<g font-family="Arial" fill="#20292e">')
     draw_plan(parts, cfg, pb, gw)
     draw_section(parts, cfg, gw)
@@ -364,16 +419,25 @@ def build_sheets():
 
     # Lámina 2: vista lateral A.
     parts2 = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
-    parts2.append(title_block("VISTA LATERAL A · ESTRUCTURA (E0)",
-                              "Elevación estructural del muro Y=0 · perfiles y cotas calculados en vivo", SHEET3))
+    parts2.append(title_block("VISTA LATERAL A · ALTERNATIVAS E0",
+                              "Trazos para conflicto/coord. · no son perfiles ni arriostramientos de diseño", SHEET3))
     parts2.append('<g font-family="Arial" fill="#20292e">')
     draw_lateral(parts2, cfg, pb, q, gw)
     parts2.append('</g>')
     note_box(parts2, q, st, gw)
     parts2.append('</svg>')
 
+    # Lámina 3: elevación de coordinación del bastidor oculto D-043.
+    parts3 = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
+    parts3.append(title_block("PARED HÍBRIDA D-043 · BASTIDOR OCULTO",
+                              "Elevación de coordinación detrás del listonado · camino gravitacional activo, dimensionamiento pendiente", SHEET4))
+    parts3.append('<g font-family="Arial" fill="#20292e">')
+    draw_hybrid_wall_elevation(parts3, pb, gw)
+    parts3.append('</g></svg>')
+
     return {"DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg": "".join(parts),
-            "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg": "".join(parts2)}
+            "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg": "".join(parts2),
+            "DH-EST-E0-004_PARED-HIBRIDA.svg": "".join(parts3)}
 
 
 def main():
@@ -386,9 +450,9 @@ def main():
         "input": [str(SYSTEM.relative_to(ROOT)), str(PB.relative_to(ROOT))],
         "generator": "dreamhouse/generate_structure_plan.py",
         "revision": cfg["project"]["revision"],
-        "mode": "cálculo en vivo (compute_quantities + size_staggered_floor) — sin salidas exportadas",
+        "mode": "cribado en vivo (compute_quantities + size_staggered_floor) — subtotales inferiores",
         "outputs": list(outputs),
-        "status": "hipótesis de esquema; NO APTO PARA CONSTRUIR",
+        "status": "D-043 adopta el camino gravitacional del P2; perfiles, cantidades y sistema lateral siguen sin adoptar y no son aptos para PE-1, fabricación o construcción",
     }
     OUT.joinpath("manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"outputs": list(outputs), "live": True}))

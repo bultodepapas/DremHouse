@@ -2,8 +2,8 @@
 
 **Estatus:** base de coordinación; hipótesis de ingeniería; no es memoria de cálculo
 ni diseño profesional
-**Versión:** 0.1
-**Fecha de corte:** 2026-08-11
+**Versión:** 0.2
+**Fecha de corte:** 2026-08-12
 **Fuentes:** constitución del proyecto, programa arquitectónico v0.2, plano conceptual
 v0.2, bases estructurales y civiles v0.2, presupuesto desglosado de control, auditoría de
 costos 2026-08, herramientas digitales (modelo E0/E1) y técnicas que abaratan costos.
@@ -119,9 +119,9 @@ la nave queda 100 % libre.**
    Ventajas: áreas libres de hasta ≈ 18 m sin columnas interiores, altura de piso compacta,
    deriva pequeña, gran resistencia al viento y fundaciones concentradas. En el P2 las
    cerchas se esconden dentro de las particiones de las suites (closets, baños, hall), de
-   modo que cocina y comedor en PB quedan 100 % libres. Criterio de vibración residencial
-   DG11: frecuencia del panel ≥ 5 Hz (modelo: ≈ 15 Hz). La losa de deck profundo es más
-   pesada que el metaldeck convencional — verificar carga muerta en E1.
+   modo que cocina y comedor en PB quedan 100 % libres. La frecuencia del panel no se
+   calcula sin ficha de deck y sección compuesta; vibración y carga muerta se verifican
+   en E1 con el criterio normativo aplicable.
 2. **Cercha compuesta de piso (*composite truss*).** Luces > 18 m con la losa como cordón
    superior; más ligera que viga llena, pero exige apuntalamiento temporal y más superficie
    de protección contra incendio.
@@ -130,10 +130,9 @@ la nave queda 100 % libre.**
 4. **Mezzanine colgado de la cubierta.** El P2 se apoya en la estructura de techo en vez de
    en columnas de PB; útil si la frontera de P2 debe quedar totalmente despejada; coordinar
    cargas colgadas con la cercha de cubierta.
-5. **Viga de borde en X = 21,00 m (luz ≈ 18 m).** Debe resolverse como **cercha de borde**
-   o primera línea del staggered truss; su canto puede absorber el plenum del cielo de la
-   banda doméstica (soffit puntual) o expresarse como elemento estructural legible hacia la
-   doble altura.
+5. **Viga de borde en X = 21,00 m (luz ≈ 18 m).** D-043 exige una **cercha de borde de
+   canto completo** integrada por encima de +3,80 m. No puede invadir la altura libre de
+   PB; montantes y diagonales se coordinan con el frente del P2.
 
 ## 3. Hipótesis de carga — sin nieve
 
@@ -238,28 +237,32 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - El frente abierto en X = 21,00 m (borde del P2 hacia la doble altura) requiere una **viga
   de borde** de luz ≈ 18 m con apoyos puntuales integrados al núcleo/cocina; esta línea es
   un punto crítico de coordinación con la PB abierta (sin columnas arbitrarias en la nave).
-- Criterio de peso del modelo E0: **≈ 5,9 t de acero para el entrepiso P2 en el esquema
-  GRAN-MURO** (preferido); staggered ≈ 3,8 t; metaldeck ≈ 12,8 t (M60, con columnas en
-  cocina/núcleo). Auditoría de física 11-08-2026: signos de gravedad, proyección de
-  cargas y límites de flecha L/240 en metros.
-- Vibración: paneles de losa de ≈ 6,0 m entre vigas longitudinales, frecuencia objetivo
-  ≥ 5 Hz (DG11 residencial); el modelo E0 arroja ≈ 10 Hz — verificarla en E1.
+- Los pesos de E0 v0.1 (**5,9 t** gran muro, 3,8 t staggered y 12,8 t metaldeck) quedan
+  **supersedidos como cifras de selección**: el gran muro omitía su propio bastidor de
+  acero y el deck se trató como una losa maciza incompatible con la carga muerta. E0 v0.2
+  solo reporta subtotales inferiores y separa la pared híbrida.
+- Vibración: no se reporta frecuencia hasta seleccionar deck, sección compuesta,
+  conectores, apoyos y masa real. El objetivo se fija en E1 con el criterio aplicable.
 - El lift queda en doble altura (X ≈ 5,5–6,0 m), fuera de la proyección del P2: no carga
   sobre el entrepiso, solo sobre losa PB local (regla vigente).
-- **Sistema preferido a estudiar en E1 — GRAN-MURO:** el gran muro de X = 31,5 (núcleo,
-  0,20 m) trabaja como **muro portante**: recibe la franja del núcleo (X = 31,5→36, luz
-  4,5 m, losa de deck profundo sobre el muro) y la mitad del frente (X = 21→31,5). El
-  frente se resuelve con **3 vigas longitudinales IPE550 en el plenum** (3,20→3,80 m,
-  Y ≈ 3/9/15, gobernadas por flecha L/240 sobre 10,5 m) que apoyan en la **cercha de
-  borde X = 21** (luz 18 m, cordón HSS) y en el muro. Resultado: **cero columnas en cocina/comedor de PB**, sin necesidad de
-  re-articular particiones, y el muro aporta **núcleo de corte longitudinal** (rigidez
-  lateral y simplificación del wind girder). Axial del muro ≈ 76 kN/m. En E1 verificar
-  el peso de la losa de deck profundo y la continuidad del muro (escalera) hasta la
-  cubierta.
+- **Camino gravitacional adoptado para estudiar en E1 — PARED HÍBRIDA D-043:** el gran
+  muro de X = 31,50 conserva el acabado continuo de madera/absorción de D-033, delante
+  de una viga superior de transferencia y columnas HSS ocultas. Las columnas se prueban
+  en los límites Y = 0/2,4/7,4/11,0/13,4/18,0 m, dejando libre el portal de escalera y
+  coordinando las puertas enrasadas. Se estudian seis líneas longitudinales cada 3,00 m
+  (Y ≈ 1,5/4,5/7,5/10,5/13,5/16,5) para reducir el canto de IPE550 a IPE450 de prueba y
+  alojar viga + losa en la zona disponible; descargan entre machones, por lo que la
+  transferencia superior es un elemento real, no un detalle menor.
+  Los perfiles que arroja E0 son pruebas de cabida por fluencia bruta, no selección.
+  El espesor 0,20 m es arquitectónico y puede crecer a una envolvente preliminar de
+  0,25–0,35 m por acero, uniones, tolerancias, acústica y fuego.
 - **Frontera en X = 21,00 m (viga de borde de ≈ 18 m):** se resuelve como **cercha de
-  borde**, apoyada en las columnas de los muros largos; su canto se absorbe en el
-  encuentro con el cielo de la banda doméstica o se expresa como pieza estructural
-  legible hacia la doble altura. Reemplaza los apoyos intermedios en cocina/núcleo.
+  canto completo**, apoyada en las columnas de los muros largos e integrada por encima
+  de +3,80 m dentro del frente del P2. No se permite descontar canto hacia la altura libre
+  de PB; diagonales y montantes deben coordinarse con puertas, mini deck y cerramientos.
+- **Separación de funciones laterales:** la pared X=31,50 se extiende en Y y no sustituye
+  el sistema longitudinal X de las fachadas largas. Su eventual aporte en Y, el
+  diafragma, los colectores y la torsión de una línea excéntrica se resuelven en E1.
 
 ## 6. Materiales y protección
 
@@ -314,10 +317,17 @@ para reconciliar el capítulo 05/06 antes de PE-1.
 | Puerta | Entregable estructural |
 |---|---|
 | **E0 — esquema (actual)** | ejes, luces, alturas, apoyos hipotéticos, matriz de comparación, lista de datos faltantes (predio, geotecnia, lift, viento/sismo de norma) |
-| **E1 — comparación por ingeniero** | modelo paramétrico (4 sistemas × 3 modulaciones; entrepiso P2 metaldeck vs. staggered), kg/m², costo fabricado/montado, estabilidad y entrepiso |
+| **E1 — comparación por ingeniero** | modelo paramétrico (sistemas de cubierta × modulaciones; entrepiso P2 con pared híbrida D-043 frente a alternativas), camino lateral completo, kg/m², costo fabricado/montado, estabilidad y entrepiso compuesto |
 | **E2 — diseño profesional** | memorias firmadas, planos de cimentación/losa/estructura/conexiones, revisión independiente |
 
-## 9. Resultados del modelo E0 (11-08-2026)
+## 9. Resultados históricos E0 v0.1 y auditoría v0.2 (12-08-2026)
+
+> **Advertencia de vigencia:** la tabla que sigue conserva la corrida del 11-08-2026
+> únicamente como trazabilidad. No es una matriz válida de selección ni de presupuesto.
+> La auditoría v0.2 detectó omisión de pandeo/segundo orden/conexiones, aceptación
+> silenciosa del perfil máximo, momento nulo erróneo bajo succión, sistema lateral de
+> cercha inexistente, frecuencia ficticia del deck y tonelaje del gran muro sin bastidor.
+> La salida vigente es `docs/03_ingenierias/modelo_estructural_e0.md` y debe fallar cerrado.
 
 Matriz ejecutada con el motor `dreamhouse/structure/` (datos en
 `structure_system.json`; salidas en `planos/estructura_e0/`). Hipótesis E0,
@@ -372,17 +382,12 @@ longitudinales (10,5 m, no 15 m) — que ahora son IPE550 por flecha L/240.
    para el sistema de pórticos. Permite columna HEA300 con deriva
    ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el
    costo pasa a la cimentación (momento en la base).
-5. **Entrepiso P2 — el gran muro como apoyo:** tres esquemas sin columnas
-   interiores. METALDECK (≈ 12,8 t, M60) introduce columnas en cocina/núcleo.
-   STAGGERED (≈ 3,8 t) exige re-articular las particiones del P2 (hoy no hay
-   línea continua de 18 m). El esquema **GRAN-MURO (≈ 5,9 t, preferido)
-   convierte el muro de X=31,5 en estructura portante**: recibe la franja del
-   núcleo (luz 4,5 m) y la mitad del frente; el frente (10,5 m) se resuelve con
-   3 vigas longitudinales IPE550 en el plenum (3,20→3,80 m) y una cercha de
-   borde X=21 de 18 m (HSS). Sin columnas, sin re-articular particiones, y el
-   muro aporta **núcleo de corte longitudinal** (simplifica el wind girder).
-   Axial del muro ≈ 76 kN/m (holgado). La combinación más liviana es
-   CERCHA·M90 con gran muro: **25,3 t ≈ 27,6 kg/m²**.
+5. **Entrepiso P2 — pared híbrida D-043:** se adopta el camino gravitacional,
+   no la cifra v0.1. E0 v0.2 añade viga de transferencia y seis columnas HSS
+   ocultas, conserva la cercha de borde X=21 por encima del piso y elimina el
+   muro macizo ficticio. Las cifras resultantes siguen siendo subtotales porque
+   faltan pandeo, uniones, deck, fuego y cimentación. El muro transversal no se
+   contabiliza como núcleo longitudinal X.
 6. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
    por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
    modulación.

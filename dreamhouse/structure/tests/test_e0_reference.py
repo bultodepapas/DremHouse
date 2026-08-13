@@ -15,7 +15,7 @@ import numpy as np
 from dreamhouse.structure.analysis import Frame2D, FrameMember, G, max_axial_in_member, max_moment_in_member, simply_supported_deflection, simply_supported_max_moment
 from dreamhouse.structure.materials import materials_from_json
 from dreamhouse.structure.portal import apply_combo, build_frame_model, build_point_loads, size_portal_frame
-from dreamhouse.structure.profiles import lightest_member, profile
+from dreamhouse.structure.profiles import ProfileSelectionError, lightest_member, profile
 from dreamhouse.structure.quantities import compute_quantities
 from dreamhouse.structure.staggered import size_p2_great_wall, size_staggered_floor
 
@@ -68,6 +68,19 @@ class TestAnalysisReference(unittest.TestCase):
         expected = simply_supported_deflection(w, span, E * iy)
         mid = abs(d[3 * 1 + 1])
         self.assertAlmostEqual(mid, expected, delta=expected * 0.05)
+
+    def test_simply_supported_beam_uplift_moment(self):
+        """La succión uniforme debe producir el mismo |M|max que gravedad."""
+        span = 6.0
+        uplift = -5.0e3
+        frame, member = build_simple_beam(
+            span, uplift, profile("IPE300").iy_m4, profile("IPE300").area_m2
+        )
+        d, _ = frame.solve(frame.equivalent_nodal_loads())
+        fl = frame.member_end_forces(member, d)
+        actual = max_moment_in_member(frame, member, fl)
+        expected = simply_supported_max_moment(abs(uplift), span)
+        self.assertAlmostEqual(actual / expected, 1.0, delta=0.03)
 
     def test_cantilever_tip_deflection(self):
         length = 3.0
@@ -162,10 +175,11 @@ class TestStaggeredFloor(unittest.TestCase):
         self.assertGreaterEqual(res["truss_d_over_l"], 0.10)
         self.assertLessEqual(res["truss_d_over_l"], 0.25)
 
-    def test_panel_frequency_above_5hz(self):
+    def test_panel_frequency_fails_closed_without_deck(self):
         for bay, n in ((4.5, 8), (6.0, 6), (9.0, 4)):
             res = size_staggered_floor(self.cfg, self.steel, bay, 0.9, 0.9)
-            self.assertGreaterEqual(res["panel_frequency_hz"], 5.0)
+            self.assertIsNone(res["panel_frequency_hz"])
+            self.assertIn("not_analyzed", res["panel_verification_status"])
             self.assertIsNone(res["joist"])
             self.assertEqual(res["joists_kg"], 0.0)
 
@@ -221,7 +235,11 @@ class TestGreatWallFloor(unittest.TestCase):
         self.assertGreaterEqual(res["n_beams"], 2)
         self.assertGreater(res["wall_axial_kn_m"], 30.0)
         self.assertLess(res["wall_axial_kn_m"], 500.0)
-        self.assertGreaterEqual(res["panel_frequency_hz"], 5.0)
+        self.assertIsNone(res["panel_frequency_hz"])
+        self.assertGreater(res["hidden_frame_kg"], 0.0)
+        self.assertEqual(len(res["hidden_column_y_m"]), 6)
+        self.assertIn("active_gravity", res["approval_status"])
+        self.assertIn("does_not_stabilize_longitudinal_x", res["lateral_role"])
 
     def test_lighter_than_metaldeck(self):
         res = size_p2_great_wall(self.cfg, self.steel, 0.9, 0.9)
@@ -299,6 +317,10 @@ class TestDeflectionLimit(unittest.TestCase):
         self.assertEqual(cand.name, "IPE270")
         delta = simply_supported_deflection(q_service * 1e3, span, 2.0e11 * cand.iy_m4)
         self.assertLessEqual(delta, limit)
+
+    def test_lightest_member_fails_when_catalog_is_exhausted(self):
+        with self.assertRaises(ProfileSelectionError):
+            lightest_member(355.0e6, 0.9, 0.9, 1.0e9, 0.0, 18.0, "IPE", None, None)
 
 
 class TestQuantitiesSum(unittest.TestCase):
