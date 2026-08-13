@@ -9,18 +9,18 @@
 
 | Sistema × modulación | Columnas* | Cubierta* | Líneas | Subtotal metaldeck* | Subtotal gran muro* | Estado |
 |---|---|---|---:|---:|---:|---|
-| M45 · PORTICO | HEA500 | IPE450 | 9 | 59.4 t | 58.6 t | pasa cribado 2D limitado; no demuestra diseño |
-| M45 · PORTICO-T | HEA500 | IPE450 | 9 | 60.9 t | 60.1 t | pasa cribado 2D limitado; no demuestra diseño |
-| M45 · PORTICO-F | HEA300 | IPE450 | 9 | 48.6 t | 47.9 t | pasa cribado 2D limitado; no demuestra diseño |
-| M45 · CERCHA | HEA200 | IPE220 | 9 | 41.4 t | 40.6 t | INCOMPLETO: sin análisis lateral/estabilidad |
-| M60 · PORTICO | HEA500 | IPE500 | 7 | 52.9 t | 51.7 t | pasa cribado 2D limitado; no demuestra diseño |
-| M60 · PORTICO-T | HEA500 | IPE500 | 7 | 54.1 t | 52.9 t | pasa cribado 2D limitado; no demuestra diseño |
-| M60 · PORTICO-F | HEA300 | IPE450 | 7 | 42.6 t | 41.5 t | pasa cribado 2D limitado; no demuestra diseño |
-| M60 · CERCHA | HEA200 | IPE220 | 7 | 37.0 t | 35.8 t | INCOMPLETO: sin análisis lateral/estabilidad |
-| M90 · PORTICO | HEA500 | IPE550 | 5 | 49.5 t | 44.0 t | FALLA cribado o agota catálogo E0 |
-| M90 · PORTICO-T | HEA500 | IPE550 | 5 | 50.3 t | 44.8 t | FALLA cribado o agota catálogo E0 |
-| M90 · PORTICO-F | HEA300 | IPE550 | 5 | 43.5 t | 38.0 t | pasa cribado 2D limitado; no demuestra diseño |
-| M90 · CERCHA | HEA200 | IPE220 | 5 | 36.6 t | 31.1 t | INCOMPLETO: sin análisis lateral/estabilidad |
+| M45 · PORTICO | HEA500 | IPE450 | 9 | 59.3 t | 58.6 t | pasa cribado 2D limitado; no demuestra diseño |
+| M45 · PORTICO-T | HEA500 | IPE450 | 9 | 60.7 t | 60.1 t | pasa cribado 2D limitado; no demuestra diseño |
+| M45 · PORTICO-F | HEA300 | IPE450 | 9 | 48.5 t | 47.9 t | pasa cribado 2D limitado; no demuestra diseño |
+| M45 · CERCHA | HEA200 | IPE220 | 9 | 41.3 t | 40.6 t | INCOMPLETO: sin análisis lateral/estabilidad |
+| M60 · PORTICO | HEA500 | IPE500 | 7 | 52.7 t | 51.7 t | pasa cribado 2D limitado; no demuestra diseño |
+| M60 · PORTICO-T | HEA500 | IPE500 | 7 | 53.8 t | 52.9 t | pasa cribado 2D limitado; no demuestra diseño |
+| M60 · PORTICO-F | HEA300 | IPE450 | 7 | 42.4 t | 41.5 t | pasa cribado 2D limitado; no demuestra diseño |
+| M60 · CERCHA | HEA200 | IPE220 | 7 | 36.7 t | 35.8 t | INCOMPLETO: sin análisis lateral/estabilidad |
+| M90 · PORTICO | HEA500 | IPE550 | 5 | 49.3 t | 44.0 t | FALLA cribado o agota catálogo E0 |
+| M90 · PORTICO-T | HEA500 | IPE550 | 5 | 50.1 t | 44.8 t | FALLA cribado o agota catálogo E0 |
+| M90 · PORTICO-F | HEA300 | IPE550 | 5 | 43.3 t | 38.0 t | pasa cribado 2D limitado; no demuestra diseño |
+| M90 · CERCHA | HEA200 | IPE220 | 5 | 36.4 t | 31.1 t | INCOMPLETO: sin análisis lateral/estabilidad |
 
 \* Perfil y masa de cribado; no son selección ni cantidad de diseño. D-043 adopta el camino gravitacional GRAN-MURO, no los perfiles ni el tonelaje del E0.
 
@@ -28,24 +28,24 @@
 
 | Sistema × modulación | Marcos | P2 metaldeck | P2 staggered* | P2 gran muro* | Secundaria/reserva* | Total metaldeck | Total gran muro* |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| M45 · PORTICO | 39.5 | 12.4 | 3.9 | 11.6 | 7.5 | 59.4 | 58.6 |
-| M45 · PORTICO-T | 41.0 | 12.4 | 3.9 | 11.6 | 7.5 | 60.9 | 60.1 |
-| M45 · PORTICO-F | 28.7 | 12.4 | 3.9 | 11.6 | 7.5 | 48.6 | 47.9 |
-| M45 · CERCHA | 21.5 | 12.4 | 3.9 | 11.6 | 7.5 | 41.4 | 40.6 |
-| M60 · PORTICO | 32.6 | 12.8 | 3.9 | 11.6 | 7.5 | 52.9 | 51.7 |
-| M60 · PORTICO-T | 33.8 | 12.8 | 3.9 | 11.6 | 7.5 | 54.1 | 52.9 |
-| M60 · PORTICO-F | 22.3 | 12.8 | 3.9 | 11.6 | 7.5 | 42.6 | 41.5 |
-| M60 · CERCHA | 16.7 | 12.8 | 3.9 | 11.6 | 7.5 | 37.0 | 35.8 |
-| M90 · PORTICO | 24.8 | 17.1 | 3.9 | 11.6 | 7.5 | 49.5 | 44.0 |
-| M90 · PORTICO-T | 25.6 | 17.1 | 3.9 | 11.6 | 7.5 | 50.3 | 44.8 |
-| M90 · PORTICO-F | 18.8 | 17.1 | 3.9 | 11.6 | 7.5 | 43.5 | 38.0 |
-| M90 · CERCHA | 11.9 | 17.1 | 3.9 | 11.6 | 7.5 | 36.6 | 31.1 |
+| M45 · PORTICO | 39.5 | 12.3 | 3.9 | 11.6 | 7.5 | 59.3 | 58.6 |
+| M45 · PORTICO-T | 41.0 | 12.3 | 3.9 | 11.6 | 7.5 | 60.7 | 60.1 |
+| M45 · PORTICO-F | 28.7 | 12.3 | 3.9 | 11.6 | 7.5 | 48.5 | 47.9 |
+| M45 · CERCHA | 21.5 | 12.3 | 3.9 | 11.6 | 7.5 | 41.3 | 40.6 |
+| M60 · PORTICO | 32.6 | 12.5 | 3.9 | 11.6 | 7.5 | 52.7 | 51.7 |
+| M60 · PORTICO-T | 33.8 | 12.5 | 3.9 | 11.6 | 7.5 | 53.8 | 52.9 |
+| M60 · PORTICO-F | 22.3 | 12.5 | 3.9 | 11.6 | 7.5 | 42.4 | 41.5 |
+| M60 · CERCHA | 16.7 | 12.5 | 3.9 | 11.6 | 7.5 | 36.7 | 35.8 |
+| M90 · PORTICO | 24.8 | 17.0 | 3.9 | 11.6 | 7.5 | 49.3 | 44.0 |
+| M90 · PORTICO-T | 25.6 | 17.0 | 3.9 | 11.6 | 7.5 | 50.1 | 44.8 |
+| M90 · PORTICO-F | 18.8 | 17.0 | 3.9 | 11.6 | 7.5 | 43.3 | 38.0 |
+| M90 · CERCHA | 11.9 | 17.0 | 3.9 | 11.6 | 7.5 | 36.4 | 31.1 |
 
 ## Entrepiso P2 — estado de alternativas
 
 - **METALDECK con apoyos:** subtotal gravitacional; introduce apoyos en la banda doméstica y no incluye diseño compuesto, conectores, vibración ni fuego.
 - **STAGGERED — NO ADOPTADO:** 4 cerchas de 18 m, canto 3.0 m. La frecuencia del panel queda sin calcular hasta definir deck y sección compuesta.
-- **GRAN-MURO — CONCEPTO GRAVITACIONAL ACTIVO D-043:** superficie de madera/absorción delante de bastidor oculto HSS150x150x8 + viga de transferencia IPE400; 6 vigas continuas IPE400 de 15,0 m a 3.0 m, apoyadas en X=21/31,5 y con voladizo libre de 4,5 m hasta X=36, dejan un canto conceptual de 0.55 m. El subtotal (10.1 t) incluye dos columnas perimetrales bajo la cercha de borde; reacción máxima al muro ≈243.6 kN/línea. Es una prueba de cabida y no verifica pandeo normativo, continuidad, uniones, fuego, diafragma, cimentación ni acción lateral.
+- **GRAN-MURO — GRAVEDAD D-043 / HIPÓTESIS DE VIGAS D-045:** superficie de madera/absorción delante de bastidor oculto HSS150x150x8 + viga de transferencia IPE400; 6 vigas continuas IPE400 de 15,0 m a 3.0 m, apoyadas en X=21/31,5 y con voladizo libre de 4,5 m hasta X=36, dejan un canto conceptual de 0.55 m. El subtotal (10.1 t) incluye dos columnas perimetrales bajo la cercha de borde; reacción máxima al muro ≈243.6 kN/línea. Es una prueba de cabida y no verifica pandeo normativo, continuidad, uniones, fuego, diafragma, cimentación ni acción lateral.
 
 ## Defectos corregidos en revisiones 0.2–0.3
 
@@ -59,13 +59,14 @@
 8. El viento transversal ya intercambia Cp=0,8/0,5 entre barlovento y sotavento; antes promediaba erróneamente 0,65 en ambos aleros.
 9. Se verifica también flecha por carga viva L/360, se suma el peso propio de vigas y transferencias, y el catálogo se recorre por masa sin depender del orden del JSON.
 10. El solver falla explícitamente ante miembros degenerados, vectores incompatibles o mecanismos; las siete acciones básicas tienen pruebas de equilibrio global.
+11. Las líneas que interceptan el P2 se dimensionan con sus tributarios reales, no con el promedio; la reacción lateral de cada viga de tres tramos se corrige de 1/4 a 1/6 de la carga total y la longitud neta de girts ya no descuenta dos veces.
 
 ## Bloqueadores
 
-- **E0-AUTH-01 · CRITICAL:** D-043 adopta el GRAN-MURO como apoyo gravitacional híbrido, pero el E0 solo prueba vigas continuas con voladizo, cercha de borde y bastidor oculto idealizados. Faltan continuidad y conexión de momento sobre X=31,50, pandeo normativo, uniones, anclajes, fuego y compatibilidad 1:1 con las cinco aperturas antes de fijar acero.
+- **E0-AUTH-01 · CRITICAL:** D-043 adopta el GRAN-MURO como apoyo gravitacional híbrido y D-045 fija el voladizo solo como hipótesis E0; el motor prueba cercha de borde y bastidor oculto idealizados. Faltan continuidad y conexión de momento sobre X=31,50, pandeo normativo, uniones, anclajes, fuego y compatibilidad 1:1 con las cinco aperturas antes de fijar acero.
 - **E0-DIR-01 · CRITICAL:** El gran muro está en X=31,50 y se extiende en Y: su plano no estabiliza automáticamente la dirección longitudinal X. El E0 anterior lo llamó erróneamente núcleo de corte longitudinal; las dos fachadas largas, el diafragma y los colectores siguen sin sistema lateral coordinado.
 - **E0-COORD-01 · CRITICAL:** Las X longitudinales dibujadas en los paños 0–12 y 24–36 atraviesan el ventanal técnico de 7,20 m, vanos casi piso a techo del P2 y zonas de claraboya. Son trazos de conflicto, no arriostramientos adoptados.
-- **E0-GEOM-01 · HIGH:** El borde del P2 X=21,00 y el gran muro X=31,50 caen a mitad de vanos de la retícula M60. El modelo de pórticos tributarios no representa estas transferencias fuera de retícula ni sus efectos locales.
+- **E0-GEOM-01 · HIGH:** El borde del P2 X=21,00 y el gran muro X=31,50 caen a mitad de vanos de la retícula M60. El submodelo gravitacional calcula sus reacciones por estática, pero no está acoplado al modelo 2D de pórticos ni representa torsión, rigidez de conexiones o efectos locales fuera de retícula.
 - **E0-LAT-01 · CRITICAL:** La alternativa CERCHA no tiene modelo lateral, diafragma, colectores ni arriostramientos dimensionados; su peso es un subtotal inferior.
 - **E0-STAB-01 · CRITICAL:** El pórtico es elástico lineal de primer orden y usa límites de fluencia de sección bruta; faltan pandeo, P-Delta, imperfecciones, pandeo lateral-torsional, esbeltez local, cortante y conexiones.
 - **E0-SITE-01 · CRITICAL:** No hay predio, municipio, perfil de suelo, espectro, topografía ni presiones normativas de viento. qz y Cs siguen siendo hipótesis.

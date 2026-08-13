@@ -50,7 +50,7 @@
       },
       {
         "id": "GRAN-MURO",
-      "description": "Pared estructural híbrida adoptada conceptualmente para gravedad por D-043: acabado de madera/absorción de D-033 delante de bastidor de acero oculto. Seis vigas longitudinales continuas de 15,0 m a 3,0 m se apoyan en X=21 y X=31,5 y vuelan 4,5 m hasta X=36, sin inventar apoyo posterior; descargan en una viga superior de transferencia y columnas HSS escondidas en machones. El borde X=21 usa una cercha de canto completo sobre dos columnas perimetrales. No se atribuye resistencia longitudinal X al muro transversal.",
+      "description": "Pared estructural híbrida adoptada conceptualmente para gravedad por D-043. D-045 fija solo para E0 la hipótesis de seis vigas longitudinales continuas de 15,0 m a 3,0 m, apoyadas en X=21 y X=31,5 y en voladizo 4,5 m hasta X=36, sin inventar apoyo posterior. El acabado de madera/absorción D-033 oculta una viga de transferencia y columnas HSS en machones; X=21 usa una cercha de canto completo sobre dos columnas perimetrales. No se atribuye resistencia longitudinal X al muro transversal.",
         "n_longitudinal_beams": 6,
         "beam_y_m": [1.5, 4.5, 7.5, 10.5, 13.5, 16.5],
         "hidden_column_y_m": [0.0, 2.4, 7.4, 11.0, 13.4, 18.0],

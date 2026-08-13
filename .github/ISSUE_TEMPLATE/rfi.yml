@@ -1,49 +1,49 @@
-name: RFI / consulta técnica
-description: Abrir una pregunta verificable para arquitecto, ingeniero, proveedor o autoridad.
+name: RFI / technical query
+description: Open a verifiable question for the architect, engineer, supplier, or authority.
 title: "[RFI] "
 body:
   - type: input
     id: question
     attributes:
-      label: Pregunta
-      description: Una pregunta concreta que pueda cerrarse con evidencia.
+      label: Question
+      description: One specific question that can be closed with evidence.
     validations:
       required: true
   - type: dropdown
     id: discipline
     attributes:
-      label: Disciplina principal
+      label: Primary discipline
       options:
-        - Arquitectura
-        - Estructura
-        - MEP y confort
-        - Incendio y seguridad
-        - Predio y normativa
-        - Costos y contratación
-        - Construcción
+        - Architecture
+        - Structure
+        - MEP and comfort
+        - Fire and life safety
+        - Site and regulations
+        - Cost and procurement
+        - Construction
     validations:
       required: true
   - type: textarea
     id: references
     attributes:
-      label: Referencias
-      description: Láminas, cotas, documentos, fotos o partidas afectadas.
+      label: References
+      description: Affected drawings, dimensions, documents, photographs, or cost items.
     validations:
       required: true
   - type: textarea
     id: impact
     attributes:
-      label: Impacto si queda abierta
-      description: Qué decisión, entrega, costo o actividad bloquea.
+      label: Impact if left open
+      description: State which decision, deliverable, cost, or activity it blocks.
     validations:
       required: true
   - type: input
     id: responsible
     attributes:
-      label: Responsable de responder
-      placeholder: Rol o especialista; no inventar un responsable aún no contratado.
+      label: Responsible for the response
+      placeholder: Role or specialist; do not invent a responsible party who has not been appointed.
   - type: input
     id: needed_by
     attributes:
-      label: Fecha o puerta requerida
-      placeholder: AAAA-MM-DD o nombre de la puerta de fase
+      label: Required date or gate
+      placeholder: YYYY-MM-DD or phase-gate name

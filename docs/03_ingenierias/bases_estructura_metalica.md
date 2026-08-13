@@ -245,7 +245,7 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
   conectores, apoyos y masa real. El objetivo se fija en E1 con el criterio aplicable.
 - El lift queda en doble altura (X ≈ 5,5–6,0 m), fuera de la proyección del P2: no carga
   sobre el entrepiso, solo sobre losa PB local (regla vigente).
-- **Camino gravitacional adoptado para estudiar en E1 — PARED HÍBRIDA D-043:** el gran
+- **Camino gravitacional adoptado para estudiar en E1 — PARED HÍBRIDA D-043 / vigas D-045:** el gran
   muro de X = 31,50 conserva el acabado continuo de madera/absorción de D-033, delante
   de una viga superior de transferencia y columnas HSS ocultas. Las columnas se prueban
   en los límites Y = 0/2,4/7,4/11,0/13,4/18,0 m, dejando libre el portal de escalera y
@@ -342,21 +342,21 @@ bajo carga muerta), proyección trigonométrica de cargas en miembros inclinados
 
 | Sistema × Modulación | Columnas | Viga / cercha | Tirante | Marcos | P2 metaldeck / staggered / gran muro | Acero total (metaldeck) | kg/m² | Total con gran muro | Lectura |
 |---|---|---|---|---|---|---:|---:|---:|---|
-| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 12,4 / 3,9 / 11,6 t | **59,4 t** | 64,7 | 58,6 t | deriva de viento gobierna |
-| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,8 / 3,9 / 11,6 t | **52,9 t** | 57,6 | 51,7 t | referencia de la auditoría |
-| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 17,1 / 3,9 / 11,6 t | **49,5 t** | 53,9 | 44,0 t | **falla H/200; catálogo agotado** |
-| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 12,4 / 3,9 / 11,6 t | **60,9 t** | 66,3 | 60,1 t | tirante casi inactivo: no competitivo |
-| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,8 / 3,9 / 11,6 t | **54,1 t** | 58,9 | 52,9 t | tirante ≈ 2,3 kN; no controla deriva |
-| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 17,1 / 3,9 / 11,6 t | **50,3 t** | 54,8 | 44,8 t | **falla H/200; catálogo agotado** |
-| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 12,4 / 3,9 / 11,6 t | **48,6 t** | 53,0 | 47,9 t | bases fijas: deriva 0,015 m |
-| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,8 / 3,9 / 11,6 t | **42,6 t** | 46,5 | 41,5 t | marco ≈ 27 % más liviano que articulado |
-| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 17,1 / 3,9 / 11,6 t | **43,5 t** | 47,4 | 38,0 t | deriva 0,025 m en cribado |
-| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 12,4 / 3,9 / 11,6 t | **41,4 t** | 45,1 | 40,6 t | sin análisis lateral |
-| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,8 / 3,9 / 11,6 t | **37,0 t** | 40,3 | 35,8 t | sin análisis lateral |
-| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 17,1 / 3,9 / 11,6 t | **36,6 t** | 39,9 | 31,1 t | sin análisis lateral |
+| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 12,3 / 3,9 / 11,6 t | **59,3 t** | 64,6 | 58,6 t | deriva de viento gobierna |
+| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,5 / 3,9 / 11,6 t | **52,7 t** | 57,4 | 51,7 t | referencia de la auditoría |
+| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 17,0 / 3,9 / 11,6 t | **49,3 t** | 53,7 | 44,0 t | **falla H/200; catálogo agotado** |
+| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 12,3 / 3,9 / 11,6 t | **60,7 t** | 66,2 | 60,1 t | tirante casi inactivo: no competitivo |
+| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,5 / 3,9 / 11,6 t | **53,8 t** | 58,6 | 52,9 t | tirante ≈ 2,3 kN; no controla deriva |
+| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 17,0 / 3,9 / 11,6 t | **50,1 t** | 54,6 | 44,8 t | **falla H/200; catálogo agotado** |
+| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 12,3 / 3,9 / 11,6 t | **48,5 t** | 52,9 | 47,9 t | bases fijas: deriva 0,015 m |
+| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,5 / 3,9 / 11,6 t | **42,4 t** | 46,2 | 41,5 t | marco ≈ 27 % más liviano que articulado |
+| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 17,0 / 3,9 / 11,6 t | **43,3 t** | 47,2 | 38,0 t | deriva 0,025 m en cribado |
+| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 12,3 / 3,9 / 11,6 t | **41,3 t** | 45,0 | 40,6 t | sin análisis lateral |
+| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,5 / 3,9 / 11,6 t | **36,7 t** | 40,0 | 35,8 t | sin análisis lateral |
+| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 17,0 / 3,9 / 11,6 t | **36,4 t** | 39,7 | 31,1 t | sin análisis lateral |
 
 Desglose por componente (M60): marcos 32,6 t (cerchas 16,7 t) + entrepiso
-P2 metaldeck ≈ 12,8 t / staggered ≈ 3,9 t / **gran muro ≈ 11,6 t** + secundaria
+P2 metaldeck ≈ 12,5 t / staggered ≈ 3,9 t / **gran muro ≈ 11,6 t** + secundaria
 ≈ 7,5 t. El metaldeck subió de ≈ 9,6 t a ≈ 12,8 t al corregir el límite de
 flecha L/240 (antes inoperante) y la luz de viga entre apoyos (18/3 = 6 m); el
 gran muro subió a ≈11,6 t al eliminar el apoyo posterior no definido, modelar seis
@@ -394,6 +394,10 @@ dos columnas perimetrales de la cercha X=21.
 6. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada
    por resistencia (succión de viento), no por flecha: IPE450–IPE550 según
    modulación.
+7. **Segunda auditoría numérica E0 v0.3:** el viento intercambia correctamente
+   Cp=0,8/0,5 entre barlovento y sotavento; M90 articulado agota el catálogo por
+   deriva H/200. Los pórticos y vigas P2 se evalúan línea por línea con tributarios
+   reales, se verifica flecha total L/240 y viva L/360, y se incluyen pesos propios.
 
 Estos resultados son insumo de la puerta PE-1 y de la decisión D-019; no
 sustituyen el modelo E1 del ingeniero estructural.

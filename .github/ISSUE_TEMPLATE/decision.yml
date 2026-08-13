@@ -1,57 +1,57 @@
-name: Decisión de proyecto
-description: Registrar una elección que cambia criterio, alcance, geometría, costo o fase.
-title: "[DECISIÓN] "
+name: Project decision
+description: Record a choice that changes criteria, scope, geometry, cost, or phase.
+title: "[DECISION] "
 body:
   - type: markdown
     attributes:
       value: |
-        No conviertas una hipótesis en requisito congelado. Expón alternativas, efectos y autoridad.
+        Do not turn an assumption into a frozen requirement. State the alternatives, effects, and authority.
   - type: input
     id: decision
     attributes:
-      label: Decisión requerida
-      description: Formula la elección en una sola frase verificable.
+      label: Decision required
+      description: State the choice in one verifiable sentence.
     validations:
       required: true
   - type: textarea
     id: source
     attributes:
-      label: Fuente y contexto
-      description: Documento, instrucción del propietario, conflicto o evidencia que origina la decisión.
+      label: Source and context
+      description: Document, owner instruction, conflict, or evidence that gives rise to the decision.
     validations:
       required: true
   - type: textarea
     id: alternatives
     attributes:
-      label: Alternativas comparadas
-      description: Incluye mantener el estado actual cuando sea una alternativa real.
+      label: Alternatives compared
+      description: Include retaining the current position when it is a genuine alternative.
     validations:
       required: true
   - type: textarea
     id: effects
     attributes:
-      label: Efectos coordinados
-      description: Arquitectura, estructura, MEP, normativa, costo, plazo, fases y riesgo.
+      label: Coordinated effects
+      description: Architecture, structure, MEP, regulations, cost, programme, phases, and risk.
     validations:
       required: true
   - type: dropdown
     id: urgency
     attributes:
-      label: Puerta de decisión
+      label: Decision gate
       options:
-        - Antes de seleccionar predio
-        - Antes de cerrar anteproyecto
-        - Antes de diseño desarrollado
-        - Antes de contratar
-        - Puede permanecer abierta
+        - Before site selection
+        - Before schematic-design closeout
+        - Before developed design
+        - Before procurement
+        - May remain open
     validations:
       required: true
   - type: checkboxes
     id: governance
     attributes:
-      label: Gobierno
+      label: Governance
       options:
-        - label: Revisé constitución, precedencia y decisiones vigentes.
+        - label: I reviewed the Constitution, precedence, and current decisions.
           required: true
-        - label: Identifiqué los documentos que deberán actualizarse si se aprueba.
+        - label: I identified the documents that must be updated if approved.
           required: true

@@ -26,7 +26,13 @@ from dreamhouse.structure.analysis import (
 )
 from dreamhouse.structure.checks import max_factored_gravity, span_deflection_limit
 from dreamhouse.structure.materials import materials_from_json
-from dreamhouse.structure.portal import apply_combo, build_frame_model, build_point_loads, size_portal_frame
+from dreamhouse.structure.portal import (
+    apply_combo,
+    build_frame_model,
+    build_point_loads,
+    size_joists_and_beams,
+    size_portal_frame,
+)
 from dreamhouse.structure.profiles import ProfileSelectionError, lightest_member, profile
 from dreamhouse.structure.quantities import compute_quantities
 from dreamhouse.structure.staggered import size_p2_great_wall, size_staggered_floor
@@ -258,6 +264,19 @@ class TestQuantities(unittest.TestCase):
             result["girts_m"], gross * result["girt_opening_factor"], delta=1.0
         )
 
+    def test_p2_lines_are_sized_from_each_actual_tributary(self):
+        q = compute_quantities(self.cfg, self.steel, 6.0, 6, 0.9, 0.9)
+        result = q["systems"]["PORTICO"]
+        self.assertEqual(result["p2_tributaries_by_frame_m"], [0.0, 0.0, 0.0, 0.0, 6.0, 6.0, 3.0])
+        self.assertEqual(len(result["floor_beam_profiles_by_active_line"]), 3)
+        direct = [
+            size_joists_and_beams(
+                self.cfg, self.steel, 6.0, tributary, 0.9, 0.9
+            )["beam"].name
+            for tributary in (6.0, 6.0, 3.0)
+        ]
+        self.assertEqual(result["floor_beam_profiles_by_active_line"], direct)
+
 
 class TestStaggeredFloor(unittest.TestCase):
     def setUp(self):
@@ -325,6 +344,7 @@ class TestTiedAndFixedPortal(unittest.TestCase):
         tied = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9, tie=True)
         self.assertGreater(tied.weight_kg, pinned.weight_kg)
         self.assertGreater(tied.tie_area_cm2, 0.0)
+        self.assertIn("tie_gross_yield", tied.screening_checks)
 
     def test_fixed_base_reduces_drift_and_column(self):
         pinned = size_portal_frame(self.cfg, self.steel, 6.0, 6.0, True, 0.9, 0.9)
@@ -595,6 +615,16 @@ class TestHssCatalog(unittest.TestCase):
             p = profile(name)
             self.assertGreater(p.area_m2, 0.0)
             self.assertGreater(p.mass_kg_m, 0.0)
+
+
+class TestGeneratedManifest(unittest.TestCase):
+    def test_e0_manifest_only_lists_existing_outputs(self):
+        out = ROOT / "planos" / "estructura_e0"
+        manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
+        missing = [name for name in manifest["outputs"] if not (out / name).exists()]
+        self.assertEqual(missing, [])
+        obsolete = list(out.glob("*_SECCION-M*_SECCION.svg"))
+        self.assertEqual(obsolete, [])
 
 
 if __name__ == "__main__":

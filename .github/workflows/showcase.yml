@@ -66,7 +66,7 @@ jobs:
       - name: Regenerate README gallery
         run: python .github/scripts/build_showcase.py --write-readme
 
-      - name: Commit gallery when manifests changed
+      - name: Commit gallery when manifests change
         shell: bash
         run: |
           if git diff --quiet -- README.md; then
@@ -76,7 +76,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
-          git commit -m "docs: sincronizar galería del proyecto [skip ci]"
+          git commit -m "docs: synchronise project gallery [skip ci]"
           git push
 
   build-pages:

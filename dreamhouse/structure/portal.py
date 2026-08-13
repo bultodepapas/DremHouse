@@ -67,21 +67,22 @@ def build_frame_model(
     tie_area_m2: float = 1.0e-3,
     fixed_base: bool = False,
 ) -> tuple[Frame2D, dict]:
+    width = float(cfg["geometry"]["nave_width_m"])
     nodes = [(0.0, 0.0)]
     if has_p2:
         nodes.append((0.0, p2_level))
     top_low = len(nodes)
     nodes.append((0.0, eave_low))
     base_high = len(nodes)
-    nodes.append((18.0, 0.0))
+    nodes.append((width, 0.0))
     p2_high = None
     if has_p2:
         p2_high = len(nodes)
-        nodes.append((18.0, p2_level))
+        nodes.append((width, p2_level))
     top_high = len(nodes)
-    nodes.append((18.0, eave_high))
+    nodes.append((width, eave_high))
     roof_mid = len(nodes)
-    nodes.append((9.0, (eave_low + eave_high) / 2.0))
+    nodes.append((width / 2.0, (eave_low + eave_high) / 2.0))
 
     members: list[FrameMember] = []
     if has_p2:
@@ -173,6 +174,7 @@ def build_point_loads(
     nodes = frame.nodes
     eave_low = cfg["geometry"]["eave_low_m"]
     eave_high = cfg["geometry"]["eave_high_m"]
+    width = cfg["geometry"]["nave_width_m"]
 
     col_sw_low = col.mass_kg_m * G * eave_low
     col_sw_high = col.mass_kg_m * G * eave_high
@@ -180,8 +182,8 @@ def build_point_loads(
     f_pt["D"][3 * index["top_high"] + 1] -= col_sw_high
 
     if has_p2 and trib_p2_m > 0.0:
-        floor_d_col = (cfg["loads"]["dead"]["floor_p2_kpa"] + cfg["loads"]["dead"]["partitions_p2_kpa"]) * 1e3 * trib_p2_m * 18.0 * p2_col_share
-        floor_l_col = cfg["loads"]["live"]["p2_residential_kpa"] * 1e3 * trib_p2_m * 18.0 * p2_col_share
+        floor_d_col = (cfg["loads"]["dead"]["floor_p2_kpa"] + cfg["loads"]["dead"]["partitions_p2_kpa"]) * 1e3 * trib_p2_m * width * p2_col_share
+        floor_l_col = cfg["loads"]["live"]["p2_residential_kpa"] * 1e3 * trib_p2_m * width * p2_col_share
         for key in ("p2_low", "p2_high"):
             idx = index[key]
             f_pt["D"][3 * idx + 1] -= floor_d_col
@@ -198,11 +200,15 @@ def build_point_loads(
     f_pt["WX-"][3 * index["top_low"]] -= qz * cp_leeward * bay_m * eave_low
     f_pt["WX-"][3 * index["top_high"]] -= qz * cp_windward * bay_m * eave_high
 
-    w_roof = cfg["loads"]["dead"]["roof_kpa"] * 1e3 * bay_m * 18.0
-    w_roof += (rafter.mass_kg_m * 18.5 + 2.0 * col.mass_kg_m * (eave_low + eave_high) / 2.0) * G
+    w_roof = cfg["loads"]["dead"]["roof_kpa"] * 1e3 * bay_m * width
+    rafter_length = sum(frame.member_length(member) for member in index["rafter_members"])
+    w_roof += (
+        rafter.mass_kg_m * rafter_length
+        + col.mass_kg_m * (eave_low + eave_high)
+    ) * G
     w_p2 = 0.0
     if has_p2 and trib_p2_m > 0.0:
-        w_p2 = (cfg["loads"]["dead"]["floor_p2_kpa"] + cfg["loads"]["dead"]["partitions_p2_kpa"]) * 1e3 * trib_p2_m * 18.0
+        w_p2 = (cfg["loads"]["dead"]["floor_p2_kpa"] + cfg["loads"]["dead"]["partitions_p2_kpa"]) * 1e3 * trib_p2_m * width
     cs = cfg["loads"]["seismic"]["cs_base_shear_hypothesis"]
     v = cs * (w_roof + w_p2)
     f_roof = v * w_roof / max(w_roof + w_p2, 1.0)
@@ -278,6 +284,7 @@ def size_portal_frame(
     eave_low = cfg["geometry"]["eave_low_m"]
     eave_high = cfg["geometry"]["eave_high_m"]
     p2_level = cfg["geometry"]["p2_floor_level_m"]
+    width = cfg["geometry"]["nave_width_m"]
     combos = cfg["combinations"]
 
     col = profile("HEA300")
@@ -285,7 +292,7 @@ def size_portal_frame(
     tie_area = 1.0e-3
 
     col_len = max(eave_low, eave_high)
-    rafter_len = np.hypot(18.0, eave_high - eave_low)
+    rafter_len = np.hypot(width, eave_high - eave_low)
     defl_limit = span_deflection_limit(rafter_len, cfg["criteria"]["deflection_roof_total"])
     drift_limit = span_deflection_limit(col_len, cfg["criteria"]["drift_allowance"])
 
@@ -411,7 +418,7 @@ def size_portal_frame(
     )
 
     detail = cfg["criteria"]["detail_factor_principales"]
-    tie_kg = 18.0 * tie_area * steel.density_kg_m3 if tie else 0.0
+    tie_kg = width * tie_area * steel.density_kg_m3 if tie else 0.0
     weight = (2.0 * col.mass_kg_m * col_len + rafter.mass_kg_m * rafter_len + tie_kg) * (1.0 + detail)
 
     return FrameResults(
@@ -472,7 +479,7 @@ def size_cercha_roof(
     roof_d = cfg["loads"]["dead"]["roof_kpa"] * bay_m * 1e3
     roof_l = cfg["loads"]["live"]["roof_kpa"] * bay_m * 1e3
     q_peak = max_factored_gravity(cfg, roof_d, roof_l)
-    span = 18.0
+    span = cfg["geometry"]["nave_width_m"]
     truss = next(s for s in cfg["systems"] if s["id"] == "CERCHA")
     depth = span / truss["truss_depth_span_ratio"]
     m_peak = simply_supported_max_moment(q_peak, span)
@@ -508,6 +515,7 @@ def size_joists_and_beams(cfg: dict, steel: Steel, bay_m: float, trib_p2_m: floa
     floor_l = cfg["loads"]["live"]["p2_residential_kpa"] * 1e3
     spacing = crit["joist_spacing_m"]
     span = bay_m
+    width = cfg["geometry"]["nave_width_m"]
 
     q_service_joist = (floor_d + floor_l) * spacing
     q_strength_joist = max_factored_gravity(cfg, floor_d, floor_l) * spacing
@@ -526,7 +534,7 @@ def size_joists_and_beams(cfg: dict, steel: Steel, bay_m: float, trib_p2_m: floa
 
     q_service_beam = (floor_d + floor_l) * trib_p2_m
     q_strength_beam = max_factored_gravity(cfg, floor_d, floor_l) * trib_p2_m
-    beam_span = 18.0 / 3.0  # dos apoyos intermedios por pórtico -> 3 tramos de 6 m
+    beam_span = width / 3.0  # dos apoyos intermedios por pórtico -> 3 tramos
     # Cribado conservador como tramo simplemente apoyado. La reducción /1,5
     # anterior no verificaba los momentos negativos de una viga continua.
     m_beam = simply_supported_max_moment(q_strength_beam, beam_span)
@@ -541,7 +549,7 @@ def size_joists_and_beams(cfg: dict, steel: Steel, bay_m: float, trib_p2_m: floa
 
     q_service_edge = (floor_d + floor_l) * bay_m / 2.0
     q_strength_edge = max_factored_gravity(cfg, floor_d, floor_l) * bay_m / 2.0
-    edge_span = 9.0
+    edge_span = width / 2.0
     edge, _ = lightest_member(
         steel.fy_pa, phi_b, phi_c,
         simply_supported_max_moment(q_strength_edge, edge_span) / 1e3,

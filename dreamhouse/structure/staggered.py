@@ -116,7 +116,7 @@ def size_p2_great_wall(
     phi_b: float,
     phi_c: float,
 ) -> dict:
-    """Cribado de la pared estructural híbrida adoptada por D-043.
+    """Cribado de la pared híbrida D-043 con la hipótesis de vigas D-045.
 
     Las vigas continuas X=21→36 se apoyan en X=21 y X=31,5; los últimos 4,5 m
     vuelan sobre el núcleo para no inventar soportes en la fachada posterior.
@@ -516,5 +516,5 @@ def size_p2_great_wall(
         "approval_status": options.get("approval_status", "active_gravity_concept_D-043_design_pending"),
         "design_status": "active_gravity_concept_incomplete_no_code_buckling_connections_fire_foundations_or_lateral_design",
         "lateral_role": "none_assumed_transverse_wall_does_not_stabilize_longitudinal_x",
-        "note": "D-043 adopta apoyo gravitacional híbrido de acero oculto; el núcleo posterior se modela como voladizo sin apoyo X=36; perfiles son pruebas de cabida, no diseño",
+        "note": "D-043 adopta apoyo gravitacional híbrido; D-045 modela el núcleo posterior como voladizo sin apoyo X=36 solo para E0; perfiles son pruebas de cabida, no diseño",
     }

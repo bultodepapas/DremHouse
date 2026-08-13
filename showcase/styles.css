@@ -812,7 +812,9 @@ footer {
   }
 
   .hero__actions .button {
-    flex: 1;
+    flex: 1 1 100%;
+    width: 100%;
+    text-align: center;
   }
 
   .metrics {

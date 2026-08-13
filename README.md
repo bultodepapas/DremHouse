@@ -46,7 +46,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>35</strong> vector drawings · <strong>45</strong> documents · <strong>44</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>39</strong> vector drawings · <strong>46</strong> documents · <strong>36</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -70,7 +70,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </td>
 <td width="50%" valign="top">
   <a href="planos/estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg"><img src="planos/estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg" alt="Dream House E0 structural scheme inspection drawing" width="100%"></a>
-  <br><sub><strong>Engineering · E0</strong> · 0.1</sub>
+  <br><sub><strong>Engineering · E0</strong> · 0.3</sub>
   <br><strong>The structure remains legible</strong>
 </td>
 </tr>
@@ -147,8 +147,7 @@ python -m http.server 8000 --directory .build/showcase
 
 - **Phase:** consolidated definition and dimensional schematic design.
 - **Document cutoff:** 11 August 2026.
-- **Primary blocker:** exact site, topographic survey, geotechnical investigation,
-  and planning assessment.
+- **Primary blocker:** exact site, topographic survey, geotechnical investigation, and planning assessment.
 - **Cost alert:** the active control target for physical construction is
   **≈COP 988.05 million**, with a critical gap against the historical estimate;
   it is neither a contract price nor the developer's total project cost.
@@ -157,6 +156,12 @@ python -m http.server 8000 --directory .build/showcase
 > This repository does not replace planning permission, site investigations,
 > signed designs, engineering calculations, independent review, a contract
 > budget, construction management, or technical site supervision.
+
+## With gratitude
+
+> A sincere thank-you to **OpenAI**. The Pro subscription has helped this
+> open-source project move forward with greater clarity, care, and ambition.
+> That support is genuinely appreciated.
 
 <details>
 <summary><strong>Preserved original sources</strong></summary>

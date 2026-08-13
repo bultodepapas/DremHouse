@@ -67,8 +67,8 @@ def build_model_audit(cfg: dict) -> dict:
             "id": "E0-AUTH-01",
             "severity": "critical",
             "description": (
-                "D-043 adopta el GRAN-MURO como apoyo gravitacional híbrido, pero el E0 "
-                "solo prueba vigas continuas con voladizo, cercha de borde y bastidor oculto "
+                "D-043 adopta el GRAN-MURO como apoyo gravitacional híbrido y D-045 fija "
+                "el voladizo solo como hipótesis E0; el motor prueba cercha de borde y bastidor oculto "
                 "idealizados. Faltan continuidad y conexión de momento sobre X=31,50, "
                 "pandeo normativo, uniones, anclajes, fuego y compatibilidad 1:1 con las "
                 "cinco aperturas antes de fijar acero."
@@ -98,8 +98,9 @@ def build_model_audit(cfg: dict) -> dict:
             "severity": "high",
             "description": (
                 "El borde del P2 X=21,00 y el gran muro X=31,50 caen a mitad de vanos de "
-                "la retícula M60. El modelo de pórticos tributarios no representa estas "
-                "transferencias fuera de retícula ni sus efectos locales."
+                "la retícula M60. El submodelo gravitacional calcula sus reacciones por "
+                "estática, pero no está acoplado al modelo 2D de pórticos ni representa "
+                "torsión, rigidez de conexiones o efectos locales fuera de retícula."
             ),
         },
         {

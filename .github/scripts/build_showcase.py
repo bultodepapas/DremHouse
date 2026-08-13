@@ -38,34 +38,34 @@ class GalleryRule:
 RULES = (
     GalleryRule(
         "planta-baja",
-        "Arquitectura · PB",
-        "La nave como un solo recinto",
-        "Talleres, vacío monumental, vida doméstica y núcleo posterior coordinados en una planta continua.",
-        "Lámina técnica de la planta baja detallada de Dream House",
+        "Architecture · ground floor",
+        "The industrial hall as one continuous room",
+        "Workshops, the monumental void, domestic life, and the rear core are coordinated across one continuous floor.",
+        "Detailed Dream House ground-floor technical drawing",
         lambda name: "PLN-001" in name and "PB" in name and "DETALLADA" in name,
     ),
     GalleryRule(
         "segundo-piso",
-        "Arquitectura · P2",
-        "Privacidad anclada al fondo",
-        "Cuatro suites, wellness y servicios preservan la doble altura delantera y la frontera de fases.",
-        "Lámina técnica del segundo piso detallado de Dream House",
+        "Architecture · upper floor",
+        "Privacy anchored at the rear",
+        "Four suites, wellness spaces, and services preserve the front double-height volume and the phase boundary.",
+        "Detailed Dream House upper-floor technical drawing",
         lambda name: "PLN-002" in name and "P2" in name and "DETALLADA" in name,
     ),
     GalleryRule(
         "cubierta",
-        "Arquitectura · cubierta",
-        "Un solo gesto transversal",
-        "La cubierta mono-pendiente mantiene la lectura de una nave única y concentra el drenaje en un alero.",
-        "Corte transversal de la cubierta mono-pendiente de Dream House",
+        "Architecture · roof",
+        "One clear transverse gesture",
+        "The mono-pitch roof preserves the reading of a single industrial hall and concentrates drainage along one eave.",
+        "Dream House mono-pitch roof cross-section",
         lambda name: "SEC-002" in name and "TRANSVERSAL-CUBIERTA" in name,
     ),
     GalleryRule(
         "estructura",
-        "Ingeniería · E0",
-        "La estructura queda a la vista",
-        "Retícula, cerchas, arriostramientos y entrepiso se comparan como hipótesis antes del cálculo profesional.",
-        "Lámina de inspección del esquema estructural E0 de Dream House",
+        "Engineering · E0",
+        "The structure remains legible",
+        "Grid, trusses, bracing, and upper-floor framing are compared as hypotheses before professional analysis.",
+        "Dream House E0 structural scheme inspection drawing",
         lambda name: "ESTRUCTURA-INSPECCION" in name,
     ),
 )
@@ -85,7 +85,7 @@ def discover_outputs() -> list[dict]:
     outputs: list[dict] = []
     for manifest in sorted((ROOT / "planos").rglob("manifest.json")):
         data = load_json(manifest)
-        revision = str(data.get("revision", "sin revisión"))
+        revision = str(data.get("revision", "no revision"))
         for output in data.get("outputs", []):
             candidate = manifest.parent / output
             if candidate.suffix.lower() != ".svg" or not candidate.is_file():
@@ -109,7 +109,7 @@ def select_gallery() -> list[dict]:
     for rule in RULES:
         candidates = [item for item in outputs if rule.matches(item["filename"])]
         if not candidates:
-            raise RuntimeError(f"No se encontró una lámina para la categoría {rule.slug!r}")
+            raise RuntimeError(f"No drawing was found for category {rule.slug!r}")
         selected = max(candidates, key=lambda item: item["score"])
         gallery.append(
             {
@@ -151,17 +151,17 @@ def project_data(gallery: list[dict]) -> dict:
 
     documents = len(list((ROOT / "docs").rglob("*.md")))
     decisions = len(re.findall(r"^\| D-\d+ \|", decisions_text, re.MULTILINE))
-    open_conflicts = len(re.findall(r"\*\*Estado:\*\*[^\n]*abierto", conflicts_text, re.IGNORECASE))
+    open_conflicts = len(re.findall(r"\*\*Status:\*\*[^\n]*open", conflicts_text, re.IGNORECASE))
     sheets = len({item["relative"] for item in discover_outputs()})
 
-    phase = extract_list_value(readme, "Fase", "anteproyecto dimensional")
-    blocker = extract_list_value(readme, "Bloqueador principal", "selección y estudios del predio")
+    phase = extract_list_value(readme, "Phase", "dimensional schematic design")
+    blocker = extract_list_value(readme, "Primary blocker", "site selection and investigations")
 
     return {
         "project": "Dream House",
-        "version": extract_meta(docs_index, "Versión", "0.2"),
-        "date": extract_meta(docs_index, "Fecha", "2026-08-11"),
-        "status": extract_meta(docs_index, "Estatus", "activo"),
+        "version": extract_meta(docs_index, "Version", "0.3"),
+        "date": extract_meta(docs_index, "Date", "2026-08-12"),
+        "status": extract_meta(docs_index, "Status", "active"),
         "phase": phase.rstrip("."),
         "blocker": blocker.rstrip("."),
         "dimensions": {
@@ -211,14 +211,14 @@ def render_readme_block(data: dict) -> str:
         [
             BEGIN,
             '<p align="center">',
-            f'  <sub><strong>{counts["sheets"]}</strong> láminas vectoriales · <strong>{counts["documents"]}</strong> documentos · <strong>{counts["decisions"]}</strong> decisiones registradas · <strong>{counts["open_conflicts"]}</strong> conflictos abiertos</sub>',
+            f'  <sub><strong>{counts["sheets"]}</strong> vector drawings · <strong>{counts["documents"]}</strong> documents · <strong>{counts["decisions"]}</strong> recorded decisions · <strong>{counts["open_conflicts"]}</strong> open conflicts</sub>',
             "</p>",
             "",
             "<table>",
             *rows,
             "</table>",
             "",
-            '<p align="center"><sub>Selección regenerada desde los <code>manifest.json</code>; haz clic en una lámina para verla a resolución completa.</sub></p>',
+            '<p align="center"><sub>This selection is regenerated from the <code>manifest.json</code> files; select any drawing to open it at full resolution.</sub></p>',
             END,
         ]
     )
@@ -227,7 +227,7 @@ def render_readme_block(data: dict) -> str:
 def updated_readme(data: dict) -> str:
     current = README.read_text(encoding="utf-8")
     if BEGIN not in current or END not in current:
-        raise RuntimeError("El README no contiene los marcadores de la galería automática")
+        raise RuntimeError("README.md does not contain the automatic gallery markers")
     before, remainder = current.split(BEGIN, 1)
     _, after = remainder.split(END, 1)
     return before + render_readme_block(data) + after
@@ -238,10 +238,10 @@ def write_or_check_readme(data: dict, write: bool, check: bool) -> None:
     current = README.read_text(encoding="utf-8")
     if write:
         README.write_text(generated, encoding="utf-8", newline="\n")
-        print("README.md actualizado desde los manifiestos.")
+        print("README.md updated from the manifests.")
     if check and generated != current:
         print(
-            "README.md no coincide con los manifiestos. Ejecuta: "
+            "README.md does not match the manifests. Run: "
             "python .github/scripts/build_showcase.py --write-readme",
             file=sys.stderr,
         )
@@ -251,7 +251,7 @@ def write_or_check_readme(data: dict, write: bool, check: bool) -> None:
 def build_site(data: dict, destination: Path) -> None:
     destination = destination.resolve()
     if destination == ROOT or ROOT not in destination.parents:
-        raise RuntimeError("El destino del sitio debe ser una carpeta dentro del repositorio")
+        raise RuntimeError("The site destination must be a directory inside the repository")
 
     if destination.exists():
         shutil.rmtree(destination)
@@ -285,7 +285,7 @@ def build_site(data: dict, destination: Path) -> None:
     payload = json.dumps(public_data, ensure_ascii=False).replace("</", "<\\/")
     marker = "<!-- showcase:data -->"
     if marker not in html_source:
-        raise RuntimeError("Falta el marcador de datos en showcase/index.html")
+        raise RuntimeError("The data marker is missing from showcase/index.html")
     built_html = html_source.replace(
         marker,
         f'<script id="showcase-data" type="application/json">{payload}</script>',
@@ -296,21 +296,21 @@ def build_site(data: dict, destination: Path) -> None:
     for asset_name in ("dream-house-cover.svg", "dream-house-cover-mobile.svg", "favicon.svg"):
         shutil.copy2(ROOT / ".github" / "assets" / asset_name, destination / "assets" / asset_name)
     (destination / ".nojekyll").write_text("", encoding="utf-8")
-    print(f"Sitio construido en {destination.relative_to(ROOT)}")
+    print(f"Site built at {destination.relative_to(ROOT)}")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--write-readme", action="store_true", help="actualiza el bloque automático del README")
-    parser.add_argument("--check-readme", action="store_true", help="falla si el bloque automático está desactualizado")
-    parser.add_argument("--site-dir", type=Path, help="construye el sitio estático en esta carpeta")
+    parser.add_argument("--write-readme", action="store_true", help="update the automatic README block")
+    parser.add_argument("--check-readme", action="store_true", help="fail if the automatic README block is outdated")
+    parser.add_argument("--site-dir", type=Path, help="build the static site in this directory")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     if not (args.write_readme or args.check_readme or args.site_dir):
-        raise SystemExit("Indica --write-readme, --check-readme o --site-dir")
+        raise SystemExit("Specify --write-readme, --check-readme, or --site-dir")
     gallery = select_gallery()
     data = project_data(gallery)
     write_or_check_readme(data, args.write_readme, args.check_readme)

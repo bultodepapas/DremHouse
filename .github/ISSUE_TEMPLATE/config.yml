@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Índice del expediente
+  - name: Project-record index
     url: https://github.com/bultodepapas/DremHouse/blob/main/docs/README.md
-    about: Consulta primero la fuente canónica y su estatus.
-  - name: Decisiones y datos pendientes
+    about: Review the canonical source and its status first.
+  - name: Pending decisions and information
     url: https://github.com/bultodepapas/DremHouse/blob/main/docs/06_gestion_y_obra/decisiones_y_datos_pendientes.md
-    about: Revisa si el asunto ya está registrado o bloquea una puerta de fase.
+    about: Check whether the matter is already recorded or blocks a phase gate.

@@ -1,27 +1,28 @@
-## Qué cambia
+## What changes
 
-Describe el resultado y su motivo en términos de proyecto, no solo de archivos.
+Describe the outcome and its project rationale, not only the files changed.
 
-## Fuente y autoridad
+## Source and authority
 
-- Fuente o decisión:
-- Estatus del dato: hard rule / DCV / hipótesis / preliminar / histórico
-- Fecha y versión:
+- Source or decision:
+- Information status: hard rule / DCV / assumption / preliminary / historical
+- Date and version:
 
-## Impacto coordinado
+## Coordinated impact
 
-- [ ] Revisé la constitución y la precedencia documental.
-- [ ] No resolví contradicciones silenciosamente.
-- [ ] Actualicé el registro de decisiones si cambió un criterio.
-- [ ] Actualicé la base de costos si cambió alcance o costo.
-- [ ] Declaré efecto en arquitectura, estructura, MEP, normativa, plazo y fases.
-- [ ] Las visualizaciones siguen rotuladas como no constructivas cuando aplica.
-- [ ] Ejecuté `python .github/scripts/build_showcase.py --check-readme`.
+- [ ] I reviewed the Project Constitution and document precedence.
+- [ ] I did not resolve contradictions silently.
+- [ ] I updated the Decision Register if a criterion changed.
+- [ ] I updated the cost baseline if scope or cost changed.
+- [ ] I stated the effect on architecture, structure, MEP, regulations, programme, and phases.
+- [ ] Visualisations remain labelled as not for construction where applicable.
+- [ ] I did not translate or edit preserved evidence under `docs/BORN_Legacy/`.
+- [ ] I ran `python .github/scripts/build_showcase.py --check-readme`.
 
-## Evidencia
+## Evidence
 
-Incluye validaciones, comparaciones o capturas necesarias para revisar el cambio.
+Include the validation, comparisons, or screenshots required to review the change.
 
-## Asuntos abiertos
+## Open matters
 
-Enumera lo que todavía requiere propietario, consultor, cotización o estudio del sitio.
+List anything that still requires the owner, a consultant, a quotation, or a site investigation.

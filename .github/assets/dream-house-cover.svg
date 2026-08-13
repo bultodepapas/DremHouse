@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
-  <title id="title">Dream House — expediente maestro</title>
-  <desc id="desc">Portada editorial oscura con una nave industrial residencial dibujada en líneas y las dimensiones conceptuales principales.</desc>
+  <title id="title">Dream House — master project record</title>
+  <desc id="desc">Dark editorial cover with a line-drawn residential industrial hall and its primary conceptual dimensions.</desc>
   <defs>
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
       <path d="M48 0H0V48" fill="none" stroke="#d8d2c7" stroke-opacity=".055" stroke-width="1"/>
@@ -38,21 +38,21 @@
     <text x="228" y="75" font-size="15" letter-spacing="4" fill="#a9afaa">BOYACÁ · COLOMBIA</text>
     <text x="76" y="235" font-size="112" font-weight="700" letter-spacing="-6">DREAM</text>
     <text x="76" y="338" font-size="112" font-weight="700" letter-spacing="-6">HOUSE</text>
-    <text x="82" y="391" font-size="22" letter-spacing="1" fill="#c7c7bf">UNA NAVE. UN GRAN VACÍO. UNA VIDA TÉCNICA.</text>
-    <text x="82" y="447" font-size="17" fill="#929b96">Expediente vivo de arquitectura, ingeniería, costos y ejecución.</text>
+    <text x="82" y="391" font-size="22" letter-spacing="1" fill="#c7c7bf">ONE HALL. ONE GREAT VOID. ONE TECHNICAL LIFE.</text>
+    <text x="82" y="447" font-size="17" fill="#929b96">A living record of architecture, engineering, cost, and delivery.</text>
 
     <g transform="translate(82 554)">
       <text y="0" font-size="30" font-weight="700">18 × 36 m</text>
-      <text y="27" font-size="12" letter-spacing="2.2" fill="#929b96">ENVOLVENTE NOMINAL</text>
+      <text y="27" font-size="12" letter-spacing="2.2" fill="#929b96">NOMINAL ENVELOPE</text>
       <line x1="188" y1="-29" x2="188" y2="34" stroke="#c86442"/>
       <text x="222" y="0" font-size="30" font-weight="700">≈918 m²</text>
-      <text x="222" y="27" font-size="12" letter-spacing="2.2" fill="#929b96">ÁREA CONCEPTUAL</text>
+      <text x="222" y="27" font-size="12" letter-spacing="2.2" fill="#929b96">CONCEPTUAL AREA</text>
       <line x1="432" y1="-29" x2="432" y2="34" stroke="#c86442"/>
       <text x="466" y="0" font-size="30" font-weight="700">V0.3</text>
-      <text x="466" y="27" font-size="12" letter-spacing="2.2" fill="#929b96">ANTEPROYECTO</text>
+      <text x="466" y="27" font-size="12" letter-spacing="2.2" fill="#929b96">SCHEMATIC DESIGN</text>
     </g>
 
-    <text x="880" y="663" font-size="11" letter-spacing="2" fill="#8f9893">36,00 m · REPRESENTACIÓN EDITORIAL NO DIMENSIONAL</text>
-    <text x="1553" y="430" transform="rotate(90 1553 430)" font-size="11" letter-spacing="2" fill="#8f9893">18,00 m</text>
+    <text x="880" y="663" font-size="11" letter-spacing="2" fill="#8f9893">36.00 m · NON-DIMENSIONAL EDITORIAL IMAGE</text>
+    <text x="1553" y="430" transform="rotate(90 1553 430)" font-size="11" letter-spacing="2" fill="#8f9893">18.00 m</text>
   </g>
 </svg>

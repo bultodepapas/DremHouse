@@ -112,7 +112,7 @@ compatibility with the five openings shown in the interior elevation.
 
 - **Gravity resolution:** D-043 adopts a hybrid wall. The architectural finish remains,
   while a concealed steel frame supports P2 through a top beam and columns located within
-  wall piers coordinated with the doors. D-044 fixes, for E0 v0.3 only, the hypothesis of
+  wall piers coordinated with the doors. D-045 fixes, for E0 v0.3 only, the hypothesis of
   continuous beams with a rear overhang, avoiding reliance on an undefined support at X=36.
 - **Geometric reservation:** the conceptual 0.20 m thickness may increase; it does not
   override requirements for connections, fire protection, tolerances, or acoustics.

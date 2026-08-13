@@ -1,37 +1,42 @@
-# Colaborar con Dream House
+# Contributing to Dream House
 
-Este repositorio es un expediente técnico vivo, no una colección de ideas sueltas.
-Toda contribución debe conservar la trazabilidad entre fuente, decisión, hipótesis,
-lámina y costo.
+This repository is a living technical project record, not a collection of
+unconnected ideas. Every contribution must preserve traceability across source,
+decision, assumption, drawing, and cost.
 
-## Antes de cambiar algo
+## Before making a change
 
-1. Lee el [índice del expediente](docs/README.md), la
-   [constitución](docs/00_gobernanza/constitucion_del_proyecto.md) y la
-   [precedencia documental](docs/00_gobernanza/fuentes_precedencia_y_conflictos.md).
-2. Comprueba si el dato es una hard rule, un valor de control, una hipótesis o un
-   asunto abierto.
-3. No resuelvas una contradicción silenciosamente: registra el conflicto o abre una
-   decisión.
-4. Si cambia alcance o costo, actualiza la
-   [base de costos](docs/04_costos/base_y_control_de_costos.md).
+1. Read the [project-record index](docs/README.md), the
+   [Project Constitution](docs/00_gobernanza/constitucion_del_proyecto.md), and the
+   [document precedence](docs/00_gobernanza/fuentes_precedencia_y_conflictos.md).
+2. Determine whether the information is a hard rule, a control value, an
+   assumption, or an open matter.
+3. Never resolve a contradiction silently: record the conflict or open a
+   decision.
+4. If the change affects scope or cost, update the
+   [Cost Baseline and Control](docs/04_costos/base_y_control_de_costos.md).
+5. Follow the
+   [Language and Translation Policy](docs/00_gobernanza/language_and_translation_policy.md).
+   Do not translate or edit files under `docs/BORN_Legacy/`.
 
-## Flujo recomendado
+## Recommended workflow
 
-- Abre una issue de **decisión** para cambios de criterio o una **RFI** para dudas
-  técnicas.
-- Trabaja en una rama corta y limita cada pull request a un cambio coordinable.
-- Declara fuente, fecha, versión, estatus, supuestos y documentos afectados.
-- Si emites una lámina, conserva su `manifest.json` y la advertencia de uso.
-- Ejecuta la validación de la presentación antes de enviar cambios:
+- Open a **decision** issue for a change in criteria, or an **RFI** for a
+  technical query.
+- Work on a short-lived branch and keep each pull request to one coordinable
+  change.
+- State the source, date, version, status, assumptions, and affected documents.
+- When issuing a drawing, retain its `manifest.json` and limitation-of-use note.
+- Validate the presentation before submitting changes:
 
 ```powershell
 python .github/scripts/build_showcase.py --write-readme --site-dir .build/showcase
 python .github/scripts/build_showcase.py --check-readme
 ```
 
-## Criterio de aceptación
+## Acceptance criteria
 
-Una contribución está lista cuando es trazable, no rompe hard rules, declara sus
-incertidumbres, actualiza los documentos afectados y distingue con claridad entre
-concepto, coordinación y documento apto para construir.
+A contribution is ready when it is traceable, does not violate hard rules,
+states its uncertainties, updates every affected document, and clearly
+distinguishes concept work, coordination information, and construction-ready
+documentation.

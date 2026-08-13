@@ -327,7 +327,7 @@ def note_box(parts, q, st, gw):
             f"CERCHA M60: {q['main_frames_kg']/1000:.1f} t de subtotal; NO tiene análisis lateral, estabilidad de barras ni conexiones."
         )
         lines.append(
-            f"GRAN-MURO D-043/D-044: vigas continuas con voladizo; {gw['hidden_column_trial_profile']} ocultas + "
+            f"GRAN-MURO D-043/D-045: vigas continuas con voladizo; {gw['hidden_column_trial_profile']} ocultas + "
             f"{gw['transfer_girder_trial_profile']} son pruebas de cabida, no perfiles seleccionados."
         )
         if st:
@@ -394,7 +394,7 @@ def draw_hybrid_wall_elevation(parts, pb, gw):
 
     parts.append(rect(125, 795, 1134, 72, fill="#fff4df", stroke="#bd5c3c", stroke_width=1))
     parts.append(text(145, 819, "LECTURA OBLIGATORIA", 11, "start", 700, "#8e3825"))
-    parts.append(text(145, 841, f"D-043 adopta el camino gravitacional. {gw['hidden_column_trial_profile']} y {gw['transfer_girder_trial_profile']} solo demuestran cabida; envolvente de muro 0,25–0,35 m.", 8.5, "start"))
+    parts.append(text(145, 841, f"D-043 adopta gravedad; D-045 modela voladizo solo en E0. {gw['hidden_column_trial_profile']} y {gw['transfer_girder_trial_profile']} solo demuestran cabida; muro 0,25–0,35 m.", 8.5, "start"))
     parts.append(text(145, 860, "Sin pandeo, uniones, anclajes, fuego, cimentación ni función lateral. Las puertas y el portal de escalera permanecen libres.", 8.5, "start", 700, "#8e3825"))
 
 
@@ -452,7 +452,7 @@ def main():
         "revision": cfg["project"]["revision"],
         "mode": "cribado en vivo (compute_quantities + size_staggered_floor) — subtotales inferiores",
         "outputs": list(outputs),
-        "status": "D-043 adopta el camino gravitacional del P2; perfiles, cantidades y sistema lateral siguen sin adoptar y no son aptos para PE-1, fabricación o construcción",
+        "status": "D-043 adopta el camino gravitacional del P2 y D-045 fija el voladizo solo como hipótesis E0; perfiles, cantidades y sistema lateral siguen sin adoptar y no son aptos para PE-1, fabricación o construcción",
     }
     OUT.joinpath("manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"outputs": list(outputs), "live": True}))

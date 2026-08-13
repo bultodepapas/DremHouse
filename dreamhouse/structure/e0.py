@@ -70,7 +70,7 @@ def main() -> None:
         write_svg(system["id"])
 
     for m in cfg["geometry"]["modulations"]:
-        write_svg_section(f"{m['id']}_SECCION")
+        write_svg_section(m["id"])
 
     try:
         from dreamhouse.generate_structure_plan import main as _regenerate_structural_sheets
@@ -311,7 +311,7 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         f"- **STAGGERED — NO ADOPTADO:** {staggered['n_trusses']} cerchas de 18 m, "
         f"canto {staggered['truss_depth_m']} m. La frecuencia del panel queda sin calcular "
         "hasta definir deck y sección compuesta.",
-        f"- **GRAN-MURO — CONCEPTO GRAVITACIONAL ACTIVO D-043:** superficie de "
+        f"- **GRAN-MURO — GRAVEDAD D-043 / HIPÓTESIS DE VIGAS D-045:** superficie de "
         f"madera/absorción delante de bastidor oculto {great_wall['hidden_column_trial_profile']} "
         f"+ viga de transferencia {great_wall['transfer_girder_trial_profile']}; "
         f"{great_wall['n_beams']} vigas continuas {great_wall['beam_profile']} de 15,0 m a "
@@ -344,6 +344,9 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "y transferencias, y el catálogo se recorre por masa sin depender del orden del JSON.",
         "10. El solver falla explícitamente ante miembros degenerados, vectores incompatibles "
         "o mecanismos; las siete acciones básicas tienen pruebas de equilibrio global.",
+        "11. Las líneas que interceptan el P2 se dimensionan con sus tributarios reales, no "
+        "con el promedio; la reacción lateral de cada viga de tres tramos se corrige de 1/4 "
+        "a 1/6 de la carga total y la longitud neta de girts ya no descuenta dos veces.",
         "",
         "## Bloqueadores",
         "",

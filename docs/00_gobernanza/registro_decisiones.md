@@ -1,10 +1,10 @@
 # Decision Register
 
 **Status:** active  
-**Version:** 0.6  
+**Version:** 0.7
 **Date:** 2026-08-12  
 **Language note:** controlled English translation under D-044; decision content unchanged
-except for the addition of D-044.
+except for the additions of D-044 and D-045.
 
 | ID | Decision | Status | Source/date |
 |---|---|---|---|
@@ -43,6 +43,7 @@ except for the addition of D-044.
 | D-041 | Adopt `bases_estructura_metalica.md` as the basis for opening D-019: compare two systems—18 m portal frames and trusses—across three modules, 4.5/6.0/9.0 m, using model E0, and **remove snow load from the assumptions**. The Boyacá high plateau has no design snow; wind under NSR-10 Title B.6, seismic action under Title A, and rain/drainage govern instead. | Proposed | Steel structure basis, 2026-08-11 |
 | D-043 | Incorporate the Great Wall at X=31.50 m into the P2 gravity load path as a **hybrid structural wall**: the continuous timber/acoustic finish defined by D-033 sits in front of a concealed steel frame, with a top transfer beam and HSS columns located within wall piers between doors and on either side of the stair portal. Study the X=21.00 m edge as a full-depth truss integrated above floor level without reducing PB clear height. The 0.20 m thickness is no longer a structural constraint and may increase to accommodate steel, connections, fire protection, and acoustics. This decision adopts the gravity function but **does not** by itself make the transverse wall part of the longitudinal bracing system; diaphragm action and lateral systems will be resolved separately in E1/E2. | Active schematic structural intent; profiles, supports, thickness, and lateral function pending E1/E2 | Explicit owner instruction and structural coordination, 2026-08-12 |
 | D-044 | Adopt clear professional technical English as the working language for all project-authored and derived documentation. Preserve every file under `docs/BORN_Legacy/` unchanged and in its original Spanish. Keep filenames, drawing numbers, IDs, cost codes, model keys, and revision identifiers stable throughout the migration. Translation is editorial and must not silently change scope, geometry, cost, status, or authority. | Active documentation-governance rule | Explicit owner instruction, 2026-08-12 |
+| D-045 | For model E0 v0.3, represent the six longitudinal P2 beams as continuous members from X=21.00 to X=36.00, supported at the X=21.00 edge truss and the X=31.50 hybrid wall, with a 4.50 m free overhang above the rear core. Do not assume support at the X=36.00 rear façade because no column, transfer beam, or load-bearing wall is defined there. The connection over X=31.50 must transfer negative moment. | Active only as a traceable E0 screening hypothesis; E1 must compare the continuous-overhang scheme against a real rear support before profiles or connections are frozen | Second structural-model audit, 2026-08-12 |
 
 ## Decisions to open next
 
@@ -66,7 +67,7 @@ Use the [decision template](../07_plantillas/decision.md) for every new entry.
 |---|---|---|
 | 2026-08-11 | Identifier `D-037` had been assigned to two different decisions. `D-037` remains assigned to adoption of P2 b06/R05, continuing the sequence from D-036 to D-038; the steel-structure basis becomes **D-041**. | Finding H-15 in the [coordination review](../02_arquitectura/revision_coordinacion_v0.3_2026_08.md). Document precedence relies on unique decision identifiers. |
 
-**Next available identifier: `D-045`.** The D-017 to D-025 range remains reserved for the
+**Next available identifier: `D-046`.** The D-017 to D-025 range remains reserved for the
 pending decisions listed above.
 
 ## Hard rules modified by a later decision
