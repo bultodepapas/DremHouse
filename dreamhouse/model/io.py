@@ -142,7 +142,7 @@ def _cross_model_checks(
 
 
 def load_project(
-    scenario_id: str = "D054_HALF_CENTRES",
+    scenario_id: str = "D057_P2_W01",
     manifest_path: Path = DEFAULT_MANIFEST,
     *,
     verify_hashes: bool = True,

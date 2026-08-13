@@ -2,11 +2,11 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.6
+**Version:** 0.7
 **Date:** 2026-08-13
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053–D-055; architectural drafts b05–b11 and implementation issue 0.4-I01;
-`pb_b05.json`; `p2_b10.json`; `rooflight_b12.json`; `structure_system.json`;
+D-053–D-057; architectural drafts b05–b13 and implementation issues 0.4-I01/I02;
+`pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
 evidence
 **Approval pending:** responsible structural engineer, architect of record, fire and
@@ -39,11 +39,18 @@ in one longitudinal half of the double-height hall. The structural generators re
 `p2_b10.json` and `rooflight_b12.json`; their deterministic re-run retains the same four
 compatible stair-frame lines and now records each rooflight/grid crossing explicitly.
 
+D-057 makes `p2_b13.json` the current architectural P2 source and preserves the four
+stair-frame coordinates, but it also introduces the heavier 250 mm nominal P2-W01 wall
+principle. Under CF-009, the issued E0/E1 sheets remain pre-D-057 screening evidence:
+their global partition dead-load allowance has not yet been checked against measured
+P2-W01 lengths and selected product masses. The next structural issue must consume b13,
+perform that comparison, and retain a fail-closed result if the allowance is exceeded.
+
 ## 2. New integrated evidence sheet
 
 The current visual synthesis is
 [DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg).
-It is generated from the active JSON sources and the same `run_screening()` calculation
+It is generated from the pre-D-057 structural-screening JSON sources and the same `run_screening()` calculation
 used by the E1 report. Its four principal readings are:
 
 - **Plan:** M60 test grid, D-054 rooflights, D-043/D-045 P2 gravity path, diaphragm

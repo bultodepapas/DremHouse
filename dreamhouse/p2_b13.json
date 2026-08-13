@@ -1,0 +1,638 @@
+{
+  "revision": "0.3-draft-13-P2",
+  "drawing_revision": "R10",
+  "status": "issued for coordination under D-057; not for construction",
+  "date": "2026-08-13",
+  "supersedes": "0.3-draft-10-P2 / R09",
+  "design_basis": [
+    "D-049 coordinated b04-led upper-floor logic",
+    "Owner priority for the primary suite",
+    "Owner direction to relocate laundry to PB behind the Great Wall",
+    "Owner request for a theft-resistant retractable exterior stair reserve",
+    "Owner acceptance of one large exposed industrial X=21 truss while preserving the view",
+    "D-042 child-bedroom equivalence",
+    "D-048 stair-enclosure column continuity",
+    "D-057 nominal 250 mm P2 dry acoustic partition control"
+  ],
+  "envelope": {
+    "x": 21.0,
+    "length": 15.0,
+    "width": 18.0,
+    "exterior_wall": 0.18,
+    "partition": 0.25,
+    "wet_wall": 0.2
+  },
+  "acoustic_partition": {
+    "id": "P2-W01",
+    "scope": "dry interior acoustic partitions between normally occupied P2 rooms and circulation",
+    "nominal_total_m": 0.25,
+    "construction": "two independent metal-stud frames with no rigid bridging across the central cavity",
+    "room_side_to_room_side_layers": [
+      { "material": "new gypsum board", "nominal_mm": 12.7, "role": "visible finish layer" },
+      { "material": "reclaimed gypsum board", "nominal_mm": 12.7, "role": "concealed mass layer; dry, sound and accepted after inspection" },
+      { "material": "metal stud frame with glass-wool infill", "nominal_mm": 60.0, "infill_nominal_mm": 50.0, "role": "independent frame A; final proprietary profile pending; batt friction-fit without compression or gaps" },
+      { "material": "clear air cavity", "nominal_mm": 80.0, "role": "decoupling gap; adjust to hold the nominal total after product selection" },
+      { "material": "metal stud frame with glass-wool infill", "nominal_mm": 60.0, "infill_nominal_mm": 50.0, "role": "independent frame B; final proprietary profile pending; batt friction-fit without compression or gaps" },
+      { "material": "reclaimed gypsum board", "nominal_mm": 12.7, "role": "concealed mass layer; dry, sound and accepted after inspection" },
+      { "material": "new gypsum board", "nominal_mm": 12.7, "role": "visible finish layer" }
+    ],
+    "layer_sum_note": "12.7 + 12.7 + 60 + 80 + 60 + 12.7 + 12.7 = 250.8 mm; coordinate and draw as 250 mm nominal",
+    "insulation_note": "one nominal 50 mm glass-wool batt in each stud frame; the central cavity remains clear",
+    "reclaimed_board_acceptance": [
+      "concealed layers only",
+      "dry and free of mould, contamination, delamination and crumbling edges",
+      "fastener-holding condition accepted in a site sample",
+      "joints staggered from the visible layer and perimeter sealed"
+    ],
+    "exclusions": [
+      "exterior and facade walls",
+      "sauna hot-side and other wet-area build-ups",
+      "protected-stair and fire-rated enclosures",
+      "shafts, equipment rooms and structural or bracing walls"
+    ],
+    "coordination_gates": [
+      "select locally available stud profiles and board products while maintaining the nominal total",
+      "verify head-of-wall movement, seismic restraint and deflection compatibility",
+      "coordinate acoustic door sets, seals, outlets and service penetrations",
+      "confirm required fire rating and tested assembly with the responsible professionals",
+      "build and inspect one full-height mock-up before repeating the wall"
+    ],
+    "performance_status": "assembly principle frozen for design coordination; no field acoustic rating or fire rating claimed"
+  },
+  "phase_boundary_y": 11.0,
+  "measurement": {
+    "programme_basis": "gross",
+    "child_equivalence_basis": "net",
+    "circulation_clearance_basis": "net"
+  },
+  "tolerances": {
+    "geometry_m": 0.000001,
+    "child_area_delta_m2": 1.0,
+    "child_ratio_max": 1.35,
+    "child_ratio_delta": 0.3,
+    "circulation_min_clear_m": 1.2
+  },
+  "spaces": [
+    {
+      "id": "H1-D",
+      "name": "Child 1 bedroom",
+      "suite": "H1",
+      "kind": "bedroom",
+      "phase": 1,
+      "x": 21.0,
+      "y": 0.0,
+      "w": 5.2,
+      "d": 5.0
+    },
+    {
+      "id": "H1-C",
+      "name": "Child 1 wardrobe",
+      "suite": "H1",
+      "kind": "closet",
+      "phase": 1,
+      "x": 26.2,
+      "y": 0.0,
+      "w": 2.4,
+      "d": 2.0
+    },
+    {
+      "id": "H1-B",
+      "name": "Child 1 bathroom",
+      "suite": "H1",
+      "kind": "bath",
+      "phase": 1,
+      "x": 26.2,
+      "y": 2.0,
+      "w": 2.4,
+      "d": 3.0
+    },
+
+    {
+      "id": "DECK",
+      "name": "Acoustic mini deck",
+      "kind": "deck",
+      "phase": 1,
+      "x": 21.0,
+      "y": 5.0,
+      "w": 2.8,
+      "d": 3.5
+    },
+    {
+      "id": "M-B-A",
+      "name": "Primary bathroom wet salon",
+      "suite": "M",
+      "kind": "bath",
+      "phase": 1,
+      "x": 23.8,
+      "y": 5.0,
+      "w": 4.8,
+      "d": 2.4
+    },
+    {
+      "id": "FAM-A",
+      "name": "Family gallery / library",
+      "kind": "shared",
+      "phase": 1,
+      "x": 23.8,
+      "y": 7.4,
+      "w": 4.8,
+      "d": 1.1
+    },
+    {
+      "id": "FAM",
+      "name": "Family lounge / library",
+      "kind": "shared",
+      "phase": 1,
+      "x": 21.0,
+      "y": 8.5,
+      "w": 6.0,
+      "d": 2.5
+    },
+    {
+      "id": "HALL-C",
+      "name": "Private hall",
+      "kind": "circulation",
+      "phase": 1,
+      "x": 27.0,
+      "y": 8.5,
+      "w": 1.6,
+      "d": 2.5
+    },
+
+    {
+      "id": "M-D",
+      "name": "Primary bedroom",
+      "suite": "M",
+      "kind": "master",
+      "phase": 1,
+      "x": 28.6,
+      "y": 0.0,
+      "w": 7.4,
+      "d": 4.2
+    },
+    {
+      "id": "M-B",
+      "name": "Primary bathroom service band",
+      "suite": "M",
+      "kind": "bath",
+      "phase": 1,
+      "x": 28.6,
+      "y": 4.2,
+      "w": 1.9,
+      "d": 3.2
+    },
+    {
+      "id": "M-C",
+      "name": "Primary dressing / filter",
+      "suite": "M",
+      "kind": "closet",
+      "phase": 1,
+      "x": 30.5,
+      "y": 4.2,
+      "w": 5.5,
+      "d": 3.2
+    },
+    {
+      "id": "ARR",
+      "name": "Protected arrival",
+      "kind": "circulation",
+      "phase": 1,
+      "x": 28.6,
+      "y": 7.4,
+      "w": 2.9,
+      "d": 3.6
+    },
+    {
+      "id": "ESC",
+      "name": "Protected stair",
+      "kind": "vertical",
+      "phase": 1,
+      "x": 31.5,
+      "y": 7.4,
+      "w": 4.5,
+      "d": 3.6
+    },
+
+    {
+      "id": "F2-HALL",
+      "name": "Isolatable Phase 2 lobby",
+      "kind": "circulation",
+      "phase": 2,
+      "x": 21.0,
+      "y": 11.0,
+      "w": 15.0,
+      "d": 1.45
+    },
+    {
+      "id": "H2-D",
+      "name": "Child 2 bedroom",
+      "suite": "H2",
+      "kind": "bedroom",
+      "phase": 2,
+      "x": 21.0,
+      "y": 12.45,
+      "w": 4.6,
+      "d": 5.55
+    },
+    {
+      "id": "H2-B",
+      "name": "Child 2 bathroom",
+      "suite": "H2",
+      "kind": "bath",
+      "phase": 2,
+      "x": 25.6,
+      "y": 12.45,
+      "w": 2.2,
+      "d": 3.05
+    },
+    {
+      "id": "H2-C",
+      "name": "Child 2 wardrobe",
+      "suite": "H2",
+      "kind": "closet",
+      "phase": 2,
+      "x": 25.6,
+      "y": 15.5,
+      "w": 2.2,
+      "d": 2.5
+    },
+    {
+      "id": "G-ENTRY",
+      "name": "Guest suite filter",
+      "suite": "G",
+      "kind": "circulation",
+      "phase": 2,
+      "x": 27.8,
+      "y": 12.45,
+      "w": 1.45,
+      "d": 2.30
+    },
+    {
+      "id": "G-B",
+      "name": "Guest bathroom",
+      "suite": "G",
+      "kind": "bath",
+      "phase": 2,
+      "x": 29.25,
+      "y": 12.45,
+      "w": 2.31,
+      "d": 2.30
+    },
+    {
+      "id": "G-C",
+      "name": "Guest wardrobe",
+      "suite": "G",
+      "kind": "closet",
+      "phase": 2,
+      "x": 31.56,
+      "y": 12.45,
+      "w": 1.54,
+      "d": 2.30
+    },
+    {
+      "id": "G-D",
+      "name": "Guest bedroom",
+      "suite": "G",
+      "kind": "bedroom",
+      "phase": 2,
+      "x": 27.8,
+      "y": 14.75,
+      "w": 5.3,
+      "d": 3.25
+    },
+    {
+      "id": "WELL",
+      "name": "Wellness / sauna / shower",
+      "kind": "wellness",
+      "phase": 2,
+      "x": 33.1,
+      "y": 12.45,
+      "w": 2.9,
+      "d": 5.55
+    }
+  ],
+  "doors": [
+    {
+      "id": "D-STAIR",
+      "connects": ["ESC", "ARR"],
+      "wall": "vertical",
+      "x": 31.5,
+      "at": 8.7,
+      "width": 1.0,
+      "swing": "west",
+      "kind": "door"
+    },
+    {
+      "id": "D-ARR-HALL",
+      "connects": ["ARR", "HALL-C"],
+      "wall": "vertical",
+      "x": 28.6,
+      "at": 9.15,
+      "width": 1.0,
+      "swing": "west",
+      "kind": "door"
+    },
+    {
+      "id": "D-M",
+      "connects": ["ARR", "M-C"],
+      "wall": "horizontal",
+      "y": 7.4,
+      "at": 30.5,
+      "width": 1.0,
+      "swing": "south",
+      "kind": "door"
+    },
+    {
+      "id": "D-M-D",
+      "connects": ["M-C", "M-D"],
+      "wall": "horizontal",
+      "y": 4.2,
+      "at": 33.0,
+      "width": 0.9,
+      "swing": "south",
+      "kind": "door"
+    },
+    {
+      "id": "D-M-B",
+      "connects": ["M-C", "M-B"],
+      "wall": "vertical",
+      "x": 30.5,
+      "at": 5.1,
+      "width": 0.9,
+      "swing": "west",
+      "kind": "door"
+    },
+    {
+      "id": "D-M-WET",
+      "connects": ["M-B", "M-B-A"],
+      "wall": "vertical",
+      "x": 28.6,
+      "at": 5.4,
+      "width": 1.0,
+      "swing": "west",
+      "kind": "opening"
+    },
+    {
+      "id": "D-HALL-C",
+      "connects": ["HALL-C", "FAM"],
+      "wall": "vertical",
+      "x": 27.0,
+      "at": 9.15,
+      "width": 1.0,
+      "swing": "west",
+      "kind": "opening"
+    },
+    {
+      "id": "D-FAM",
+      "connects": ["FAM-A", "FAM"],
+      "wall": "horizontal",
+      "y": 8.5,
+      "at": 25.2,
+      "width": 1.2,
+      "swing": "north",
+      "kind": "opening"
+    },
+    {
+      "id": "D-DECK",
+      "connects": ["DECK", "FAM"],
+      "wall": "horizontal",
+      "y": 8.5,
+      "at": 21.75,
+      "width": 1.0,
+      "swing": "north",
+      "kind": "door"
+    },
+    {
+      "id": "D-H1",
+      "connects": ["H1-D", "DECK"],
+      "wall": "horizontal",
+      "y": 5.0,
+      "at": 22.0,
+      "width": 0.9,
+      "swing": "south",
+      "kind": "door"
+    },
+    {
+      "id": "D-H1-B",
+      "connects": ["H1-D", "H1-B"],
+      "wall": "vertical",
+      "x": 26.2,
+      "at": 3.0,
+      "width": 0.8,
+      "swing": "east",
+      "kind": "door"
+    },
+    {
+      "id": "D-H1-C",
+      "connects": ["H1-D", "H1-C"],
+      "wall": "vertical",
+      "x": 26.2,
+      "at": 0.55,
+      "width": 0.8,
+      "swing": "east",
+      "kind": "door"
+    },
+    {
+      "id": "D-F2",
+      "connects": ["HALL-C", "F2-HALL"],
+      "wall": "horizontal",
+      "y": 11.0,
+      "at": 27.3,
+      "width": 1.0,
+      "swing": "north",
+      "kind": "door"
+    },
+    {
+      "id": "D-H2",
+      "connects": ["F2-HALL", "H2-D"],
+      "wall": "horizontal",
+      "y": 12.45,
+      "at": 23.3,
+      "width": 0.9,
+      "swing": "north",
+      "kind": "door"
+    },
+    {
+      "id": "D-H2-B",
+      "connects": ["H2-D", "H2-B"],
+      "wall": "vertical",
+      "x": 25.6,
+      "at": 13.45,
+      "width": 0.8,
+      "swing": "east",
+      "kind": "door"
+    },
+    {
+      "id": "D-H2-C",
+      "connects": ["H2-D", "H2-C"],
+      "wall": "vertical",
+      "x": 25.6,
+      "at": 16.2,
+      "width": 0.8,
+      "swing": "east",
+      "kind": "door"
+    },
+    {
+      "id": "D-G",
+      "connects": ["F2-HALL", "G-ENTRY"],
+      "wall": "horizontal",
+      "y": 12.45,
+      "at": 27.95,
+      "width": 0.9,
+      "swing": "north",
+      "kind": "door"
+    },
+    {
+      "id": "D-G-D",
+      "connects": ["G-ENTRY", "G-D"],
+      "wall": "horizontal",
+      "y": 14.75,
+      "at": 27.95,
+      "width": 0.9,
+      "swing": "north",
+      "kind": "door"
+    },
+    {
+      "id": "D-G-B",
+      "connects": ["G-ENTRY", "G-B"],
+      "wall": "vertical",
+      "x": 29.25,
+      "at": 13.0,
+      "width": 0.8,
+      "swing": "east",
+      "kind": "door"
+    },
+    {
+      "id": "D-G-C",
+      "connects": ["G-D", "G-C"],
+      "wall": "horizontal",
+      "y": 14.75,
+      "at": 31.8,
+      "width": 0.8,
+      "swing": "south",
+      "kind": "door"
+    },
+    {
+      "id": "D-WELL",
+      "connects": ["F2-HALL", "WELL"],
+      "wall": "horizontal",
+      "y": 12.45,
+      "at": 34.0,
+      "width": 0.9,
+      "swing": "north",
+      "kind": "door"
+    }
+  ],
+  "windows": [
+    {
+      "id": "W-H1",
+      "room_id": "H1-D",
+      "edge": "south",
+      "from": 22.0,
+      "to": 25.8,
+      "height": 2.7,
+      "sill": 0.1
+    },
+    {
+      "id": "W-M-LAT-A",
+      "room_id": "M-D",
+      "edge": "south",
+      "from": 30.0,
+      "to": 35.5,
+      "height": 2.7,
+      "sill": 0.1
+    },
+    {
+      "id": "W-M-REAR",
+      "room_id": "M-D",
+      "edge": "east",
+      "from": 0.8,
+      "to": 3.3,
+      "height": 2.7,
+      "sill": 0.1
+    },
+    {
+      "id": "W-H2",
+      "room_id": "H2-D",
+      "edge": "north",
+      "from": 21.8,
+      "to": 25.2,
+      "height": 2.7,
+      "sill": 0.1
+    },
+    {
+      "id": "W-G",
+      "room_id": "G-D",
+      "edge": "north",
+      "from": 28.8,
+      "to": 32.2,
+      "height": 2.7,
+      "sill": 0.1
+    },
+    {
+      "id": "W-WELL",
+      "room_id": "WELL",
+      "edge": "east",
+      "from": 13.0,
+      "to": 17.0,
+      "height": 1.2,
+      "sill": 1.4
+    }
+  ],
+  "internal_glazing": [
+    {
+      "id": "GLZ-DECK",
+      "room_id": "DECK",
+      "edge": "west",
+      "from": 5.25,
+      "to": 8.2,
+      "acoustic": true,
+      "guard_height_m": 1.1
+    }
+  ],
+  "structural_reservations": [
+    { "id": "GW-STAIR-S", "x": 31.5, "y": 7.4, "role": "D-048 full-height column study" },
+    { "id": "GW-STAIR-N", "x": 31.5, "y": 11.0, "role": "D-048 full-height column study" },
+    { "id": "STAIR-REAR-S", "x": 36.0, "y": 7.4, "role": "D-048 full-height column study" },
+    { "id": "STAIR-REAR-N", "x": 36.0, "y": 11.0, "role": "D-048 full-height column study" }
+  ],
+  "relocated_laundry": {
+    "floor": "PB",
+    "container": "BOD",
+    "x": 32.05,
+    "y": 5.65,
+    "w": 3.4,
+    "d": 1.3,
+    "equipment": ["washer", "dryer", "utility sink", "tall cleaning store"],
+    "status": "coordination reserve; drainage, ventilation and appliance clearances pending"
+  },
+  "egress_reserve": {
+    "id": "EXT-STAIR-2",
+    "access_space": "F2-HALL",
+    "edge": "east",
+    "from": 11.25,
+    "width": 1.0,
+    "type": "folding or sliding retractable exterior stair",
+    "security_intent": "lower end remains above grade while retracted",
+    "retracted_clearance_above_grade_m": 2.4,
+    "status": "architectural reserve only; not credited as a code-compliant exit"
+  },
+  "edge_truss_intent": {
+    "x": 21.0,
+    "view_priority": "primary",
+    "expression": "single large exposed industrial truss",
+    "rejected_expression": "multiple small decorative trusses",
+    "status": "architectural brief; topology, depth, members, joints and fire protection pending structural design"
+  },
+  "design_notes": [
+    "The primary suite is now dominant: 31.1 m2 bedroom, 17.6 m2 bathroom and 17.6 m2 dressing/filter.",
+    "The primary bathroom is L-shaped across M-B and M-B-A; the two zones are one room in programme accounting.",
+    "Laundry moves to PB storage behind the Great Wall, preserving the open hall and releasing P2 area.",
+    "Every enclosed P2 room retains an explicit, geometrically validated door or opening.",
+    "A retractable rear exterior stair is reserved for security and second-route study but is not credited as a compliant exit.",
+    "The X=21 view remains primary; one large exposed industrial truss is acceptable, small decorative trusses are not.",
+    "Four D-048 column reservations remain at the protected stair corners; no section is selected.",
+    "Site orientation remains intentionally reversible.",
+    "P2-W01 dry interior acoustic partitions are coordinated at 250 mm nominal under D-057; wet, hot-side, exterior, protected-stair and technical wall types remain separate design tasks."
+  ]
+}

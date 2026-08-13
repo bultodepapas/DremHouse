@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>19</strong> current SVG/PNG pairs · <strong>50</strong> preserved versioned sheets · <strong>53</strong> documents · <strong>47</strong> decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>20</strong> current SVG/PNG pairs · <strong>56</strong> preserved versioned sheets · <strong>54</strong> documents · <strong>48</strong> decisions · <strong>5</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -61,9 +61,9 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-10-P2</sub>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-13-P2</sub>
   <br><strong>Upper-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b13_p2/DH-ARQ-PLN-002-R10_P2-COORDINATED.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
 </tr>
 <tr>
@@ -96,11 +96,19 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </tr>
 <tr>
 <td width="50%" valign="top">
+  <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
+  <br><sub><strong>Architecture · acoustic partition</strong> · 0.3-draft-13-P2</sub>
+  <br><strong>P2-W01 · 250 mm acoustic wall</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b13_p2/DH-ARQ-DET-003-R10_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+</td>
+<td width="50%" valign="top">
   <a href="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.2</sub>
   <br><strong>Integrated structural evidence</strong>
   <br><sub><a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><sub><strong>Engineering · vertical continuity</strong> · 0.3 + E1 0.2</sub>

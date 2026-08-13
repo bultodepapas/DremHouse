@@ -1,0 +1,611 @@
+{
+  "canonical_model_checks": [
+    {
+      "entity_ids": [],
+      "message": "Every locked source hash matches the active manifest",
+      "rule_id": "MODEL-SOURCE-HASHES",
+      "status": "PASS"
+    },
+    {
+      "entity_ids": [],
+      "message": "PB and structure match the canonical 36 x 18 m hall envelope",
+      "rule_id": "MODEL-HALL-ENVELOPE",
+      "status": "PASS"
+    },
+    {
+      "entity_ids": [],
+      "message": "P2 and structure match the canonical 15 x 18 m rear envelope",
+      "rule_id": "MODEL-P2-ENVELOPE",
+      "status": "PASS"
+    },
+    {
+      "entity_ids": [],
+      "message": "PB and structure use one canonical Great Wall plane",
+      "rule_id": "MODEL-GREAT-WALL",
+      "status": "PASS"
+    },
+    {
+      "entity_ids": [],
+      "message": "PB and rooflights match the canonical mono-pitch roof",
+      "rule_id": "MODEL-ROOF",
+      "status": "PASS"
+    },
+    {
+      "entity_ids": [],
+      "message": "Rooflights use the canonical 21 x 18 m double-height zone",
+      "rule_id": "MODEL-DOUBLE-HEIGHT",
+      "status": "PASS"
+    }
+  ],
+  "date": "2026-08-13",
+  "equipment": {
+    "checks": [
+      {
+        "entity_ids": [
+          "EQ-M-BED",
+          "M-D"
+        ],
+        "message": "EQ-M-BED body footprint is inside M-D",
+        "rule_id": "EQUIP-EQ-M-BED-HOST",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-CAR",
+          "DOUBLE-HEIGHT"
+        ],
+        "message": "EQ-CAR body footprint is inside DOUBLE-HEIGHT",
+        "rule_id": "EQUIP-EQ-CAR-HOST",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-RANGE",
+          "KITCHEN-WALL-RUN"
+        ],
+        "message": "EQ-RANGE body footprint is inside KITCHEN-WALL-RUN",
+        "rule_id": "EQUIP-EQ-RANGE-HOST",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-DISHWASHER",
+          "KITCHEN-WALL-RUN"
+        ],
+        "message": "EQ-DISHWASHER body footprint is inside KITCHEN-WALL-RUN",
+        "rule_id": "EQUIP-EQ-DISHWASHER-HOST",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-FRIDGE",
+          "KITCHEN-WALL-RUN"
+        ],
+        "message": "Selected refrigerator is 0.101 m deeper than the current 0.75 m wall-run datum; resolve cabinetry/recess before freeze",
+        "rule_id": "EQUIP-EQ-FRIDGE-HOST",
+        "status": "OPEN"
+      },
+      {
+        "entity_ids": [
+          "EQ-WASHER",
+          "LAUNDRY-RESERVE"
+        ],
+        "message": "EQ-WASHER body footprint is inside LAUNDRY-RESERVE",
+        "rule_id": "EQUIP-EQ-WASHER-HOST",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-DRYER",
+          "LAUNDRY-RESERVE"
+        ],
+        "message": "EQ-DRYER body footprint is inside LAUNDRY-RESERVE",
+        "rule_id": "EQUIP-EQ-DRYER-HOST",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-WASHER",
+          "EQ-DRYER"
+        ],
+        "message": "Washer and dryer body footprints do not collide",
+        "rule_id": "EQUIP-LAUNDRY-BODY-COLLISION",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-WASHER",
+          "EQ-DRYER",
+          "PB-BOD"
+        ],
+        "message": "Laundry open-door envelopes remain inside the PB storage room",
+        "rule_id": "EQUIP-LAUNDRY-OPERATION-IN-BOD",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-RANGE",
+          "EQ-DISHWASHER",
+          "EQ-FRIDGE"
+        ],
+        "message": "Kitchen appliance body footprints do not collide",
+        "rule_id": "EQUIP-KITCHEN-BODY-COLLISION",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-RANGE",
+          "EQ-DISHWASHER",
+          "EQ-FRIDGE",
+          "KITCHEN-ISLAND"
+        ],
+        "message": "Range and dishwasher open-door envelopes stop short of the island",
+        "rule_id": "EQUIP-KITCHEN-DOORS-CLEAR-ISLAND",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "EQ-M-BED",
+          "M-D"
+        ],
+        "message": "The project king-bed envelope retains 0.90 m clearance on all sides",
+        "rule_id": "EQUIP-PRIMARY-BED-CLEARANCE",
+        "status": "PASS"
+      }
+    ],
+    "note": "Catalogue entries are coordination benchmarks and must be reverified at procurement.",
+    "placements": [
+      {
+        "body": {
+          "depth": 2.0,
+          "id": "EQ-M-BED",
+          "width": 2.05,
+          "x": 31.65,
+          "y": 1.0
+        },
+        "host": "M-D",
+        "id": "EQ-M-BED",
+        "operating": {
+          "depth": 2.0,
+          "id": "EQ-M-BED",
+          "width": 2.05,
+          "x": 31.65,
+          "y": 1.0
+        },
+        "orientation": "width_along_x",
+        "product_id": "BED-KING-DESIGN",
+        "x": 31.65,
+        "y": 1.0
+      },
+      {
+        "body": {
+          "depth": 2.027,
+          "id": "EQ-CAR",
+          "width": 5.715,
+          "x": 2.0,
+          "y": 2.65
+        },
+        "host": "DOUBLE-HEIGHT",
+        "id": "EQ-CAR",
+        "operating": {
+          "depth": 2.027,
+          "id": "EQ-CAR",
+          "width": 5.715,
+          "x": 2.0,
+          "y": 2.65
+        },
+        "orientation": "depth_along_x",
+        "product_id": "CAR-1970-DEVILLE",
+        "x": 2.0,
+        "y": 2.65
+      },
+      {
+        "body": {
+          "depth": 0.721,
+          "id": "EQ-RANGE",
+          "width": 0.911,
+          "x": 26.9,
+          "y": 0.25
+        },
+        "host": "KITCHEN-WALL-RUN",
+        "id": "EQ-RANGE",
+        "operating": {
+          "depth": 1.216,
+          "id": "EQ-RANGE",
+          "width": 0.911,
+          "x": 26.9,
+          "y": 0.25
+        },
+        "orientation": "width_along_x",
+        "product_id": "RANGE-WOLF-GR366",
+        "x": 26.9,
+        "y": 0.25
+      },
+      {
+        "body": {
+          "depth": 0.573,
+          "id": "EQ-DISHWASHER",
+          "width": 0.598,
+          "x": 28.05,
+          "y": 0.25
+        },
+        "host": "KITCHEN-WALL-RUN",
+        "id": "EQ-DISHWASHER",
+        "operating": {
+          "depth": 1.173,
+          "id": "EQ-DISHWASHER",
+          "width": 0.598,
+          "x": 28.05,
+          "y": 0.25
+        },
+        "orientation": "width_along_x",
+        "product_id": "DISHWASHER-BOSCH-60",
+        "x": 28.05,
+        "y": 0.25
+      },
+      {
+        "body": {
+          "depth": 0.851,
+          "id": "EQ-FRIDGE",
+          "width": 0.912,
+          "x": 30.1,
+          "y": 0.25
+        },
+        "host": "KITCHEN-WALL-RUN",
+        "id": "EQ-FRIDGE",
+        "operating": {
+          "depth": 0.851,
+          "id": "EQ-FRIDGE",
+          "width": 0.912,
+          "x": 30.1,
+          "y": 0.25
+        },
+        "orientation": "width_along_x",
+        "product_id": "FRIDGE-SAMSUNG-RS27T5561",
+        "x": 30.1,
+        "y": 0.25
+      },
+      {
+        "body": {
+          "depth": 0.767,
+          "id": "EQ-WASHER",
+          "width": 0.686,
+          "x": 32.15,
+          "y": 5.6
+        },
+        "host": "LAUNDRY-RESERVE",
+        "id": "EQ-WASHER",
+        "operating": {
+          "depth": 1.337,
+          "id": "EQ-WASHER",
+          "width": 0.686,
+          "x": 32.15,
+          "y": 5.6
+        },
+        "orientation": "width_along_x",
+        "product_id": "WASHER-LG-CWG27",
+        "x": 32.15,
+        "y": 5.6
+      },
+      {
+        "body": {
+          "depth": 0.767,
+          "id": "EQ-DRYER",
+          "width": 0.686,
+          "x": 33.05,
+          "y": 5.6
+        },
+        "host": "LAUNDRY-RESERVE",
+        "id": "EQ-DRYER",
+        "operating": {
+          "depth": 1.337,
+          "id": "EQ-DRYER",
+          "width": 0.686,
+          "x": 33.05,
+          "y": 5.6
+        },
+        "orientation": "width_along_x",
+        "product_id": "DRYER-LG-27",
+        "x": 33.05,
+        "y": 5.6
+      }
+    ],
+    "revision": "0.4-I01-EQUIPMENT-LAYOUT",
+    "status": "OPEN"
+  },
+  "input_hash": "5ab3f6e21c0dcc8b81a620ad326eeed1fc56276d69832c94aef6ab43f9a3bb9b",
+  "issue_ready": false,
+  "overall_status": "COORDINATION_OPEN",
+  "p2_checks": [
+    {
+      "message": "Space identifiers are unique",
+      "rule_id": "P2-IDS",
+      "status": "PASS"
+    },
+    {
+      "message": "All room dimensions are finite and positive",
+      "rule_id": "P2-FINITE",
+      "status": "PASS"
+    },
+    {
+      "message": "All spaces remain inside the 18 x 15 m P2 envelope",
+      "rule_id": "P2-ENVELOPE",
+      "status": "PASS"
+    },
+    {
+      "message": "No room overlaps",
+      "rule_id": "P2-NO-OVERLAP",
+      "status": "PASS"
+    },
+    {
+      "message": "Gross room tessellation 270.000 m2 = envelope 270.000 m2",
+      "rule_id": "P2-AREA-CLOSURE",
+      "status": "PASS"
+    },
+    {
+      "message": "D-042 net bedrooms: H1 22.98 m2, H2 22.53 m2, delta 0.45 m2",
+      "rule_id": "P2-CHILD-EQUAL",
+      "status": "PASS"
+    },
+    {
+      "message": "Child-bedroom ratios 1.04:1 and 1.22:1",
+      "rule_id": "P2-CHILD-PROPORTION",
+      "status": "PASS"
+    },
+    {
+      "message": "Narrowest declared circulation is F2-HALL at 1.20 m clear",
+      "rule_id": "P2-CIRCULATION",
+      "status": "PASS"
+    },
+    {
+      "message": "F1 and F2 meet at one isolatable Y=11.00 m boundary",
+      "rule_id": "P2-PHASING",
+      "status": "PASS"
+    },
+    {
+      "message": "All 21 doors/openings lie on the boundaries they connect",
+      "rule_id": "P2-DOOR-GEOMETRY",
+      "status": "PASS"
+    },
+    {
+      "message": "Every enclosed space is connected to the protected stair",
+      "rule_id": "P2-ACCESS-GRAPH",
+      "status": "PASS"
+    },
+    {
+      "message": "Every bedroom window lies on its room's exterior wall",
+      "rule_id": "P2-WINDOWS",
+      "status": "PASS"
+    },
+    {
+      "message": "Protected stair remains aligned 1:1 with the PB core",
+      "rule_id": "P2-STAIR-ALIGNMENT",
+      "status": "PASS"
+    },
+    {
+      "message": "Four D-048 full-height column reservations remain at stair corners",
+      "rule_id": "P2-D048-COLUMNS",
+      "status": "PASS"
+    },
+    {
+      "message": "Guest bedroom, bathroom and wardrobe remain within coordinated programme bands",
+      "rule_id": "P2-GUEST-PROGRAMME",
+      "status": "PASS"
+    },
+    {
+      "message": "Wellness is 16.1 m2 gross and fits a 2.40 m sauna",
+      "rule_id": "P2-WELLNESS",
+      "status": "PASS"
+    },
+    {
+      "message": "Laundry is reserved inside PB storage behind the Great Wall and below the primary wet band",
+      "rule_id": "PB-LAUNDRY-RESERVE",
+      "status": "PASS"
+    },
+    {
+      "message": "Rear-facade retractable stair reserve is reached directly from the Phase 2 lobby and clears the D-048 corner",
+      "rule_id": "P2-RETRACTABLE-STAIR-RESERVE",
+      "status": "PASS"
+    },
+    {
+      "message": "X=21 architectural brief requires one large exposed industrial truss while protecting the mini-deck view",
+      "rule_id": "P2-EDGE-TRUSS-BRIEF",
+      "status": "PASS"
+    },
+    {
+      "message": "D-057 P2-W01 is 250 mm nominal: two independent insulated frames, two concealed reclaimed boards and two new finish boards",
+      "rule_id": "P2-W01-250",
+      "status": "PASS"
+    },
+    {
+      "message": "Primary bathroom 17.6 m2 and dressing room 17.6 m2 meet or exceed the original programme minimums",
+      "rule_id": "P2-PRIMARY-PROGRAMME",
+      "status": "PASS"
+    },
+    {
+      "message": "A rear retractable stair is reserved, but its acceptance as a second exit awaits D-021 and professional fire review",
+      "rule_id": "LIFE-EGRESS-2",
+      "status": "OPEN"
+    },
+    {
+      "message": "The large exposed X=21 truss must preserve the mini-deck view; members, joints, fire protection and services remain undesigned",
+      "rule_id": "P2-EDGE-TRUSS",
+      "status": "OPEN"
+    },
+    {
+      "message": "Solar control, privacy and final glazing await the selected site and orientation",
+      "rule_id": "P2-SITE-ORIENTATION",
+      "status": "OPEN"
+    }
+  ],
+  "programme": {
+    "checks": [
+      {
+        "entity_ids": [
+          "M-B-A",
+          "M-B"
+        ],
+        "message": "Primary bath components total 17.60 m2 against the 17 m2 study target",
+        "rule_id": "PROGRAM-PRIMARY-BATH-17",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "M-C"
+        ],
+        "message": "Primary dressing totals 17.60 m2 against the 15 m2 study target",
+        "rule_id": "PROGRAM-PRIMARY-CLOSET-15",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "M-B-A",
+          "M-D",
+          "M-B",
+          "M-C"
+        ],
+        "message": "Tagged primary-suite components total 66.28 m2; reconcile the 75 m2 owner target and gross/net basis",
+        "rule_id": "PROGRAM-PRIMARY-TOTAL-75",
+        "status": "OPEN"
+      }
+    ],
+    "measurement_warning": "Component tags are not a boundary survey; shared circulation is excluded.",
+    "revision": "0.4-I01-PROGRAM",
+    "status": "OPEN",
+    "suite_component_areas_m2": {
+      "G": 29.41,
+      "H1": 38.0,
+      "H2": 37.74,
+      "M": 66.28
+    }
+  },
+  "revision": "0.4-I02",
+  "rooflights": {
+    "checks": [
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "D-054 scenario contains exactly two rooflights",
+        "rule_id": "ROOF-D054-COUNT",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "Rooflight identifiers are unique",
+        "rule_id": "ROOF-D054-UNIQUE-IDS",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC",
+          "DOUBLE-HEIGHT"
+        ],
+        "message": "Both rooflights are contained in the double-height zone",
+        "rule_id": "ROOF-D054-CONTAINMENT",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "Rooflight footprints do not overlap",
+        "rule_id": "ROOF-D054-NO-OVERLAP",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "D-054 rooflights have equal plan dimensions",
+        "rule_id": "ROOF-D054-EQUAL-DIMENSIONS",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "Each declared rooflight area equals length times width",
+        "rule_id": "ROOF-D054-DECLARED-AREAS",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "One rooflight is centred in each longitudinal half",
+        "rule_id": "ROOF-D054-HALF-CENTRES",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "Clear edge separation is 5.70 m against 1.50 m minimum hypothesis",
+        "rule_id": "ROOF-D054-SEPARATION",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "RL-CAR",
+          "RL-RC"
+        ],
+        "message": "Both D-054 openings cross schematic portal/purlin lines; engineered trimmers and diaphragm detailing remain open",
+        "rule_id": "ROOF-D054-STRUCTURAL-TRIMMERS",
+        "status": "OPEN"
+      }
+    ],
+    "curb_perimeter_m": 28.8,
+    "revision": "0.4-I01-ROOFLIGHTS",
+    "status": "OPEN",
+    "structural_grid": {
+      "basis": {
+        "authority": "schematic grid hypothesis only",
+        "longitudinal_bay_m": 6.0,
+        "purlin_spacing_m": 1.5
+      },
+      "conflicts": [
+        {
+          "portal_lines_x_m": [
+            6.0
+          ],
+          "purlin_lines_y_m": [
+            9.0
+          ],
+          "requires_engineered_trimmers": true,
+          "rooflight_id": "RL-CAR"
+        },
+        {
+          "portal_lines_x_m": [
+            18.0
+          ],
+          "purlin_lines_y_m": [
+            9.0
+          ],
+          "requires_engineered_trimmers": true,
+          "rooflight_id": "RL-RC"
+        }
+      ],
+      "note": "A crossing flags a trimmer/design task; it does not prove infeasibility.",
+      "status": "OPEN"
+    },
+    "total_area_m2": 23.04
+  },
+  "scenario_id": "D057_P2_W01",
+  "selection_or_construction_authority": false,
+  "status_counts": {
+    "FAIL": 0,
+    "OPEN": 6,
+    "PASS": 48
+  }
+}

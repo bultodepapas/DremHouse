@@ -51,19 +51,24 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 - [Concept plan v0.3 — draft 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
   predecessor whose preferred upper-floor spatial centre is carried through D-049 into
-  active D-050/R09.
+  active D-050/D-057 R10.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   study wall thicknesses, Great Wall, reorganized core, kitchen, and equipped workshop.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
-  are retained in active R09.
+  are retained in active R10.
 - [Coordinated upper floor v0.3 — draft 09](02_arquitectura/plano_p2_coordinado_v0.3_borrador_09.md):
   superseded D-049/R08 predecessor combining b04's spatial centre with b06 controls,
   explicit door topology, and D-048 stair-column reservations.
 - [Owner-priority coordination — drafts 10 and 11](02_arquitectura/coordinacion_prioridades_propietario_v0.3_b10_b11.md):
   D-050→D-053 coordination record for the enlarged primary suite, PB laundry,
   retractable exterior-stair reserve, large exposed edge-truss brief, and b11 rooflights.
-  D-054 now supersedes only the b11/D-053 rooflight position for the next study.
+  D-054 supersedes the b11/D-053 rooflight position, while D-057/R10 supersedes the P2
+  wall-thickness and Phase 2 clearance portions without erasing this record.
+- [P2 acoustic partition coordination — draft 13](02_arquitectura/particion_acustica_p2_v0.3_b13.md):
+  D-057 freezes the 250 mm nominal P2-W01 dry-interior assembly, records the concealed
+  reclaimed-board acceptance rules, and rebalances Phase 2 to retain 1.20 m clear
+  circulation without enlarging the upper floor.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):

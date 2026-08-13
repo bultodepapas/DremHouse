@@ -27,7 +27,7 @@ from dreamhouse.quantities import build_quantity_ledger
 from dreamhouse.structure.coordination import compare_support_concepts
 from dreamhouse.structure.e1_screening import run_screening
 
-DEFAULT_OUTPUT = REPOSITORY_ROOT / "planos" / "integracion_v0.4_i01"
+DEFAULT_OUTPUT = REPOSITORY_ROOT / "planos" / "integracion_v0.4_i02"
 
 
 def _write_json(path: Path, value: Any) -> None:
@@ -68,7 +68,7 @@ def _evidence_markdown(results: dict[str, Any]) -> str:
         )
     return "\n".join(
         [
-            "# Integrated coordination evidence — v0.4-I01",
+            "# Integrated coordination evidence — v0.4-I02",
             "",
             f"- Scenario: `{results['scenario_id']}`",
             f"- Input hash: `{results['input_hash']}`",
@@ -103,7 +103,7 @@ def _evidence_markdown(results: dict[str, Any]) -> str:
 
 def run_pipeline(
     *,
-    scenario_id: str = "D054_HALF_CENTRES",
+    scenario_id: str = "D057_P2_W01",
     output_dir: Path = DEFAULT_OUTPUT,
     include_structural_screening: bool = True,
 ) -> dict[str, Any]:
@@ -167,7 +167,7 @@ def run_pipeline(
         else "COORDINATION_PASS"
     )
     results = {
-        "revision": "0.4-I01",
+        "revision": "0.4-I02",
         "date": project.manifest["date"],
         "scenario_id": scenario_id,
         "input_hash": integration_input_hash,
@@ -270,7 +270,7 @@ def run_pipeline(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scenario", default="D054_HALF_CENTRES")
+    parser.add_argument("--scenario", default="D057_P2_W01")
     parser.add_argument("--out", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument(
         "--skip-structural-screening",

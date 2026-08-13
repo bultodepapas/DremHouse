@@ -18,7 +18,7 @@ from dreamhouse.structure.coordination import compare_support_concepts
 class TestCanonicalProjectModel(unittest.TestCase):
     def test_active_scenario_is_hash_locked_and_cross_model_consistent(self):
         project = load_project()
-        self.assertEqual(project.scenario_id, "D054_HALF_CENTRES")
+        self.assertEqual(project.scenario_id, "D057_P2_W01")
         self.assertTrue(all(item.status == "PASS" for item in project.checks))
         self.assertEqual(project.geometry["great_wall_x_m"], 31.5)
 

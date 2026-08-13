@@ -1,9 +1,9 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 0.4  
-**Date:** 2026-08-12  
-**Language note:** controlled English translation under D-044; no technical change.
+**Version:** 0.5
+**Date:** 2026-08-13
+**Language note:** controlled English translation under D-044; CF-009 added for D-057.
 
 ## Precedence
 
@@ -121,6 +121,24 @@ compatibility with the five openings shown in the interior elevation.
   bracing, diaphragm action, or collectors until the E1 model is complete.
 - **Status:** authority conflict resolved by D-043 for gravity support; detailed design
   and the lateral function remain open.
+
+### CF-009 — D-057 partition assembly versus structural dead-load allowance
+
+D-057 fixes a 250 mm nominal P2 dry-partition assembly with two metal frames, four total
+gypsum-board layers, and glass wool in both frames. The structural screening model still
+uses a global `partitions_p2_kpa` allowance rather than wall lengths and actual product
+masses, and the issued E0/E1 structural sheets predate P2 b13/R10.
+
+- **Architectural rule:** P2 b13/R10 governs current dry-partition geometry and clear
+  dimensions under D-057.
+- **Structural hold point:** do not infer that the existing partition allowance covers
+  P2-W01. Measure wall lengths, select local products, calculate installed mass including
+  frames/boards/insulation/doors, and compare the result with the allowance and local
+  concentrations before the next structural issue.
+- **Publication rule:** the current structural sheets remain screening evidence and may
+  not be presented as coordinated construction design for D-057.
+- **Status:** open; responsible structural engineer and architect of record must close it
+  before developed-design freeze.
 
 ## Resolution rule
 

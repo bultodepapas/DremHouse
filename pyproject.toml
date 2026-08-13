@@ -30,6 +30,7 @@ include = ["dreamhouse*"]
   "p2_b06.json",
   "p2_b09.json",
   "p2_b10.json",
+  "p2_b13.json",
   "rooflight_b08.json",
   "rooflight_b11.json",
   "rooflight_b12.json",

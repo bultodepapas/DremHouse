@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.2
+**Versión:** 0.3.3
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -218,10 +218,29 @@ steel, connection, fire-protection, MEP, and finish quantities. No saving or inc
 recognized. The $941 M physical-work target, the inherited 5% contingency, and the
 $988.05 M target including that contingency remain unchanged.
 
+### 0.3-L — D-057 P2 dry acoustic-partition scope
+
+D-057 replaces the provisional 150 mm study thickness only for ordinary dry interior P2
+partitions with the 250 mm nominal P2-W01 control assembly. The added scope comprises two
+independent metal-stud frames, glass-wool infill in both frames, two accepted reclaimed
+concealed gypsum-board layers, two new visible gypsum-board layers, perimeter acoustic
+sealing, coordinated head details, and one full-height mock-up. Reclaimed board is a
+reuse opportunity, not a booked saving; acceptance losses, sorting, handling, storage,
+extra fasteners, and sealing must be measured before any saving is recognized.
+
+The active P2 revision remains within the 270 m² gross envelope and rebalances Phase 2 to
+retain the declared 1.20 m clear circulation minimum. Exterior, sauna hot-side, wet-area,
+protected-stair/fire-rated, shaft, equipment, and structural wall types are excluded from
+P2-W01 and remain separate unpriced scopes. The partition dead-load allowance, door and
+frame depths, electrical/MEP penetrations, fire stopping, floor-edge support, and finishes
+must be rechecked against the actual selected products. **No price, saving, increase,
+contingency change, or target change is recognized by this decision.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-L   | 2026-08-13 | D-057 fixes P2-W01 at 250 mm nominal for ordinary dry interior upper-floor partitions: twin independent metal frames, glass wool in both frames, reclaimed concealed gypsum board and new visible finish board. Phase 2 is rebalanced within the unchanged gross envelope to retain 1.20 m clear circulation. Exterior, sauna/wet, protected-stair/fire-rated, technical and structural wall types remain excluded and unpriced. Reuse is not counted as a saving until yield and handling are measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-K   | 2026-08-13 | D-054/D-055 integration control: reopens complete rooflight-assembly quantities after relocation; records active-model opening measurements of 55.02 m² P2 windows and 41.76 m² PB technical glazing against unresolved estimate placeholders; and requires a generated quantity ledger and cost mapping for Great Wall, structural, opening, equipment, and room changes. **No total, contingency, saving, or increase is recognized.** Affects principally 03/05/06/08/09/10/12/13/14/15/16/17/19/20/21/22/23/26 and remains blocked by PE-1/PE-2. |
 | 0.2     | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | 0.3     | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |

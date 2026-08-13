@@ -1,6 +1,6 @@
 {
   "project_id": "DH-COORD-001",
-  "revision": "0.4-I01",
+  "revision": "0.4-I02",
   "date": "2026-08-13",
   "status": "active coordination model; not construction authority",
   "source": "D-055 and parametric architecture-structure-cost integration plan",
@@ -38,7 +38,12 @@
     "P2_B10": {
       "path": "dreamhouse/p2_b10.json",
       "sha256": "3ae1f6807b89f8f9ae368e7ded21de95c442cb3c6496fa60116fdf3a56512c6a",
-      "status": "active schematic coordination hypothesis"
+      "status": "superseded P2 coordination hypothesis retained for comparison"
+    },
+    "P2_B13": {
+      "path": "dreamhouse/p2_b13.json",
+      "sha256": "035c969b8c43385f5802359dd8ff1ebe1aefb5b64ee2d3e790a998c812cddac1",
+      "status": "issued for coordination under D-057; not for construction"
     },
     "ROOFLIGHT_B11": {
       "path": "dreamhouse/rooflight_b11.json",
@@ -79,10 +84,21 @@
       }
     },
     "D054_HALF_CENTRES": {
-      "status": "active coordination scenario",
+      "status": "superseded comparison scenario retained for traceability",
       "sources": {
         "pb": "PB_B05",
         "p2": "P2_B10",
+        "rooflights": "ROOFLIGHT_B12",
+        "structure": "STRUCTURE_SYSTEM",
+        "roof_space": "ROOF_TRUSS_SPACE",
+        "e1_space": "E1_SCREENING_SPACE"
+      }
+    },
+    "D057_P2_W01": {
+      "status": "active coordination scenario",
+      "sources": {
+        "pb": "PB_B05",
+        "p2": "P2_B13",
         "rooflights": "ROOFLIGHT_B12",
         "structure": "STRUCTURE_SYSTEM",
         "roof_space": "ROOF_TRUSS_SPACE",

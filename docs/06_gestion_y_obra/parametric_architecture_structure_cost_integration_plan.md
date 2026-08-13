@@ -1,12 +1,12 @@
 # Parametric Architecture–Structure–Cost Integration Plan
 
-**Status:** implementation issue 0.4-I01 active; coordination basis; not for construction
-**Version:** 0.3
+**Status:** implementation issue 0.4-I02 active; coordination basis; not for construction
+**Version:** 0.4
 **Date:** 2026-08-13  
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
 **Primary authority:** Project Constitution, source-precedence register, D-043,
-D-045–D-048, D-050–D-056, and the active discipline records listed below
+D-045–D-048, D-050–D-057, and the active discipline records listed below
 **Prepared from:** complete repository review, active drawings and JSON models, Python
 call-path and test audit, cost-control records, and protected legacy source review  
 **Required reviewers:** owner, architect, structural engineer, cost planner/quantity
@@ -33,6 +33,22 @@ The issue closes no professional design gate. Its current result is **47 PASS, 6
 refrigerator-to-cabinet-depth mismatch, the primary-suite gross/net target, structural
 system selection, and cost-code/rate eligibility. The package therefore reports
 `COORDINATION_OPEN`, `issue_ready=false`, and no approved budget total.
+
+## Implementation issue 0.4-I02
+
+D-057 adds `D057_P2_W01` as the active hash-locked scenario and retains the D-054/P2-b10
+scenario for comparison. The active P2 source is now `dreamhouse/p2_b13.json`; its R10
+plan and P2-W01 detail derive from the same model. The new 250 mm nominal dry-partition
+control is validated together with room tessellation, child equivalence, circulation,
+access, windows, stair reservations, and the existing rooflight/structure interfaces.
+This issue does not convert the wall detail into a tested acoustic/fire assembly or a
+construction quantity.
+
+The deterministic package is written to
+[`planos/integracion_v0.4_i02/`](../../planos/integracion_v0.4_i02/) and reports
+**48 PASS, 6 OPEN, 0 FAIL**. It remains `COORDINATION_OPEN` and `issue_ready=false`;
+the D-057 structural dead-load comparison is tracked separately in CF-009 and must be
+added to the next structural issue rather than inferred from this pipeline result.
 
 ## 1. Executive recommendation
 
@@ -123,7 +139,7 @@ These rules belong in automated scenario acceptance tests as well as in drawings
 | Decisions | `docs/00_gobernanza/registro_decisiones.md` | owner/project decisions |
 | Program | `docs/01_programa/programa_arquitectonico.md` | program and performance basis |
 | PB | `dreamhouse/pb_b05.json` and PB R04 sheet | active schematic hypothesis |
-| P2 | `dreamhouse/p2_b10.json` and P2 R09 sheet | active schematic hypothesis |
+| P2 | `dreamhouse/p2_b13.json` and P2 R10 sheet | issued for coordination under D-057; not for construction |
 | Roof | roof b07 record/model | active schematic hypothesis |
 | Rooflights | `dreamhouse/rooflight_b11.json` superseded in position by D-054 | geometry to revise |
 | Structure | `dreamhouse/structure/structure_system.json`, E0/E1 records and sheets | research/screening only |
@@ -160,7 +176,7 @@ The repository is more advanced than a drawing-only project:
 - the structural package compares portal/truss concepts, generates roof-truss grammars,
   enumerates profiles, retains Pareto alternatives, runs member/system screens, maps
   ground-structure load paths, and produces E1 evidence sheets;
-- the current 97-test structural/coordination suite passes;
+- the current 107-test structural/coordination suite passes;
 - structural quantities can be generated for defined hypotheses;
 - the cost record has atomic cost codes, confidence, phase allocation, measurement
   corrections, and economic gates.
@@ -173,8 +189,8 @@ absence of a single authoritative dependency graph connecting them.
 ```mermaid
 flowchart LR
     A[PB b05 JSON] --> D[Drawing generators]
-    B[P2 b10 JSON] --> D
-    C[Rooflight b11 JSON] --> D
+    B[P2 b13 JSON] --> D
+    C[Rooflight b12 JSON] --> D
     S[Structure-system JSON] --> Q[Structural quantities]
     S --> E[E0 and E1 screens]
     A --> E
@@ -666,10 +682,11 @@ Every scenario report shall show:
 **Purpose:** prove the migration starts from the current record.  
 **Planned changes:**
 
-- add an active-model manifest referencing PB b05, P2 b10, roof b07, revised rooflight
+- maintain an active-model manifest referencing PB b05, P2 b13, roof b07, revised rooflight
   branch, structural input versions, decisions, and status;
 - generate file hashes and a baseline metrics snapshot;
-- reproduce the existing 97-test pass and drawing/quantity outputs;
+- preserve the original 97-test baseline and reproduce the expanded 107-test pass plus
+  drawing/quantity outputs;
 - mark old inputs as superseded in manifests without deleting historical files;
 - isolate/delete stale executable reporting paths that contain superseded design language.
 
@@ -1030,3 +1047,8 @@ D-054 records the revised rooflight study objective. D-055 adopts this integrate
 workflow for the next stage. Adoption authorizes implementation of the planning and
 validation infrastructure only; it does not adopt any scenario outcome, product,
 structural system, profile, quantity, rate, or construction detail.
+
+D-057 subsequently fixes the P2-W01 assembly principle and nominal thickness for design
+coordination. It does not remove the professional, structural-load, fire, moisture,
+penetration, door-seal, mock-up, or field-performance gates recorded in the active P2
+wall detail.

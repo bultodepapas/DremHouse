@@ -1,8 +1,8 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11
+**Versión:** 0.2
+**Fecha:** 2026-08-13
 
 ## Forma y modulación
 
@@ -53,6 +53,19 @@ absorbente es preferida, no especificada aún.
 No aceptar “acústica de hangar”. Distribuir absorción entre pared posterior, intradós o
 bandas de cubierta, grandes textiles, cortinas compatibles, mobiliario y desacople de P2.
 Un estudio preliminar debe definir objetivos y áreas absorbentes antes de acabados.
+
+### P2 dry interior partition control
+
+D-057 fixes P2-W01 at 250 mm nominal for ordinary dry upper-floor partitions. Use two
+independent light-gauge frames, nominal 50 mm glass wool within each frame, a clear
+central decoupling cavity, one accepted reclaimed concealed gypsum-board layer per face,
+and one new visible finish-board layer per face. Do not insert a third gypsum leaf in the
+central cavity. See [P2 acoustic partition coordination — b13/R10](particion_acustica_p2_v0.3_b13.md).
+
+This control does not apply to façades, sauna hot-side/wet assemblies, protected stairs,
+fire-rated or technical enclosures, or structural walls. Those interfaces require
+separate details. No acoustic or fire rating is claimed until the selected products,
+doors, seals, penetrations, junctions, and full-height mock-up are verified.
 
 ## Detalle y mantenibilidad
 

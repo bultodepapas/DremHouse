@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.0<br>
+**Version:** 1.1<br>
 **Date:** 2026-08-13<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -26,7 +26,7 @@ record, repository README, and presentation do not change when a new issue is pr
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-10-P2 · <a href="../../planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-13-P2 · <a href="../../planos/conceptual_v0.3_b13_p2/DH-ARQ-PLN-002-R10_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -55,10 +55,17 @@ record, repository README, and presentation do not change when a new issue is pr
 </tr>
 <tr>
 <td width="50%" valign="top">
+  <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
+  <br><strong>P2-W01 · 250 mm acoustic wall</strong>
+  <br><sub>0.3-draft-13-P2 · <a href="../../planos/conceptual_v0.3_b13_p2/DH-ARQ-DET-003-R10_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
+</td>
+<td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><strong>Integrated structural evidence</strong>
   <br><sub>0.3 + E1 0.2 · <a href="../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><strong>Stair-frame continuity</strong>
@@ -71,8 +78,8 @@ record, repository README, and presentation do not change when a new issue is pr
 
 ## What the set contains
 
-The publication layer currently contains **19 SVG/PNG pairs**:
-**14 architectural views** and **5 structural coordination
+The publication layer currently contains **20 SVG/PNG pairs**:
+**15 architectural views** and **5 structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
 owner-priority interfaces, structural plans/elevations, the hybrid-wall study, E1
