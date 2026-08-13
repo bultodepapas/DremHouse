@@ -26,3 +26,4 @@ Standing rules:
 - When sources conflict, never choose silently: open a conflict or a decision.
 - Visualizations must follow the geometry and program; they are never dimensional
   authority.
+- Do not create branches.
