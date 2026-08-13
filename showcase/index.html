@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0f0f">
+    <meta name="description" content="Dream House: expediente vivo de arquitectura, ingeniería, costos y ejecución para una warehouse house en Boyacá.">
+    <title>Dream House · Expediente maestro</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="#inicio" title="Volver al inicio">
+        <span>DH</span><small>Boyacá · CO</small>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#concepto">Concepto</a>
+        <a href="#planos">Planos</a>
+        <a href="#sistema">Sistema</a>
+      </nav>
+      <a class="header-link" href="https://github.com/bultodepapas/DremHouse">GitHub ↗</a>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="visually-hidden">Dream House — expediente maestro</h1>
+        <picture class="hero__picture" data-hero-art>
+          <source media="(max-width: 760px)" srcset="assets/dream-house-cover-mobile.svg">
+          <img class="hero__cover" src="assets/dream-house-cover.svg" alt="Dream House, una nave industrial residencial de 18 por 36 metros en Boyacá">
+        </picture>
+        <div class="hero__shade" aria-hidden="true"></div>
+        <div class="hero__footer">
+          <p><span class="status-dot" aria-hidden="true"></span> Expediente <span data-field="status">activo</span> · v<span data-field="version">0.2</span></p>
+          <div class="hero__actions">
+            <a class="button button--solid" href="#planos">Explorar las láminas</a>
+            <a class="button button--line" href="https://github.com/bultodepapas/DremHouse/blob/main/docs/README.md">Abrir expediente ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Dimensiones principales" data-reveal>
+        <div>
+          <strong data-field="footprint">18 × 36 m</strong>
+          <span>envolvente nominal</span>
+        </div>
+        <div>
+          <strong data-field="pb-area">648 m²</strong>
+          <span>planta baja</span>
+        </div>
+        <div>
+          <strong data-field="p2-area">≈270 m²</strong>
+          <span>segundo piso parcial</span>
+        </div>
+        <div>
+          <strong data-field="total-area">≈918 m²</strong>
+          <span>área conceptual</span>
+        </div>
+      </section>
+
+      <section class="section manifesto" id="concepto">
+        <div class="section-label" data-reveal>
+          <span>01</span>
+          <p>Principio rector</p>
+        </div>
+        <div class="manifesto__body" data-reveal>
+          <p class="kicker">Warehouse house / loft industrial residencial</p>
+          <h2>Una caja.<br>Una estructura.<br>Un gran vacío.</h2>
+          <p class="lead">La vida técnica no se esconde: el taller, el carro proyecto, la tecnología y la vivienda forman una sola arquitectura.</p>
+        </div>
+        <div class="manifesto__sequence" data-reveal>
+          <ol>
+            <li><span>01</span><strong>Técnica</strong><small>Talleres abiertos</small></li>
+            <li><span>02</span><strong>Monumental</strong><small>Doble altura</small></li>
+            <li><span>03</span><strong>Doméstica</strong><small>Vida cotidiana</small></li>
+            <li><span>04</span><strong>Privada</strong><small>P2 posterior</small></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="status-section" aria-labelledby="estado-title">
+        <div class="status-section__copy" data-reveal>
+          <p class="kicker">Estado de coordinación</p>
+          <h2 id="estado-title" data-field="phase">Anteproyecto dimensional</h2>
+        </div>
+        <dl class="status-list" data-reveal>
+          <div><dt>Fecha de corte</dt><dd data-field="date">2026-08-11</dd></div>
+          <div><dt>Documentos</dt><dd data-field="documents">—</dd></div>
+          <div><dt>Láminas vectoriales</dt><dd data-field="sheets">—</dd></div>
+          <div><dt>Decisiones registradas</dt><dd data-field="decisions">—</dd></div>
+          <div class="status-list__wide"><dt>Bloqueador principal</dt><dd data-field="blocker">Selección y estudios del predio</dd></div>
+        </dl>
+      </section>
+
+      <section class="section gallery" id="planos" aria-labelledby="gallery-title">
+        <div class="section-label" data-reveal>
+          <span>02</span>
+          <p>Archivo visual</p>
+        </div>
+        <div class="gallery__intro" data-reveal>
+          <p class="kicker">Últimos entregables por disciplina</p>
+          <h2 id="gallery-title">El dibujo como instrumento de coordinación.</h2>
+          <p>La selección se reconstruye automáticamente desde los manifiestos. Cada imagen conserva revisión, fuente y advertencia de uso.</p>
+        </div>
+        <div class="gallery__workspace">
+          <div class="gallery__nav" id="gallery-nav" role="tablist" aria-label="Seleccionar lámina"></div>
+          <figure class="gallery__stage" id="gallery-panel" role="tabpanel" data-gallery-stage data-reveal>
+            <button class="gallery__zoom" type="button" data-open-dialog aria-label="Ampliar la lámina seleccionada">
+              <img src="" alt="" data-gallery-image>
+              <span>Ampliar ↗</span>
+            </button>
+            <figcaption>
+              <div>
+                <p data-gallery-eyebrow>Disciplina</p>
+                <h3 data-gallery-title>Lámina</h3>
+              </div>
+              <p data-gallery-summary></p>
+              <a href="#" data-gallery-link>Ver archivo fuente ↗</a>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section system" id="sistema" aria-labelledby="system-title">
+        <div class="section-label" data-reveal>
+          <span>03</span>
+          <p>Trazabilidad</p>
+        </div>
+        <div class="system__intro" data-reveal>
+          <p class="kicker">Del dato a la lámina</p>
+          <h2 id="system-title">Nada se dibuja sin dejar rastro.</h2>
+        </div>
+        <ol class="pipeline" data-reveal>
+          <li><span>01</span><strong>Fuentes</strong><p>Constitución, decisiones y documentos activos.</p></li>
+          <li><span>02</span><strong>Modelo</strong><p>Geometría e hipótesis legibles por máquina.</p></li>
+          <li><span>03</span><strong>Validación</strong><p>Reglas, cumplimiento y conflictos explícitos.</p></li>
+          <li><span>04</span><strong>Emisión</strong><p>SVG, revisión y manifiesto reproducible.</p></li>
+        </ol>
+      </section>
+
+      <section class="warning" aria-labelledby="warning-title" data-reveal>
+        <p class="kicker">Límite de responsabilidad</p>
+        <h2 id="warning-title">Anteproyecto conceptual.<br>No apto para construir.</h2>
+        <p>El expediente no sustituye predio, topografía, geotecnia, licencia, diseños firmados, memorias de cálculo, presupuesto contractual ni supervisión técnica.</p>
+      </section>
+
+      <section class="final-cta" data-reveal>
+        <p>El próximo gran avance no es otro render.</p>
+        <h2>Es escoger el predio y convertir hipótesis en evidencia.</h2>
+        <div>
+          <a class="button button--solid" href="https://github.com/bultodepapas/DremHouse/blob/main/docs/06_gestion_y_obra/decisiones_y_datos_pendientes.md">Ver próximos pasos ↗</a>
+          <a class="button button--dark-line" href="https://github.com/bultodepapas/DremHouse">Abrir repositorio ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Dream House · Boyacá, Colombia</span>
+      <span>Las decisiones se registran; no se sobrescriben sin historia.</span>
+    </footer>
+
+    <dialog class="lightbox" data-dialog aria-label="Lámina ampliada">
+      <button type="button" data-close-dialog aria-label="Cerrar lámina">Cerrar ×</button>
+      <img src="" alt="" data-dialog-image>
+    </dialog>
+
+    <!-- showcase:data -->
+  </body>
+</html>

@@ -1,0 +1,57 @@
+name: Decisión de proyecto
+description: Registrar una elección que cambia criterio, alcance, geometría, costo o fase.
+title: "[DECISIÓN] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No conviertas una hipótesis en requisito congelado. Expón alternativas, efectos y autoridad.
+  - type: input
+    id: decision
+    attributes:
+      label: Decisión requerida
+      description: Formula la elección en una sola frase verificable.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Fuente y contexto
+      description: Documento, instrucción del propietario, conflicto o evidencia que origina la decisión.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas comparadas
+      description: Incluye mantener el estado actual cuando sea una alternativa real.
+    validations:
+      required: true
+  - type: textarea
+    id: effects
+    attributes:
+      label: Efectos coordinados
+      description: Arquitectura, estructura, MEP, normativa, costo, plazo, fases y riesgo.
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Puerta de decisión
+      options:
+        - Antes de seleccionar predio
+        - Antes de cerrar anteproyecto
+        - Antes de diseño desarrollado
+        - Antes de contratar
+        - Puede permanecer abierta
+    validations:
+      required: true
+  - type: checkboxes
+    id: governance
+    attributes:
+      label: Gobierno
+      options:
+        - label: Revisé constitución, precedencia y decisiones vigentes.
+          required: true
+        - label: Identifiqué los documentos que deberán actualizarse si se aprueba.
+          required: true

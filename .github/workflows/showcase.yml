@@ -1,0 +1,122 @@
+name: Showcase
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "showcase/**"
+      - "planos/**"
+      - "dreamhouse/project.json"
+      - "docs/**"
+      - ".github/assets/**"
+      - ".github/scripts/build_showcase.py"
+      - ".github/workflows/showcase.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - "showcase/**"
+      - "planos/**"
+      - "dreamhouse/project.json"
+      - "docs/**"
+      - ".github/assets/**"
+      - ".github/scripts/build_showcase.py"
+      - ".github/workflows/showcase.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dream-house-showcase-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Validate generated presentation
+        run: python .github/scripts/build_showcase.py --check-readme --site-dir .build/showcase
+
+  sync-readme:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Regenerate README gallery
+        run: python .github/scripts/build_showcase.py --write-readme
+
+      - name: Commit gallery when manifests changed
+        shell: bash
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "README gallery is current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "docs: sincronizar galería del proyecto [skip ci]"
+          git push
+
+  build-pages:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: sync-readme
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Build static showcase
+        run: python .github/scripts/build_showcase.py --site-dir _site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+          include-hidden-files: true
+
+  deploy-pages:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build-pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

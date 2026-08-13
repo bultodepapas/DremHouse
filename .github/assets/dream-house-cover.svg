@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
+  <title id="title">Dream House — expediente maestro</title>
+  <desc id="desc">Portada editorial oscura con una nave industrial residencial dibujada en líneas y las dimensiones conceptuales principales.</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#d8d2c7" stroke-opacity=".055" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18201f"/>
+      <stop offset="1" stop-color="#080b0b"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="720" fill="url(#fade)"/>
+  <rect width="1600" height="720" fill="url(#grid)"/>
+  <path d="M0 568C320 506 573 599 905 548C1198 503 1373 454 1600 490V720H0Z" fill="#c86442" opacity=".055"/>
+
+  <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M913 244L1281 183L1491 302L1123 371Z" stroke="#eee9df" stroke-opacity=".18" stroke-width="24" filter="url(#glow)"/>
+    <path d="M913 244L1281 183L1491 302L1123 371Z" stroke="#eee9df" stroke-width="2.4"/>
+    <path d="M913 244V486L1123 607V371M1491 302V546L1123 607" stroke="#eee9df" stroke-width="2.4"/>
+    <path d="M913 244L1123 371V607M1281 183V430L1491 546" stroke="#eee9df" stroke-opacity=".32" stroke-width="1.2"/>
+    <path d="M954 268L954 510M996 293L996 534M1038 318L1038 558M1080 343L1080 582" stroke="#eee9df" stroke-opacity=".16"/>
+    <path d="M1123 371L1491 302M1123 412L1491 343M1123 454L1491 385M1123 495L1491 426M1123 536L1491 468" stroke="#eee9df" stroke-opacity=".12"/>
+    <path d="M932 353L991 387V500L932 466ZM1011 400L1067 433V544L1011 512Z" stroke="#c86442" stroke-width="5"/>
+    <path d="M976 378L1005 395V475L976 458Z" stroke="#eee9df" stroke-width="2"/>
+    <path d="M1144 398L1260 377V518L1144 540ZM1287 372L1456 342V499L1287 529Z" stroke="#eee9df" stroke-opacity=".42" stroke-width="1.5"/>
+    <path d="M1184 390V532M1223 383V525M1330 364V521M1373 356V514M1416 349V506" stroke="#eee9df" stroke-opacity=".14"/>
+    <path d="M880 629H1519M879 619V639M1519 619V639" stroke="#c86442" stroke-width="1.4"/>
+    <path d="M1529 291V554M1519 291H1539M1519 554H1539" stroke="#c86442" stroke-width="1.4"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" fill="#f2ede3">
+    <text x="76" y="75" font-size="15" letter-spacing="5" fill="#c86442">DH / 26</text>
+    <text x="228" y="75" font-size="15" letter-spacing="4" fill="#a9afaa">BOYACÁ · COLOMBIA</text>
+    <text x="76" y="235" font-size="112" font-weight="700" letter-spacing="-6">DREAM</text>
+    <text x="76" y="338" font-size="112" font-weight="700" letter-spacing="-6">HOUSE</text>
+    <text x="82" y="391" font-size="22" letter-spacing="1" fill="#c7c7bf">UNA NAVE. UN GRAN VACÍO. UNA VIDA TÉCNICA.</text>
+    <text x="82" y="447" font-size="17" fill="#929b96">Expediente vivo de arquitectura, ingeniería, costos y ejecución.</text>
+
+    <g transform="translate(82 554)">
+      <text y="0" font-size="30" font-weight="700">18 × 36 m</text>
+      <text y="27" font-size="12" letter-spacing="2.2" fill="#929b96">ENVOLVENTE NOMINAL</text>
+      <line x1="188" y1="-29" x2="188" y2="34" stroke="#c86442"/>
+      <text x="222" y="0" font-size="30" font-weight="700">≈918 m²</text>
+      <text x="222" y="27" font-size="12" letter-spacing="2.2" fill="#929b96">ÁREA CONCEPTUAL</text>
+      <line x1="432" y1="-29" x2="432" y2="34" stroke="#c86442"/>
+      <text x="466" y="0" font-size="30" font-weight="700">V0.3</text>
+      <text x="466" y="27" font-size="12" letter-spacing="2.2" fill="#929b96">ANTEPROYECTO</text>
+    </g>
+
+    <text x="880" y="663" font-size="11" letter-spacing="2" fill="#8f9893">36,00 m · REPRESENTACIÓN EDITORIAL NO DIMENSIONAL</text>
+    <text x="1553" y="430" transform="rotate(90 1553 430)" font-size="11" letter-spacing="2" fill="#8f9893">18,00 m</text>
+  </g>
+</svg>

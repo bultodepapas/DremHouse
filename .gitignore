@@ -12,5 +12,6 @@ _tmp/
 
 # Cachés locales de herramientas; no ignorar fuentes ni entregables
 .cache/
+.build/
 __pycache__/
 *.py[cod]
