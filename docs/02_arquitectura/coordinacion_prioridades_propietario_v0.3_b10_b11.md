@@ -1,6 +1,7 @@
 # Owner-Priority Architectural Coordination — b10/R09 and b11/R10
 
-**Status:** historical coordination record; P2 superseded by D-057/b13-R10 and rooflight position superseded by D-054
+**Status:** historical coordination record; P2 superseded through D-059/b15-R12 and
+rooflight position superseded by D-054
 **Version:** 0.3-b10-P2 / R09 and 0.3-b11-rooflights / R10  
 **Date:** 2026-08-13  
 **Sources:** D-050, D-051, D-052, D-053; D-042; D-048; b09/R08 predecessor  
@@ -8,7 +9,7 @@
 professional, MEP engineer, envelope consultant, and cost review
 
 > The primary-suite, PB-laundry, exterior-stair, and X=21 view intentions remain active
-> through D-050–D-052. Use b13/R10 for the current P2 wall geometry and the D-054/I01
+> through D-050–D-052. Use b15/R12 for the current P2 wall geometry and the D-054/I01
 > rooflight issue for the current rooflight position.
 
 ## Coordinated outcome

@@ -1,8 +1,8 @@
 # Matriz inicial de riesgos
 
 **Estatus:** activa; revisar en cada puerta de fase  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Versión:** 0.3
+**Fecha:** 2026-08-13
 
 Escala cualitativa: probabilidad (P) e impacto (I): baja, media, alta, crítica.
 
@@ -13,9 +13,9 @@ Escala cualitativa: probabilidad (P) e impacto (I): baja, media, alta, crítica.
 | R-03 | Clasificación de uso/incendio contradice PB totalmente abierta | Media | Crítica | Consulta temprana y estrategia especializada                              |
 | R-04 | Estructura de 18 m + P2 exige apoyos/costo no previstos        | Alta  | Alta    | Comparar sistemas y ejes antes de v0.3 final                              |
 | R-05 | Suelo/drenaje encarece cimentación y losa                      | Media | Crítica | Geotecnia y topografía antes de compra/diseño                             |
-| R-06 | Condensación, infiltración o puentes térmicos                  | Alta  | Alta    | Diseño de envolvente e higrotermia por clima real                         |
+| R-06 | Condensación, infiltración o puentes térmicos                  | Alta  | Alta    | Verificar P2-W05 con higrotermia climática, detalles de vanos y mock-up   |
 | R-07 | Aire del taller/vehículo afecta vivienda                       | Alta  | Crítica | Inventario de procesos, captura en fuente y make-up air                   |
-| R-08 | Ruido/reverberación invade P2                                  | Alta  | Alta    | Objetivos acústicos, aislamiento y absorción distribuida                  |
+| R-08 | Ruido/reverberación invade P2                                  | Alta  | Alta    | Coordinar P2-W01/W04/W05, sellos, vanos, flancos y ensayo representativo  |
 | R-09 | Potencia/servicios del predio insuficientes                    | Media | Alta    | Disponibilidad escrita y estudio de cargas temprano                       |
 | R-10 | Egreso desde P2 o rutas interferidas por taller                | Media | Crítica | Estrategia de evacuación desde anteproyecto                               |
 | R-11 | Redes ocultas colisionan con estructura visible                | Alta  | Alta    | Coordinación 3D/rutas antes de fabricar/cerrar                            |

@@ -1,13 +1,13 @@
 # P2 Acoustic Partition Coordination — b13/R10
 
-**Status:** assembly basis remains active under D-057; b13/R10 plan superseded by
-b14/R11 under D-058; not for construction
+**Status:** assembly basis remains active under D-057; b13/R10 plan superseded through
+b15/R12 under D-058/D-059; not for construction
 **Version:** 0.3-draft-13-P2 / R10  
 **Date:** 2026-08-13  
 **Sources:** D-034, D-042, D-050, D-057; p2 b10/R09 predecessor  
 **Supersedes:** the 150 mm study thickness for ordinary dry interior P2 partitions only  
-**Superseded by:** b14/R11 for the current P2 plan and full hall-edge enclosure; P2-W01
-build-up remains the active opaque-wall reference
+**Superseded by:** b14/R11 as its historical successor and b15/R12 as the current P2
+plan; P2-W01 remains the active dry-partition and opaque P2-W04 build-up reference
 **Approval pending:** architect of record, structural engineer, fire/life-safety
 professional, selected-system manufacturer, and full-height mock-up review
 

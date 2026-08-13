@@ -164,7 +164,9 @@ without turning the ground floor into a collection of enclosed rooms.
 ### 04 · Private
 
 The partial upper floor brings together four suites, wellness spaces, and
-services behind an acoustically enclosed envelope.
+services behind an acoustically enclosed envelope. Its residential side is deliberately
+refined: corrugated metal remains outside, while double-frame exterior walls conceal
+steel and services behind smooth, quiet interior finishes.
 
 ## Navigate the project record
 

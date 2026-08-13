@@ -1,8 +1,8 @@
 # Decisiones y datos pendientes
 
 **Estatus:** activo  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Versión:** 0.3
+**Fecha:** 2026-08-13
 
 ## Prioridad inmediata — propietario
 
@@ -49,6 +49,8 @@
 - Matriz de rough-ins F1/F2 con inspección y as-built.
 - Shafts, rutas MEP y accesos de mantenimiento.
 - Objetivos de acústica, clima y calidad del aire.
+- P2-W05: productos locales, higrotermia, viento, fuego/cavity barriers, vanos,
+  encuentros y mock-up; mantener lámina y estructura fuera de la vista interior de P2.
 - Cantidades de envolvente, acero y concreto de prediseño.
 
 ## Antes de licencia/contratación
