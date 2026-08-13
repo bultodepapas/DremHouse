@@ -46,7 +46,7 @@ la estructura y el desempeño; no de formas gratuitas ni capas decorativas.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>36</strong> láminas vectoriales · <strong>45</strong> documentos · <strong>34</strong> decisiones registradas · <strong>4</strong> conflictos abiertos</sub>
+  <sub><strong>35</strong> láminas vectoriales · <strong>44</strong> documentos · <strong>33</strong> decisiones registradas · <strong>4</strong> conflictos abiertos</sub>
 </p>
 
 <table>
@@ -70,7 +70,7 @@ la estructura y el desempeño; no de formas gratuitas ni capas decorativas.
 </td>
 <td width="50%" valign="top">
   <a href="planos/estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg"><img src="planos/estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg" alt="Lámina de inspección del esquema estructural E0 de Dream House" width="100%"></a>
-  <br><sub><strong>Ingeniería · E0</strong> · 0.2</sub>
+  <br><sub><strong>Ingeniería · E0</strong> · 0.1</sub>
   <br><strong>La estructura queda a la vista</strong>
 </td>
 </tr>
