@@ -9,6 +9,13 @@ P2 floor without interior columns.
 **Sources:** SCI/steelconstruction.info, ESDEP, AISC, AISC Design Guide 11, Tata Steel ComFlor,
 Fielders SlimDek, Building Science Corp (BSD-011, BSI-062), ASCE 7-16 / NSR-10 A.3.
 
+> **Supersession notice — 2026-08-12:** this memo records the state of the first E0
+> investigation. Its former three-beam/5.9 t Great Wall result and description of the wall
+> as a longitudinal shear core are superseded by D-043 and D-045. The active E0 hypothesis
+> uses six continuous beams with a rear overhang, reports approximately 11.6 t for the P2
+> Great Wall floor subsystem, and assigns no longitudinal-X resistance to the transverse
+> wall. See `modelo_estructural_e0.md` and `roof_truss_exploration_e0.md`.
+
 ---
 
 ## 1. Stressed skin diaphragm action (cladding as bracing)
@@ -175,14 +182,12 @@ coordination set.
    frequency check ≥ 5 Hz (≈ 14.9 Hz). Result: ≈ 3.8 t of floor steel vs 12.4–17.1 t
    METALDECK (corrected L/240 floor beams), zero interior columns. Ver el modelo
    `dreamhouse/structure/staggered.py`.
-2. ✅ **DONE (2026-08-11):** new preferred P2 scheme **GRAN-MURO** — the X = 31.5 great
-   wall acts as a load-bearing wall + longitudinal shear core: nucleus strip on the wall,
-   3 longitudinal IPE550 beams (10.5 m span, deflection-governed L/240) in the 3.20→3.80 m
-   plenum + an 18 m edge truss at X = 21. ≈ 5.9 t of floor steel, zero interior columns,
-   no partition re-articulation needed, wall axial ≈ 76 kN/m. Physics audit on the same
-   date: fixed gravity signs, inclined-member load projection and L/240 limits in meters
-   (previously 1000× too lenient). Best combination: CERCHA·M90 + great wall ≈ 25.3 t ≈
-   27.6 kg/m².
+2. ⚠️ **SUPERSEDED (2026-08-12):** the former three-beam, 5.9 t Great Wall scheme omitted
+   its real rear support condition and incorrectly implied longitudinal shear-core action.
+   D-043/D-045 now govern the E0 hypothesis: six continuous beams from X=21.00 to X=36.00,
+   supported at X=21.00 and X=31.50 with a 4.50 m rear overhang; approximately 11.6 t for
+   the P2 Great Wall subsystem; no longitudinal-X resistance assigned to the wall. These
+   remain lower-bound screening quantities, not a selected design.
 3. Add a **wind girder** + computed bracing weight and document EHF (topic 3) — the great
    wall simplifies the longitudinal wind girder.
 4. Document drift limits h/200 vs h/300 for metal-clad and re-check column sizes (topic 4).

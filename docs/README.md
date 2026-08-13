@@ -99,6 +99,14 @@
 - [Digital tools for drawings, BIM, and structures](08_investigacion/herramientas_planos_bim_y_estructuras.md):
   proposed model architecture, formats, validation, and prototype roadmap.
 - [Structural research: ten topics, 2026-08](08_investigacion/investigacion_estructura_10_temas_2026_08.md)
+- [Parametric structural optimization workflow, 2026-08](08_investigacion/parametric_structural_optimization_2026_08.md):
+  traceable candidate grammar, deterministic enumeration, Pareto screening, optional
+  optimization libraries, and the E1 verification boundary.
+- [Generated E0 roof-truss exploration](08_investigacion/roof_truss_exploration_e0.md):
+  current non-dominated axial-screening shortlist; no candidate selects D-019.
+- [M60 ground-structure load-path map](08_investigacion/ground_structure_m60_e0.svg):
+  continuous-area linear-programming inspiration to rationalize into manufacturable
+  grammars; not a truss design.
 - [Cost-efficient construction techniques and materials](08_investigacion/tecnicas_que_abaratan_costos.md):
   research into lower-cost methods applicable to the hall, including risks and
   order-of-magnitude value-engineering potential.

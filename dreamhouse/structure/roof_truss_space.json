@@ -1,0 +1,41 @@
+{
+  "project": {
+    "id": "DH-EST-OPT-E0-001",
+    "revision": "0.1",
+    "status": "research_hypothesis",
+    "date": "2026-08-12",
+    "purpose": "Explore roof-truss geometries with traceable screening metrics. Results do not select D-019 and are not suitable for design, pricing, fabrication, or construction.",
+    "source_model": "dreamhouse/structure/structure_system.json"
+  },
+  "modulation_ids": ["M45", "M60", "M90"],
+  "topologies": ["WARREN_MODIFIED", "PRATT", "HOWE", "X"],
+  "panel_counts": [6, 8, 10],
+  "depth_options": [
+    {"shape": "CONSTANT", "centre_depth_span_ratio": 12.0, "end_depth_fraction": 1.0},
+    {"shape": "CONSTANT", "centre_depth_span_ratio": 15.0, "end_depth_fraction": 1.0},
+    {"shape": "VARIABLE", "centre_depth_span_ratio": 10.0, "end_depth_fraction": 0.55},
+    {"shape": "VARIABLE", "centre_depth_span_ratio": 12.0, "end_depth_fraction": 0.55}
+  ],
+  "profile_choices": {
+    "chord": ["HSS100x100x6", "HSS120x120x6", "HSS150x150x8"],
+    "web": ["HSS100x100x6", "HSS120x120x6", "HSS150x150x8"]
+  },
+  "analysis": {
+    "effective_length_factor": 1.0,
+    "fabrication_crossing_penalty": 2.0,
+    "pareto_objectives": [
+      "total_roof_truss_mass_kg",
+      "fabrication_proxy",
+      "governing_ratio"
+    ]
+  },
+  "ground_structure": {
+    "modulation_id": "M60",
+    "panel_count": 10,
+    "centre_depth_span_ratio": 10.0,
+    "end_depth_fraction": 0.55,
+    "max_panel_jump": 2,
+    "active_area_threshold_cm2": 0.05
+  }
+}
+

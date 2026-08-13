@@ -1,0 +1,507 @@
+{
+  "project": {
+    "id": "DH-EST-OPT-E0-GS-001",
+    "revision": "0.1",
+    "date": "2026-08-12",
+    "status": "research_inspiration_not_a_design"
+  },
+  "input_sha256": "95eeed494f8b0fc15b93c2272bd22a3030a140d44c24d12d4dd091609837007c",
+  "modulation_id": "M60",
+  "candidate_member_count": 87,
+  "active_member_count": 39,
+  "objective_m_cm2": 200.532325358,
+  "max_equilibrium_error_kn": 0.0,
+  "nodes": [
+    [
+      0.0,
+      7.2
+    ],
+    [
+      0.0,
+      6.21
+    ],
+    [
+      1.8,
+      7.26
+    ],
+    [
+      1.8,
+      6.108
+    ],
+    [
+      3.6,
+      7.32
+    ],
+    [
+      3.6,
+      6.006
+    ],
+    [
+      5.4,
+      7.38
+    ],
+    [
+      5.4,
+      5.904
+    ],
+    [
+      7.2,
+      7.44
+    ],
+    [
+      7.2,
+      5.8020000000000005
+    ],
+    [
+      9.0,
+      7.5
+    ],
+    [
+      9.0,
+      5.7
+    ],
+    [
+      10.8,
+      7.56
+    ],
+    [
+      10.8,
+      5.922
+    ],
+    [
+      12.6,
+      7.62
+    ],
+    [
+      12.6,
+      6.144
+    ],
+    [
+      14.4,
+      7.68
+    ],
+    [
+      14.4,
+      6.366
+    ],
+    [
+      16.2,
+      7.74
+    ],
+    [
+      16.2,
+      6.588
+    ],
+    [
+      18.0,
+      7.8
+    ],
+    [
+      18.0,
+      6.81
+    ]
+  ],
+  "support_nodes": [
+    0,
+    20
+  ],
+  "active_members": [
+    {
+      "i": 0,
+      "j": 1,
+      "area_cm2": 1.202396927,
+      "length_m": 0.99,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 38.416581818,
+        "global_uplift_component_only": -9.030763636
+      }
+    },
+    {
+      "i": 0,
+      "j": 3,
+      "area_cm2": 1.52767571,
+      "length_m": 2.105341777,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 48.809238947,
+        "global_uplift_component_only": -11.473813633
+      }
+    },
+    {
+      "i": 0,
+      "j": 4,
+      "area_cm2": 1.306839374,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -41.753517996,
+        "global_uplift_component_only": 9.815192663
+      }
+    },
+    {
+      "i": 1,
+      "j": 2,
+      "area_cm2": 2.175030203,
+      "length_m": 2.083866598,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -69.492214997,
+        "global_uplift_component_only": 16.33585651
+      }
+    },
+    {
+      "i": 1,
+      "j": 5,
+      "area_cm2": 1.881759211,
+      "length_m": 3.605775367,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 60.122206779,
+        "global_uplift_component_only": -14.133205325
+      }
+    },
+    {
+      "i": 2,
+      "j": 5,
+      "area_cm2": 0.968907456,
+      "length_m": 2.193744744,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 30.956593205,
+        "global_uplift_component_only": -7.277109597
+      }
+    },
+    {
+      "i": 2,
+      "j": 6,
+      "area_cm2": 2.675233096,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -85.47369741,
+        "global_uplift_component_only": 20.092697525
+      }
+    },
+    {
+      "i": 3,
+      "j": 4,
+      "area_cm2": 1.186342686,
+      "length_m": 2.170010138,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -37.903648831,
+        "global_uplift_component_only": 8.910186106
+      }
+    },
+    {
+      "i": 3,
+      "j": 7,
+      "area_cm2": 2.293846469,
+      "length_m": 3.605775367,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 73.288394678,
+        "global_uplift_component_only": -17.228242032
+      }
+    },
+    {
+      "i": 4,
+      "j": 7,
+      "area_cm2": 0.274390075,
+      "length_m": 2.290208724,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 8.766762897,
+        "global_uplift_component_only": -2.060843517
+      }
+    },
+    {
+      "i": 4,
+      "j": 8,
+      "area_cm2": 2.50722229,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -80.105752175,
+        "global_uplift_component_only": 18.830829802
+      }
+    },
+    {
+      "i": 5,
+      "j": 6,
+      "area_cm2": 0.780604559,
+      "length_m": 2.264481398,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -24.940315667,
+        "global_uplift_component_only": 5.862835399
+      }
+    },
+    {
+      "i": 5,
+      "j": 9,
+      "area_cm2": 3.299522999,
+      "length_m": 3.605775367,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 105.419759832,
+        "global_uplift_component_only": -24.781510707
+      }
+    },
+    {
+      "i": 6,
+      "j": 10,
+      "area_cm2": 3.29606778,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -105.309365585,
+        "global_uplift_component_only": 24.75555982
+      }
+    },
+    {
+      "i": 7,
+      "j": 8,
+      "area_cm2": 0.227426734,
+      "length_m": 2.366283161,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -7.266284154,
+        "global_uplift_component_only": 1.708119036
+      }
+    },
+    {
+      "i": 7,
+      "j": 9,
+      "area_cm2": 0.162659635,
+      "length_m": 1.802887684,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 5.19697534,
+        "global_uplift_component_only": -1.221677039
+      }
+    },
+    {
+      "i": 7,
+      "j": 11,
+      "area_cm2": 2.520468958,
+      "length_m": 3.605775367,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 80.528983205,
+        "global_uplift_component_only": -18.930320679
+      }
+    },
+    {
+      "i": 8,
+      "j": 9,
+      "area_cm2": 0.311097353,
+      "length_m": 1.638,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -9.93956044,
+        "global_uplift_component_only": 2.336538462
+      }
+    },
+    {
+      "i": 8,
+      "j": 12,
+      "area_cm2": 2.680318854,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -85.636187399,
+        "global_uplift_component_only": 20.130894799
+      }
+    },
+    {
+      "i": 9,
+      "j": 13,
+      "area_cm2": 3.45855708,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 110.500898717,
+        "global_uplift_component_only": -25.975957534
+      }
+    },
+    {
+      "i": 10,
+      "j": 11,
+      "area_cm2": 0.452957746,
+      "length_m": 1.8,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -14.472,
+        "global_uplift_component_only": 3.402
+      }
+    },
+    {
+      "i": 10,
+      "j": 14,
+      "area_cm2": 3.29606778,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -105.309365585,
+        "global_uplift_component_only": 24.75555982
+      }
+    },
+    {
+      "i": 11,
+      "j": 15,
+      "area_cm2": 2.535498555,
+      "length_m": 3.627276664,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 81.009178838,
+        "global_uplift_component_only": -19.043202488
+      }
+    },
+    {
+      "i": 12,
+      "j": 13,
+      "area_cm2": 0.311097353,
+      "length_m": 1.638,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -9.93956044,
+        "global_uplift_component_only": 2.336538462
+      }
+    },
+    {
+      "i": 12,
+      "j": 15,
+      "area_cm2": 0.220115115,
+      "length_m": 2.290208724,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -7.032677929,
+        "global_uplift_component_only": 1.65320414
+      }
+    },
+    {
+      "i": 12,
+      "j": 16,
+      "area_cm2": 2.50722229,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -80.105752175,
+        "global_uplift_component_only": 18.830829802
+      }
+    },
+    {
+      "i": 13,
+      "j": 17,
+      "area_cm2": 3.482827686,
+      "length_m": 3.627276664,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 111.276344558,
+        "global_uplift_component_only": -26.158245176
+      }
+    },
+    {
+      "i": 14,
+      "j": 17,
+      "area_cm2": 0.756220453,
+      "length_m": 2.193744744,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -24.161243477,
+        "global_uplift_component_only": 5.679695295
+      }
+    },
+    {
+      "i": 14,
+      "j": 18,
+      "area_cm2": 2.675233096,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -85.47369741,
+        "global_uplift_component_only": 20.092697525
+      }
+    },
+    {
+      "i": 15,
+      "j": 16,
+      "area_cm2": 0.283504559,
+      "length_m": 2.366283161,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 9.057970658,
+        "global_uplift_component_only": -2.129299073
+      }
+    },
+    {
+      "i": 15,
+      "j": 19,
+      "area_cm2": 2.143895135,
+      "length_m": 3.627276664,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 68.497449576,
+        "global_uplift_component_only": -16.1020124
+      }
+    },
+    {
+      "i": 16,
+      "j": 19,
+      "area_cm2": 1.150988549,
+      "length_m": 2.105341777,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -36.774084138,
+        "global_uplift_component_only": 8.644654107
+      }
+    },
+    {
+      "i": 16,
+      "j": 20,
+      "area_cm2": 1.306839374,
+      "length_m": 3.601999445,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -41.753517996,
+        "global_uplift_component_only": 9.815192663
+      }
+    },
+    {
+      "i": 17,
+      "j": 18,
+      "area_cm2": 1.000149591,
+      "length_m": 2.264481398,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 31.954779448,
+        "global_uplift_component_only": -7.511757855
+      }
+    },
+    {
+      "i": 17,
+      "j": 19,
+      "area_cm2": 0.163629577,
+      "length_m": 1.813638332,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 5.227964988,
+        "global_uplift_component_only": -1.228961919
+      }
+    },
+    {
+      "i": 17,
+      "j": 21,
+      "area_cm2": 1.892980171,
+      "length_m": 3.627276664,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 60.480716473,
+        "global_uplift_component_only": -14.217481858
+      }
+    },
+    {
+      "i": 18,
+      "j": 21,
+      "area_cm2": 2.114689795,
+      "length_m": 2.026055281,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": -67.564338937,
+        "global_uplift_component_only": 15.882661765
+      }
+    },
+    {
+      "i": 19,
+      "j": 20,
+      "area_cm2": 1.574600293,
+      "length_m": 2.170010138,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 50.308479358,
+        "global_uplift_component_only": -11.826247013
+      }
+    },
+    {
+      "i": 20,
+      "j": 21,
+      "area_cm2": 1.202396927,
+      "length_m": 0.99,
+      "force_by_case_kn": {
+        "factored_gravity_envelope": 38.416581818,
+        "global_uplift_component_only": -9.030763636
+      }
+    }
+  ],
+  "limitations": [
+    "continuous-area plastic lower-bound layout study only",
+    "no elastic compatibility or displacement constraint",
+    "no self-weight, buckling, catalogue profiles, connection geometry, crossing removal, or constructability",
+    "the uplift component is included as a topology-reversal probe, not as a standalone code combination",
+    "the output must be rationalized into a stable grammar and re-analysed before E1 comparison"
+  ]
+}

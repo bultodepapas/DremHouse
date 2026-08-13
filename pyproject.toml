@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dreamhouse-project-record"
+version = "0.3.0"
+description = "Parametric coordination and structural-screening tools for Dream House."
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0,<3",
+]
+
+[project.scripts]
+dreamhouse-optimize-roof = "dreamhouse.structure.optimize_roof:main"
+dreamhouse-ground-structure = "dreamhouse.structure.ground_structure:main"
+
+[project.optional-dependencies]
+optimization = [
+  "scipy>=1.17,<1.18",
+  "pymoo>=0.6.2,<0.7",
+  "SALib>=1.5,<2",
+]
+verification = [
+  "openseespy>=3.7,<4",
+]
+dev = [
+  "ruff>=0.12,<1",
+]
+
+[tool.setuptools.packages.find]
+include = ["dreamhouse*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

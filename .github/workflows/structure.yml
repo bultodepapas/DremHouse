@@ -1,0 +1,68 @@
+name: Structural exploration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "dreamhouse/structure/**"
+      - "docs/03_ingenierias/**"
+      - "docs/08_investigacion/**"
+      - "pyproject.toml"
+      - ".github/workflows/structure.yml"
+  pull_request:
+    paths:
+      - "dreamhouse/structure/**"
+      - "docs/03_ingenierias/**"
+      - "docs/08_investigacion/**"
+      - "pyproject.toml"
+      - ".github/workflows/structure.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install analysis, optimization, and lint dependencies
+        run: python -m pip install -e ".[optimization,dev]"
+
+      - name: Lint the structural-exploration layer
+        run: >-
+          python -m ruff check
+          dreamhouse/structure/truss.py
+          dreamhouse/structure/truss_grammar.py
+          dreamhouse/structure/optimize_roof.py
+          dreamhouse/structure/ground_structure.py
+          dreamhouse/structure/tests/test_truss_optimization.py
+
+      - name: Run structural regression tests
+        run: python -m unittest discover -s dreamhouse/structure/tests -v
+
+      - name: Regenerate traceable exploration outputs
+        run: |
+          python -m dreamhouse.structure.optimize_roof
+          python -m dreamhouse.structure.ground_structure
+
+      - name: Confirm generated evidence is current
+        run: >-
+          git diff --exit-code --
+          docs/08_investigacion/roof_truss_exploration_e0.json
+          docs/08_investigacion/roof_truss_exploration_e0.md
+          docs/08_investigacion/ground_structure_m60_e0.json
+          docs/08_investigacion/ground_structure_m60_e0.svg
+

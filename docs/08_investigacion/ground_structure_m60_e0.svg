@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520">
+<rect width="100%" height="100%" fill="#f5f1e8"/>
+<text x="70" y="42" font-family="Arial" font-size="24" fill="#16222a">M60 ground-structure load-path map</text>
+<text x="70" y="68" font-family="Arial" font-size="14" fill="#59636a">LP inspiration only · line width ∝ continuous optimized area · not a truss design</text>
+<line x1="1050" y1="42" x2="1090" y2="42" stroke="#c85a3c" stroke-width="5"/><text x="1100" y="47" font-family="Arial" font-size="13" fill="#59636a">compression under gravity</text>
+<line x1="1050" y1="65" x2="1090" y2="65" stroke="#267ea3" stroke-width="5"/><text x="1100" y="70" font-family="Arial" font-size="13" fill="#59636a">tension under gravity</text>
+<line x1="90.00" y1="328.33" x2="90.00" y2="395.43" stroke="#267ea3" stroke-width="5.40" stroke-linecap="round" opacity="0.82"/>
+<line x1="90.00" y1="328.33" x2="212.00" y2="402.35" stroke="#267ea3" stroke-width="6.00" stroke-linecap="round" opacity="0.82"/>
+<line x1="90.00" y1="328.33" x2="334.00" y2="320.20" stroke="#c85a3c" stroke-width="5.60" stroke-linecap="round" opacity="0.82"/>
+<line x1="90.00" y1="395.43" x2="212.00" y2="324.27" stroke="#c85a3c" stroke-width="7.02" stroke-linecap="round" opacity="0.82"/>
+<line x1="90.00" y1="395.43" x2="334.00" y2="409.26" stroke="#267ea3" stroke-width="6.58" stroke-linecap="round" opacity="0.82"/>
+<line x1="212.00" y1="324.27" x2="334.00" y2="409.26" stroke="#267ea3" stroke-width="4.92" stroke-linecap="round" opacity="0.82"/>
+<line x1="212.00" y1="324.27" x2="456.00" y2="316.13" stroke="#c85a3c" stroke-width="7.71" stroke-linecap="round" opacity="0.82"/>
+<line x1="212.00" y1="402.35" x2="334.00" y2="320.20" stroke="#c85a3c" stroke-width="5.37" stroke-linecap="round" opacity="0.82"/>
+<line x1="212.00" y1="402.35" x2="456.00" y2="416.17" stroke="#267ea3" stroke-width="7.19" stroke-linecap="round" opacity="0.82"/>
+<line x1="334.00" y1="320.20" x2="456.00" y2="416.17" stroke="#267ea3" stroke-width="2.95" stroke-linecap="round" opacity="0.82"/>
+<line x1="334.00" y1="320.20" x2="578.00" y2="312.07" stroke="#c85a3c" stroke-width="7.49" stroke-linecap="round" opacity="0.82"/>
+<line x1="334.00" y1="409.26" x2="456.00" y2="316.13" stroke="#c85a3c" stroke-width="4.49" stroke-linecap="round" opacity="0.82"/>
+<line x1="334.00" y1="409.26" x2="578.00" y2="423.09" stroke="#267ea3" stroke-width="8.49" stroke-linecap="round" opacity="0.82"/>
+<line x1="456.00" y1="316.13" x2="700.00" y2="308.00" stroke="#c85a3c" stroke-width="8.48" stroke-linecap="round" opacity="0.82"/>
+<line x1="456.00" y1="416.17" x2="578.00" y2="312.07" stroke="#c85a3c" stroke-width="2.74" stroke-linecap="round" opacity="0.82"/>
+<line x1="456.00" y1="416.17" x2="578.00" y2="423.09" stroke="#267ea3" stroke-width="2.43" stroke-linecap="round" opacity="0.82"/>
+<line x1="456.00" y1="416.17" x2="700.00" y2="430.00" stroke="#267ea3" stroke-width="7.51" stroke-linecap="round" opacity="0.82"/>
+<line x1="578.00" y1="312.07" x2="578.00" y2="423.09" stroke="#c85a3c" stroke-width="3.09" stroke-linecap="round" opacity="0.82"/>
+<line x1="578.00" y1="312.07" x2="822.00" y2="303.93" stroke="#c85a3c" stroke-width="7.72" stroke-linecap="round" opacity="0.82"/>
+<line x1="578.00" y1="423.09" x2="822.00" y2="414.95" stroke="#267ea3" stroke-width="8.67" stroke-linecap="round" opacity="0.82"/>
+<line x1="700.00" y1="308.00" x2="700.00" y2="430.00" stroke="#c85a3c" stroke-width="3.59" stroke-linecap="round" opacity="0.82"/>
+<line x1="700.00" y1="308.00" x2="944.00" y2="299.87" stroke="#c85a3c" stroke-width="8.48" stroke-linecap="round" opacity="0.82"/>
+<line x1="700.00" y1="430.00" x2="944.00" y2="399.91" stroke="#267ea3" stroke-width="7.53" stroke-linecap="round" opacity="0.82"/>
+<line x1="822.00" y1="303.93" x2="822.00" y2="414.95" stroke="#c85a3c" stroke-width="3.09" stroke-linecap="round" opacity="0.82"/>
+<line x1="822.00" y1="303.93" x2="944.00" y2="399.91" stroke="#c85a3c" stroke-width="2.71" stroke-linecap="round" opacity="0.82"/>
+<line x1="822.00" y1="303.93" x2="1066.00" y2="295.80" stroke="#c85a3c" stroke-width="7.49" stroke-linecap="round" opacity="0.82"/>
+<line x1="822.00" y1="414.95" x2="1066.00" y2="384.86" stroke="#267ea3" stroke-width="8.70" stroke-linecap="round" opacity="0.82"/>
+<line x1="944.00" y1="299.87" x2="1066.00" y2="384.86" stroke="#c85a3c" stroke-width="4.43" stroke-linecap="round" opacity="0.82"/>
+<line x1="944.00" y1="299.87" x2="1188.00" y2="291.73" stroke="#c85a3c" stroke-width="7.71" stroke-linecap="round" opacity="0.82"/>
+<line x1="944.00" y1="399.91" x2="1066.00" y2="295.80" stroke="#267ea3" stroke-width="2.98" stroke-linecap="round" opacity="0.82"/>
+<line x1="944.00" y1="399.91" x2="1188.00" y2="369.81" stroke="#267ea3" stroke-width="6.98" stroke-linecap="round" opacity="0.82"/>
+<line x1="1066.00" y1="295.80" x2="1188.00" y2="369.81" stroke="#c85a3c" stroke-width="5.30" stroke-linecap="round" opacity="0.82"/>
+<line x1="1066.00" y1="295.80" x2="1310.00" y2="287.67" stroke="#c85a3c" stroke-width="5.60" stroke-linecap="round" opacity="0.82"/>
+<line x1="1066.00" y1="384.86" x2="1188.00" y2="291.73" stroke="#267ea3" stroke-width="4.99" stroke-linecap="round" opacity="0.82"/>
+<line x1="1066.00" y1="384.86" x2="1188.00" y2="369.81" stroke="#267ea3" stroke-width="2.43" stroke-linecap="round" opacity="0.82"/>
+<line x1="1066.00" y1="384.86" x2="1310.00" y2="354.77" stroke="#267ea3" stroke-width="6.60" stroke-linecap="round" opacity="0.82"/>
+<line x1="1188.00" y1="291.73" x2="1310.00" y2="354.77" stroke="#c85a3c" stroke-width="6.93" stroke-linecap="round" opacity="0.82"/>
+<line x1="1188.00" y1="369.81" x2="1310.00" y2="287.67" stroke="#267ea3" stroke-width="6.08" stroke-linecap="round" opacity="0.82"/>
+<line x1="1310.00" y1="287.67" x2="1310.00" y2="354.77" stroke="#267ea3" stroke-width="5.40" stroke-linecap="round" opacity="0.82"/>
+<circle cx="90.00" cy="328.33" r="5.0" fill="#16222a"/>
+<circle cx="90.00" cy="395.43" r="2.8" fill="#6d777d"/>
+<circle cx="212.00" cy="324.27" r="2.8" fill="#6d777d"/>
+<circle cx="212.00" cy="402.35" r="2.8" fill="#6d777d"/>
+<circle cx="334.00" cy="320.20" r="2.8" fill="#6d777d"/>
+<circle cx="334.00" cy="409.26" r="2.8" fill="#6d777d"/>
+<circle cx="456.00" cy="316.13" r="2.8" fill="#6d777d"/>
+<circle cx="456.00" cy="416.17" r="2.8" fill="#6d777d"/>
+<circle cx="578.00" cy="312.07" r="2.8" fill="#6d777d"/>
+<circle cx="578.00" cy="423.09" r="2.8" fill="#6d777d"/>
+<circle cx="700.00" cy="308.00" r="2.8" fill="#6d777d"/>
+<circle cx="700.00" cy="430.00" r="2.8" fill="#6d777d"/>
+<circle cx="822.00" cy="303.93" r="2.8" fill="#6d777d"/>
+<circle cx="822.00" cy="414.95" r="2.8" fill="#6d777d"/>
+<circle cx="944.00" cy="299.87" r="2.8" fill="#6d777d"/>
+<circle cx="944.00" cy="399.91" r="2.8" fill="#6d777d"/>
+<circle cx="1066.00" cy="295.80" r="2.8" fill="#6d777d"/>
+<circle cx="1066.00" cy="384.86" r="2.8" fill="#6d777d"/>
+<circle cx="1188.00" cy="291.73" r="2.8" fill="#6d777d"/>
+<circle cx="1188.00" cy="369.81" r="2.8" fill="#6d777d"/>
+<circle cx="1310.00" cy="287.67" r="5.0" fill="#16222a"/>
+<circle cx="1310.00" cy="354.77" r="2.8" fill="#6d777d"/>
+<text x="70" y="492" font-family="Arial" font-size="12" fill="#59636a">Continuous-area plastic LP; compatibility, deflection, buckling, catalogue profiles, connections, and fabrication are excluded.</text>
+</svg>
