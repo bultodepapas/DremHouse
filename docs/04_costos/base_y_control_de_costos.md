@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.1
+**Versión:** 0.3.2
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -189,10 +189,32 @@ Todo cambio debe registrar: origen, necesidad, alternativas, costo, plazo, efect
 decisión y partida afectada. Ningún ahorro se contabiliza hasta que el alcance eliminado y
 la nueva solución estén documentados y aceptados.
 
+### 0.3-K — Parametric integration measurement control
+
+D-054 relocates the rooflight study objective without changing the current nominal count
+or 23.04 m² glass hypothesis. The relocation reopens trimmers, purlins, diaphragm,
+curbs, drainage, fall protection, maintenance access, solar control, and related cost
+scope even if glass area is unchanged.
+
+D-055 requires derived quantity-to-cost traceability for the next stage. The current
+geometry measures approximately **55.02 m² of active P2 windows**, compared with the
+**40 m²** P2-window control placeholder, and **41.76 m² of PB technical glazing**, whose
+coverage against the 12 m² service-window placeholder and other glass lines is not yet
+unambiguous. These are measurement alerts, not accepted additions to the budget. They
+must be resolved through a generated opening schedule, one-to-one cost-code coverage,
+and comparable quotations at PE-1/PE-2.
+
+Primary-suite and Great Wall/column alternatives are to remain within the active P2
+envelope unless separately decided, but they can change partition, acoustic, wet-area,
+steel, connection, fire-protection, MEP, and finish quantities. No saving or increase is
+recognized. The $941 M physical-work target, the inherited 5% contingency, and the
+$988.05 M target including that contingency remain unchanged.
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-K   | 2026-08-13 | D-054/D-055 integration control: reopens complete rooflight-assembly quantities after relocation; records active-model opening measurements of 55.02 m² P2 windows and 41.76 m² PB technical glazing against unresolved estimate placeholders; and requires a generated quantity ledger and cost mapping for Great Wall, structural, opening, equipment, and room changes. **No total, contingency, saving, or increase is recognized.** Affects principally 03/05/06/08/09/10/12/13/14/15/16/17/19/20/21/22/23/26 and remains blocked by PE-1/PE-2. |
 | 0.2     | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | 0.3     | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | 0.3-A   | 2026-08-11 | Revisión arquitectónica b04: escalera con descarga posterior, puerta exterior de bodega, frontera aislable F1/F2 y ajuste de cocina. Impacto aún no cuantificado; afecta principalmente capítulos 10, 14, 19, 20, 22 y 24. No se modifica el target hasta medir y cotizar.                                                                                                                                                                                                                                                                                                                                                                                                                                        |

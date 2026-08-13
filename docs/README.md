@@ -47,8 +47,9 @@
   superseded D-049/R08 predecessor combining b04's spatial centre with b06 controls,
   explicit door topology, and D-048 stair-column reservations.
 - [Owner-priority coordination — drafts 10 and 11](02_arquitectura/coordinacion_prioridades_propietario_v0.3_b10_b11.md):
-  active D-050→D-053 hypotheses for the enlarged primary suite, PB laundry, retractable
-  exterior-stair reserve, large exposed edge-truss brief, and exactly centred rooflights.
+  D-050→D-053 coordination record for the enlarged primary suite, PB laundry,
+  retractable exterior-stair reserve, large exposed edge-truss brief, and b11 rooflights.
+  D-054 now supersedes only the b11/D-053 rooflight position for the next study.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):
@@ -67,8 +68,9 @@
 - [Structural model E0](03_ingenierias/modelo_estructural_e0.md): scope, assumptions,
   verification limits, and required progression toward E1/E2.
 - [Structural-to-drawing integration study — E1 screening](03_ingenierias/estudio_integracion_estructura_planos.md):
-  reconciles the roof specimen, D-053 rooflights, D-043/D-045 P2 gravity path, lateral
-  demand, and every unresolved design gate.
+  reconciles the roof specimen, the D-053 rooflight predecessor, D-043/D-045 P2 gravity
+  path, lateral demand, and every unresolved design gate; D-054 requires the next
+  opening-aware screening issue.
 - [Integrated structural E1 evidence sheet](../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg):
   calculation-linked plan, exact truss grammar, evidence matrix, connection, base,
   foundation, erection, and fire-sensitivity views; not for construction.
@@ -97,6 +99,11 @@
 ## 06 — Management, procurement, and construction
 
 - [Master plan](06_gestion_y_obra/plan_maestro.md)
+- [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
+  detailed D-054/D-055 implementation roadmap for the canonical scenario model,
+  real-equipment spatial validation, Great Wall/column alternatives, opening-aware
+  structural screening, derived quantities, and cost traceability; it does not freeze a
+  design or authorize construction.
 - [Initial risk register](06_gestion_y_obra/matriz_de_riesgos.md)
 - [Pending decisions and inputs](06_gestion_y_obra/decisiones_y_datos_pendientes.md)
 - [Roles, deliverables, and quality control](06_gestion_y_obra/roles_entregables_y_calidad.md)
