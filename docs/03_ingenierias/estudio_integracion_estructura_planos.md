@@ -2,11 +2,12 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.7
+**Version:** 0.9
 **Date:** 2026-08-13
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053–D-057; architectural drafts b05–b13 and implementation issues 0.4-I01/I02;
-`pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `rooflight_b12.json`; `structure_system.json`;
+D-053–D-059; architectural drafts b05–b15 and implementation issues 0.4-I01–I04;
+`pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `p2_b14.json`; `p2_b15.json`;
+`rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
 evidence
 **Approval pending:** responsible structural engineer, architect of record, fire and
@@ -39,18 +40,20 @@ in one longitudinal half of the double-height hall. The structural generators re
 `p2_b10.json` and `rooflight_b12.json`; their deterministic re-run retains the same four
 compatible stair-frame lines and now records each rooflight/grid crossing explicitly.
 
-D-057 makes `p2_b13.json` the current architectural P2 source and preserves the four
-stair-frame coordinates, but it also introduces the heavier 250 mm nominal P2-W01 wall
-principle. Under CF-009, the issued E0/E1 sheets remain pre-D-057 screening evidence:
-their global partition dead-load allowance has not yet been checked against measured
-P2-W01 lengths and selected product masses. The next structural issue must consume b13,
-perform that comparison, and retain a fail-closed result if the allowance is exceeded.
+D-059 makes `p2_b15.json` the current architectural P2 source and preserves the four
+stair-frame coordinates. It carries D-057's P2-W01 and D-058's P2-W04 while adding the
+300 mm nominal P2-W05 double-frame exterior envelope. Under CF-009, the issued E0/E1
+sheets remain pre-D-057–D-059 screening evidence: their global partition dead-load
+allowance has not been checked against measured P2-W01/P2-W04/P2-W05 masses, and P2-W05
+wind reactions and attachments are undesigned. The next structural issue must consume
+b15, perform those comparisons, resolve the CF-010 truss/wall interface and retain a
+fail-closed result when an allowance is exceeded.
 
 ## 2. New integrated evidence sheet
 
 The current visual synthesis is
 [DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg).
-It is generated from the pre-D-057 structural-screening JSON sources and the same `run_screening()` calculation
+It is generated from the pre-D-057–D-059 structural-screening JSON sources and the same `run_screening()` calculation
 used by the E1 report. Its four principal readings are:
 
 - **Plan:** M60 test grid, D-054 rooflights, D-043/D-045 P2 gravity path, diaphragm
@@ -205,21 +208,32 @@ declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
 3. **P2 edge truss versus architecture.** D-052 accepts one large exposed X=21 truss and
    rejects small decorative trusses, while keeping the mini-deck view primary. Depth,
    panel points, bedroom/door interfaces, ceiling, fire separation, and MEP remain open.
-4. **Great Wall joints versus finish.** A continuous timber/acoustic reading does not
+4. **P2 edge truss versus continuous acoustic enclosure.** D-058 closes the entire
+   18.00 m X=21 edge with P2-W04 and permits only GLZ-DECK as the planned opening. The
+   truss must remain hall-side or use isolated, sealed junctions; supports, connections,
+   roof movement, fire protection, guarding and services cannot puncture or rigidly
+   bridge the wall. CF-010 remains open.
+5. **Great Wall joints versus finish.** A continuous timber/acoustic reading does not
    remove the need for transfer-beam depth, stiffeners, erection access, tolerances, fire
    protection, and replaceable joints behind the finish.
-5. **Rear overhang versus real support.** D-045 requires comparison of the continuous
+6. **Rear overhang versus real support.** D-045 requires comparison of the continuous
    overhang with a defined rear support before profiles or connections can be frozen.
-6. **Foundation sensitivity versus site reality.** The drawn pad and plate are dimension
+7. **Foundation sensitivity versus site reality.** The drawn pad and plate are dimension
    studies only; site, groundwater, settlement, seismic/wind base actions, uplift, and the
    complete reinforced-concrete/anchor design are unknown.
-7. **Stair core versus protected egress.** D-048 improves the possible continuous load
+8. **Stair core versus protected egress.** D-048 improves the possible continuous load
    path, but braces, column encasement, landing joints, deflected shapes, bases, and
    collectors must preserve stair width, headroom, fire rating, and direct discharge.
-8. **Retractable stair versus life safety and rear structure.** D-051 reserves a second
+9. **Retractable stair versus life safety and rear structure.** D-051 reserves a second
    route from the common Phase 2 lobby and clears the D-048 corner coordinate. Its landing,
    deployment loads, façade support, corrosion, guards, fail-safe operation, and emergency
    acceptance remain unproved; the reserve receives no exit credit at E1.
+10. **P2-W05 versus wind, thermal bridges and concealed steel.** D-059 requires the
+    north, south and rear P2 walls to hide framing and primary steel from the private
+    interior while retaining an economical corrugated rainscreen outside. Studs,
+    sheathing, attachments, window framing and primary-steel junctions must transfer wind
+    without breaking water/air/thermal continuity or forcing exposed structure back into
+    P2. No member or fixing is selected by b15/R12.
 
 ## 7. Explicit corrections to the previous integration study
 

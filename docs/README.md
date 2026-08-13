@@ -51,12 +51,12 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 - [Concept plan v0.3 — draft 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
   predecessor whose preferred upper-floor spatial centre is carried through D-049 into
-  active D-050/D-057 R10.
+  active D-050/D-059 R12.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   study wall thicknesses, Great Wall, reorganized core, kitchen, and equipped workshop.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
-  are retained in active R10.
+  are retained in active R12.
 - [Coordinated upper floor v0.3 — draft 09](02_arquitectura/plano_p2_coordinado_v0.3_borrador_09.md):
   superseded D-049/R08 predecessor combining b04's spatial centre with b06 controls,
   explicit door topology, and D-048 stair-column reservations.
@@ -69,6 +69,13 @@ they stay stable while their explicitly promoted versioned source can advance.
   D-057 freezes the 250 mm nominal P2-W01 dry-interior assembly, records the concealed
   reclaimed-board acceptance rules, and rebalances Phase 2 to retain 1.20 m clear
   circulation without enlarging the upper floor.
+- [P2 hall-edge acoustic enclosure — draft 14](02_arquitectura/cierre_acustico_borde_p2_v0.3_b14.md):
+  D-058 closes the complete 18.00 m X=21 edge toward the double-height hall/workshops
+  with full-height P2-W04, retaining GLZ-DECK as the only planned acoustic opening.
+- [P2 refined exterior envelope — draft 15](02_arquitectura/envolvente_exterior_p2_v0.3_b15.md):
+  D-059 gives the three exterior P2 edges a 300 mm nominal double-frame P2-W05 envelope,
+  keeping corrugated metal outside while the residential interior is smooth and all
+  structure and services are concealed.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):

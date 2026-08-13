@@ -1,9 +1,9 @@
 {
   "project_id": "DH-COORD-001",
-  "revision": "0.4-I02",
+  "revision": "0.4-I04",
   "date": "2026-08-13",
   "status": "active coordination model; not construction authority",
-  "source": "D-055 and parametric architecture-structure-cost integration plan",
+  "source": "D-055, D-059 and parametric architecture-structure-cost integration plan",
   "canonical_geometry": {
     "hall": {
       "length_m": 36.0,
@@ -43,7 +43,17 @@
     "P2_B13": {
       "path": "dreamhouse/p2_b13.json",
       "sha256": "035c969b8c43385f5802359dd8ff1ebe1aefb5b64ee2d3e790a998c812cddac1",
-      "status": "issued for coordination under D-057; not for construction"
+      "status": "superseded P2 coordination hypothesis retained for comparison"
+    },
+    "P2_B14": {
+      "path": "dreamhouse/p2_b14.json",
+      "sha256": "aa8cf221a5e2a816a822a787af95b22b34c2baaaf6e838be61cf51012130b7dc",
+      "status": "superseded P2 coordination hypothesis retained for comparison"
+    },
+    "P2_B15": {
+      "path": "dreamhouse/p2_b15.json",
+      "sha256": "f0a8b5e03fd1f642fb2deabe4ff70e47546cd2adc1bd5e1bc71237c0fc7dec1c",
+      "status": "issued for coordination under D-059; not for construction"
     },
     "ROOFLIGHT_B11": {
       "path": "dreamhouse/rooflight_b11.json",
@@ -95,10 +105,32 @@
       }
     },
     "D057_P2_W01": {
-      "status": "active coordination scenario",
+      "status": "superseded comparison scenario retained for traceability",
       "sources": {
         "pb": "PB_B05",
         "p2": "P2_B13",
+        "rooflights": "ROOFLIGHT_B12",
+        "structure": "STRUCTURE_SYSTEM",
+        "roof_space": "ROOF_TRUSS_SPACE",
+        "e1_space": "E1_SCREENING_SPACE"
+      }
+    },
+    "D058_P2_HALL_EDGE": {
+      "status": "superseded comparison scenario retained for traceability",
+      "sources": {
+        "pb": "PB_B05",
+        "p2": "P2_B14",
+        "rooflights": "ROOFLIGHT_B12",
+        "structure": "STRUCTURE_SYSTEM",
+        "roof_space": "ROOF_TRUSS_SPACE",
+        "e1_space": "E1_SCREENING_SPACE"
+      }
+    },
+    "D059_P2_REFINED_ENVELOPE": {
+      "status": "active coordination scenario",
+      "sources": {
+        "pb": "PB_B05",
+        "p2": "P2_B15",
         "rooflights": "ROOFLIGHT_B12",
         "structure": "STRUCTURE_SYSTEM",
         "roof_space": "ROOF_TRUSS_SPACE",

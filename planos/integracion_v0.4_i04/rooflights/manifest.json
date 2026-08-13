@@ -1,0 +1,14 @@
+{
+  "revision": "0.4-I01-ROOFLIGHTS",
+  "status": "active D-054 schematic coordination hypothesis; not for construction",
+  "source": "dreamhouse/rooflight_b12.json",
+  "source_sha256": "fcf399053e05ccbe7e0e7620a7eef1c6a5b7cb950e546bf1f993bd399b6c18c7",
+  "generator": "dreamhouse/generate_rooflight_b11.py",
+  "supersedes": "0.3-draft-11-ROOFLIGHTS / R10",
+  "outputs": [
+    "DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg",
+    "DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

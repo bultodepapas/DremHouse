@@ -76,6 +76,22 @@ def acoustic_detail_name(model: dict[str, Any]) -> str | None:
     return f"DH-ARQ-DET-003-{model['drawing_revision']}_P2-ACOUSTIC-PARTITION.svg"
 
 
+def hall_edge_detail_name(model: dict[str, Any]) -> str | None:
+    """Return the D-058 hall-edge detail filename when P2-W04 is declared."""
+
+    if not model.get("hall_edge_partition"):
+        return None
+    return f"DH-ARQ-DET-004-{model['drawing_revision']}_P2-HALL-EDGE.svg"
+
+
+def exterior_wall_detail_name(model: dict[str, Any]) -> str | None:
+    """Return the D-059 exterior-wall detail filename when P2-W05 is declared."""
+
+    if not model.get("exterior_wall_assembly"):
+        return None
+    return f"DH-ARQ-DET-005-{model['drawing_revision']}_P2-EXTERIOR-WALL.svg"
+
+
 def sheet_ids(model: dict[str, Any]) -> tuple[str, str, str]:
     drawing_revision = model["drawing_revision"]
     return (
@@ -195,6 +211,7 @@ def net_dimensions(space: dict[str, Any], envelope: dict[str, Any]) -> tuple[flo
 
     tolerance = 1e-9
     ext = float(envelope["exterior_wall"])
+    hall_edge = float(envelope.get("hall_edge_wall", ext))
     half = _wall_thickness(space, envelope) / 2.0
     x0 = float(space["x"])
     x1 = x0 + float(space["w"])
@@ -203,7 +220,7 @@ def net_dimensions(space: dict[str, Any], envelope: dict[str, Any]) -> tuple[flo
     x_min = float(envelope["x"])
     x_max = x_min + float(envelope["length"])
     y_max = float(envelope["width"])
-    dx0 = ext if math.isclose(x0, x_min, abs_tol=tolerance) else half
+    dx0 = hall_edge if math.isclose(x0, x_min, abs_tol=tolerance) else half
     dx1 = ext if math.isclose(x1, x_max, abs_tol=tolerance) else half
     dy0 = ext if math.isclose(y0, 0.0, abs_tol=tolerance) else half
     dy1 = ext if math.isclose(y1, y_max, abs_tol=tolerance) else half
@@ -563,6 +580,77 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             )
         )
 
+    hall_edge = model.get("hall_edge_partition")
+    if hall_edge:
+        acoustic_glazing = {
+            item["id"]
+            for item in model.get("internal_glazing", [])
+            if item.get("acoustic")
+        }
+        scheduled_openings = set(hall_edge.get("acoustic_openings", []))
+        glazing_by_id = {item["id"]: item for item in model.get("internal_glazing", [])}
+        openings_ok = scheduled_openings == acoustic_glazing and all(
+            opening in glazing_by_id
+            and glazing_by_id[opening].get("room_id") == "DECK"
+            and glazing_by_id[opening].get("edge") == "west"
+            and float(glazing_by_id[opening]["from"]) >= float(hall_edge["from_y"]) - tolerance
+            and float(glazing_by_id[opening]["to"]) <= float(hall_edge["to_y"]) + tolerance
+            for opening in scheduled_openings
+        )
+        hall_edge_ok = (
+            hall_edge.get("id") == "P2-W04"
+            and math.isclose(float(hall_edge.get("axis_x", 0.0)), 21.0, abs_tol=tolerance)
+            and math.isclose(float(hall_edge.get("from_y", -1.0)), 0.0, abs_tol=tolerance)
+            and math.isclose(float(hall_edge.get("to_y", -1.0)), 18.0, abs_tol=tolerance)
+            and math.isclose(float(hall_edge.get("nominal_total_m", 0.0)), 0.25, abs_tol=tolerance)
+            and math.isclose(float(envelope.get("hall_edge_wall", 0.0)), 0.25, abs_tol=tolerance)
+            and hall_edge.get("full_height") is True
+            and hall_edge.get("opaque_assembly_reference") == "P2-W01"
+            and openings_ok
+        )
+        checks.append(
+            (
+                "P2-W04-HALL-EDGE",
+                hall_edge_ok,
+                "D-058 closes the full 18.00 m X=21 hall/workshop edge with 250 mm opaque construction; GLZ-DECK is the only scheduled acoustic opening",
+            )
+        )
+
+    exterior_wall = model.get("exterior_wall_assembly")
+    if exterior_wall:
+        exterior_layers = exterior_wall.get("outside_to_inside_layers", [])
+        exterior_materials = [layer.get("material") for layer in exterior_layers]
+        exterior_layer_sum_mm = sum(
+            float(layer.get("nominal_mm", 0.0)) for layer in exterior_layers
+        )
+        exterior_frames = [
+            layer for layer in exterior_layers if "metal stud frame" in layer.get("material", "")
+        ]
+        exterior_wall_ok = (
+            exterior_wall.get("id") == "P2-W05"
+            and set(exterior_wall.get("edges", [])) == {"south", "north", "east"}
+            and math.isclose(
+                float(exterior_wall.get("nominal_total_m", 0.0)), 0.30, abs_tol=tolerance
+            )
+            and math.isclose(float(envelope["exterior_wall"]), 0.30, abs_tol=tolerance)
+            and math.isclose(exterior_layer_sum_mm, 297.0, abs_tol=0.01)
+            and len(exterior_frames) == 2
+            and "corrugated metal rainscreen" in exterior_materials
+            and exterior_materials[-2:] == ["reclaimed gypsum board", "new gypsum board"]
+            and all(
+                window.get("edge") in exterior_wall.get("edges", [])
+                for window in model.get("windows", [])
+            )
+            and len(exterior_wall.get("coordination_gates", [])) >= 7
+        )
+        checks.append(
+            (
+                "P2-W05-300",
+                exterior_wall_ok,
+                "D-059 P2-W05 closes the three exterior P2 edges with a 300 mm nominal double-frame envelope, corrugated metal outside only and a smooth concealed-structure interior",
+            )
+        )
+
     results = [
         {"rule_id": rule_id, "status": "PASS" if passed else "FAIL", "message": message}
         for rule_id, passed, message in checks
@@ -616,6 +704,14 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             },
         ]
     )
+    if exterior_wall:
+        results.append(
+            {
+                "rule_id": "P2-W05-BUILDING-PHYSICS",
+                "status": "OPEN",
+                "message": "P2-W05 hygrothermal, wind, fire and window interfaces await professional design",
+            }
+        )
     return results
 
 
@@ -748,6 +844,58 @@ def _draw_partition_walls(parts: list[str], model: dict[str, Any]) -> None:
                 parts.append(_line(_sx(coordinate), _sy(low), _sx(coordinate), _sy(high), **attrs))
             else:
                 parts.append(_line(_sx(low), _sy(coordinate), _sx(high), _sy(coordinate), **attrs))
+
+
+def _draw_hall_edge_wall(parts: list[str], model: dict[str, Any]) -> None:
+    """Draw the D-058 full P2 enclosure before cutting its scheduled glazing."""
+
+    wall = model.get("hall_edge_partition")
+    if not wall:
+        return
+    x = _sx(float(wall["axis_x"]))
+    parts.append(
+        _line(
+            x,
+            _sy(float(wall["from_y"])),
+            x,
+            _sy(float(wall["to_y"])),
+            stroke=INK,
+            stroke_width=float(wall["nominal_total_m"]) * SCALE,
+            stroke_linecap="butt",
+            css_class="hall-edge-wall p2-w04",
+            data_wall_type=wall["id"],
+        )
+    )
+
+
+def _draw_exterior_walls(parts: list[str], model: dict[str, Any]) -> None:
+    """Draw the three D-059 double-frame P2 exterior edges before cutting openings."""
+
+    wall = model.get("exterior_wall_assembly")
+    if not wall:
+        return
+    width = float(wall["nominal_total_m"]) * SCALE
+    common = {
+        "stroke": "#36535d",
+        "stroke_width": width,
+        "stroke_linecap": "butt",
+        "css_class": "exterior-wall p2-w05",
+        "data_wall_type": wall["id"],
+    }
+    finish = {
+        "stroke": "#dce8e5",
+        "stroke_width": 2.4,
+        "stroke_linecap": "butt",
+        "css_class": "p2-w05-double-frame-reading",
+    }
+    edges = [
+        (_sx(21.0), _sy(0.0), _sx(36.0), _sy(0.0)),
+        (_sx(21.0), _sy(18.0), _sx(36.0), _sy(18.0)),
+        (_sx(36.0), _sy(0.0), _sx(36.0), _sy(18.0)),
+    ]
+    for x1, y1, x2, y2 in edges:
+        parts.append(_line(x1, y1, x2, y2, **common))
+        parts.append(_line(x1, y1, x2, y2, **finish))
 
 
 def _draw_room_labels(parts: list[str], model: dict[str, Any]) -> None:
@@ -941,20 +1089,67 @@ def _draw_door(parts: list[str], door: dict[str, Any], model: dict[str, Any] | N
 
 
 def _draw_windows(parts: list[str], model: dict[str, Any]) -> None:
+    exterior_wall = model.get("exterior_wall_assembly")
+    opening_width = (
+        float(exterior_wall["nominal_total_m"]) * SCALE + 2 if exterior_wall else 0.0
+    )
     for window in model["windows"]:
         if window["edge"] in {"south", "north"}:
             y = _sy(0.0 if window["edge"] == "south" else 18.0)
             x0, x1 = _sx(window["from"]), _sx(window["to"])
+            if exterior_wall:
+                parts.append(
+                    _line(
+                        x0,
+                        y,
+                        x1,
+                        y,
+                        stroke=PAPER,
+                        stroke_width=opening_width,
+                        stroke_linecap="butt",
+                        css_class="p2-w05-window-opening",
+                        data_opening_id=window["id"],
+                    )
+                )
             parts.append(_line(x0, y, x1, y, stroke=TEAL, stroke_width=8, css_class="exterior-window"))
             parts.append(_line(x0, y, x1, y, stroke="#d9f2f5", stroke_width=2, css_class="window-glass"))
         else:
             x = _sx(36.0)
             y0, y1 = _sy(window["from"]), _sy(window["to"])
+            if exterior_wall:
+                parts.append(
+                    _line(
+                        x,
+                        y0,
+                        x,
+                        y1,
+                        stroke=PAPER,
+                        stroke_width=opening_width,
+                        stroke_linecap="butt",
+                        css_class="p2-w05-window-opening",
+                        data_opening_id=window["id"],
+                    )
+                )
             parts.append(_line(x, y0, x, y1, stroke=TEAL, stroke_width=8, css_class="exterior-window"))
             parts.append(_line(x, y0, x, y1, stroke="#d9f2f5", stroke_width=2, css_class="window-glass"))
     for glazing in model["internal_glazing"]:
-        x = _sx(21.0)
+        wall = model.get("hall_edge_partition")
+        x = _sx(float(wall["axis_x"]) if wall else 21.0)
         y0, y1 = _sy(glazing["from"]), _sy(glazing["to"])
+        if wall and glazing["id"] in wall.get("acoustic_openings", []):
+            parts.append(
+                _line(
+                    x,
+                    y0,
+                    x,
+                    y1,
+                    stroke=PAPER,
+                    stroke_width=float(wall["nominal_total_m"]) * SCALE + 2,
+                    stroke_linecap="butt",
+                    css_class="hall-edge-acoustic-opening",
+                    data_opening_id=glazing["id"],
+                )
+            )
         parts.append(_line(x, y0, x, y1, stroke=AMBER, stroke_width=7, css_class="internal-acoustic-glazing"))
         parts.append(_line(x, y0, x, y1, stroke="#fff1d9", stroke_width=2, css_class="window-glass"))
 
@@ -968,7 +1163,20 @@ def _draw_egress_reserve(parts: list[str], model: dict[str, Any]) -> None:
     y1 = _sy(float(reserve["from"]))
     parts.extend(
         [
-            _line(x, y0, x, y1, stroke=PAPER, stroke_width=7, css_class="egress-door-opening"),
+            _line(
+                x,
+                y0,
+                x,
+                y1,
+                stroke=PAPER,
+                stroke_width=(
+                    float(model["exterior_wall_assembly"]["nominal_total_m"]) * SCALE + 2
+                    if model.get("exterior_wall_assembly")
+                    else 7
+                ),
+                stroke_linecap=("butt" if model.get("exterior_wall_assembly") else None),
+                css_class="egress-door-opening",
+            ),
             _line(x, y0, x, y1, stroke=RED, stroke_width=3, css_class="egress-door"),
             _rect(
                 x + 8,
@@ -1019,10 +1227,48 @@ def _draw_plan_dimensions(parts: list[str], model: dict[str, Any]) -> None:
             _line(left - 45, top, left - 31, top, stroke=MUTED, stroke_width=1),
             _line(left - 45, bottom, left - 31, bottom, stroke=MUTED, stroke_width=1),
             _text(left - 49, (top + bottom) / 2, "18.00 m", 8, anchor="middle", weight=700),
-            _text(left, top - 18, "LATERAL B / HIGH EAVE STUDY", 7.5, weight=700, fill=MUTED),
-            _text(left, bottom + 22, "LATERAL A / LOW EAVE STUDY", 7.5, weight=700, fill=MUTED),
-            _text(left - 2, (top + bottom) / 2 - 6, "P2 EDGE / DOUBLE-HEIGHT VOID", 7, anchor="middle", weight=700, fill=AMBER),
-            _text(right + 12, (top + bottom) / 2, "REAR FACADE", 7, anchor="middle", weight=700, fill=MUTED),
+            _text(
+                left,
+                top - 18,
+                "LATERAL B / P2-W05"
+                if model.get("exterior_wall_assembly")
+                else "LATERAL B / HIGH EAVE STUDY",
+                7.5,
+                weight=700,
+                fill=MUTED,
+            ),
+            _text(
+                left,
+                bottom + 22,
+                "LATERAL A / P2-W05"
+                if model.get("exterior_wall_assembly")
+                else "LATERAL A / LOW EAVE STUDY",
+                7.5,
+                weight=700,
+                fill=MUTED,
+            ),
+            _text(
+                left - 2,
+                (top + bottom) / 2 - 6,
+                "P2-W04 / DOUBLE-HEIGHT HALL"
+                if model.get("hall_edge_partition")
+                else "P2 EDGE / DOUBLE-HEIGHT VOID",
+                7,
+                anchor="middle",
+                weight=700,
+                fill=AMBER,
+            ),
+            _text(
+                right + 12,
+                (top + bottom) / 2,
+                "REAR FACADE / P2-W05"
+                if model.get("exterior_wall_assembly")
+                else "REAR FACADE",
+                7,
+                anchor="middle",
+                weight=700,
+                fill=MUTED,
+            ),
         ]
     )
 
@@ -1050,13 +1296,34 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     _panel_title(parts, x, 166, "01", "ARCHITECTURAL POSITION")
     owner_priority_revision = bool(model.get("relocated_laundry"))
     acoustic = model.get("acoustic_partition")
+    hall_edge = model.get("hall_edge_partition")
+    exterior_wall = model.get("exterior_wall_assembly")
     position_lines = (
-        [
-            "Prioritize the primary suite without enlarging P2.",
-            "Move laundry into PB storage behind the Great Wall.",
-            "Protect the view while allowing one large exposed industrial truss.",
-            *(["Coordinate dry P2 partitions at 250 mm nominal under D-057."] if acoustic else []),
-        ]
+        (
+            [
+                "Prioritize the primary suite without enlarging P2.",
+                "Move laundry into PB storage behind the Great Wall.",
+                "Keep the large exposed X=21 truss on the hall side of P2-W04.",
+                "P2-W01 / W04 close the interior and hall-facing boundaries.",
+                "P2-W05 gives all exterior P2 rooms a refined double-frame envelope.",
+            ]
+            if exterior_wall
+            else [
+                "Prioritize the primary suite without enlarging P2.",
+                "Move laundry into PB storage behind the Great Wall.",
+                "Protect the view while allowing one large exposed industrial truss.",
+                *(
+                    ["Coordinate dry P2 partitions at 250 mm nominal under D-057."]
+                    if acoustic
+                    else []
+                ),
+                *(
+                    ["Close the full X=21 hall/workshop edge under D-058."]
+                    if hall_edge
+                    else []
+                ),
+            ]
+        )
         if owner_priority_revision
         else [
             "Carry forward the spatial centre of b04/R03.",
@@ -1100,8 +1367,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
             *(
                 [
                     (
-                        "P2-W01",
-                        "250 mm nominal dry wall: twin insulated frames + reused concealed board.",
+                        "ACOUSTIC" if hall_edge else "P2-W01",
+                        (
+                            "W01/W04: 250 mm acoustic; W05: 300 mm exterior, smooth inside."
+                            if exterior_wall
+                            else "P2-W01 + continuous P2-W04: 250 mm opaque wall; only deck glazing interrupts."
+                            if hall_edge
+                            else "250 mm nominal dry wall: twin insulated frames + reused concealed board."
+                        ),
                     )
                 ]
                 if acoustic
@@ -1160,11 +1433,28 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
             *(
                 [
                     _line(1350, 820, 1402, 820, stroke=INK, stroke_width=8.3),
-                    _text(1415, 823, "P2-W01 · 250 mm nominal", 7.5),
+                    _text(
+                        1415,
+                        823,
+                        (
+                            "P2-W01/W04 · 250 · W05 · 300 mm"
+                            if exterior_wall
+                            else "P2-W01 / W04 · 250 mm nominal"
+                            if hall_edge
+                            else "P2-W01 · 250 mm nominal"
+                        ),
+                        7.5,
+                    ),
                     _text(
                         1350,
                         848,
-                        "Wet/hot, exterior, stair and technical walls remain separate.",
+                        (
+                            "W05: corrugated outside only; smooth concealed interior."
+                            if exterior_wall
+                            else "W04 is full-height; GLZ-DECK is its only planned opening."
+                            if hall_edge
+                            else "Wet/hot, exterior, stair and technical walls remain separate."
+                        ),
                         6.8,
                         fill=MUTED,
                     ),
@@ -1185,7 +1475,11 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-057 · 250 mm P2 DRY ACOUSTIC PARTITION · DESIGN COORDINATION"
+        "D-059 · REFINED DOUBLE-FRAME P2 EXTERIOR ENVELOPE · DESIGN COORDINATION"
+        if model.get("exterior_wall_assembly")
+        else "D-058 · CONTINUOUS X=21 ACOUSTIC ENCLOSURE · DESIGN COORDINATION"
+        if model.get("hall_edge_partition")
+        else "D-057 · 250 mm P2 DRY ACOUSTIC PARTITION · DESIGN COORDINATION"
         if model.get("acoustic_partition")
         else "PRIMARY SUITE PRIORITY · PB LAUNDRY · RETRACTABLE STAIR RESERVE"
         if model.get("relocated_laundry")
@@ -1240,7 +1534,11 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-057 wall control + primary-suite priority + active interfaces"
+            "D-059 refined exterior envelope + D-058 hall edge + D-057 partitions"
+            if model.get("exterior_wall_assembly")
+            else "D-058 continuous hall-edge enclosure + D-057 wall control"
+            if model.get("hall_edge_partition")
+            else "D-057 wall control + primary-suite priority + active interfaces"
             if model.get("acoustic_partition")
             else "primary-suite priority + PB laundry + exterior-stair reserve"
             if owner_priority_revision
@@ -1255,6 +1553,8 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     _draw_bath_fixtures(parts, model)
     _draw_stair(parts)
     _draw_partition_walls(parts, model)
+    _draw_exterior_walls(parts, model)
+    _draw_hall_edge_wall(parts, model)
     _draw_room_labels(parts, model)
     _draw_windows(parts, model)
     _draw_egress_reserve(parts, model)
@@ -1464,6 +1764,7 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
     laundry = model.get("relocated_laundry")
     egress = model.get("egress_reserve")
     edge = model.get("edge_truss_intent")
+    hall_edge = model.get("hall_edge_partition")
     if not (laundry and egress and edge):
         raise P2ModelError("Owner-priorities detail requires laundry, egress and edge-truss data")
     report = _report(model)
@@ -1490,7 +1791,11 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
         model,
         detail_sheet_id,
         "OWNER PRIORITIES · ARCHITECTURAL INTERFACES",
-        "PB laundry + retractable stair + large exposed X=21 truss",
+        (
+            "PB laundry + retractable stair + exposed truss outside continuous P2-W04"
+            if hall_edge
+            else "PB laundry + retractable stair + large exposed X=21 truss"
+        ),
     )
 
     _panel_title(parts, 70, 166, "01", "PB LAUNDRY BEHIND THE GREAT WALL")
@@ -1573,8 +1878,42 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
         )
     )
 
-    _panel_title(parts, 70, 790, "03", "X=21 EDGE · ONE LARGE INDUSTRIAL TRUSS")
+    _panel_title(
+        parts,
+        70,
+        790,
+        "03",
+        (
+            "X=21 EDGE · EXPOSED TRUSS + CONTINUOUS P2-W04"
+            if hall_edge
+            else "X=21 EDGE · ONE LARGE INDUSTRIAL TRUSS"
+        ),
+    )
     tx0, tx1, top_y, bottom_y = 105.0, 740.0, 845.0, 965.0
+    if hall_edge:
+        parts.extend(
+            [
+                _rect(
+                    tx0,
+                    top_y,
+                    tx1 - tx0,
+                    bottom_y - top_y,
+                    fill="#d8e7df",
+                    stroke=TEAL,
+                    stroke_width=2,
+                    css_class="p2-w04-behind-truss",
+                ),
+                _text(
+                    (tx0 + tx1) / 2,
+                    top_y + 22,
+                    "P2-W04 CONTINUES BEHIND / PRIVATE SIDE",
+                    7.2,
+                    anchor="middle",
+                    weight=700,
+                    fill=TEAL,
+                ),
+            ]
+        )
     parts.extend(
         [
             _line(tx0, top_y, tx1, top_y, stroke=INK, stroke_width=9),
@@ -1609,6 +1948,11 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
                     "deep, load-bearing industrial object. Small decorative trusses are rejected.",
                     "The mini-deck view remains primary; member topology, depth, joints, fire",
                     "protection, vibration and services still require structural coordination.",
+                    *(
+                        ["D-058: keep it hall-side; do not puncture or rigidly bridge P2-W04."]
+                        if hall_edge
+                        else []
+                    ),
                 ],
                 9.1,
                 leading=1.45,
@@ -1656,7 +2000,11 @@ def build_acoustic_partition_detail(model: dict[str, Any]) -> str:
         model,
         sheet_id,
         "P2-W01 · 250 mm NOMINAL ACOUSTIC PARTITION",
-        "D-057 design control · dry interior P2 walls only",
+        (
+            "D-057 build-up · also used in opaque P2-W04 portions under D-058"
+            if model.get("hall_edge_partition")
+            else "D-057 design control · dry interior P2 walls only"
+        ),
     )
 
     _panel_title(parts, 70, 165, "01", "ROOM-TO-ROOM BUILD-UP · NO CENTRE BOARD")
@@ -1737,17 +2085,20 @@ def build_acoustic_partition_detail(model: dict[str, Any]) -> str:
         )
 
     _panel_title(parts, 1010, 165, "02", "WHY THIS IS THE ECONOMICAL BASE", width=638)
+    economy_lines = [
+        "Two independent frames provide the primary decoupling.",
+        "Glass wool fills each frame; the central cavity stays clear.",
+        "Reclaimed board adds concealed mass where appearance is irrelevant.",
+        "New outer boards provide the durable visible finish.",
+        "No third gypsum leaf is placed in the centre cavity.",
+    ]
+    if model.get("hall_edge_partition"):
+        economy_lines.append("P2-W04 uses this build-up only in its opaque portions.")
     parts.append(
         _multiline(
             1010,
             205,
-            [
-                "Two independent frames provide the primary decoupling.",
-                "Glass wool fills each frame; the central cavity stays clear.",
-                "Reclaimed board adds concealed mass where appearance is irrelevant.",
-                "New outer boards provide the durable visible finish.",
-                "No third gypsum leaf is placed in the centre cavity.",
-            ],
+            economy_lines,
             8.7,
             leading=1.58,
         )
@@ -1827,6 +2178,379 @@ def build_acoustic_partition_detail(model: dict[str, Any]) -> str:
     return output
 
 
+def build_hall_edge_detail(model: dict[str, Any]) -> str:
+    """Draw the D-058 continuous X=21 hall/workshop-edge enclosure concept."""
+
+    wall = model.get("hall_edge_partition")
+    if not wall:
+        raise P2ModelError("Hall-edge detail requires hall_edge_partition data")
+    report = _report(model)
+    _assert_renderable(report)
+    digest = hashlib.sha256(
+        json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    sheet_id = f"DH-ARQ-DET-004-{model['drawing_revision']}"
+    metadata = {
+        "drawing": sheet_id,
+        "revision": model["revision"],
+        "model_sha256": digest,
+        "status": model["status"],
+        "wall_type": wall["id"],
+        "axis_x": wall["axis_x"],
+        "continuous_length_m": float(wall["to_y"]) - float(wall["from_y"]),
+        "construction_authority": False,
+        "acoustic_rating_claimed": False,
+        "fire_rating_claimed": False,
+    }
+    parts = _svg_start(
+        "Dream House continuous P2 hall-edge acoustic enclosure",
+        "D-058 coordination detail for the full X=21 edge toward the double-height hall and workshops. Not for construction.",
+        metadata,
+    )
+    _header(
+        parts,
+        model,
+        sheet_id,
+        "P2-W04 · CONTINUOUS HALL / WORKSHOP EDGE",
+        "D-058 · 18.00 m full-height enclosure · only GLZ-DECK interrupts",
+    )
+
+    _panel_title(parts, 70, 165, "01", "UNFOLDED X=21 EDGE · P2 SIDE")
+    run_x, run_y, run_w, run_h = 110.0, 255.0, 720.0, 255.0
+    y_scale = run_w / 18.0
+    segments = [
+        (0.0, 5.0, "CHILD 1 BEDROOM", COLORS["bedroom"]),
+        (5.0, 8.5, "MINI DECK", COLORS["deck"]),
+        (8.5, 11.0, "FAMILY LOUNGE", COLORS["shared"]),
+        (11.0, 12.45, "F2 LOBBY", COLORS["circulation"]),
+        (12.45, 18.0, "CHILD 2 BEDROOM", COLORS["bedroom"]),
+    ]
+    for low, high, label, color in segments:
+        x = run_x + low * y_scale
+        width = (high - low) * y_scale
+        parts.extend(
+            [
+                _rect(x, run_y, width, run_h, fill=color, stroke="#90a0a5", stroke_width=0.8),
+                _text(x + width / 2.0, run_y + run_h + 26, label, 7.0, anchor="middle", weight=700),
+            ]
+        )
+
+    parts.append(
+        _rect(
+            run_x,
+            run_y,
+            run_w,
+            run_h,
+            fill="none",
+            stroke=INK,
+            stroke_width=9,
+            css_class="hall-edge-wall p2-w04",
+            data_wall_type=wall["id"],
+        )
+    )
+    glazing = next(
+        item for item in model["internal_glazing"] if item["id"] in wall["acoustic_openings"]
+    )
+    gx = run_x + float(glazing["from"]) * y_scale
+    gw = (float(glazing["to"]) - float(glazing["from"])) * y_scale
+    parts.extend(
+        [
+            _rect(
+                gx,
+                run_y - 5,
+                gw,
+                run_h + 10,
+                fill="#f7e6ca",
+                stroke=AMBER,
+                stroke_width=7,
+                css_class="hall-edge-acoustic-opening",
+                data_opening_id=glazing["id"],
+            ),
+            _line(gx + gw / 2.0, run_y, gx + gw / 2.0, run_y + run_h, stroke="#fff7e8", stroke_width=2),
+            _text(gx + gw / 2.0, run_y + 118, "GLZ-DECK", 9, anchor="middle", weight=700, fill=AMBER),
+            _text(gx + gw / 2.0, run_y + 142, "ACOUSTIC GLAZING", 6.8, anchor="middle", weight=700, fill=AMBER),
+            _text(gx + gw / 2.0, run_y + 165, "ELEVATION TBD", 6.8, anchor="middle", fill=MUTED),
+            _line(run_x, 220, run_x + run_w, 220, stroke=TEAL, stroke_width=1.8),
+            _line(run_x, 211, run_x, 229, stroke=TEAL, stroke_width=1.8),
+            _line(run_x + run_w, 211, run_x + run_w, 229, stroke=TEAL, stroke_width=1.8),
+            _text(run_x + run_w / 2.0, 205, "18.00 m CONTINUOUS ENCLOSURE · Y=0.00 TO 18.00", 9.5, anchor="middle", weight=700, fill=TEAL),
+            _text(run_x, 555, "Y=0.00 · LOW EAVE", 7.2, weight=700, fill=MUTED),
+            _text(run_x + run_w, 555, "Y=18.00 · HIGH EAVE", 7.2, anchor="end", weight=700, fill=MUTED),
+            _text(run_x + run_w / 2.0, 590, "OPAQUE PORTIONS: P2-W01 BUILD-UP · 250 mm NOMINAL", 8.5, anchor="middle", weight=700),
+            _text(run_x + run_w / 2.0, 614, "FLOOR → COORDINATED ROOF SOFFIT / HEAD · NO OPEN GALLERY", 8.0, anchor="middle", weight=700, fill=GREEN),
+        ]
+    )
+
+    _panel_title(parts, 930, 165, "02", "SCHEMATIC SECTION AT X=21", width=650)
+    parts.extend(
+        [
+            _rect(980, 490, 560, 22, fill="#c8c1b7", stroke=INK, stroke_width=1.2),
+            _text(1515, 538, "P2 FLOOR EDGE", 7.4, anchor="end", weight=700),
+            _rect(1100, 255, 32, 235, fill="#d8e7df", stroke=INK, stroke_width=2.0, css_class="p2-w04-section"),
+            _line(1116, 255, 1395, 205, stroke=INK, stroke_width=8, stroke_linecap="round"),
+            _text(1395, 188, "ROOF / SOFFIT · FINAL SLOPE + DEFLECTION TBD", 7.2, anchor="end", weight=700),
+            _line(1116, 270, 995, 405, stroke=AMBER, stroke_width=8, stroke_linecap="round"),
+            _line(995, 405, 1116, 455, stroke=AMBER, stroke_width=8, stroke_linecap="round"),
+            _line(995, 405, 1116, 375, stroke=AMBER, stroke_width=5, stroke_linecap="round"),
+            _text(980, 380, "HALL-SIDE EXPOSED", 7.2, anchor="end", weight=700, fill=AMBER),
+            _text(980, 403, "D-052 TRUSS", 8.4, anchor="end", weight=700, fill=AMBER),
+            _text(1148, 340, "P2-W04", 9, weight=700, fill=TEAL),
+            _text(1148, 365, "FULL HEIGHT", 7.2, weight=700),
+            _text(1148, 388, "CONTINUOUS + SEALED", 7.2, weight=700),
+            _text(1035, 540, "DOUBLE-HEIGHT HALL / WORKSHOPS", 7.2, anchor="middle", weight=700, fill=AMBER),
+            _text(1390, 540, "PRIVATE P2", 7.2, anchor="middle", weight=700, fill=TEAL),
+            _text(1260, 585, "Truss expression remains; its supports and connections may not puncture", 7.4, anchor="middle"),
+            _text(1260, 606, "or rigidly bridge the acoustic enclosure without an engineered detail.", 7.4, anchor="middle"),
+        ]
+    )
+
+    _panel_title(parts, 70, 690, "03", "NON-NEGOTIABLE CONTINUITY")
+    parts.append(
+        _multiline(
+            70,
+            730,
+            [
+                "Close the complete X=21 run; no open mezzanine or gallery condition remains.",
+                "Seal floor track, lateral returns, head, glazing perimeter and every service penetration.",
+                "Keep the twin frames decoupled; do not use truss members, blocking or services as rigid bridges.",
+                "At GLZ-DECK, coordinate acoustic seals, edge protection and guard resistance as one system.",
+            ],
+            8.8,
+            leading=1.55,
+        )
+    )
+
+    _panel_title(parts, 930, 690, "04", "OPEN PROFESSIONAL GATES", width=650)
+    parts.append(
+        _multiline(
+            930,
+            730,
+            [
+                "Structural truss topology, supports, movement and connection strategy.",
+                "Roof/head deflection track and full-height fire-stopping detail.",
+                "Required fire/smoke separation and tested acoustic performance.",
+                "GLZ-DECK glass build-up, frame, guarding, height and installation.",
+                "Full-height mock-up and field verification before repetition.",
+            ],
+            8.5,
+            leading=1.52,
+            fill=RED,
+        )
+    )
+    parts.append(
+        _rect(930, 910, 650, 94, fill="#f5ded8", stroke="#bf7468", stroke_width=1.2, rx=6)
+    )
+    parts.extend(
+        [
+            _text(952, 940, "AUTHORITY", 8, weight=700, fill=RED),
+            _text(952, 969, "Frozen enclosure intent; no STC/Rw, fire rating or construction assembly is claimed.", 8.2, weight=700, fill="#6f3028"),
+        ]
+    )
+
+    _footer(parts, model, digest, sheet_id)
+    parts.append("</svg>\n")
+    output = "".join(parts)
+    ET.fromstring(output)
+    return output
+
+
+def build_exterior_wall_detail(model: dict[str, Any]) -> str:
+    """Draw the D-059 P2-W05 exterior double-frame envelope concept."""
+
+    wall = model.get("exterior_wall_assembly")
+    if not wall:
+        raise P2ModelError("Exterior-wall detail requires exterior_wall_assembly data")
+    report = _report(model)
+    _assert_renderable(report)
+    digest = hashlib.sha256(
+        json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    sheet_id = f"DH-ARQ-DET-005-{model['drawing_revision']}"
+    metadata = {
+        "drawing": sheet_id,
+        "revision": model["revision"],
+        "model_sha256": digest,
+        "status": model["status"],
+        "wall_type": wall["id"],
+        "nominal_total_mm": 300,
+        "construction_authority": False,
+        "thermal_performance_claimed": False,
+        "acoustic_rating_claimed": False,
+        "fire_rating_claimed": False,
+    }
+    parts = _svg_start(
+        "Dream House P2-W05 refined double-frame exterior wall",
+        "D-059 exterior-envelope concept with corrugated metal outside and a smooth concealed-structure P2 interior. Not for construction.",
+        metadata,
+    )
+    _header(
+        parts,
+        model,
+        sheet_id,
+        "P2-W05 · REFINED DOUBLE-FRAME EXTERIOR WALL",
+        "D-059 · three exterior P2 edges only · corrugated outside / smooth inside",
+    )
+
+    _panel_title(parts, 70, 165, "01", "OUTSIDE-TO-INSIDE BUILD-UP · 300 mm NOMINAL")
+    x0, y0, height, mm_scale = 105.0, 265.0, 280.0, 2.0
+    layer_colors = {
+        "corrugated metal rainscreen": "#66818a",
+        "ventilated drainage cavity": "#f7f5ef",
+        "weather-resistive barrier and exterior sheathing": "#b9c6c8",
+        "outer metal stud frame with glass-wool infill": "#c9ddd5",
+        "clear decoupling and service cavity": "#ffffff",
+        "inner metal stud frame with glass-wool infill": "#d8e7df",
+        "reclaimed gypsum board": "#d7d2c8",
+        "new gypsum board": "#f7f5ef",
+    }
+    short_labels = {
+        "corrugated metal rainscreen": "CORRUGATED RAINSCREEN · OUTSIDE ONLY",
+        "ventilated drainage cavity": "20 DRAINED / VENTILATED CAVITY",
+        "weather-resistive barrier and exterior sheathing": "11 SHEATHING + WATER / AIR LAYER",
+        "outer metal stud frame with glass-wool infill": "90 OUTER FRAME + GLASS WOOL",
+        "clear decoupling and service cavity": "50 CLEAR SERVICE / DECOUPLING CAVITY",
+        "inner metal stud frame with glass-wool infill": "100 INNER FRAME + GLASS WOOL",
+        "reclaimed gypsum board": "12.7 RECLAIMED BOARD · CONCEALED",
+        "new gypsum board": "12.7 NEW SMOOTH FINISH BOARD",
+    }
+    cursor = x0
+    layer_centres: list[tuple[float, dict[str, Any]]] = []
+    for layer in wall["outside_to_inside_layers"]:
+        layer_width = float(layer["nominal_mm"]) * mm_scale
+        material = layer["material"]
+        parts.append(
+            _rect(
+                cursor,
+                y0,
+                layer_width,
+                height,
+                fill=layer_colors[material],
+                stroke=INK,
+                stroke_width=1.1,
+                css_class=f"exterior-wall-layer {material.replace(' ', '-').lower()}",
+            )
+        )
+        if "glass-wool" in material:
+            for offset in range(12, int(layer_width), 22):
+                parts.append(
+                    _line(
+                        cursor + offset,
+                        y0 + 8,
+                        cursor + min(offset + 15, layer_width - 4),
+                        y0 + height - 8,
+                        stroke=GREEN,
+                        stroke_width=1.0,
+                        opacity=0.65,
+                    )
+                )
+        layer_centres.append((cursor + layer_width / 2.0, layer))
+        cursor += layer_width
+
+    parts.extend(
+        [
+            _line(x0, 225, cursor, 225, stroke=TEAL, stroke_width=1.8),
+            _line(x0, 216, x0, 234, stroke=TEAL, stroke_width=1.8),
+            _line(cursor, 216, cursor, 234, stroke=TEAL, stroke_width=1.8),
+            _text(
+                (x0 + cursor) / 2.0,
+                210,
+                "300 mm NOMINAL · 297 mm ILLUSTRATIVE LAYER SUM",
+                9.5,
+                anchor="middle",
+                weight=700,
+                fill=TEAL,
+            ),
+            _text(x0 - 18, y0 + height / 2.0, "OUTSIDE", 8.5, anchor="end", weight=700),
+            _text(cursor + 18, y0 + height / 2.0, "P2 INSIDE", 8.5, weight=700),
+        ]
+    )
+    for index, (_, layer) in enumerate(layer_centres):
+        row = 245 + index * 43
+        parts.extend(
+            [
+                _text(772, row, str(index + 1), 7.0, anchor="end", weight=700, fill=TEAL),
+                _rect(
+                    784,
+                    row - 11,
+                    13,
+                    13,
+                    fill=layer_colors[layer["material"]],
+                    stroke=INK,
+                    stroke_width=0.7,
+                ),
+                _text(810, row, short_labels[layer["material"]], 7.3, weight=700),
+            ]
+        )
+
+    _panel_title(parts, 70, 660, "02", "P2 PERIMETER APPLICATION", width=430)
+    px, py, pw, ph = 110.0, 720.0, 300.0, 220.0
+    parts.extend(
+        [
+            _rect(px, py, pw, ph, fill="#eef1ed", stroke="#90a0a5", stroke_width=1.0),
+            _line(px, py, px + pw, py, stroke="#36535d", stroke_width=11),
+            _line(px, py + ph, px + pw, py + ph, stroke="#36535d", stroke_width=11),
+            _line(px + pw, py, px + pw, py + ph, stroke="#36535d", stroke_width=11),
+            _line(px, py, px, py + ph, stroke=INK, stroke_width=9),
+            _text(px + pw / 2.0, py - 20, "NORTH · P2-W05", 7.4, anchor="middle", weight=700),
+            _text(px + pw / 2.0, py + ph + 26, "SOUTH · P2-W05", 7.4, anchor="middle", weight=700),
+            _text(px + pw + 18, py + ph / 2.0, "REAR / EAST · P2-W05", 7.0, weight=700),
+            _text(px - 18, py + ph / 2.0, "HALL · P2-W04", 7.0, anchor="end", weight=700),
+            _text(px + pw / 2.0, py + ph / 2.0, "PRIVATE P2", 11, anchor="middle", weight=700, fill=TEAL),
+        ]
+    )
+
+    _panel_title(parts, 540, 660, "03", "EXPRESSION RULE", width=480)
+    parts.extend(
+        [
+            _rect(570, 720, 190, 150, fill="#d9e0e1", stroke=INK, stroke_width=1.2),
+            _rect(800, 720, 190, 150, fill="#fbfaf6", stroke=INK, stroke_width=1.2),
+            *[
+                _line(580 + offset, 728, 580 + offset, 862, stroke="#78919a", stroke_width=3)
+                for offset in range(0, 180, 16)
+            ],
+            _text(665, 895, "OUTSIDE", 8, anchor="middle", weight=700, fill=MUTED),
+            _text(665, 918, "economical corrugated rainscreen", 7.0, anchor="middle"),
+            _text(895, 895, "P2 INSIDE", 8, anchor="middle", weight=700, fill=TEAL),
+            _text(895, 918, "smooth, quiet, domestic finish", 7.0, anchor="middle"),
+            _text(895, 946, "NO VISIBLE SHEET / FRAME / STEEL / SERVICES", 6.8, anchor="middle", weight=700, fill=GREEN),
+        ]
+    )
+
+    _panel_title(parts, 1080, 660, "04", "OPEN PROFESSIONAL GATES", width=500)
+    parts.append(
+        _multiline(
+            1080,
+            705,
+            [
+                "Climate-specific condensation and vapour-control analysis.",
+                "Wind resistance, studs, sheathing, anchors and primary-steel interfaces.",
+                "Window heads, sills, reveals, drainage and continuous air seals.",
+                "Roof/eave, slab edge, corners, flashings and thermal bridges.",
+                "Fire, cavity barriers, combustibility and full-height mock-up.",
+            ],
+            8.2,
+            leading=1.55,
+            fill=RED,
+        )
+    )
+    parts.append(
+        _rect(1080, 895, 500, 96, fill="#f5ded8", stroke="#bf7468", stroke_width=1.2, rx=6)
+    )
+    parts.extend(
+        [
+            _text(1102, 925, "AUTHORITY", 8, weight=700, fill=RED),
+            _text(1102, 954, "Envelope principle frozen; no U-value, STC/Rw or fire rating is claimed.", 7.6, weight=700, fill="#6f3028"),
+            _text(1102, 975, "Not for product order, fabrication or construction.", 7.6, fill="#6f3028"),
+        ]
+    )
+
+    _footer(parts, model, digest, sheet_id)
+    parts.append("</svg>\n")
+    output = "".join(parts)
+    ET.fromstring(output)
+    return output
+
+
 def generate(
     model: dict[str, Any] | None = None,
     out_dir: Path = OUT,
@@ -1847,6 +2571,12 @@ def generate(
     partition_detail = acoustic_detail_name(model)
     if partition_detail:
         outputs[partition_detail] = build_acoustic_partition_detail(model)
+    hall_detail = hall_edge_detail_name(model)
+    if hall_detail:
+        outputs[hall_detail] = build_hall_edge_detail(model)
+    exterior_detail = exterior_wall_detail_name(model)
+    if exterior_detail:
+        outputs[exterior_detail] = build_exterior_wall_detail(model)
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, content in outputs.items():
         out_dir.joinpath(name).write_text(content, encoding="utf-8")

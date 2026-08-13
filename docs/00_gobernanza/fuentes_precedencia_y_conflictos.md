@@ -1,9 +1,10 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 0.5
+**Version:** 0.7
 **Date:** 2026-08-13
-**Language note:** controlled English translation under D-044; CF-009 added for D-057.
+**Language note:** controlled English translation under D-044; D-059 incorporated into
+CF-009 and the hard-rule modification register.
 
 ## Precedence
 
@@ -122,23 +123,43 @@ compatibility with the five openings shown in the interior elevation.
 - **Status:** authority conflict resolved by D-043 for gravity support; detailed design
   and the lateral function remain open.
 
-### CF-009 — D-057 partition assembly versus structural dead-load allowance
+### CF-009 — D-057/D-059 P2 walls versus structural dead-load and wind allowances
 
 D-057 fixes a 250 mm nominal P2 dry-partition assembly with two metal frames, four total
-gypsum-board layers, and glass wool in both frames. The structural screening model still
+gypsum-board layers, and glass wool in both frames. D-058 applies that opaque principle
+to the full 18.00 m X=21 hall edge as P2-W04. D-059 adds the 300 mm nominal P2-W05
+double-frame exterior envelope on the other three edges, including sheathing, rainscreen,
+two insulated frames and interior boards. The structural screening model still
 uses a global `partitions_p2_kpa` allowance rather than wall lengths and actual product
-masses, and the issued E0/E1 structural sheets predate P2 b13/R10.
+masses or wind reactions, and the issued E0/E1 structural sheets predate P2 b15/R12.
 
-- **Architectural rule:** P2 b13/R10 governs current dry-partition geometry and clear
-  dimensions under D-057.
+- **Architectural rule:** P2 b15/R12 governs current P2 wall geometry and clear
+  dimensions under D-057–D-059.
 - **Structural hold point:** do not infer that the existing partition allowance covers
-  P2-W01. Measure wall lengths, select local products, calculate installed mass including
-  frames/boards/insulation/doors, and compare the result with the allowance and local
-  concentrations before the next structural issue.
+  P2-W01/P2-W04/P2-W05. Measure wall lengths and openings, select local products,
+  calculate installed mass including frames/boards/insulation/sheathing/rainscreen, and
+  compare the result with the allowance and local concentrations. Design P2-W05 studs,
+  sheathing, fasteners and attachments for wind before the next structural issue.
 - **Publication rule:** the current structural sheets remain screening evidence and may
-  not be presented as coordinated construction design for D-057.
+  not be presented as coordinated construction design for D-057–D-059.
 - **Status:** open; responsible structural engineer and architect of record must close it
-  before developed-design freeze.
+before developed-design freeze.
+
+### CF-010 — D-052 exposed edge truss versus D-058 continuous enclosure
+
+D-052 asks for one large exposed industrial truss at X=21 and protects the mini-deck
+view. D-058 now requires a continuous full-height acoustic enclosure on the same edge.
+Treating the truss as an open frame, passing members through the wall without controlled
+junctions, or leaving gaps around supports would defeat the enclosure requirement.
+
+- **Interim architectural rule:** P2-W04 governs enclosure continuity. GLZ-DECK is the
+  only planned opening. The truss expression remains active but must read from the hall
+  side or be integrated through deliberately isolated, sealed junctions.
+- **Engineering hold point:** coordinate truss depth, supports, connections, fire
+  protection, roof movement, wall head, edge protection, glazing and MEP before freezing
+  either system. No structural member may be assumed to replace the acoustic wall.
+- **Status:** open; architect of record, structural engineer, acoustic consultant and
+  fire/life-safety professional must close the interface before developed-design freeze.
 
 ## Resolution rule
 

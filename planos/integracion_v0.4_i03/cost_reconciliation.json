@@ -1,0 +1,95 @@
+{
+  "approved_budget_total_cop": null,
+  "currency": "COP",
+  "note": "Control extensions expose drift only. They are not summed into a budget because no rate is eligible.",
+  "open_or_ineligible_assemblies": [
+    "P2-GROSS-FLOOR",
+    "P2-WINDOWS",
+    "PB-TECHNICAL-GLAZING",
+    "PROGRAM-AREA",
+    "ROOFLIGHT-CURB",
+    "ROOFLIGHT-GLAZING"
+  ],
+  "revision": "0.4-I01-COST-RECONCILIATION",
+  "rows": [
+    {
+      "assembly_id": "P2-GROSS-FLOOR",
+      "baseline_extension_cop": null,
+      "control_extension_cop": null,
+      "control_rate_cop": null,
+      "control_variance_cop": null,
+      "cost_code": "07",
+      "eligible_for_budget": false,
+      "mapping_note": "Chapter mapping only; no direct unit-rate extension in this pipeline.",
+      "mapping_status": "OPEN",
+      "quantity": 270.0,
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "baseline_extension_cop": 14000000.0,
+      "control_extension_cop": 19257000.0,
+      "control_rate_cop": 350000,
+      "control_variance_cop": 5257000.0,
+      "cost_code": "13.01",
+      "eligible_for_budget": false,
+      "mapping_note": "Direct P2 window-area mapping.",
+      "mapping_status": "PASS",
+      "quantity": 55.02,
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PB-TECHNICAL-GLAZING",
+      "baseline_extension_cop": 33040000.0,
+      "control_extension_cop": 49276800.0,
+      "control_rate_cop": 1180000,
+      "control_variance_cop": 16236800.0,
+      "cost_code": "12.01",
+      "eligible_for_budget": false,
+      "mapping_note": "Current cost line describes a 28 m2 principal event, while active PB technical glazing measures 41.76 m2. Scope equivalence must be decided.",
+      "mapping_status": "OPEN",
+      "quantity": 41.76,
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PROGRAM-AREA",
+      "baseline_extension_cop": null,
+      "control_extension_cop": null,
+      "control_rate_cop": null,
+      "control_variance_cop": null,
+      "cost_code": null,
+      "eligible_for_budget": false,
+      "mapping_note": "Programme metric is not a priced assembly.",
+      "mapping_status": "NOT_APPLICABLE",
+      "quantity": 171.43,
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "ROOFLIGHT-CURB",
+      "baseline_extension_cop": null,
+      "control_extension_cop": null,
+      "control_rate_cop": null,
+      "control_variance_cop": null,
+      "cost_code": null,
+      "eligible_for_budget": false,
+      "mapping_note": "Curb, trimmers, drainage, and thermal bridge require a separate assembly.",
+      "mapping_status": "OPEN",
+      "quantity": 28.8,
+      "unit": "m"
+    },
+    {
+      "assembly_id": "ROOFLIGHT-GLAZING",
+      "baseline_extension_cop": null,
+      "control_extension_cop": null,
+      "control_rate_cop": null,
+      "control_variance_cop": null,
+      "cost_code": null,
+      "eligible_for_budget": false,
+      "mapping_note": "No authorized rooflight supply/install line exists. Do not bury this scope in 12.01.",
+      "mapping_status": "OPEN",
+      "quantity": 23.04,
+      "unit": "m2"
+    }
+  ],
+  "status": "OPEN"
+}

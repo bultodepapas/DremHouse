@@ -1,12 +1,12 @@
 # Parametric Architecture–Structure–Cost Integration Plan
 
-**Status:** implementation issue 0.4-I02 active; coordination basis; not for construction
-**Version:** 0.4
+**Status:** implementation issue 0.4-I04 active; coordination basis; not for construction
+**Version:** 0.6
 **Date:** 2026-08-13  
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
 **Primary authority:** Project Constitution, source-precedence register, D-043,
-D-045–D-048, D-050–D-057, and the active discipline records listed below
+D-045–D-048, D-050–D-059, and the active discipline records listed below
 **Prepared from:** complete repository review, active drawings and JSON models, Python
 call-path and test audit, cost-control records, and protected legacy source review  
 **Required reviewers:** owner, architect, structural engineer, cost planner/quantity
@@ -49,6 +49,38 @@ The deterministic package is written to
 **48 PASS, 6 OPEN, 0 FAIL**. It remains `COORDINATION_OPEN` and `issue_ready=false`;
 the D-057 structural dead-load comparison is tracked separately in CF-009 and must be
 added to the next structural issue rather than inferred from this pipeline result.
+
+## Implementation issue 0.4-I03
+
+D-058 adds `D058_P2_HALL_EDGE` as the active hash-locked scenario and retains
+`D057_P2_W01` for comparison. The active P2 source is now `dreamhouse/p2_b14.json`; its
+R11 plan, P2-W01 build-up detail and new P2-W04 hall-edge detail derive from the same
+model. Validation requires a continuous 18.00 m full-height enclosure at X=21, assigns
+the correct 250 mm net-dimension deduction to rooms on that edge, and permits GLZ-DECK
+as the only scheduled acoustic opening.
+
+The deterministic package is written to
+[`planos/integracion_v0.4_i03/`](../../planos/integracion_v0.4_i03/) and reports
+**49 PASS, 6 OPEN, 0 FAIL**. It remains `COORDINATION_OPEN` and `issue_ready=false`.
+CF-009 now includes P2-W04 mass and CF-010 keeps the exposed-truss/wall interface open;
+the pipeline does not claim acoustic, fire, structural, guarding or construction
+performance.
+
+## Implementation issue 0.4-I04
+
+D-059 adds `D059_P2_REFINED_ENVELOPE` as the active hash-locked scenario and retains
+`D058_P2_HALL_EDGE` for comparison. The active P2 source is now
+`dreamhouse/p2_b15.json`; its R12 plan and five coordinated details derive from the same
+model. Validation requires 300 mm nominal P2-W05 on the north, south and rear/east
+exterior edges, keeps P2-W04 at the hall edge, cuts only scheduled windows and the
+egress reserve, and recalculates net dimensions without moving the 270 m² gross envelope.
+
+The deterministic package is written to
+[`planos/integracion_v0.4_i04/`](../../planos/integracion_v0.4_i04/) and reports
+**50 PASS, 7 OPEN, 0 FAIL**. It remains `COORDINATION_OPEN` and `issue_ready=false`.
+The added open gate covers hygrothermal, wind, fire and window-interface design for
+P2-W05; no thermal/acoustic rating, structural capacity, quantity, cost or construction
+authority is inferred.
 
 ## 1. Executive recommendation
 
@@ -139,7 +171,7 @@ These rules belong in automated scenario acceptance tests as well as in drawings
 | Decisions | `docs/00_gobernanza/registro_decisiones.md` | owner/project decisions |
 | Program | `docs/01_programa/programa_arquitectonico.md` | program and performance basis |
 | PB | `dreamhouse/pb_b05.json` and PB R04 sheet | active schematic hypothesis |
-| P2 | `dreamhouse/p2_b13.json` and P2 R10 sheet | issued for coordination under D-057; not for construction |
+| P2 | `dreamhouse/p2_b15.json` and P2 R12 sheets | issued for coordination under D-059; not for construction |
 | Roof | roof b07 record/model | active schematic hypothesis |
 | Rooflights | `dreamhouse/rooflight_b11.json` superseded in position by D-054 | geometry to revise |
 | Structure | `dreamhouse/structure/structure_system.json`, E0/E1 records and sheets | research/screening only |
@@ -1052,3 +1084,14 @@ D-057 subsequently fixes the P2-W01 assembly principle and nominal thickness for
 coordination. It does not remove the professional, structural-load, fire, moisture,
 penetration, door-seal, mock-up, or field-performance gates recorded in the active P2
 wall detail.
+
+D-058 subsequently closes the entire X=21 hall/workshop edge with full-height P2-W04,
+retaining only GLZ-DECK as a planned opening. This does not resolve the D-052 truss
+interface, structural support, roof movement, fire/smoke separation, guarding, glazing
+specification, measured acoustic performance, quantities or costs.
+
+D-059 subsequently replaces the exterior P2 study wall with the 300 mm nominal P2-W05
+double-frame envelope and freezes the smooth, concealed-structure residential interior
+experience. This does not establish vapour-control placement, U-value, wind capacity,
+fire rating, window details, selected products, measured performance, quantities or
+costs.

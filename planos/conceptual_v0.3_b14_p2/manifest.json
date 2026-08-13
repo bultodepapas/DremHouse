@@ -1,0 +1,17 @@
+{
+  "revision": "0.3-draft-14-P2",
+  "status": "issued for coordination under D-058; not for construction",
+  "source": "dreamhouse/p2_b14.json",
+  "source_sha256": "aa8cf221a5e2a816a822a787af95b22b34c2baaaf6e838be61cf51012130b7dc",
+  "generator": "dreamhouse/generate_p2_b14.py",
+  "supersedes": "0.3-draft-13-P2 / R10",
+  "outputs": [
+    "DH-ARQ-PLN-002-R11_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R11_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R11_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R11_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R11_P2-HALL-EDGE.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

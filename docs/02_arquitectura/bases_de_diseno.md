@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.2
+**Versión:** 0.4
 **Fecha:** 2026-08-13
 
 ## Forma y modulación
@@ -42,6 +42,12 @@ privacidad, ganancias/pérdidas, riesgo de condensación, sellos, drenajes y man
 - Madera concentrada en pared posterior, cocina, piezas técnicas seleccionadas y P2.
 - Textiles y absorción donde mejoren acústica y escala doméstica.
 
+The exposed-industrial rule is spatially selective under D-059. It remains strong in the
+hall, workshops, exterior rainscreen and the deliberate hall-side X=21 truss. Private P2
+interiors instead use smooth finished walls and conceal framing, primary steel, bracing,
+membranes and services. This is a hierarchy of experiences, not a rejection of the
+project's industrial identity.
+
 ## Pared posterior
 
 Debe leerse como el testero final de la nave y resolver simultáneamente puertas ocultas,
@@ -66,6 +72,38 @@ This control does not apply to façades, sauna hot-side/wet assemblies, protecte
 fire-rated or technical enclosures, or structural walls. Those interfaces require
 separate details. No acoustic or fire rating is claimed until the selected products,
 doors, seals, penetrations, junctions, and full-height mock-up are verified.
+
+### P2 hall/workshop edge enclosure
+
+D-058 requires P2-W04 along the complete 18.00 m X=21 edge between private P2 and the
+double-height hall/workshops. It is a full-height enclosure, not an open mezzanine edge.
+Opaque portions use the 250 mm nominal P2-W01 principle; GLZ-DECK at the mini deck is the
+only planned acoustic opening. Seal the wall continuously at the floor, returns,
+roof/soffit head, glazing frame, structure and services. See
+[P2 hall-edge acoustic enclosure — b14/R11](cierre_acustico_borde_p2_v0.3_b14.md).
+
+D-052's single large exposed truss remains an architectural objective on the hall side,
+but it may not replace, puncture or rigidly bridge P2-W04. Structure, head movement,
+guarding, fire/smoke separation, glazing build-up and measured performance remain open
+professional design gates.
+
+### P2 exterior double-frame envelope
+
+D-059 requires P2-W05 on the three exterior P2 edges: south Y=0, north Y=18 and
+rear/east X=36. Coordinate it at 300 mm nominal as an economical asymmetric double wall.
+The outer leaf provides corrugated rainscreen, drainage, the continuous air/water layer,
+sheathing and an insulated wind-side frame. A clear service/decoupling cavity separates
+it from an independently insulated room-side frame with accepted reclaimed concealed
+board and new smooth finish board.
+
+Corrugated sheet is an exterior material only. No sheet metal, framing, primary steel,
+bracing, membranes or services are exposed to private P2 rooms or circulation. See
+[P2 refined exterior envelope — b15/R12](envolvente_exterior_p2_v0.3_b15.md).
+
+Do not select a generic interior vapour barrier by intuition. Climate, indoor humidity,
+material permeability, condensation risk and drying direction require a project-specific
+hygrothermal analysis. Window openings, roof/eave, slab edge, corners, flashings, wind
+resistance, fire/cavity barriers and thermal bridges remain separate professional gates.
 
 ## Detalle y mantenibilidad
 

@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.3
+**Versión:** 0.3.5
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -236,10 +236,46 @@ frame depths, electrical/MEP penetrations, fire stopping, floor-edge support, an
 must be rechecked against the actual selected products. **No price, saving, increase,
 contingency change, or target change is recognized by this decision.**
 
+### 0.3-M — D-058 continuous P2 hall-edge enclosure scope
+
+D-058 adds a continuous, full-height 18.00 m enclosure at X=21 between private P2 and
+the double-height hall/workshops. Opaque portions use the 250 mm nominal P2-W01
+principle; the GLZ-DECK acoustic glazing is the only planned interruption. Measurement
+must deduct the final glazing opening and separately quantify twin framing, wool,
+reclaimed concealed board, new finish board, floor/head tracks, deflection head, lateral
+returns, perimeter seals, fire stopping, edge protection, glazing frame and seals,
+structural junctions, service penetrations, access/scaffolding and the full-height
+mock-up.
+
+The D-052 exposed truss remains a coordinated architectural requirement, but its
+connections, fire protection and wall junctions are not included in any current wall
+allowance. Reuse remains an opportunity only: recovered-board yield, sorting, storage,
+handling and rejection must be measured. **No price, saving, increase, contingency
+change, or target change is recognized by D-058.**
+
+### 0.3-N — D-059 refined double-frame P2 exterior-envelope scope
+
+D-059 replaces the provisional 180 mm study wall only on the three exterior P2 edges
+with the 300 mm nominal P2-W05 double-frame envelope. Measurement must separately
+quantify corrugated rainscreen, ventilated/drained battens and closures, sheathing,
+weather-resistive air/water layers, outer and inner light-gauge frames, glass wool in
+both frames, clear service cavity, reclaimed concealed board, new finish board,
+fasteners, sealants, flashings, fire/cavity barriers, slab and roof interfaces, corners,
+primary-steel thermal-bridge treatments, window reveals and the representative mock-up.
+
+The choice deliberately keeps inexpensive corrugated sheet on the weather side and uses
+standard dry-construction components inside. That strategy is not yet a booked saving:
+local profile availability, recovered-board yield, extra framing, window detailing,
+access, fire and moisture requirements must be measured first. The gross P2 envelope is
+unchanged; net areas reduce only by the additional exterior-wall thickness. **No price,
+saving, increase, contingency change, or target change is recognized by D-059.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-N   | 2026-08-13 | D-059 replaces the 180 mm P2 exterior study wall on the north, south and rear/east edges with the 300 mm nominal P2-W05 double-frame envelope. Corrugated sheet remains outside; the P2 interior receives concealed framing/services and a smooth board finish. All layers, openings, flashings, seals, thermal bridges, fire/cavity barriers and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
+| 0.3-M   | 2026-08-13 | D-058 adds the full-height 18.00 m P2-W04 enclosure at X=21 toward the hall/workshops, with 250 mm nominal opaque portions and GLZ-DECK as the only planned interruption. Wall-area, glazing, seals, head/floor/structure junctions, fire stopping, access and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-L   | 2026-08-13 | D-057 fixes P2-W01 at 250 mm nominal for ordinary dry interior upper-floor partitions: twin independent metal frames, glass wool in both frames, reclaimed concealed gypsum board and new visible finish board. Phase 2 is rebalanced within the unchanged gross envelope to retain 1.20 m clear circulation. Exterior, sauna/wet, protected-stair/fire-rated, technical and structural wall types remain excluded and unpriced. Reuse is not counted as a saving until yield and handling are measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-K   | 2026-08-13 | D-054/D-055 integration control: reopens complete rooflight-assembly quantities after relocation; records active-model opening measurements of 55.02 m² P2 windows and 41.76 m² PB technical glazing against unresolved estimate placeholders; and requires a generated quantity ledger and cost mapping for Great Wall, structural, opening, equipment, and room changes. **No total, contingency, saving, or increase is recognized.** Affects principally 03/05/06/08/09/10/12/13/14/15/16/17/19/20/21/22/23/26 and remains blocked by PE-1/PE-2. |
 | 0.2     | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |

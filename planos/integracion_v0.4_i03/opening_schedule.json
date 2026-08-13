@@ -1,0 +1,110 @@
+{
+  "area_totals_m2": {
+    "rooflight": 23.04,
+    "vertical_glazing": 96.78
+  },
+  "items": [
+    {
+      "area_m2": 20.88,
+      "height_m": 2.9,
+      "id": "GLZ-CAR",
+      "kind": "vertical_glazing",
+      "location": "A",
+      "perimeter_m": 20.2,
+      "source": "PB.technical_glazing",
+      "width_m": 7.2
+    },
+    {
+      "area_m2": 20.88,
+      "height_m": 2.9,
+      "id": "GLZ-RC",
+      "kind": "vertical_glazing",
+      "location": "B",
+      "perimeter_m": 20.2,
+      "source": "PB.technical_glazing",
+      "width_m": 7.2
+    },
+    {
+      "area_m2": 10.26,
+      "height_m": 2.7,
+      "id": "W-H1",
+      "kind": "vertical_glazing",
+      "location": "south",
+      "perimeter_m": 13.0,
+      "source": "P2.windows",
+      "width_m": 3.8
+    },
+    {
+      "area_m2": 14.85,
+      "height_m": 2.7,
+      "id": "W-M-LAT-A",
+      "kind": "vertical_glazing",
+      "location": "south",
+      "perimeter_m": 16.4,
+      "source": "P2.windows",
+      "width_m": 5.5
+    },
+    {
+      "area_m2": 6.75,
+      "height_m": 2.7,
+      "id": "W-M-REAR",
+      "kind": "vertical_glazing",
+      "location": "east",
+      "perimeter_m": 10.4,
+      "source": "P2.windows",
+      "width_m": 2.5
+    },
+    {
+      "area_m2": 9.18,
+      "height_m": 2.7,
+      "id": "W-H2",
+      "kind": "vertical_glazing",
+      "location": "north",
+      "perimeter_m": 12.2,
+      "source": "P2.windows",
+      "width_m": 3.4
+    },
+    {
+      "area_m2": 9.18,
+      "height_m": 2.7,
+      "id": "W-G",
+      "kind": "vertical_glazing",
+      "location": "north",
+      "perimeter_m": 12.2,
+      "source": "P2.windows",
+      "width_m": 3.4
+    },
+    {
+      "area_m2": 4.8,
+      "height_m": 1.2,
+      "id": "W-WELL",
+      "kind": "vertical_glazing",
+      "location": "east",
+      "perimeter_m": 10.4,
+      "source": "P2.windows",
+      "width_m": 4.0
+    },
+    {
+      "area_m2": 11.52,
+      "height_m": 2.4,
+      "id": "RL-CAR",
+      "kind": "rooflight",
+      "location": "DOUBLE HEIGHT / CAR HALF",
+      "perimeter_m": 14.4,
+      "source": "ROOFLIGHTS.rooflights",
+      "width_m": 4.8
+    },
+    {
+      "area_m2": 11.52,
+      "height_m": 2.4,
+      "id": "RL-RC",
+      "kind": "rooflight",
+      "location": "DOUBLE HEIGHT / RC HALF",
+      "perimeter_m": 14.4,
+      "source": "ROOFLIGHTS.rooflights",
+      "width_m": 4.8
+    }
+  ],
+  "revision": "0.4-I01-OPENINGS",
+  "status": "derived quantity schedule; not procurement authority"
+}

@@ -142,7 +142,7 @@ def _cross_model_checks(
 
 
 def load_project(
-    scenario_id: str = "D057_P2_W01",
+    scenario_id: str = "D059_P2_REFINED_ENVELOPE",
     manifest_path: Path = DEFAULT_MANIFEST,
     *,
     verify_hashes: bool = True,

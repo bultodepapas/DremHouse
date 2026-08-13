@@ -1,0 +1,237 @@
+{
+  "programme": {
+    "checks": [
+      {
+        "entity_ids": [
+          "M-B-A",
+          "M-B"
+        ],
+        "message": "Primary bath components total 17.60 m2 against the 17 m2 study target",
+        "rule_id": "PROGRAM-PRIMARY-BATH-17",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "M-C"
+        ],
+        "message": "Primary dressing totals 17.60 m2 against the 15 m2 study target",
+        "rule_id": "PROGRAM-PRIMARY-CLOSET-15",
+        "status": "PASS"
+      },
+      {
+        "entity_ids": [
+          "M-B-A",
+          "M-D",
+          "M-B",
+          "M-C"
+        ],
+        "message": "Tagged primary-suite components total 66.28 m2; reconcile the 75 m2 owner target and gross/net basis",
+        "rule_id": "PROGRAM-PRIMARY-TOTAL-75",
+        "status": "OPEN"
+      }
+    ],
+    "measurement_warning": "Component tags are not a boundary survey; shared circulation is excluded.",
+    "revision": "0.4-I01-PROGRAM",
+    "status": "OPEN",
+    "suite_component_areas_m2": {
+      "G": 29.41,
+      "H1": 38.0,
+      "H2": 37.74,
+      "M": 66.28
+    }
+  },
+  "records": [
+    {
+      "assembly_id": "PB-TECHNICAL-GLAZING",
+      "description": "GLZ-CAR measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-GLZ-CAR-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 20.88,
+      "source_model": "PB.technical_glazing",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PB-TECHNICAL-GLAZING",
+      "description": "GLZ-RC measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-GLZ-RC-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 20.88,
+      "source_model": "PB.technical_glazing",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "description": "W-H1 measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-W-H1-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 10.26,
+      "source_model": "P2.windows",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "description": "W-M-LAT-A measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-W-M-LAT-A-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 14.85,
+      "source_model": "P2.windows",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "description": "W-M-REAR measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-W-M-REAR-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 6.75,
+      "source_model": "P2.windows",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "description": "W-H2 measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-W-H2-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 9.18,
+      "source_model": "P2.windows",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "description": "W-G measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-W-G-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 9.18,
+      "source_model": "P2.windows",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "P2-WINDOWS",
+      "description": "W-WELL measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-W-WELL-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 4.8,
+      "source_model": "P2.windows",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "ROOFLIGHT-GLAZING",
+      "description": "RL-CAR measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-RL-CAR-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 11.52,
+      "source_model": "ROOFLIGHTS.rooflights",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "ROOFLIGHT-CURB",
+      "description": "RL-CAR curb perimeter",
+      "formula": "2 * (length_m + width_m)",
+      "id": "Q-RL-CAR-CURB",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 14.4,
+      "source_model": "ROOFLIGHTS.rooflights",
+      "unit": "m"
+    },
+    {
+      "assembly_id": "ROOFLIGHT-GLAZING",
+      "description": "RL-RC measured opening area",
+      "formula": "width_m * height_m",
+      "id": "Q-RL-RC-AREA",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 11.52,
+      "source_model": "ROOFLIGHTS.rooflights",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "ROOFLIGHT-CURB",
+      "description": "RL-RC curb perimeter",
+      "formula": "2 * (length_m + width_m)",
+      "id": "Q-RL-RC-CURB",
+      "measurement_status": "model-derived schematic quantity",
+      "quantity": 14.4,
+      "source_model": "ROOFLIGHTS.rooflights",
+      "unit": "m"
+    },
+    {
+      "assembly_id": "P2-GROSS-FLOOR",
+      "description": "Gross P2 plan area",
+      "formula": "length * width",
+      "id": "Q-P2-GROSS-FLOOR",
+      "measurement_status": "model-derived gross envelope",
+      "quantity": 270.0,
+      "source_model": "P2.envelope",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PROGRAM-AREA",
+      "description": "Suite G tagged component area",
+      "formula": "sum(space.w * space.d) for tagged suite components",
+      "id": "Q-SUITE-G-COMPONENTS",
+      "measurement_status": "programme metric; not a construction takeoff",
+      "quantity": 29.41,
+      "source_model": "P2.spaces",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PROGRAM-AREA",
+      "description": "Suite H1 tagged component area",
+      "formula": "sum(space.w * space.d) for tagged suite components",
+      "id": "Q-SUITE-H1-COMPONENTS",
+      "measurement_status": "programme metric; not a construction takeoff",
+      "quantity": 38.0,
+      "source_model": "P2.spaces",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PROGRAM-AREA",
+      "description": "Suite H2 tagged component area",
+      "formula": "sum(space.w * space.d) for tagged suite components",
+      "id": "Q-SUITE-H2-COMPONENTS",
+      "measurement_status": "programme metric; not a construction takeoff",
+      "quantity": 37.74,
+      "source_model": "P2.spaces",
+      "unit": "m2"
+    },
+    {
+      "assembly_id": "PROGRAM-AREA",
+      "description": "Suite M tagged component area",
+      "formula": "sum(space.w * space.d) for tagged suite components",
+      "id": "Q-SUITE-M-COMPONENTS",
+      "measurement_status": "programme metric; not a construction takeoff",
+      "quantity": 66.28,
+      "source_model": "P2.spaces",
+      "unit": "m2"
+    }
+  ],
+  "revision": "0.4-I01-QUANTITIES",
+  "status": "schematic model-derived; not procurement or construction quantity",
+  "totals_by_assembly": {
+    "P2-GROSS-FLOOR": {
+      "m2": 270.0
+    },
+    "P2-WINDOWS": {
+      "m2": 55.02
+    },
+    "PB-TECHNICAL-GLAZING": {
+      "m2": 41.76
+    },
+    "PROGRAM-AREA": {
+      "m2": 171.43
+    },
+    "ROOFLIGHT-CURB": {
+      "m": 28.8
+    },
+    "ROOFLIGHT-GLAZING": {
+      "m2": 23.04
+    }
+  }
+}
