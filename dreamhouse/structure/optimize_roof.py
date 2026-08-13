@@ -21,6 +21,15 @@ import numpy as np
 from .analysis import G
 from .materials import Steel, materials_from_json
 from .profiles import Profile, profile
+from .steel_checks import (
+    HSSGeometry,
+    SteelCheckError,
+    beam_column_interaction_ratio,
+    hss_compression_strength,
+    hss_flexural_strength,
+    hss_local_slenderness,
+    second_order_screen,
+)
 from .truss import Truss2D, TrussAnalysisError, TrussMember
 from .truss_grammar import TrussLayout, generate_roof_truss
 
@@ -57,6 +66,12 @@ class PairEvaluation:
     truss_mass_kg: float
     total_roof_truss_mass_kg: float
     max_strength_ratio: float
+    max_axial_ratio: float
+    max_local_bending_ratio: float
+    max_local_slenderness_ratio: float
+    max_second_order_euler_ratio: float
+    max_second_order_magnifier: float
+    max_chord_local_moment_knm: float
     max_deflection_ratio: float
     governing_ratio: float
     max_deflection_m: float
@@ -128,7 +143,7 @@ def build_candidates(cfg: dict, space: dict) -> list[RoofTrussCandidate]:
     return candidates
 
 
-def _build_model(
+def build_truss_model(
     layout: TrussLayout,
     steel: Steel,
     chord: Profile,
@@ -169,26 +184,46 @@ def _top_nodal_loads(layout: TrussLayout, line_load_down_n_m: float) -> np.ndarr
     return loads
 
 
-def _member_mass_kg(model: Truss2D, chord: Profile, web: Profile) -> float:
+def truss_mass_kg(model: Truss2D, chord: Profile, web: Profile) -> float:
     profiles = {"chord": chord, "web": web}
     return sum(
         model.member_length(member) * profiles[member.group].mass_kg_m for member in model.members
     )
 
 
-def _compression_capacity_n(
-    member: TrussMember,
-    length_m: float,
-    member_profile: Profile,
-    steel: Steel,
-    phi_c: float,
-    effective_length_factor: float,
-) -> float:
-    yield_capacity = steel.fy_pa * member.area_m2
-    euler_capacity = (
-        math.pi**2 * steel.e_pa * member_profile.iy_m4 / (effective_length_factor * length_m) ** 2
+def roof_load_cases(
+    candidate: RoofTrussCandidate,
+    cfg: dict,
+    layout: TrussLayout,
+    model: Truss2D,
+    chord: Profile,
+    web: Profile,
+) -> tuple[dict[str, np.ndarray], dict[str, float], float]:
+    """Build the common E0 roof actions used by exploration and E1 screens."""
+
+    truss_mass = truss_mass_kg(model, chord, web)
+    span = float(cfg["geometry"]["nave_width_m"])
+    self_weight_n_m = truss_mass * G / span
+    roof_dead_n_m = cfg["loads"]["dead"]["roof_kpa"] * candidate.bay_m * 1e3
+    roof_live_n_m = cfg["loads"]["live"]["roof_kpa"] * candidate.bay_m * 1e3
+    wind = cfg["loads"]["wind"]
+    external = (wind["Cp_roof_windward"] + wind["Cp_roof_leeward"]) / 2.0
+    uplift_n_m = (
+        wind["qz_eave_kpa_hypothesis"]
+        * 1e3
+        * (external - abs(wind.get("Cp_internal", 0.0)))
+        * candidate.bay_m
     )
-    return phi_c * min(yield_capacity, euler_capacity)
+    scalar_loads = {
+        "D": roof_dead_n_m + self_weight_n_m,
+        "L": roof_live_n_m,
+        "WU": uplift_n_m,
+    }
+    return (
+        {case: _top_nodal_loads(layout, value) for case, value in scalar_loads.items()},
+        scalar_loads,
+        truss_mass,
+    )
 
 
 def evaluate_profile_pair(
@@ -210,33 +245,29 @@ def evaluate_profile_pair(
         centre_depth_m=candidate.centre_depth_m,
         end_depth_fraction=candidate.end_depth_fraction,
     )
-    model = _build_model(layout, steel, chord, web)
-    truss_mass = _member_mass_kg(model, chord, web)
-    span = float(geometry["nave_width_m"])
-    self_weight_n_m = truss_mass * G / span
-    roof_dead_n_m = cfg["loads"]["dead"]["roof_kpa"] * candidate.bay_m * 1e3
-    roof_live_n_m = cfg["loads"]["live"]["roof_kpa"] * candidate.bay_m * 1e3
-    wind = cfg["loads"]["wind"]
-    external = (wind["Cp_roof_windward"] + wind["Cp_roof_leeward"]) / 2.0
-    uplift_n_m = (
-        wind["qz_eave_kpa_hypothesis"]
-        * 1e3
-        * (external - abs(wind.get("Cp_internal", 0.0)))
-        * candidate.bay_m
+    model = build_truss_model(layout, steel, chord, web)
+    case_loads, case_line_loads_n_m, truss_mass = roof_load_cases(
+        candidate, cfg, layout, model, chord, web
     )
-    case_loads = {
-        "D": _top_nodal_loads(layout, roof_dead_n_m + self_weight_n_m),
-        "L": _top_nodal_loads(layout, roof_live_n_m),
-        "WU": _top_nodal_loads(layout, uplift_n_m),
-    }
+    span = float(geometry["nave_width_m"])
 
     phi_c = float(cfg["criteria"]["phi_axial"])
     effective_length = float(space["analysis"]["effective_length_factor"])
     profiles = {"chord": chord, "web": web}
     max_strength_ratio = 0.0
+    max_axial_ratio = 0.0
+    max_local_bending_ratio = 0.0
+    max_local_slenderness_ratio = 0.0
+    max_second_order_euler_ratio = 0.0
+    max_second_order_magnifier = 1.0
+    max_chord_local_moment_knm = 0.0
     controlling_combo = ""
     controlling_member = -1
     vertical_error = 0.0
+    unresolved_local_flexure = False
+    second_order_unstable = False
+    top_node_set = set(layout.top_nodes)
+    bottom_node_set = set(layout.bottom_nodes)
     try:
         for combination in cfg["combinations"]:
             loads = sum(
@@ -247,6 +278,10 @@ def evaluate_profile_pair(
                 np.zeros(2 * len(layout.nodes)),
             )
             solution = model.solve(loads)
+            combined_line_load = sum(
+                float(combination["factors"].get(case, 0.0)) * value
+                for case, value in case_line_loads_n_m.items()
+            )
             support_vertical = sum(
                 solution.reactions_n[2 * node + 1] for node in layout.support_nodes
             )
@@ -256,18 +291,102 @@ def evaluate_profile_pair(
             )
             for index, (member, force) in enumerate(zip(model.members, solution.member_forces_n)):
                 member_profile = profiles[member.group]
+                member_length = model.member_length(member)
+                is_top_chord = member.i in top_node_set and member.j in top_node_set
+                is_bottom_chord = member.i in bottom_node_set and member.j in bottom_node_set
+                out_of_plane_length = member_length
+                if is_top_chord:
+                    out_of_plane_length = float(
+                        space["analysis"]["top_chord_out_of_plane_unbraced_m"]
+                    )
+                elif is_bottom_chord:
+                    out_of_plane_length = float(
+                        space["analysis"]["bottom_chord_out_of_plane_unbraced_m"]
+                    )
+
+                local = hss_local_slenderness(member_profile, steel)
+                max_local_slenderness_ratio = max(
+                    max_local_slenderness_ratio,
+                    local.compression_ratio,
+                    local.flexural_flange_ratio if is_top_chord else 0.0,
+                    local.flexural_web_ratio if is_top_chord else 0.0,
+                )
                 if force >= 0.0:
                     capacity = phi_c * steel.fy_pa * member.area_m2
+                    stability_magnifier = 1.0
                 else:
-                    capacity = _compression_capacity_n(
-                        member,
-                        model.member_length(member),
+                    compression = hss_compression_strength(
                         member_profile,
                         steel,
-                        phi_c,
-                        effective_length,
+                        member_length,
+                        out_of_plane_length,
+                        k_in_plane=effective_length,
+                        k_out_of_plane=effective_length,
+                        phi_c=phi_c,
                     )
-                ratio = abs(float(force)) / max(capacity, 1e-12)
+                    capacity = compression.phi_pn_n
+                    geometry_hss = HSSGeometry.from_name(member_profile.name)
+                    i_strong, i_weak, _z_strong, _z_weak = geometry_hss.principal_properties(
+                        member_profile
+                    )
+                    if compression.governing_axis == "in_plane":
+                        stability_length = member_length
+                        stability_inertia = i_strong
+                    else:
+                        stability_length = out_of_plane_length
+                        stability_inertia = i_weak
+                    stability = second_order_screen(
+                        abs(float(force)),
+                        steel.e_pa,
+                        stability_inertia,
+                        stability_length,
+                        effective_length_factor=effective_length,
+                        stiffness_reduction=float(
+                            space["analysis"]["stiffness_reduction_for_second_order"]
+                        ),
+                    )
+                    max_second_order_euler_ratio = max(
+                        max_second_order_euler_ratio, stability.compression_to_euler_ratio
+                    )
+                    if not stability.stable or stability.moment_magnifier is None:
+                        second_order_unstable = True
+                        stability_magnifier = math.inf
+                    else:
+                        stability_magnifier = stability.moment_magnifier
+                        max_second_order_magnifier = max(
+                            max_second_order_magnifier, stability_magnifier
+                        )
+
+                axial_ratio = abs(float(force)) / max(capacity, 1e-12)
+                max_axial_ratio = max(max_axial_ratio, axial_ratio)
+                local_moment_nm = 0.0
+                local_bending_ratio = 0.0
+                ratio = axial_ratio
+                if is_top_chord:
+                    local_moment_nm = abs(combined_line_load) * member_length**2 / 8.0
+                    local_moment_nm *= stability_magnifier
+                    flexure = hss_flexural_strength(
+                        member_profile,
+                        steel,
+                        axis="strong",
+                        phi_b=float(cfg["criteria"]["phi_bending"]),
+                    )
+                    if not flexure.resolved or flexure.phi_mn_nm <= 0.0:
+                        unresolved_local_flexure = True
+                        ratio = math.inf
+                        local_bending_ratio = math.inf
+                    else:
+                        local_bending_ratio = local_moment_nm / flexure.phi_mn_nm
+                        ratio = beam_column_interaction_ratio(
+                            abs(float(force)),
+                            capacity,
+                            local_moment_nm,
+                            flexure.phi_mn_nm,
+                        )
+                    max_chord_local_moment_knm = max(
+                        max_chord_local_moment_knm, local_moment_nm / 1000.0
+                    )
+                    max_local_bending_ratio = max(max_local_bending_ratio, local_bending_ratio)
                 if ratio > max_strength_ratio:
                     max_strength_ratio = ratio
                     controlling_combo = str(combination["id"])
@@ -290,7 +409,7 @@ def evaluate_profile_pair(
                     abs(float(solution.displacements_m[2 * node + 1])) for node in layout.top_nodes
                 ),
             )
-    except TrussAnalysisError as exc:
+    except (TrussAnalysisError, SteelCheckError) as exc:
         failed = PairEvaluation(
             screening_passed=False,
             chord_profile=chord.name,
@@ -298,6 +417,12 @@ def evaluate_profile_pair(
             truss_mass_kg=truss_mass,
             total_roof_truss_mass_kg=math.inf,
             max_strength_ratio=math.inf,
+            max_axial_ratio=math.inf,
+            max_local_bending_ratio=math.inf,
+            max_local_slenderness_ratio=math.inf,
+            max_second_order_euler_ratio=math.inf,
+            max_second_order_magnifier=math.inf,
+            max_chord_local_moment_knm=math.inf,
             max_deflection_ratio=math.inf,
             governing_ratio=math.inf,
             max_deflection_m=math.inf,
@@ -312,7 +437,13 @@ def evaluate_profile_pair(
     deflection_ratio = max_deflection / deflection_limit
     reasons: list[str] = []
     if max_strength_ratio > 1.0 + 1e-9:
-        reasons.append("axial_strength_or_euler_buckling")
+        reasons.append("biaxial_buckling_or_axial_flexural_interaction")
+    if max_local_slenderness_ratio > 1.0 + 1e-9:
+        reasons.append("hss_local_slenderness")
+    if unresolved_local_flexure:
+        reasons.append("hss_slender_flexure_requires_effective_section")
+    if second_order_unstable:
+        reasons.append("second_order_member_instability")
     if deflection_ratio > 1.0 + 1e-9:
         reasons.append("roof_deflection")
     if vertical_error > 1e-5:
@@ -328,6 +459,12 @@ def evaluate_profile_pair(
             truss_mass_kg=truss_mass,
             total_roof_truss_mass_kg=total_mass,
             max_strength_ratio=max_strength_ratio,
+            max_axial_ratio=max_axial_ratio,
+            max_local_bending_ratio=max_local_bending_ratio,
+            max_local_slenderness_ratio=max_local_slenderness_ratio,
+            max_second_order_euler_ratio=max_second_order_euler_ratio,
+            max_second_order_magnifier=max_second_order_magnifier,
+            max_chord_local_moment_knm=max_chord_local_moment_knm,
             max_deflection_ratio=deflection_ratio,
             governing_ratio=governing_ratio,
             max_deflection_m=max_deflection,
@@ -387,6 +524,12 @@ def evaluate_candidate(
         "truss_mass_kg": rounded_finite(selected.truss_mass_kg, 3),
         "total_roof_truss_mass_kg": rounded_finite(selected.total_roof_truss_mass_kg, 3),
         "max_strength_ratio": rounded_finite(selected.max_strength_ratio, 6),
+        "max_axial_ratio": rounded_finite(selected.max_axial_ratio, 6),
+        "max_local_bending_ratio": rounded_finite(selected.max_local_bending_ratio, 6),
+        "max_local_slenderness_ratio": rounded_finite(selected.max_local_slenderness_ratio, 6),
+        "max_second_order_euler_ratio": rounded_finite(selected.max_second_order_euler_ratio, 6),
+        "max_second_order_magnifier": rounded_finite(selected.max_second_order_magnifier, 6),
+        "max_chord_local_moment_knm": rounded_finite(selected.max_chord_local_moment_knm, 6),
         "max_deflection_ratio": rounded_finite(selected.max_deflection_ratio, 6),
         "governing_ratio": rounded_finite(selected.governing_ratio, 6),
         "max_deflection_m": rounded_finite(selected.max_deflection_m, 6),
@@ -400,7 +543,10 @@ def evaluate_candidate(
         "fabrication_proxy": round(fabrication_proxy, 3),
         "evaluated_profile_pairs": len(evaluations),
         "failure_reasons": list(selected.failure_reasons),
-        "analysis_scope": "vertical_gravity_and_global_uplift_axial_truss_screening_only",
+        "analysis_scope": (
+            "vertical_gravity_and_global_uplift_truss_with_hss_local_biaxial_"
+            "buckling_chord_local_bending_and_member_second_order_screening"
+        ),
         "ranking_eligible_for_design": False,
     }
 
@@ -442,16 +588,18 @@ def explore(cfg: dict, space: dict) -> dict:
     return {
         "project": space["project"],
         "input_sha256": hashlib.sha256(input_payload.encode("utf-8")).hexdigest(),
-        "engine": "deterministic_enumeration_v1",
+        "engine": "deterministic_enumeration_v2",
         "objectives_minimized": list(objectives),
         "candidate_count": len(rows),
         "screening_passed_count": sum(row["screening_passed"] for row in rows),
         "pareto_count": len(front),
         "scope_limitations": [
             "vertical gravity and global roof uplift components only",
-            "linear elastic pin-jointed axial model",
-            "Euler screening uses the single catalogue Iy value and K=1.0 hypothesis",
-            "no local buckling, connection, chord local bending, second-order, fatigue, fire, diaphragm, lateral-system, erection, foundation, or code-compliance design",
+            "linear elastic pin-jointed global model; no frame action or joint eccentricity",
+            "HSS biaxial and local slenderness use nominal parsed dimensions, a 0.93 wall-thickness factor, and the catalogue strong-axis inertia",
+            "top-chord local bending is a simply supported segment screen under the vertical line load; actual purlin reactions and joint load introduction remain pending",
+            "member B1-style magnification uses reduced Euler stiffness; a complete global direct second-order analysis remains pending",
+            "trial joints, diaphragm, full lateral system, fire, erection, foundations, fatigue, seismic detailing, and code compliance are evaluated only in the separate E1 gate report or remain blocked",
             "mass covers roof trusses and the configured principal-detail allowance only; columns, secondary steel, connections, coatings, transport, and foundations are excluded",
         ],
         "pareto_front": front,
@@ -464,16 +612,16 @@ def markdown_report(results: dict) -> str:
     lines = [
         "# E0 Parametric Roof-Truss Exploration",
         "",
-        "**Status:** research hypothesis; not for design, pricing, fabrication, or construction  ",
-        f"**Version:** {results['project']['revision']}  ",
-        f"**Date:** {results['project']['date']}  ",
+        "**Status:** research hypothesis; not for design, pricing, fabrication, or construction",
+        f"**Version:** {results['project']['revision']}",
+        f"**Date:** {results['project']['date']}",
         f"**Input SHA-256:** `{results['input_sha256']}`",
         "",
         "## Outcome",
         "",
         (
             f"The deterministic explorer evaluated **{results['candidate_count']}** geometries; "
-            f"**{results['screening_passed_count']}** passed the defined axial subproblem and "
+            f"**{results['screening_passed_count']}** passed the defined enhanced roof subproblem and "
             f"**{results['pareto_count']}** remain non-dominated under the three declared proxies."
         ),
         (
@@ -510,7 +658,7 @@ def markdown_report(results: dict) -> str:
             "",
             "- `total_roof_truss_mass_kg`: all roof-truss lines plus the E0 principal-detail allowance; it is not total building steel.",
             "- `fabrication_proxy`: member count plus twice the number of unconnected diagonal crossings; it is dimensionless and is not a price.",
-            "- `governing_ratio`: the larger of axial/Euler strength and L/180 roof-deflection ratios; lower means more screening reserve.",
+            "- `governing_ratio`: the larger of HSS biaxial/local axial–flexural interaction and L/180 roof-deflection ratios; lower means more screening reserve.",
             "",
             "## Mandatory E1 progression",
             "",

@@ -62,11 +62,11 @@ RULES = (
     ),
     GalleryRule(
         "estructura",
-        "Engineering · E0",
-        "The structure remains legible",
-        "Grid, trusses, bracing, and upper-floor framing are compared as hypotheses before professional analysis.",
-        "Dream House E0 structural scheme inspection drawing",
-        lambda name: "ESTRUCTURA-INSPECCION" in name,
+        "Engineering · E1 screening",
+        "Evidence and open gates stay visible",
+        "The roof specimen, P2 gravity path, diaphragm, joints, erection, fire, and foundations are integrated without implying design release.",
+        "Dream House integrated E1 structural screening drawing",
+        lambda name: "SINTESIS-ESTRUCTURAL" in name,
     ),
 )
 

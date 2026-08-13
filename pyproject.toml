@@ -14,6 +14,7 @@ dependencies = [
 [project.scripts]
 dreamhouse-optimize-roof = "dreamhouse.structure.optimize_roof:main"
 dreamhouse-ground-structure = "dreamhouse.structure.ground_structure:main"
+dreamhouse-e1-screening = "dreamhouse.structure.e1_screening:main"
 
 [project.optional-dependencies]
 optimization = [
@@ -30,6 +31,9 @@ dev = [
 
 [tool.setuptools.packages.find]
 include = ["dreamhouse*"]
+
+[tool.setuptools.package-data]
+"dreamhouse.structure" = ["*.json"]
 
 [tool.ruff]
 line-length = 100

@@ -2,11 +2,12 @@
 
 **Estatus:** base de coordinación; hipótesis de ingeniería; no es memoria de cálculo
 ni diseño profesional
-**Versión:** 0.3
+**Versión:** 0.4
 **Fecha de corte:** 2026-08-12
 **Fuentes:** constitución del proyecto, programa arquitectónico v0.2, plano conceptual
 v0.2, bases estructurales y civiles v0.2, presupuesto desglosado de control, auditoría de
-costos 2026-08, herramientas digitales (modelo E0/E1) y técnicas que abaratan costos.
+costos 2026-08, herramientas digitales (modelos E0/E1), D-043/D-045/D-047 y técnicas que
+abaratan costos.
 **Aprobación pendiente:** ingeniero estructural, arquitecto coordinador, propietario.
 
 ## Propósito
@@ -19,6 +20,25 @@ automático, fije el tonelaje real.
 
 > **Regla del expediente:** aquí no se seleccionan perfiles finales, no se escribe una
 > biblioteca NSR-10 y ningún resultado numérico es apto para construir.
+
+## Current E1 integration status — 2026-08-12
+
+The active visual synthesis is
+[DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg),
+supported by the updated
+[structural-to-drawing integration study](estudio_integracion_estructura_planos.md) and
+the [E1 screening report](../08_investigacion/e1_structural_screening.md).
+
+The sheet does **not** select M60 or the modified-Warren roof. D-047 defines that truss as
+a neutral computational specimen. D-043 fixes only the P2 Great Wall gravity intent, and
+D-045 retains six continuous-overhang beam lines only as an E0 hypothesis. The integrated
+sheet exposes member, connection, lateral, diaphragm, fire, erection, base-plate, and
+foundation evidence while every system-level design gate remains blocked.
+
+Revision 0.4 also records a precedence correction: earlier derived prose describing
+three P2 beams, an assigned longitudinal shear-core role, or an adopted strip foundation
+is superseded by D-043/D-045 and `structure_system.json` v0.3. No foundation type or
+longitudinal lateral role is adopted.
 
 ## 1. Geometría de referencia
 

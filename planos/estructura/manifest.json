@@ -1,15 +1,19 @@
 {
   "input": [
-    "dreamhouse\\structure\\structure_system.json",
-    "dreamhouse\\pb_b05.json"
+    "dreamhouse/structure/structure_system.json",
+    "dreamhouse/pb_b05.json",
+    "dreamhouse/rooflight_b08.json",
+    "dreamhouse/structure/roof_truss_space.json",
+    "dreamhouse/structure/e1_screening_space.json"
   ],
   "generator": "dreamhouse/generate_structure_plan.py",
-  "revision": "0.3",
-  "mode": "cribado en vivo (compute_quantities + size_staggered_floor) — subtotales inferiores",
+  "revision": "0.3 + E1 0.1",
+  "mode": "E0 live coordination + fail-closed E1 evidence sheet",
   "outputs": [
     "DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg",
     "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg",
-    "DH-EST-E0-004_PARED-HIBRIDA.svg"
+    "DH-EST-E0-004_PARED-HIBRIDA.svg",
+    "DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg"
   ],
-  "status": "D-043 adopta el camino gravitacional del P2 y D-045 fija el voladizo solo como hipótesis E0; perfiles, cantidades y sistema lateral siguen sin adoptar y no son aptos para PE-1, fabricación o construcción"
+  "status": "D-043 fixes the P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs the neutral E1 specimen. No profile, roof system, lateral system, quantity, joint, fire protection, erection method, foundation, fabrication or construction release is granted."
 }

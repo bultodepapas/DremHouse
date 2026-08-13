@@ -1,10 +1,10 @@
 {
   "project": {
     "id": "DH-EST-OPT-E0-001",
-    "revision": "0.1",
+    "revision": "0.2",
     "status": "research_hypothesis",
     "date": "2026-08-12",
-    "purpose": "Explore roof-truss geometries with traceable screening metrics. Results do not select D-019 and are not suitable for design, pricing, fabrication, or construction.",
+    "purpose": "Explore roof-truss geometries with traceable global and member screening metrics, including HSS local/biaxial buckling, local chord bending, and member second-order magnification. Results do not select D-019 and are not suitable for design, pricing, fabrication, or construction.",
     "source_model": "dreamhouse/structure/structure_system.json"
   },
   "modulation_ids": ["M45", "M60", "M90"],
@@ -22,6 +22,10 @@
   },
   "analysis": {
     "effective_length_factor": 1.0,
+    "top_chord_out_of_plane_unbraced_m": 1.5,
+    "bottom_chord_out_of_plane_unbraced_m": 6.0,
+    "stiffness_reduction_for_second_order": 0.8,
+    "local_chord_bending_model": "simply_supported_between_truss_nodes_under_vertical_line_load",
     "fabrication_crossing_penalty": 2.0,
     "pareto_objectives": [
       "total_roof_truss_mass_kg",
@@ -38,4 +42,3 @@
     "active_area_threshold_cm2": 0.05
   }
 }
-

@@ -4,16 +4,26 @@ on:
   push:
     branches: [main]
     paths:
+      - "dreamhouse/generate_structure_plan.py"
+      - "dreamhouse/rooflight_b08.json"
       - "dreamhouse/structure/**"
       - "docs/03_ingenierias/**"
       - "docs/08_investigacion/**"
+      - "planos/estructura/**"
+      - "README.md"
+      - ".github/scripts/build_showcase.py"
       - "pyproject.toml"
       - ".github/workflows/structure.yml"
   pull_request:
     paths:
+      - "dreamhouse/generate_structure_plan.py"
+      - "dreamhouse/rooflight_b08.json"
       - "dreamhouse/structure/**"
       - "docs/03_ingenierias/**"
       - "docs/08_investigacion/**"
+      - "planos/estructura/**"
+      - "README.md"
+      - ".github/scripts/build_showcase.py"
       - "pyproject.toml"
       - ".github/workflows/structure.yml"
   workflow_dispatch:
@@ -48,7 +58,14 @@ jobs:
           dreamhouse/structure/truss_grammar.py
           dreamhouse/structure/optimize_roof.py
           dreamhouse/structure/ground_structure.py
+          dreamhouse/structure/steel_checks.py
+          dreamhouse/structure/systems_checks.py
+          dreamhouse/structure/e1_screening.py
+          dreamhouse/structure/e1_sheet.py
+          dreamhouse/generate_structure_plan.py
           dreamhouse/structure/tests/test_truss_optimization.py
+          dreamhouse/structure/tests/test_e1_screening.py
+          dreamhouse/structure/tests/test_e1_sheet.py
 
       - name: Run structural regression tests
         run: python -m unittest discover -s dreamhouse/structure/tests -v
@@ -57,6 +74,11 @@ jobs:
         run: |
           python -m dreamhouse.structure.optimize_roof
           python -m dreamhouse.structure.ground_structure
+          python -m dreamhouse.structure.e1_screening
+          python dreamhouse/generate_structure_plan.py
+
+      - name: Confirm the drawing gallery is current
+        run: python .github/scripts/build_showcase.py --check-readme
 
       - name: Confirm generated evidence is current
         run: >-
@@ -65,4 +87,6 @@ jobs:
           docs/08_investigacion/roof_truss_exploration_e0.md
           docs/08_investigacion/ground_structure_m60_e0.json
           docs/08_investigacion/ground_structure_m60_e0.svg
-
+          docs/08_investigacion/e1_structural_screening.json
+          docs/08_investigacion/e1_structural_screening.md
+          planos/estructura

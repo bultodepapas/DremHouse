@@ -14,7 +14,11 @@ Fielders SlimDek, Building Science Corp (BSD-011, BSI-062), ASCE 7-16 / NSR-10 A
 > as a longitudinal shear core are superseded by D-043 and D-045. The active E0 hypothesis
 > uses six continuous beams with a rear overhang, reports approximately 11.6 t for the P2
 > Great Wall floor subsystem, and assigns no longitudinal-X resistance to the transverse
-> wall. See `modelo_estructural_e0.md` and `roof_truss_exploration_e0.md`.
+> wall. The separate D-047 E1 gate report now screens member local/biaxial stability,
+> chord bending, second-order sensitivity, generic joint components, diaphragm demand,
+> fire, erection, and foundations without claiming that those systems are resolved. See
+> `modelo_estructural_e0.md`, `roof_truss_exploration_e0.md`, and
+> `e1_structural_screening.md`.
 
 ---
 

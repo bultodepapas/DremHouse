@@ -11,13 +11,13 @@ Láminas:
 - DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg : planta estructural + corte B-B.
 - DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg  : vista lateral A (elevación estructural).
 - DH-EST-E0-004_PARED-HIBRIDA.svg         : bastidor oculto detrás del gran muro.
+- DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg : evidencia E1 integral y puertas abiertas.
 
 NO APTO PARA CONSTRUIR. Solo inspección visual de coordinación.
 """
 
 from __future__ import annotations
 
-import hashlib
 import html
 import json
 import sys
@@ -27,12 +27,18 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from dreamhouse.structure.e1_screening import run_screening
+from dreamhouse.structure.e1_sheet import SHEET_NAME as E1_SHEET_NAME
+from dreamhouse.structure.e1_sheet import build_e1_sheet
 from dreamhouse.structure.materials import materials_from_json
 from dreamhouse.structure.quantities import compute_quantities
 from dreamhouse.structure.staggered import size_staggered_floor
 
 SYSTEM = Path(__file__).with_name("structure") / "structure_system.json"
 PB = Path(__file__).with_name("pb_b05.json")
+ROOFLIGHTS = Path(__file__).with_name("rooflight_b08.json")
+ROOF_SPACE = Path(__file__).with_name("structure") / "roof_truss_space.json"
+E1_SPACE = Path(__file__).with_name("structure") / "e1_screening_space.json"
 OUT = ROOT / "planos" / "estructura"
 
 SHEET2 = "EST-002-R00"
@@ -240,7 +246,6 @@ def draw_lateral(parts, cfg, pb, q, gw):
     def xx(x): return left + x * sc
     def yy(h): return base - h * sc
     col = q["frames"]["column"]
-    chord = q["frames"]["truss_chord"]
 
     parts.append(text(left + width / 2, 120, "VISTA LATERAL A · ELEVACIÓN ESTRUCTURAL (muro Y=0)", 18, weight=700))
     parts.append(text(left + width / 2, 140, f"Largo 36,00 m · alero bajo ≈ {eave} m (toda el agua descarga aquí · D-039) · solo estructura", 10, fill="#59676c"))
@@ -403,8 +408,12 @@ def draw_hybrid_wall_elevation(parts, pb, gw):
 def build_sheets():
     cfg = json.loads(SYSTEM.read_text(encoding="utf-8"))
     pb = json.loads(PB.read_text(encoding="utf-8"))
+    rooflights = json.loads(ROOFLIGHTS.read_text(encoding="utf-8"))
+    roof_space = json.loads(ROOF_SPACE.read_text(encoding="utf-8"))
+    e1_space = json.loads(E1_SPACE.read_text(encoding="utf-8"))
     q, st = live_results(cfg)
     gw = q["great_wall"]
+    e1_results = run_screening(cfg, roof_space, e1_space)
 
     # Lámina 1: planta + corte B-B.
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
@@ -437,22 +446,25 @@ def build_sheets():
 
     return {"DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg": "".join(parts),
             "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg": "".join(parts2),
-            "DH-EST-E0-004_PARED-HIBRIDA.svg": "".join(parts3)}
+            "DH-EST-E0-004_PARED-HIBRIDA.svg": "".join(parts3),
+            E1_SHEET_NAME: build_e1_sheet(cfg, roof_space, e1_space, rooflights, e1_results)}
 
 
 def main():
     cfg = json.loads(SYSTEM.read_text(encoding="utf-8"))
+    e1_revision = json.loads(E1_SPACE.read_text(encoding="utf-8"))["project"]["revision"]
     outputs = build_sheets()
     OUT.mkdir(parents=True, exist_ok=True)
     for name, content in outputs.items():
         OUT.joinpath(name).write_text(content, encoding="utf-8")
     manifest = {
-        "input": [str(SYSTEM.relative_to(ROOT)), str(PB.relative_to(ROOT))],
+        "input": [path.relative_to(ROOT).as_posix() for path in
+                  (SYSTEM, PB, ROOFLIGHTS, ROOF_SPACE, E1_SPACE)],
         "generator": "dreamhouse/generate_structure_plan.py",
-        "revision": cfg["project"]["revision"],
-        "mode": "cribado en vivo (compute_quantities + size_staggered_floor) — subtotales inferiores",
+        "revision": f"{cfg['project']['revision']} + E1 {e1_revision}",
+        "mode": "E0 live coordination + fail-closed E1 evidence sheet",
         "outputs": list(outputs),
-        "status": "D-043 adopta el camino gravitacional del P2 y D-045 fija el voladizo solo como hipótesis E0; perfiles, cantidades y sistema lateral siguen sin adoptar y no son aptos para PE-1, fabricación o construcción",
+        "status": "D-043 fixes the P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs the neutral E1 specimen. No profile, roof system, lateral system, quantity, joint, fire protection, erection method, foundation, fabrication or construction release is granted.",
     }
     OUT.joinpath("manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"outputs": list(outputs), "live": True}))

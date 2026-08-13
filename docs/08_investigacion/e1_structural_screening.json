@@ -1,0 +1,447 @@
+{
+  "project": {
+    "id": "DH-EST-E1-SCREEN-001",
+    "revision": "0.1",
+    "status": "research_screening_not_design",
+    "date": "2026-08-12",
+    "purpose": "Expose E1 member, joint, stability, diaphragm, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
+  },
+  "input_sha256": "23820e391b5a7134c2af04047f90b49de219f4affa1efcf8c230cd0e30c7a2be",
+  "reference_truss": {
+    "role": "neutral_M60_test_specimen_not_a_selected_system",
+    "candidate": {
+      "modulation_id": "M60",
+      "bay_m": 6.0,
+      "n_bays": 6,
+      "topology": "WARREN_MODIFIED",
+      "panel_count": 6,
+      "depth_shape": "VARIABLE",
+      "centre_depth_m": 1.8,
+      "end_depth_fraction": 0.55
+    },
+    "selected_screening_profiles": {
+      "chord": "HSS120x120x6",
+      "web": "HSS100x100x6"
+    },
+    "truss_mass_kg": 1240.6998,
+    "global_and_member_screen": {
+      "candidate_id": "M60-WARREN_MODIFIED-6ed6749977a0",
+      "modulation_id": "M60",
+      "bay_m": 6.0,
+      "n_bays": 6,
+      "topology": "WARREN_MODIFIED",
+      "panel_count": 6,
+      "depth_shape": "VARIABLE",
+      "centre_depth_m": 1.8,
+      "end_depth_fraction": 0.55,
+      "screening_passed": true,
+      "selected_profiles": {
+        "chord": "HSS120x120x6",
+        "web": "HSS100x100x6"
+      },
+      "truss_mass_kg": 1240.7,
+      "total_roof_truss_mass_kg": 9987.633,
+      "max_strength_ratio": 0.653493,
+      "max_axial_ratio": 0.325252,
+      "max_local_bending_ratio": 0.369271,
+      "max_local_slenderness_ratio": 0.696112,
+      "max_second_order_euler_ratio": 0.203027,
+      "max_second_order_magnifier": 1.254747,
+      "max_chord_local_moment_knm": 12.508463,
+      "max_deflection_ratio": 0.16876,
+      "governing_ratio": 0.653493,
+      "max_deflection_m": 0.016876,
+      "controlling_combo": "C2",
+      "controlling_member": 4,
+      "reaction_vertical_error_n": 0.0,
+      "member_count": 25,
+      "joint_count": 14,
+      "crossing_count": 0,
+      "max_node_degree": 5,
+      "fabrication_proxy": 25.0,
+      "evaluated_profile_pairs": 9,
+      "failure_reasons": [],
+      "analysis_scope": "vertical_gravity_and_global_uplift_truss_with_hss_local_biaxial_buckling_chord_local_bending_and_member_second_order_screening",
+      "ranking_eligible_for_design": false
+    },
+    "force_and_reaction_envelope": {
+      "maximum_member_force_kn": 209.846672,
+      "maximum_member_force_index": 9,
+      "maximum_member_force_combination": "C2",
+      "maximum_support_downward_reaction_kn": 79.662759,
+      "maximum_support_uplift_reaction_kn": 0.0,
+      "combinations": [
+        {
+          "id": "C1",
+          "support_vertical_reactions_kn": [
+            42.539886,
+            42.539886
+          ],
+          "maximum_abs_member_force_kn": 112.058049,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C2",
+          "support_vertical_reactions_kn": [
+            79.662759,
+            79.662759
+          ],
+          "maximum_abs_member_force_kn": 209.846672,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C3+",
+          "support_vertical_reactions_kn": [
+            32.952759,
+            32.952759
+          ],
+          "maximum_abs_member_force_kn": 86.803757,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C3-",
+          "support_vertical_reactions_kn": [
+            32.952759,
+            32.952759
+          ],
+          "maximum_abs_member_force_kn": 86.803757,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C4+",
+          "support_vertical_reactions_kn": [
+            10.337069,
+            10.337069
+          ],
+          "maximum_abs_member_force_kn": 27.229782,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C4-",
+          "support_vertical_reactions_kn": [
+            10.337069,
+            10.337069
+          ],
+          "maximum_abs_member_force_kn": 27.229782,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C5+",
+          "support_vertical_reactions_kn": [
+            49.962759,
+            49.962759
+          ],
+          "maximum_abs_member_force_kn": 131.611293,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C5-",
+          "support_vertical_reactions_kn": [
+            49.962759,
+            49.962759
+          ],
+          "maximum_abs_member_force_kn": 131.611293,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C6+",
+          "support_vertical_reactions_kn": [
+            27.347069,
+            27.347069
+          ],
+          "maximum_abs_member_force_kn": 72.037318,
+          "maximum_abs_member_force_index": 9
+        },
+        {
+          "id": "C6-",
+          "support_vertical_reactions_kn": [
+            27.347069,
+            27.347069
+          ],
+          "maximum_abs_member_force_kn": 72.037318,
+          "maximum_abs_member_force_index": 9
+        }
+      ]
+    }
+  },
+  "checks": {
+    "local_and_biaxial_member_stability": {
+      "screened": true,
+      "maximum_local_slenderness_ratio": 0.696112,
+      "maximum_axial_ratio": 0.325252,
+      "maximum_interaction_ratio": 0.653493,
+      "screen_pass": true,
+      "design_resolved": false
+    },
+    "chord_local_bending": {
+      "screened": true,
+      "maximum_local_moment_knm": 12.508463,
+      "maximum_local_bending_ratio": 0.369271,
+      "included_in_interaction": true,
+      "design_resolved": false
+    },
+    "member_second_order": {
+      "screened": true,
+      "maximum_compression_to_reduced_euler_ratio": 0.203027,
+      "maximum_moment_magnifier": 1.254747,
+      "global_direct_analysis_resolved": false
+    },
+    "trial_connection": {
+      "configuration": {
+        "description": "single-line bolt group and double fillet weld component envelope; HSS wall limit states intentionally unresolved",
+        "bolt_count": 6,
+        "bolt_diameter_mm": 20.0,
+        "hole_diameter_mm": 22.0,
+        "bolt_fu_mpa": 800.0,
+        "plate_thickness_mm": 12.0,
+        "plate_width_mm": 240.0,
+        "plate_fy_mpa": 355.0,
+        "plate_fu_mpa": 490.0,
+        "end_distance_mm": 45.0,
+        "pitch_mm": 70.0,
+        "weld_size_mm": 8.0,
+        "weld_length_each_side_mm": 220.0,
+        "electrode_fu_mpa": 490.0
+      },
+      "result": {
+        "demand_kn": 209.846672,
+        "bolt_shear_capacity_kn": 542.867211,
+        "plate_bearing_capacity_kn": 1238.328,
+        "plate_gross_yield_capacity_kn": 920.16,
+        "plate_net_rupture_capacity_kn": 961.38,
+        "plate_block_shear_capacity_kn": 2411.388,
+        "weld_capacity_kn": 548.74512,
+        "governing_trial_capacity_kn": 542.867211,
+        "trial_ratio": 0.386552,
+        "trial_components_pass": true,
+        "hss_local_limit_states_resolved": false,
+        "overall_design_resolved": false
+      }
+    },
+    "lateral_system": {
+      "top_chord_unbraced_length_m": 1.5,
+      "bottom_chord_unbraced_length_m": 6.0,
+      "member_out_of_plane_buckling_screened": true,
+      "trial_braced_bay_configuration": {
+        "trial_brace_profile": "L50x5",
+        "parallel_braced_wall_lines": 2,
+        "active_bays_per_wall_line": 2,
+        "trial_bay_width_m": 6.0,
+        "trial_bay_height_m": 7.5,
+        "brace_locations_validated_against_openings": false,
+        "brace_connections_and_collectors_resolved": false
+      },
+      "trial_braced_bay_result": {
+        "total_lateral_force_kn": 157.826976,
+        "force_per_active_bay_kn": 39.456744,
+        "brace_angle_deg_from_horizontal": 51.340192,
+        "tension_brace_demand_kn": 63.161608,
+        "tension_yield_capacity_kn": 101.52,
+        "strength_ratio": 0.622159,
+        "trial_strength_pass": true,
+        "brace_locations_validated": false,
+        "connections_and_collectors_resolved": false,
+        "overall_lateral_path_resolved": false
+      },
+      "complete_building_lateral_system_resolved": false,
+      "site_actions_resolved": false
+    },
+    "diaphragm": {
+      "demand_basis": {
+        "longitudinal_wind_kn_hypothesis": 78.975,
+        "declared_dead_load_lower_bound_kn": 1578.269761,
+        "seismic_base_shear_lower_bound_kn_hypothesis": 157.826976,
+        "governing_preliminary_lateral_force_kn": 157.826976,
+        "governing_source": "seismic_lower_bound",
+        "normative_site_actions_resolved": false
+      },
+      "result": {
+        "total_lateral_force_kn": 157.826976,
+        "diaphragm_length_m": 36.0,
+        "diaphragm_depth_m": 18.0,
+        "required_unit_shear_kn_m": 8.768165,
+        "required_chord_force_kn": 39.456744,
+        "nominal_capacity_kn_m": null,
+        "strength_ratio": null,
+        "assembled_shear_stiffness_kn_mm": null,
+        "estimated_shear_displacement_mm": null,
+        "manufacturer_system_defined": false,
+        "collectors_defined": false,
+        "connections_defined": false,
+        "overall_diaphragm_resolved": false
+      }
+    },
+    "fire": {
+      "required_fire_resistance_minutes": null,
+      "thermal_protection_system": null,
+      "temperature_sensitivity": [
+        {
+          "temperature_c": 400.0,
+          "yield_retention": 1.0,
+          "stiffness_retention": 0.7,
+          "ambient_utilization": 0.653493,
+          "conservative_strength_utilization": 0.653493,
+          "conservative_stiffness_utilization": 0.933561,
+          "trial_temperature_pass": true,
+          "fire_resistance_period_defined": false,
+          "thermal_protection_system_defined": false,
+          "overall_fire_design_resolved": false
+        },
+        {
+          "temperature_c": 550.0,
+          "yield_retention": 0.625,
+          "stiffness_retention": 0.455,
+          "ambient_utilization": 0.653493,
+          "conservative_strength_utilization": 1.045589,
+          "conservative_stiffness_utilization": 1.436248,
+          "trial_temperature_pass": false,
+          "fire_resistance_period_defined": false,
+          "thermal_protection_system_defined": false,
+          "overall_fire_design_resolved": false
+        },
+        {
+          "temperature_c": 700.0,
+          "yield_retention": 0.23,
+          "stiffness_retention": 0.13,
+          "ambient_utilization": 0.653493,
+          "conservative_strength_utilization": 2.841274,
+          "conservative_stiffness_utilization": 5.026869,
+          "trial_temperature_pass": false,
+          "fire_resistance_period_defined": false,
+          "thermal_protection_system_defined": false,
+          "overall_fire_design_resolved": false
+        }
+      ],
+      "design_resolved": false
+    },
+    "erection": {
+      "configuration": {
+        "dynamic_factor": 1.3,
+        "lift_point_count": 2,
+        "sling_angle_deg_from_horizontal": 60.0,
+        "maximum_transport_piece_length_m": 12.0,
+        "crane_capacity_kn_at_required_radius": null,
+        "temporary_bracing_installed": false,
+        "weather_limit_defined": false
+      },
+      "result": {
+        "truss_length_m": 18.0,
+        "lifted_mass_kg": 1240.6998,
+        "dynamic_factor": 1.3,
+        "lift_point_count": 2,
+        "sling_angle_deg_from_horizontal": 60.0,
+        "required_hook_load_kn": 15.817241,
+        "reaction_per_lift_point_kn": 7.908621,
+        "sling_tension_each_kn": 9.132089,
+        "minimum_transport_piece_count": 2,
+        "shop_or_field_splice_required": true,
+        "crane_capacity_kn": null,
+        "crane_capacity_ratio": null,
+        "temporary_bracing_installed": false,
+        "weather_limit_defined": false,
+        "overall_release_from_crane_ready": false
+      },
+      "engineered_erection_plan_resolved": false
+    },
+    "foundation": {
+      "configuration": {
+        "description": "dimension-only sensitivity case; no foundation type is adopted",
+        "width_m": 2.0,
+        "length_m": 2.0,
+        "thickness_m": 0.5,
+        "embedment_m": 0.8,
+        "allowable_bearing_kpa_hypothesis": 150.0,
+        "base_friction_coefficient_hypothesis": 0.35,
+        "geotechnical_parameters_approved": false,
+        "reinforced_concrete_design_resolved": false
+      },
+      "base_plate_configuration": {
+        "description": "centred compression sensitivity for an approximately HEA200 column footprint; no base or anchor group is adopted",
+        "plate_width_mm": 300.0,
+        "plate_length_mm": 300.0,
+        "plate_thickness_mm": 20.0,
+        "column_width_mm": 200.0,
+        "column_depth_mm": 190.0,
+        "plate_fy_mpa": 355.0,
+        "concrete_fc_mpa_hypothesis": 28.0,
+        "supporting_area_ratio": 1.0,
+        "anchor_group_tension_capacity_kn": null,
+        "shear_transfer_resolved": false,
+        "moment_transfer_resolved": false
+      },
+      "base_plate_result": {
+        "compression_kn": 79.662759,
+        "uplift_kn": 0.0,
+        "concrete_bearing_capacity_kn": 1392.3,
+        "concrete_bearing_ratio": 0.057217,
+        "plate_projection_mm": 55.0,
+        "required_plate_thickness_mm": 4.094008,
+        "provided_plate_thickness_mm": 20.0,
+        "plate_bending_ratio": 0.2047,
+        "anchor_group_tension_capacity_kn": null,
+        "anchor_tension_ratio": null,
+        "compression_components_pass": true,
+        "anchor_tension_resolved": false,
+        "shear_transfer_resolved": false,
+        "moment_transfer_resolved": false,
+        "overall_base_plate_resolved": false
+      },
+      "gravity_reaction_case": {
+        "applied_vertical_kn": 79.662759,
+        "applied_horizontal_kn": 0.0,
+        "applied_moment_knm": 0.0,
+        "foundation_dead_load_kn": 48.0,
+        "soil_cover_dead_load_kn": 21.6,
+        "net_vertical_kn": 149.262759,
+        "eccentricity_m": 0.0,
+        "maximum_bearing_kpa": 37.31569,
+        "minimum_bearing_kpa": 37.31569,
+        "bearing_ratio": 0.248771,
+        "sliding_ratio": 0.0,
+        "full_contact": true,
+        "overturning_stable": true,
+        "bearing_pass": true,
+        "sliding_pass": true,
+        "uplift_pass": true,
+        "geotechnical_parameters_approved": false,
+        "reinforced_concrete_design_resolved": false,
+        "overall_foundation_resolved": false
+      },
+      "uplift_reaction_case": {
+        "applied_vertical_kn": -0.0,
+        "applied_horizontal_kn": 0.0,
+        "applied_moment_knm": 0.0,
+        "foundation_dead_load_kn": 48.0,
+        "soil_cover_dead_load_kn": 21.6,
+        "net_vertical_kn": 69.6,
+        "eccentricity_m": 0.0,
+        "maximum_bearing_kpa": 17.4,
+        "minimum_bearing_kpa": 17.4,
+        "bearing_ratio": 0.116,
+        "sliding_ratio": 0.0,
+        "full_contact": true,
+        "overturning_stable": true,
+        "bearing_pass": true,
+        "sliding_pass": true,
+        "uplift_pass": true,
+        "geotechnical_parameters_approved": false,
+        "reinforced_concrete_design_resolved": false,
+        "overall_foundation_resolved": false
+      },
+      "lateral_and_moment_allocation_resolved": false,
+      "design_resolved": false
+    }
+  },
+  "overall_status": "research_screening_complete_design_blocked",
+  "selection_or_construction_authority": false,
+  "blocking_inputs": [
+    "D-017 site, municipality, topography, normative wind and seismic actions",
+    "geotechnical investigation and groundwater/settlement parameters",
+    "complete three-dimensional lateral model and direct second-order analysis",
+    "roof and floor deck manufacturer strength, stiffness, fasteners, sidelaps, and openings",
+    "connection geometry including HSS local limit states and seismic demand hierarchy",
+    "D-021 occupancy, fire-resistance target, fire scenario, and tested protection system",
+    "fabricator splice strategy, crane chart/radius, temporary bracing, lift lugs, and weather limits",
+    "reinforced-concrete footing, anchors, base plates, punching, shear, flexure, and development design"
+  ]
+}

@@ -1,144 +1,188 @@
-# Estudio preliminar — integración de la estructura (E0) con los planos arquitectónicos
+# Structural-to-Drawing Integration Study — E1 Screening
 
-**Estatus:** pre-estudio de coordinación; ni el plano ni la estructura están en su forma
-final; ninguna cifra ni trazado aquí es apto para construir.
-**Versión:** 0.1
-**Fecha de corte:** 2026-08-11
-**Fuentes:** planos conceptual v0.3 borradores 05 (PB), 06 (P2), 07 (cubierta), 08
-(claraboyas); modelo estructural E0 (`dreamhouse/structure/`, salidas en
-`planos/estructura_e0/`); `dreamhouse/pb_b05.json`; `dreamhouse/p2_b06.json`;
-`docs/03_ingenierias/bases_estructura_metalica.md`.
-**Aprobación pendiente:** arquitecto coordinador, ingeniero estructural, propietario.
+**Status:** active coordination audit; research evidence, not a calculation memorandum or
+professional design
+**Version:** 0.2
+**Date:** 2026-08-12
+**Sources:** D-039, D-040, D-043, D-045, D-046, D-047; architectural drafts b05–b08;
+`structure_system.json`; `roof_truss_space.json`; `e1_screening_space.json`; generated E0
+and E1 structural evidence
+**Approval pending:** responsible structural engineer, architect of record, fire and
+life-safety professional, geotechnical engineer, fabricator/erector, and owner
 
-> **Aclaración de no-finalidad.** Este documento es un **pre-estudio de coordinación**.
-> Los planos consultados (b05–b08) son borradores de anteproyecto y **no son la versión
-> definitiva de los planos**; el modelo estructural E0 es un esquema de comparación y
-> **no es la estructura final** ni una memoria de cálculo. El objetivo es detectar temprano
-> los puntos donde estructura y arquitectura deberán coordinarse, para que la versión
-> definitiva de ambos se diseñe conjuntamente (regla del concepto: estructura, fachada y
-> luz se diseñan juntos). Nada de este documento es requisito congelado.
+> **Authority boundary.** The integrated drawing is a visual index of active geometry,
+> adopted schematic intent, calculated screening results, and unresolved gates. It does
+> not select D-019, establish PE-1 quantities, or authorize procurement, fabrication,
+> erection, foundations, or construction.
 
-## Propósito
+## 1. Purpose
 
-Comparar la geometría dibujada en los planos arquitectónicos con el esquema estructural
-E0 (sistemas y modulación) y registrar, con trazabilidad de datos, qué encaja y qué
-conflictos de coordinación deben resolverse. No se propone solución: se registran los
-puntos de decisión para que arquitectura y estructura se coordinen en la versión
-definitiva.
+This study reconciles the architectural drafts, the adopted P2 gravity intent, the
+neutral roof-truss test specimen, and the E1 multi-phenomenon screens in one controlled
+view. It answers three questions:
 
-## 1. Estado actual: la estructura no está dibujada en los planos
+1. Which geometry and load paths are actually supported by current sources?
+2. Which numerical checks have been executed, and what did they prove narrowly?
+3. Which missing inputs still prevent a structural system from being selected or issued?
 
-Los planos arquitectónicos b05 (PB) y b06 (P2) **no contienen capa estructural**: no hay
-ejes, columnas, pórticos ni cerchas dibujados. Los propios generadores lo declaran
-("estructura sigue pendiente de ingeniería", "áreas netas se recalculan después de
-estructura"). El modelo E0 vive separado en `planos/estructura_e0/`. La verificación de
-integración debe hacerse sobre los datos fuente (`pb_b05.json`, `p2_b06.json`) y la
-retícula de coordinación (6 × 6 m, que no obliga columnas interiores).
+No new structural decision is created by this document or by its drawing.
 
-## 2. Coherencias confirmadas entre planos y estructura
+## 2. New integrated evidence sheet
 
-| Aspecto | Valor | Lectura |
-|---|---|---|
-| Luz transversal | 18,00 m (Y = 0 → 18) | E0 = 18 m; coincide |
-| Largo de nave | 36,00 m (X = 0 → 36) | E0 = 36 m; coincide |
-| P2 posterior | X = 21,00 → 36,00 m = 15,00 m de fondo | E0 usa X = 21–36; coincide |
-| Nivel terminado P2 | ≈ +3,80 m | E0 = 3,80 m; coincide |
-| Cubierta monopitch | 7,20 m (lado bajo) → 7,80 m (lado alto), 3,33 % | b05/b07/E0 coinciden; sentido reversible (D-039) |
-| Columnas | solo en muros largos (Y = 0 / Y = 18) | nave libre; cumple la intención |
-| Lift automotriz | X ≈ 5,5–6,0 m en doble altura | pórtico X = 6 pasa a 7,2–7,8 m: no interfiere |
-| Gran muro + escalera P2 | X = 31,5 m (muro) / x 31,5–36, y 7,4–11 (escalera) | línea X = 31,5 = mejor candidata de cercha oculta |
-| Claraboyas (b08) | X = 2,4–4,8 m en primera crujía 0–6 m | no cruzan el pórtico X = 6; ✓ |
-| Banda bajo P2 | 3,05–3,20 → 3,80 m (≈ 0,6 m) | vigas de 18 m no caben en la banda; exige viguetas cortas o cerchas de muro |
+The current visual synthesis is
+[DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg).
+It is generated from the active JSON sources and the same `run_screening()` calculation
+used by the E1 report. Its four principal readings are:
 
-## 3. Conflictos de coordinación (por resolver en la versión definitiva)
+- **Plan:** M60 test grid, D-040 rooflights, D-043/D-045 P2 gravity path, diaphragm
+  demand, and four explicitly uncoordinated trial lateral bays.
+- **Reference truss:** exact six-panel modified-Warren grammar—25 members and 14 nodes—
+  with physical top- and bottom-chord restraint assumptions drawn separately.
+- **Evidence gate:** every narrow calculation result is paired with a separate design
+  status; every system-level status remains `BLOCKED`.
+- **Details:** generic connection components, trial base/footing sensitivity, erection
+  envelope, and elevated-temperature sensitivity.
 
-### 3.1 Módulo estructural 6 m vs. eventos de vidrio de 7,2 m
+The earlier E0 sheets remain valid as historical coordination evidence. The E1 sheet
+does not overwrite them or imply that their trial sections have become selected.
 
-El ventanal técnico mide 7,20 m (6 módulos de 1,20 m) y cruza la línea de pórtico X = 6:
+## 3. Reconciled geometry and status
 
-- GLZ-CAR (muro A, x = 1,5–8,7 m): la columna X = 6 quedaría **dentro del vidrio**.
-- GLZ-RC (muro B, x = 1,5–8,7 m): igual.
+| Item | Current value shown | Authority/status |
+|---|---:|---|
+| Hall | 36.00 × 18.00 m | D-003 DCV; not a frozen construction dimension |
+| P2 | X=21.00→36.00 m; +3.80 m | D-004 / active coordination DCV |
+| Mono-pitch roof | 7.20→7.80 m across Y=0→18 | D-039 provisional DCV |
+| Roof test lines | X=0/6/12/18/24/30/36 | neutral M60 specimen under D-047; not D-019 selection |
+| Rooflights | two 2.40 × 4.80 m openings at X=2.40→4.80 m | D-040 active requested hypothesis |
+| P2 edge | full-depth truss line at X=21.00 m | D-043 schematic gravity intent; design pending |
+| Hybrid wall | concealed steel frame at X=31.50 m | D-043 gravity intent; no longitudinal lateral role assigned |
+| P2 beams | six lines at Y=1.5/4.5/7.5/10.5/13.5/16.5 m | D-045 E0 hypothesis only |
+| Rear overhang | X=31.50→36.00 m = 4.50 m | D-045 E0 hypothesis; must be compared with a real rear support |
 
-Consecuencia: la columna de muro interrumpiría el evento de vidrio. Hay tres caminos de
-decisión (sin elegir aquí): (a) re-modular el vidrio a 6,00 m exactos (una crujía),
-(b) adoptar M90 (9 m) o hit-and-miss (12 m) para que la GLZ de 7,2 m quepa entre columnas,
-(c) aceptar las columnas como montantes de la "estructura visible" y coordinar módulos.
+## 4. Integrated load paths
 
-### 3.2 Columnas de muro dentro de las ventanas de dormitorios P2
+### 4.1 Roof gravity and uplift specimen
 
-Las ventanas de P2 casi piso a techo (2,7 m, antepecho 0,1 m) cruzan líneas de pórtico de
-la modulación M60 (columnas en X = 0, 6, 12, 18, 24, 30, 36):
+The sheet draws the neutral M60, six-panel, variable-depth modified-Warren truss used by
+the E1 screening. The top chord follows the canonical roof line; depth varies from about
+0.99 m at the supports to 1.80 m at midspan. Trial sections are HSS120×120×6 chords and
+HSS100×100×6 webs. The calculated specimen mass is about 1,241 kg per truss.
 
-- W-H1 (muro sur, 22,0–25,8 m): cruza la columna **X = 24**.
-- W-H2 (muro norte, 21,8–26,5 m): cruza la columna **X = 24**.
-- W-G (muro norte, 27,8–32,3 m): cruza la columna **X = 30**.
+These sections are **not selected**. The model assumes top-chord out-of-plane restraint
+at 1.50 m and bottom-chord restraint at 6.00 m. The drawing marks both restraint systems
+because a numerical unbraced length is not a physical load path: qualified purlin
+connections, roof-plane bracing, bottom-chord braces, collectors, and erection sequence
+must make those assumptions real.
 
-Consecuencia: en los dos muros largos las columnas caen dentro de los vanos de los
-dormitorios. La modulación elegida para la versión definitiva debe dejar los vanos entre
-columnas o absorber las columnas en la composición de fachada.
+The maximum screened member force is 209.8 kN, maximum support downward reaction is
+79.7 kN, maximum combined interaction is 0.653, and the member B1 sensitivity is 1.255.
+Those values support a reproducible specimen screen only.
 
-### 3.3 Particiones del P2 sin líneas continuas de ancho completo — RESUELTO con el gran muro
+### 4.2 P2 gravity intent through the Great Wall
 
-El sistema staggered truss (cerchas de piso de 18 m entre los muros largos, ocultas en
-particiones) exige líneas de partición continuas en X a todo lo ancho (Y = 0 → 18).
-Comparando las particiones reales por fase:
+D-043 establishes the gravity concept and D-045 establishes the current E0 analytical
+hypothesis:
 
-- F1 (y = 0–11): X = [21,0, 24,2, 25,0, 26,2, 26,6, 28,6, 31,5, 32,8, 36,0]
-- F2 (y = 11–18): X = [21,0, 23,4, 27,5, 29,5, 33,0, 36,0]
-- **Líneas comunes: solo X = 21,0 y X = 36,0 (los bordes).**
+1. Six longitudinal trial beams run continuously from X=21.00 to X=36.00 m.
+2. They are supported by the full-depth edge truss at X=21.00 m and the concealed hybrid
+   wall frame at X=31.50 m.
+3. They continue 4.50 m beyond the wall as a free rear overhang because no support at
+   X=36.00 m is currently defined.
+4. The transfer over the Great Wall must develop negative moment; it is not a simple
+   bearing detail.
+5. Trial hidden-column locations are Y=0/2.4/7.4/11.0/13.4/18.0 m so the stair portal and
+   doors remain available for architectural coordination.
 
-**Resolución (E0 · 11-08-2026):** el esquema **GRAN-MURO** elimina esta restricción. El
-muro de X = 31,5 (que ya existe, separa baño/escalera/homelab) se convierte en **muro
-portante del P2**: recibe la franja del núcleo (X = 31,5→36) y la mitad del frente
-(X = 21→31,5). El frente se apoya en **3 vigas longitudinales en el plenum**
-(3,20→3,80 m) + la cercha de borde X = 21. No se requieren cerchas de ancho completo ni
-re-articular particiones: las vigas van ocultas en el plenum del cielo de PB.
+The Great Wall is **not assigned longitudinal X-direction resistance**. Its possible
+transverse contribution, eccentricity, torsion, collectors, joints, fire protection,
+and foundations remain professional-design tasks.
 
-### 3.4 Borde de P2 en X = 21,00 m (luz ≈ 18 m) sin resolver en los planos
+### 4.3 Lateral path and diaphragm
 
-En los planos no existe la viga/cercha de borde del P2 hacia la doble altura. Sobre ese
-borde apoyan el mini deck (x = 21, y = 5–8,2), la lavandería (x = 21–25) y los dormitorios
-H1/H2 (x = 21). En estructura debe definirse una **cercha de borde** (o primera línea del
-staggered truss) apoyada en las columnas de los muros largos, dejando libre la
-cocina/comedor de PB. Su canto debe absorber el plenum de la banda doméstica o expresarse
-como pieza estructural legible.
+The E1 force-distribution hypothesis gives a preliminary governing lateral force of
+157.8 kN. Dividing it among two wall lines and two active bays per line gives a trial
+L50×5 tension-brace demand of 63.2 kN and a gross-yield ratio of 0.622. This does not
+validate any location, reversal behavior, brace connection, or collector.
 
-### 3.5 Entrepiso METALDECK con apoyos intermedios = columnas en la zona doméstica
+The corresponding roof-diaphragm demand is 8.77 kN/m with a 39.5 kN chord force. The
+manufacturer system, strength, assembled stiffness, fastener pattern, sidelaps,
+rooflight framing, collectors, and connections are absent. The sheet therefore draws
+the demand arrows but leaves diaphragm design blocked.
 
-El esquema de entrepiso de la línea base E0 (viguetas + vigas transversales de 18 m + dos
-apoyos intermedios por pórtico) introduce columnas en cocina/núcleo de PB. Es el conflicto
-estructural–arquitectónico abierto del E0. La alternativa staggered (sección 3.3) elimina
-esas columnas pero depende de la re-articulación de particiones.
+## 5. E1 evidence gate
 
-## 4. Decisiones de coordinación para la versión definitiva
+| Phenomenon | Executed screen | What remains unresolved |
+|---|---:|---|
+| HSS local/biaxial stability | local ratio 0.696; axial 0.325; combined 0.653 | complete member/code design and global model |
+| Chord local bending | 12.51 kN·m; ratio 0.369 | real load introduction and joint geometry |
+| Member second order | reduced-Euler ratio 0.203; B1 1.255 | 3D direct analysis, imperfections, notional loads |
+| Generic gusset parts | demand 209.8 kN; component ratio 0.387 | HSS wall limit states, eccentricity, access, seismic hierarchy |
+| Trial lateral bays | brace demand 63.2 kN; ratio 0.622 | locations, reversal/buckling, joints, collectors, openings |
+| Roof diaphragm | 8.77 kN/m; chord 39.5 kN | manufacturer-tested assembly and opening framing |
+| Fire sensitivity | 0.65 at 400°C; 1.05 at 550°C; 2.84 at 700°C | D-021 rating, scenario, section factor, tested protection |
+| Erection | hook 15.8 kN; sling 9.1 kN; at least two transport pieces | crane chart/radius, lift lugs, splices, wind limit, temporary bracing |
+| Trial footing | 2.0×2.0×0.5 m; qmax 37.3 kPa under assumed 150 kPa | geotechnics, lateral/moment allocation, RC punching/flexure/shear |
+| Trial base plate | 300×300×20 mm; centered compression ratio 0.057 | anchors, shear, moment, grout, pedestal, concrete limit states |
 
-Estos puntos son las puertas de decisión; no se resuelven aquí:
+A `PASS*` label in the drawing means only that the listed narrow calculation passes its
+declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
 
-1. **Módulo estructural compatible con los eventos de vidrio de 7,2 m** (M60 / M90 /
-   hit-and-miss 12 m, o vidrio re-modulado a 6 m).
-2. **Entrepiso P2 con el gran muro como apoyo (esquema GRAN-MURO, E0):** el muro de
-   X = 31,5 se diseña portante (0,20–0,30 m, continuo al cimiento y hasta la cubierta por
-   la caja de escalera); 3 vigas longitudinales en el plenum + cercha de borde X = 21.
-   Ya no se requiere re-articular particiones del P2. Verificar en E1 la continuidad del
-   muro (vanos de puertas del núcleo) y su fundación corrida.
-3. **Viga/cercha de borde en X = 21,00 m** con apoyo en los muros largos y ménsula de
-   media crujía.
-4. **Sentido del faldón con el predio** (D-039) antes de fijar cargas de viento y drenaje.
-5. **Retícula estructural superpuesta como capa de control** sobre PB y P2 en la próxima
-   revisión de planos.
+## 6. Coordination conflicts still visible
 
-## 5. Método y trazabilidad
+1. **Trial lateral bays versus openings.** The four force-distribution bays are shown at
+   the ends only to expose the hypothesis. They conflict with technical glazing,
+   upper-floor glazing, front openings, P2 use, and possibly rooflight collectors.
+2. **Rooflights versus secondary steel.** D-040 openings fit inside the first 6 m module,
+   but their curbs interrupt purlins and diaphragm shear flow. Trimmers, local wind zones,
+   drainage crickets, and secondary overflows need a coordinated detail.
+3. **P2 edge truss versus architecture.** The full-depth X=21 truss must be coordinated
+   with the mini-deck, laundry, bedroom fronts, doors, ceiling, fire separation, and MEP.
+4. **Great Wall joints versus finish.** A continuous timber/acoustic reading does not
+   remove the need for transfer-beam depth, stiffeners, erection access, tolerances, fire
+   protection, and replaceable joints behind the finish.
+5. **Rear overhang versus real support.** D-045 requires comparison of the continuous
+   overhang with a defined rear support before profiles or connections can be frozen.
+6. **Foundation sensitivity versus site reality.** The drawn pad and plate are dimension
+   studies only; site, groundwater, settlement, seismic/wind base actions, uplift, and the
+   complete reinforced-concrete/anchor design are unknown.
 
-Análisis realizado sobre datos fuente programáticos (no sobre renders): `pb_b05.json`
-(envelope, front_openings, technical_glazing, bedroom_glazing, core) y `p2_b06.json`
-(rooms, windows, phase_boundary_y = 11). La retícula M60 asumida es la de coordinación
-(columnas en X = 0, 6, 12, 18, 24, 30, 36 sobre los muros Y = 0 e Y = 18). Toda
-verificación numérica es reproducible con el módulo `dreamhouse/structure/`.
+## 7. Explicit corrections to the previous integration study
 
-## 6. Regla anti-falsa-precisión
+This revision corrects superseded derived statements under the project precedence rules:
 
-Este pre-estudio usa cotas de borrador (planos b05–b08, no definitivos) y hipótesis de
-esquema (E0, no diseño profesional). Las mediciones de conflicto son lecturas de
-coordinación, no dimensiones de construcción. Nada de aquí autoriza compra, cotización ni
-construcción; la versión definitiva de planos y estructura se coordinará en las puertas
-E1/PE-1 con el ingeniero estructural y el arquitecto coordinador.
+- The prior text said that no structural layer existed in the drawings. Dedicated E0
+  structural sheets and the new E1 integrated sheet now exist; architectural b05–b08
+  remain separate drafts and are not silently converted into structural issue drawings.
+- The prior text described **three** P2 beams, a wall continuing as a shear core, and a
+  strip foundation. Those statements were not supported by the active model or later
+  decisions. D-043/D-045 and `structure_system.json` v0.3 govern: **six** beam lines, no
+  assigned longitudinal lateral role, and no adopted foundation type.
+- Historic descriptions of `GRAN-MURO` as “preferred” are not a D-019 system selection.
+  Only the P2 gravity intent is active; trial sections, weights, lateral behavior, and
+  foundations remain open.
+
+These are precedence corrections, not new design decisions. The decision register is
+unchanged.
+
+## 8. Required progression to design
+
+Before an E2 structural issue, the responsible team must provide at least:
+
+- site and municipality, normative wind/seismic actions, topography, and exposure;
+- geotechnical investigation and foundation criteria;
+- coordinated 3D geometry with all openings, support conditions, deck assemblies, and
+  load-bearing nonstructural interfaces;
+- complete second-order lateral analysis, diaphragm/collector design, and torsion;
+- member, connection, HSS wall, base plate, anchor, and reinforced-concrete design;
+- D-021 fire criteria and tested protection system;
+- fabrication, transport, lifting, temporary stability, and erection engineering; and
+- signed calculations and drawings by the responsible Colombian professionals.
+
+## 9. Anti-false-precision rule
+
+Every dimension and result on the E1 sheet retains the authority of its source. Decimal
+precision does not convert a hypothesis into a construction value. The SVG is a
+calculation-linked research drawing and must remain visibly marked **NOT FOR
+CONSTRUCTION** until the unresolved gates are closed and a professional issue replaces
+it.

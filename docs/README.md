@@ -60,7 +60,12 @@
   load assumptions without snow, stability, the P2 floor, and mass criteria.
 - [Structural model E0](03_ingenierias/modelo_estructural_e0.md): scope, assumptions,
   verification limits, and required progression toward E1/E2.
-- [Structural-to-drawing integration study](03_ingenierias/estudio_integracion_estructura_planos.md)
+- [Structural-to-drawing integration study — E1 screening](03_ingenierias/estudio_integracion_estructura_planos.md):
+  reconciles the roof specimen, D-040 rooflights, D-043/D-045 P2 gravity path, lateral
+  demand, and every unresolved design gate.
+- [Integrated structural E1 evidence sheet](../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg):
+  calculation-linked plan, exact truss grammar, evidence matrix, connection, base,
+  foundation, erection, and fire-sensitivity views; not for construction.
 - [MEP, comfort, and automation basis](03_ingenierias/bases_mep_confort_y_automatizacion.md)
 - [Safety, workshop, and air quality](03_ingenierias/seguridad_taller_y_calidad_del_aire.md)
 
@@ -107,6 +112,10 @@
 - [M60 ground-structure load-path map](08_investigacion/ground_structure_m60_e0.svg):
   continuous-area linear-programming inspiration to rationalize into manufacturable
   grammars; not a truss design.
+- [E1 multi-phenomenon structural screening](08_investigacion/e1_structural_screening.md):
+  local/biaxial HSS stability, chord bending, member second order, generic joint
+  components, diaphragm demand, fire sensitivity, erection, and foundation gates. Passing
+  a narrow calculation does not close the unresolved design gates.
 - [Cost-efficient construction techniques and materials](08_investigacion/tecnicas_que_abaratan_costos.md):
   research into lower-cost methods applicable to the hall, including risks and
   order-of-magnitude value-engineering potential.

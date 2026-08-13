@@ -46,7 +46,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>39</strong> vector drawings · <strong>46</strong> documents · <strong>36</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>40</strong> vector drawings · <strong>49</strong> documents · <strong>38</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -69,9 +69,9 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><strong>One clear transverse gesture</strong>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg"><img src="planos/estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg" alt="Dream House E0 structural scheme inspection drawing" width="100%"></a>
-  <br><sub><strong>Engineering · E0</strong> · 0.3</sub>
-  <br><strong>The structure remains legible</strong>
+  <a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg"><img src="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg" alt="Dream House integrated E1 structural screening drawing" width="100%"></a>
+  <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.1</sub>
+  <br><strong>Evidence and open gates stay visible</strong>
 </td>
 </tr>
 </table>

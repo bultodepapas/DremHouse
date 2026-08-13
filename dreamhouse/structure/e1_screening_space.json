@@ -1,0 +1,89 @@
+{
+  "project": {
+    "id": "DH-EST-E1-SCREEN-001",
+    "revision": "0.1",
+    "status": "research_screening_not_design",
+    "date": "2026-08-12",
+    "purpose": "Expose E1 member, joint, stability, diaphragm, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
+  },
+  "reference_truss": {
+    "role": "neutral_M60_test_specimen_not_a_selected_system",
+    "modulation_id": "M60",
+    "topology": "WARREN_MODIFIED",
+    "panel_count": 6,
+    "depth_shape": "VARIABLE",
+    "centre_depth_span_ratio": 10.0,
+    "end_depth_fraction": 0.55
+  },
+  "trial_connection": {
+    "description": "single-line bolt group and double fillet weld component envelope; HSS wall limit states intentionally unresolved",
+    "bolt_count": 6,
+    "bolt_diameter_mm": 20.0,
+    "hole_diameter_mm": 22.0,
+    "bolt_fu_mpa": 800.0,
+    "plate_thickness_mm": 12.0,
+    "plate_width_mm": 240.0,
+    "plate_fy_mpa": 355.0,
+    "plate_fu_mpa": 490.0,
+    "end_distance_mm": 45.0,
+    "pitch_mm": 70.0,
+    "weld_size_mm": 8.0,
+    "weld_length_each_side_mm": 220.0,
+    "electrode_fu_mpa": 490.0
+  },
+  "lateral_system": {
+    "trial_brace_profile": "L50x5",
+    "parallel_braced_wall_lines": 2,
+    "active_bays_per_wall_line": 2,
+    "trial_bay_width_m": 6.0,
+    "trial_bay_height_m": 7.5,
+    "brace_locations_validated_against_openings": false,
+    "brace_connections_and_collectors_resolved": false
+  },
+  "diaphragm": {
+    "manufacturer_system": null,
+    "nominal_capacity_kn_m": null,
+    "assembled_shear_stiffness_kn_mm": null,
+    "collectors_defined": false,
+    "connections_defined": false
+  },
+  "fire": {
+    "trial_steel_temperatures_c": [400.0, 550.0, 700.0],
+    "required_fire_resistance_minutes": null,
+    "thermal_protection_system": null
+  },
+  "erection": {
+    "dynamic_factor": 1.3,
+    "lift_point_count": 2,
+    "sling_angle_deg_from_horizontal": 60.0,
+    "maximum_transport_piece_length_m": 12.0,
+    "crane_capacity_kn_at_required_radius": null,
+    "temporary_bracing_installed": false,
+    "weather_limit_defined": false
+  },
+  "trial_foundation": {
+    "description": "dimension-only sensitivity case; no foundation type is adopted",
+    "width_m": 2.0,
+    "length_m": 2.0,
+    "thickness_m": 0.5,
+    "embedment_m": 0.8,
+    "allowable_bearing_kpa_hypothesis": 150.0,
+    "base_friction_coefficient_hypothesis": 0.35,
+    "geotechnical_parameters_approved": false,
+    "reinforced_concrete_design_resolved": false
+  },
+  "trial_base_plate": {
+    "description": "centred compression sensitivity for an approximately HEA200 column footprint; no base or anchor group is adopted",
+    "plate_width_mm": 300.0,
+    "plate_length_mm": 300.0,
+    "plate_thickness_mm": 20.0,
+    "column_width_mm": 200.0,
+    "column_depth_mm": 190.0,
+    "plate_fy_mpa": 355.0,
+    "concrete_fc_mpa_hypothesis": 28.0,
+    "supporting_area_ratio": 1.0,
+    "anchor_group_tension_capacity_kn": null,
+    "shear_transfer_resolved": false,
+    "moment_transfer_resolved": false
+  }
+}
