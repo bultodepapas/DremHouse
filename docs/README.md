@@ -1,100 +1,112 @@
-# Índice del expediente Dream House
+# Dream House Project Record
 
-**Estatus:** activo  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Status:** active  
+**Version:** 0.3  
+**Date:** 2026-08-12
 
-## 00 — Gobierno del proyecto
+> [!NOTE]
+> The derived project record is being migrated to professional technical English under
+> D-044. Files already translated are canonical working documents. Original evidence in
+> [`BORN_Legacy/`](BORN_Legacy/) remains unchanged and in Spanish.
 
-- [Constitución del proyecto](00_gobernanza/constitucion_del_proyecto.md): condiciones
-  que no pueden romperse sin decisión expresa del propietario.
-- [Fuentes, precedencia y conflictos](00_gobernanza/fuentes_precedencia_y_conflictos.md):
-  qué documento gobierna y qué contradicciones están abiertas.
-- [Registro de decisiones](00_gobernanza/registro_decisiones.md): decisiones de diseño
-  con estado e historia.
-- [Glosario y estados](00_gobernanza/glosario_y_estados.md): significado de hard rule,
-  design control value, hipótesis y congelación.
+## 00 — Project governance
 
-## 01 — Brief y programa
+- [Project Constitution](00_gobernanza/constitucion_del_proyecto.md): conditions that
+  cannot be changed without an explicit owner decision.
+- [Sources, precedence, and conflicts](00_gobernanza/fuentes_precedencia_y_conflictos.md):
+  which document governs and which contradictions remain open.
+- [Decision Register](00_gobernanza/registro_decisiones.md): design and project decisions,
+  including status and history.
+- [Glossary and document statuses](00_gobernanza/glosario_y_estados.md): definitions of
+  hard rule, Design Control Value, hypothesis, and freezing.
+- [Language and translation policy](00_gobernanza/language_and_translation_policy.md):
+  working language, protected Spanish sources, terminology, and migration order.
 
-- [Brief maestro](01_brief/brief_maestro.md)
-- [Programa arquitectónico](01_brief/programa_arquitectonico.md)
-- [Relaciones y experiencia espacial](01_brief/relaciones_y_experiencia.md)
+## 01 — Brief and program
 
-## 02 — Arquitectura
+- [Master brief](01_brief/brief_maestro.md)
+- [Architectural program](01_brief/programa_arquitectonico.md)
+- [Spatial relationships and experience](01_brief/relaciones_y_experiencia.md)
 
-- [Bases de diseño arquitectónico](02_arquitectura/bases_de_diseno.md)
-- [Control de visualizaciones](02_arquitectura/control_de_visualizaciones.md)
-- [Plano conceptual v0.3 — primer borrador paramétrico](02_arquitectura/plano_conceptual_v0.3_borrador.md)
-- [Plano conceptual v0.3 — borrador 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
-- [Plano conceptual v0.3 — borrador 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
-- [Plano conceptual v0.3 — borrador 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
-  hipótesis activa de coordinación; corrige circulación, fases, suite principal y descarga posterior.
-- [Planta baja detallada v0.3 — borrador 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
-  espesores de estudio, gran muro, núcleo reorganizado, cocina y atelier equipado.
-- [Segundo piso detallado v0.3 — borrador 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
-  suites, privacidad, fases, wellness, ventanas y lógica de egreso coordinadas.
-- [Cubierta v0.3 — borrador 07](02_arquitectura/cubierta_v0.3_borrador_07.md):
-  corrige el faldón único transversal, alturas de alero y lectura de las cuatro fachadas.
-- [Claraboyas sobre talleres v0.3 — borrador 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):
-  dos eventos cenitales de vidrio, coordinación estructural y detalle higrotérmico conceptual.
-- [Revisión de coordinación arquitectónica v0.3](02_arquitectura/revision_coordinacion_v0.3_2026_08.md):
-  revisión independiente de b04→b08 y del modelo E0 contra constitución, programa y hard rules;
-  15 hallazgos verificados sobre la geometría paramétrica y las láminas emitidas. Insumo de la
-  v0.4. No modifica el target, las decisiones ni la línea base.
+## 02 — Architecture
 
-## 03 — Ingenierías
+- [Architectural design basis](02_arquitectura/bases_de_diseno.md)
+- [Visualization control](02_arquitectura/control_de_visualizaciones.md)
+- [Concept plan v0.3 — first parametric draft](02_arquitectura/plano_conceptual_v0.3_borrador.md)
+- [Concept plan v0.3 — draft 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
+- [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
+- [Concept plan v0.3 — draft 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
+  active coordination hypothesis; corrects circulation, phasing, the primary suite, and
+  rear stair discharge.
+- [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
+  study wall thicknesses, Great Wall, reorganized core, kitchen, and equipped workshop.
+- [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
+  coordinated suites, privacy, phasing, wellness, windows, and egress logic.
+- [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
+  single transverse pitch, eave heights, and reading of all four façades.
+- [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):
+  two glazed overhead daylight elements, structural coordination, and a conceptual
+  hygrothermal detail.
+- [Architectural coordination review v0.3](02_arquitectura/revision_coordinacion_v0.3_2026_08.md):
+  independent review of b04→b08 and model E0 against the Constitution, program, and hard
+  rules. It records 15 verified findings on the parametric geometry and issued sheets as
+  input to v0.4; it does not alter the target, decisions, or baseline.
 
-- [Bases estructurales y civiles](03_ingenierias/bases_estructurales_y_civiles.md)
-- [Bases de la estructura metálica — predimensionamiento conceptual](03_ingenierias/bases_estructura_metalica.md):
-  base para la decisión D-019 (sistemas pórtico/cercha × modulaciones 4,5/6,0/9,0 m),
-  hipótesis de carga sin nieve (Boyacá), estabilidad, entrepiso P2 y criterios de peso.
-- [Bases MEP, confort y automatización](03_ingenierias/bases_mep_confort_y_automatizacion.md)
-- [Seguridad, taller y calidad del aire](03_ingenierias/seguridad_taller_y_calidad_del_aire.md)
+## 03 — Engineering
 
-## 04 — Costos
+- [Structural and civil design basis](03_ingenierias/bases_estructurales_y_civiles.md)
+- [Steel structure basis — conceptual preliminary sizing](03_ingenierias/bases_estructura_metalica.md):
+  basis for D-019, comparing portal-frame/truss systems across 4.5/6.0/9.0 m modules,
+  load assumptions without snow, stability, the P2 floor, and mass criteria.
+- [Structural model E0](03_ingenierias/modelo_estructural_e0.md): scope, assumptions,
+  verification limits, and required progression toward E1/E2.
+- [Structural-to-drawing integration study](03_ingenierias/estudio_integracion_estructura_planos.md)
+- [MEP, comfort, and automation basis](03_ingenierias/bases_mep_confort_y_automatizacion.md)
+- [Safety, workshop, and air quality](03_ingenierias/seguridad_taller_y_calidad_del_aire.md)
 
-- [Base y control de costos](04_costos/base_y_control_de_costos.md): target económico,
-  gobierno del presupuesto y radar de reducción de costos.
-- [Presupuesto desglosado de control](04_costos/presupuesto_desglosado_de_control.md):
-  desglose atómico por partida (APU de hipótesis: cantidades, precios unitarios, fases
-  F1/F2 y confianza).
-- [Auditoría de costos 2026-08](04_costos/auditoria_de_costos_2026_08.md): verificación de
-  precios y cantidades contra fuentes vivas (CYPE, DANE, proveedores); insumo de PE-1/PE-2.
-  No cambia el target.
-- [Estrategia de construcción en dos fases](04_costos/estrategia_de_construccion_en_dos_fases.md)
+## 04 — Cost
 
-## 05 — Predio y normativa
+- [Cost basis and control](04_costos/base_y_control_de_costos.md): working target,
+  estimate governance, and cost-reduction radar.
+- [Detailed control estimate](04_costos/presupuesto_desglosado_de_control.md): itemized
+  hypothesis-level estimate with quantities, unit rates, F1/F2 allocation, and confidence.
+- [Cost audit 2026-08](04_costos/auditoria_de_costos_2026_08.md): price and quantity
+  verification against live sources including CYPE, DANE, and suppliers; input to PE-1
+  and PE-2. It does not change the target.
+- [Two-stage construction strategy](04_costos/estrategia_de_construccion_en_dos_fases.md)
 
-- [Criterios para seleccionar el predio](05_predio_y_normativa/criterios_del_predio.md)
-- [Ruta normativa y profesional](05_predio_y_normativa/ruta_normativa.md)
+## 05 — Site and regulatory
 
-## 06 — Gestión, contratación y obra
+- [Site selection criteria](05_predio_y_normativa/criterios_del_predio.md)
+- [Regulatory and professional pathway](05_predio_y_normativa/ruta_normativa.md)
 
-- [Plan maestro](06_gestion_y_obra/plan_maestro.md)
-- [Matriz inicial de riesgos](06_gestion_y_obra/matriz_de_riesgos.md)
-- [Decisiones y datos pendientes](06_gestion_y_obra/decisiones_y_datos_pendientes.md)
-- [Roles, entregables y control de calidad](06_gestion_y_obra/roles_entregables_y_calidad.md)
+## 06 — Management, procurement, and construction
 
-## 07 — Plantillas
+- [Master plan](06_gestion_y_obra/plan_maestro.md)
+- [Initial risk register](06_gestion_y_obra/matriz_de_riesgos.md)
+- [Pending decisions and inputs](06_gestion_y_obra/decisiones_y_datos_pendientes.md)
+- [Roles, deliverables, and quality control](06_gestion_y_obra/roles_entregables_y_calidad.md)
 
-- [Plantilla de decisión](07_plantillas/decision.md)
-- [Plantilla de RFI / consulta técnica](07_plantillas/rfi.md)
-- [Plantilla de acta](07_plantillas/acta.md)
-- [Plantilla de reporte diario de obra](07_plantillas/reporte_diario_obra.md)
+## 07 — Templates
 
-## 08 — Investigación y herramientas
+- [Decision template](07_plantillas/decision.md)
+- [RFI / technical query template](07_plantillas/rfi.md)
+- [Meeting-minutes template](07_plantillas/acta.md)
+- [Daily construction report template](07_plantillas/reporte_diario_obra.md)
 
-- [Herramientas digitales para planos, BIM y estructuras](08_investigacion/herramientas_planos_bim_y_estructuras.md):
-  arquitectura propuesta del modelo, formatos, validaciones y ruta de prototipos.
-- [Técnicas constructivas y materiales para abaratar costos](08_investigacion/tecnicas_que_abaratan_costos.md):
-  investigación de técnicas de bajo costo aplicables a la nave, con riesgos y orden de
-  magnitud para value engineering.
+## 08 — Research and tools
 
-## Uso del expediente
+- [Digital tools for drawings, BIM, and structures](08_investigacion/herramientas_planos_bim_y_estructuras.md):
+  proposed model architecture, formats, validation, and prototype roadmap.
+- [Structural research: ten topics, 2026-08](08_investigacion/investigacion_estructura_10_temas_2026_08.md)
+- [Cost-efficient construction techniques and materials](08_investigacion/tecnicas_que_abaratan_costos.md):
+  research into lower-cost methods applicable to the hall, including risks and
+  order-of-magnitude value-engineering potential.
 
-1. Consultar la constitución antes de diseñar.
-2. Verificar conflictos y decisiones abiertas.
-3. Trabajar solo con la versión activa de cada disciplina.
-4. Pasar por la puerta de fase correspondiente antes de avanzar.
-5. Registrar el fundamento de toda modificación de alcance, costo o geometría.
+## How to use the project record
+
+1. Consult the Constitution before designing.
+2. Check open conflicts and decisions.
+3. Work only from the active version for each discipline.
+4. Pass the applicable stage gate before proceeding.
+5. Record the basis for every change in scope, cost, or geometry.

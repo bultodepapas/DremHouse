@@ -4,7 +4,7 @@
     "dreamhouse\\pb_b05.json"
   ],
   "generator": "dreamhouse/generate_structure_plan.py",
-  "revision": "0.2",
+  "revision": "0.3",
   "mode": "cribado en vivo (compute_quantities + size_staggered_floor) — subtotales inferiores",
   "outputs": [
     "DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg",

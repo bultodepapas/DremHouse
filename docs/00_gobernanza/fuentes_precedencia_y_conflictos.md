@@ -1,119 +1,128 @@
-# Fuentes, precedencia y conflictos
+# Sources, precedence, and conflicts
 
-**Estatus:** activo  
-**Versión:** 0.3
-**Fecha:** 2026-08-12
+**Status:** active  
+**Version:** 0.4  
+**Date:** 2026-08-12  
+**Language note:** controlled English translation under D-044; no technical change.
 
-## Precedencia
+## Precedence
 
-En caso de contradicción gobierna, en este orden:
+When sources conflict, the following order governs:
 
-1. Decisión expresa posterior del propietario, registrada y fechada.
-2. Constitución activa del proyecto.
-3. Documento activo más reciente de la disciplina correspondiente.
-4. Plano conceptual v0.2 para control dimensional.
-5. Documento conceptual consolidado para intención y hard rules.
-6. Presupuesto técnico v0.2 para el target económico de trabajo.
-7. Documentos históricos.
-8. Renders, croquis evocativos e imágenes de IA.
+1. A later explicit owner decision, recorded and dated.
+2. The active Project Constitution.
+3. The most recent active document for the relevant discipline.
+4. Conceptual plan v0.2 for dimensional control.
+5. The consolidated concept document for intent and hard rules.
+6. Technical budget v0.2 for the working cost target.
+7. Historical documents.
+8. Renders, evocative sketches, and AI-generated imagery.
 
-La normativa, la seguridad y los diseños firmados por profesionales competentes prevalecen
-sobre una preferencia incompatible.
+Regulations, safety requirements, and designs signed by competent professionals take
+precedence over any incompatible preference.
 
-## Clasificación de las fuentes originales
+## Classification of original sources
 
-| Fuente | Rol | Estado |
+The original files remain unchanged and in Spanish under `docs/BORN_Legacy/`.
+
+| Source | Role | Status |
 |---|---|---|
-| `BORN/casa_bodega_boyaca_conclusiones_anteproyecto.md` | Intención, hard rules y síntesis | Activa como fuente conceptual |
-| `BORN/Dream_House_Plano_Conceptual_v0.2.md` | Geometría y áreas nominales | Activa para control dimensional |
-| `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx` | Target y capítulos de obra | Activa, confianza baja-media |
-| `BORN/Dream_House_Presupuesto_Preliminar_v0.1.md` | Prefactibilidad económica anterior | Histórica / superada |
+| `casa_bodega_boyaca_conclusiones_anteproyecto.md` | Intent, hard rules, and synthesis | Active conceptual source |
+| `Dream_House_Plano_Conceptual_v0.2.md` | Geometry and nominal areas | Active for dimensional control |
+| `Dream House — Presupuesto Técnico y Control de Costos v0.2.docx` | Target and construction divisions | Active; low-to-medium confidence |
+| `Dream_House_Presupuesto_Preliminar_v0.1.md` | Earlier feasibility estimate | Historical / superseded |
 
-## Conflictos detectados
+## Identified conflicts
 
-### CF-001 — Presupuesto total
+### CF-001 — Total budget
 
-- v0.1: rango de planeación $4,3–4,8 B COP; reserva $5,0 B.
-- v0.2: obra $941 M + 5% = $988,05 M; techo de control $1,0 B.
-- **Regla temporal:** v0.2 es el target activo porque se declara sustituto, pero no es una
-  cifra validada. No comprometer alcance, contrato ni financiación con ella hasta superar
-  la puerta económica definida en el plan maestro.
-- **Estado:** crítico, abierto.
+- v0.1: planning range of COP 4.3–4.8 billion; reserve of COP 5.0 billion.
+- v0.2: COP 941 million construction + 5% = COP 988.05 million; control ceiling of
+  COP 1.0 billion.
+- **Interim rule:** v0.2 is the active target because it explicitly supersedes v0.1, but
+  it is not a validated figure. Do not commit scope, contracts, or financing against it
+  until the economic gate defined in the master plan has been passed.
+- **Status:** critical, open.
 
-### CF-002 — “Sin presupuesto rígido” frente a techo de $1,0 B
+### CF-002 — “No rigid budget” versus COP 1.0 billion ceiling
 
-El concepto declara eficiencia sin restricción rígida; costos v0.2 establece techo. Se
-trata el $1,0 B como restricción de diseño provisional, no como precio garantizado ni como
-permiso para degradar desempeño.
+The concept calls for efficiency without a rigid constraint, while cost plan v0.2 sets a
+ceiling. Treat COP 1.0 billion as a provisional design constraint, not as a guaranteed
+price or permission to reduce performance.
 
-- **Decisión requerida:** confirmar si $1,0 B es aspiración, techo de obra física o techo
-  total de inversión.
-- **Estado:** abierto.
+- **Decision required:** confirm whether COP 1.0 billion is an aspiration, a physical
+  construction ceiling, or the total investment ceiling.
+- **Status:** open.
 
-### CF-003 — Áreas de suites
+### CF-003 — Suite areas
 
-El texto conceptual menciona inicialmente 28–32 m² por suite de hijo y 23–26 m² para
-huéspedes; el plano v0.2 asigna ≈38 m² por hijo y ≈32–33 m² a huéspedes.
+The conceptual narrative initially identifies 28–32 m² for each child's suite and
+23–26 m² for the guest suite. Plan v0.2 assigns approximately 38 m² to each child's suite
+and approximately 32–33 m² to the guest suite.
 
-- **Regla temporal:** gobiernan las áreas brutas del plano v0.2; la igualdad exacta aplica
-  al área útil de los dormitorios de hijos.
-- **Estado:** resuelto por precedencia, validar en planta neta v0.3.
+- **Interim rule:** the gross areas in plan v0.2 govern. The equality requirement applies
+  to the usable bedroom areas of the two children.
+- **Status:** resolved by precedence; verify against the net v0.3 plan.
 
-### CF-004 — Áreas del núcleo posterior
+### CF-004 — Rear service-core areas
 
-La narrativa temprana propone bodega 16–20 m², homelab 7–9 m² y baño PB 5–6 m². El plano
-v0.2 distribuye los 81 m² así: 22,5 + 10,8 + 20,7 + 10,8 + 16,2 m².
+The early narrative proposes 16–20 m² for storage, 7–9 m² for the homelab, and 5–6 m² for
+the PB bathroom. Plan v0.2 distributes the 81 m² as follows: 22.5 + 10.8 + 20.7 + 10.8 +
+16.2 m².
 
-- **Regla temporal:** gobierna el plano v0.2 como reserva bruta nominal; en v0.3 debe
-  demostrarse que el homelab y el baño no están sobredimensionados a costa de la nave.
-- **Estado:** resuelto provisionalmente.
+- **Interim rule:** plan v0.2 governs as the nominal gross allowance. v0.3 must
+  demonstrate that the homelab and bathroom are not oversized at the expense of the main
+  hall.
+- **Status:** provisionally resolved.
 
-### CF-005 — Aritmética del núcleo
+### CF-005 — Service-core arithmetic
 
-Una revisión del concepto afirma que 5,0 m de profundidad producirían ≈70 m² y que 4,5 m
-producirían ≈63 m². Esas cifras corresponden a 14 m de ancho. Con 18 m, los valores son
-90 m² y 81 m² respectivamente.
+One concept review states that a 5.0 m depth would produce approximately 70 m² and a
+4.5 m depth approximately 63 m². Those figures correspond to a width of 14 m. At 18 m,
+the correct areas are 90 m² and 81 m² respectively.
 
-- **Regla:** el núcleo nominal activo es 18 × 4,5 = **81 m²**.
-- **Estado:** error identificado; corregir en la siguiente consolidación de la fuente.
+- **Rule:** the active nominal core is 18 × 4.5 = **81 m²**.
+- **Status:** error identified; correct in the next consolidation of the source.
 
-### CF-006 — Isla de cocina
+### CF-006 — Kitchen island
 
-La narrativa propone 3,6–4,0 × 1,10–1,25 m; el plano v0.2 propone 4,80 × 1,40 m.
+The narrative proposes 3.6–4.0 × 1.10–1.25 m; plan v0.2 proposes 4.80 × 1.40 m.
 
-- **Regla temporal:** 4,80 × 1,40 m es la envolvente de prueba; solo se adopta si la
-  ergonomía, servicios, uso cotidiano y costo justifican su tamaño.
-- **Estado:** abierto hasta layout de cocina v0.3.
+- **Interim rule:** 4.80 × 1.40 m is the test envelope. Adopt it only if ergonomics,
+  services, daily use, and cost justify its size.
+- **Status:** open until the v0.3 kitchen layout is completed.
 
-### CF-007 — Alcance real del total de $988,05 M
+### CF-007 — Actual scope of the COP 988.05 million total
 
-El documento v0.2 lo denomina “total de construcción”, no costo total del proyecto. No
-queda demostrado que incluya honorarios, estudios, licencia, conexiones, impuestos,
-logística especial, seguros, interventoría, escalamiento o contingencias de predio.
+Document v0.2 calls this figure the “total construction cost,” not the total project cost.
+It does not demonstrate inclusion of professional fees, studies, permits, utility
+connections, taxes, special logistics, insurance, independent supervision, escalation,
+or site contingencies.
 
-- **Regla:** separar siempre obra física, costos blandos, equipamiento, predio/exteriores
-  y reserva del promotor.
-- **Estado:** crítico, abierto.
+- **Rule:** always separate physical construction, soft costs, equipment, site/external
+  works, and the owner's reserve.
+- **Status:** critical, open.
 
-### CF-008 — Gran muro arquitectónico frente a apoyo estructural del P2
+### CF-008 — Architectural Great Wall versus P2 structural support
 
-D-033 definió el gran muro de X=31,50 m como superficie continua de madera/absorción
-con puertas enrasadas. El E0 inicial lo convirtió silenciosamente en muro portante y
-«núcleo de corte longitudinal», sin bastidor, transferencias, conexiones ni compatibilidad
-con los cinco accesos de la elevación interior.
+D-033 defined the Great Wall at X=31.50 m as a continuous timber/acoustic surface with
+flush doors. The initial E0 model silently converted it into a load-bearing wall and a
+“longitudinal shear core,” without defining a frame, transfers, connections, or
+compatibility with the five openings shown in the interior elevation.
 
-- **Resolución gravitacional:** D-043 adopta una pared híbrida: el acabado arquitectónico
-  permanece y un bastidor de acero oculto recibe el P2 mediante viga superior y columnas
-  en machones coordinados con las puertas.
-- **Reserva geométrica:** el espesor conceptual de 0,20 m puede aumentar; no gobierna
-  sobre conexiones, protección contra incendio, tolerancias ni acústica.
-- **Reserva lateral:** por estar en el plano X=31,50 m y extenderse en Y, el muro no
-  aporta automáticamente estabilidad longitudinal X. No descontar arriostramientos de
-  fachadas, diafragma o colectores hasta el modelo E1.
-- **Estado:** conflicto de autoridad resuelto por D-043 para la función gravitacional;
-  diseño y función lateral continúan abiertos.
+- **Gravity resolution:** D-043 adopts a hybrid wall. The architectural finish remains,
+  while a concealed steel frame supports P2 through a top beam and columns located within
+  wall piers coordinated with the doors. D-044 fixes, for E0 v0.3 only, the hypothesis of
+  continuous beams with a rear overhang, avoiding reliance on an undefined support at X=36.
+- **Geometric reservation:** the conceptual 0.20 m thickness may increase; it does not
+  override requirements for connections, fire protection, tolerances, or acoustics.
+- **Lateral-system reservation:** because the wall lies in the X=31.50 m plane and extends
+  along Y, it does not automatically provide longitudinal X stability. Do not omit façade
+  bracing, diaphragm action, or collectors until the E1 model is complete.
+- **Status:** authority conflict resolved by D-043 for gravity support; detailed design
+  and the lateral function remain open.
 
-## Regla de resolución
+## Resolution rule
 
-Cada conflicto debe cerrarse con evidencia, responsable, fecha y decisión. “Usar el dato
-más conveniente” no es un método válido.
+Every conflict must be closed with evidence, a responsible party, a date, and a decision.
+“Use the most convenient figure” is not a valid method.

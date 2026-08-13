@@ -7,6 +7,23 @@ límite o autorización de la solución arquitectónico-estructural.
 
 from __future__ import annotations
 
+import math
+import re
+
+
+def span_deflection_limit(span_m: float, criterion: str) -> float:
+    """Convierte criterios canónicos como ``L/240`` a un límite en metros."""
+
+    if not math.isfinite(span_m) or span_m <= 0.0:
+        raise ValueError("La luz debe ser positiva y finita")
+    match = re.fullmatch(r"\s*[LlHh]\s*/\s*([0-9]+(?:\.[0-9]+)?)\s*", str(criterion))
+    if match is None:
+        raise ValueError(f"Criterio de flecha no reconocido: {criterion!r}")
+    denominator = float(match.group(1))
+    if denominator <= 0.0:
+        raise ValueError("El denominador del criterio de flecha debe ser positivo")
+    return span_m / denominator
+
 
 def max_factored_gravity(cfg: dict, dead: float, live: float) -> float:
     """Máxima demanda gravitacional D/L entre las combinaciones configuradas.
@@ -16,11 +33,26 @@ def max_factored_gravity(cfg: dict, dead: float, live: float) -> float:
     dimensionar el subtotal gravitacional de vigas/cerchas de piso.
     """
 
-    return max(
-        combo["factors"].get("D", 0.0) * dead
-        + combo["factors"].get("L", 0.0) * live
-        for combo in cfg["combinations"]
-    )
+    if not math.isfinite(dead) or not math.isfinite(live) or dead < 0.0 or live < 0.0:
+        raise ValueError("Las cargas D y L deben ser magnitudes no negativas y finitas")
+    combinations = cfg.get("combinations")
+    if not isinstance(combinations, list) or not combinations:
+        raise ValueError("El modelo debe contener al menos una combinación de carga")
+
+    demands: list[float] = []
+    for combo in combinations:
+        factors = combo.get("factors", {})
+        d_factor = factors.get("D", 0.0)
+        l_factor = factors.get("L", 0.0)
+        if not all(isinstance(value, (int, float)) and math.isfinite(value) for value in (d_factor, l_factor)):
+            raise ValueError(f"Factores D/L inválidos en combinación {combo.get('id', '?')}")
+        if d_factor < 0.0 or l_factor < 0.0:
+            raise ValueError(f"Factores gravitacionales negativos en combinación {combo.get('id', '?')}")
+        if "D" in factors or "L" in factors:
+            demands.append(d_factor * dead + l_factor * live)
+    if not demands:
+        raise ValueError("Ninguna combinación contiene acciones D o L")
+    return max(demands)
 
 
 def build_model_audit(cfg: dict) -> dict:
@@ -36,9 +68,10 @@ def build_model_audit(cfg: dict) -> dict:
             "severity": "critical",
             "description": (
                 "D-043 adopta el GRAN-MURO como apoyo gravitacional híbrido, pero el E0 "
-                "solo prueba un bastidor oculto idealizado. Falta diseñar la viga de "
-                "transferencia, columnas, pandeo, uniones, anclajes, fuego y compatibilidad "
-                "1:1 con las cinco aperturas antes de descontar apoyos o fijar acero."
+                "solo prueba vigas continuas con voladizo, cercha de borde y bastidor oculto "
+                "idealizados. Faltan continuidad y conexión de momento sobre X=31,50, "
+                "pandeo normativo, uniones, anclajes, fuego y compatibilidad 1:1 con las "
+                "cinco aperturas antes de fijar acero."
             ),
         },
         {
@@ -116,9 +149,9 @@ def build_model_audit(cfg: dict) -> dict:
             "id": "E0-CLEAR-01",
             "severity": "high",
             "description": (
-                "La prueba D-043 usa seis IPE450 a 3,00 m y 0,15 m de armado de piso: "
-                "canto total conceptual 0,60 m. Cabe con cielo cercano a +3,10 m, pero "
-                "la reserva de 0,10 m para fuego, tolerancias y servicios debe demostrarse "
+                "La prueba D-043 usa seis IPE400 continuas a 3,00 m y 0,15 m de armado de piso: "
+                "canto total conceptual 0,55 m. Cabe con cielo cercano a +3,10 m, pero "
+                "la reserva de 0,15 m para fuego, tolerancias y servicios debe demostrarse "
                 "con deck y detalle compuesto reales; +3,20 m no deja reserva."
             ),
         },

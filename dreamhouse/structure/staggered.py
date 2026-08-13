@@ -16,8 +16,14 @@ from __future__ import annotations
 
 import math
 
-from .analysis import simply_supported_deflection, simply_supported_max_moment
-from .checks import max_factored_gravity
+from .analysis import (
+    G,
+    overhanging_uniform_beam_response,
+    simply_supported_beam_response,
+    simply_supported_deflection,
+    simply_supported_max_moment,
+)
+from .checks import max_factored_gravity, span_deflection_limit
 from .materials import Steel
 from .profiles import ProfileSelectionError, lightest_member, profile, series
 
@@ -40,8 +46,9 @@ def size_staggered_floor(
 
     # --- Cerchas de canto completo --------------------------------
     max_panel = float(options.get("max_unpropped_panel_span_m", 6.0))
-    n_trusses = max(2, math.ceil(p2_length / max_panel))
-    panel = p2_length / n_trusses
+    n_panels = max(2, math.ceil(p2_length / max_panel))
+    n_trusses = n_panels + 1
+    panel = p2_length / n_panels
     trib = panel  # cada cercha recibe la franja del panel adyacente (medio panel por lado)
 
     depth = float(options.get("truss_depth_m", 0.0))
@@ -69,11 +76,18 @@ def size_staggered_floor(
     # sección compuesta ni frecuencia defendible: fallar cerrado.
     slab_t = float(options.get("slab_total_m", 0.22))
 
-    edge_allow = 800.0  # cerchas/vigas menores del borde X=21 (hipotesis E0)
-    total = n_trusses * truss_kg + edge_allow
+    # Un conjunto de N paneles necesita N+1 líneas resistentes. El cálculo
+    # anterior contó tres paneles como tres cerchas y sustituyó la cuarta por
+    # una reserva arbitraria de 800 kg, subestimando el camino de borde.
+    total = n_trusses * truss_kg
 
     return {
         "n_trusses": n_trusses,
+        "n_panels": n_panels,
+        "support_x_m": [
+            round(geom["p2_start_x_m"] + k * panel, 3)
+            for k in range(n_trusses)
+        ],
         "panel_span_m": round(panel, 2),
         "truss_depth_m": round(depth, 2),
         "truss_d_over_l": round(d_over_l, 3),
@@ -104,10 +118,10 @@ def size_p2_great_wall(
 ) -> dict:
     """Cribado de la pared estructural híbrida adoptada por D-043.
 
-    Las vigas X=21→31,5 descargan en una viga superior continua que reparte
-    sus reacciones a columnas HSS ocultas en los machones del gran muro. La
-    fachada posterior X=36 recibe el extremo de la franja de 4,5 m. El borde
-    X=21 se resuelve con una cercha de canto completo por encima del nivel P2.
+    Las vigas continuas X=21→36 se apoyan en X=21 y X=31,5; los últimos 4,5 m
+    vuelan sobre el núcleo para no inventar soportes en la fachada posterior.
+    El gran muro reparte sus reacciones a columnas HSS ocultas y el borde X=21
+    se resuelve con una cercha de canto completo sobre dos columnas perimetrales.
 
     El cálculo solo prueba cabida gravitacional con fluencia de sección bruta.
     No atribuye capacidad lateral ni verifica pandeo, uniones, anclajes, fuego,
@@ -124,56 +138,185 @@ def size_p2_great_wall(
 
     floor_d = (cfg["loads"]["dead"]["floor_p2_kpa"] + cfg["loads"]["dead"]["partitions_p2_kpa"]) * 1e3
     floor_l = cfg["loads"]["live"]["p2_residential_kpa"] * 1e3
-    q_service = floor_d + floor_l
-    q_strength = max_factored_gravity(cfg, floor_d, floor_l)
 
     front = wall_x - p2_start
     rear = (p2_start + p2_length) - wall_x
 
-    # Vigas longitudinales en el plenum (Y≈3/9/15), luz X = 21→31,5 (10,5 m).
+    # Vigas longitudinales continuas X=21→36, apoyadas en X=21 y en el gran
+    # muro X=31,5. El núcleo posterior es un voladizo de 4,5 m: no se inventa
+    # un apoyo ni columnas en la fachada X=36.
     n_beams = max(2, int(options.get("n_longitudinal_beams", 3)))
-    spacing = width / n_beams
-    q_service_beam = q_service * spacing
-    q_strength_beam = q_strength * spacing
-    m_beam = simply_supported_max_moment(q_strength_beam, front) / 1e3
-    beam, _ = lightest_member(
-        steel.fy_pa, phi_b, phi_c, m_beam, 0.0, front, "IPE",
-        front / 240.0, q_service_beam / 1e3, e_pa=steel.e_pa,
-    )
-    if beam.mass_kg_m < profile("IPE360").mass_kg_m:
-        beam = profile("IPE360")
-    front_beams_kg = n_beams * beam.mass_kg_m * front
+    beam_ys = [float(y) for y in options.get("beam_y_m", [3.0, 9.0, 15.0])]
+    column_ys = [float(y) for y in options.get("hidden_column_y_m", [0.0, 2.4, 7.4, 11.0, 13.4, 18.0])]
+    if (
+        len(beam_ys) != n_beams
+        or beam_ys != sorted(set(beam_ys))
+        or not all(0.0 < y < width for y in beam_ys)
+        or column_ys != sorted(set(column_ys))
+        or len(column_ys) < 2
+        or column_ys[0] != 0.0
+        or column_ys[-1] != width
+    ):
+        raise ValueError("La geometría del bastidor oculto no coincide con el ancho o las vigas")
 
-    # Continuación posterior X=31,5→36. La revisión anterior llevaba su
-    # reacción al muro, pero omitía físicamente estos 4,5 m de viga del peso.
-    m_rear = simply_supported_max_moment(q_strength_beam, rear) / 1e3
-    rear_beam, _ = lightest_member(
-        steel.fy_pa,
-        phi_b,
-        phi_c,
-        m_rear,
+    tributary_boundaries = [
         0.0,
-        rear,
-        "IPE",
-        rear / 240.0,
-        q_service_beam / 1e3,
-        e_pa=steel.e_pa,
-    )
-    if rear_beam.mass_kg_m < profile("IPE220").mass_kg_m:
-        rear_beam = profile("IPE220")
-    rear_beams_kg = n_beams * rear_beam.mass_kg_m * rear
+        *((left + right) / 2.0 for left, right in zip(beam_ys, beam_ys[1:])),
+        width,
+    ]
+    tributary_widths = [
+        right - left
+        for left, right in zip(tributary_boundaries, tributary_boundaries[1:])
+    ]
+    max_tributary = max(tributary_widths)
+    beam = None
+    beam_strength_trial = None
+    beam_service_trial = None
+    beam_live_trial = None
+    minimum_beam = profile("IPE360")
+    for cand in series("IPE"):
+        if cand.mass_kg_m < minimum_beam.mass_kg_m:
+            continue
+        dead_line = floor_d * max_tributary + cand.mass_kg_m * G
+        live_line = floor_l * max_tributary
+        strength_line = max_factored_gravity(cfg, dead_line, live_line)
+        strength_response = overhanging_uniform_beam_response(
+            front, rear, strength_line, steel.e_pa * cand.iy_m4
+        )
+        service_response = overhanging_uniform_beam_response(
+            front, rear, dead_line + live_line, steel.e_pa * cand.iy_m4
+        )
+        live_response = overhanging_uniform_beam_response(
+            front, rear, live_line, steel.e_pa * cand.iy_m4
+        )
+        if cand.moment_capacity_knm(steel.fy_pa, phi_b) < strength_response.max_abs_moment_nm / 1e3:
+            continue
+        if (
+            service_response.max_main_span_deflection_m
+            > span_deflection_limit(front, crit["deflection_floor_total"])
+            or service_response.max_overhang_deflection_m
+            > span_deflection_limit(rear, crit["deflection_floor_total"])
+            or live_response.max_main_span_deflection_m
+            > span_deflection_limit(front, crit["deflection_floor_live"])
+            or live_response.max_overhang_deflection_m
+            > span_deflection_limit(rear, crit["deflection_floor_live"])
+        ):
+            continue
+        beam = cand
+        beam_strength_trial = strength_response
+        beam_service_trial = service_response
+        beam_live_trial = live_response
+        break
+    if beam is None:
+        raise ProfileSelectionError("Las vigas continuas con voladizo del P2 agotan el catálogo IPE del E0")
+
+    beam_strength_responses = []
+    beam_service_responses = []
+    beam_live_responses = []
+    for tributary in tributary_widths:
+        dead_line = floor_d * tributary + beam.mass_kg_m * G
+        live_line = floor_l * tributary
+        beam_strength_responses.append(
+            overhanging_uniform_beam_response(
+                front,
+                rear,
+                max_factored_gravity(cfg, dead_line, live_line),
+                steel.e_pa * beam.iy_m4,
+            )
+        )
+        beam_service_responses.append(
+            overhanging_uniform_beam_response(
+                front, rear, dead_line + live_line, steel.e_pa * beam.iy_m4
+            )
+        )
+        beam_live_responses.append(
+            overhanging_uniform_beam_response(
+                front, rear, live_line, steel.e_pa * beam.iy_m4
+            )
+        )
+    front_beams_kg = n_beams * beam.mass_kg_m * front
+    rear_beams_kg = n_beams * beam.mass_kg_m * rear
     beams_kg = front_beams_kg + rear_beams_kg
 
-    # Cercha de borde X=21 (luz 18 m en Y) que recibe medio frente.
-    q_strength_edge = q_strength * front / 2.0
-    m_edge = simply_supported_max_moment(q_strength_edge, width) / 1e3
+    # Cercha de borde X=21 (luz 18 m en Y) que recibe las reacciones reales
+    # del apoyo izquierdo de cada viga longitudinal.
     depth = width / float(options.get("edge_truss_depth_span_ratio", 16.0))
-    chord_force_kn = m_edge / depth
-    chord, _ = lightest_member(steel.fy_pa, phi_b, phi_c, 0.0, chord_force_kn, 2.4, "HSS", None, None)
-    if chord.mass_kg_m < profile("HSS150x150x8").mass_kg_m:
-        chord = profile("HSS150x150x8")
     web_ratio = float(options.get("web_ratio", 0.4))
-    edge_kg = 2.0 * chord.mass_kg_m * width * (1.0 + web_ratio)
+    edge_strength_points = [
+        (y, response.reaction_left_n)
+        for y, response in zip(beam_ys, beam_strength_responses)
+    ]
+    edge_service_points = [
+        (y, response.reaction_left_n)
+        for y, response in zip(beam_ys, beam_service_responses)
+    ]
+    edge_live_points = [
+        (y, response.reaction_left_n)
+        for y, response in zip(beam_ys, beam_live_responses)
+    ]
+    minimum_chord = profile("HSS150x150x8")
+    chord = None
+    edge_strength_response = None
+    edge_service_response = None
+    edge_live_response = None
+    truss_kg = 0.0
+    for cand in series("HSS"):
+        if cand.mass_kg_m < minimum_chord.mass_kg_m:
+            continue
+        trial_truss_kg = 2.0 * cand.mass_kg_m * width * (1.0 + web_ratio)
+        truss_dead_udl = trial_truss_kg * G / width
+        strength_response = simply_supported_beam_response(
+            width,
+            edge_strength_points,
+            udl_n_m=max_factored_gravity(cfg, truss_dead_udl, 0.0),
+            ei_n_m2=steel.e_pa * 2.0 * cand.area_m2 * (depth / 2.0) ** 2,
+        )
+        service_response = simply_supported_beam_response(
+            width,
+            edge_service_points,
+            udl_n_m=truss_dead_udl,
+            ei_n_m2=steel.e_pa * 2.0 * cand.area_m2 * (depth / 2.0) ** 2,
+        )
+        live_response = simply_supported_beam_response(
+            width,
+            edge_live_points,
+            ei_n_m2=steel.e_pa * 2.0 * cand.area_m2 * (depth / 2.0) ** 2,
+        )
+        chord_force_kn = strength_response.max_abs_moment_nm / depth / 1e3
+        if cand.axial_capacity_kn(steel.fy_pa, phi_c) < chord_force_kn:
+            continue
+        if (
+            service_response.max_abs_deflection_m
+            > span_deflection_limit(width, crit["deflection_floor_total"])
+            or live_response.max_abs_deflection_m
+            > span_deflection_limit(width, crit["deflection_floor_live"])
+        ):
+            continue
+        chord = cand
+        truss_kg = trial_truss_kg
+        edge_strength_response = strength_response
+        edge_service_response = service_response
+        edge_live_response = live_response
+        break
+    if chord is None:
+        raise ProfileSelectionError("La cercha de borde X=21 agota el catálogo HSS del E0")
+
+    edge_column = profile("HEA200")
+    edge_column_height = geom["p2_floor_level_m"]
+    edge_column_selfweight_n = max_factored_gravity(
+        cfg, edge_column.mass_kg_m * G * edge_column_height, 0.0
+    )
+    edge_column_demand_n = max(
+        edge_strength_response.reaction_left_n,
+        edge_strength_response.reaction_right_n,
+    ) + edge_column_selfweight_n
+    edge_column_gross_ratio = edge_column_demand_n / (
+        edge_column.axial_capacity_kn(steel.fy_pa, phi_c) * 1e3
+    )
+    if edge_column_gross_ratio > 1.0:
+        raise ProfileSelectionError("Las columnas de borde X=21 agotan el perfil mínimo de prueba")
+    edge_columns_kg = 2.0 * edge_column.mass_kg_m * edge_column_height
+    edge_kg = truss_kg + edge_columns_kg
 
     # Franja del núcleo (X=31,5→36): el sistema de deck no se analiza sin
     # ficha de fabricante y sección compuesta efectiva.
@@ -185,121 +328,127 @@ def size_p2_great_wall(
 
     # Bastidor oculto. Las posiciones corresponden a los límites de pantry,
     # bodega, portal de escalera, baño y homelab de la elevación b05.
-    beam_ys = [float(y) for y in options.get("beam_y_m", [3.0, 9.0, 15.0])]
-    column_ys = [float(y) for y in options.get("hidden_column_y_m", [0.0, 2.4, 7.4, 11.0, 13.4, 18.0])]
-    if (
-        len(beam_ys) != n_beams
-        or column_ys != sorted(column_ys)
-        or column_ys[0] != 0.0
-        or column_ys[-1] != width
-    ):
-        raise ValueError("La geometría del bastidor oculto no coincide con el ancho o las vigas")
-
-    # Reacción en X=31,5 de cada línea longitudinal: mitad del tramo frontal
-    # más mitad del tramo posterior. No se inventa un muro macizo de concreto.
-    p_wall_strength = q_strength * spacing * (front + rear) / 2.0
-    p_wall_service = q_service * spacing * (front + rear) / 2.0
-    segment_load_positions: dict[int, list[float]] = {
+    wall_strength_reactions = [response.reaction_support_n for response in beam_strength_responses]
+    wall_service_reactions = [response.reaction_support_n for response in beam_service_responses]
+    wall_live_reactions = [response.reaction_support_n for response in beam_live_responses]
+    segment_strength_loads: dict[int, list[tuple[float, float]]] = {
         idx: [] for idx in range(len(column_ys) - 1)
     }
-    column_reactions_n = [0.0 for _ in column_ys]
-    for beam_y in beam_ys:
+    segment_service_loads: dict[int, list[tuple[float, float]]] = {
+        idx: [] for idx in range(len(column_ys) - 1)
+    }
+    segment_live_loads: dict[int, list[tuple[float, float]]] = {
+        idx: [] for idx in range(len(column_ys) - 1)
+    }
+    for beam_y, p_strength, p_service, p_live in zip(
+        beam_ys,
+        wall_strength_reactions,
+        wall_service_reactions,
+        wall_live_reactions,
+    ):
         for idx, (left_y, right_y) in enumerate(zip(column_ys, column_ys[1:])):
             if left_y <= beam_y <= right_y:
-                span_y = right_y - left_y
                 a = beam_y - left_y
-                b = right_y - beam_y
-                column_reactions_n[idx] += p_wall_strength * b / max(span_y, 1e-9)
-                column_reactions_n[idx + 1] += p_wall_strength * a / max(span_y, 1e-9)
-                segment_load_positions[idx].append(a)
+                segment_strength_loads[idx].append((a, p_strength))
+                segment_service_loads[idx].append((a, p_service))
+                segment_live_loads[idx].append((a, p_live))
                 break
         else:
             raise ValueError(f"La viga longitudinal Y={beam_y} no cae entre columnas ocultas")
 
-    def segment_max_moment(load_n: float, span_y: float, load_positions: list[float]) -> float:
-        """Momento máximo de viga simple con cargas puntuales iguales."""
-        if not load_positions:
-            return 0.0
-        reaction_left = sum(load_n * (span_y - a) / span_y for a in load_positions)
-        stations = [0.0, *load_positions, span_y]
-        return max(
-            reaction_left * x - sum(load_n * (x - a) for a in load_positions if a <= x)
-            for x in stations
-        )
-
-    def segment_max_deflection(
-        load_n: float,
-        span_y: float,
-        load_positions: list[float],
-        ei_n_m2: float,
-    ) -> float:
-        """Flecha elástica por superposición, evaluada en 101 estaciones."""
-        if not load_positions:
-            return 0.0
-        maximum = 0.0
-        for step in range(101):
-            x = span_y * step / 100.0
-            delta = 0.0
-            for a in load_positions:
-                b = span_y - a
-                if x <= a:
-                    delta += load_n * b * x * (span_y**2 - b**2 - x**2) / (6.0 * span_y * ei_n_m2)
-                else:
-                    xr = span_y - x
-                    delta += load_n * a * xr * (span_y**2 - a**2 - xr**2) / (6.0 * span_y * ei_n_m2)
-            maximum = max(maximum, abs(delta))
-        return maximum
-
-    segment_cases = [
-        (column_ys[idx + 1] - column_ys[idx], positions)
-        for idx, positions in segment_load_positions.items()
-        if positions
-    ]
-    max_transfer_moment_knm = max(
-        (
-            segment_max_moment(p_wall_strength, span_y, positions) / 1e3
-            for span_y, positions in segment_cases
-        ),
-        default=0.0,
-    )
-
     min_transfer = profile(options.get("transfer_girder_min_profile", "IPE400"))
     transfer = None
     max_transfer_defl = 0.0
+    max_transfer_live_defl = 0.0
+    max_transfer_moment_knm = 0.0
+    transfer_strength_responses = []
     for cand in series("IPE"):
         if cand.mass_kg_m < min_transfer.mass_kg_m:
             continue
-        if cand.moment_capacity_knm(steel.fy_pa, phi_b) < max_transfer_moment_knm:
-            continue
-        deflections = [
-            segment_max_deflection(
-                p_wall_service,
-                span_y,
-                positions,
-                steel.e_pa * cand.iy_m4,
+        transfer_dead_udl = cand.mass_kg_m * G
+        trial_strength_responses = []
+        trial_service_responses = []
+        trial_live_responses = []
+        for idx in range(len(column_ys) - 1):
+            span_y = column_ys[idx + 1] - column_ys[idx]
+            trial_strength_responses.append(
+                simply_supported_beam_response(
+                    span_y,
+                    segment_strength_loads[idx],
+                    udl_n_m=max_factored_gravity(cfg, transfer_dead_udl, 0.0),
+                    ei_n_m2=steel.e_pa * cand.iy_m4,
+                )
             )
-            for span_y, positions in segment_cases
-        ]
-        if all(
-            delta <= span_y / 240.0
-            for delta, (span_y, _positions) in zip(deflections, segment_cases)
-        ):
-            transfer = cand
-            max_transfer_defl = max(deflections, default=0.0)
-            break
+            trial_service_responses.append(
+                simply_supported_beam_response(
+                    span_y,
+                    segment_service_loads[idx],
+                    udl_n_m=transfer_dead_udl,
+                    ei_n_m2=steel.e_pa * cand.iy_m4,
+                )
+            )
+            trial_live_responses.append(
+                simply_supported_beam_response(
+                    span_y,
+                    segment_live_loads[idx],
+                    ei_n_m2=steel.e_pa * cand.iy_m4,
+                )
+            )
+        trial_moment_knm = max(
+            response.max_abs_moment_nm for response in trial_strength_responses
+        ) / 1e3
+        if cand.moment_capacity_knm(steel.fy_pa, phi_b) < trial_moment_knm:
+            continue
+        total_deflection_ok = all(
+            response.max_abs_deflection_m
+            <= span_deflection_limit(column_ys[idx + 1] - column_ys[idx], crit["deflection_floor_total"])
+            for idx, response in enumerate(trial_service_responses)
+        )
+        live_deflection_ok = all(
+            response.max_abs_deflection_m
+            <= span_deflection_limit(column_ys[idx + 1] - column_ys[idx], crit["deflection_floor_live"])
+            for idx, response in enumerate(trial_live_responses)
+        )
+        if not total_deflection_ok or not live_deflection_ok:
+            continue
+        transfer = cand
+        transfer_strength_responses = trial_strength_responses
+        max_transfer_moment_knm = trial_moment_knm
+        max_transfer_defl = max(
+            response.max_abs_deflection_m for response in trial_service_responses
+        )
+        max_transfer_live_defl = max(
+            response.max_abs_deflection_m for response in trial_live_responses
+        )
+        break
     if transfer is None:
         raise ProfileSelectionError("La viga de transferencia del gran muro agota el catálogo IPE del E0")
 
     hidden_column = profile(options.get("hidden_column_trial_profile", "HSS150x150x8"))
+    column_reactions_n = [0.0 for _ in column_ys]
+    for idx, response in enumerate(transfer_strength_responses):
+        column_reactions_n[idx] += response.reaction_left_n
+        column_reactions_n[idx + 1] += response.reaction_right_n
+    hidden_column_height = geom["p2_floor_level_m"]
+    hidden_column_selfweight_n = max_factored_gravity(
+        cfg, hidden_column.mass_kg_m * G * hidden_column_height, 0.0
+    )
+    column_reactions_n = [reaction + hidden_column_selfweight_n for reaction in column_reactions_n]
     max_column_reaction_kn = max(column_reactions_n, default=0.0) / 1e3
     column_gross_ratio = max_column_reaction_kn / max(
         hidden_column.axial_capacity_kn(steel.fy_pa, phi_c), 1e-9
     )
+    column_euler_kn = (
+        math.pi**2 * steel.e_pa * hidden_column.iy_m4 / hidden_column_height**2 / 1e3
+    )
+    column_euler_major_ratio = max_column_reaction_kn / max(column_euler_kn, 1e-9)
+    if column_gross_ratio > 1.0:
+        raise ProfileSelectionError("La columna oculta de prueba agota la fluencia de sección bruta")
     frame_kg = (
         transfer.mass_kg_m * width
-        + hidden_column.mass_kg_m * geom["p2_floor_level_m"] * len(column_ys)
+        + hidden_column.mass_kg_m * hidden_column_height * len(column_ys)
     )
-    axial_kn_m = p_wall_strength * n_beams / width / 1e3
+    axial_kn_m = sum(wall_strength_reactions) / width / 1e3
 
     total = beams_kg + edge_kg + frame_kg
     return {
@@ -308,14 +457,30 @@ def size_p2_great_wall(
         "structural_envelope_m": geom.get("great_wall_structural_envelope_m", [0.25, 0.35]),
         "n_beams": n_beams,
         "beam_profile": beam.name,
+        "beam_system": "continuous_supports_x21_x31_5_with_free_overhang_to_x36",
+        "beam_total_length_m": round(front + rear, 2),
         "beam_span_m": round(front, 2),
         "front_beams_kg": round(front_beams_kg, 0),
-        "rear_beam_profile": rear_beam.name,
+        "rear_beam_profile": beam.name,
         "rear_beam_span_m": round(rear, 2),
         "rear_beams_kg": round(rear_beams_kg, 0),
         "beams_kg": round(beams_kg, 0),
+        "beam_tributary_widths_m": [round(value, 3) for value in tributary_widths],
+        "beam_max_moment_knm": round(beam_strength_trial.max_abs_moment_nm / 1e3, 1),
+        "beam_support_moment_knm": round(beam_strength_trial.support_moment_nm / 1e3, 1),
+        "beam_main_span_deflection_m": round(beam_service_trial.max_main_span_deflection_m, 4),
+        "beam_overhang_deflection_m": round(beam_service_trial.max_overhang_deflection_m, 4),
+        "beam_live_main_span_deflection_m": round(beam_live_trial.max_main_span_deflection_m, 4),
+        "rear_support_assumption": "none_free_overhang_from_great_wall",
         "edge_chord": chord.name,
         "edge_kg": round(edge_kg, 0),
+        "edge_truss_kg": round(truss_kg, 0),
+        "edge_columns_profile": edge_column.name,
+        "edge_columns_kg": round(edge_columns_kg, 0),
+        "edge_column_max_reaction_kn": round(edge_column_demand_n / 1e3, 1),
+        "edge_column_gross_yield_ratio": round(edge_column_gross_ratio, 3),
+        "edge_truss_max_moment_knm": round(edge_strength_response.max_abs_moment_nm / 1e3, 1),
+        "edge_truss_deflection_m": round(edge_service_response.max_abs_deflection_m, 4),
         "edge_truss_depth_m": round(depth, 2),
         "edge_truss_location": "full_story_above_p2_floor_no_drop_below_level_3_80",
         "nucleus_span_m": round(rear, 2),
@@ -330,22 +495,26 @@ def size_p2_great_wall(
         "panel_verification_status": "not_analyzed_manufacturer_composite_section_required",
         "wall_axial_kn_m": round(axial_kn_m, 1),
         "wall_gravity_reaction_kn_m": round(axial_kn_m, 1),
-        "wall_point_reaction_kn": round(p_wall_strength / 1e3, 1),
+        "wall_point_reaction_kn": round(max(wall_strength_reactions) / 1e3, 1),
+        "wall_point_reactions_kn": [round(value / 1e3, 1) for value in wall_strength_reactions],
         "beam_y_m": beam_ys,
         "hidden_column_y_m": column_ys,
         "hidden_column_trial_profile": hidden_column.name,
         "hidden_column_max_reaction_kn": round(max_column_reaction_kn, 1),
         "hidden_column_gross_yield_ratio": round(column_gross_ratio, 3),
+        "hidden_column_euler_major_axis_ratio": round(column_euler_major_ratio, 3),
+        "hidden_column_euler_scope": "major_axis_elastic_reference_only_weak_axis_and_code_curve_not_available",
         "transfer_girder_trial_profile": transfer.name,
         "transfer_girder_max_moment_knm": round(max_transfer_moment_knm, 1),
         "transfer_girder_max_point_deflection_m": round(max_transfer_defl, 4),
+        "transfer_girder_max_live_deflection_m": round(max_transfer_live_defl, 4),
         "hidden_frame_kg": round(frame_kg, 0),
         "total_kg": round(total, 0),
         "interior_columns": 0,
         "steel_subtotal_is_lower_bound": True,
         "ranking_eligible": False,
         "approval_status": options.get("approval_status", "active_gravity_concept_D-043_design_pending"),
-        "design_status": "active_gravity_concept_incomplete_no_buckling_connections_fire_foundations_or_lateral_design",
+        "design_status": "active_gravity_concept_incomplete_no_code_buckling_connections_fire_foundations_or_lateral_design",
         "lateral_role": "none_assumed_transverse_wall_does_not_stabilize_longitudinal_x",
-        "note": "D-043 adopta apoyo gravitacional híbrido de acero oculto; perfiles son pruebas de cabida de sección bruta, no diseño",
+        "note": "D-043 adopta apoyo gravitacional híbrido de acero oculto; el núcleo posterior se modela como voladizo sin apoyo X=36; perfiles son pruebas de cabida, no diseño",
     }

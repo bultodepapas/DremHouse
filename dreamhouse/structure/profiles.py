@@ -8,6 +8,7 @@ aproximación de correa conformada en frío para cuantificación preliminar.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 
 _TABLE = {
     "IPE200": {"A_cm2": 28.5, "Iy_cm4": 1943.0, "Wy_cm3": 194.0, "mass_kg_m": 22.4},
@@ -91,7 +92,12 @@ def profile(name: str) -> Profile:
 
 
 def series(prefix: str) -> list[Profile]:
-    return [p for name, p in CATALOG.items() if name.startswith(prefix)]
+    """Devuelve una serie ordenada por masa, sin depender del orden del dict."""
+
+    return sorted(
+        (p for name, p in CATALOG.items() if name.startswith(prefix)),
+        key=lambda candidate: (candidate.mass_kg_m, candidate.name),
+    )
 
 
 def lightest_member(
@@ -106,6 +112,8 @@ def lightest_member(
     q_service_kn_m: float | None,
     *,
     e_pa: float = 2.0e11,
+    live_deflection_limit_m: float | None = None,
+    q_live_kn_m: float | None = None,
 ) -> tuple[Profile, float]:
     """Selecciona el perfil más liviano que cumple resistencia, interacción
     axial+flexión y flecha (viga con carga uniforme de servicio). Hipótesis E0.
@@ -113,8 +121,45 @@ def lightest_member(
     El límite de flecha se compara en metros (p. ej. L/240 = length_m/240.0);
     q_service_kn_m en kN/m.
     """
+    scalar_inputs = {
+        "fy": fy,
+        "phi_b": phi_b,
+        "phi_c": phi_c,
+        "required_moment_knm": required_moment_knm,
+        "required_axial_kn": required_axial_kn,
+        "length_m": length_m,
+        "e_pa": e_pa,
+    }
+    if not all(math.isfinite(value) for value in scalar_inputs.values()):
+        raise ValueError(f"Entradas no finitas en selección de perfil: {scalar_inputs!r}")
+    if fy <= 0.0 or e_pa <= 0.0 or length_m <= 0.0:
+        raise ValueError("fy, E y la longitud deben ser positivos")
+    if not 0.0 < phi_b <= 1.0 or not 0.0 < phi_c <= 1.0:
+        raise ValueError("Los factores phi deben estar en el intervalo (0, 1]")
+    if required_moment_knm < 0.0 or required_axial_kn < 0.0:
+        raise ValueError("Las demandas de momento y axial deben darse como magnitudes no negativas")
+    if (deflection_limit_m is None) != (q_service_kn_m is None):
+        raise ValueError("El límite de flecha total y su carga de servicio deben suministrarse juntos")
+    if (live_deflection_limit_m is None) != (q_live_kn_m is None):
+        raise ValueError("El límite de flecha viva y su carga viva deben suministrarse juntos")
+    for label, limit, load in (
+        ("total", deflection_limit_m, q_service_kn_m),
+        ("viva", live_deflection_limit_m, q_live_kn_m),
+    ):
+        if limit is not None and (
+            not math.isfinite(limit)
+            or not math.isfinite(load)
+            or limit <= 0.0
+            or load < 0.0
+        ):
+            raise ValueError(f"Límite/carga de flecha {label} inválidos")
+
+    candidates = series(series_name)
+    if not candidates:
+        raise ProfileSelectionError(f"La serie {series_name!r} no existe en el catálogo E0")
+
     best = None
-    for cand in series(series_name):
+    for cand in candidates:
         mcap = cand.moment_capacity_knm(fy, phi_b)
         acap = cand.axial_capacity_kn(fy, phi_c)
         if required_axial_kn >= 0 and required_axial_kn / max(acap, 1e-9) > 1.0:
@@ -131,6 +176,11 @@ def lightest_member(
             ei = e_pa * cand.iy_m4
             delta = 5.0 * q_service_kn_m * 1e3 * length_m**4 / (384.0 * ei)
             if delta > deflection_limit_m:
+                continue
+        if live_deflection_limit_m is not None and q_live_kn_m is not None:
+            ei = e_pa * cand.iy_m4
+            delta_live = 5.0 * q_live_kn_m * 1e3 * length_m**4 / (384.0 * ei)
+            if delta_live > live_deflection_limit_m:
                 continue
         best = cand
         break

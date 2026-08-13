@@ -2,7 +2,7 @@
 
 **Estatus:** base de coordinación; hipótesis de ingeniería; no es memoria de cálculo
 ni diseño profesional
-**Versión:** 0.2
+**Versión:** 0.3
 **Fecha de corte:** 2026-08-12
 **Fuentes:** constitución del proyecto, programa arquitectónico v0.2, plano conceptual
 v0.2, bases estructurales y civiles v0.2, presupuesto desglosado de control, auditoría de
@@ -237,9 +237,9 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - El frente abierto en X = 21,00 m (borde del P2 hacia la doble altura) requiere una **viga
   de borde** de luz ≈ 18 m con apoyos puntuales integrados al núcleo/cocina; esta línea es
   un punto crítico de coordinación con la PB abierta (sin columnas arbitrarias en la nave).
-- Los pesos de E0 v0.1 (**5,9 t** gran muro, 3,8 t staggered y 12,8 t metaldeck) quedan
+- Los pesos históricos de E0 v0.1 (**5,9 t** gran muro, 3,8 t staggered y 12,8 t metaldeck) quedan
   **supersedidos como cifras de selección**: el gran muro omitía su propio bastidor de
-  acero y el deck se trató como una losa maciza incompatible con la carga muerta. E0 v0.2
+  acero y el deck se trató como una losa maciza incompatible con la carga muerta. E0 v0.3
   solo reporta subtotales inferiores y separa la pared híbrida.
 - Vibración: no se reporta frecuencia hasta seleccionar deck, sección compuesta,
   conectores, apoyos y masa real. El objetivo se fija en E1 con el criterio aplicable.
@@ -250,16 +250,16 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
   de una viga superior de transferencia y columnas HSS ocultas. Las columnas se prueban
   en los límites Y = 0/2,4/7,4/11,0/13,4/18,0 m, dejando libre el portal de escalera y
   coordinando las puertas enrasadas. Se estudian seis líneas longitudinales cada 3,00 m
-  (Y ≈ 1,5/4,5/7,5/10,5/13,5/16,5) para reducir el canto de IPE550 a IPE450 de prueba y
-  alojar viga + losa en la zona disponible; descargan entre machones, por lo que la
-  transferencia superior es un elemento real, no un detalle menor. Cada línea continúa
-  4,50 m desde el muro hasta la fachada posterior con un perfil menor de prueba; ambos
-  tramos deben figurar en cantidades y conexiones.
+  (Y ≈ 1,5/4,5/7,5/10,5/13,5/16,5). E0 v0.3 las modela como IPE400 continuas de
+  15,00 m, apoyadas en X=21,00 y X=31,50, con voladizo libre de 4,50 m sobre el núcleo
+  hasta X=36,00. No se supone apoyo en la fachada posterior. El momento negativo y la
+  continuidad sobre el muro vuelven la conexión viga–transferencia un elemento crítico;
+  la transferencia superior es un elemento real, no un detalle menor.
   Los perfiles que arroja E0 son pruebas de cabida por fluencia bruta, no selección.
   El espesor 0,20 m es arquitectónico y puede crecer a una envolvente preliminar de
   0,25–0,35 m por acero, uniones, tolerancias, acústica y fuego.
 - **Frontera en X = 21,00 m (viga de borde de ≈ 18 m):** se resuelve como **cercha de
-  canto completo**, apoyada en las columnas de los muros largos e integrada por encima
+  canto completo**, apoyada en dos columnas perimetrales de prueba e integrada por encima
   de +3,80 m dentro del frente del P2. No se permite descontar canto hacia la altura libre
   de PB; diagonales y montantes deben coordinarse con puertas, mini deck y cerramientos.
 - **Separación de funciones laterales:** la pared X=31,50 se extiende en Y y no sustituye
@@ -342,32 +342,33 @@ bajo carga muerta), proyección trigonométrica de cargas en miembros inclinados
 
 | Sistema × Modulación | Columnas | Viga / cercha | Tirante | Marcos | P2 metaldeck / staggered / gran muro | Acero total (metaldeck) | kg/m² | Total con gran muro | Lectura |
 |---|---|---|---|---|---|---:|---:|---:|---|
-| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 12,4 / 3,8 / 5,9 t | **59,4 t** | 64,7 | 52,9 t | deriva de viento gobierna |
-| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,8 / 3,8 / 5,9 t | **52,9 t** | 57,6 | 46,0 t | referencia de la auditoría |
-| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 17,1 / 3,8 / 5,9 t | **49,5 t** | 53,9 | 38,2 t | menos pórticos, vigas mayores |
-| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 12,4 / 3,8 / 5,9 t | **60,9 t** | 66,3 | 54,4 t | tirante casi inactivo: no competitivo |
-| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,8 / 3,8 / 5,9 t | **54,1 t** | 58,9 | 47,2 t | tirante ≈ 2,3 kN; no controla deriva |
-| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 17,1 / 3,8 / 5,9 t | **50,3 t** | 54,8 | 39,1 t | — |
-| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 12,4 / 3,8 / 5,9 t | **48,6 t** | 53,0 | 42,1 t | bases fijas: deriva 0,015 m |
-| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,8 / 3,8 / 5,9 t | **42,6 t** | 46,5 | 35,8 t | marco ≈ 27 % más liviano que articulado |
-| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 17,1 / 3,8 / 5,9 t | **43,5 t** | 47,4 | 32,3 t | — |
-| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 12,4 / 3,8 / 5,9 t | **41,4 t** | 45,1 | 34,9 t | más liviana del grupo |
-| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,8 / 3,8 / 5,9 t | **37,0 t** | 40,3 | 30,1 t | — |
-| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 17,1 / 3,8 / 5,9 t | **36,6 t** | 39,9 | 25,3 t | combinación más liviana |
+| PÓRTICO · M45 (4,5 m) | HEA500 | IPE450 | — | 39,5 t | 12,4 / 3,9 / 11,6 t | **59,4 t** | 64,7 | 58,6 t | deriva de viento gobierna |
+| PÓRTICO · M60 (6,0 m) | HEA500 | IPE500 | — | 32,6 t | 12,8 / 3,9 / 11,6 t | **52,9 t** | 57,6 | 51,7 t | referencia de la auditoría |
+| PÓRTICO · M90 (9,0 m) | HEA500 | IPE550 | — | 24,8 t | 17,1 / 3,9 / 11,6 t | **49,5 t** | 53,9 | 44,0 t | **falla H/200; catálogo agotado** |
+| PÓRTICO-T · M45 | HEA500 | IPE450 | 10 cm² | 41,0 t | 12,4 / 3,9 / 11,6 t | **60,9 t** | 66,3 | 60,1 t | tirante casi inactivo: no competitivo |
+| PÓRTICO-T · M60 | HEA500 | IPE500 | 10 cm² | 33,8 t | 12,8 / 3,9 / 11,6 t | **54,1 t** | 58,9 | 52,9 t | tirante ≈ 2,3 kN; no controla deriva |
+| PÓRTICO-T · M90 | HEA500 | IPE550 | 10 cm² | 25,6 t | 17,1 / 3,9 / 11,6 t | **50,3 t** | 54,8 | 44,8 t | **falla H/200; catálogo agotado** |
+| PÓRTICO-F · M45 | **HEA300** | IPE450 | — | 28,7 t | 12,4 / 3,9 / 11,6 t | **48,6 t** | 53,0 | 47,9 t | bases fijas: deriva 0,015 m |
+| PÓRTICO-F · M60 | **HEA300** | IPE450 | — | 22,3 t | 12,8 / 3,9 / 11,6 t | **42,6 t** | 46,5 | 41,5 t | marco ≈ 27 % más liviano que articulado |
+| PÓRTICO-F · M90 | **HEA300** | IPE550 | — | 18,8 t | 17,1 / 3,9 / 11,6 t | **43,5 t** | 47,4 | 38,0 t | deriva 0,025 m en cribado |
+| CERCHA · M45 | HEA200 | IPE220 (L/16) | — | 21,5 t | 12,4 / 3,9 / 11,6 t | **41,4 t** | 45,1 | 40,6 t | sin análisis lateral |
+| CERCHA · M60 | HEA200 | IPE220 (L/16) | — | 16,7 t | 12,8 / 3,9 / 11,6 t | **37,0 t** | 40,3 | 35,8 t | sin análisis lateral |
+| CERCHA · M90 | HEA200 | IPE220 (L/16) | — | 11,9 t | 17,1 / 3,9 / 11,6 t | **36,6 t** | 39,9 | 31,1 t | sin análisis lateral |
 
 Desglose por componente (M60): marcos 32,6 t (cerchas 16,7 t) + entrepiso
-P2 metaldeck ≈ 12,8 t / staggered ≈ 3,8 t / **gran muro ≈ 5,9 t** + secundaria
+P2 metaldeck ≈ 12,8 t / staggered ≈ 3,9 t / **gran muro ≈ 11,6 t** + secundaria
 ≈ 7,5 t. El metaldeck subió de ≈ 9,6 t a ≈ 12,8 t al corregir el límite de
 flecha L/240 (antes inoperante) y la luz de viga entre apoyos (18/3 = 6 m); el
-gran muro pasó de ≈ 6,1 t a ≈ 5,9 t al corregir la longitud de las vigas
-longitudinales (10,5 m, no 15 m) — que ahora son IPE550 por flecha L/240.
+gran muro subió a ≈11,6 t al eliminar el apoyo posterior no definido, modelar seis
+IPE400 continuas de 15 m con voladizo, sumar pesos propios, viga de transferencia y
+dos columnas perimetrales de la cercha X=21.
 
 ### Hallazgos
 
 1. **Deriva de viento gobierna los pórticos (H/200):** con bases articuladas y
    el viento de hipótesis (qz ≈ 0,45 kPa), las columnas suben a HEA500 y el
    peso principal a 30–40 t; el HEA300 de la auditoría no cumple la deriva de
-   servicio. En E1 el ingeniero decide: relajar el límite (H/150–180),
+   servicio; M90 articulado todavía falla H/200 con HEA500. En E1 el ingeniero decide: relajar el límite (H/150–180),
    rigidizar, o asumir columnas mayores.
 2. **Cercha con columnas articuladas + arriostramiento ≈ 30 % más liviana**
    (36–40 t vs. 49–58 t). El ahorro de acero debe contrastarse con el costo
@@ -382,12 +383,12 @@ longitudinales (10,5 m, no 15 m) — que ahora son IPE550 por flecha L/240.
    aplica. Requeriría análisis de segundo orden si se usara.
 4. **Pórtico con bases fijas (PORTICO-F):** es el control efectivo de deriva
    para el sistema de pórticos. Permite columna HEA300 con deriva
-   ≈ 0,016–0,021 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el
+   ≈ 0,015–0,025 m (vs. HEA500 articulado) y un marco ≈ 27 % más liviano; el
    costo pasa a la cimentación (momento en la base).
 5. **Entrepiso P2 — pared híbrida D-043:** se adopta el camino gravitacional,
-   no la cifra v0.1. E0 v0.2 añade viga de transferencia y seis columnas HSS
-   ocultas, conserva la cercha de borde X=21 por encima del piso y elimina el
-   muro macizo ficticio. Las cifras resultantes siguen siendo subtotales porque
+   no las cifras v0.1/v0.2. E0 v0.3 modela el voladizo posterior sin apoyo X=36,
+   añade peso propio, viga de transferencia, seis columnas HSS ocultas y dos
+   columnas perimetrales bajo la cercha X=21. Las cifras siguen siendo subtotales porque
    faltan pandeo, uniones, deck, fuego y cimentación. El muro transversal no se
    contabiliza como núcleo longitudinal X.
 6. **Cubierta de un solo faldón ≈ 1:30:** la viga de cubierta queda controlada

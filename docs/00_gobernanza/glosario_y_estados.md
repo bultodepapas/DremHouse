@@ -1,43 +1,46 @@
-# Glosario y estados documentales
+# Glossary and document statuses
 
-**Estatus:** activo  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11
+**Status:** active  
+**Version:** 0.2  
+**Date:** 2026-08-12  
+**Language note:** controlled English translation under D-044; no change in meaning.
 
-## Jerarquía de compromiso
+## Commitment hierarchy
 
-- **Hard rule:** condición confirmada por el propietario. Solo cambia mediante una
-  decisión explícita registrada.
-- **Requisito técnico:** desempeño indispensable por seguridad, norma, durabilidad o
-  funcionamiento. Solo cambia con soporte del profesional competente y cumplimiento
-  normativo.
-- **Design Control Value (DCV):** valor fuerte para coordinar el anteproyecto. Se usa por
-  defecto, pero puede ajustarse si planta, estructura, predio o costo demuestran una
-  mejora clara.
-- **Preferencia:** dirección deseada que admite alternativas comparadas.
-- **Hipótesis:** idea por estudiar; no autoriza compra, cotización final ni construcción.
-- **Dato pendiente:** información externa necesaria para decidir.
+- **Hard rule:** a condition confirmed by the owner. It changes only through an explicit,
+  recorded decision.
+- **Technical requirement:** performance required for safety, code compliance,
+  durability, or operation. It changes only with support from the competent professional
+  and continued regulatory compliance.
+- **Design Control Value (DCV):** a strong value used to coordinate schematic design. It
+  applies by default but may be adjusted if the plan, structure, site, or cost analysis
+  demonstrates a clear improvement.
+- **Preference:** a desired direction that allows comparison with alternatives.
+- **Hypothesis:** an idea to be studied; it does not authorize procurement, a final
+  quotation, or construction.
+- **Pending input:** external information required before a decision can be made.
 
-## Estados de decisión
+## Decision statuses
 
-- **Propuesta:** todavía sin aceptación.
-- **Activa:** gobierna el trabajo actual.
-- **Congelada:** no se modifica dentro de la fase sin control de cambios.
-- **Superada:** fue reemplazada por una decisión posterior, pero conserva historia.
-- **Descartada:** no debe reaparecer sin reabrir formalmente la decisión.
+- **Proposed:** not yet accepted.
+- **Active:** governs the current work.
+- **Frozen:** cannot be changed within the current stage without change control.
+- **Superseded:** replaced by a later decision but retained for historical traceability.
+- **Rejected:** must not reappear unless the decision is formally reopened.
 
-## Estados documentales
+## Document statuses
 
-- **Borrador:** incompleto; sirve para discusión.
-- **Activo:** referencia vigente de trabajo.
-- **Emitido para coordinación:** apto para coordinación interdisciplinaria, no para obra.
-- **Emitido para licencia:** paquete profesional firmado para trámite.
-- **Emitido para construcción (IFC):** documento aprobado, coordinado y firmado para
-  ejecutar.
-- **As-built:** refleja lo realmente construido y verificado.
-- **Histórico:** retenido como trazabilidad; no gobierna.
+- **Draft:** incomplete; suitable for discussion.
+- **Active:** current working reference.
+- **Issued for coordination:** suitable for interdisciplinary coordination, not for
+  construction.
+- **Issued for permit:** professionally signed package for regulatory submission.
+- **Issued for Construction (IFC):** approved, coordinated, and signed document suitable
+  for execution.
+- **As-built:** records work actually built and verified.
+- **Historical:** retained for traceability; does not govern current work.
 
-## Regla contra la falsa precisión
+## Rule against false precision
 
-Una cifra con decimales no es más confiable que su fuente. Toda cantidad debe indicar si
-es nominal, neta, bruta, calculada, cotizada o medida en obra.
+A number does not become more reliable because it has decimal places. Every quantity must
+state whether it is nominal, net, gross, calculated, quoted, or field-measured.

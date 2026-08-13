@@ -314,14 +314,16 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         f"- **GRAN-MURO — CONCEPTO GRAVITACIONAL ACTIVO D-043:** superficie de "
         f"madera/absorción delante de bastidor oculto {great_wall['hidden_column_trial_profile']} "
         f"+ viga de transferencia {great_wall['transfer_girder_trial_profile']}; "
-        f"{great_wall['n_beams']} vigas {great_wall['beam_profile']} a "
-        f"{18.0/great_wall['n_beams']:.1f} m en el tramo de 10,5 m y "
-        f"{great_wall['rear_beam_profile']} en el tramo posterior de 4,5 m dejan un canto conceptual de "
+        f"{great_wall['n_beams']} vigas continuas {great_wall['beam_profile']} de 15,0 m a "
+        f"{18.0/great_wall['n_beams']:.1f} m, apoyadas en X=21/31,5 y con voladizo libre "
+        f"de 4,5 m hasta X=36, dejan un canto conceptual de "
         f"{great_wall['trial_floor_zone_m']:.2f} m. El subtotal "
-        f"({great_wall['total_kg']/1000:.1f} t) es una prueba de cabida y no verifica pandeo, "
+        f"({great_wall['total_kg']/1000:.1f} t) incluye dos columnas perimetrales bajo la cercha "
+        f"de borde; reacción máxima al muro ≈{great_wall['wall_point_reaction_kn']:.1f} kN/línea. "
+        "Es una prueba de cabida y no verifica pandeo normativo, continuidad, "
         f"uniones, fuego, diafragma, cimentación ni acción lateral.",
         "",
-        "## Defectos corregidos en revisión 0.2",
+        "## Defectos corregidos en revisiones 0.2–0.3",
         "",
         "1. Se calcula el momento interior para carga uniforme de ambos signos; la revisión "
         "0.1 devolvía cero en una viga simple bajo succión.",
@@ -333,6 +335,15 @@ def markdown_report(cfg: dict, rows: list[dict], summary: dict) -> str:
         "5. El rafter incorpora interacción axial-flexión en el cribado de fluencia bruta.",
         "6. Se retiró la frecuencia ficticia del deck modelado como losa maciza de 220 mm. "
         "D-043 adopta el camino gravitacional del gran muro, pero no valida perfiles ni cantidades.",
+        "7. La revisión 0.3 eliminó el apoyo posterior inexistente: las vigas P2 se calculan "
+        "continuas con voladizo X=31,5→36 y se incluyen sus momentos negativos, peso propio "
+        "y las dos columnas perimetrales de la cercha X=21.",
+        "8. El viento transversal ya intercambia Cp=0,8/0,5 entre barlovento y sotavento; "
+        "antes promediaba erróneamente 0,65 en ambos aleros.",
+        "9. Se verifica también flecha por carga viva L/360, se suma el peso propio de vigas "
+        "y transferencias, y el catálogo se recorre por masa sin depender del orden del JSON.",
+        "10. El solver falla explícitamente ante miembros degenerados, vectores incompatibles "
+        "o mecanismos; las siete acciones básicas tienen pruebas de equilibrio global.",
         "",
         "## Bloqueadores",
         "",

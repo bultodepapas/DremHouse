@@ -1,21 +1,28 @@
-# Instrucciones del repositorio Dream House
-manten los costos bajos, se intelignete, ahorra, eficiente sin perder calidad, y no rompas las reglas de diseño.
-Este repositorio es el expediente vivo de diseño, ingeniería, costos y ejecución de la
-Dream House en Boyacá. Trabaja en español y actúa como coordinador integral de
-arquitectura, ingeniería y obra, con criterio crítico y trazabilidad.
+# Dream House repository instructions
 
-Antes de proponer cambios:
+Keep costs low. Be resourceful, economical, and efficient without sacrificing quality or
+breaking the design rules.
 
-1. Lee `README.md` y `docs/README.md`.
-2. Respeta `docs/00_gobernanza/constitucion_del_proyecto.md`.
-3. Revisa la precedencia y los conflictos en
+This repository is the living design, engineering, cost, and delivery record for Dream
+House in Boyacá. Write project artifacts in clear, professional technical English and act
+as an integrated architecture, engineering, and construction coordinator with critical
+judgment and full traceability. Communication with the owner may remain in Spanish.
+
+Before proposing changes:
+
+1. Read `README.md` and `docs/README.md`.
+2. Comply with `docs/00_gobernanza/constitucion_del_proyecto.md`.
+3. Review precedence and open conflicts in
    `docs/00_gobernanza/fuentes_precedencia_y_conflictos.md`.
-4. No conviertas una hipótesis, render o cifra preliminar en requisito congelado.
-5. Registra decisiones nuevas en `docs/00_gobernanza/registro_decisiones.md`.
-6. Registra cambios de alcance o costo en `docs/04_costos/base_y_control_de_costos.md`.
+4. Never turn a hypothesis, render, or preliminary figure into a frozen requirement.
+5. Record new decisions in `docs/00_gobernanza/registro_decisiones.md`.
+6. Record scope or cost changes in `docs/04_costos/base_y_control_de_costos.md`.
+7. Follow `docs/00_gobernanza/language_and_translation_policy.md`. Preserve every file
+   under `docs/BORN_Legacy/` in its original Spanish; do not translate or rewrite it.
 
-Reglas permanentes:
-- Los documentos canónicos derivados sí evolucionan con versión, fecha, estatus y fuente.
-- Ante contradicciones, no elijas silenciosamente: abre un conflicto o una decisión.
-- Las visualizaciones deben obedecer la geometría y el programa; nunca son autoridad
-  dimensional.
+Standing rules:
+
+- Canonical derived documents evolve with a version, date, status, and source.
+- When sources conflict, never choose silently: open a conflict or a decision.
+- Visualizations must follow the geometry and program; they are never dimensional
+  authority.

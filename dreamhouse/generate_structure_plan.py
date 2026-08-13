@@ -85,9 +85,7 @@ def frame_positions(cfg) -> list[float]:
 
 def staggered_positions(cfg, st) -> list[float]:
     """Posiciones X de las cerchas staggered derivadas del cálculo (paneles)."""
-    geom = cfg["geometry"]
-    panel = geom["p2_length_m"] / st["n_trusses"]
-    return [geom["p2_start_x_m"] + k * panel for k in range(1, st["n_trusses"] + 1)]
+    return list(st["support_x_m"])
 
 
 def beam_y_positions(gw) -> list[float]:
@@ -159,9 +157,11 @@ def draw_plan(parts, cfg, pb, gw):
     # Esquema GRAN-MURO del entrepiso P2: cercha de borde X=21 + vigas longitudinales.
     parts.append(line(sx(21), sy(0), sx(21), sy(18), color="#3f7d8a", width=3, dash="9 5"))
     parts.append(text(sx(21), sy(0.6), "CERCHA DE BORDE X=21 (luz 18 m)", 7, weight=700, fill="#3f7d8a", rotate=-90))
+    for y in (0.0, 18.0):
+        parts.append(f'<circle cx="{sx(21)}" cy="{sy(y)}" r="6" fill="#27859a" stroke="#173f48" stroke-width="1"/>')
     for y in beam_ys:
         parts.append(line(sx(21), sy(y), sx(36), sy(y), color="#3f7d8a", width=3, dash="4 4"))
-    parts.append(text(sx(21.2), sy(beam_ys[0] + 0.6), f"{gw['n_beams']} LÍNEAS: {gw['beam_profile']} × {gw['beam_span_m']} m + {gw['rear_beam_profile']} × {gw['rear_beam_span_m']} m", 7, weight=700, fill="#3f7d8a", anchor="start"))
+    parts.append(text(sx(21.2), sy(beam_ys[0] + 0.6), f"{gw['n_beams']} LÍNEAS: {gw['beam_profile']} CONTINUAS × {gw['beam_total_length_m']} m · VOLADIZO {gw['rear_beam_span_m']} m", 7, weight=700, fill="#3f7d8a", anchor="start"))
     parts.append(text(sx(28.5), sy(0.6), f"P2 D-043: franja {gw['nucleus_span_m']} m · DECK/FRECUENCIA NO ANALIZADOS", 7, weight=700, fill="#8e3825"))
 
     for i, x in enumerate(frames):
@@ -320,14 +320,14 @@ def draw_lateral(parts, cfg, pb, q, gw):
 
 def note_box(parts, q, st, gw):
     lines = [
-        "Modelo E0 v0.2 en vivo: cribado geométrico y subtotales inferiores; no produce cantidades de diseño.",
+        "Modelo E0 v0.3 en vivo: cribado geométrico y subtotales inferiores; no produce cantidades de diseño.",
     ]
     if q and gw:
         lines.append(
             f"CERCHA M60: {q['main_frames_kg']/1000:.1f} t de subtotal; NO tiene análisis lateral, estabilidad de barras ni conexiones."
         )
         lines.append(
-            f"GRAN-MURO D-043: apoyo gravitacional híbrido activo; {gw['hidden_column_trial_profile']} ocultas + "
+            f"GRAN-MURO D-043/D-044: vigas continuas con voladizo; {gw['hidden_column_trial_profile']} ocultas + "
             f"{gw['transfer_girder_trial_profile']} son pruebas de cabida, no perfiles seleccionados."
         )
         if st:
@@ -364,7 +364,7 @@ def draw_hybrid_wall_elevation(parts, pb, gw):
         parts.append(line(px, base, px, floor_y + 22, color="#27859a", width=12))
         parts.append(f'<circle cx="{px}" cy="{floor_y + 22}" r="8" fill="#1e5f6c"/>')
 
-    # Tres reacciones de las vigas longitudinales sobre la transferencia.
+    # Reacciones de las vigas longitudinales sobre la transferencia.
     for beam_y in gw["beam_y_m"]:
         px = left + beam_y * sx
         parts.append(line(px, floor_y - 44, px, floor_y + 5, color="#b05a38", width=3))

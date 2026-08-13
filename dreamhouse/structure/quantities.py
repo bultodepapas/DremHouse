@@ -9,7 +9,13 @@ from __future__ import annotations
 import math
 
 from .materials import Steel
-from .portal import size_cercha_columns, size_cercha_roof, size_joists_and_beams, size_portal_frame
+from .portal import (
+    P2_SIDE_COLUMN_SHARE,
+    size_cercha_columns,
+    size_cercha_roof,
+    size_joists_and_beams,
+    size_portal_frame,
+)
 from .profiles import profile
 from .staggered import size_p2_great_wall, size_staggered_floor
 
@@ -97,7 +103,12 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
                 col_roof = q * 18.0 / 2.0
                 col_p2 = 0.0
                 if n_p2_frames > 0:
-                    col_p2 = (fac.get("D", 0.0) * floor_d + fac.get("L", 0.0) * floor_l) * avg_trib * 18.0 / 2.0
+                    col_p2 = (
+                        (fac.get("D", 0.0) * floor_d + fac.get("L", 0.0) * floor_l)
+                        * avg_trib
+                        * 18.0
+                        * P2_SIDE_COLUMN_SHARE
+                    )
                 axial_max = max(axial_max, col_roof + col_p2)
             col = size_cercha_columns(cfg, steel, axial_max / 1e3, col_len, phi_c)
             main_per_frame = (2.0 * col.mass_kg_m * col_len + truss_mass) * (1.0 + detail)
@@ -135,7 +146,10 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
         purlin_lines = math.ceil(roof_width / crit["purlin_spacing_m"]) + 1
         purlin_total = purlin_lines * length * profile("C200").mass_kg_m
         girt_lines = math.ceil((eave_low + eave_high) / 2.0 / crit["girt_spacing_m"])
-        girt_total = girt_lines * (2.0 * (length + 18.0)) * profile("C200").mass_kg_m * 0.85
+        girt_gross_m = girt_lines * (2.0 * (length + 18.0))
+        girt_opening_factor = 0.85
+        girt_net_m = girt_gross_m * girt_opening_factor
+        girt_total = girt_net_m * profile("C200").mass_kg_m
         bracing_total = float(crit["bracing_mass_allowance_kg"])
         secondary_total = (purlin_total + girt_total + bracing_total) * (1.0 + waste)
 
@@ -162,7 +176,9 @@ def compute_quantities(cfg: dict, steel: Steel, bay_m: float, n_bays: int, phi_b
             "staggered": staggered,
             "great_wall": great_wall,
             "purlins_m": round(purlin_total / profile("C200").mass_kg_m, 0),
-            "girts_m": round(girt_total / profile("C200").mass_kg_m / 0.85 / (1.0 + waste), 0),
+            "girts_m": round(girt_net_m, 0),
+            "girts_gross_m": round(girt_gross_m, 0),
+            "girt_opening_factor": girt_opening_factor,
             "total_kg": total_kg,
             "total_t": round(total_kg / 1000.0, 1),
             "kg_m2": round(total_kg / 918.0, 1),

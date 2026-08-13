@@ -1,97 +1,102 @@
-# Constitución del proyecto
+# Project Constitution
 
-**Estatus:** activo  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11  
-**Fuente principal:** documento conceptual consolidado y plano conceptual v0.2.
+**Status:** active  
+**Version:** 0.2  
+**Date:** 2026-08-12  
+**Primary source:** consolidated concept document and conceptual plan v0.2.  
+**Language note:** controlled English translation under D-044; no design change.
 
-Este documento resume las condiciones que gobiernan toda evolución del diseño. No
-reemplaza las fuentes originales; las vuelve operables.
+This document summarizes the conditions that govern every evolution of the design. It
+does not replace the original sources; it makes them operational.
 
-## Propósito
+## Purpose
 
-Crear una casa en Boyacá que se perciba primero como una **gran nave industrial simple
-convertida en vivienda extraordinaria**, no como una casa convencional con garaje grande.
-La vida técnica del propietario es arquitectura, no un uso que deba ocultarse.
+Create a house in Boyacá that is perceived first as a **large, simple industrial hall
+converted into an extraordinary home**, rather than a conventional house with an oversized
+garage. The owner's technical life is part of the architecture, not a use to be concealed.
 
-## Hard rules arquitectónicas
+## Architectural hard rules
 
-1. El proyecto se localizará en Boyacá, en el corredor ampliado Tunja–Paipa–Duitama–
-   Sogamoso, sobre un terreno esencialmente plano.
-2. Exteriormente será una sola nave rectangular, una estructura dominante y una cubierta
-   continua simple.
-3. La planta baja visible será un único gran recinto continuo, sin cajas cerradas
-   dispersas.
-4. La única gran interrupción interior será el núcleo transversal posterior oculto.
-5. La secuencia desde el frente será: **técnica → monumental → doméstica → núcleo**.
-6. El segundo piso será parcial, estará anclado al fondo y preservará una gran doble
-   altura delantera.
-7. Existirán exactamente cuatro dormitorios permanentes, todos en P2: suite principal,
-   dos suites de hijos y suite de huéspedes.
-8. Las cuatro habitaciones tendrán baño completo, privado e independiente con ducha.
-9. Los dormitorios útiles de los dos hijos tendrán la misma área **dentro de ±1,00 m²** y
-   equivalencia cualitativa medible. *(Texto original: «exactamente la misma área».
-   Elastizado por **D-042**, 2026-08-11, a petición del propietario, para permitir mejorar
-   el resto del P2. La equivalencia cualitativa se verifica como proporción ≤ 1,35:1 en
-   ambos dormitorios y diferencia entre ambos ≤ 0,30.)*
-10. La suite principal será claramente dominante, con gran vestidor y el baño de mayor
-    jerarquía.
-11. El P2 será privado y acústicamente cerrado; no será un mezzanine ni una galería de
-    hotel abierta a la nave. El mini deck será la conexión visual controlada.
-12. El taller RC/DIY/electrónica/impresión 3D permanecerá abierto e integrado.
-13. Habrá un único carro proyecto interior, en un taller-garaje; los vehículos cotidianos
-    permanecerán afuera.
-14. El carro entrará perpendicular a la fachada y avanzará longitudinalmente hasta un
-    elevador automotriz permanente en doble altura.
-15. La fachada frontal tendrá exactamente tres accesos legibles: puerta industrial del
-    carro + puerta peatonal central + puerta industrial del taller RC/DIY. Los lados pueden
-    espejarse.
-16. La puerta central originará un eje longitudinal sin muros o “pasillo invisible”.
-17. Las puertas deberán permitir expandir la nave hacia una plataforma frontal de
-    concreto y luego hacia césped plano.
-18. La bodega posterior tendrá acceso interior y salida exterior propia.
-19. La estructura metálica será visible; potencia, datos y cableado serán abundantes,
-    mantenibles y mayoritariamente ocultos.
-20. Home Assistant, red cableada, PoE, reservas eléctricas y conduits vacíos se integrarán
-    desde diseño, con el homelab como corazón técnico.
-21. El P2 incluirá sauna familiar para unas seis personas, ducha próxima y zona de
-    relajación. El jacuzzi es opcional.
-22. La respuesta al clima frío, condensación, infiltración, lluvia, puentes térmicos y
-    confort es obligatoria.
-23. La eficiencia significa máxima calidad con mínima complejidad y desperdicio; nunca
-    justifica reducir seguridad o desempeño esencial.
+1. The project will be located in Boyacá, within the broader Tunja–Paipa–Duitama–Sogamoso
+   corridor, on an essentially level site.
+2. From the exterior, it will read as one rectangular hall with one dominant structure
+   and one simple, continuous roof.
+3. The visible ground floor (PB) will be one large, continuous room, without scattered
+   enclosed boxes.
+4. The only major interior interruption will be the concealed transverse service core at
+   the rear.
+5. The sequence from front to rear will be: **technical → monumental → domestic → core**.
+6. The upper floor (P2) will be partial, anchored at the rear, and will preserve a large
+   double-height volume at the front.
+7. There will be exactly four permanent bedrooms, all on P2: the primary suite, two
+   children's suites, and one guest suite.
+8. All four bedrooms will have a complete, private, independent bathroom with a shower.
+9. The usable bedroom areas of the two children will be equal **within ±1.00 m²** and will
+   provide measurable qualitative equivalence. *(Original wording: “exactly the same
+   area.” Relaxed by **D-042**, 2026-08-11, at the owner's request, to allow improvements
+   elsewhere on P2. Qualitative equivalence is verified by requiring both bedrooms to
+   remain at or below a 1.35:1 aspect ratio, with no more than 0.30 difference between
+   their respective ratios.)*
+10. The primary suite will be clearly dominant, with a large dressing room and the most
+    substantial bathroom.
+11. P2 will be private and acoustically enclosed. It will not be a mezzanine or a hotel-like
+    gallery open to the hall. The mini deck will provide the controlled visual connection.
+12. The RC/DIY/electronics/3D-printing workshop will remain open and integrated.
+13. There will be one project car inside the building, in a workshop garage; daily-use
+    vehicles will remain outside.
+14. The car will enter perpendicular to the front façade and travel longitudinally to a
+    permanent automotive lift located within the double-height volume.
+15. The front façade will have exactly three legible entrances: industrial door for the
+    project car + central pedestrian door + industrial door for the RC/DIY workshop. The
+    two sides may be mirrored.
+16. The central door will establish an unobstructed longitudinal axis—an “invisible
+    corridor.”
+17. The doors must allow the hall to expand onto a front concrete apron and then onto
+    level lawn.
+18. The rear storage room will have internal access and its own exterior exit.
+19. The steel structure will remain visible. Power, data, and cabling will be abundant,
+    maintainable, and predominantly concealed.
+20. Home Assistant, a wired network, PoE, spare electrical capacity, and empty conduits
+    will be integrated from the design stage, with the homelab as the technical heart.
+21. P2 will include a family sauna for approximately six people, a nearby shower, and a
+    relaxation area. A hot tub is optional.
+22. The design must address cold weather, condensation, air and water infiltration, rain,
+    thermal bridging, and occupant comfort.
+23. Efficiency means achieving maximum quality with minimum complexity and waste. It
+    never justifies reducing safety or essential performance.
 
-## Design Control Values activos
+## Active Design Control Values
 
-- Nave nominal: **18,00 × 36,00 m**.
-- PB nominal: **648 m²**.
-- P2 posterior nominal: **18,00 × 15,00 m = 270 m²**.
-- Área construida conceptual: **≈918 m²**.
-- Doble altura delantera: **18,00 × 21,00 m = 378 m²**.
-- Bandas longitudinales: 10,5 m técnica + 10,5 m monumental + 10,5 m doméstica +
-  4,5 m núcleo.
-- Nivel terminado P2: **≈+3,80 m**.
-- Altura libre bajo P2: **≈3,05–3,20 m**.
-- Altura libre P2: **≈3,00–3,15 m**.
-- Altura interior de nave: **≈7,20–7,80 m**.
+- Nominal hall: **18.00 × 36.00 m**.
+- Nominal ground floor (PB): **648 m²**.
+- Nominal rear upper floor (P2): **18.00 × 15.00 m = 270 m²**.
+- Conceptual gross floor area: **≈918 m²**.
+- Front double-height volume: **18.00 × 21.00 m = 378 m²**.
+- Longitudinal bands: 10.5 m technical + 10.5 m monumental + 10.5 m domestic +
+  4.5 m core.
+- P2 finished floor level: **≈+3.80 m**.
+- Clear height below P2: **≈3.05–3.20 m**.
+- Clear height on P2: **≈3.00–3.15 m**.
+- Interior hall height: **≈7.20–7.80 m**.
 
-Estos valores coordinan el trabajo, pero no son cotas contractuales. Espesores, ejes,
-estructura, predio y mobiliario real pueden exigir ajustes controlados.
+These values coordinate the work but are not contractual dimensions. Wall thicknesses,
+grid lines, structure, the selected site, and actual furniture may require controlled
+adjustments.
 
-## Decisiones descartadas
+## Rejected decisions
 
-- Dormitorios en PB.
-- Garaje separado o dos carros interiores.
-- P2 al frente, completo o abierto como mezzanine.
-- Escalera escultórica fuera del núcleo.
-- Taller RC encerrado como cuarto convencional.
-- Múltiples cubiertas, gesto de granero, tragaluces o balcones por defecto.
-- Fachadas indiscriminadamente acristaladas.
-- Ocultar hobbies y carro para simular una vivienda convencional.
-- Usar renders o IA como autoridad de cotas, áreas, estructura o programa.
+- Bedrooms on PB.
+- A detached garage or two cars inside the building.
+- P2 at the front, full-depth, or open as a mezzanine.
+- A sculptural stair outside the core.
+- Enclosing the RC workshop as a conventional room.
+- Multiple roofs, a barn expression, rooflights, or balconies by default.
+- Indiscriminately glazed façades.
+- Concealing the hobbies and project car to imitate a conventional house.
+- Treating renders or AI imagery as authority for dimensions, areas, structure, or program.
 
-## Cómo cambiar una hard rule
+## How to change a hard rule
 
-Toda modificación requiere: solicitud del propietario, alternativas, efectos espaciales,
-técnicos, normativos, económicos y de plazo, decisión registrada, actualización de
-documentos afectados y nueva línea base.
+Every change requires: an owner request; alternatives; spatial, technical, regulatory,
+cost, and schedule effects; a recorded decision; updates to every affected document; and
+a new baseline.
