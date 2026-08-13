@@ -2,11 +2,11 @@
 
 **Estatus:** base de coordinación; hipótesis de ingeniería; no es memoria de cálculo
 ni diseño profesional
-**Versión:** 0.4
+**Versión:** 0.5
 **Fecha de corte:** 2026-08-12
 **Fuentes:** constitución del proyecto, programa arquitectónico v0.2, plano conceptual
 v0.2, bases estructurales y civiles v0.2, presupuesto desglosado de control, auditoría de
-costos 2026-08, herramientas digitales (modelos E0/E1), D-043/D-045/D-047 y técnicas que
+costos 2026-08, herramientas digitales (modelos E0/E1), D-043/D-045/D-047/D-048 y técnicas que
 abaratan costos.
 **Aprobación pendiente:** ingeniero estructural, arquitecto coordinador, propietario.
 
@@ -25,6 +25,8 @@ automático, fije el tonelaje real.
 
 The active visual synthesis is
 [DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg),
+with the focused
+[DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg),
 supported by the updated
 [structural-to-drawing integration study](estudio_integracion_estructura_planos.md) and
 the [E1 screening report](../08_investigacion/e1_structural_screening.md).
@@ -34,6 +36,12 @@ a neutral computational specimen. D-043 fixes only the P2 Great Wall gravity int
 D-045 retains six continuous-overhang beam lines only as an E0 hypothesis. The integrated
 sheet exposes member, connection, lateral, diaphragm, fire, erection, base-plate, and
 foundation evidence while every system-level design gate remains blocked.
+
+D-048 adds a geometry-controlled study: continue the Great Wall stair-jamb columns at
+(31.50, 7.40) and (31.50, 11.00) and add rear enclosure columns at (36.00, 7.40) and
+(36.00, 11.00). The enclosure frame—not the stair flights—is the preferred structural
+study. No section, bracing topology, collector, drift joint, base, foundation, fire
+protection, or roof gravity role is selected.
 
 Revision 0.4 also records a precedence correction: earlier derived prose describing
 three P2 beams, an assigned longitudinal shear-core role, or an adopted strip foundation
@@ -233,7 +241,7 @@ longitudinal (cubierta + muros) en los paños de servicio. Los eventos de vidrio
 técnicos 7,20 m, vidrio de sala) reducen paños de arriostramiento disponibles y deben
 coordinarse simultáneamente (regla del concepto: estructura, fachada y luz se diseñan juntos).
 
-Medidas adicionales para controlar la deriva **sin columnas interiores** (todas hipótesis
+Medidas adicionales para controlar la deriva **sin columnas interiores expuestas o arbitrarias** (todas hipótesis
 E1; el E0 mostró que la deriva de viento gobierna las columnas):
 
 - **Cordón / viga longitudinal de cubierta (wind girder)** en el plano del faldón para
@@ -285,6 +293,13 @@ E1; el E0 mostró que la deriva de viento gobierna las columnas):
 - **Separación de funciones laterales:** la pared X=31,50 se extiende en Y y no sustituye
   el sistema longitudinal X de las fachadas largas. Su eventual aporte en Y, el
   diafragma, los colectores y la torsión de una línea excéntrica se resuelven en E1.
+- **Continuidad vertical D-048 alrededor de la escalera:** se estudian como líneas
+  continuas cimentación–P2–cubierta las dos columnas del gran muro en Y=7,40/11,00 y dos
+  columnas nuevas posteriores en X=36,00. Las caras laterales pueden estudiar diagonales;
+  el portal protegido y la salida posterior obligan a estudiar pórticos de momento o
+  soluciones segmentadas en la dirección ortogonal. Las zancas y tramos de escalera no
+  reciben crédito lateral salvo modelación explícita y deben admitir la deriva relativa.
+  Alcanzar la cubierta no asigna automáticamente una reacción gravitacional de cubierta.
 
 ## 6. Materiales y protección
 

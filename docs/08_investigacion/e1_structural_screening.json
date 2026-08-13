@@ -1,12 +1,12 @@
 {
   "project": {
     "id": "DH-EST-E1-SCREEN-001",
-    "revision": "0.1",
+    "revision": "0.2",
     "status": "research_screening_not_design",
     "date": "2026-08-12",
-    "purpose": "Expose E1 member, joint, stability, diaphragm, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
+    "purpose": "Expose E1 member, joint, stability, diaphragm, vertical-continuity, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
   },
-  "input_sha256": "23820e391b5a7134c2af04047f90b49de219f4affa1efcf8c230cd0e30c7a2be",
+  "input_sha256": "225f10ac3fe38431eeb8381ef55bab8bc70b42324b74452cc1d0cdff6d72074f",
   "reference_truss": {
     "role": "neutral_M60_test_specimen_not_a_selected_system",
     "candidate": {
@@ -246,6 +246,353 @@
       "complete_building_lateral_system_resolved": false,
       "site_actions_resolved": false
     },
+    "vertical_continuity_and_stair_core": {
+      "configuration": {
+        "status": "geometry_feasibility_hypothesis_not_system_selection",
+        "geometry_tolerance_m": 0.01,
+        "candidate_columns": [
+          {
+            "id": "GW-SOUTH",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 0.0,
+            "existing_to_p2": true
+          },
+          {
+            "id": "GW-Y2.4",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 2.4,
+            "existing_to_p2": true
+          },
+          {
+            "id": "GW-STAIR-S",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 7.4,
+            "existing_to_p2": true
+          },
+          {
+            "id": "GW-STAIR-N",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 11.0,
+            "existing_to_p2": true
+          },
+          {
+            "id": "GW-Y13.4",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 13.4,
+            "existing_to_p2": true
+          },
+          {
+            "id": "GW-NORTH",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 18.0,
+            "existing_to_p2": true
+          },
+          {
+            "id": "STAIR-REAR-S",
+            "source": "new_rear_stair_enclosure_column",
+            "x_m": 36.0,
+            "y_m": 7.4,
+            "existing_to_p2": false
+          },
+          {
+            "id": "STAIR-REAR-N",
+            "source": "new_rear_stair_enclosure_column",
+            "x_m": 36.0,
+            "y_m": 11.0,
+            "existing_to_p2": false
+          }
+        ],
+        "expected_compatible_column_ids": [
+          "GW-STAIR-S",
+          "GW-STAIR-N",
+          "STAIR-REAR-S",
+          "STAIR-REAR-N"
+        ],
+        "stair_flights_primary_lateral_role": false,
+        "preferred_concept": "independent_four_column_stair_enclosure_frame_with_drift_compatible_stair_connections",
+        "roof_gravity_support_role": "not_assigned",
+        "roof_lateral_collector_role": "study_only",
+        "p2_lateral_collector_role": "study_only"
+      },
+      "alignment_checks": {
+        "great_wall_matches_p2_stair_front": true,
+        "rear_facade_matches_p2_stair_back": true,
+        "pb_p2_stair_y0_aligned": true,
+        "pb_p2_stair_y1_aligned": true
+      },
+      "stair_enclosure": {
+        "x0_m": 31.5,
+        "x1_m": 36.0,
+        "y0_m": 7.4,
+        "y1_m": 11.0,
+        "width_x_m": 4.5,
+        "width_y_m": 3.6,
+        "p2_level_m": 3.8
+      },
+      "candidates": [
+        {
+          "id": "GW-SOUTH",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 0.0,
+          "existing_to_p2": true,
+          "space_relations": [
+            {
+              "space_id": "M-D",
+              "relation": "boundary"
+            }
+          ],
+          "interior_nonstair_spaces": [],
+          "window_conflicts": [
+            "W-M-LAT-A"
+          ],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": false,
+          "geometry_compatible_for_full_height_study": false,
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "interrupts_glazing:W-M-LAT-A"
+          ]
+        },
+        {
+          "id": "GW-Y2.4",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 2.4,
+          "existing_to_p2": true,
+          "space_relations": [
+            {
+              "space_id": "M-D",
+              "relation": "interior"
+            }
+          ],
+          "interior_nonstair_spaces": [
+            "M-D"
+          ],
+          "window_conflicts": [],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": false,
+          "geometry_compatible_for_full_height_study": false,
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "crosses_p2_space:M-D"
+          ]
+        },
+        {
+          "id": "GW-STAIR-S",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 7.4,
+          "existing_to_p2": true,
+          "space_relations": [
+            {
+              "space_id": "M-B",
+              "relation": "boundary"
+            },
+            {
+              "space_id": "M-V",
+              "relation": "boundary"
+            },
+            {
+              "space_id": "ESC",
+              "relation": "boundary"
+            }
+          ],
+          "interior_nonstair_spaces": [],
+          "window_conflicts": [],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": true,
+          "geometry_compatible_for_full_height_study": true,
+          "rejection_reasons": []
+        },
+        {
+          "id": "GW-STAIR-N",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 11.0,
+          "existing_to_p2": true,
+          "space_relations": [
+            {
+              "space_id": "M-V",
+              "relation": "boundary"
+            },
+            {
+              "space_id": "ESC",
+              "relation": "boundary"
+            },
+            {
+              "space_id": "F2-HALL",
+              "relation": "boundary"
+            }
+          ],
+          "interior_nonstair_spaces": [],
+          "window_conflicts": [],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": true,
+          "geometry_compatible_for_full_height_study": true,
+          "rejection_reasons": []
+        },
+        {
+          "id": "GW-Y13.4",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 13.4,
+          "existing_to_p2": true,
+          "space_relations": [
+            {
+              "space_id": "G-C",
+              "relation": "interior"
+            }
+          ],
+          "interior_nonstair_spaces": [
+            "G-C"
+          ],
+          "window_conflicts": [],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": false,
+          "geometry_compatible_for_full_height_study": false,
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "crosses_p2_space:G-C"
+          ]
+        },
+        {
+          "id": "GW-NORTH",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 18.0,
+          "existing_to_p2": true,
+          "space_relations": [
+            {
+              "space_id": "G-D",
+              "relation": "boundary"
+            }
+          ],
+          "interior_nonstair_spaces": [],
+          "window_conflicts": [
+            "W-G"
+          ],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": false,
+          "geometry_compatible_for_full_height_study": false,
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "interrupts_glazing:W-G"
+          ]
+        },
+        {
+          "id": "STAIR-REAR-S",
+          "source": "new_rear_stair_enclosure_column",
+          "x_m": 36.0,
+          "y_m": 7.4,
+          "existing_to_p2": false,
+          "space_relations": [
+            {
+              "space_id": "M-C",
+              "relation": "boundary"
+            },
+            {
+              "space_id": "ESC",
+              "relation": "boundary"
+            }
+          ],
+          "interior_nonstair_spaces": [],
+          "window_conflicts": [],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": true,
+          "geometry_compatible_for_full_height_study": true,
+          "rejection_reasons": []
+        },
+        {
+          "id": "STAIR-REAR-N",
+          "source": "new_rear_stair_enclosure_column",
+          "x_m": 36.0,
+          "y_m": 11.0,
+          "existing_to_p2": false,
+          "space_relations": [
+            {
+              "space_id": "ESC",
+              "relation": "boundary"
+            },
+            {
+              "space_id": "F2-HALL",
+              "relation": "boundary"
+            }
+          ],
+          "interior_nonstair_spaces": [],
+          "window_conflicts": [],
+          "door_conflicts": [],
+          "aligned_with_stair_enclosure_corner": true,
+          "geometry_compatible_for_full_height_study": true,
+          "rejection_reasons": []
+        }
+      ],
+      "compatible_column_ids": [
+        "GW-STAIR-S",
+        "GW-STAIR-N",
+        "STAIR-REAR-S",
+        "STAIR-REAR-N"
+      ],
+      "compatible_column_count": 4,
+      "existing_great_wall_columns_reused": 2,
+      "new_rear_columns_required": 2,
+      "braced_planes": [
+        {
+          "id": "STAIR-SIDE-S",
+          "resisting_direction": "X_longitudinal",
+          "plane": "Y=7.40",
+          "bay_length_m": 4.5,
+          "diagonal_bracing_geometry_possible": true,
+          "opening_conflict": null,
+          "architectural_and_egress_clearance_validated": false
+        },
+        {
+          "id": "STAIR-SIDE-N",
+          "resisting_direction": "X_longitudinal",
+          "plane": "Y=11.00",
+          "bay_length_m": 4.5,
+          "diagonal_bracing_geometry_possible": true,
+          "opening_conflict": null,
+          "architectural_and_egress_clearance_validated": false
+        },
+        {
+          "id": "STAIR-FRONT",
+          "resisting_direction": "Y_transverse",
+          "plane": "X=31.50",
+          "bay_length_m": 3.6,
+          "diagonal_bracing_geometry_possible": false,
+          "opening_conflict": "protected_stair_portal_in_Great_Wall",
+          "architectural_and_egress_clearance_validated": false
+        },
+        {
+          "id": "STAIR-REAR",
+          "resisting_direction": "Y_transverse",
+          "plane": "X=36.00",
+          "bay_length_m": 3.6,
+          "diagonal_bracing_geometry_possible": false,
+          "opening_conflict": "stair_discharge_door",
+          "architectural_and_egress_clearance_validated": false
+        }
+      ],
+      "geometry_screen_pass": true,
+      "stair_enclosure_frame_preferred_over_stair_flights_as_primary_system": true,
+      "stair_stringers_in_primary_lateral_system": false,
+      "stair_drift_compatible_connection_required": true,
+      "landing_beams_as_column_restraints_resolved": false,
+      "roof_gravity_support_role_resolved": false,
+      "roof_diaphragm_collector_connection_resolved": false,
+      "p2_diaphragm_collector_connection_resolved": false,
+      "complete_orthogonal_lateral_system_resolved": false,
+      "member_connection_base_and_foundation_design_resolved": false,
+      "fire_egress_and_encasement_resolved": false,
+      "overall_design_resolved": false
+    },
     "diaphragm": {
       "demand_basis": {
         "longitudinal_wind_kn_hypothesis": 78.975,
@@ -438,6 +785,7 @@
     "D-017 site, municipality, topography, normative wind and seismic actions",
     "geotechnical investigation and groundwater/settlement parameters",
     "complete three-dimensional lateral model and direct second-order analysis",
+    "coordinated four-column stair-enclosure frame, orthogonal lateral planes, drift-compatible stair joints, diaphragm collectors, column bases, fire-rated enclosure, and egress clearances",
     "roof and floor deck manufacturer strength, stiffness, fasteners, sidelaps, and openings",
     "connection geometry including HSS local limit states and seismic demand hierarchy",
     "D-021 occupancy, fire-resistance target, fire scenario, and tested protection system",

@@ -39,8 +39,11 @@ from .systems_checks import (
     pad_foundation_screen,
 )
 from .truss_grammar import generate_roof_truss
+from .vertical_continuity import evaluate_vertical_continuity
 
 DEFAULT_E1_SPACE = Path(__file__).with_name("e1_screening_space.json")
+DEFAULT_PB = ROOT / "dreamhouse/pb_b05.json"
+DEFAULT_P2 = ROOT / "dreamhouse/p2_b06.json"
 DEFAULT_JSON_OUTPUT = ROOT / "docs/08_investigacion/e1_structural_screening.json"
 DEFAULT_REPORT_OUTPUT = ROOT / "docs/08_investigacion/e1_structural_screening.md"
 
@@ -188,7 +191,15 @@ def _rounded(value):
     return value
 
 
-def run_screening(cfg: dict, roof_space: dict, e1_space: dict) -> dict:
+def run_screening(
+    cfg: dict,
+    roof_space: dict,
+    e1_space: dict,
+    pb: dict | None = None,
+    p2: dict | None = None,
+) -> dict:
+    pb = _read_json(DEFAULT_PB) if pb is None else pb
+    p2 = _read_json(DEFAULT_P2) if p2 is None else p2
     candidate = _reference_candidate(cfg, roof_space, e1_space)
     steel = materials_from_json(cfg)["S355"]
     selected = evaluate_candidate(candidate, cfg, roof_space, steel)
@@ -292,9 +303,21 @@ def run_screening(cfg: dict, roof_space: dict, e1_space: dict) -> dict:
         shear_transfer_resolved=bool(base_plate_cfg["shear_transfer_resolved"]),
         moment_transfer_resolved=bool(base_plate_cfg["moment_transfer_resolved"]),
     )
+    vertical_continuity = evaluate_vertical_continuity(
+        cfg,
+        pb,
+        p2,
+        e1_space["vertical_continuity"],
+    )
 
     input_payload = json.dumps(
-        {"model": cfg, "roof_space": roof_space, "e1_space": e1_space},
+        {
+            "model": cfg,
+            "pb": pb,
+            "p2": p2,
+            "roof_space": roof_space,
+            "e1_space": e1_space,
+        },
         sort_keys=True,
         separators=(",", ":"),
     )
@@ -350,6 +373,7 @@ def run_screening(cfg: dict, roof_space: dict, e1_space: dict) -> dict:
                 "complete_building_lateral_system_resolved": False,
                 "site_actions_resolved": False,
             },
+            "vertical_continuity_and_stair_core": vertical_continuity,
             "diaphragm": {
                 "demand_basis": lateral_basis,
                 "result": asdict(diaphragm),
@@ -381,6 +405,7 @@ def run_screening(cfg: dict, roof_space: dict, e1_space: dict) -> dict:
             "D-017 site, municipality, topography, normative wind and seismic actions",
             "geotechnical investigation and groundwater/settlement parameters",
             "complete three-dimensional lateral model and direct second-order analysis",
+            "coordinated four-column stair-enclosure frame, orthogonal lateral planes, drift-compatible stair joints, diaphragm collectors, column bases, fire-rated enclosure, and egress clearances",
             "roof and floor deck manufacturer strength, stiffness, fasteners, sidelaps, and openings",
             "connection geometry including HSS local limit states and seismic demand hierarchy",
             "D-021 occupancy, fire-resistance target, fire scenario, and tested protection system",
@@ -402,6 +427,7 @@ def markdown_report(results: dict) -> str:
     erection = results["checks"]["erection"]["result"]
     foundation = results["checks"]["foundation"]
     lateral_system = results["checks"]["lateral_system"]
+    continuity = results["checks"]["vertical_continuity_and_stair_core"]
     gravity = foundation["gravity_reaction_case"]
     uplift = foundation["uplift_reaction_case"]
     base_plate = foundation["base_plate_result"]
@@ -459,6 +485,13 @@ def markdown_report(results: dict) -> str:
             f"{'passes' if lateral['trial_strength_pass'] else 'fails'}; locations, buckling in reversal, connections, collectors, and openings unresolved |"
         ),
         (
+            "| Vertical continuity / stair enclosure | "
+            f"{continuity['compatible_column_count']} compatible corner lines; "
+            f"{continuity['existing_great_wall_columns_reused']} existing Great Wall + "
+            f"{continuity['new_rear_columns_required']} new rear columns | geometry screen "
+            "passes; complete orthogonal system, collectors, bases, drift joints, fire, and egress unresolved |"
+        ),
+        (
             "| Roof diaphragm | required unit shear "
             f"{diaphragm['required_unit_shear_kn_m']:.2f} kN/m; chord force "
             f"{diaphragm['required_chord_force_kn']:.1f} kN | blocked by manufacturer system, openings, fasteners, collectors, and stiffness |"
@@ -500,6 +533,35 @@ def markdown_report(results: dict) -> str:
             "Their locations have not been reconciled with the technical windows, upper-floor "
             "glazing, doors, or rooflights, and compression under load reversal has not been "
             "assigned to a tension-only L-angle."
+        ),
+        "",
+        "## Vertical continuity and stair-enclosure frame",
+        "",
+        (
+            "The PB and P2 stair enclosure is geometrically aligned from X=31.50 to "
+            "36.00 m and Y=7.40 to 11.00 m. The screen retains four foundation-to-roof "
+            "corner lines: GW-STAIR-S and GW-STAIR-N reuse two current Great Wall "
+            "columns, while STAIR-REAR-S and STAIR-REAR-N are new rear lines. The other "
+            "four Great Wall candidates are rejected by P2 rooms, full-height glazing, "
+            "or failure to coincide with an enclosure corner."
+        ),
+        "",
+        (
+            "The preferred study concept is an independent four-column stair-enclosure "
+            "frame. Its two side planes can study diagonal bracing for longitudinal action; "
+            "the front stair portal and rear discharge door block full-bay diagonals, so "
+            "transverse resistance needs a coordinated moment or segmented frame. The "
+            "stair flights and stringers are not assigned as primary lateral members: they "
+            "require drift-compatible connections unless their stiffness and actions are "
+            "included explicitly in the global model."
+        ),
+        "",
+        (
+            "Column continuity to roof level does not automatically create a roof gravity "
+            "support. The current roof specimen runs on fixed X lines and has no selected "
+            "frame at X=31.50 m. A diaphragm collector connection may be studied, but roof "
+            "gravity support, torsional response, landing restraints, connections, fire "
+            "protection, foundations, and construction sequence all remain unresolved."
         ),
         "",
         "## Fire sensitivity—not a fire rating",
@@ -549,6 +611,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--model", type=Path, default=DEFAULT_MODEL)
     parser.add_argument("--roof-space", type=Path, default=DEFAULT_SPACE)
     parser.add_argument("--e1-space", type=Path, default=DEFAULT_E1_SPACE)
+    parser.add_argument("--pb", type=Path, default=DEFAULT_PB)
+    parser.add_argument("--p2", type=Path, default=DEFAULT_P2)
     parser.add_argument("--json-output", type=Path, default=DEFAULT_JSON_OUTPUT)
     parser.add_argument("--report-output", type=Path, default=DEFAULT_REPORT_OUTPUT)
     arguments = parser.parse_args(argv)
@@ -556,6 +620,8 @@ def main(argv: list[str] | None = None) -> int:
         _read_json(arguments.model),
         _read_json(arguments.roof_space),
         _read_json(arguments.e1_space),
+        _read_json(arguments.pb),
+        _read_json(arguments.p2),
     )
     write_outputs(results, arguments.json_output, arguments.report_output)
     print("E1 multi-phenomenon screening generated; design remains blocked by declared inputs.")

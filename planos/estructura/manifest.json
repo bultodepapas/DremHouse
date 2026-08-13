@@ -2,18 +2,20 @@
   "input": [
     "dreamhouse/structure/structure_system.json",
     "dreamhouse/pb_b05.json",
+    "dreamhouse/p2_b06.json",
     "dreamhouse/rooflight_b08.json",
     "dreamhouse/structure/roof_truss_space.json",
     "dreamhouse/structure/e1_screening_space.json"
   ],
   "generator": "dreamhouse/generate_structure_plan.py",
-  "revision": "0.3 + E1 0.1",
-  "mode": "E0 live coordination + fail-closed E1 evidence sheet",
+  "revision": "0.3 + E1 0.2",
+  "mode": "E0 live coordination + fail-closed E1 evidence and vertical-continuity sheets",
   "outputs": [
     "DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg",
     "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg",
     "DH-EST-E0-004_PARED-HIBRIDA.svg",
-    "DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg"
+    "DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg",
+    "DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg"
   ],
-  "status": "D-043 fixes the P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs the neutral E1 specimen. No profile, roof system, lateral system, quantity, joint, fire protection, erection method, foundation, fabrication or construction release is granted."
+  "status": "D-043 fixes the P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs the neutral E1 specimen; D-048 adds a four-column stair-enclosure study without selecting a lateral system. No profile, roof system, lateral system, quantity, joint, fire protection, erection method, foundation, fabrication or construction release is granted."
 }

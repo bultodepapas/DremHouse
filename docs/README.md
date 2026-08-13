@@ -66,6 +66,9 @@
 - [Integrated structural E1 evidence sheet](../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg):
   calculation-linked plan, exact truss grammar, evidence matrix, connection, base,
   foundation, erection, and fire-sensitivity views; not for construction.
+- [Vertical continuity and stair-enclosure frame sheet](../planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg):
+  D-048 audit of four foundation-to-roof column lines, rejected architectural conflicts,
+  orthogonal lateral planes, and drift-compatible stair interfaces; not for construction.
 - [MEP, comfort, and automation basis](03_ingenierias/bases_mep_confort_y_automatizacion.md)
 - [Safety, workshop, and air quality](03_ingenierias/seguridad_taller_y_calidad_del_aire.md)
 
@@ -114,8 +117,9 @@
   grammars; not a truss design.
 - [E1 multi-phenomenon structural screening](08_investigacion/e1_structural_screening.md):
   local/biaxial HSS stability, chord bending, member second order, generic joint
-  components, diaphragm demand, fire sensitivity, erection, and foundation gates. Passing
-  a narrow calculation does not close the unresolved design gates.
+  components, diaphragm demand, D-048 vertical continuity, fire sensitivity, erection,
+  and foundation gates. Passing a narrow calculation does not close the unresolved design
+  gates.
 - [Cost-efficient construction techniques and materials](08_investigacion/tecnicas_que_abaratan_costos.md):
   research into lower-cost methods applicable to the hall, including risks and
   order-of-magnitude value-engineering potential.

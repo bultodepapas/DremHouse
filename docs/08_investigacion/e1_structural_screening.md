@@ -1,9 +1,9 @@
 # E1 Multi-Phenomenon Structural Screening
 
 **Status:** research screening complete; design remains blocked
-**Version:** 0.1
+**Version:** 0.2
 **Date:** 2026-08-12
-**Input SHA-256:** `23820e391b5a7134c2af04047f90b49de219f4affa1efcf8c230cd0e30c7a2be`
+**Input SHA-256:** `225f10ac3fe38431eeb8381ef55bab8bc70b42324b74452cc1d0cdff6d72074f`
 **Authority:** not for system selection, pricing, fabrication, or construction
 
 ## Reference test specimen
@@ -19,6 +19,7 @@ The neutral specimen is M60 WARREN_MODIFIED with 6 panels, 1.80 m centre depth, 
 | Member second order | reduced-Euler ratio 0.203; B1 screen=1.255 | member screen included; global direct analysis unresolved |
 | Trial gusset components | demand 209.8 kN; capacity 542.9 kN; ratio 0.387 | generic components pass; HSS wall limit states unresolved |
 | Trial longitudinal braced bays | diagonal demand 63.2 kN; L50×5 gross-yield ratio 0.622 | trial bar strength passes; locations, buckling in reversal, connections, collectors, and openings unresolved |
+| Vertical continuity / stair enclosure | 4 compatible corner lines; 2 existing Great Wall + 2 new rear columns | geometry screen passes; complete orthogonal system, collectors, bases, drift joints, fire, and egress unresolved |
 | Roof diaphragm | required unit shear 8.77 kN/m; chord force 39.5 kN | blocked by manufacturer system, openings, fasteners, collectors, and stiffness |
 | Erection | hook load 15.8 kN; sling tension 9.1 kN; minimum transport pieces 2 | crane chart, lift lugs, weather limit, splices, and temporary bracing unresolved |
 | Trial foundation sensitivity | gravity qmax 37.3 kPa; gravity bearing ratio 0.249; uplift net vertical 69.6 kN | no foundation adopted; geotechnical and RC/anchor design unresolved |
@@ -29,6 +30,14 @@ The neutral specimen is M60 WARREN_MODIFIED with 6 panels, 1.80 m centre depth, 
 The member screen assumes top-chord lateral restraint every 1.50 m and bottom-chord restraint every 6.00 m. The first requires qualified purlin-to-chord restraint and a complete roof-plane load path; the second is a new physical bracing requirement under uplift and is not present merely because it appears in the model.
 
 The four trial longitudinal braced bays are only a force-distribution hypothesis. Their locations have not been reconciled with the technical windows, upper-floor glazing, doors, or rooflights, and compression under load reversal has not been assigned to a tension-only L-angle.
+
+## Vertical continuity and stair-enclosure frame
+
+The PB and P2 stair enclosure is geometrically aligned from X=31.50 to 36.00 m and Y=7.40 to 11.00 m. The screen retains four foundation-to-roof corner lines: GW-STAIR-S and GW-STAIR-N reuse two current Great Wall columns, while STAIR-REAR-S and STAIR-REAR-N are new rear lines. The other four Great Wall candidates are rejected by P2 rooms, full-height glazing, or failure to coincide with an enclosure corner.
+
+The preferred study concept is an independent four-column stair-enclosure frame. Its two side planes can study diagonal bracing for longitudinal action; the front stair portal and rear discharge door block full-bay diagonals, so transverse resistance needs a coordinated moment or segmented frame. The stair flights and stringers are not assigned as primary lateral members: they require drift-compatible connections unless their stiffness and actions are included explicitly in the global model.
+
+Column continuity to roof level does not automatically create a roof gravity support. The current roof specimen runs on fixed X lines and has no selected frame at X=31.50 m. A diaphragm collector connection may be studied, but roof gravity support, torsional response, landing restraints, connections, fire protection, foundations, and construction sequence all remain unresolved.
 
 ## Fire sensitivity—not a fire rating
 
@@ -47,6 +56,7 @@ D-021 must establish occupancy, required fire-resistance period, fire scenarios,
 - D-017 site, municipality, topography, normative wind and seismic actions
 - geotechnical investigation and groundwater/settlement parameters
 - complete three-dimensional lateral model and direct second-order analysis
+- coordinated four-column stair-enclosure frame, orthogonal lateral planes, drift-compatible stair joints, diaphragm collectors, column bases, fire-rated enclosure, and egress clearances
 - roof and floor deck manufacturer strength, stiffness, fasteners, sidelaps, and openings
 - connection geometry including HSS local limit states and seismic demand hierarchy
 - D-021 occupancy, fire-resistance target, fire scenario, and tested protection system

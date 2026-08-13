@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import copy
 import json
 import math
 import unittest
 
 from dreamhouse.structure.e1_screening import (
     DEFAULT_E1_SPACE,
+    DEFAULT_P2,
+    DEFAULT_PB,
     run_screening,
 )
 from dreamhouse.structure.materials import materials_from_json
@@ -29,6 +32,10 @@ from dreamhouse.structure.systems_checks import (
     fire_capacity_screen,
     fire_retention_factors,
     pad_foundation_screen,
+)
+from dreamhouse.structure.vertical_continuity import (
+    VerticalContinuityError,
+    evaluate_vertical_continuity,
 )
 
 
@@ -244,6 +251,57 @@ class TestE1Integration(unittest.TestCase):
         )
         self.assertFalse(checks["diaphragm"]["result"]["overall_diaphragm_resolved"])
         self.assertFalse(checks["foundation"]["design_resolved"])
+
+
+class TestVerticalContinuity(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.cfg = _read_json(DEFAULT_MODEL)
+        cls.pb = _read_json(DEFAULT_PB)
+        cls.p2 = _read_json(DEFAULT_P2)
+        cls.e1_space = _read_json(DEFAULT_E1_SPACE)
+
+    def test_only_four_stair_enclosure_corners_are_geometry_compatible(self):
+        result = evaluate_vertical_continuity(
+            self.cfg,
+            self.pb,
+            self.p2,
+            self.e1_space["vertical_continuity"],
+        )
+        self.assertEqual(
+            result["compatible_column_ids"],
+            ["GW-STAIR-S", "GW-STAIR-N", "STAIR-REAR-S", "STAIR-REAR-N"],
+        )
+        self.assertEqual(result["existing_great_wall_columns_reused"], 2)
+        self.assertEqual(result["new_rear_columns_required"], 2)
+        self.assertTrue(result["geometry_screen_pass"])
+        self.assertFalse(result["stair_stringers_in_primary_lateral_system"])
+        self.assertFalse(result["complete_orthogonal_lateral_system_resolved"])
+
+    def test_rejected_great_wall_lines_keep_specific_conflicts(self):
+        result = evaluate_vertical_continuity(
+            self.cfg,
+            self.pb,
+            self.p2,
+            self.e1_space["vertical_continuity"],
+        )
+        candidates = {item["id"]: item for item in result["candidates"]}
+        self.assertEqual(candidates["GW-SOUTH"]["window_conflicts"], ["W-M-LAT-A"])
+        self.assertEqual(candidates["GW-Y2.4"]["interior_nonstair_spaces"], ["M-D"])
+        self.assertEqual(candidates["GW-Y13.4"]["interior_nonstair_spaces"], ["G-C"])
+        self.assertEqual(candidates["GW-NORTH"]["window_conflicts"], ["W-G"])
+
+    def test_stair_alignment_change_fails_closed(self):
+        shifted_p2 = copy.deepcopy(self.p2)
+        stair = next(space for space in shifted_p2["spaces"] if space["id"] == "ESC")
+        stair["y"] += 0.10
+        with self.assertRaisesRegex(VerticalContinuityError, "not aligned"):
+            evaluate_vertical_continuity(
+                self.cfg,
+                self.pb,
+                shifted_p2,
+                self.e1_space["vertical_continuity"],
+            )
 
 
 if __name__ == "__main__":

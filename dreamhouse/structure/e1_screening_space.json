@@ -1,10 +1,10 @@
 {
   "project": {
     "id": "DH-EST-E1-SCREEN-001",
-    "revision": "0.1",
+    "revision": "0.2",
     "status": "research_screening_not_design",
     "date": "2026-08-12",
-    "purpose": "Expose E1 member, joint, stability, diaphragm, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
+    "purpose": "Expose E1 member, joint, stability, diaphragm, vertical-continuity, fire, erection, and foundation demands without claiming code compliance or selecting D-019."
   },
   "reference_truss": {
     "role": "neutral_M60_test_specimen_not_a_selected_system",
@@ -39,6 +39,79 @@
     "trial_bay_height_m": 7.5,
     "brace_locations_validated_against_openings": false,
     "brace_connections_and_collectors_resolved": false
+  },
+  "vertical_continuity": {
+    "status": "geometry_feasibility_hypothesis_not_system_selection",
+    "geometry_tolerance_m": 0.01,
+    "candidate_columns": [
+      {
+        "id": "GW-SOUTH",
+        "source": "existing_great_wall_column",
+        "x_m": 31.5,
+        "y_m": 0.0,
+        "existing_to_p2": true
+      },
+      {
+        "id": "GW-Y2.4",
+        "source": "existing_great_wall_column",
+        "x_m": 31.5,
+        "y_m": 2.4,
+        "existing_to_p2": true
+      },
+      {
+        "id": "GW-STAIR-S",
+        "source": "existing_great_wall_column",
+        "x_m": 31.5,
+        "y_m": 7.4,
+        "existing_to_p2": true
+      },
+      {
+        "id": "GW-STAIR-N",
+        "source": "existing_great_wall_column",
+        "x_m": 31.5,
+        "y_m": 11.0,
+        "existing_to_p2": true
+      },
+      {
+        "id": "GW-Y13.4",
+        "source": "existing_great_wall_column",
+        "x_m": 31.5,
+        "y_m": 13.4,
+        "existing_to_p2": true
+      },
+      {
+        "id": "GW-NORTH",
+        "source": "existing_great_wall_column",
+        "x_m": 31.5,
+        "y_m": 18.0,
+        "existing_to_p2": true
+      },
+      {
+        "id": "STAIR-REAR-S",
+        "source": "new_rear_stair_enclosure_column",
+        "x_m": 36.0,
+        "y_m": 7.4,
+        "existing_to_p2": false
+      },
+      {
+        "id": "STAIR-REAR-N",
+        "source": "new_rear_stair_enclosure_column",
+        "x_m": 36.0,
+        "y_m": 11.0,
+        "existing_to_p2": false
+      }
+    ],
+    "expected_compatible_column_ids": [
+      "GW-STAIR-S",
+      "GW-STAIR-N",
+      "STAIR-REAR-S",
+      "STAIR-REAR-N"
+    ],
+    "stair_flights_primary_lateral_role": false,
+    "preferred_concept": "independent_four_column_stair_enclosure_frame_with_drift_compatible_stair_connections",
+    "roof_gravity_support_role": "not_assigned",
+    "roof_lateral_collector_role": "study_only",
+    "p2_lateral_collector_role": "study_only"
   },
   "diaphragm": {
     "manufacturer_system": null,

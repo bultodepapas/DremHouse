@@ -12,6 +12,7 @@ Láminas:
 - DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg  : vista lateral A (elevación estructural).
 - DH-EST-E0-004_PARED-HIBRIDA.svg         : bastidor oculto detrás del gran muro.
 - DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg : evidencia E1 integral y puertas abiertas.
+- DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg : estudio D-048 de cuatro columnas.
 
 NO APTO PARA CONSTRUIR. Solo inspección visual de coordinación.
 """
@@ -33,9 +34,14 @@ from dreamhouse.structure.e1_sheet import build_e1_sheet
 from dreamhouse.structure.materials import materials_from_json
 from dreamhouse.structure.quantities import compute_quantities
 from dreamhouse.structure.staggered import size_staggered_floor
+from dreamhouse.structure.vertical_continuity_sheet import (
+    SHEET_NAME as CONTINUITY_SHEET_NAME,
+)
+from dreamhouse.structure.vertical_continuity_sheet import build_vertical_continuity_sheet
 
 SYSTEM = Path(__file__).with_name("structure") / "structure_system.json"
 PB = Path(__file__).with_name("pb_b05.json")
+P2 = Path(__file__).with_name("p2_b06.json")
 ROOFLIGHTS = Path(__file__).with_name("rooflight_b08.json")
 ROOF_SPACE = Path(__file__).with_name("structure") / "roof_truss_space.json"
 E1_SPACE = Path(__file__).with_name("structure") / "e1_screening_space.json"
@@ -408,12 +414,13 @@ def draw_hybrid_wall_elevation(parts, pb, gw):
 def build_sheets():
     cfg = json.loads(SYSTEM.read_text(encoding="utf-8"))
     pb = json.loads(PB.read_text(encoding="utf-8"))
+    p2 = json.loads(P2.read_text(encoding="utf-8"))
     rooflights = json.loads(ROOFLIGHTS.read_text(encoding="utf-8"))
     roof_space = json.loads(ROOF_SPACE.read_text(encoding="utf-8"))
     e1_space = json.loads(E1_SPACE.read_text(encoding="utf-8"))
     q, st = live_results(cfg)
     gw = q["great_wall"]
-    e1_results = run_screening(cfg, roof_space, e1_space)
+    e1_results = run_screening(cfg, roof_space, e1_space, pb, p2)
 
     # Lámina 1: planta + corte B-B.
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
@@ -444,10 +451,13 @@ def build_sheets():
     draw_hybrid_wall_elevation(parts3, pb, gw)
     parts3.append('</g></svg>')
 
-    return {"DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg": "".join(parts),
-            "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg": "".join(parts2),
-            "DH-EST-E0-004_PARED-HIBRIDA.svg": "".join(parts3),
-            E1_SHEET_NAME: build_e1_sheet(cfg, roof_space, e1_space, rooflights, e1_results)}
+    return {
+        "DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg": "".join(parts),
+        "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg": "".join(parts2),
+        "DH-EST-E0-004_PARED-HIBRIDA.svg": "".join(parts3),
+        E1_SHEET_NAME: build_e1_sheet(cfg, roof_space, e1_space, rooflights, e1_results),
+        CONTINUITY_SHEET_NAME: build_vertical_continuity_sheet(cfg, pb, p2, e1_results),
+    }
 
 
 def main():
@@ -459,12 +469,12 @@ def main():
         OUT.joinpath(name).write_text(content, encoding="utf-8")
     manifest = {
         "input": [path.relative_to(ROOT).as_posix() for path in
-                  (SYSTEM, PB, ROOFLIGHTS, ROOF_SPACE, E1_SPACE)],
+                  (SYSTEM, PB, P2, ROOFLIGHTS, ROOF_SPACE, E1_SPACE)],
         "generator": "dreamhouse/generate_structure_plan.py",
         "revision": f"{cfg['project']['revision']} + E1 {e1_revision}",
-        "mode": "E0 live coordination + fail-closed E1 evidence sheet",
+        "mode": "E0 live coordination + fail-closed E1 evidence and vertical-continuity sheets",
         "outputs": list(outputs),
-        "status": "D-043 fixes the P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs the neutral E1 specimen. No profile, roof system, lateral system, quantity, joint, fire protection, erection method, foundation, fabrication or construction release is granted.",
+        "status": "D-043 fixes the P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs the neutral E1 specimen; D-048 adds a four-column stair-enclosure study without selecting a lateral system. No profile, roof system, lateral system, quantity, joint, fire protection, erection method, foundation, fabrication or construction release is granted.",
     }
     OUT.joinpath("manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"outputs": list(outputs), "live": True}))

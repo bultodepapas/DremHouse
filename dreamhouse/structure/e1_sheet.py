@@ -18,7 +18,7 @@ WIDTH = 1684
 HEIGHT = 1191
 SHEET_NAME = "DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg"
 SHEET_ID = "DH-EST-E1-001"
-SHEET_REVISION = "R00"
+SHEET_REVISION = "R01"
 
 INK = "#172a32"
 MUTED = "#627078"
@@ -31,6 +31,7 @@ AMBER = "#bd7626"
 RED = "#a33f31"
 GREEN = "#2f7859"
 BROWN = "#74543c"
+PURPLE = "#66538a"
 
 
 def _attrs(**attributes: object) -> str:
@@ -172,7 +173,7 @@ def _draw_header(parts: list[str], results: dict[str, Any]) -> None:
                 70,
                 (
                     f"{specimen['modulation_id']} {specimen['topology'].replace('_', ' ')} "
-                    "neutral roof specimen + D-043/D-045 P2 gravity concept"
+                    "neutral roof specimen + P2 gravity path + D-048 stair-core study"
                 ),
                 11,
                 fill="#cfe0e2",
@@ -323,6 +324,52 @@ def _draw_plan(
             )
         )
 
+    continuity = results["checks"]["vertical_continuity_and_stair_core"]
+    compatible_ids = set(continuity["compatible_column_ids"])
+    for candidate in continuity["candidates"]:
+        if candidate["id"] not in compatible_ids:
+            continue
+        parts.append(
+            _rect(
+                sx(float(candidate["x_m"])) - 7,
+                sy(float(candidate["y_m"])) - 7,
+                14,
+                14,
+                rx=2,
+                fill=PURPLE,
+                stroke="#ffffff",
+                stroke_width=1.5,
+                class_="full-height-core-column",
+            )
+        )
+    stair = continuity["stair_enclosure"]
+    parts.append(
+        _rect(
+            sx(float(stair["x0_m"])),
+            sy(float(stair["y1_m"])),
+            float(stair["width_x_m"]) * scale,
+            float(stair["width_y_m"]) * scale,
+            fill=PURPLE,
+            opacity=0.08,
+            stroke=PURPLE,
+            stroke_width=2,
+            stroke_dasharray="5 3",
+            class_="stair-core-study-zone",
+        )
+    )
+    parts.append(
+        _text(
+            sx(33.75),
+            sy(9.2),
+            "D-048 · 4 FULL-HEIGHT LINES",
+            6.8,
+            anchor="middle",
+            weight=700,
+            fill=PURPLE,
+            rotate=-90,
+        )
+    )
+
     # Four trial active bays from the E1 force-distribution hypothesis.  Their
     # position is deliberately hatched because it has not been coordinated.
     for start_x in (0.0, 30.0):
@@ -449,6 +496,7 @@ def _draw_plan(
         (INK, "M60 neutral roof specimen"),
         (BLUE, "D-043/D-045 P2 gravity path"),
         (TEAL, "D-040 rooflight / diaphragm demand"),
+        (PURPLE, "D-048 four-column stair-core study"),
         (AMBER, "trial lateral bays — uncoordinated"),
         (RED, "open design gate"),
     ]
@@ -460,7 +508,7 @@ def _draw_plan(
     parts.append(
         _multiline(
             legend_x,
-            400,
+            424,
             [
                 "TRIAL BAY LOCATIONS",
                 "are diagrammatic.",
@@ -985,7 +1033,7 @@ def _draw_footer(parts: list[str], results: dict[str, Any]) -> None:
                 1137,
                 [
                     "No structural-system selection, PE-1 quantity, procurement, fabrication or construction authority.",
-                    "D-043 fixes P2 gravity intent; D-045 remains an E0 overhang hypothesis; D-047 governs this neutral E1 specimen.",
+                    "D-043 fixes P2 gravity intent; D-047 governs the specimen; D-048 adds a fail-closed stair-core study.",
                 ],
                 7.5,
                 leading=1.45,

@@ -2,11 +2,12 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.2
+**Version:** 0.3
 **Date:** 2026-08-12
-**Sources:** D-039, D-040, D-043, D-045, D-046, D-047; architectural drafts b05–b08;
-`structure_system.json`; `roof_truss_space.json`; `e1_screening_space.json`; generated E0
-and E1 structural evidence
+**Sources:** D-039, D-040, D-043, D-045, D-046, D-047, D-048; architectural drafts
+b05–b08; `pb_b05.json`; `p2_b06.json`; `structure_system.json`;
+`roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
+evidence
 **Approval pending:** responsible structural engineer, architect of record, fire and
 life-safety professional, geotechnical engineer, fabricator/erector, and owner
 
@@ -25,7 +26,9 @@ view. It answers three questions:
 2. Which numerical checks have been executed, and what did they prove narrowly?
 3. Which missing inputs still prevent a structural system from being selected or issued?
 
-No new structural decision is created by this document or by its drawing.
+D-048 records the owner's new vertical-continuity and stair-frame study direction. It
+does not select the complete structural system or convert the geometry screen into
+professional design.
 
 ## 2. New integrated evidence sheet
 
@@ -46,6 +49,13 @@ used by the E1 report. Its four principal readings are:
 The earlier E0 sheets remain valid as historical coordination evidence. The E1 sheet
 does not overwrite them or imply that their trial sections have become selected.
 
+The focused companion sheet is
+[DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg).
+It audits every current Great Wall candidate against P2 rooms and glazing, identifies the
+four compatible stair-corner lines, separates enclosure-frame resistance from stair
+flights, and shows why the protected portal and rear discharge control the transverse
+lateral-system topology.
+
 ## 3. Reconciled geometry and status
 
 | Item | Current value shown | Authority/status |
@@ -59,6 +69,7 @@ does not overwrite them or imply that their trial sections have become selected.
 | Hybrid wall | concealed steel frame at X=31.50 m | D-043 gravity intent; no longitudinal lateral role assigned |
 | P2 beams | six lines at Y=1.5/4.5/7.5/10.5/13.5/16.5 m | D-045 E0 hypothesis only |
 | Rear overhang | X=31.50→36.00 m = 4.50 m | D-045 E0 hypothesis; must be compared with a real rear support |
+| Stair enclosure | X=31.50→36.00 m; Y=7.40→11.00 m | D-048 four-column geometry study; system design blocked |
 
 ## 4. Integrated load paths
 
@@ -98,7 +109,43 @@ The Great Wall is **not assigned longitudinal X-direction resistance**. Its poss
 transverse contribution, eccentricity, torsion, collectors, joints, fire protection,
 and foundations remain professional-design tasks.
 
-### 4.3 Lateral path and diaphragm
+### 4.3 D-048 vertical continuity and stair-enclosure frame
+
+The PB and P2 stair geometry aligns exactly at X=31.50→36.00 m and Y=7.40→11.00 m.
+The deterministic audit reaches the following narrow result:
+
+- **retain for full-height study:** GW-STAIR-S (31.50, 7.40), GW-STAIR-N (31.50,
+  11.00), STAIR-REAR-S (36.00, 7.40), and STAIR-REAR-N (36.00, 11.00);
+- **reject at current coordinates:** GW-SOUTH because of W-M-LAT-A glazing, GW-Y2.4
+  because it crosses M-D, GW-Y13.4 because it crosses G-C, and GW-NORTH because of W-G
+  glazing.
+
+The preferred study is therefore a four-column **stair-enclosure frame**, reusing two
+Great Wall columns and adding two rear columns. The two side planes at Y=7.40 and 11.00
+can study diagonal bracing for X-direction resistance. Full diagonals cannot simply be
+placed in the front X=31.50 or rear X=36.00 planes because they contain the protected
+stair portal and direct-discharge door; those planes require a coordinated moment or
+segmented-frame study.
+
+The stair flights and stringers receive no primary lateral-system credit. They must use
+drift-compatible connections unless their stiffness and resulting actions are explicitly
+included in the global model. This follows the conceptual separation in the official
+[2020 NEHRP Recommended Provisions](https://www.fema.gov/sites/default/files/2020-10/fema_2020-nehrp-provisions_part-1-and-part-2.pdf)
+and the fixed-versus-slotted stair damage classifications in
+[FEMA P-58-2](https://www.fema.gov/sites/default/files/documents/fema_p-58-2-se_volume2_implementation.pdf).
+These are technical cross-checks only; the applicable Colombian NSR-10 requirements and
+the responsible engineer govern the project.
+
+Continuing columns to roof level also does **not** make them automatic gravity props for
+the current roof specimen. The roof trusses remain on fixed X lines and X=31.50 is not an
+M60 line. P2/roof collectors may be studied, but roof gravity support, landing restraints,
+torsional response, member and joint design, bases, foundations, fire protection,
+clearances, and erection remain unresolved. The official
+[AISC lateral-systems guidance](https://www.aisc.org/architecture-center/resources/engineering-basics/lateral-systems/)
+is used only to reinforce the early coordination principle that doors and windows govern
+whether diagonal or rigid-frame solutions are feasible.
+
+### 4.4 Lateral path and diaphragm
 
 The E1 force-distribution hypothesis gives a preliminary governing lateral force of
 157.8 kN. Dividing it among two wall lines and two active bays per line gives a trial
@@ -119,6 +166,7 @@ the demand arrows but leaves diaphragm design blocked.
 | Member second order | reduced-Euler ratio 0.203; B1 1.255 | 3D direct analysis, imperfections, notional loads |
 | Generic gusset parts | demand 209.8 kN; component ratio 0.387 | HSS wall limit states, eccentricity, access, seismic hierarchy |
 | Trial lateral bays | brace demand 63.2 kN; ratio 0.622 | locations, reversal/buckling, joints, collectors, openings |
+| Vertical continuity / stair frame | four compatible corners; two reused + two new | orthogonal system, torsion, drift joints, collectors, bases, fire and egress |
 | Roof diaphragm | 8.77 kN/m; chord 39.5 kN | manufacturer-tested assembly and opening framing |
 | Fire sensitivity | 0.65 at 400°C; 1.05 at 550°C; 2.84 at 700°C | D-021 rating, scenario, section factor, tested protection |
 | Erection | hook 15.8 kN; sling 9.1 kN; at least two transport pieces | crane chart/radius, lift lugs, splices, wind limit, temporary bracing |
@@ -146,13 +194,16 @@ declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
 6. **Foundation sensitivity versus site reality.** The drawn pad and plate are dimension
    studies only; site, groundwater, settlement, seismic/wind base actions, uplift, and the
    complete reinforced-concrete/anchor design are unknown.
+7. **Stair core versus protected egress.** D-048 improves the possible continuous load
+   path, but braces, column encasement, landing joints, deflected shapes, bases, and
+   collectors must preserve stair width, headroom, fire rating, and direct discharge.
 
 ## 7. Explicit corrections to the previous integration study
 
 This revision corrects superseded derived statements under the project precedence rules:
 
 - The prior text said that no structural layer existed in the drawings. Dedicated E0
-  structural sheets and the new E1 integrated sheet now exist; architectural b05–b08
+  structural sheets and the two E1 sheets now exist; architectural b05–b08
   remain separate drafts and are not silently converted into structural issue drawings.
 - The prior text described **three** P2 beams, a wall continuing as a shear core, and a
   strip foundation. Those statements were not supported by the active model or later
@@ -162,8 +213,8 @@ This revision corrects superseded derived statements under the project precedenc
   Only the P2 gravity intent is active; trial sections, weights, lateral behavior, and
   foundations remain open.
 
-These are precedence corrections, not new design decisions. The decision register is
-unchanged.
+The corrections remain precedence work. The separate new owner direction is explicitly
+recorded as D-048 rather than hidden in the drawing.
 
 ## 8. Required progression to design
 
@@ -174,6 +225,8 @@ Before an E2 structural issue, the responsible team must provide at least:
 - coordinated 3D geometry with all openings, support conditions, deck assemblies, and
   load-bearing nonstructural interfaces;
 - complete second-order lateral analysis, diaphragm/collector design, and torsion;
+- coordinated stair-enclosure frame analysis, landing drift interfaces, egress clearances,
+  and fire-protection details;
 - member, connection, HSS wall, base plate, anchor, and reinforced-concrete design;
 - D-021 fire criteria and tested protection system;
 - fabrication, transport, lifting, temporary stability, and erection engineering; and
@@ -181,7 +234,7 @@ Before an E2 structural issue, the responsible team must provide at least:
 
 ## 9. Anti-false-precision rule
 
-Every dimension and result on the E1 sheet retains the authority of its source. Decimal
+Every dimension and result on the E1 sheets retains the authority of its source. Decimal
 precision does not convert a hypothesis into a construction value. The SVG is a
 calculation-linked research drawing and must remain visibly marked **NOT FOR
 CONSTRUCTION** until the unresolved gates are closed and a professional issue replaces

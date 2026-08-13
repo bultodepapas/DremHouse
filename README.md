@@ -46,7 +46,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>40</strong> vector drawings · <strong>49</strong> documents · <strong>38</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>41</strong> vector drawings · <strong>49</strong> documents · <strong>39</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -70,8 +70,20 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </td>
 <td width="50%" valign="top">
   <a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg"><img src="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg" alt="Dream House integrated E1 structural screening drawing" width="100%"></a>
-  <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.1</sub>
+  <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.2</sub>
   <br><strong>Evidence and open gates stay visible</strong>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+  <a href="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg"><img src="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg" alt="Dream House vertical column continuity and stair-enclosure frame study" width="100%"></a>
+  <br><sub><strong>Engineering · D-048 study</strong> · E1 0.2</sub>
+  <br><strong>Four continuous lines around the protected stair</strong>
+</td>
+<td width="50%" valign="top">
+  <a href="planos/estructura/DH-EST-E0-004_PARED-HIBRIDA.svg"><img src="planos/estructura/DH-EST-E0-004_PARED-HIBRIDA.svg" alt="Dream House concealed Great Wall steel-frame study" width="100%"></a>
+  <br><sub><strong>Engineering · hybrid wall</strong> · E0 0.3</sub>
+  <br><strong>The architectural wall carries a traceable gravity study</strong>
 </td>
 </tr>
 </table>

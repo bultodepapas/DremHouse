@@ -1,10 +1,10 @@
 # Decision Register
 
 **Status:** active  
-**Version:** 0.9
+**Version:** 0.10
 **Date:** 2026-08-12  
 **Language note:** controlled English translation under D-044; decision content unchanged
-except for the additions of D-044 to D-047.
+except for the additions of D-044 to D-048.
 
 | ID | Decision | Status | Source/date |
 |---|---|---|---|
@@ -46,6 +46,7 @@ except for the additions of D-044 to D-047.
 | D-045 | For model E0 v0.3, represent the six longitudinal P2 beams as continuous members from X=21.00 to X=36.00, supported at the X=21.00 edge truss and the X=31.50 hybrid wall, with a 4.50 m free overhang above the rear core. Do not assume support at the X=36.00 rear façade because no column, transfer beam, or load-bearing wall is defined there. The connection over X=31.50 must transfer negative moment. | Active only as a traceable E0 screening hypothesis; E1 must compare the continuous-overhang scheme against a real rear support before profiles or connections are frozen | Second structural-model audit, 2026-08-12 |
 | D-046 | Add a structural-exploration layer that remains separate from the canonical E0 model: generate explicit roof-truss candidates, enumerate catalogue profiles deterministically, retain non-dominated alternatives through declared Pareto metrics, and preserve rejected candidates and an input hash. Optimization results may inform E1 but cannot select D-019, modify geometry, establish quantities for pricing, or authorize fabrication/construction without competent structural-engineer review. | Active computational-workflow rule; structural alternatives remain research hypotheses | Explicit owner instruction to proceed after optimization research, 2026-08-12 |
 | D-047 | Extend the separate structural-exploration layer with fail-closed E1 gates for HSS local/biaxial member stability, chord load-introduction bending, axial–flexural interaction, member second-order sensitivity, generic connection components, diaphragm demand, elevated-temperature sensitivity, erection/lifting, and foundation sensitivity. A passing component screen does not resolve the system: D-019, PE-1 quantities, procurement, fabrication, or construction remain blocked until site actions, the three-dimensional lateral model, manufacturer deck data, complete HSS joints, D-021 fire criteria, erection engineering, geotechnical parameters, anchors, and reinforced-concrete foundations are approved by the responsible professionals. The M60 Warren specimen is a neutral computational test and not a selected structural scheme. | Active computational-gate rule; no structural system, profile, joint, deck, fire protection, erection method, or foundation adopted | Explicit owner instruction to continue the missing E1 checks, 2026-08-12 |
+| D-048 | Study a continuous four-column steel frame around the protected stair enclosure, from foundations through P2 to roof level. Reuse the two existing Great Wall stair-jamb lines at (31.50, 7.40) and (31.50, 11.00) and add rear lines at (36.00, 7.40) and (36.00, 11.00), subject to the architectural, egress, fire, structural, erection, and foundation gates recorded in E1. Treat the enclosure frame—not the stair flights or stringers—as the preferred primary-system study. Stair connections must accommodate relative drift unless their stiffness and forces are explicitly included in the global model. Reaching roof level does not assign roof gravity support; P2/roof collector roles and the complete orthogonal lateral system remain unresolved. | Active geometry and structural-coordination hypothesis; no section, bracing topology, collector, joint, base, foundation, fire protection, or lateral system selected | Explicit owner proposal and structural geometry audit, 2026-08-12 |
 
 ## Decisions to open next
 
@@ -69,7 +70,7 @@ Use the [decision template](../07_plantillas/decision.md) for every new entry.
 |---|---|---|
 | 2026-08-11 | Identifier `D-037` had been assigned to two different decisions. `D-037` remains assigned to adoption of P2 b06/R05, continuing the sequence from D-036 to D-038; the steel-structure basis becomes **D-041**. | Finding H-15 in the [coordination review](../02_arquitectura/revision_coordinacion_v0.3_2026_08.md). Document precedence relies on unique decision identifiers. |
 
-**Next available identifier: `D-048`.** The D-017 to D-025 range remains reserved for the
+**Next available identifier: `D-049`.** The D-017 to D-025 range remains reserved for the
 pending decisions listed above.
 
 ## Hard rules modified by a later decision

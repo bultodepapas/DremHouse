@@ -69,6 +69,8 @@ class TestE1IntegratedSheet(unittest.TestCase):
         self.assertEqual(count("truss-node"), 14)
         self.assertEqual(count("top-restraint"), 13)
         self.assertEqual(count("bottom-restraint"), 4)
+        self.assertEqual(count("full-height-core-column"), 4)
+        self.assertEqual(count("stair-core-study-zone"), 1)
 
     def test_calculated_evidence_is_embedded_without_claiming_design(self):
         member = self.results["checks"]["local_and_biaxial_member_stability"]
