@@ -28,7 +28,7 @@
   setText('p2-area', `≈${formatNumber.format(dimensions.p2_area)} m²`);
   setText('total-area', `≈${formatNumber.format(dimensions.total_area)} m²`);
   setText('documents', formatNumber.format(data.counts.documents));
-  setText('sheets', formatNumber.format(data.counts.sheets));
+  setText('sheets', formatNumber.format(data.counts.current_sheets));
   setText('decisions', formatNumber.format(data.counts.decisions));
 
   const nav = document.getElementById('gallery-nav');
@@ -38,6 +38,7 @@
   const title = document.querySelector('[data-gallery-title]');
   const summary = document.querySelector('[data-gallery-summary]');
   const sourceLink = document.querySelector('[data-gallery-link]');
+  const historyLink = document.querySelector('[data-gallery-history]');
   const dialog = document.querySelector('[data-dialog]');
   const dialogImage = document.querySelector('[data-dialog-image]');
   let selectedIndex = 0;
@@ -55,8 +56,9 @@
         title.textContent = item.title;
         summary.textContent = item.summary;
         sourceLink.href = item.href;
+        historyLink.href = item.source_href;
         dialogImage.src = item.src;
-        dialogImage.alt = `${item.alt}, ampliada`;
+        dialogImage.alt = `${item.alt}, enlarged`;
         stage.classList.remove('is-changing');
       },
       reducedMotion ? 0 : 140,

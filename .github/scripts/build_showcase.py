@@ -13,8 +13,6 @@ import json
 import re
 import shutil
 import sys
-from collections.abc import Callable
-from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -22,91 +20,27 @@ README = ROOT / "README.md"
 REPO_URL = "https://github.com/bultodepapas/DremHouse"
 BEGIN = "<!-- showcase:begin -->"
 END = "<!-- showcase:end -->"
-
-
-@dataclass(frozen=True)
-class GalleryRule:
-    slug: str
-    eyebrow: str
-    title: str
-    summary: str
-    alt: str
-    matches: Callable[[str], bool]
-
-
-RULES = (
-    GalleryRule(
-        "planta-baja",
-        "Architecture · ground floor",
-        "The industrial hall as one continuous room",
-        "Workshops, the monumental void, domestic life, and the rear core are coordinated across one continuous floor.",
-        "Detailed Dream House ground-floor technical drawing",
-        lambda name: "PLN-001" in name and "PB" in name and "DETALLADA" in name,
-    ),
-    GalleryRule(
-        "segundo-piso",
-        "Architecture · upper floor",
-        "The family centre returns, with explicit access",
-        "The preferred b04 mini-deck, lounge, and gallery are combined with verified suites, phasing, and stair-column coordination.",
-        "Detailed Dream House upper-floor technical drawing",
-        lambda name: (
-            "PLN-002" in name
-            and "P2" in name
-            and ("DETALLADA" in name or "COORDINATED" in name)
-        ),
-    ),
-    GalleryRule(
-        "cubierta",
-        "Architecture · roof",
-        "One clear transverse gesture",
-        "The mono-pitch roof preserves the reading of a single industrial hall and concentrates drainage along one eave.",
-        "Dream House mono-pitch roof cross-section",
-        lambda name: "SEC-002" in name and "TRANSVERSAL-CUBIERTA" in name,
-    ),
-    GalleryRule(
-        "estructura",
-        "Engineering · E1 screening",
-        "Evidence and open gates stay visible",
-        "The roof specimen, P2 gravity path, diaphragm, joints, erection, fire, and foundations are integrated without implying design release.",
-        "Dream House integrated E1 structural screening drawing",
-        lambda name: "SINTESIS-ESTRUCTURAL" in name,
-    ),
-    GalleryRule(
-        "continuidad-vertical",
-        "Engineering · D-048 study",
-        "Four continuous lines around the protected stair",
-        "The protected stair enclosure reserves four foundation-to-roof column lines without assigning a final lateral system.",
-        "Dream House vertical column continuity and stair-enclosure frame study",
-        lambda name: "CONTINUIDAD-VERTICAL-ESCALERA" in name,
-    ),
-    GalleryRule(
-        "pared-hibrida",
-        "Engineering · hybrid wall",
-        "The architectural wall carries a traceable gravity study",
-        "A concealed steel frame gives the Great Wall a coordinated gravity role while its lateral function remains open.",
-        "Dream House concealed Great Wall steel-frame study",
-        lambda name: "PARED-HIBRIDA" in name,
-    ),
-)
+CURRENT_MANIFEST = ROOT / "planos" / "actual" / "manifest.json"
 
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def score_revision(revision: str, filename: str, manifest: Path) -> tuple[int, ...]:
-    text = f"{revision} {filename} {manifest.parent.name}"
-    numbers = tuple(int(value) for value in re.findall(r"\d+", text))
-    return numbers or (0,)
-
-
 def discover_outputs() -> list[dict]:
+    """Return versioned SVG issues, excluding the stable current aliases."""
+
     outputs: list[dict] = []
     for manifest in sorted((ROOT / "planos").rglob("manifest.json")):
+        if (ROOT / "planos" / "actual") in manifest.parents:
+            continue
         data = load_json(manifest)
         revision = str(data.get("revision", "no revision"))
         for output in data.get("outputs", []):
-            candidate = manifest.parent / output
+            value = output.get("path") if isinstance(output, dict) else output
+            if not isinstance(value, str):
+                continue
+            candidate = manifest.parent / value
             if candidate.suffix.lower() != ".svg" or not candidate.is_file():
                 continue
             relative = candidate.relative_to(ROOT).as_posix()
@@ -116,30 +50,40 @@ def discover_outputs() -> list[dict]:
                     "relative": relative,
                     "filename": candidate.name,
                     "revision": revision,
-                    "score": score_revision(revision, candidate.name, manifest),
                 }
             )
     return outputs
 
 
 def select_gallery() -> list[dict]:
-    outputs = discover_outputs()
+    """Load the explicitly promoted gallery; never infer authority from revision numbers."""
+
+    data = load_json(CURRENT_MANIFEST)
     gallery: list[dict] = []
-    for rule in RULES:
-        candidates = [item for item in outputs if rule.matches(item["filename"])]
-        if not candidates:
-            raise RuntimeError(f"No drawing was found for category {rule.slug!r}")
-        selected = max(candidates, key=lambda item: item["score"])
+    for item in data.get("drawings", []):
+        if not item.get("featured"):
+            continue
+        svg_path = ROOT / item["canonical_svg"]
+        png_path = ROOT / item["canonical_png"]
+        source_path = ROOT / item["source"]
+        for path in (svg_path, png_path, source_path):
+            if not path.is_file():
+                raise RuntimeError(f"Current drawing asset is missing: {path.relative_to(ROOT)}")
         gallery.append(
             {
-                **selected,
-                "slug": rule.slug,
-                "eyebrow": rule.eyebrow,
-                "title": rule.title,
-                "summary": rule.summary,
-                "alt": rule.alt,
+                **item,
+                "slug": item["id"],
+                "path": svg_path,
+                "image_path": png_path,
+                "source_path": source_path,
+                "relative": item["canonical_svg"],
+                "image_relative": item["canonical_png"],
+                "source_relative": item["source"],
+                "revision": item["source_revision"],
             }
         )
+    if not gallery:
+        raise RuntimeError("The current-drawing manifest has no featured drawings")
     return gallery
 
 
@@ -172,6 +116,7 @@ def project_data(gallery: list[dict]) -> dict:
     decisions = len(re.findall(r"^\| D-\d+ \|", decisions_text, re.MULTILINE))
     open_conflicts = len(re.findall(r"\*\*Status:\*\*[^\n]*open", conflicts_text, re.IGNORECASE))
     sheets = len({item["relative"] for item in discover_outputs()})
+    current_sheets = len(load_json(CURRENT_MANIFEST).get("drawings", []))
 
     phase = extract_list_value(readme, "Phase", "dimensional schematic design")
     blocker = extract_list_value(readme, "Primary blocker", "site selection and investigations")
@@ -195,6 +140,7 @@ def project_data(gallery: list[dict]) -> dict:
             "decisions": decisions,
             "open_conflicts": open_conflicts,
             "sheets": sheets,
+            "current_sheets": current_sheets,
         },
         "gallery": gallery,
     }
@@ -209,6 +155,8 @@ def render_readme_block(data: dict) -> str:
         cells = []
         for item in pair:
             path = html.escape(item["relative"], quote=True)
+            image_path = html.escape(item["image_relative"], quote=True)
+            source_path = html.escape(item["source_relative"], quote=True)
             alt = html.escape(item["alt"], quote=True)
             title = html.escape(item["title"])
             eyebrow = html.escape(item["eyebrow"])
@@ -217,9 +165,10 @@ def render_readme_block(data: dict) -> str:
                 "\n".join(
                     [
                         '<td width="50%" valign="top">',
-                        f'  <a href="{path}"><img src="{path}" alt="{alt}" width="100%"></a>',
+                        f'  <a href="{path}"><img src="{image_path}" alt="{alt}" width="100%"></a>',
                         f"  <br><sub><strong>{eyebrow}</strong> · {revision}</sub>",
                         f"  <br><strong>{title}</strong>",
+                        f'  <br><sub><a href="{source_path}">Versioned source</a> · stable current SVG/PNG above</sub>',
                         "</td>",
                     ]
                 )
@@ -230,14 +179,14 @@ def render_readme_block(data: dict) -> str:
         [
             BEGIN,
             '<p align="center">',
-            f'  <sub><strong>{counts["sheets"]}</strong> vector drawings · <strong>{counts["documents"]}</strong> documents · <strong>{counts["decisions"]}</strong> recorded decisions · <strong>{counts["open_conflicts"]}</strong> open conflicts</sub>',
+            f'  <sub><strong>{counts["current_sheets"]}</strong> current SVG/PNG pairs · <strong>{counts["sheets"]}</strong> preserved versioned sheets · <strong>{counts["documents"]}</strong> documents · <strong>{counts["decisions"]}</strong> decisions · <strong>{counts["open_conflicts"]}</strong> open conflicts</sub>',
             "</p>",
             "",
             "<table>",
             *rows,
             "</table>",
             "",
-            '<p align="center"><sub>This selection is regenerated from the <code>manifest.json</code> files; select any drawing to open it at full resolution.</sub></p>',
+            '<p align="center"><sub>Every thumbnail uses a stable file in <code>planos/actual/</code>; open it for the current SVG or follow its versioned source for history.</sub></p>',
             END,
         ]
     )
@@ -286,8 +235,8 @@ def build_site(data: dict, destination: Path) -> None:
     }
 
     for item in data["gallery"]:
-        media_name = f'{item["slug"]}{item["path"].suffix.lower()}'
-        shutil.copy2(item["path"], destination / "media" / media_name)
+        media_name = f'{item["slug"]}{item["image_path"].suffix.lower()}'
+        shutil.copy2(item["image_path"], destination / "media" / media_name)
         public_data["gallery"].append(
             {
                 "slug": item["slug"],
@@ -298,6 +247,7 @@ def build_site(data: dict, destination: Path) -> None:
                 "revision": item["revision"],
                 "src": f"media/{media_name}",
                 "href": f'{REPO_URL}/blob/main/{item["relative"]}',
+                "source_href": f'{REPO_URL}/blob/main/{item["source_relative"]}',
             }
         )
 

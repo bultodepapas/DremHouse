@@ -42,7 +42,7 @@ compatible stair-frame lines and now records each rooflight/grid crossing explic
 ## 2. New integrated evidence sheet
 
 The current visual synthesis is
-[DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg).
+[DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg).
 It is generated from the active JSON sources and the same `run_screening()` calculation
 used by the E1 report. Its four principal readings are:
 
@@ -59,7 +59,7 @@ The earlier E0 sheets remain valid as historical coordination evidence. The E1 s
 does not overwrite them or imply that their trial sections have become selected.
 
 The focused companion sheet is
-[DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg).
+[DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg).
 It audits every current Great Wall candidate against P2 rooms and glazing, identifies the
 four compatible stair-corner lines, separates enclosure-frame resistance from stair
 flights, and shows why the protected portal and rear discharge control the transverse

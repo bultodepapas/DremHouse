@@ -1,12 +1,12 @@
 # Parametric Architecture–Structure–Cost Integration Plan
 
 **Status:** implementation issue 0.4-I01 active; coordination basis; not for construction
-**Version:** 0.2
+**Version:** 0.3
 **Date:** 2026-08-13  
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
 **Primary authority:** Project Constitution, source-precedence register, D-043,
-D-045–D-048, D-050–D-055, and the active discipline records listed below  
+D-045–D-048, D-050–D-056, and the active discipline records listed below
 **Prepared from:** complete repository review, active drawings and JSON models, Python
 call-path and test audit, cost-control records, and protected legacy source review  
 **Required reviewers:** owner, architect, structural engineer, cost planner/quantity
@@ -971,8 +971,9 @@ The stage is complete only when:
 10. every cost line has a traceable quantity/rate or is reported as unmapped/blocked;
 11. economic comparison preserves the target and separately shows scenario deltas and
     confidence;
-12. existing and new tests pass, touched code is lint-clean, and superseded generators
-    cannot issue current drawings;
+12. existing and new tests pass, touched code is lint-clean, current-drawing promotion
+    is explicit in `planos/actual/catalog.json`, every SVG/PNG alias and provenance hash
+    validates, and superseded generators cannot promote current drawings;
 13. the coordinated evidence package carries input/output hashes and the required
     professional approvals/warnings;
 14. the decision, conflict, risk, and cost-control records are updated for every adopted

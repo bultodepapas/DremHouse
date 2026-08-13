@@ -1,83 +1,94 @@
-# Roles, entregables y control de calidad
+# Roles, deliverables, and quality control
 
-**Estatus:** base organizativa  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11
+**Status:** organizational basis<br>
+**Version:** 0.2<br>
+**Date:** 2026-08-13<br>
+**Sources:** prior organizational basis, D-044, and D-056<br>
+**Language note:** controlled English translation; no change to responsibilities.
 
-## Principio de responsabilidad
+## Responsibility principle
 
-El repositorio coordina intención y evidencia. Las responsabilidades reservadas por ley,
-firmas, cálculos, licencias, dirección, supervisión, inspección y certificación recaen en
-profesionales y entidades competentes. La inteligencia artificial no firma ni asume una
-matrícula profesional.
+The repository coordinates intent and evidence. Responsibilities reserved by law—such
+as professional signatures, calculations, permits, direction, supervision, inspection,
+and certification—remain with competent professionals and authorities. Artificial
+intelligence neither signs documents nor assumes a professional licence.
 
-## Equipo mínimo a conformar
+## Minimum team to appoint
 
-| Rol                          | Responsabilidad central                                           |
-| ---------------------------- | ----------------------------------------------------------------- |
-| Propietario/promotor         | Alcance, presupuesto, prioridades, predio y decisiones            |
-| Arquitecto coordinador       | Diseño integral, programa, coordinación y licencia                |
-| Geotecnista                  | Suelo, cimentación, excavación, agua y recomendaciones            |
-| Ingeniero estructural        | Sistema, cálculos, planos, detalles y soporte de obra             |
-| Ingenierías MEP              | Electricidad, iluminación, hidráulica, sanitaria, HVAC/extracción |
-| Especialista incendio/egreso | Clasificación, estrategia y coordinación de vida segura           |
-| Envolvente/higrotermia       | Aislamiento, aire, vapor, condensación, sellos y puentes          |
-| Acústica                     | Nave, P2, lluvia, equipos y criterios de aislamiento/absorción    |
-| Presupuestador/QS            | Cantidades, precios, conciliación, cambios y proyección final     |
-| Constructor/director de obra | Métodos, seguridad, calidad, plazo, costo y ejecución             |
-| Supervisión/interventoría    | Verificación independiente según alcance/norma/contrato           |
-| Commissioning                | Plan y verificación integrada de sistemas                         |
+| Role | Primary responsibility |
+| --- | --- |
+| Owner/developer | Scope, budget, priorities, site, and decisions |
+| Coordinating architect | Integrated design, programme, coordination, and permit |
+| Geotechnical engineer | Ground, foundations, excavation, water, and recommendations |
+| Structural engineer | System, calculations, drawings, details, and construction support |
+| MEP engineers | Electrical, lighting, plumbing, drainage, HVAC/extraction |
+| Fire/egress specialist | Classification, strategy, and life-safety coordination |
+| Envelope/hygrothermal specialist | Insulation, air, vapour, condensation, seals, and bridges |
+| Acoustic consultant | Hall, P2, rain, equipment, isolation, and absorption criteria |
+| Cost planner / quantity surveyor | Quantities, rates, reconciliation, change, and forecast |
+| Contractor / construction manager | Methods, safety, quality, programme, cost, and execution |
+| Independent supervisor / reviewer | Verification under the applicable scope, rules, and contract |
+| Commissioning authority | Integrated systems plan and verification |
 
-Una persona puede cubrir más de un rol solo si es legalmente competente, tiene capacidad y
-el contrato evita conflictos de interés inaceptables.
+One person may cover more than one role only when legally competent, sufficiently
+resourced, and free from unacceptable contractual conflicts of interest.
 
-## Lista maestra de entregables
+## Master deliverable list
 
-Cada emisión debe tener código, título, disciplina, versión, estado, fecha, autor, revisor,
-aprobador y documentos sustituidos. Convención sugerida:
+Every issue must state its code, title, discipline, version, status, date, author,
+reviewer, approver, and superseded documents. Suggested convention:
 
-`DH-[DISCIPLINA]-[TIPO]-[NÚMERO]-[REV]`
+`DH-[DISCIPLINE]-[TYPE]-[NUMBER]-[REV]`
 
-Ejemplos de disciplina: ARQ, EST, GEO, ELE, HID, MEC, PCI, ACO, ENV, COS, OBR.
+Example disciplines: ARQ, EST, GEO, ELE, HID, MEC, PCI, ACO, ENV, COS, OBR.
 
-## Revisión por fase
+### Current-drawing publication
 
-- **Anteproyecto:** programa, cotas, áreas, mobiliario, secciones y hard rules.
-- **Coordinación:** interfaces, colisiones, cargas, shafts, tolerancias y mantenimiento.
-- **Constructibilidad:** secuencia, acceso, montaje, prototipos, disponibilidad y seguridad.
-- **Costo:** cantidades comunes, alcance completo, exclusiones y riesgos.
-- **IFC:** firmas, revisiones, licencia, lista maestra y cambios cerrados.
+The versioned issue is the retained technical record. If it becomes current for public
+coordination, update its stable ID in [`planos/actual/catalog.json`](../../planos/actual/catalog.json)
+and regenerate the SVG/PNG aliases and publication manifest. Promotion must be explicit;
+revision sorting is not an approval method. The aliases inherit the source issue's
+status and never create additional authority.
 
-## Control en obra
+## Review by stage
 
-### Antes de ejecutar
+- **Schematic design:** programme, dimensions, areas, furniture, sections, and hard rules.
+- **Coordination:** interfaces, clashes, loads, shafts, tolerances, and maintenance.
+- **Constructability:** sequence, access, erection, mock-ups, availability, and safety.
+- **Cost:** common quantities, complete scope, exclusions, and risks.
+- **Issued for construction (IFC):** signatures, reviews, permit, master list, and closed
+  changes.
 
-- Documento IFC vigente.
-- Método y análisis de riesgo aprobados.
-- Material/equipo mediante submittal aprobado.
-- Replanteo, tolerancias e interfaces verificadas.
+## Construction control
 
-### Hold points iniciales
+### Before work starts
 
-1. Replanteo, niveles y drenaje.
-2. Fondo de excavación y cimentación antes de concreto.
-3. Anclajes/placas y refuerzo de lift antes de vaciado.
-4. Subbase, barreras, juntas y refuerzo de losa PB.
-5. Acero: recepción, uniones, plomo, pernos/soldadura y protección.
-6. Mockup de panel–remate–ventana/portón antes de producción masiva.
-7. Pruebas de agua/aire de envolvente según plan.
-8. Redes ocultas antes de cerrar.
-9. Impermeabilización de baños/sauna antes de acabados.
-10. Pruebas eléctricas, hidráulicas, extracción, controles y vida segura.
+- Current IFC document.
+- Approved method statement and risk assessment.
+- Material/equipment approved through the submittal process.
+- Setting out, tolerances, and interfaces verified.
 
-### Registros
+### Initial hold points
 
-Reporte diario, fotos localizadas, inspecciones, ensayos, RFI, submittals, no conformidades,
-cambios, cantidades, avance y clima. Toda desviación debe cerrar con aceptación del
-responsable de diseño cuando afecte su disciplina.
+1. Setting out, levels, and drainage.
+2. Excavation base and foundations before concrete placement.
+3. Anchors/plates and lift reinforcement before casting.
+4. Sub-base, barriers, joints, and PB slab reinforcement.
+5. Steel receipt, joints, plumbness, bolts/welds, and protection.
+6. Panel–flashing–window/door mock-up before mass production.
+7. Envelope water/air tests under the approved plan.
+8. Concealed services before closure.
+9. Bathroom/sauna waterproofing before finishes.
+10. Electrical, plumbing, extraction, controls, and life-safety testing.
 
-## Entrega
+### Records
 
-No recibir solo “la obra terminada”. Exigir as-built, manuales, garantías, certificados,
-capacitación, inventario, llaves/credenciales seguras, repuestos, resultados de pruebas y
-plan de mantenimiento.
+Maintain daily reports, located photographs, inspections, tests, RFIs, submittals,
+nonconformities, changes, quantities, progress, and weather. Any deviation affecting a
+discipline must close with acceptance by its responsible designer.
+
+## Handover
+
+Do not accept only “the finished work.” Require as-builts, manuals, warranties,
+certificates, training, inventory, secure keys/credentials, spares, test results, and a
+maintenance plan.

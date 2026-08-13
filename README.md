@@ -5,6 +5,8 @@
 <p align="center">
   <a href="https://bultodepapas.github.io/DremHouse/"><strong>Explore the presentation</strong></a>
   &nbsp;·&nbsp;
+  <a href="planos/README.md"><strong>Current drawings</strong></a>
+  &nbsp;·&nbsp;
   <a href="docs/README.md">Open the project record</a>
   &nbsp;·&nbsp;
   <a href="docs/00_gobernanza/registro_decisiones.md">Review decisions</a>
@@ -42,58 +44,83 @@ The guiding idea is deliberately simple:
 Luxury should come from proportion, height, light, landscape, silence,
 structure, and performance—not from arbitrary forms or decorative layers.
 
-## Latest deliverables
+## Current project drawings
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>48</strong> vector drawings · <strong>52</strong> documents · <strong>46</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>19</strong> current SVG/PNG pairs · <strong>50</strong> preserved versioned sheets · <strong>53</strong> documents · <strong>47</strong> decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/conceptual_v0.3_b05_pb/DH-ARQ-PLN-001-R04_PB-DETALLADA.svg"><img src="planos/conceptual_v0.3_b05_pb/DH-ARQ-PLN-001-R04_PB-DETALLADA.svg" alt="Detailed Dream House ground-floor technical drawing" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor schematic plan" width="100%"></a>
   <br><sub><strong>Architecture · ground floor</strong> · 0.3-borrador-05-PB</sub>
-  <br><strong>The industrial hall as one continuous room</strong>
+  <br><strong>Ground-floor plan</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b05_pb/DH-ARQ-PLN-001-R04_PB-DETALLADA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg"><img src="planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg" alt="Detailed Dream House upper-floor technical drawing" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
   <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-10-P2</sub>
-  <br><strong>The family centre returns, with explicit access</strong>
+  <br><strong>Upper-floor plan</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg"><img src="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg" alt="Dream House mono-pitch roof cross-section" width="100%"></a>
-  <br><sub><strong>Architecture · roof</strong> · 0.3-borrador-07-CUBIERTA</sub>
-  <br><strong>One clear transverse gesture</strong>
+  <a href="planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg"><img src="planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png" alt="Current Dream House roof and rooflight schematic plan" width="100%"></a>
+  <br><sub><strong>Architecture · roof</strong> · 0.4-I01-ROOFLIGHTS</sub>
+  <br><strong>Roof and rooflight plan</strong>
+  <br><sub><a href="planos/integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg"><img src="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg" alt="Dream House integrated E1 structural screening drawing" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg"><img src="planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.png" alt="Current Dream House mono-pitch transverse roof schematic section" width="100%"></a>
+  <br><sub><strong>Architecture · transverse section</strong> · 0.3-borrador-07-CUBIERTA</sub>
+  <br><strong>Mono-pitch roof section</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+  <a href="planos/actual/DH-ARQ-ELE-001_CURRENT-FRONT.svg"><img src="planos/actual/DH-ARQ-ELE-001_CURRENT-FRONT.png" alt="Current Dream House front façade schematic elevation" width="100%"></a>
+  <br><sub><strong>Architecture · front elevation</strong> · 0.3-borrador-07-CUBIERTA</sub>
+  <br><strong>Front façade</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+</td>
+<td width="50%" valign="top">
+  <a href="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.png" alt="Current Dream House rear façade schematic elevation" width="100%"></a>
+  <br><sub><strong>Architecture · rear elevation</strong> · 0.3-borrador-07-CUBIERTA</sub>
+  <br><strong>Rear façade</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-002-R06_FACHADA-POSTERIOR-CUBIERTA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+  <a href="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.2</sub>
-  <br><strong>Evidence and open gates stay visible</strong>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-  <a href="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg"><img src="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg" alt="Dream House vertical column continuity and stair-enclosure frame study" width="100%"></a>
-  <br><sub><strong>Engineering · D-048 study</strong> · 0.3 + E1 0.2</sub>
-  <br><strong>Four continuous lines around the protected stair</strong>
+  <br><strong>Integrated structural evidence</strong>
+  <br><sub><a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/estructura/DH-EST-E0-004_PARED-HIBRIDA.svg"><img src="planos/estructura/DH-EST-E0-004_PARED-HIBRIDA.svg" alt="Dream House concealed Great Wall steel-frame study" width="100%"></a>
-  <br><sub><strong>Engineering · hybrid wall</strong> · 0.3 + E1 0.2</sub>
-  <br><strong>The architectural wall carries a traceable gravity study</strong>
+  <a href="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
+  <br><sub><strong>Engineering · vertical continuity</strong> · 0.3 + E1 0.2</sub>
+  <br><strong>Stair-frame continuity</strong>
+  <br><sub><a href="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
 </td>
 </tr>
 </table>
 
-<p align="center"><sub>This selection is regenerated from the <code>manifest.json</code> files; select any drawing to open it at full resolution.</sub></p>
+<p align="center"><sub>Every thumbnail uses a stable file in <code>planos/actual/</code>; open it for the current SVG or follow its versioned source for history.</sub></p>
 <!-- showcase:end -->
 
-The drawings above are **coordination hypotheses**. Each drawing states its
-revision and limitations; geometry only acquires authority in accordance with
-the [document precedence](docs/00_gobernanza/fuentes_precedencia_y_conflictos.md).
+The gallery always reads the stable SVG/PNG pairs in [`planos/actual/`](planos/actual/).
+Each alias retains its versioned source, revision, status, and hashes; replacing an alias
+never deletes its predecessor. [Open the complete current drawing index →](planos/README.md)
+
+The drawings remain **coordination hypotheses**. “Current” identifies the issue used for
+coordination; it does not freeze a design or grant dimensional or construction authority.
+The [document precedence](docs/00_gobernanza/fuentes_precedencia_y_conflictos.md) continues
+to govern.
 
 ## One architecture, four movements
 
@@ -121,6 +148,7 @@ services behind an acoustically enclosed envelope.
 
 | Area             | Entry document                                                                            | Governs                                           |
 | ---------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **Current views** | [Current Drawing Index](planos/README.md)                                                 | Stable SVG/PNG aliases and versioned provenance   |
 | **Governance**   | [Project Constitution](docs/00_gobernanza/constitucion_del_proyecto.md)                   | Hard rules, precedence, and controlled change     |
 | **Architecture** | [Design Basis](docs/02_arquitectura/bases_de_diseno.md)                                   | Space, materiality, and geometric coordination    |
 | **Engineering**  | [Structural and Civil Design Basis](docs/03_ingenierias/bases_estructurales_y_civiles.md) | Assumptions, systems, and professional validation |
@@ -135,21 +163,29 @@ services behind an acoustically enclosed envelope.
 ```mermaid
 flowchart LR
     A[Sources and decisions] --> B[JSON models]
-    B --> C[Python generators]
-    C --> D[Validation]
-    C --> E[SVG drawings]
-    D --> F[Traceable manifests]
-    E --> F
-    F --> G[README + GitHub Pages]
+    B --> C[Versioned drawing issue]
+    C --> D[Validation + issue manifest]
+    D --> E[Explicit promotion catalog]
+    E --> F[Stable current SVG + PNG]
+    F --> G[README + project wiki + GitHub Pages]
+    C --> H[Preserved history]
 ```
 
-The drawings are not isolated images: their generators preserve source,
-revision, and compliance checks in `manifest.json`. The presentation reads
-those manifests to display the current deliverables automatically.
+The drawings are not isolated images. Versioned issues preserve source, revision, and
+checks in `manifest.json`; the explicit promotion catalog then generates stable current
+aliases. A larger revision number never becomes current by accident.
 
 ```powershell
-# Refresh the README gallery and build the presentation locally
+# Install the lightweight cross-platform PNG renderer once
+python -m pip install -e ".[presentation]"
+
+# Synchronize current aliases, refresh the gallery, and build the presentation
+python .github/scripts/sync_current_drawings.py --write
 python .github/scripts/build_showcase.py --write-readme --site-dir .build/showcase
+
+# Validate that sources, aliases, PNG metadata, hashes, indexes, and README agree
+python .github/scripts/sync_current_drawings.py --check
+python .github/scripts/build_showcase.py --check-readme
 
 # Preview at http://localhost:8000
 python -m http.server 8000 --directory .build/showcase

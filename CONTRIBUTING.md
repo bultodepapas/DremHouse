@@ -27,10 +27,18 @@ decision, assumption, drawing, and cost.
   change.
 - State the source, date, version, status, assumptions, and affected documents.
 - When issuing a drawing, retain its `manifest.json` and limitation-of-use note.
+- When that issue becomes current, update its entry in
+  [`planos/actual/catalog.json`](planos/actual/catalog.json). Promotion is explicit: never
+  infer authority from the highest revision number.
+- Keep the versioned issue in place. The stable SVG/PNG aliases are additional
+  publication copies, not replacements for history.
 - Validate the presentation before submitting changes:
 
 ```powershell
+python -m pip install -e ".[presentation]"
+python .github/scripts/sync_current_drawings.py --write
 python .github/scripts/build_showcase.py --write-readme --site-dir .build/showcase
+python .github/scripts/sync_current_drawings.py --check
 python .github/scripts/build_showcase.py --check-readme
 ```
 

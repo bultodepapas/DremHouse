@@ -19,6 +19,7 @@ dreamhouse-integrate = "dreamhouse.pipeline:main"
 optimization = ["scipy>=1.17,<1.18", "pymoo>=0.6.2,<0.7", "SALib>=1.5,<2"]
 verification = ["openseespy>=3.7,<4"]
 dev = ["ruff>=0.12,<1"]
+presentation = ["resvg-py>=0.4,<0.5", "pillow>=11,<12"]
 
 [tool.setuptools.packages.find]
 include = ["dreamhouse*"]

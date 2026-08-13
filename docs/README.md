@@ -9,6 +9,18 @@
 > D-044. Files already translated are canonical working documents. Original evidence in
 > [`BORN_Legacy/`](BORN_Legacy/) remains unchanged and in Spanish.
 
+## Start with the current project state
+
+- [Current drawings and visual index](02_arquitectura/planos_actuales.md): the fastest
+  visual reading of the active coordinated state.
+- [Complete current drawing set](../planos/README.md): all stable SVG/PNG pairs, their
+  versioned sources, revisions, statuses, and update rule.
+- [Current publication manifest](../planos/actual/manifest.json): machine-readable
+  provenance and SHA-256 hashes for every alias.
+
+Historical drawing folders remain preserved. Public-facing links use `planos/actual/` so
+they stay stable while their explicitly promoted versioned source can advance.
+
 ## 00 — Project governance
 
 - [Project Constitution](00_gobernanza/constitucion_del_proyecto.md): conditions that
@@ -30,6 +42,8 @@
 
 ## 02 — Architecture
 
+- [Current drawings and visual index](02_arquitectura/planos_actuales.md): stable current
+  plans, roof views, sections, all four façades, details, and their versioned provenance.
 - [Architectural design basis](02_arquitectura/bases_de_diseno.md)
 - [Visualization control](02_arquitectura/control_de_visualizaciones.md)
 - [Concept plan v0.3 — first parametric draft](02_arquitectura/plano_conceptual_v0.3_borrador.md)
@@ -71,10 +85,10 @@
   reconciles the roof specimen, D-054 rooflight positions, D-043/D-045 P2 gravity path,
   lateral demand, and every unresolved design gate; issue 0.4-I01 now includes the
   opening-aware grid-crossing screen.
-- [Integrated structural E1 evidence sheet](../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg):
+- [Integrated structural E1 evidence sheet](../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg):
   calculation-linked plan, exact truss grammar, evidence matrix, connection, base,
   foundation, erection, and fire-sensitivity views; not for construction.
-- [Vertical continuity and stair-enclosure frame sheet](../planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg):
+- [Vertical continuity and stair-enclosure frame sheet](../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg):
   D-048 audit of four foundation-to-roof column lines, rejected architectural conflicts,
   orthogonal lateral planes, and drift-compatible stair interfaces; not for construction.
 - [MEP, comfort, and automation basis](03_ingenierias/bases_mep_confort_y_automatizacion.md)

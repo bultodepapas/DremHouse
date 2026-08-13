@@ -24,9 +24,9 @@ automático, fije el tonelaje real.
 ## Current E1 integration status — 2026-08-12
 
 The active visual synthesis is
-[DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg),
+[DH-EST-E1-001 — Integrated Structural E1 Screening](../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg),
 with the focused
-[DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg),
+[DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg),
 supported by the updated
 [structural-to-drawing integration study](estudio_integracion_estructura_planos.md) and
 the [E1 screening report](../08_investigacion/e1_structural_screening.md).

@@ -1,39 +1,57 @@
-# Control de visualizaciones
+# Visualization control
 
-**Estatus:** activo  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11
+**Status:** active<br>
+**Version:** 0.2<br>
+**Date:** 2026-08-13<br>
+**Sources:** Project Constitution, D-044, D-056, and the current-drawing catalog<br>
+**Language note:** controlled English translation; no design change.
 
-## Autoridad
+## Authority
 
-Una visualización prueba percepción y atmósfera. No define área, estructura, número de
-habitaciones, cumplimiento ni costo. Si contradice los documentos canónicos, está mal.
+A visualization tests perception, hierarchy, and atmosphere. It does not define area,
+structure, room count, compliance, cost, or construction information. If it contradicts
+the governing documents or active coordinated drawings, it is wrong.
 
-## Checklist mínimo
+The stable files under [`planos/actual/`](../../planos/actual/) are the visual reference
+set used by the repository README, the project-record index, and the presentation. Their
+SVGs remain coordination drawings with exactly the authority and limitations of their
+preserved versioned sources. PNGs are previews only.
 
-- [ ] Un solo volumen 18 × 36 m de referencia.
-- [ ] Una cubierta continua simple.
-- [ ] P2 únicamente en los 15 m posteriores.
-- [ ] Aproximadamente 21 m delanteros en doble altura.
-- [ ] Exactamente tres puertas frontales: grande + peatonal central + grande.
-- [ ] Un carro proyecto longitudinal y un lift realista.
-- [ ] RC y carro en lados opuestos de la banda técnica.
-- [ ] Franja vacía antes de la sala.
-- [ ] Sala en doble altura; comedor/cocina bajo P2.
-- [ ] Pared posterior completa y escalera oculta.
-- [ ] P2 cerrado acústicamente, sin galería de hotel.
-- [ ] Pocos eventos de vidrio, no caja transparente.
-- [ ] Estructura plausible; sin volumen superior mágicamente flotante.
+## Minimum checklist
 
-## Render maestro requerido
+- [ ] One reference volume of 18 × 36 m.
+- [ ] One simple continuous roof.
+- [ ] P2 only within the rear 15 m.
+- [ ] Approximately 21 m of double-height volume at the front.
+- [ ] Exactly three front doors: large + central pedestrian + large.
+- [ ] One longitudinal project car and a realistically sized lift.
+- [ ] RC workshop and project car on opposite sides of the technical band.
+- [ ] An empty breathing zone before the living room.
+- [ ] Living room in the double-height volume; dining/kitchen below P2.
+- [ ] A complete rear wall and concealed protected stair.
+- [ ] Acoustically enclosed P2 without a hotel-like open gallery.
+- [ ] A limited number of high-impact glazed events, not a transparent box.
+- [ ] A plausible visible structure; no magically floating upper volume.
+- [ ] Current D-054 rooflight positions and D-050/D-051 supplementary interfaces are
+  checked when they are visible from the selected viewpoint.
 
-Perspectiva humana desde la puerta peatonal central a altura de ojos. Debe explicar, en
-profundidad, atelier, eje, respiración, sala, transición bajo P2 y pared final. Si esa
-secuencia no se entiende, se corrige la planta o la sección antes de “mejorar” el render.
+## Required master render
 
-## Errores prohibidos
+Use a human perspective from the central pedestrian door at eye level. It must explain,
+in depth, the workshop, central axis, breathing zone, living room, transition below P2,
+and final wall. If that sequence is illegible, correct the plan or section before
+polishing the render.
 
-Compresión de los 36 m; escalera lateral inventada; núcleos de servicio laterales;
-cubierta a dos aguas; tragaluces automáticos; balcones sin programa; demasiadas columnas;
-P2 flotante; corredor abierto; más o menos de cuatro suites; etiquetas dimensionales
-inventadas.
+## Prohibited errors
+
+Do not compress the 36 m length; invent a side stair or lateral service cores; use a
+gable roof; add unapproved rooflights or balconies; introduce excessive columns; float
+P2; reopen P2 as a gallery; change the four-suite programme; or invent dimensional
+labels.
+
+## Publication rule
+
+Renderings and evocative imagery may be stored as versioned evidence, but they must not
+replace technical drawings in `planos/actual/`. If a new issued drawing changes what the
+master render should show, promote that drawing through the current-drawing catalog
+first, regenerate the stable aliases, and only then update the render.
