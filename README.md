@@ -46,7 +46,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>48</strong> vector drawings · <strong>51</strong> documents · <strong>44</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
+  <sub><strong>48</strong> vector drawings · <strong>52</strong> documents · <strong>46</strong> recorded decisions · <strong>4</strong> open conflicts</sub>
 </p>
 
 <table>
