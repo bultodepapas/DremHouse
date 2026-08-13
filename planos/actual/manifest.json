@@ -41,11 +41,11 @@
       "featured": true,
       "source": "planos/conceptual_v0.3_b10_p2/DH-ARQ-PLN-002-R09_P2-COORDINATED.svg",
       "source_manifest": "planos/conceptual_v0.3_b10_p2/manifest.json",
-      "source_sha256": "f6c58cd3ddbcd83ac8bfa7fef1bce6153b78a36e7e215e5cfcfadc5b66a35039",
+      "source_sha256": "3915af35bfabe5d920d7c200752f042ee64d7210d5fbbe4bdd5464a8bddc97a0",
       "canonical_svg": "planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg",
-      "canonical_svg_sha256": "f6c58cd3ddbcd83ac8bfa7fef1bce6153b78a36e7e215e5cfcfadc5b66a35039",
+      "canonical_svg_sha256": "3915af35bfabe5d920d7c200752f042ee64d7210d5fbbe4bdd5464a8bddc97a0",
       "canonical_png": "planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png",
-      "canonical_png_sha256": "fdd19dab18071eafc575881ceb7932942edc4ab50a48119bc25a64e8d0fadc84",
+      "canonical_png_sha256": "ad3f4e415b97d7a133979b9617570696e1bd3d8e5ad92f12b4481e8132fabd23",
       "png_size_px": {
         "width": 1400,
         "height": 991
@@ -63,11 +63,11 @@
       "featured": true,
       "source": "planos/integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg",
       "source_manifest": "planos/integracion_v0.4_i01/rooflights/manifest.json",
-      "source_sha256": "c65faee824d88b6f8a7361c9b51eac4d20a6a7862de47836316a7c4700cdc1d5",
+      "source_sha256": "cc42f074fbcd7da02feed1345b289bc9bb084f0844b98afdae99c5839fabf352",
       "canonical_svg": "planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg",
-      "canonical_svg_sha256": "c65faee824d88b6f8a7361c9b51eac4d20a6a7862de47836316a7c4700cdc1d5",
+      "canonical_svg_sha256": "cc42f074fbcd7da02feed1345b289bc9bb084f0844b98afdae99c5839fabf352",
       "canonical_png": "planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png",
-      "canonical_png_sha256": "2be82935d8aadad607fef0187ab71aca6a272e4032be8d1b5bfffd21779a3f35",
+      "canonical_png_sha256": "754c47128d8fe37e6093e4d327382e6461a71b85a0e9f31cc0b634ffa50dbe7c",
       "png_size_px": {
         "width": 1400,
         "height": 991
@@ -85,11 +85,11 @@
       "featured": false,
       "source": "planos/integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg",
       "source_manifest": "planos/integracion_v0.4_i01/rooflights/manifest.json",
-      "source_sha256": "0bdd5f6541654de09b02e0d593a3e36b782291c9d2d8e96832b0ed6aa7a646ae",
+      "source_sha256": "4617ff3ae492e9a32ea83a075162ca78a9f550b82c2907d06771c2344a391c10",
       "canonical_svg": "planos/actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg",
-      "canonical_svg_sha256": "0bdd5f6541654de09b02e0d593a3e36b782291c9d2d8e96832b0ed6aa7a646ae",
+      "canonical_svg_sha256": "4617ff3ae492e9a32ea83a075162ca78a9f550b82c2907d06771c2344a391c10",
       "canonical_png": "planos/actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png",
-      "canonical_png_sha256": "71362dbec8941fef39ff5fe3c36ef007dc85dd2d8da72fbb02ca9290437d5127",
+      "canonical_png_sha256": "777358b1e463b1c335d01ed4aa8604d1c3ef1111f663d0286b33453b4fa6bc7f",
       "png_size_px": {
         "width": 1400,
         "height": 991
@@ -107,11 +107,11 @@
       "featured": false,
       "source": "planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg",
       "source_manifest": "planos/conceptual_v0.3_b07_cubierta/manifest.json",
-      "source_sha256": "8f4fb19e325bc4dfb6d69bc34d328656910028f4279b47cdf5cd9244a64b6e29",
+      "source_sha256": "0793881619c2e20726cc7765b0d1f7b2e1d199c0f85d07c27d070a7188a67634",
       "canonical_svg": "planos/actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.svg",
-      "canonical_svg_sha256": "8f4fb19e325bc4dfb6d69bc34d328656910028f4279b47cdf5cd9244a64b6e29",
+      "canonical_svg_sha256": "0793881619c2e20726cc7765b0d1f7b2e1d199c0f85d07c27d070a7188a67634",
       "canonical_png": "planos/actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.png",
-      "canonical_png_sha256": "9adc216453273834e0352f037c40f483bea5603c482e19fe7217606a9d999ed7",
+      "canonical_png_sha256": "1c1c55b7c130c0d89b38d3c2b2a8c32093ddbece578aa34040ede3ad414fa881",
       "png_size_px": {
         "width": 1400,
         "height": 900
@@ -283,11 +283,11 @@
       "featured": false,
       "source": "planos/conceptual_v0.3_b10_p2/DH-ARQ-DIA-001-R09_P2-ACCESS-EGRESS.svg",
       "source_manifest": "planos/conceptual_v0.3_b10_p2/manifest.json",
-      "source_sha256": "222b5f30176bd03a52c9e7bcec7afee648a43e76f07ed5ad8ab6e45fe3c5ae3b",
+      "source_sha256": "7d03f6cf17d066c5c7004b55f52abcf220844c5b8f649789eb54e5130ab27382",
       "canonical_svg": "planos/actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.svg",
-      "canonical_svg_sha256": "222b5f30176bd03a52c9e7bcec7afee648a43e76f07ed5ad8ab6e45fe3c5ae3b",
+      "canonical_svg_sha256": "7d03f6cf17d066c5c7004b55f52abcf220844c5b8f649789eb54e5130ab27382",
       "canonical_png": "planos/actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.png",
-      "canonical_png_sha256": "11d1214a016e2da1012837f485f712abd28a9bd49f349a0713bc4f9ad00da44f",
+      "canonical_png_sha256": "e143b8f6c2575a34bf3ce9b987c5e866e22da1cf1977c48fbb1c658ad4d72126",
       "png_size_px": {
         "width": 1400,
         "height": 991
@@ -305,11 +305,11 @@
       "featured": false,
       "source": "planos/conceptual_v0.3_b10_p2/DH-ARQ-DET-002-R09_OWNER-PRIORITIES.svg",
       "source_manifest": "planos/conceptual_v0.3_b10_p2/manifest.json",
-      "source_sha256": "a5dd38cfc5d5be1802856888ec8fee270aebc8563f82f3398da98a8f04724346",
+      "source_sha256": "ddbaa148d211ce55b447233ba158e241f7b15d6088ef86f5aa0a5cfd8c4cc33d",
       "canonical_svg": "planos/actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.svg",
-      "canonical_svg_sha256": "a5dd38cfc5d5be1802856888ec8fee270aebc8563f82f3398da98a8f04724346",
+      "canonical_svg_sha256": "ddbaa148d211ce55b447233ba158e241f7b15d6088ef86f5aa0a5cfd8c4cc33d",
       "canonical_png": "planos/actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.png",
-      "canonical_png_sha256": "06ff0dbd69cdfecb6bbb9fc79e8dc419ce46ca447619001050a4043c0d1f6713",
+      "canonical_png_sha256": "7f02d73f1f054fb01f9cf72715a230ebf67c81357ecb84e1a8c9d5b343526177",
       "png_size_px": {
         "width": 1400,
         "height": 991
@@ -393,11 +393,11 @@
       "featured": true,
       "source": "planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg",
       "source_manifest": "planos/estructura/manifest.json",
-      "source_sha256": "53d2a9d38f7e9b4ff45d59e03c0d3b8e16a0fc59a505be242653bccecace07c2",
+      "source_sha256": "b0ccaae7a5cf52951b74042e9979c479e75df1cba042de5193d59029297e41fa",
       "canonical_svg": "planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg",
-      "canonical_svg_sha256": "53d2a9d38f7e9b4ff45d59e03c0d3b8e16a0fc59a505be242653bccecace07c2",
+      "canonical_svg_sha256": "b0ccaae7a5cf52951b74042e9979c479e75df1cba042de5193d59029297e41fa",
       "canonical_png": "planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png",
-      "canonical_png_sha256": "c88f3b8c123693b1f2882ea9aefe970184a386074e7b39ab5d29d2505bc60af2",
+      "canonical_png_sha256": "341dc6ece2476fdf610cfd0992b347ac90b621448e356e0effdb2a1eb3a52d84",
       "png_size_px": {
         "width": 1400,
         "height": 991
@@ -415,11 +415,11 @@
       "featured": true,
       "source": "planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg",
       "source_manifest": "planos/estructura/manifest.json",
-      "source_sha256": "01acd47d1c030e15b779d82a9101b087610a2535b103d72f13976ee0c31cf8ff",
+      "source_sha256": "be527df893c1e53a9f84568733d8f0ebd60f539b0890612363c33b6cc1539c00",
       "canonical_svg": "planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg",
-      "canonical_svg_sha256": "01acd47d1c030e15b779d82a9101b087610a2535b103d72f13976ee0c31cf8ff",
+      "canonical_svg_sha256": "be527df893c1e53a9f84568733d8f0ebd60f539b0890612363c33b6cc1539c00",
       "canonical_png": "planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png",
-      "canonical_png_sha256": "ed1e4b06904a0ff9776170aa03f818522a23fe5e536a0f92b6d4f8c27211d9f2",
+      "canonical_png_sha256": "46658cc58b6b741fdaa3b963cb033dc01813e42f4e31c1293adc8707a73cb98c",
       "png_size_px": {
         "width": 1400,
         "height": 991
