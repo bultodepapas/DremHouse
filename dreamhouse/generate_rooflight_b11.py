@@ -118,9 +118,10 @@ def validate(model, pb):
 
 
 def plan(model, report):
+    drawing_revision = model.get("drawing_revision", "R10")
     parts = header(
         "CENTRAL ROOFLIGHTS · DOUBLE-HEIGHT HALL",
-        "DH-ARQ-PLN-CUB-001-R10",
+        f"DH-ARQ-PLN-CUB-001-{drawing_revision}",
         "group centre = X10.50 / Y9.00 m · tolerance ±0.10 m",
     )
     x0, y0, scale = 95.0, 185.0, 36.0
@@ -174,9 +175,10 @@ def plan(model, report):
 
 
 def section(model):
+    drawing_revision = model.get("drawing_revision", "R10")
     parts = header(
         "CENTRAL DAYLIGHT · TRANSVERSE SECTION",
-        "DH-ARQ-SEC-CUB-003-R10",
+        f"DH-ARQ-SEC-CUB-003-{drawing_revision}",
         "two separated events centred around Y=9.00 m",
     )
     x0, base, scale = 180.0, 850.0, 62.0
@@ -232,8 +234,15 @@ def section(model):
     return output
 
 
-def generate(model=None, out_dir=OUT):
-    model = json.loads(DATA.read_text(encoding="utf-8")) if model is None else model
+def generate(
+    model=None,
+    out_dir=OUT,
+    *,
+    source_path=DATA,
+    plan_name=PLAN_NAME,
+    section_name=SECTION_NAME,
+):
+    model = json.loads(source_path.read_text(encoding="utf-8")) if model is None else model
     pb = json.loads(PB.read_text(encoding="utf-8"))
     checks = validate(model, pb)
     report = {
@@ -245,7 +254,7 @@ def generate(model=None, out_dir=OUT):
     }
     if report["failed"]:
         raise ValueError("Rooflight model failed closed: " + "; ".join(item["message"] for item in checks if item["status"] == "FAIL"))
-    outputs = {PLAN_NAME: plan(model, report), SECTION_NAME: section(model)}
+    outputs = {plan_name: plan(model, report), section_name: section(model)}
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, content in outputs.items():
         out_dir.joinpath(name).write_text(content, encoding="utf-8")
@@ -253,8 +262,8 @@ def generate(model=None, out_dir=OUT):
     manifest = {
         "revision": model["revision"],
         "status": model["status"],
-        "source": "dreamhouse/rooflight_b11.json",
-        "source_sha256": hashlib.sha256(DATA.read_bytes()).hexdigest(),
+        "source": source_path.relative_to(ROOT).as_posix(),
+        "source_sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
         "generator": "dreamhouse/generate_rooflight_b11.py",
         "supersedes": model["supersedes"],
         "outputs": [*outputs, "compliance.json", "manifest.json"],

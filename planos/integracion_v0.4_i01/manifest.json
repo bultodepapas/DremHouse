@@ -1,0 +1,69 @@
+{
+  "date": "2026-08-13",
+  "generator": "dreamhouse/pipeline.py",
+  "input_hash": "39da67968eff473b66de48e996bc503680673a4caaef65ca85e4f87dc14743d3",
+  "issue_ready": false,
+  "outputs": [
+    {
+      "path": "compliance.json",
+      "sha256": "b2e6b67adf5e1c3cf9d8617189647ea8f97d7525047c48ad28f32d8a45f4c7f6"
+    },
+    {
+      "path": "cost_reconciliation.json",
+      "sha256": "6228d21c49c27dec5273fbd4159e51b21de0905e5c5756829c0d32c75c0cd038"
+    },
+    {
+      "path": "evidence.md",
+      "sha256": "02dfefcbdaf9c7f0ec0176a35818898382af5670c4118a83e9df2c82614cdd56"
+    },
+    {
+      "path": "opening_schedule.json",
+      "sha256": "cc3351e7bf3d439537aca0dd49a0d58645742648c7ef587e20cb3be97de8de02"
+    },
+    {
+      "path": "quantity_ledger.json",
+      "sha256": "9cbef9ee4f2073ec4c8505632f39803a9832e517e23937c367862f0b07891131"
+    },
+    {
+      "path": "rooflights/compliance.json",
+      "sha256": "9bf5b2a7cd5ad34637e7e2ecac34f2ca57f7fdad7fc2333a3a3cfc5e6e10523f"
+    },
+    {
+      "path": "rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg",
+      "sha256": "c65faee824d88b6f8a7361c9b51eac4d20a6a7862de47836316a7c4700cdc1d5"
+    },
+    {
+      "path": "rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg",
+      "sha256": "0bdd5f6541654de09b02e0d593a3e36b782291c9d2d8e96832b0ed6aa7a646ae"
+    },
+    {
+      "path": "rooflights/manifest.json",
+      "sha256": "de163d4a4711fb036ba99ef9c471e54673c819079bdf4c654ba41172360d9617"
+    },
+    {
+      "path": "structural_screening.json",
+      "sha256": "bbca0431724f37a92b526222d7b9ca31443208911bce4cb01417d94164885803"
+    },
+    {
+      "path": "support_alternatives.json",
+      "sha256": "5d3d2e1605c2010667b3238f6a783e6365e0694b97df366c4666b569f6094af7"
+    }
+  ],
+  "overall_status": "COORDINATION_OPEN",
+  "revision": "0.4-I01",
+  "scenario_id": "D054_HALF_CENTRES",
+  "selection_or_construction_authority": false,
+  "source_hashes": {
+    "cost_mapping": "717adca31f1c275e5ae5822b7921ba6aa3f0d32ca1c64ff4557ab5165a025450",
+    "e1_space": "e3377ce2df5a07371439dea6fe5e9415e423fad4176576e722f6ff22026ad068",
+    "equipment_catalog": "b4eec589f4dcd339978e769c578a3862cf6123b6a0cf0d85e71c09c13c717428",
+    "equipment_layout": "67203f3410389ba8bc1646e20fc3e17ec86e5946d7b22a2d140492d784aab5f0",
+    "p2": "3ae1f6807b89f8f9ae368e7ded21de95c442cb3c6496fa60116fdf3a56512c6a",
+    "pb": "e090df6fa46c33e009aec3e1b6fe94b8c5c3783e48ce156ef3f5a13a759b7c38",
+    "project_manifest": "0a0f6a33cc96ac30d6a47bfd328bd55a2172fc4420a93da5f446ff1315455505",
+    "rate_book": "6dd2297f519655fb710f7f6579f80a877f8cc910286e5b28914c0f2985efd02d",
+    "roof_space": "abc45dd0fd5da1827ad63636882f960c9367d0951acd40138f7d2ec1cb9d73aa",
+    "rooflights": "fcf399053e05ccbe7e0e7620a7eef1c6a5b7cb950e546bf1f993bd399b6c18c7",
+    "structure": "4db131462696e997ad5423cd35c662b76fdc78b2f747e1973e00fe971f23cfdb"
+  }
+}

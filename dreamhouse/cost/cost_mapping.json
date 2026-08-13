@@ -1,0 +1,37 @@
+{
+  "revision": "0.4-I01-COST-MAPPING",
+  "date": "2026-08-13",
+  "status": "control mapping; no budget authorization",
+  "mappings": {
+    "PB-TECHNICAL-GLAZING": {
+      "cost_code": "12.01",
+      "mapping_status": "OPEN",
+      "note": "Current cost line describes a 28 m2 principal event, while active PB technical glazing measures 41.76 m2. Scope equivalence must be decided."
+    },
+    "P2-WINDOWS": {
+      "cost_code": "13.01",
+      "mapping_status": "PASS",
+      "note": "Direct P2 window-area mapping."
+    },
+    "ROOFLIGHT-GLAZING": {
+      "cost_code": null,
+      "mapping_status": "OPEN",
+      "note": "No authorized rooflight supply/install line exists. Do not bury this scope in 12.01."
+    },
+    "ROOFLIGHT-CURB": {
+      "cost_code": null,
+      "mapping_status": "OPEN",
+      "note": "Curb, trimmers, drainage, and thermal bridge require a separate assembly."
+    },
+    "P2-GROSS-FLOOR": {
+      "cost_code": "07",
+      "mapping_status": "OPEN",
+      "note": "Chapter mapping only; no direct unit-rate extension in this pipeline."
+    },
+    "PROGRAM-AREA": {
+      "cost_code": null,
+      "mapping_status": "NOT_APPLICABLE",
+      "note": "Programme metric is not a priced assembly."
+    }
+  }
+}

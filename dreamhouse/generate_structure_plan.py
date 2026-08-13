@@ -42,7 +42,7 @@ from dreamhouse.structure.vertical_continuity_sheet import build_vertical_contin
 SYSTEM = Path(__file__).with_name("structure") / "structure_system.json"
 PB = Path(__file__).with_name("pb_b05.json")
 P2 = Path(__file__).with_name("p2_b10.json")
-ROOFLIGHTS = Path(__file__).with_name("rooflight_b11.json")
+ROOFLIGHTS = Path(__file__).with_name("rooflight_b12.json")
 ROOF_SPACE = Path(__file__).with_name("structure") / "roof_truss_space.json"
 E1_SPACE = Path(__file__).with_name("structure") / "e1_screening_space.json"
 OUT = ROOT / "planos" / "estructura"
@@ -420,7 +420,7 @@ def build_sheets():
     e1_space = json.loads(E1_SPACE.read_text(encoding="utf-8"))
     q, st = live_results(cfg)
     gw = q["great_wall"]
-    e1_results = run_screening(cfg, roof_space, e1_space, pb, p2)
+    e1_results = run_screening(cfg, roof_space, e1_space, pb, p2, rooflights)
 
     # Lámina 1: planta + corte B-B.
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']

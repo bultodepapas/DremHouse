@@ -1,0 +1,465 @@
+{
+  "alternatives": [
+    {
+      "advantages": [
+        "reuses two current Great Wall column lines",
+        "keeps rejected bedroom and glazing lines out of the full-height system"
+      ],
+      "architectural_conflict_count": 0,
+      "full_height_candidate_ids": [
+        "GW-STAIR-S",
+        "GW-STAIR-N",
+        "STAIR-REAR-S",
+        "STAIR-REAR-N"
+      ],
+      "geometry_status": "PASS",
+      "id": "SUPPORT-A-STAIR-4",
+      "name": "Independent four-column stair-enclosure frame",
+      "new_rear_columns": 2,
+      "open_items": [
+        "transverse system around the stair portal and discharge door",
+        "roof and P2 collectors, bases, fire enclosure, and egress clearances"
+      ]
+    },
+    {
+      "advantages": [
+        "minimizes nominal new Great Wall column locations"
+      ],
+      "architectural_conflict_count": 4,
+      "full_height_candidate_ids": [
+        "GW-SOUTH",
+        "GW-Y2.4",
+        "GW-STAIR-S",
+        "GW-STAIR-N",
+        "GW-Y13.4",
+        "GW-NORTH"
+      ],
+      "geometry_status": "FAIL",
+      "id": "SUPPORT-B-GREAT-WALL-6",
+      "name": "Extend all six Great Wall column hypotheses to roof level",
+      "new_rear_columns": 0,
+      "open_items": [
+        "four conflicts with bedrooms, glazing, or non-corner locations",
+        "complete orthogonal lateral path and roof interfaces"
+      ],
+      "rejected_lines": [
+        {
+          "id": "GW-SOUTH",
+          "reasons": [
+            "not_on_stair_enclosure_corner",
+            "interrupts_glazing:W-M-LAT-A"
+          ]
+        },
+        {
+          "id": "GW-Y2.4",
+          "reasons": [
+            "not_on_stair_enclosure_corner",
+            "crosses_p2_space:M-D"
+          ]
+        },
+        {
+          "id": "GW-Y13.4",
+          "reasons": [
+            "not_on_stair_enclosure_corner",
+            "crosses_p2_space:G-C"
+          ]
+        },
+        {
+          "id": "GW-NORTH",
+          "reasons": [
+            "not_on_stair_enclosure_corner",
+            "interrupts_glazing:W-G"
+          ]
+        }
+      ]
+    },
+    {
+      "advantages": [
+        "retains the clean Great Wall finish outside the stair zone",
+        "allows rear load-path options to be tested separately"
+      ],
+      "architectural_conflict_count": 0,
+      "full_height_candidate_ids": [
+        "GW-STAIR-S",
+        "GW-STAIR-N",
+        "STAIR-REAR-S",
+        "STAIR-REAR-N"
+      ],
+      "geometry_status": "OPEN",
+      "id": "SUPPORT-C-HYBRID-REAR",
+      "name": "Four compatible stair lines plus an independent rear support study",
+      "new_rear_columns": 2,
+      "open_items": [
+        "rear support locations are not defined in the active architectural model",
+        "rear windows, exterior doors, foundations, and roof framing"
+      ]
+    },
+    {
+      "advantages": [
+        "maximum separation of finish and primary structure"
+      ],
+      "architectural_conflict_count": 0,
+      "full_height_candidate_ids": [],
+      "geometry_status": "OPEN",
+      "id": "SUPPORT-D-FINISH-ONLY",
+      "name": "Great Wall as finish only; structure fully independent",
+      "new_rear_columns": null,
+      "open_items": [
+        "no independent structural grid has been modeled",
+        "floor transfer, lateral system, roof support, foundations, and cost"
+      ]
+    }
+  ],
+  "preference_status": "study preference only; professional structural design required",
+  "revision": "0.4-I01-SUPPORT-OPTIONS",
+  "screening_preference": "SUPPORT-A-STAIR-4",
+  "selection_or_construction_authority": false,
+  "source_audit": {
+    "alignment_checks": {
+      "great_wall_matches_p2_stair_front": true,
+      "pb_p2_stair_y0_aligned": true,
+      "pb_p2_stair_y1_aligned": true,
+      "rear_facade_matches_p2_stair_back": true
+    },
+    "braced_planes": [
+      {
+        "architectural_and_egress_clearance_validated": false,
+        "bay_length_m": 4.5,
+        "diagonal_bracing_geometry_possible": true,
+        "id": "STAIR-SIDE-S",
+        "opening_conflict": null,
+        "plane": "Y=7.40",
+        "resisting_direction": "X_longitudinal"
+      },
+      {
+        "architectural_and_egress_clearance_validated": false,
+        "bay_length_m": 4.5,
+        "diagonal_bracing_geometry_possible": true,
+        "id": "STAIR-SIDE-N",
+        "opening_conflict": null,
+        "plane": "Y=11.00",
+        "resisting_direction": "X_longitudinal"
+      },
+      {
+        "architectural_and_egress_clearance_validated": false,
+        "bay_length_m": 3.5999999999999996,
+        "diagonal_bracing_geometry_possible": false,
+        "id": "STAIR-FRONT",
+        "opening_conflict": "protected_stair_portal_in_Great_Wall",
+        "plane": "X=31.50",
+        "resisting_direction": "Y_transverse"
+      },
+      {
+        "architectural_and_egress_clearance_validated": false,
+        "bay_length_m": 3.5999999999999996,
+        "diagonal_bracing_geometry_possible": false,
+        "id": "STAIR-REAR",
+        "opening_conflict": "stair_discharge_door",
+        "plane": "X=36.00",
+        "resisting_direction": "Y_transverse"
+      }
+    ],
+    "candidates": [
+      {
+        "aligned_with_stair_enclosure_corner": false,
+        "door_conflicts": [],
+        "existing_to_p2": true,
+        "geometry_compatible_for_full_height_study": false,
+        "id": "GW-SOUTH",
+        "interior_nonstair_spaces": [],
+        "rejection_reasons": [
+          "not_on_stair_enclosure_corner",
+          "interrupts_glazing:W-M-LAT-A"
+        ],
+        "source": "existing_great_wall_column",
+        "space_relations": [
+          {
+            "relation": "boundary",
+            "space_id": "M-D"
+          }
+        ],
+        "window_conflicts": [
+          "W-M-LAT-A"
+        ],
+        "x_m": 31.5,
+        "y_m": 0.0
+      },
+      {
+        "aligned_with_stair_enclosure_corner": false,
+        "door_conflicts": [],
+        "existing_to_p2": true,
+        "geometry_compatible_for_full_height_study": false,
+        "id": "GW-Y2.4",
+        "interior_nonstair_spaces": [
+          "M-D"
+        ],
+        "rejection_reasons": [
+          "not_on_stair_enclosure_corner",
+          "crosses_p2_space:M-D"
+        ],
+        "source": "existing_great_wall_column",
+        "space_relations": [
+          {
+            "relation": "interior",
+            "space_id": "M-D"
+          }
+        ],
+        "window_conflicts": [],
+        "x_m": 31.5,
+        "y_m": 2.4
+      },
+      {
+        "aligned_with_stair_enclosure_corner": true,
+        "door_conflicts": [],
+        "existing_to_p2": true,
+        "geometry_compatible_for_full_height_study": true,
+        "id": "GW-STAIR-S",
+        "interior_nonstair_spaces": [],
+        "rejection_reasons": [],
+        "source": "existing_great_wall_column",
+        "space_relations": [
+          {
+            "relation": "boundary",
+            "space_id": "M-C"
+          },
+          {
+            "relation": "boundary",
+            "space_id": "ARR"
+          },
+          {
+            "relation": "boundary",
+            "space_id": "ESC"
+          }
+        ],
+        "window_conflicts": [],
+        "x_m": 31.5,
+        "y_m": 7.4
+      },
+      {
+        "aligned_with_stair_enclosure_corner": true,
+        "door_conflicts": [],
+        "existing_to_p2": true,
+        "geometry_compatible_for_full_height_study": true,
+        "id": "GW-STAIR-N",
+        "interior_nonstair_spaces": [],
+        "rejection_reasons": [],
+        "source": "existing_great_wall_column",
+        "space_relations": [
+          {
+            "relation": "boundary",
+            "space_id": "ARR"
+          },
+          {
+            "relation": "boundary",
+            "space_id": "ESC"
+          },
+          {
+            "relation": "boundary",
+            "space_id": "F2-HALL"
+          }
+        ],
+        "window_conflicts": [],
+        "x_m": 31.5,
+        "y_m": 11.0
+      },
+      {
+        "aligned_with_stair_enclosure_corner": false,
+        "door_conflicts": [],
+        "existing_to_p2": true,
+        "geometry_compatible_for_full_height_study": false,
+        "id": "GW-Y13.4",
+        "interior_nonstair_spaces": [
+          "G-C"
+        ],
+        "rejection_reasons": [
+          "not_on_stair_enclosure_corner",
+          "crosses_p2_space:G-C"
+        ],
+        "source": "existing_great_wall_column",
+        "space_relations": [
+          {
+            "relation": "interior",
+            "space_id": "G-C"
+          }
+        ],
+        "window_conflicts": [],
+        "x_m": 31.5,
+        "y_m": 13.4
+      },
+      {
+        "aligned_with_stair_enclosure_corner": false,
+        "door_conflicts": [],
+        "existing_to_p2": true,
+        "geometry_compatible_for_full_height_study": false,
+        "id": "GW-NORTH",
+        "interior_nonstair_spaces": [],
+        "rejection_reasons": [
+          "not_on_stair_enclosure_corner",
+          "interrupts_glazing:W-G"
+        ],
+        "source": "existing_great_wall_column",
+        "space_relations": [
+          {
+            "relation": "boundary",
+            "space_id": "G-D"
+          }
+        ],
+        "window_conflicts": [
+          "W-G"
+        ],
+        "x_m": 31.5,
+        "y_m": 18.0
+      },
+      {
+        "aligned_with_stair_enclosure_corner": true,
+        "door_conflicts": [],
+        "existing_to_p2": false,
+        "geometry_compatible_for_full_height_study": true,
+        "id": "STAIR-REAR-S",
+        "interior_nonstair_spaces": [],
+        "rejection_reasons": [],
+        "source": "new_rear_stair_enclosure_column",
+        "space_relations": [
+          {
+            "relation": "boundary",
+            "space_id": "M-C"
+          },
+          {
+            "relation": "boundary",
+            "space_id": "ESC"
+          }
+        ],
+        "window_conflicts": [],
+        "x_m": 36.0,
+        "y_m": 7.4
+      },
+      {
+        "aligned_with_stair_enclosure_corner": true,
+        "door_conflicts": [],
+        "existing_to_p2": false,
+        "geometry_compatible_for_full_height_study": true,
+        "id": "STAIR-REAR-N",
+        "interior_nonstair_spaces": [],
+        "rejection_reasons": [],
+        "source": "new_rear_stair_enclosure_column",
+        "space_relations": [
+          {
+            "relation": "boundary",
+            "space_id": "ESC"
+          },
+          {
+            "relation": "boundary",
+            "space_id": "F2-HALL"
+          }
+        ],
+        "window_conflicts": [],
+        "x_m": 36.0,
+        "y_m": 11.0
+      }
+    ],
+    "compatible_column_count": 4,
+    "compatible_column_ids": [
+      "GW-STAIR-S",
+      "GW-STAIR-N",
+      "STAIR-REAR-S",
+      "STAIR-REAR-N"
+    ],
+    "complete_orthogonal_lateral_system_resolved": false,
+    "configuration": {
+      "candidate_columns": [
+        {
+          "existing_to_p2": true,
+          "id": "GW-SOUTH",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 0.0
+        },
+        {
+          "existing_to_p2": true,
+          "id": "GW-Y2.4",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 2.4
+        },
+        {
+          "existing_to_p2": true,
+          "id": "GW-STAIR-S",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 7.4
+        },
+        {
+          "existing_to_p2": true,
+          "id": "GW-STAIR-N",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 11.0
+        },
+        {
+          "existing_to_p2": true,
+          "id": "GW-Y13.4",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 13.4
+        },
+        {
+          "existing_to_p2": true,
+          "id": "GW-NORTH",
+          "source": "existing_great_wall_column",
+          "x_m": 31.5,
+          "y_m": 18.0
+        },
+        {
+          "existing_to_p2": false,
+          "id": "STAIR-REAR-S",
+          "source": "new_rear_stair_enclosure_column",
+          "x_m": 36.0,
+          "y_m": 7.4
+        },
+        {
+          "existing_to_p2": false,
+          "id": "STAIR-REAR-N",
+          "source": "new_rear_stair_enclosure_column",
+          "x_m": 36.0,
+          "y_m": 11.0
+        }
+      ],
+      "expected_compatible_column_ids": [
+        "GW-STAIR-S",
+        "GW-STAIR-N",
+        "STAIR-REAR-S",
+        "STAIR-REAR-N"
+      ],
+      "geometry_tolerance_m": 0.01,
+      "p2_lateral_collector_role": "study_only",
+      "preferred_concept": "independent_four_column_stair_enclosure_frame_with_drift_compatible_stair_connections",
+      "roof_gravity_support_role": "not_assigned",
+      "roof_lateral_collector_role": "study_only",
+      "stair_flights_primary_lateral_role": false,
+      "status": "geometry_feasibility_hypothesis_not_system_selection"
+    },
+    "existing_great_wall_columns_reused": 2,
+    "fire_egress_and_encasement_resolved": false,
+    "geometry_screen_pass": true,
+    "landing_beams_as_column_restraints_resolved": false,
+    "member_connection_base_and_foundation_design_resolved": false,
+    "new_rear_columns_required": 2,
+    "overall_design_resolved": false,
+    "p2_diaphragm_collector_connection_resolved": false,
+    "roof_diaphragm_collector_connection_resolved": false,
+    "roof_gravity_support_role_resolved": false,
+    "stair_drift_compatible_connection_required": true,
+    "stair_enclosure": {
+      "p2_level_m": 3.8,
+      "width_x_m": 4.5,
+      "width_y_m": 3.5999999999999996,
+      "x0_m": 31.5,
+      "x1_m": 36.0,
+      "y0_m": 7.4,
+      "y1_m": 11.0
+    },
+    "stair_enclosure_frame_preferred_over_stair_flights_as_primary_system": true,
+    "stair_stringers_in_primary_lateral_system": false
+  },
+  "status": "comparison only; no structural system selected"
+}

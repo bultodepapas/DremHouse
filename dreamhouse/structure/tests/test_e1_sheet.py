@@ -11,7 +11,7 @@ from dreamhouse.structure.e1_sheet import SHEET_NAME, build_e1_sheet
 from dreamhouse.structure.optimize_roof import DEFAULT_MODEL, DEFAULT_SPACE, _read_json
 
 ROOT = Path(__file__).resolve().parents[3]
-ROOFLIGHTS = ROOT / "dreamhouse" / "rooflight_b11.json"
+ROOFLIGHTS = ROOT / "dreamhouse" / "rooflight_b12.json"
 ISSUED_SHEET = ROOT / "planos" / "estructura" / SHEET_NAME
 SVG_NAMESPACE = "{http://www.w3.org/2000/svg}"
 

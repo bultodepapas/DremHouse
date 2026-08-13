@@ -2,11 +2,11 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.5
+**Version:** 0.6
 **Date:** 2026-08-13
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053; architectural drafts b05–b11; `pb_b05.json`; `p2_b10.json`;
-`rooflight_b11.json`; `structure_system.json`;
+D-053–D-055; architectural drafts b05–b11 and implementation issue 0.4-I01;
+`pb_b05.json`; `p2_b10.json`; `rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
 evidence
 **Approval pending:** responsible structural engineer, architect of record, fire and
@@ -34,9 +34,10 @@ professional design.
 D-050 changes the active P2 room and door organization but deliberately preserves the
 D-048 stair footprint and four corner coordinates. D-051 adds a rear retractable-stair
 reserve, D-052 defines the desired architectural expression of the X=21 edge truss, and
-D-053 relocates the rooflight pair to the centre of the double-height hall. The structural
-generators now read `p2_b10.json` and `rooflight_b11.json`; their deterministic re-run
-retains the same four compatible stair-frame lines and previously declared conflicts.
+D-054 supersedes D-053's group-centre arrangement: each equal rooflight is now centred
+in one longitudinal half of the double-height hall. The structural generators read
+`p2_b10.json` and `rooflight_b12.json`; their deterministic re-run retains the same four
+compatible stair-frame lines and now records each rooflight/grid crossing explicitly.
 
 ## 2. New integrated evidence sheet
 
@@ -45,7 +46,7 @@ The current visual synthesis is
 It is generated from the active JSON sources and the same `run_screening()` calculation
 used by the E1 report. Its four principal readings are:
 
-- **Plan:** M60 test grid, D-053 rooflights, D-043/D-045 P2 gravity path, diaphragm
+- **Plan:** M60 test grid, D-054 rooflights, D-043/D-045 P2 gravity path, diaphragm
   demand, and four explicitly uncoordinated trial lateral bays.
 - **Reference truss:** exact six-panel modified-Warren grammar—25 members and 14 nodes—
   with physical top- and bottom-chord restraint assumptions drawn separately.
@@ -72,7 +73,7 @@ lateral-system topology.
 | P2              |                                                       X=21.00→36.00 m; +3.80 m | D-004 / active coordination DCV                                |
 | Mono-pitch roof |                                                      7.20→7.80 m across Y=0→18 | D-039 provisional DCV                                          |
 | Roof test lines |                                                           X=0/6/12/18/24/30/36 | neutral M60 specimen under D-047; not D-019 selection          |
-| Rooflights      | two 4.80 × 2.40 m openings at X=8.10→12.90 m; combined centre X=10.50/Y=9.00 m | D-053 active geometric hypothesis                              |
+| Rooflights      | two 4.80 × 2.40 m openings centred at X=5.25 and X=15.75 m; both at Y=9.00 m | D-054 active geometric hypothesis                              |
 | P2 edge         |                                             full-depth truss line at X=21.00 m | D-043 schematic gravity intent; design pending                 |
 | Hybrid wall     |                                             concealed steel frame at X=31.50 m | D-043 gravity intent; no longitudinal lateral role assigned    |
 | P2 beams        |                                    six lines at Y=1.5/4.5/7.5/10.5/13.5/16.5 m | D-045 E0 hypothesis only                                       |
@@ -189,9 +190,9 @@ declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
 1. **Trial lateral bays versus openings.** The four force-distribution bays are shown at
    the ends only to expose the hypothesis. They conflict with technical glazing,
    upper-floor glazing, front openings, P2 use, and possibly rooflight collectors.
-2. **Rooflights versus secondary steel.** D-053 moves the pair across the X=6 and X=12 m
-   grid lines around the exact centre of the double-height hall. The architectural centre
-   is now controlled, but framing becomes more demanding: purlin trimmers, diaphragm
+2. **Rooflights versus secondary steel.** D-054 places the pair across the X=6 and X=18 m
+   grid lines, one at the centre of each longitudinal half. The architectural centres
+   are now controlled, but framing becomes more demanding: purlin trimmers, diaphragm
    shear transfer, local wind zones, drainage crickets, and secondary overflows require a
    new coordinated detail.
 3. **P2 edge truss versus architecture.** D-052 accepts one large exposed X=21 truss and
@@ -230,8 +231,9 @@ This revision corrects superseded derived statements under the project precedenc
 
 The corrections remain precedence work. The owner's vertical-continuity direction is
 recorded as D-048, the active architectural reorganization as D-050/D-051, the edge-truss
-brief as D-052, and the centred rooflight geometry as D-053, rather than being hidden in
-the drawings.
+brief as D-052, and the half-centred rooflight geometry as D-054, rather than being
+hidden in the drawings. D-055 supplies the executable integration and evidence-package
+workflow without selecting the structural system.
 
 ## 8. Required progression to design
 

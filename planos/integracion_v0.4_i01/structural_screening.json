@@ -1,0 +1,827 @@
+{
+  "blocking_inputs": [
+    "D-017 site, municipality, topography, normative wind and seismic actions",
+    "geotechnical investigation and groundwater/settlement parameters",
+    "complete three-dimensional lateral model and direct second-order analysis",
+    "coordinated four-column stair-enclosure frame, orthogonal lateral planes, drift-compatible stair joints, diaphragm collectors, column bases, fire-rated enclosure, and egress clearances",
+    "roof and floor deck manufacturer strength, stiffness, fasteners, sidelaps, and openings",
+    "engineered rooflight trimmers and coordinated roof-diaphragm load paths at D-054 openings",
+    "connection geometry including HSS local limit states and seismic demand hierarchy",
+    "D-021 occupancy, fire-resistance target, fire scenario, and tested protection system",
+    "fabricator splice strategy, crane chart/radius, temporary bracing, lift lugs, and weather limits",
+    "reinforced-concrete footing, anchors, base plates, punching, shear, flexure, and development design"
+  ],
+  "checks": {
+    "chord_local_bending": {
+      "design_resolved": false,
+      "included_in_interaction": true,
+      "maximum_local_bending_ratio": 0.369271,
+      "maximum_local_moment_knm": 12.508463,
+      "screened": true
+    },
+    "diaphragm": {
+      "demand_basis": {
+        "declared_dead_load_lower_bound_kn": 1578.269761,
+        "governing_preliminary_lateral_force_kn": 157.826976,
+        "governing_source": "seismic_lower_bound",
+        "longitudinal_wind_kn_hypothesis": 78.975,
+        "normative_site_actions_resolved": false,
+        "seismic_base_shear_lower_bound_kn_hypothesis": 157.826976
+      },
+      "result": {
+        "assembled_shear_stiffness_kn_mm": null,
+        "collectors_defined": false,
+        "connections_defined": false,
+        "diaphragm_depth_m": 18.0,
+        "diaphragm_length_m": 36.0,
+        "estimated_shear_displacement_mm": null,
+        "manufacturer_system_defined": false,
+        "nominal_capacity_kn_m": null,
+        "overall_diaphragm_resolved": false,
+        "required_chord_force_kn": 39.456744,
+        "required_unit_shear_kn_m": 8.768165,
+        "strength_ratio": null,
+        "total_lateral_force_kn": 157.826976
+      }
+    },
+    "erection": {
+      "configuration": {
+        "crane_capacity_kn_at_required_radius": null,
+        "dynamic_factor": 1.3,
+        "lift_point_count": 2,
+        "maximum_transport_piece_length_m": 12.0,
+        "sling_angle_deg_from_horizontal": 60.0,
+        "temporary_bracing_installed": false,
+        "weather_limit_defined": false
+      },
+      "engineered_erection_plan_resolved": false,
+      "result": {
+        "crane_capacity_kn": null,
+        "crane_capacity_ratio": null,
+        "dynamic_factor": 1.3,
+        "lift_point_count": 2,
+        "lifted_mass_kg": 1240.6998,
+        "minimum_transport_piece_count": 2,
+        "overall_release_from_crane_ready": false,
+        "reaction_per_lift_point_kn": 7.908621,
+        "required_hook_load_kn": 15.817241,
+        "shop_or_field_splice_required": true,
+        "sling_angle_deg_from_horizontal": 60.0,
+        "sling_tension_each_kn": 9.132089,
+        "temporary_bracing_installed": false,
+        "truss_length_m": 18.0,
+        "weather_limit_defined": false
+      }
+    },
+    "fire": {
+      "design_resolved": false,
+      "required_fire_resistance_minutes": null,
+      "temperature_sensitivity": [
+        {
+          "ambient_utilization": 0.653493,
+          "conservative_stiffness_utilization": 0.933561,
+          "conservative_strength_utilization": 0.653493,
+          "fire_resistance_period_defined": false,
+          "overall_fire_design_resolved": false,
+          "stiffness_retention": 0.7,
+          "temperature_c": 400.0,
+          "thermal_protection_system_defined": false,
+          "trial_temperature_pass": true,
+          "yield_retention": 1.0
+        },
+        {
+          "ambient_utilization": 0.653493,
+          "conservative_stiffness_utilization": 1.436248,
+          "conservative_strength_utilization": 1.045589,
+          "fire_resistance_period_defined": false,
+          "overall_fire_design_resolved": false,
+          "stiffness_retention": 0.455,
+          "temperature_c": 550.0,
+          "thermal_protection_system_defined": false,
+          "trial_temperature_pass": false,
+          "yield_retention": 0.625
+        },
+        {
+          "ambient_utilization": 0.653493,
+          "conservative_stiffness_utilization": 5.026869,
+          "conservative_strength_utilization": 2.841274,
+          "fire_resistance_period_defined": false,
+          "overall_fire_design_resolved": false,
+          "stiffness_retention": 0.13,
+          "temperature_c": 700.0,
+          "thermal_protection_system_defined": false,
+          "trial_temperature_pass": false,
+          "yield_retention": 0.23
+        }
+      ],
+      "thermal_protection_system": null
+    },
+    "foundation": {
+      "base_plate_configuration": {
+        "anchor_group_tension_capacity_kn": null,
+        "column_depth_mm": 190.0,
+        "column_width_mm": 200.0,
+        "concrete_fc_mpa_hypothesis": 28.0,
+        "description": "centred compression sensitivity for an approximately HEA200 column footprint; no base or anchor group is adopted",
+        "moment_transfer_resolved": false,
+        "plate_fy_mpa": 355.0,
+        "plate_length_mm": 300.0,
+        "plate_thickness_mm": 20.0,
+        "plate_width_mm": 300.0,
+        "shear_transfer_resolved": false,
+        "supporting_area_ratio": 1.0
+      },
+      "base_plate_result": {
+        "anchor_group_tension_capacity_kn": null,
+        "anchor_tension_ratio": null,
+        "anchor_tension_resolved": false,
+        "compression_components_pass": true,
+        "compression_kn": 79.662759,
+        "concrete_bearing_capacity_kn": 1392.3,
+        "concrete_bearing_ratio": 0.057217,
+        "moment_transfer_resolved": false,
+        "overall_base_plate_resolved": false,
+        "plate_bending_ratio": 0.2047,
+        "plate_projection_mm": 55.0,
+        "provided_plate_thickness_mm": 20.0,
+        "required_plate_thickness_mm": 4.094008,
+        "shear_transfer_resolved": false,
+        "uplift_kn": 0.0
+      },
+      "configuration": {
+        "allowable_bearing_kpa_hypothesis": 150.0,
+        "base_friction_coefficient_hypothesis": 0.35,
+        "description": "dimension-only sensitivity case; no foundation type is adopted",
+        "embedment_m": 0.8,
+        "geotechnical_parameters_approved": false,
+        "length_m": 2.0,
+        "reinforced_concrete_design_resolved": false,
+        "thickness_m": 0.5,
+        "width_m": 2.0
+      },
+      "design_resolved": false,
+      "gravity_reaction_case": {
+        "applied_horizontal_kn": 0.0,
+        "applied_moment_knm": 0.0,
+        "applied_vertical_kn": 79.662759,
+        "bearing_pass": true,
+        "bearing_ratio": 0.248771,
+        "eccentricity_m": 0.0,
+        "foundation_dead_load_kn": 48.0,
+        "full_contact": true,
+        "geotechnical_parameters_approved": false,
+        "maximum_bearing_kpa": 37.31569,
+        "minimum_bearing_kpa": 37.31569,
+        "net_vertical_kn": 149.262759,
+        "overall_foundation_resolved": false,
+        "overturning_stable": true,
+        "reinforced_concrete_design_resolved": false,
+        "sliding_pass": true,
+        "sliding_ratio": 0.0,
+        "soil_cover_dead_load_kn": 21.6,
+        "uplift_pass": true
+      },
+      "lateral_and_moment_allocation_resolved": false,
+      "uplift_reaction_case": {
+        "applied_horizontal_kn": 0.0,
+        "applied_moment_knm": 0.0,
+        "applied_vertical_kn": -0.0,
+        "bearing_pass": true,
+        "bearing_ratio": 0.116,
+        "eccentricity_m": 0.0,
+        "foundation_dead_load_kn": 48.0,
+        "full_contact": true,
+        "geotechnical_parameters_approved": false,
+        "maximum_bearing_kpa": 17.4,
+        "minimum_bearing_kpa": 17.4,
+        "net_vertical_kn": 69.6,
+        "overall_foundation_resolved": false,
+        "overturning_stable": true,
+        "reinforced_concrete_design_resolved": false,
+        "sliding_pass": true,
+        "sliding_ratio": 0.0,
+        "soil_cover_dead_load_kn": 21.6,
+        "uplift_pass": true
+      }
+    },
+    "lateral_system": {
+      "bottom_chord_unbraced_length_m": 6.0,
+      "complete_building_lateral_system_resolved": false,
+      "member_out_of_plane_buckling_screened": true,
+      "site_actions_resolved": false,
+      "top_chord_unbraced_length_m": 1.5,
+      "trial_braced_bay_configuration": {
+        "active_bays_per_wall_line": 2,
+        "brace_connections_and_collectors_resolved": false,
+        "brace_locations_validated_against_openings": false,
+        "parallel_braced_wall_lines": 2,
+        "trial_bay_height_m": 7.5,
+        "trial_bay_width_m": 6.0,
+        "trial_brace_profile": "L50x5"
+      },
+      "trial_braced_bay_result": {
+        "brace_angle_deg_from_horizontal": 51.340192,
+        "brace_locations_validated": false,
+        "connections_and_collectors_resolved": false,
+        "force_per_active_bay_kn": 39.456744,
+        "overall_lateral_path_resolved": false,
+        "strength_ratio": 0.622159,
+        "tension_brace_demand_kn": 63.161608,
+        "tension_yield_capacity_kn": 101.52,
+        "total_lateral_force_kn": 157.826976,
+        "trial_strength_pass": true
+      }
+    },
+    "local_and_biaxial_member_stability": {
+      "design_resolved": false,
+      "maximum_axial_ratio": 0.325252,
+      "maximum_interaction_ratio": 0.653493,
+      "maximum_local_slenderness_ratio": 0.696112,
+      "screen_pass": true,
+      "screened": true
+    },
+    "member_second_order": {
+      "global_direct_analysis_resolved": false,
+      "maximum_compression_to_reduced_euler_ratio": 0.203027,
+      "maximum_moment_magnifier": 1.254747,
+      "screened": true
+    },
+    "roof_openings": {
+      "basis": {
+        "authority": "schematic grid hypothesis only",
+        "longitudinal_bay_m": 6.0,
+        "purlin_spacing_m": 1.5
+      },
+      "conflicts": [
+        {
+          "portal_lines_x_m": [
+            6.0
+          ],
+          "purlin_lines_y_m": [
+            9.0
+          ],
+          "requires_engineered_trimmers": true,
+          "rooflight_id": "RL-CAR"
+        },
+        {
+          "portal_lines_x_m": [
+            18.0
+          ],
+          "purlin_lines_y_m": [
+            9.0
+          ],
+          "requires_engineered_trimmers": true,
+          "rooflight_id": "RL-RC"
+        }
+      ],
+      "note": "A crossing flags a trimmer/design task; it does not prove infeasibility.",
+      "status": "OPEN"
+    },
+    "trial_connection": {
+      "configuration": {
+        "bolt_count": 6,
+        "bolt_diameter_mm": 20.0,
+        "bolt_fu_mpa": 800.0,
+        "description": "single-line bolt group and double fillet weld component envelope; HSS wall limit states intentionally unresolved",
+        "electrode_fu_mpa": 490.0,
+        "end_distance_mm": 45.0,
+        "hole_diameter_mm": 22.0,
+        "pitch_mm": 70.0,
+        "plate_fu_mpa": 490.0,
+        "plate_fy_mpa": 355.0,
+        "plate_thickness_mm": 12.0,
+        "plate_width_mm": 240.0,
+        "weld_length_each_side_mm": 220.0,
+        "weld_size_mm": 8.0
+      },
+      "result": {
+        "bolt_shear_capacity_kn": 542.867211,
+        "demand_kn": 209.846672,
+        "governing_trial_capacity_kn": 542.867211,
+        "hss_local_limit_states_resolved": false,
+        "overall_design_resolved": false,
+        "plate_bearing_capacity_kn": 1238.328,
+        "plate_block_shear_capacity_kn": 2411.388,
+        "plate_gross_yield_capacity_kn": 920.16,
+        "plate_net_rupture_capacity_kn": 961.38,
+        "trial_components_pass": true,
+        "trial_ratio": 0.386552,
+        "weld_capacity_kn": 548.74512
+      }
+    },
+    "vertical_continuity_and_stair_core": {
+      "alignment_checks": {
+        "great_wall_matches_p2_stair_front": true,
+        "pb_p2_stair_y0_aligned": true,
+        "pb_p2_stair_y1_aligned": true,
+        "rear_facade_matches_p2_stair_back": true
+      },
+      "braced_planes": [
+        {
+          "architectural_and_egress_clearance_validated": false,
+          "bay_length_m": 4.5,
+          "diagonal_bracing_geometry_possible": true,
+          "id": "STAIR-SIDE-S",
+          "opening_conflict": null,
+          "plane": "Y=7.40",
+          "resisting_direction": "X_longitudinal"
+        },
+        {
+          "architectural_and_egress_clearance_validated": false,
+          "bay_length_m": 4.5,
+          "diagonal_bracing_geometry_possible": true,
+          "id": "STAIR-SIDE-N",
+          "opening_conflict": null,
+          "plane": "Y=11.00",
+          "resisting_direction": "X_longitudinal"
+        },
+        {
+          "architectural_and_egress_clearance_validated": false,
+          "bay_length_m": 3.6,
+          "diagonal_bracing_geometry_possible": false,
+          "id": "STAIR-FRONT",
+          "opening_conflict": "protected_stair_portal_in_Great_Wall",
+          "plane": "X=31.50",
+          "resisting_direction": "Y_transverse"
+        },
+        {
+          "architectural_and_egress_clearance_validated": false,
+          "bay_length_m": 3.6,
+          "diagonal_bracing_geometry_possible": false,
+          "id": "STAIR-REAR",
+          "opening_conflict": "stair_discharge_door",
+          "plane": "X=36.00",
+          "resisting_direction": "Y_transverse"
+        }
+      ],
+      "candidates": [
+        {
+          "aligned_with_stair_enclosure_corner": false,
+          "door_conflicts": [],
+          "existing_to_p2": true,
+          "geometry_compatible_for_full_height_study": false,
+          "id": "GW-SOUTH",
+          "interior_nonstair_spaces": [],
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "interrupts_glazing:W-M-LAT-A"
+          ],
+          "source": "existing_great_wall_column",
+          "space_relations": [
+            {
+              "relation": "boundary",
+              "space_id": "M-D"
+            }
+          ],
+          "window_conflicts": [
+            "W-M-LAT-A"
+          ],
+          "x_m": 31.5,
+          "y_m": 0.0
+        },
+        {
+          "aligned_with_stair_enclosure_corner": false,
+          "door_conflicts": [],
+          "existing_to_p2": true,
+          "geometry_compatible_for_full_height_study": false,
+          "id": "GW-Y2.4",
+          "interior_nonstair_spaces": [
+            "M-D"
+          ],
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "crosses_p2_space:M-D"
+          ],
+          "source": "existing_great_wall_column",
+          "space_relations": [
+            {
+              "relation": "interior",
+              "space_id": "M-D"
+            }
+          ],
+          "window_conflicts": [],
+          "x_m": 31.5,
+          "y_m": 2.4
+        },
+        {
+          "aligned_with_stair_enclosure_corner": true,
+          "door_conflicts": [],
+          "existing_to_p2": true,
+          "geometry_compatible_for_full_height_study": true,
+          "id": "GW-STAIR-S",
+          "interior_nonstair_spaces": [],
+          "rejection_reasons": [],
+          "source": "existing_great_wall_column",
+          "space_relations": [
+            {
+              "relation": "boundary",
+              "space_id": "M-C"
+            },
+            {
+              "relation": "boundary",
+              "space_id": "ARR"
+            },
+            {
+              "relation": "boundary",
+              "space_id": "ESC"
+            }
+          ],
+          "window_conflicts": [],
+          "x_m": 31.5,
+          "y_m": 7.4
+        },
+        {
+          "aligned_with_stair_enclosure_corner": true,
+          "door_conflicts": [],
+          "existing_to_p2": true,
+          "geometry_compatible_for_full_height_study": true,
+          "id": "GW-STAIR-N",
+          "interior_nonstair_spaces": [],
+          "rejection_reasons": [],
+          "source": "existing_great_wall_column",
+          "space_relations": [
+            {
+              "relation": "boundary",
+              "space_id": "ARR"
+            },
+            {
+              "relation": "boundary",
+              "space_id": "ESC"
+            },
+            {
+              "relation": "boundary",
+              "space_id": "F2-HALL"
+            }
+          ],
+          "window_conflicts": [],
+          "x_m": 31.5,
+          "y_m": 11.0
+        },
+        {
+          "aligned_with_stair_enclosure_corner": false,
+          "door_conflicts": [],
+          "existing_to_p2": true,
+          "geometry_compatible_for_full_height_study": false,
+          "id": "GW-Y13.4",
+          "interior_nonstair_spaces": [
+            "G-C"
+          ],
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "crosses_p2_space:G-C"
+          ],
+          "source": "existing_great_wall_column",
+          "space_relations": [
+            {
+              "relation": "interior",
+              "space_id": "G-C"
+            }
+          ],
+          "window_conflicts": [],
+          "x_m": 31.5,
+          "y_m": 13.4
+        },
+        {
+          "aligned_with_stair_enclosure_corner": false,
+          "door_conflicts": [],
+          "existing_to_p2": true,
+          "geometry_compatible_for_full_height_study": false,
+          "id": "GW-NORTH",
+          "interior_nonstair_spaces": [],
+          "rejection_reasons": [
+            "not_on_stair_enclosure_corner",
+            "interrupts_glazing:W-G"
+          ],
+          "source": "existing_great_wall_column",
+          "space_relations": [
+            {
+              "relation": "boundary",
+              "space_id": "G-D"
+            }
+          ],
+          "window_conflicts": [
+            "W-G"
+          ],
+          "x_m": 31.5,
+          "y_m": 18.0
+        },
+        {
+          "aligned_with_stair_enclosure_corner": true,
+          "door_conflicts": [],
+          "existing_to_p2": false,
+          "geometry_compatible_for_full_height_study": true,
+          "id": "STAIR-REAR-S",
+          "interior_nonstair_spaces": [],
+          "rejection_reasons": [],
+          "source": "new_rear_stair_enclosure_column",
+          "space_relations": [
+            {
+              "relation": "boundary",
+              "space_id": "M-C"
+            },
+            {
+              "relation": "boundary",
+              "space_id": "ESC"
+            }
+          ],
+          "window_conflicts": [],
+          "x_m": 36.0,
+          "y_m": 7.4
+        },
+        {
+          "aligned_with_stair_enclosure_corner": true,
+          "door_conflicts": [],
+          "existing_to_p2": false,
+          "geometry_compatible_for_full_height_study": true,
+          "id": "STAIR-REAR-N",
+          "interior_nonstair_spaces": [],
+          "rejection_reasons": [],
+          "source": "new_rear_stair_enclosure_column",
+          "space_relations": [
+            {
+              "relation": "boundary",
+              "space_id": "ESC"
+            },
+            {
+              "relation": "boundary",
+              "space_id": "F2-HALL"
+            }
+          ],
+          "window_conflicts": [],
+          "x_m": 36.0,
+          "y_m": 11.0
+        }
+      ],
+      "compatible_column_count": 4,
+      "compatible_column_ids": [
+        "GW-STAIR-S",
+        "GW-STAIR-N",
+        "STAIR-REAR-S",
+        "STAIR-REAR-N"
+      ],
+      "complete_orthogonal_lateral_system_resolved": false,
+      "configuration": {
+        "candidate_columns": [
+          {
+            "existing_to_p2": true,
+            "id": "GW-SOUTH",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 0.0
+          },
+          {
+            "existing_to_p2": true,
+            "id": "GW-Y2.4",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 2.4
+          },
+          {
+            "existing_to_p2": true,
+            "id": "GW-STAIR-S",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 7.4
+          },
+          {
+            "existing_to_p2": true,
+            "id": "GW-STAIR-N",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 11.0
+          },
+          {
+            "existing_to_p2": true,
+            "id": "GW-Y13.4",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 13.4
+          },
+          {
+            "existing_to_p2": true,
+            "id": "GW-NORTH",
+            "source": "existing_great_wall_column",
+            "x_m": 31.5,
+            "y_m": 18.0
+          },
+          {
+            "existing_to_p2": false,
+            "id": "STAIR-REAR-S",
+            "source": "new_rear_stair_enclosure_column",
+            "x_m": 36.0,
+            "y_m": 7.4
+          },
+          {
+            "existing_to_p2": false,
+            "id": "STAIR-REAR-N",
+            "source": "new_rear_stair_enclosure_column",
+            "x_m": 36.0,
+            "y_m": 11.0
+          }
+        ],
+        "expected_compatible_column_ids": [
+          "GW-STAIR-S",
+          "GW-STAIR-N",
+          "STAIR-REAR-S",
+          "STAIR-REAR-N"
+        ],
+        "geometry_tolerance_m": 0.01,
+        "p2_lateral_collector_role": "study_only",
+        "preferred_concept": "independent_four_column_stair_enclosure_frame_with_drift_compatible_stair_connections",
+        "roof_gravity_support_role": "not_assigned",
+        "roof_lateral_collector_role": "study_only",
+        "stair_flights_primary_lateral_role": false,
+        "status": "geometry_feasibility_hypothesis_not_system_selection"
+      },
+      "existing_great_wall_columns_reused": 2,
+      "fire_egress_and_encasement_resolved": false,
+      "geometry_screen_pass": true,
+      "landing_beams_as_column_restraints_resolved": false,
+      "member_connection_base_and_foundation_design_resolved": false,
+      "new_rear_columns_required": 2,
+      "overall_design_resolved": false,
+      "p2_diaphragm_collector_connection_resolved": false,
+      "roof_diaphragm_collector_connection_resolved": false,
+      "roof_gravity_support_role_resolved": false,
+      "stair_drift_compatible_connection_required": true,
+      "stair_enclosure": {
+        "p2_level_m": 3.8,
+        "width_x_m": 4.5,
+        "width_y_m": 3.6,
+        "x0_m": 31.5,
+        "x1_m": 36.0,
+        "y0_m": 7.4,
+        "y1_m": 11.0
+      },
+      "stair_enclosure_frame_preferred_over_stair_flights_as_primary_system": true,
+      "stair_stringers_in_primary_lateral_system": false
+    }
+  },
+  "input_sha256": "9598c4d5d4c9d5b7398f86e79e6a0e3d5d4de1439a94a6db775c9e7090cd6e33",
+  "overall_status": "research_screening_complete_design_blocked",
+  "project": {
+    "date": "2026-08-12",
+    "id": "DH-EST-E1-SCREEN-001",
+    "purpose": "Expose E1 member, joint, stability, diaphragm, vertical-continuity, fire, erection, and foundation demands without claiming code compliance or selecting D-019.",
+    "revision": "0.2",
+    "status": "research_screening_not_design"
+  },
+  "reference_truss": {
+    "candidate": {
+      "bay_m": 6.0,
+      "centre_depth_m": 1.8,
+      "depth_shape": "VARIABLE",
+      "end_depth_fraction": 0.55,
+      "modulation_id": "M60",
+      "n_bays": 6,
+      "panel_count": 6,
+      "topology": "WARREN_MODIFIED"
+    },
+    "force_and_reaction_envelope": {
+      "combinations": [
+        {
+          "id": "C1",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 112.058049,
+          "support_vertical_reactions_kn": [
+            42.539886,
+            42.539886
+          ]
+        },
+        {
+          "id": "C2",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 209.846672,
+          "support_vertical_reactions_kn": [
+            79.662759,
+            79.662759
+          ]
+        },
+        {
+          "id": "C3+",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 86.803757,
+          "support_vertical_reactions_kn": [
+            32.952759,
+            32.952759
+          ]
+        },
+        {
+          "id": "C3-",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 86.803757,
+          "support_vertical_reactions_kn": [
+            32.952759,
+            32.952759
+          ]
+        },
+        {
+          "id": "C4+",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 27.229782,
+          "support_vertical_reactions_kn": [
+            10.337069,
+            10.337069
+          ]
+        },
+        {
+          "id": "C4-",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 27.229782,
+          "support_vertical_reactions_kn": [
+            10.337069,
+            10.337069
+          ]
+        },
+        {
+          "id": "C5+",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 131.611293,
+          "support_vertical_reactions_kn": [
+            49.962759,
+            49.962759
+          ]
+        },
+        {
+          "id": "C5-",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 131.611293,
+          "support_vertical_reactions_kn": [
+            49.962759,
+            49.962759
+          ]
+        },
+        {
+          "id": "C6+",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 72.037318,
+          "support_vertical_reactions_kn": [
+            27.347069,
+            27.347069
+          ]
+        },
+        {
+          "id": "C6-",
+          "maximum_abs_member_force_index": 9,
+          "maximum_abs_member_force_kn": 72.037318,
+          "support_vertical_reactions_kn": [
+            27.347069,
+            27.347069
+          ]
+        }
+      ],
+      "maximum_member_force_combination": "C2",
+      "maximum_member_force_index": 9,
+      "maximum_member_force_kn": 209.846672,
+      "maximum_support_downward_reaction_kn": 79.662759,
+      "maximum_support_uplift_reaction_kn": 0.0
+    },
+    "global_and_member_screen": {
+      "analysis_scope": "vertical_gravity_and_global_uplift_truss_with_hss_local_biaxial_buckling_chord_local_bending_and_member_second_order_screening",
+      "bay_m": 6.0,
+      "candidate_id": "M60-WARREN_MODIFIED-6ed6749977a0",
+      "centre_depth_m": 1.8,
+      "controlling_combo": "C2",
+      "controlling_member": 4,
+      "crossing_count": 0,
+      "depth_shape": "VARIABLE",
+      "end_depth_fraction": 0.55,
+      "evaluated_profile_pairs": 9,
+      "fabrication_proxy": 25.0,
+      "failure_reasons": [],
+      "governing_ratio": 0.653493,
+      "joint_count": 14,
+      "max_axial_ratio": 0.325252,
+      "max_chord_local_moment_knm": 12.508463,
+      "max_deflection_m": 0.016876,
+      "max_deflection_ratio": 0.16876,
+      "max_local_bending_ratio": 0.369271,
+      "max_local_slenderness_ratio": 0.696112,
+      "max_node_degree": 5,
+      "max_second_order_euler_ratio": 0.203027,
+      "max_second_order_magnifier": 1.254747,
+      "max_strength_ratio": 0.653493,
+      "member_count": 25,
+      "modulation_id": "M60",
+      "n_bays": 6,
+      "panel_count": 6,
+      "ranking_eligible_for_design": false,
+      "reaction_vertical_error_n": 0.0,
+      "screening_passed": true,
+      "selected_profiles": {
+        "chord": "HSS120x120x6",
+        "web": "HSS100x100x6"
+      },
+      "topology": "WARREN_MODIFIED",
+      "total_roof_truss_mass_kg": 9987.633,
+      "truss_mass_kg": 1240.7
+    },
+    "role": "neutral_M60_test_specimen_not_a_selected_system",
+    "selected_screening_profiles": {
+      "chord": "HSS120x120x6",
+      "web": "HSS100x100x6"
+    },
+    "truss_mass_kg": 1240.6998
+  },
+  "selection_or_construction_authority": false
+}

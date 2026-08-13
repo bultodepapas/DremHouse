@@ -16,6 +16,8 @@ from pathlib import Path
 
 import numpy as np
 
+from dreamhouse.envelope import analyze_structural_grid
+
 from .materials import materials_from_json
 from .optimize_roof import (
     DEFAULT_MODEL,
@@ -44,6 +46,7 @@ from .vertical_continuity import evaluate_vertical_continuity
 DEFAULT_E1_SPACE = Path(__file__).with_name("e1_screening_space.json")
 DEFAULT_PB = ROOT / "dreamhouse/pb_b05.json"
 DEFAULT_P2 = ROOT / "dreamhouse/p2_b10.json"
+DEFAULT_ROOFLIGHTS = ROOT / "dreamhouse/rooflight_b12.json"
 DEFAULT_JSON_OUTPUT = ROOT / "docs/08_investigacion/e1_structural_screening.json"
 DEFAULT_REPORT_OUTPUT = ROOT / "docs/08_investigacion/e1_structural_screening.md"
 
@@ -197,9 +200,11 @@ def run_screening(
     e1_space: dict,
     pb: dict | None = None,
     p2: dict | None = None,
+    rooflights: dict | None = None,
 ) -> dict:
     pb = _read_json(DEFAULT_PB) if pb is None else pb
     p2 = _read_json(DEFAULT_P2) if p2 is None else p2
+    rooflights = _read_json(DEFAULT_ROOFLIGHTS) if rooflights is None else rooflights
     candidate = _reference_candidate(cfg, roof_space, e1_space)
     steel = materials_from_json(cfg)["S355"]
     selected = evaluate_candidate(candidate, cfg, roof_space, steel)
@@ -309,12 +314,18 @@ def run_screening(
         p2,
         e1_space["vertical_continuity"],
     )
+    roof_openings = analyze_structural_grid(
+        rooflights,
+        hall_length_m=float(cfg["geometry"]["nave_length_m"]),
+        hall_width_m=float(cfg["geometry"]["nave_width_m"]),
+    )
 
     input_payload = json.dumps(
         {
             "model": cfg,
             "pb": pb,
             "p2": p2,
+            "rooflights": rooflights,
             "roof_space": roof_space,
             "e1_space": e1_space,
         },
@@ -374,6 +385,7 @@ def run_screening(
                 "site_actions_resolved": False,
             },
             "vertical_continuity_and_stair_core": vertical_continuity,
+            "roof_openings": roof_openings,
             "diaphragm": {
                 "demand_basis": lateral_basis,
                 "result": asdict(diaphragm),
@@ -407,6 +419,7 @@ def run_screening(
             "complete three-dimensional lateral model and direct second-order analysis",
             "coordinated four-column stair-enclosure frame, orthogonal lateral planes, drift-compatible stair joints, diaphragm collectors, column bases, fire-rated enclosure, and egress clearances",
             "roof and floor deck manufacturer strength, stiffness, fasteners, sidelaps, and openings",
+            "engineered rooflight trimmers and coordinated roof-diaphragm load paths at D-054 openings",
             "connection geometry including HSS local limit states and seismic demand hierarchy",
             "D-021 occupancy, fire-resistance target, fire scenario, and tested protection system",
             "fabricator splice strategy, crane chart/radius, temporary bracing, lift lugs, and weather limits",
@@ -613,6 +626,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--e1-space", type=Path, default=DEFAULT_E1_SPACE)
     parser.add_argument("--pb", type=Path, default=DEFAULT_PB)
     parser.add_argument("--p2", type=Path, default=DEFAULT_P2)
+    parser.add_argument("--rooflights", type=Path, default=DEFAULT_ROOFLIGHTS)
     parser.add_argument("--json-output", type=Path, default=DEFAULT_JSON_OUTPUT)
     parser.add_argument("--report-output", type=Path, default=DEFAULT_REPORT_OUTPUT)
     arguments = parser.parse_args(argv)
@@ -622,6 +636,7 @@ def main(argv: list[str] | None = None) -> int:
         _read_json(arguments.e1_space),
         _read_json(arguments.pb),
         _read_json(arguments.p2),
+        _read_json(arguments.rooflights),
     )
     write_outputs(results, arguments.json_output, arguments.report_output)
     print("E1 multi-phenomenon screening generated; design remains blocked by declared inputs.")

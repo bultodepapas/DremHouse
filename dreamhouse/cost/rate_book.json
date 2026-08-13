@@ -1,0 +1,23 @@
+{
+  "revision": "0.4-I01-RATES",
+  "date": "2026-08-13",
+  "status": "control baseline extraction; not a quote or approved estimate",
+  "currency": "COP",
+  "source": "docs/04_costos/presupuesto_desglosado_de_control.md",
+  "rates": {
+    "12.01": {
+      "unit": "m2",
+      "control_rate_cop": 1180000,
+      "baseline_quantity": 28.0,
+      "confidence": "low-medium",
+      "eligible_for_budget": false
+    },
+    "13.01": {
+      "unit": "m2",
+      "control_rate_cop": 350000,
+      "baseline_quantity": 40.0,
+      "confidence": "low-medium",
+      "eligible_for_budget": false
+    }
+  }
+}

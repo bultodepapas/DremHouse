@@ -1,0 +1,73 @@
+{
+  "revision": "0.4-I01-ROOFLIGHTS",
+  "drawing_revision": "R11",
+  "status": "active D-054 schematic coordination hypothesis; not for construction",
+  "date": "2026-08-13",
+  "supersedes": "0.3-draft-11-ROOFLIGHTS / R10",
+  "decision": "D-054",
+  "roof": {
+    "_comment": "Must match roof.low_side in pb_b05.json, the single source under D-039.",
+    "length": 36.0,
+    "width": 18.0,
+    "low_eave": 7.2,
+    "high_eave": 7.8,
+    "rise": 0.6,
+    "slope_percent": 3.33,
+    "low_side": "A"
+  },
+  "double_height": {
+    "x0": 0.0,
+    "x1": 21.0,
+    "y0": 0.0,
+    "y1": 18.0,
+    "center_x": 10.5,
+    "center_y": 9.0
+  },
+  "placement_rule": "one equal rooflight centred in each longitudinal half of the double-height zone",
+  "center_tolerance_m": 0.1,
+  "minimum_edge_separation_m": 1.5,
+  "structural_grid_hypothesis": {
+    "longitudinal_bay": 6.0,
+    "purlin_spacing": 1.5
+  },
+  "rooflights": [
+    {
+      "id": "RL-CAR",
+      "name": "Central rooflight / car longitudinal half",
+      "x": 2.85,
+      "y": 7.8,
+      "length": 4.8,
+      "width": 2.4,
+      "area": 11.52,
+      "below": "DOUBLE HEIGHT / CAR HALF"
+    },
+    {
+      "id": "RL-RC",
+      "name": "Central rooflight / RC longitudinal half",
+      "x": 13.35,
+      "y": 7.8,
+      "length": 4.8,
+      "width": 2.4,
+      "area": 11.52,
+      "below": "DOUBLE HEIGHT / RC HALF"
+    }
+  ],
+  "assembly_hypothesis": {
+    "type": "laminated-safety insulated glazing unit on an elevated drained curb",
+    "external_layer": "heat-soaked tempered glass with solar control or ceramic frit",
+    "cavity": "sealed cavity; build-up subject to hygrothermal calculation",
+    "internal_layer": "mechanically retained laminated safety glass",
+    "curb_min_height_m": 0.2,
+    "operability": "fixed by default; ventilation handled separately",
+    "solar_control": "40-60 percent frit as a study range"
+  },
+  "open_items": [
+    "portal-line and purlin trimmers",
+    "glass wind-suction design",
+    "condensation and curb thermal bridge",
+    "crickets, overflow and drainage",
+    "cleaning and replacement access",
+    "interior protection during work at height",
+    "site orientation and final solar control"
+  ]
+}

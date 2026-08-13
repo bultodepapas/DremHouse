@@ -1,0 +1,72 @@
+{
+  "revision": "0.4-I01-EQUIPMENT-LAYOUT",
+  "date": "2026-08-13",
+  "status": "coordination hypothesis; not for procurement or construction",
+  "placements": [
+    {
+      "id": "EQ-M-BED",
+      "product_id": "BED-KING-DESIGN",
+      "host": "M-D",
+      "x": 31.65,
+      "y": 1.0,
+      "orientation": "width_along_x"
+    },
+    {
+      "id": "EQ-CAR",
+      "product_id": "CAR-1970-DEVILLE",
+      "host": "DOUBLE-HEIGHT",
+      "x": 2.0,
+      "y": 2.65,
+      "orientation": "depth_along_x"
+    },
+    {
+      "id": "EQ-RANGE",
+      "product_id": "RANGE-WOLF-GR366",
+      "host": "KITCHEN-WALL-RUN",
+      "x": 26.9,
+      "y": 0.25,
+      "orientation": "width_along_x"
+    },
+    {
+      "id": "EQ-DISHWASHER",
+      "product_id": "DISHWASHER-BOSCH-60",
+      "host": "KITCHEN-WALL-RUN",
+      "x": 28.05,
+      "y": 0.25,
+      "orientation": "width_along_x"
+    },
+    {
+      "id": "EQ-FRIDGE",
+      "product_id": "FRIDGE-SAMSUNG-RS27T5561",
+      "host": "KITCHEN-WALL-RUN",
+      "x": 30.1,
+      "y": 0.25,
+      "orientation": "width_along_x"
+    },
+    {
+      "id": "EQ-WASHER",
+      "product_id": "WASHER-LG-CWG27",
+      "host": "LAUNDRY-RESERVE",
+      "x": 32.15,
+      "y": 5.6,
+      "orientation": "width_along_x"
+    },
+    {
+      "id": "EQ-DRYER",
+      "product_id": "DRYER-LG-27",
+      "host": "LAUNDRY-RESERVE",
+      "x": 33.05,
+      "y": 5.6,
+      "orientation": "width_along_x"
+    }
+  ],
+  "host_overrides": {
+    "LAUNDRY-RESERVE": {
+      "x": 32.05,
+      "y": 5.55,
+      "width": 3.4,
+      "depth": 1.4,
+      "source_status": "active coordination reserve inside PB BOD"
+    }
+  }
+}

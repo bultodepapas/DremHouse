@@ -1,0 +1,98 @@
+{
+  "revision": "0.4-I01-EQUIPMENT",
+  "date": "2026-08-13",
+  "status": "coordination benchmarks; verify selected products before design freeze",
+  "products": [
+    {
+      "id": "BED-KING-DESIGN",
+      "category": "bed",
+      "manufacturer": "project benchmark",
+      "model": "king frame design envelope",
+      "width_m": 2.05,
+      "depth_m": 2.0,
+      "operating_depth_m": 2.0,
+      "side_clearance_m": 0.9,
+      "front_clearance_m": 0.9,
+      "source": "dreamhouse/generate_p2_b09.py::_draw_bed",
+      "source_status": "project design target; not a purchased product"
+    },
+    {
+      "id": "CAR-1970-DEVILLE",
+      "category": "vehicle",
+      "manufacturer": "Cadillac",
+      "model": "1970 De Ville",
+      "width_m": 2.027,
+      "depth_m": 5.715,
+      "operating_depth_m": 5.715,
+      "side_clearance_m": 0.9,
+      "front_clearance_m": 0.9,
+      "source": "https://www.gm.com/content/dam/company/no_search/heritage-archive-docs/vehicle-information-kits/cadillac/1970_Cadillac_VVI.pdf",
+      "source_status": "GM Heritage data book; mirrors excluded"
+    },
+    {
+      "id": "RANGE-WOLF-GR366",
+      "category": "range",
+      "manufacturer": "Wolf",
+      "model": "GR366",
+      "width_m": 0.911,
+      "depth_m": 0.721,
+      "operating_depth_m": 1.216,
+      "side_clearance_m": 0.0,
+      "front_clearance_m": 0.0,
+      "source": "https://www.subzero-wolf.com/products/assets/wolf/gas-ranges/qr-sheets/gr36/wolf-qr-sheet-gr366.pdf",
+      "source_status": "manufacturer quick-reference dimensions; 19.5 inch door clearance added to depth"
+    },
+    {
+      "id": "DISHWASHER-BOSCH-60",
+      "category": "dishwasher",
+      "manufacturer": "Bosch",
+      "model": "60 cm integrated planning benchmark",
+      "width_m": 0.598,
+      "depth_m": 0.573,
+      "operating_depth_m": 1.173,
+      "side_clearance_m": 0.0,
+      "front_clearance_m": 0.0,
+      "source": "https://media3.bosch-home.com/Documents/MCDOC03188050_Bosch_BI_2019_E-CAT_LR.pdf",
+      "source_status": "manufacturer planning dimensions; open-door projection is a conservative project allowance"
+    },
+    {
+      "id": "FRIDGE-SAMSUNG-RS27T5561",
+      "category": "refrigerator",
+      "manufacturer": "Samsung",
+      "model": "RS27T5561 758 L",
+      "width_m": 0.912,
+      "depth_m": 0.851,
+      "operating_depth_m": 0.851,
+      "side_clearance_m": 0.05,
+      "front_clearance_m": 0.9,
+      "source": "https://www.samsung.com/co/multistore/co_epp_members/pd.RS27T5561B1CO/",
+      "source_status": "manufacturer net dimensions; final ventilation and door-swing clearances pending"
+    },
+    {
+      "id": "WASHER-LG-CWG27",
+      "category": "washer",
+      "manufacturer": "LG",
+      "model": "CWG27MDCRB planning benchmark",
+      "width_m": 0.686,
+      "depth_m": 0.767,
+      "operating_depth_m": 1.337,
+      "side_clearance_m": 0.05,
+      "front_clearance_m": 0.0,
+      "source": "https://www.lg.com/global/business/commercial-laundry/washer/cwg27mdcrb/",
+      "source_status": "manufacturer product and open-door dimensions"
+    },
+    {
+      "id": "DRYER-LG-27",
+      "category": "dryer",
+      "manufacturer": "LG",
+      "model": "27 inch companion planning benchmark",
+      "width_m": 0.686,
+      "depth_m": 0.767,
+      "operating_depth_m": 1.337,
+      "side_clearance_m": 0.05,
+      "front_clearance_m": 0.0,
+      "source": "https://www.lg.com/content/dam/channel/wcms/ph/images/business/tools-and-resources/pdf/02_LG_Commercial_Laundry_Gyro_Sensor-WIFI_Leaflet.pdf",
+      "source_status": "manufacturer family benchmark; exact dryer model selection pending"
+    }
+  ]
+}

@@ -204,6 +204,14 @@ unambiguous. These are measurement alerts, not accepted additions to the budget.
 must be resolved through a generated opening schedule, one-to-one cost-code coverage,
 and comparable quotations at PE-1/PE-2.
 
+Implementation issue 0.4-I01 now generates that opening schedule and cost-code join.
+Against the unchanged low-confidence control rates, it exposes a **COP 5.257 M** P2
+window variance and a **COP 16.237 M** comparison variance if the 41.76 m² PB technical
+glazing were treated as equivalent to 12.01. The latter equivalence remains OPEN, and
+rooflight glass, curbs, trimmers, drainage, and thermal detailing remain unmapped. The
+pipeline therefore does not sum these comparisons into an approved budget and does not
+change the control target.
+
 Primary-suite and Great Wall/column alternatives are to remain within the active P2
 envelope unless separately decided, but they can change partition, acoustic, wet-area,
 steel, connection, fire-protection, MEP, and finish quantities. No saving or increase is

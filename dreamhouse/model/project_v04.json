@@ -1,0 +1,93 @@
+{
+  "project_id": "DH-COORD-001",
+  "revision": "0.4-I01",
+  "date": "2026-08-13",
+  "status": "active coordination model; not construction authority",
+  "source": "D-055 and parametric architecture-structure-cost integration plan",
+  "canonical_geometry": {
+    "hall": {
+      "length_m": 36.0,
+      "width_m": 18.0
+    },
+    "p2": {
+      "x_m": 21.0,
+      "length_m": 15.0,
+      "width_m": 18.0,
+      "level_m": 3.8
+    },
+    "great_wall_x_m": 31.5,
+    "roof": {
+      "low_eave_m": 7.2,
+      "high_eave_m": 7.8,
+      "rise_m": 0.6,
+      "low_side": "A"
+    },
+    "double_height": {
+      "x0": 0.0,
+      "x1": 21.0,
+      "y0": 0.0,
+      "y1": 18.0
+    }
+  },
+  "sources": {
+    "PB_B05": {
+      "path": "dreamhouse/pb_b05.json",
+      "sha256": "e090df6fa46c33e009aec3e1b6fe94b8c5c3783e48ce156ef3f5a13a759b7c38",
+      "status": "active hypothesis"
+    },
+    "P2_B10": {
+      "path": "dreamhouse/p2_b10.json",
+      "sha256": "3ae1f6807b89f8f9ae368e7ded21de95c442cb3c6496fa60116fdf3a56512c6a",
+      "status": "active schematic coordination hypothesis"
+    },
+    "ROOFLIGHT_B11": {
+      "path": "dreamhouse/rooflight_b11.json",
+      "sha256": "03f2cf2ca55e1edc5a604b1e04be5c07a64373158ae4b56ae8000a900ceee663",
+      "status": "superseded location hypothesis retained for comparison"
+    },
+    "ROOFLIGHT_B12": {
+      "path": "dreamhouse/rooflight_b12.json",
+      "sha256": "fcf399053e05ccbe7e0e7620a7eef1c6a5b7cb950e546bf1f993bd399b6c18c7",
+      "status": "active D-054 location hypothesis"
+    },
+    "STRUCTURE_SYSTEM": {
+      "path": "dreamhouse/structure/structure_system.json",
+      "sha256": "4db131462696e997ad5423cd35c662b76fdc78b2f747e1973e00fe971f23cfdb",
+      "status": "screening only"
+    },
+    "ROOF_TRUSS_SPACE": {
+      "path": "dreamhouse/structure/roof_truss_space.json",
+      "sha256": "abc45dd0fd5da1827ad63636882f960c9367d0951acd40138f7d2ec1cb9d73aa",
+      "status": "screening only"
+    },
+    "E1_SCREENING_SPACE": {
+      "path": "dreamhouse/structure/e1_screening_space.json",
+      "sha256": "e3377ce2df5a07371439dea6fe5e9415e423fad4176576e722f6ff22026ad068",
+      "status": "screening only"
+    }
+  },
+  "scenarios": {
+    "B10_D053_BASELINE": {
+      "status": "comparison baseline",
+      "sources": {
+        "pb": "PB_B05",
+        "p2": "P2_B10",
+        "rooflights": "ROOFLIGHT_B11",
+        "structure": "STRUCTURE_SYSTEM",
+        "roof_space": "ROOF_TRUSS_SPACE",
+        "e1_space": "E1_SCREENING_SPACE"
+      }
+    },
+    "D054_HALF_CENTRES": {
+      "status": "active coordination scenario",
+      "sources": {
+        "pb": "PB_B05",
+        "p2": "P2_B10",
+        "rooflights": "ROOFLIGHT_B12",
+        "structure": "STRUCTURE_SYSTEM",
+        "roof_space": "ROOF_TRUSS_SPACE",
+        "e1_space": "E1_SCREENING_SPACE"
+      }
+    }
+  }
+}

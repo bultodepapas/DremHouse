@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.3  
+**Version:** 0.4
 **Date:** 2026-08-13
 
 > [!NOTE]
@@ -68,9 +68,9 @@
 - [Structural model E0](03_ingenierias/modelo_estructural_e0.md): scope, assumptions,
   verification limits, and required progression toward E1/E2.
 - [Structural-to-drawing integration study — E1 screening](03_ingenierias/estudio_integracion_estructura_planos.md):
-  reconciles the roof specimen, the D-053 rooflight predecessor, D-043/D-045 P2 gravity
-  path, lateral demand, and every unresolved design gate; D-054 requires the next
-  opening-aware screening issue.
+  reconciles the roof specimen, D-054 rooflight positions, D-043/D-045 P2 gravity path,
+  lateral demand, and every unresolved design gate; issue 0.4-I01 now includes the
+  opening-aware grid-crossing screen.
 - [Integrated structural E1 evidence sheet](../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg):
   calculation-linked plan, exact truss grammar, evidence matrix, connection, base,
   foundation, erection, and fire-sensitivity views; not for construction.
@@ -100,10 +100,14 @@
 
 - [Master plan](06_gestion_y_obra/plan_maestro.md)
 - [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
-  detailed D-054/D-055 implementation roadmap for the canonical scenario model,
+  detailed D-054/D-055 roadmap and implemented 0.4-I01 vertical slice for the canonical scenario model,
   real-equipment spatial validation, Great Wall/column alternatives, opening-aware
   structural screening, derived quantities, and cost traceability; it does not freeze a
   design or authorize construction.
+- [Integrated coordination evidence package](../planos/integracion_v0.4_i01/evidence.md):
+  deterministic 0.4-I01 result, schedules, cost reconciliation, support alternatives,
+  structural screen, rooflight drawings, source hashes, and artifact hashes; all open
+  gates remain explicit.
 - [Initial risk register](06_gestion_y_obra/matriz_de_riesgos.md)
 - [Pending decisions and inputs](06_gestion_y_obra/decisiones_y_datos_pendientes.md)
 - [Roles, deliverables, and quality control](06_gestion_y_obra/roles_entregables_y_calidad.md)

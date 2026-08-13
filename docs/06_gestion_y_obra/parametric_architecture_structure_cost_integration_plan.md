@@ -1,7 +1,7 @@
 # Parametric Architecture–Structure–Cost Integration Plan
 
-**Status:** active implementation plan; coordination basis; not for construction  
-**Version:** 0.1  
+**Status:** implementation issue 0.4-I01 active; coordination basis; not for construction
+**Version:** 0.2
 **Date:** 2026-08-13  
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
@@ -17,6 +17,22 @@ applicable manufacturers/fabricators
 > establish a construction quantity, set a contractual price, or freeze PB/P2 geometry.
 > Every numerical value is classified below as a requirement, active coordination
 > hypothesis, benchmark, or measured current-model condition.
+
+## Implementation issue 0.4-I01
+
+The first executable vertical slice was issued on 2026-08-13. The command
+`python -m dreamhouse.pipeline` now loads a hash-locked scenario, checks cross-model
+geometry, validates the current P2 programme and real-equipment envelopes, enforces the
+D-054 rooflight rule, injects roof openings into the E1 screen, compares four declared
+Great Wall/stair support concepts, derives opening and quantity schedules, and reconciles
+those quantities to cost-control codes. It writes a deterministic evidence package at
+[`planos/integracion_v0.4_i01/`](../../planos/integracion_v0.4_i01/).
+
+The issue closes no professional design gate. Its current result is **47 PASS, 6 OPEN,
+0 FAIL**. The open items include rooflight trimmers/diaphragm detailing, a 0.101 m
+refrigerator-to-cabinet-depth mismatch, the primary-suite gross/net target, structural
+system selection, and cost-code/rate eligibility. The package therefore reports
+`COORDINATION_OPEN`, `issue_ready=false`, and no approved budget total.
 
 ## 1. Executive recommendation
 
