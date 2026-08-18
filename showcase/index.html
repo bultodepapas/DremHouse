@@ -139,8 +139,9 @@
           <p class="kicker">Stable current aliases · preserved issue history</p>
           <h2 id="gallery-title">One obvious place to see the project now.</h2>
           <p>
-            Every view is published from <code>planos/actual/</code> as a stable SVG and PNG pair.
-            Its versioned source, revision, status, and limitation of use remain traceable.
+            Every view uses the stable SVG from <code>planos/actual/</code>, so lines and text stay
+            sharp at any zoom level. A PNG fallback, versioned source, revision, status, and
+            limitation of use remain traceable.
           </p>
         </div>
         <div class="gallery__workspace">
@@ -164,7 +165,7 @@
               aria-label="Enlarge the selected drawing"
             >
               <img src="" alt="" data-gallery-image />
-              <span>Enlarge ↗</span>
+              <span>Zoom SVG ↗</span>
             </button>
             <figcaption>
               <div>
@@ -241,9 +242,19 @@
       <span>Decisions are recorded; they are never overwritten without history.</span>
     </footer>
 
-    <dialog class="lightbox" data-dialog aria-label="Enlarged drawing">
-      <button type="button" data-close-dialog aria-label="Close drawing">Close ×</button>
-      <img src="" alt="" data-dialog-image />
+    <dialog class="lightbox" data-dialog aria-label="Scalable drawing viewer">
+      <div class="lightbox__toolbar" aria-label="Drawing zoom controls">
+        <span>Vector drawing</span>
+        <button type="button" data-zoom-out aria-label="Zoom out">−</button>
+        <output data-zoom-level aria-live="polite">100%</output>
+        <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+        <button type="button" data-zoom-reset>Reset</button>
+        <a href="#" data-dialog-open target="_blank" rel="noopener">Open SVG ↗</a>
+        <button type="button" data-close-dialog aria-label="Close drawing">Close ×</button>
+      </div>
+      <div class="lightbox__viewport" data-zoom-viewport>
+        <img src="" alt="" draggable="false" data-dialog-image />
+      </div>
     </dialog>
 
     <!-- showcase:data -->

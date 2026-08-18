@@ -54,85 +54,85 @@ structure, and performance—not from arbitrary forms or decorative layers.
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor schematic plan" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor schematic plan" width="100%"></a>
   <br><sub><strong>Architecture · ground floor</strong> · 0.3-borrador-05-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b05_pb/DH-ARQ-PLN-001-R04_PB-DETALLADA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b05_pb/DH-ARQ-PLN-001-R04_PB-DETALLADA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
   <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-15-P2</sub>
   <br><strong>Upper-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-PLN-002-R12_P2-COORDINATED.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-PLN-002-R12_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg"><img src="planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png" alt="Current Dream House roof and rooflight schematic plan" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg"><img src="planos/actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg" alt="Current Dream House roof and rooflight schematic plan" width="100%"></a>
   <br><sub><strong>Architecture · roof</strong> · 0.4-I01-ROOFLIGHTS</sub>
   <br><strong>Roof and rooflight plan</strong>
-  <br><sub><a href="planos/integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg"><img src="planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.png" alt="Current Dream House mono-pitch transverse roof schematic section" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg"><img src="planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg" alt="Current Dream House mono-pitch transverse roof schematic section" width="100%"></a>
   <br><sub><strong>Architecture · transverse section</strong> · 0.3-borrador-07-CUBIERTA</sub>
   <br><strong>Mono-pitch roof section</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-ELE-001_CURRENT-FRONT.svg"><img src="planos/actual/DH-ARQ-ELE-001_CURRENT-FRONT.png" alt="Current Dream House front façade schematic elevation" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-ELE-001_CURRENT-FRONT.svg"><img src="planos/actual/DH-ARQ-ELE-001_CURRENT-FRONT.svg" alt="Current Dream House front façade schematic elevation" width="100%"></a>
   <br><sub><strong>Architecture · front elevation</strong> · 0.3-borrador-07-CUBIERTA</sub>
   <br><strong>Front façade</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.png" alt="Current Dream House rear façade schematic elevation" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg" alt="Current Dream House rear façade schematic elevation" width="100%"></a>
   <br><sub><strong>Architecture · rear elevation</strong> · 0.3-borrador-07-CUBIERTA</sub>
   <br><strong>Rear façade</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-002-R06_FACHADA-POSTERIOR-CUBIERTA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-002-R06_FACHADA-POSTERIOR-CUBIERTA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
   <br><sub><strong>Architecture · acoustic partition</strong> · 0.3-draft-15-P2</sub>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-DET-003-R12_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-DET-003-R12_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House P2-W04 continuous hall and workshop edge acoustic enclosure detail" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg" alt="Current Dream House P2-W04 continuous hall and workshop edge acoustic enclosure detail" width="100%"></a>
   <br><sub><strong>Architecture · acoustic hall edge</strong> · 0.3-draft-15-P2</sub>
   <br><strong>P2-W04 · continuous hall-edge enclosure</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-DET-004-R12_P2-HALL-EDGE.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-DET-004-R12_P2-HALL-EDGE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
+  <a href="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
   <br><sub><strong>Architecture · refined P2 envelope</strong> · 0.3-draft-15-P2</sub>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-DET-005-R12_P2-EXTERIOR-WALL.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/conceptual_v0.3_b15_p2/DH-ARQ-DET-005-R12_P2-EXTERIOR-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
+  <a href="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.2</sub>
   <br><strong>Integrated structural evidence</strong>
-  <br><sub><a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
+  <a href="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><sub><strong>Engineering · vertical continuity</strong> · 0.3 + E1 0.2</sub>
   <br><strong>Stair-frame continuity</strong>
-  <br><sub><a href="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg">Versioned source</a> · stable current SVG/PNG above</sub>
+  <br><sub><a href="planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 </table>
 
-<p align="center"><sub>Every thumbnail uses a stable file in <code>planos/actual/</code>; open it for the current SVG or follow its versioned source for history.</sub></p>
+<p align="center"><sub>Every thumbnail is the stable, scalable SVG in <code>planos/actual/</code>; open it to zoom without losing quality or follow its versioned source for history.</sub></p>
 <!-- showcase:end -->
 
 The gallery always reads the stable SVG/PNG pairs in [`planos/actual/`](planos/actual/).

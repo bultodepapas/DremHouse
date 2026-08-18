@@ -64,9 +64,8 @@ def select_gallery() -> list[dict]:
         if not item.get("featured"):
             continue
         svg_path = ROOT / item["canonical_svg"]
-        png_path = ROOT / item["canonical_png"]
         source_path = ROOT / item["source"]
-        for path in (svg_path, png_path, source_path):
+        for path in (svg_path, source_path):
             if not path.is_file():
                 raise RuntimeError(f"Current drawing asset is missing: {path.relative_to(ROOT)}")
         gallery.append(
@@ -74,10 +73,10 @@ def select_gallery() -> list[dict]:
                 **item,
                 "slug": item["id"],
                 "path": svg_path,
-                "image_path": png_path,
+                "image_path": svg_path,
                 "source_path": source_path,
                 "relative": item["canonical_svg"],
-                "image_relative": item["canonical_png"],
+                "image_relative": item["canonical_svg"],
                 "source_relative": item["source"],
                 "revision": item["source_revision"],
             }
@@ -168,7 +167,7 @@ def render_readme_block(data: dict) -> str:
                         f'  <a href="{path}"><img src="{image_path}" alt="{alt}" width="100%"></a>',
                         f"  <br><sub><strong>{eyebrow}</strong> · {revision}</sub>",
                         f"  <br><strong>{title}</strong>",
-                        f'  <br><sub><a href="{source_path}">Versioned source</a> · stable current SVG/PNG above</sub>',
+                        f'  <br><sub><a href="{source_path}">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>',
                         "</td>",
                     ]
                 )
@@ -186,7 +185,7 @@ def render_readme_block(data: dict) -> str:
             *rows,
             "</table>",
             "",
-            '<p align="center"><sub>Every thumbnail uses a stable file in <code>planos/actual/</code>; open it for the current SVG or follow its versioned source for history.</sub></p>',
+            '<p align="center"><sub>Every thumbnail is the stable, scalable SVG in <code>planos/actual/</code>; open it to zoom without losing quality or follow its versioned source for history.</sub></p>',
             END,
         ]
     )
@@ -246,7 +245,7 @@ def build_site(data: dict, destination: Path) -> None:
                 "alt": item["alt"],
                 "revision": item["revision"],
                 "src": f"media/{media_name}",
-                "href": f'{REPO_URL}/blob/main/{item["relative"]}',
+                "href": f"media/{media_name}",
                 "source_href": f'{REPO_URL}/blob/main/{item["source_relative"]}',
             }
         )

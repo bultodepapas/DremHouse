@@ -41,7 +41,44 @@
   const historyLink = document.querySelector('[data-gallery-history]');
   const dialog = document.querySelector('[data-dialog]');
   const dialogImage = document.querySelector('[data-dialog-image]');
+  const dialogOpen = document.querySelector('[data-dialog-open]');
+  const zoomViewport = document.querySelector('[data-zoom-viewport]');
+  const zoomLevel = document.querySelector('[data-zoom-level]');
   let selectedIndex = 0;
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+  let dragOrigin = null;
+
+  const renderZoom = () => {
+    dialogImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    zoomLevel.value = `${Math.round(scale * 100)}%`;
+    zoomViewport.classList.toggle('is-zoomed', scale > 1);
+  };
+
+  const resetZoom = () => {
+    scale = 1;
+    translateX = 0;
+    translateY = 0;
+    renderZoom();
+  };
+
+  const changeZoom = (nextScale, clientX, clientY) => {
+    const previousScale = scale;
+    scale = Math.min(8, Math.max(1, nextScale));
+    if (scale === 1) {
+      translateX = 0;
+      translateY = 0;
+    } else if (clientX !== undefined && clientY !== undefined) {
+      const bounds = zoomViewport.getBoundingClientRect();
+      const offsetX = clientX - bounds.left - bounds.width / 2;
+      const offsetY = clientY - bounds.top - bounds.height / 2;
+      const ratio = scale / previousScale;
+      translateX = offsetX - (offsetX - translateX) * ratio;
+      translateY = offsetY - (offsetY - translateY) * ratio;
+    }
+    renderZoom();
+  };
 
   const selectItem = (index, moveFocus = false) => {
     selectedIndex = (index + data.gallery.length) % data.gallery.length;
@@ -59,6 +96,8 @@
         historyLink.href = item.source_href;
         dialogImage.src = item.src;
         dialogImage.alt = `${item.alt}, enlarged`;
+        dialogOpen.href = item.href;
+        resetZoom();
         stage.classList.remove('is-changing');
       },
       reducedMotion ? 0 : 140,
@@ -98,12 +137,50 @@
   selectItem(0);
 
   document.querySelector('[data-open-dialog]').addEventListener('click', () => {
+    resetZoom();
     if (typeof dialog.showModal === 'function') dialog.showModal();
   });
   document.querySelector('[data-close-dialog]').addEventListener('click', () => dialog.close());
+  document.querySelector('[data-zoom-in]').addEventListener('click', () => changeZoom(scale * 1.5));
+  document.querySelector('[data-zoom-out]').addEventListener('click', () => changeZoom(scale / 1.5));
+  document.querySelector('[data-zoom-reset]').addEventListener('click', resetZoom);
+  zoomViewport.addEventListener(
+    'wheel',
+    (event) => {
+      event.preventDefault();
+      changeZoom(scale * (event.deltaY < 0 ? 1.2 : 1 / 1.2), event.clientX, event.clientY);
+    },
+    { passive: false },
+  );
+  zoomViewport.addEventListener('dblclick', (event) => {
+    changeZoom(scale > 1 ? 1 : 2, event.clientX, event.clientY);
+  });
+  zoomViewport.addEventListener('pointerdown', (event) => {
+    if (scale === 1) return;
+    dragOrigin = { x: event.clientX - translateX, y: event.clientY - translateY };
+    zoomViewport.setPointerCapture(event.pointerId);
+    zoomViewport.classList.add('is-dragging');
+  });
+  zoomViewport.addEventListener('pointermove', (event) => {
+    if (!dragOrigin) return;
+    translateX = event.clientX - dragOrigin.x;
+    translateY = event.clientY - dragOrigin.y;
+    renderZoom();
+  });
+  const endDrag = (event) => {
+    if (!dragOrigin) return;
+    dragOrigin = null;
+    zoomViewport.classList.remove('is-dragging');
+    if (zoomViewport.hasPointerCapture(event.pointerId)) {
+      zoomViewport.releasePointerCapture(event.pointerId);
+    }
+  };
+  zoomViewport.addEventListener('pointerup', endDrag);
+  zoomViewport.addEventListener('pointercancel', endDrag);
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
+  dialog.addEventListener('close', resetZoom);
 
   if (!reducedMotion) {
     const observer = new IntersectionObserver(
