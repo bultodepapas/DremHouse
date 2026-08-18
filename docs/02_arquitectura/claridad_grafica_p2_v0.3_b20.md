@@ -1,6 +1,7 @@
 # P2 main-plan graphic clarity — draft 20
 
-**Status:** active drawing-presentation decision under D-064; not for construction<br>
+**Status:** retained drawing-presentation basis under D-064; superseded by D-065/P2
+b21-R18 as the current published issue; not for construction<br>
 **Version:** 0.3-draft-20-P2 / R17<br>
 **Date:** 2026-08-18<br>
 **Source:** explicit owner instruction following visual review of P2 b19/R16.

@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.9
+**Versión:** 0.3.10
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -328,10 +328,24 @@ structure, fire and acoustic consequences until developed quantities and quotati
 available. **No price, saving, increase, contingency change, or target change is recognized
 by D-063.**
 
+### 0.3-S — D-065 primary-suite rebalance scope
+
+D-065 redistributes the unchanged 66.28 m² primary private-room allocation. It removes
+most of the former bedroom/dressing partition, builds a new 4.20 m-long dressing boundary,
+repositions three primary-suite doors/openings, changes fitted wardrobes, adds a short
+privacy screen and shortens/repositions the south bedroom window from 5.50 m to 3.45 m.
+Affected scope lies principally in chapters 10/13/14/17/21/23.
+
+Reduced glazing and dressing area cannot be treated as savings until they are netted
+against new wall, door, joinery, screen, façade return, curtain and electrical work.
+**No price, saving, increase, contingency change, or target change is recognized by
+D-065.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-S   | 2026-08-18 | D-065 redistributes the unchanged 66.28 m² primary suite into a 35.24 m² bedroom, 13.44 m² dressing and unchanged 17.60 m² bathroom; it changes partitions, doors, wardrobes, privacy screen and the south window. Quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-R   | 2026-08-18 | D-063 removes 7.45 m of full-height P2-W04 and GLZ-DECK to create one open family balcony, retains P2-W04R at both bedroom ends, and adds continuous guard/edge coordination. Removed enclosure scope cannot be netted against guard, structure, fire, smoke and suite-acoustic measures until quoted; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-Q   | 2026-08-18 | D-062 absorbs the 6.525 m² rear spur into a 22.62 m² L-shaped dry/wet wellness suite and retains a 1.20 m clear route to the exterior-stair reserve. Wellness finishes, joinery, ventilation, waterproofing limits and possible rated route separation require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-P   | 2026-08-18 | D-061 replaces the separate stair arrival and full 15 m Phase 2 lobby with a 37.80 m² family distributor, 15.225 m² open study edge and one 6.525 m² short spur. Wall, door, finish, joinery and possible rated-vestibule quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |

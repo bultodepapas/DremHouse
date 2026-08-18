@@ -100,8 +100,10 @@ they stay stable while their explicitly promoted versioned source can advance.
   retained D-063 spatial basis joining the former mini deck, family distributor and study
   edge behind one 7.45 m open guarded frontage.
 - [P2 main-plan graphic clarity — draft 20](02_arquitectura/claridad_grafica_p2_v0.3_b20.md):
-  D-064/R17 removes the F1/F2 overlay from the main plan while retaining it in the model
-  and dedicated access/egress and phasing diagram.
+  retained D-064 graphic basis removing the F1/F2 overlay from the main plan.
+- [Primary-suite rebalance — draft 21](02_arquitectura/rebalance_suite_principal_p2_v0.3_b21.md):
+  D-065/R18 moves the compact dressing beside the Child 1 service band, enlarges the
+  bedroom to 35.24 m² gross and retains the unchanged 66.28 m² primary allocation.
 
 ## 03 — Engineering
 

@@ -768,6 +768,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         {"rule_id": rule_id, "status": "PASS" if passed else "FAIL", "message": message}
         for rule_id, passed, message in checks
     ]
+    primary_rebalance = model.get("primary_suite_rebalance")
     primary_bath = sum(
         space["w"] * space["d"]
         for space in spaces
@@ -778,14 +779,29 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         for space in spaces
         if space.get("suite") == "M" and space["kind"] == "closet"
     )
-    primary_ok = primary_bath >= 17.0 and primary_closet >= 15.0
+    primary_bedroom = sum(
+        space["w"] * space["d"]
+        for space in spaces
+        if space.get("suite") == "M" and space["kind"] == "bedroom"
+    )
+    primary_ok = (
+        primary_bath >= 17.0
+        and primary_closet >= 13.0
+        and primary_bedroom >= 35.0
+        and primary_rebalance.get("privacy_screen") is not None
+        if primary_rebalance
+        else primary_bath >= 17.0 and primary_closet >= 15.0
+    )
     results.extend(
         [
             {
                 "rule_id": "P2-PRIMARY-PROGRAMME",
                 "status": "PASS" if primary_ok else "OPEN",
                 "message": (
-                    f"Primary bathroom {primary_bath:.1f} m2 and dressing room "
+                    f"D-065 coordinates a {primary_bedroom:.2f} m2 primary bedroom, "
+                    f"{primary_closet:.2f} m2 compact dressing and {primary_bath:.1f} m2 bathroom"
+                    if primary_rebalance and primary_ok
+                    else f"Primary bathroom {primary_bath:.1f} m2 and dressing room "
                     f"{primary_closet:.1f} m2 meet or exceed the original programme minimums"
                     if primary_ok
                     else f"Primary bathroom {primary_bath:.1f} m2 and dressing room "
@@ -931,9 +947,19 @@ def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
     if pixel_height < 70:
         size = min(size, 6.4)
     label_width = max(8, int(pixel_width / max(1.0, size * 0.58)))
+    primary_rebalance = model.get("primary_suite_rebalance")
     name_lines = textwrap.wrap(space["name"].replace(" / ", " "), width=label_width)
-    lines = name_lines + [f"{net_area(space, model['envelope']):.1f} m2 net"]
-    if pixel_height >= 90 and pixel_width >= 80:
+    if primary_rebalance and space["id"] in {"M-D", "M-L"}:
+        lines = name_lines + [
+            f"{float(primary_rebalance['bedroom_gross_area_m2']):.2f} m2 gross combined"
+        ]
+    else:
+        lines = name_lines + [f"{net_area(space, model['envelope']):.1f} m2 net"]
+    if (
+        pixel_height >= 90
+        and pixel_width >= 80
+        and not (primary_rebalance and space["id"] in {"M-D", "M-L"})
+    ):
         lines.append(f"gross {space['w']:.2f} x {space['d']:.2f}")
     total = (len(lines) - 1) * size * 1.25
     return _multiline(
@@ -1105,6 +1131,47 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
     _draw_bed(parts, by_id["H2-D"], x_ratio=0.12, y_ratio=0.62)
     _draw_bed(parts, by_id["G-D"], x_ratio=0.48, y_ratio=0.50)
     _draw_bed(parts, by_id["M-D"], x_ratio=0.58, y_ratio=0.18)
+
+    primary_rebalance = model.get("primary_suite_rebalance")
+    if primary_rebalance:
+        for wardrobe in primary_rebalance["wardrobe_runs"]:
+            parts.append(
+                _rect(
+                    _sx(float(wardrobe["x"])),
+                    _sy(float(wardrobe["y"]) + float(wardrobe["d"])),
+                    float(wardrobe["w"]) * SCALE,
+                    float(wardrobe["d"]) * SCALE,
+                    fill="#d7c5aa",
+                    stroke="#705f4d",
+                    stroke_width=1,
+                    rx=2,
+                    css_class="furniture primary-wardrobe-run",
+                )
+            )
+        screen = primary_rebalance["privacy_screen"]
+        parts.extend(
+            [
+                _rect(
+                    _sx(float(screen["x"])),
+                    _sy(float(screen["y"]) + float(screen["d"])),
+                    float(screen["w"]) * SCALE,
+                    float(screen["d"]) * SCALE,
+                    fill="#b99d78",
+                    stroke="#705f4d",
+                    stroke_width=1,
+                    rx=2,
+                    css_class="furniture primary-privacy-screen",
+                ),
+                _text(
+                    _sx(float(screen["x"]) + float(screen["w"]) / 2.0),
+                    _sy(float(screen["y"]) + float(screen["d"]) / 2.0) + 2,
+                    "PRIVACY SCREEN",
+                    5.5,
+                    anchor="middle",
+                    weight=700,
+                ),
+            ]
+        )
 
     family = by_id["FAM"]
     parts.append(
@@ -1569,11 +1636,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     central_distributor = model.get("central_distributor")
     wellness_suite = model.get("wellness_suite")
     family_balcony = model.get("family_balcony")
+    primary_rebalance = model.get("primary_suite_rebalance")
     position_lines = (
         (
             [
                 (
-                    "Open 7.45 m of the family edge as one internal hall balcony."
+                    "Move the compact dressing beside the Child 1 service band."
+                    if primary_rebalance
+                    else "Open 7.45 m of the family edge as one internal hall balcony."
                     if family_balcony
                     else "Absorb the rear spur into a 22.62 m2 dry/wet wellness suite."
                     if wellness_suite
@@ -1646,7 +1716,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     child_delta = abs(net_area(by_id["H1-D"], envelope) - net_area(by_id["H2-D"], envelope))
     fixes = (
         [
-            ("PRIMARY", "Bathroom 17.6 m2 + dressing/filter 17.6 m2 meet the brief."),
+            (
+                "PRIMARY",
+                (
+                    "Bedroom 35.24 m2 + compact dressing 13.44 m2 + bathroom 17.60 m2."
+                    if primary_rebalance
+                    else "Bathroom 17.6 m2 + dressing/filter 17.6 m2 meet the brief."
+                ),
+            ),
             (
                 "FAMILY" if family_centre else "LAUNDRY",
                 (
@@ -1815,7 +1892,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-064 · CLEAN P2 PLAN GRAPHICS · DESIGN COORDINATION"
+        "D-065 · PRIMARY SUITE REBALANCE · DESIGN COORDINATION"
+        if model.get("primary_suite_rebalance")
+        and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-064 · CLEAN P2 PLAN GRAPHICS · DESIGN COORDINATION"
         if model.get("hide_phase_boundary_on_plan")
         and sheet_id.startswith("DH-ARQ-PLN-002")
         else "D-063 · OPEN FAMILY BALCONY · DESIGN COORDINATION"
@@ -1875,7 +1955,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision joining the mini deck and family centre behind one 7.45 m open guarded balcony edge toward the double-height hall. Not for construction."
+                "An upper-floor revision relocating and compacting the primary dressing beside the Child 1 service band while enlarging the bedroom. Not for construction."
+                if model.get("primary_suite_rebalance")
+                else "An upper-floor revision joining the mini deck and family centre behind one 7.45 m open guarded balcony edge toward the double-height hall. Not for construction."
                 if model.get("family_balcony")
                 else "An upper-floor revision absorbing the rear spur into an L-shaped dry/wet wellness suite while preserving a clear reserved exterior route. Not for construction."
                 if model.get("wellness_suite")
@@ -1896,7 +1978,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-064 clean plan graphics · phasing retained in dedicated diagram"
+            "D-065 compact dressing + enlarged primary bedroom"
+            if model.get("primary_suite_rebalance")
+            else "D-064 clean plan graphics · phasing retained in dedicated diagram"
             if model.get("hide_phase_boundary_on_plan")
             else "D-063 open family balcony + retained bedroom-edge P2-W04R"
             if model.get("family_balcony")
@@ -2020,7 +2104,11 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
     route_ids = (
         {
             "H1-D": ["H1-D", "DECK", "FAM", "ESC"],
-            "M-D": ["M-D", "M-C", "FAM", "ESC"],
+            "M-D": (
+                ["M-D", "M-L", "FAM", "ESC"]
+                if model.get("primary_suite_rebalance")
+                else ["M-D", "M-C", "FAM", "ESC"]
+            ),
             "H2-D": ["H2-D", "FAM-N", "FAM", "ESC"],
             "G-D": ["G-D", "G-ENTRY", "FAM-N", "FAM", "ESC"],
             "WELL": [

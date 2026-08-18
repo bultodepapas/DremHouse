@@ -28,6 +28,9 @@ baseline, or authorize procurement or construction.
 > D-064/P2 b20-R17 subsequently removes the F1/F2 overlay from the main architectural
 > plan for graphic clarity only. The Y=11.00 m phase boundary remains active in the model
 > and dedicated access/egress diagram.
+> D-065/P2 b21-R18 subsequently addresses section 4.4 by moving the primary dressing out
+> of the daily entry path, reducing it to 13.44 m² gross and enlarging the combined bedroom
+> to 35.24 m² gross. Detailed privacy, joinery and façade coordination remain open.
 
 ## Executive assessment
 

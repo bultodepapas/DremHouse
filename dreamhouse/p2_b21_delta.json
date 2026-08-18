@@ -1,0 +1,121 @@
+{
+  "base_model": "dreamhouse/p2_b20_delta.json",
+  "base_model_sha256": "f7bcc095996aa18e7e40630b5b7c099c4ebbd88dd9e2f8c66212bdd1dba09288",
+  "revision": "0.3-draft-21-P2",
+  "drawing_revision": "R18",
+  "status": "issued for coordination under D-065; primary-suite privacy, joinery and facade detail remain open; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-20-P2 / R17",
+  "decision": "D-065",
+  "change": {
+    "summary": "Move and compact the primary dressing against the Child 1 service-band side, remove most of the former bedroom/dressing wall and enlarge the primary bedroom within the unchanged suite envelope.",
+    "remove_space_ids": ["M-D", "M-C"],
+    "replace_spaces": [
+      {
+        "id": "M-C",
+        "name": "Primary compact dressing",
+        "suite": "M",
+        "kind": "closet",
+        "phase": 1,
+        "x": 28.6,
+        "y": 0.0,
+        "w": 3.2,
+        "d": 4.2
+      },
+      {
+        "id": "M-D",
+        "name": "Primary bedroom sleep zone",
+        "suite": "M",
+        "kind": "bedroom",
+        "phase": 1,
+        "x": 31.8,
+        "y": 0.0,
+        "w": 4.2,
+        "d": 4.2
+      },
+      {
+        "id": "M-L",
+        "name": "Primary bedroom lounge entry",
+        "suite": "M",
+        "kind": "bedroom",
+        "phase": 1,
+        "x": 30.5,
+        "y": 4.2,
+        "w": 5.5,
+        "d": 3.2
+      }
+    ],
+    "remove_door_ids": ["D-M", "D-M-D", "D-M-B"],
+    "replace_doors": [
+      {
+        "id": "D-M",
+        "connects": ["FAM", "M-L"],
+        "wall": "horizontal",
+        "y": 7.4,
+        "at": 30.5,
+        "width": 1.0,
+        "swing": "south",
+        "kind": "door"
+      },
+      {
+        "id": "D-M-D",
+        "connects": ["M-L", "M-D"],
+        "wall": "horizontal",
+        "y": 4.2,
+        "at": 31.8,
+        "width": 4.2,
+        "swing": "south",
+        "kind": "opening"
+      },
+      {
+        "id": "D-M-C",
+        "connects": ["M-L", "M-C"],
+        "wall": "horizontal",
+        "y": 4.2,
+        "at": 30.65,
+        "width": 0.9,
+        "swing": "south",
+        "kind": "door"
+      },
+      {
+        "id": "D-M-B",
+        "connects": ["M-L", "M-B"],
+        "wall": "vertical",
+        "x": 30.5,
+        "at": 5.1,
+        "width": 0.9,
+        "swing": "west",
+        "kind": "door"
+      }
+    ],
+    "replace_windows": [
+      {
+        "id": "W-M-LAT-A",
+        "room_id": "M-D",
+        "edge": "south",
+        "from": 32.05,
+        "to": 35.5,
+        "height": 2.7,
+        "sill": 0.1
+      }
+    ]
+  },
+  "primary_suite_rebalance": {
+    "bedroom_space_ids": ["M-D", "M-L"],
+    "dressing_space_id": "M-C",
+    "bathroom_space_ids": ["M-B", "M-B-A"],
+    "bedroom_gross_area_m2": 35.24,
+    "dressing_gross_area_m2": 13.44,
+    "bathroom_gross_area_m2": 17.6,
+    "suite_gross_area_m2": 66.28,
+    "new_partition_axis_x": 31.8,
+    "planning_rule": "The 3.20 m dressing width follows the bathroom service-wall dimension; the former dressing becomes bedroom lounge/entry space and the bed zone opens through a 4.20 m clear architectural opening.",
+    "privacy_rule": "The family-room entry reaches the bedroom lounge rather than the dressing; a short fitted screen blocks the direct sightline toward the bed without recreating a full filter room.",
+    "wardrobe_runs": [
+      {"x": 28.78, "y": 0.45, "w": 0.6, "d": 3.3},
+      {"x": 31.02, "y": 0.45, "w": 0.6, "d": 3.3}
+    ],
+    "privacy_screen": {"x": 30.75, "y": 6.1, "w": 1.45, "d": 0.15},
+    "window_rule": "Shift the south primary-bedroom window start to X=32.05 so no glazing crosses the new dressing; retain the east window unchanged."
+  }
+}
