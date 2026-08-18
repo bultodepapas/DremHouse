@@ -1,0 +1,25 @@
+{
+  "base_model": "dreamhouse/p2_b22_delta.json",
+  "base_model_sha256": "f57e90d86e2ca74eea10a6932c0536d20c8a9cb581c0eb7d2c6058f0749b6ce2",
+  "revision": "0.3-draft-23-P2",
+  "drawing_revision": "R20",
+  "status": "issued for coordination under D-067; primary-bedroom furniture, lighting, privacy and facade detail remain open; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-22-P2 / R19",
+  "decision": "D-067",
+  "change": {
+    "summary": "Remove the fitted primary-bedroom privacy screen and identify both parametric bedroom polygons with one room name and one plan label.",
+    "replace_space_names": {
+      "M-D": "Primary bedroom",
+      "M-L": "Primary bedroom"
+    },
+    "remove_primary_suite_rebalance_keys": ["privacy_screen"]
+  },
+  "primary_bedroom_unified": {
+    "space_ids": ["M-D", "M-L"],
+    "display_name": "Primary bedroom",
+    "gross_area_m2": 35.24,
+    "label_space_id": "M-L",
+    "planning_rule": "M-D and M-L remain only as a parametric tessellation of one continuous primary bedroom; show one room name and no fitted privacy screen."
+  }
+}

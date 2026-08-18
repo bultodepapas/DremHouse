@@ -34,6 +34,9 @@ baseline, or authorize procurement or construction.
 > D-066/P2 b22-R19 subsequently unifies the 17.60 m² gross primary bathroom as one
 > L-shaped room, removes its full 2.40 m intermediate wall and door, and replaces the
 > duplicated fixtures with one coordinated programme. Detailed wet-services design remains open.
+> D-067/P2 b23-R20 subsequently removes the fixed bedroom privacy screen and identifies
+> the full 35.24 m² gross primary bedroom with one name and one plan label. Detailed
+> furniture, sightline and lighting design remain open.
 
 ## Executive assessment
 

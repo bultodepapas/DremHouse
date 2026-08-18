@@ -105,8 +105,11 @@ they stay stable while their explicitly promoted versioned source can advance.
   retained D-065 spatial basis moving the compact dressing beside the Child 1 service
   band and enlarging the bedroom to 35.24 m² gross.
 - [Unified primary bathroom — draft 22](02_arquitectura/bano_principal_unificado_p2_v0.3_b22.md):
-  D-066/R19 treats the 17.60 m² gross L-shaped bathroom as one room, removes its full
-  2.40 m intermediate wall and door, and coordinates one fixture programme.
+  retained D-066 basis treating the 17.60 m² gross L-shaped bathroom as one room and
+  removing its full 2.40 m intermediate wall and door.
+- [Unified primary-bedroom reading — draft 23](02_arquitectura/habitacion_principal_unificada_p2_v0.3_b23.md):
+  D-067/R20 removes the fitted privacy screen and gives the complete 35.24 m² gross
+  primary bedroom one name and one plan label.
 
 ## 03 — Engineering
 

@@ -561,6 +561,26 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
                 "The 17.60 m2 gross L-shaped primary bathroom is one 15.66 m2 schematic-net room with the full 2.40 m internal boundary open",
             )
         )
+    primary_bedroom_unified = model.get("primary_bedroom_unified")
+    if primary_bedroom_unified:
+        bedroom_ids = primary_bedroom_unified["space_ids"]
+        unified_bedroom_gross = sum(
+            by_id[space_id]["w"] * by_id[space_id]["d"] for space_id in bedroom_ids
+        )
+        bedroom_names = {by_id[space_id]["name"] for space_id in bedroom_ids}
+        bedroom_ok = (
+            math.isclose(unified_bedroom_gross, 35.24, abs_tol=tolerance)
+            and bedroom_names == {"Primary bedroom"}
+            and primary_bedroom_unified["display_name"] == "Primary bedroom"
+            and "privacy_screen" not in model.get("primary_suite_rebalance", {})
+        )
+        checks.append(
+            (
+                "P2-PRIMARY-BEDROOM-UNIFIED",
+                bedroom_ok,
+                "The 35.24 m2 combined primary bedroom reads as one room with one name and no fitted privacy screen",
+            )
+        )
     wellness_suite = model.get("wellness_suite")
     wellness_ids = wellness_suite["space_ids"] if wellness_suite else ["WELL"]
     wellness_gross = sum(
@@ -817,7 +837,10 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         primary_bath >= 17.0
         and primary_closet >= 13.0
         and primary_bedroom >= 35.0
-        and primary_rebalance.get("privacy_screen") is not None
+        and (
+            model.get("primary_bedroom_unified") is not None
+            or primary_rebalance.get("privacy_screen") is not None
+        )
         if primary_rebalance
         else primary_bath >= 17.0 and primary_closet >= 15.0
     )
@@ -969,7 +992,10 @@ def _header(parts: list[str], model: dict[str, Any], sheet: str, title: str, sub
 
 def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
     primary_bathroom_unified = model.get("primary_bathroom_unified")
+    primary_bedroom_unified = model.get("primary_bedroom_unified")
     if primary_bathroom_unified and space["id"] == "M-B":
+        return ""
+    if primary_bedroom_unified and space["id"] == "M-D":
         return ""
     x = _sx(space["x"] + space["w"] / 2.0)
     y = _sy(space["y"] + space["d"] / 2.0)
@@ -987,10 +1013,13 @@ def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
             f"{float(primary_bathroom_unified['schematic_net_area_m2']):.2f} m2 net schematic",
             f"{float(primary_bathroom_unified['gross_area_m2']):.2f} m2 gross unified",
         ]
-    elif primary_rebalance and space["id"] in {"M-D", "M-L"}:
-        lines = name_lines + [
-            f"{float(primary_rebalance['bedroom_gross_area_m2']):.2f} m2 gross combined"
+    elif primary_bedroom_unified and space["id"] == "M-L":
+        lines = [
+            str(primary_bedroom_unified["display_name"]),
+            f"{float(primary_bedroom_unified['gross_area_m2']):.2f} m2 gross",
         ]
+    elif primary_rebalance and space["id"] in {"M-D", "M-L"}:
+        lines = name_lines + [f"{float(primary_rebalance['bedroom_gross_area_m2']):.2f} m2 gross combined"]
     else:
         lines = name_lines + [f"{net_area(space, model['envelope']):.1f} m2 net"]
     if (
@@ -1187,30 +1216,31 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
                     css_class="furniture primary-wardrobe-run",
                 )
             )
-        screen = primary_rebalance["privacy_screen"]
-        parts.extend(
-            [
-                _rect(
-                    _sx(float(screen["x"])),
-                    _sy(float(screen["y"]) + float(screen["d"])),
-                    float(screen["w"]) * SCALE,
-                    float(screen["d"]) * SCALE,
-                    fill="#b99d78",
-                    stroke="#705f4d",
-                    stroke_width=1,
-                    rx=2,
-                    css_class="furniture primary-privacy-screen",
-                ),
-                _text(
-                    _sx(float(screen["x"]) + float(screen["w"]) / 2.0),
-                    _sy(float(screen["y"]) + float(screen["d"]) / 2.0) + 2,
-                    "PRIVACY SCREEN",
-                    5.5,
-                    anchor="middle",
-                    weight=700,
-                ),
-            ]
-        )
+        screen = primary_rebalance.get("privacy_screen")
+        if screen:
+            parts.extend(
+                [
+                    _rect(
+                        _sx(float(screen["x"])),
+                        _sy(float(screen["y"]) + float(screen["d"])),
+                        float(screen["w"]) * SCALE,
+                        float(screen["d"]) * SCALE,
+                        fill="#b99d78",
+                        stroke="#705f4d",
+                        stroke_width=1,
+                        rx=2,
+                        css_class="furniture primary-privacy-screen",
+                    ),
+                    _text(
+                        _sx(float(screen["x"]) + float(screen["w"]) / 2.0),
+                        _sy(float(screen["y"]) + float(screen["d"]) / 2.0) + 2,
+                        "PRIVACY SCREEN",
+                        5.5,
+                        anchor="middle",
+                        weight=700,
+                    ),
+                ]
+            )
 
     family = by_id["FAM"]
     parts.append(
@@ -1728,11 +1758,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     family_balcony = model.get("family_balcony")
     primary_rebalance = model.get("primary_suite_rebalance")
     primary_bathroom_unified = model.get("primary_bathroom_unified")
+    primary_bedroom_unified = model.get("primary_bedroom_unified")
     position_lines = (
         (
             [
                 (
-                    "Unify the 17.60 m2 primary bathroom as one open L-shaped room."
+                    "Read the 35.24 m2 primary bedroom as one room without a privacy screen."
+                    if primary_bedroom_unified
+                    else "Unify the 17.60 m2 primary bathroom as one open L-shaped room."
                     if primary_bathroom_unified
                     else "Move the compact dressing beside the Child 1 service band."
                     if primary_rebalance
@@ -1812,7 +1845,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
             (
                 "PRIMARY",
                 (
-                    "Unified bathroom 17.60 m2 gross / 15.66 m2 schematic net; no intermediate door."
+                    "One 35.24 m2 primary bedroom; duplicate zone labels and privacy screen removed."
+                    if primary_bedroom_unified
+                    else "Unified bathroom 17.60 m2 gross / 15.66 m2 schematic net; no intermediate door."
                     if primary_bathroom_unified
                     else "Bedroom 35.24 m2 + compact dressing 13.44 m2 + bathroom 17.60 m2."
                     if primary_rebalance
@@ -1987,7 +2022,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-066 · UNIFIED PRIMARY BATHROOM · DESIGN COORDINATION"
+        "D-067 · UNIFIED PRIMARY BEDROOM · DESIGN COORDINATION"
+        if model.get("primary_bedroom_unified")
+        and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-066 · UNIFIED PRIMARY BATHROOM · DESIGN COORDINATION"
         if model.get("primary_bathroom_unified")
         and sheet_id.startswith("DH-ARQ-PLN-002")
         else "D-065 · PRIMARY SUITE REBALANCE · DESIGN COORDINATION"
@@ -2053,7 +2091,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision unifying the primary bathroom as one L-shaped room without an intermediate wall or door. Not for construction."
+                "An upper-floor revision reading the combined primary bedroom as one room and removing its fitted privacy screen. Not for construction."
+                if model.get("primary_bedroom_unified")
+                else "An upper-floor revision unifying the primary bathroom as one L-shaped room without an intermediate wall or door. Not for construction."
                 if model.get("primary_bathroom_unified")
                 else "An upper-floor revision relocating and compacting the primary dressing beside the Child 1 service band while enlarging the bedroom. Not for construction."
                 if model.get("primary_suite_rebalance")
@@ -2078,7 +2118,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-066 unified primary bathroom + D-065 suite rebalance"
+            "D-067 one primary bedroom + D-066 unified bathroom"
+            if model.get("primary_bedroom_unified")
+            else "D-066 unified primary bathroom + D-065 suite rebalance"
             if model.get("primary_bathroom_unified")
             else "D-065 compact dressing + enlarged primary bedroom"
             if model.get("primary_suite_rebalance")

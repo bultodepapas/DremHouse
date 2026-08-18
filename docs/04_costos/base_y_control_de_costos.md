@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.11
+**Versión:** 0.3.12
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -354,10 +354,22 @@ waterproofing and falls, drainage changes, ventilation, electrical safety, joine
 screening, plumbing-acoustic treatment and maintenance access. **No price, saving,
 increase, contingency change, or target change is recognized by D-066.**
 
+### 0.3-U — D-067 unified primary-bedroom reading
+
+D-067 removes the 1.45 m fitted privacy screen from the unchanged 35.24 m² gross primary
+bedroom and consolidates its two parametric zone names into one room identity. No wall,
+door, window, floor-area or circulation geometry changes. Affected scope is limited
+principally to chapters 17/21/23.
+
+The omitted screen cannot be booked as a saving until the final furniture, lighting,
+outlet and privacy strategy is measured and quoted. **No price, saving, increase,
+contingency change, or target change is recognized by D-067.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-U   | 2026-08-18 | D-067 removes the 1.45 m fitted privacy screen and identifies the unchanged 35.24 m² gross primary bedroom with one name and one plan label. Final furniture, lighting, outlet and privacy scope requires coordination; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-T   | 2026-08-18 | D-066 unifies the unchanged 17.60 m² gross primary bathroom, removes the full 2.40 m intermediate wall and door, and coordinates one fixture programme. Waterproofing, drainage, ventilation, electrical, joinery and privacy quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-S   | 2026-08-18 | D-065 redistributes the unchanged 66.28 m² primary suite into a 35.24 m² bedroom, 13.44 m² dressing and unchanged 17.60 m² bathroom; it changes partitions, doors, wardrobes, privacy screen and the south window. Quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-R   | 2026-08-18 | D-063 removes 7.45 m of full-height P2-W04 and GLZ-DECK to create one open family balcony, retains P2-W04R at both bedroom ends, and adds continuous guard/edge coordination. Removed enclosure scope cannot be netted against guard, structure, fire, smoke and suite-acoustic measures until quoted; **no price, saving, increase, contingency or target change is recognized.** |

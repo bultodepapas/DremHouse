@@ -1,0 +1,18 @@
+{
+  "revision": "0.3-draft-23-P2",
+  "status": "issued for coordination under D-067; primary-bedroom furniture, lighting, privacy and facade detail remain open; not for construction",
+  "source": "dreamhouse/p2_b23_delta.json",
+  "source_sha256": "a3d89ce5c6ecad4fc9c2892d1cf1d2ddd24bc2e5631178732bf1a3f48f520392",
+  "generator": "dreamhouse/generate_p2_b23.py",
+  "supersedes": "0.3-draft-22-P2 / R19",
+  "outputs": [
+    "DH-ARQ-PLN-002-R20_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R20_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R20_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

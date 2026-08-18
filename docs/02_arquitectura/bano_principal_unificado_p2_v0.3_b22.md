@@ -1,7 +1,8 @@
 # Unified primary bathroom — draft 22
 
-**Status:** active schematic coordination hypothesis under D-066; waterproofing,
-drainage, ventilation, privacy and detailed MEP remain open; not for construction<br>
+**Status:** retained D-066 bathroom basis; superseded by D-067/P2 b23-R20 only as the
+current published issue; waterproofing, drainage, ventilation, privacy and detailed MEP
+remain open; not for construction<br>
 **Version:** 0.3-draft-22-P2 / R19<br>
 **Date:** 2026-08-18<br>
 **Source:** explicit owner instruction to unify the primary bathroom and remove its
