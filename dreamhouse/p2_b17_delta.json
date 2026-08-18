@@ -1,0 +1,151 @@
+{
+  "base_model": "dreamhouse/p2_b16_delta.json",
+  "base_model_sha256": "2ff39f1161d971530b184f62b6ebe562aff5d1523e92fffdf9ad89bf7b89951b",
+  "revision": "0.3-draft-17-P2",
+  "drawing_revision": "R14",
+  "status": "issued for coordination under D-061; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-16-P2 / R13",
+  "decision": "D-061",
+  "change": {
+    "summary": "Open the stair into one usable family distributor and replace the 15 m Phase 2 lobby with an open study edge and one short service/egress spur.",
+    "remove_space_ids": ["ARR", "F2-HALL"],
+    "replace_spaces": [
+      {
+        "id": "FAM",
+        "name": "Family distributor / lounge / library",
+        "kind": "shared",
+        "phase": 1,
+        "x": 21.0,
+        "y": 7.4,
+        "w": 10.5,
+        "d": 3.6
+      },
+      {
+        "id": "FAM-N",
+        "name": "Family distributor study edge",
+        "kind": "shared",
+        "phase": 2,
+        "x": 21.0,
+        "y": 11.0,
+        "w": 10.5,
+        "d": 1.45
+      },
+      {
+        "id": "F2-SPUR",
+        "name": "Short wellness / egress spur",
+        "kind": "circulation",
+        "phase": 2,
+        "x": 31.5,
+        "y": 11.0,
+        "w": 4.5,
+        "d": 1.45
+      }
+    ],
+    "remove_door_ids": ["D-ARR-HALL", "D-F2"],
+    "replace_doors": [
+      {
+        "id": "D-STAIR",
+        "connects": ["ESC", "FAM"],
+        "wall": "vertical",
+        "x": 31.5,
+        "at": 8.7,
+        "width": 1.0,
+        "swing": "west",
+        "kind": "door"
+      },
+      {
+        "id": "D-M",
+        "connects": ["FAM", "M-C"],
+        "wall": "horizontal",
+        "y": 7.4,
+        "at": 30.5,
+        "width": 1.0,
+        "swing": "south",
+        "kind": "door"
+      },
+      {
+        "id": "D-H2",
+        "connects": ["FAM-N", "H2-D"],
+        "wall": "horizontal",
+        "y": 12.45,
+        "at": 23.3,
+        "width": 0.9,
+        "swing": "north",
+        "kind": "door"
+      },
+      {
+        "id": "D-G",
+        "connects": ["FAM-N", "G-ENTRY"],
+        "wall": "horizontal",
+        "y": 12.45,
+        "at": 27.95,
+        "width": 0.9,
+        "swing": "north",
+        "kind": "door"
+      },
+      {
+        "id": "D-WELL",
+        "connects": ["F2-SPUR", "WELL"],
+        "wall": "horizontal",
+        "y": 12.45,
+        "at": 34.0,
+        "width": 0.9,
+        "swing": "north",
+        "kind": "door"
+      },
+      {
+        "id": "D-FAM-N",
+        "connects": ["FAM", "FAM-N"],
+        "wall": "horizontal",
+        "y": 11.0,
+        "at": 21.0,
+        "width": 10.5,
+        "swing": "north",
+        "kind": "opening"
+      },
+      {
+        "id": "D-DIST-SPUR",
+        "connects": ["FAM-N", "F2-SPUR"],
+        "wall": "vertical",
+        "x": 31.5,
+        "at": 11.15,
+        "width": 1.1,
+        "swing": "east",
+        "kind": "door"
+      }
+    ],
+    "egress_access_space": "F2-SPUR"
+  },
+  "family_centre": {
+    "space_id": "FAM",
+    "gross_width_m": 10.5,
+    "gross_depth_m": 3.6,
+    "gross_area_m2": 37.8,
+    "planning_rule": "The stair opens directly into one furnished family distributor; a clear circulation edge serves the primary suite and Phase 2 extension.",
+    "fitted_library": {
+      "x": 24.0,
+      "y": 7.55,
+      "w": 4.2,
+      "d": 0.35
+    },
+    "access_scope": "Child Suite 1 continues to use the mini deck and remains a separate open architectural recommendation."
+  },
+  "central_distributor": {
+    "main_space_id": "FAM",
+    "extension_space_id": "FAM-N",
+    "short_spur_id": "F2-SPUR",
+    "main_gross_area_m2": 37.8,
+    "extension_gross_area_m2": 15.225,
+    "short_spur_gross_area_m2": 6.525,
+    "temporary_phase_boundary_y": 11.0,
+    "phase_rule": "Close Y=11 during Phase 1; remove the temporary partition across the shared centre when Phase 2 is completed.",
+    "study_counter": {
+      "x": 22.0,
+      "y": 11.72,
+      "w": 4.2,
+      "d": 0.45
+    },
+    "fire_hold_point": "The desired direct stair arrival does not establish an approved fire strategy; retain or add a compact rated/glazed vestibule if required by professional design."
+  }
+}

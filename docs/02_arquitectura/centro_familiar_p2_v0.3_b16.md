@@ -1,8 +1,8 @@
 # Coherent P2 family centre — draft 16
 
-**Status:** active schematic coordination hypothesis under D-060; not for construction  
-**Version:** 0.3-draft-16-P2 / R13  
-**Date:** 2026-08-18  
+**Status:** superseded by D-061/P2 b17-R14; retained as the direct predecessor<br>
+**Version:** 0.3-draft-16-P2 / R13<br>
+**Date:** 2026-08-18<br>
 **Source:** owner instruction to implement the first recommendation in the R12 upper-floor
 architectural review; P2 b15/R12; D-042, D-048 and D-050–D-060.
 
@@ -42,3 +42,7 @@ acoustic-glazing quantities, while adding a deliberate fitted-library element. T
 remain unmeasured and unquoted. D-060 changes neither the cost target nor the contingency.
 The issued sheets are coordination evidence only and are not suitable for procurement or
 construction.
+
+> [!NOTE]
+> D-061/R14 subsequently merges the stair arrival into the family distributor and removes
+> the remaining 15 m double-corridor condition. R13 remains preserved for traceability.

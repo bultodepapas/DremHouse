@@ -398,6 +398,37 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             )
         )
 
+    central_distributor = model.get("central_distributor")
+    wellness_suite = model.get("wellness_suite")
+    if central_distributor:
+        main = by_id.get(central_distributor["main_space_id"])
+        extension = by_id.get(central_distributor["extension_space_id"])
+        spur = by_id.get(central_distributor["short_spur_id"])
+        central_ok = (
+            bool(main)
+            and bool(extension)
+            and bool(spur)
+            and "ARR" not in by_id
+            and "F2-HALL" not in by_id
+            and math.isclose(float(main["w"] * main["d"]), 37.80, abs_tol=tolerance)
+            and math.isclose(float(extension["w"] * extension["d"]), 15.225, abs_tol=tolerance)
+            and math.isclose(float(spur["w"] * spur["d"]), 6.525, abs_tol=tolerance)
+        )
+        checks.append(
+            (
+                "P2-CENTRAL-DISTRIBUTOR",
+                central_ok,
+                (
+                    "The stair opens to a 37.80 m2 family distributor; the 15.00 m lobby "
+                    + (
+                        "is replaced by a 15.23 m2 open study edge and a 6.53 m2 dry wellness threshold"
+                        if model.get("wellness_suite")
+                        else "is replaced by a 15.23 m2 open study edge and one 6.53 m2 short spur"
+                    )
+                ),
+            )
+        )
+
     door_errors: list[str] = []
     graph: dict[str, set[str]] = {space_id: set() for space_id in by_id}
     for door in model["doors"]:
@@ -501,15 +532,40 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             "Guest bedroom, bathroom and wardrobe remain within coordinated programme bands",
         )
     )
-    wellness_gross = by_id["WELL"]["w"] * by_id["WELL"]["d"]
+    wellness_suite = model.get("wellness_suite")
+    wellness_ids = wellness_suite["space_ids"] if wellness_suite else ["WELL"]
+    wellness_gross = sum(
+        by_id[space_id]["w"] * by_id[space_id]["d"] for space_id in wellness_ids
+    )
     checks.append(
         (
             "P2-WELLNESS",
-            16.0 <= wellness_gross <= 22.0
+            16.0 <= wellness_gross <= 24.0
             and min(net_dimensions(by_id["WELL"], envelope)) >= 2.40 - tolerance,
-            f"Wellness is {wellness_gross:.1f} m2 gross and fits a 2.40 m sauna",
+            f"Wellness is {wellness_gross:.2f} m2 gross and fits a 2.40 m sauna",
         )
     )
+    if wellness_suite:
+        dry = by_id.get(wellness_suite["dry_threshold_space_id"])
+        route_clear = float(wellness_suite["route_clear_m"])
+        relaxation_ok = (
+            bool(dry)
+            and wellness_gross >= 22.0 - tolerance
+            and math.isclose(
+                min(net_dimensions(dry, envelope)), route_clear, abs_tol=tolerance
+            )
+            and wellness_suite.get("wet_dry_separation") is True
+        )
+        checks.append(
+            (
+                "P2-WELLNESS-RELAXATION",
+                relaxation_ok,
+                (
+                    f"The {wellness_gross:.2f} m2 L-shaped wellness includes a dry "
+                    f"threshold, relaxation zone and {route_clear:.2f} m clear exterior route"
+                ),
+            )
+        )
 
     laundry = model.get("relocated_laundry")
     if laundry:
@@ -550,7 +606,17 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             (
                 "P2-RETRACTABLE-STAIR-RESERVE",
                 egress_ok,
-                "Rear-facade retractable stair reserve is reached directly from the Phase 2 lobby and clears the D-048 corner",
+                (
+                    "Rear-facade retractable stair reserve is reached directly from the "
+                    + (
+                        "dry wellness threshold and clears the D-048 corner"
+                        if model.get("wellness_suite")
+                        else "short wellness/egress spur and clears the D-048 corner"
+                    )
+                    if model.get("central_distributor")
+                    else "Rear-facade retractable stair reserve is reached directly from "
+                    "the Phase 2 lobby and clears the D-048 corner"
+                ),
             )
         )
 
@@ -723,6 +789,28 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             },
         ]
     )
+    if central_distributor:
+        results.append(
+            {
+                "rule_id": "P2-OPEN-STAIR-ARRIVAL-FIRE",
+                "status": "OPEN",
+                "message": (
+                    "The stair-to-family-room arrival is an architectural objective only; "
+                    "fire separation, smoke control and door strategy await professional design"
+                ),
+            }
+        )
+    if wellness_suite:
+        results.append(
+            {
+                "rule_id": "P2-WELLNESS-EGRESS-ROUTE",
+                "status": "OPEN",
+                "message": (
+                    "The reserved exterior route crosses the dry wellness threshold; "
+                    "professional fire review must accept it or require a separated clear lane"
+                ),
+            }
+        )
     if exterior_wall:
         results.append(
             {
@@ -982,6 +1070,32 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
                 ),
             ]
         )
+    central_distributor = model.get("central_distributor")
+    if central_distributor:
+        study = central_distributor["study_counter"]
+        parts.extend(
+            [
+                _rect(
+                    _sx(float(study["x"])),
+                    _sy(float(study["y"]) + float(study["d"])),
+                    float(study["w"]) * SCALE,
+                    float(study["d"]) * SCALE,
+                    fill="#d7c5aa",
+                    stroke="#705f4d",
+                    stroke_width=1,
+                    rx=2,
+                    css_class="furniture family-study-counter",
+                ),
+                _text(
+                    _sx(float(study["x"]) + float(study["w"]) / 2.0),
+                    _sy(float(study["y"]) + float(study["d"]) / 2.0) + 2,
+                    "FAMILY STUDY EDGE",
+                    6.2,
+                    anchor="middle",
+                    weight=700,
+                ),
+            ]
+        )
     deck = by_id["DECK"]
     for offset in (0.45, 1.55):
         parts.append(
@@ -1021,6 +1135,32 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
             _text(_sx(33.825), _sy(13.48), "SH", 6, anchor="middle", weight=700),
         ]
     )
+    wellness_suite = model.get("wellness_suite")
+    if wellness_suite:
+        bench = wellness_suite["relaxation_bench"]
+        parts.extend(
+            [
+                _rect(
+                    _sx(float(bench["x"])),
+                    _sy(float(bench["y"]) + float(bench["d"])),
+                    float(bench["w"]) * SCALE,
+                    float(bench["d"]) * SCALE,
+                    fill="#cbb89d",
+                    stroke="#766a5c",
+                    stroke_width=1,
+                    rx=5,
+                    css_class="furniture wellness-recline-bench",
+                ),
+                _text(
+                    _sx(float(bench["x"]) + float(bench["w"]) / 2.0),
+                    _sy(float(bench["y"]) + float(bench["d"]) / 2.0) + 2,
+                    "COOL / RECLINE",
+                    6.2,
+                    anchor="middle",
+                    weight=700,
+                ),
+            ]
+        )
 
 
 def _draw_bath_fixtures(parts: list[str], model: dict[str, Any]) -> None:
@@ -1349,11 +1489,17 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     hall_edge = model.get("hall_edge_partition")
     exterior_wall = model.get("exterior_wall_assembly")
     family_centre = model.get("family_centre")
+    central_distributor = model.get("central_distributor")
+    wellness_suite = model.get("wellness_suite")
     position_lines = (
         (
             [
                 (
-                    "Consolidate the shared centre as one 7.60 x 3.60 m family room."
+                    "Absorb the rear spur into a 22.62 m2 dry/wet wellness suite."
+                    if wellness_suite
+                    else "Open the stair into one 10.50 x 3.60 m family distributor."
+                    if central_distributor
+                    else "Consolidate the shared centre as one 7.60 x 3.60 m family room."
                     if family_centre
                     else "Prioritize the primary suite without enlarging P2."
                 ),
@@ -1419,11 +1565,22 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                 "FAMILY" if family_centre else "LAUNDRY",
                 (
                     "One 27.4 m2 family room replaces lounge, gallery and private-hall fragments."
-                    if family_centre
+                    if family_centre and not central_distributor
+                    else "The residual 6.53 m2 spur becomes the dry wellness threshold."
+                    if wellness_suite
+                    else "The 15 m double corridor becomes an open study edge + 4.5 m spur."
+                    if central_distributor
                     else "Washer, dryer and sink move to PB storage behind the Great Wall."
                 ),
             ),
-            ("EGRESS", "A theft-resistant retractable exterior-stair envelope is reserved."),
+            (
+                "WELLNESS" if wellness_suite else "EGRESS",
+                (
+                    "22.62 m2 combines dry threshold, cooling/recline, sauna and shower."
+                    if wellness_suite
+                    else "A theft-resistant retractable exterior-stair envelope is reserved."
+                ),
+            ),
             ("VIEW", "Mini-deck sightline governs the single large X=21 truss."),
             ("STRUCTURE", "Four D-048 column reservations remain at stair corners."),
             *(
@@ -1468,7 +1625,15 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
         (
             "Family room" if family_centre else "Wellness",
             (
-                by_id[family_centre["space_id"]]["w"]
+                sum(
+                    by_id[space_id]["w"] * by_id[space_id]["d"]
+                    for space_id in (
+                        central_distributor["main_space_id"],
+                        central_distributor["extension_space_id"],
+                    )
+                )
+                if central_distributor
+                else by_id[family_centre["space_id"]]["w"]
                 * by_id[family_centre["space_id"]]["d"]
                 if family_centre
                 else by_id["WELL"]["w"] * by_id["WELL"]["d"]
@@ -1545,7 +1710,11 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-060 · COHERENT P2 FAMILY CENTRE · DESIGN COORDINATION"
+        "D-062 · EXPANDED P2 WELLNESS · DESIGN COORDINATION"
+        if model.get("wellness_suite") and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-061 · P2 FAMILY DISTRIBUTOR · DESIGN COORDINATION"
+        if model.get("central_distributor") and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-060 · COHERENT P2 FAMILY CENTRE · DESIGN COORDINATION"
         if model.get("family_centre") and sheet_id.startswith("DH-ARQ-PLN-002")
         else "D-059 · REFINED DOUBLE-FRAME P2 EXTERIOR ENVELOPE · DESIGN COORDINATION"
         if model.get("exterior_wall_assembly")
@@ -1595,7 +1764,11 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision consolidating the family centre as one coherent shared room while retaining the coordinated suites and interfaces. Not for construction."
+                "An upper-floor revision absorbing the rear spur into an L-shaped dry/wet wellness suite while preserving a clear reserved exterior route. Not for construction."
+                if model.get("wellness_suite")
+                else "An upper-floor revision opening the stair into one usable family distributor and replacing the long Phase 2 lobby with a short spur. Not for construction."
+                if model.get("central_distributor")
+                else "An upper-floor revision consolidating the family centre as one coherent shared room while retaining the coordinated suites and interfaces. Not for construction."
                 if model.get("family_centre")
                 else "An upper-floor revision prioritizing the primary suite, relocating laundry to PB and reserving a retractable exterior stair. Not for construction."
             )
@@ -1610,7 +1783,11 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-060 coherent family centre + D-057/D-058/D-059 wall controls"
+            "D-062 expanded wellness + D-057/D-058/D-059 wall controls"
+            if model.get("wellness_suite")
+            else "D-061 family distributor + D-057/D-058/D-059 wall controls"
+            if model.get("central_distributor")
+            else "D-060 coherent family centre + D-057/D-058/D-059 wall controls"
             if model.get("family_centre")
             else "D-059 refined exterior envelope + D-058 hall edge + D-057 partitions"
             if model.get("exterior_wall_assembly")
@@ -1641,6 +1818,19 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     parts.append(_text((_sx(21) + _sx(36)) / 2, phase_y - 8, "ONE ISOLATABLE F1 / F2 BOUNDARY", 7.4, anchor="middle", weight=700, fill=PURPLE))
     for door in model["doors"]:
         _draw_door(parts, door, model)
+    if model.get("central_distributor"):
+        parts.append(
+            _line(
+                _sx(21),
+                phase_y,
+                _sx(31.5),
+                phase_y,
+                stroke=PURPLE,
+                stroke_width=3,
+                stroke_dasharray="9 6",
+                css_class="phase-boundary temporary-open-plan-boundary",
+            )
+        )
     _draw_columns(parts, model)
     _draw_plan_dimensions(parts, model)
     _right_notes(parts, model, report)
@@ -1706,8 +1896,25 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         cx, cy = _plan_point(space, origin=origin, bottom=bottom, scale=scale)
         parts.append(_text(cx, cy + 2, space["id"], 6.5, anchor="middle", weight=700))
 
+    central_distributor = model.get("central_distributor")
+    wellness_suite = model.get("wellness_suite")
     centre_path = ["FAM"] if "HALL-C" not in by_id else ["HALL-C"]
-    route_ids = {
+    route_ids = (
+        {
+            "H1-D": ["H1-D", "DECK", "FAM", "ESC"],
+            "M-D": ["M-D", "M-C", "FAM", "ESC"],
+            "H2-D": ["H2-D", "FAM-N", "FAM", "ESC"],
+            "G-D": ["G-D", "G-ENTRY", "FAM-N", "FAM", "ESC"],
+            "WELL": [
+                "WELL",
+                "WELL-D" if wellness_suite else "F2-SPUR",
+                "FAM-N",
+                "FAM",
+                "ESC",
+            ],
+        }
+        if central_distributor
+        else {
         "H1-D": (
             ["H1-D", "FAM", "HALL-A", "HALL-C", "ARR", "ESC"]
             if "HALL-A" in by_id
@@ -1723,7 +1930,8 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         "H2-D": ["H2-D", "F2-HALL", *centre_path, "ARR", "ESC"],
         "G-D": ["G-D", "G-ENTRY", "F2-HALL", *centre_path, "ARR", "ESC"],
         "WELL": ["WELL", "F2-HALL", *centre_path, "ARR", "ESC"],
-    }
+        }
+    )
     for index, path_ids in enumerate(route_ids.values()):
         points = [_plan_point(by_id[space_id], origin=origin, bottom=bottom, scale=scale) for space_id in path_ids]
         point_text = " ".join(f"{x:.1f},{y + index * 1.3:.1f}" for x, y in points)
@@ -1766,9 +1974,19 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
             (
                 [
                     "Every enclosed room reaches ESC through a declared door/opening.",
-                    "The Phase 2 lobby also reaches a reserved rear retractable stair.",
+                    (
+                        "The dry wellness threshold reaches the reserved rear stair."
+                        if wellness_suite
+                        else "The short wellness/egress spur reaches the reserved rear stair."
+                        if central_distributor
+                        else "The Phase 2 lobby also reaches a reserved rear retractable stair."
+                    ),
                     "That exterior device is a geometric reserve, not an approved exit.",
-                    "The main stair still arrives in a shared protected lobby.",
+                    (
+                        "The main stair opens to the family distributor; fire approval is open."
+                        if central_distributor
+                        else "The main stair still arrives in a shared protected lobby."
+                    ),
                 ]
                 if egress
                 else [
@@ -1950,7 +2168,13 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
             655,
             [
                 "Security intent: the lower flight does not touch grade while stored.",
-                "Access is directly from the common Phase 2 lobby, not through a bedroom.",
+                (
+                    "Access is directly from the dry wellness threshold."
+                    if model.get("wellness_suite")
+                    else "Access is directly from the short common wellness/egress spur."
+                    if model.get("central_distributor")
+                    else "Access is directly from the common Phase 2 lobby, not through a bedroom."
+                ),
                 "Required study: counterbalanced/manual fail-safe deployment without a key from inside.",
                 "Do not count as a compliant second exit until fire, egress, accessibility and rescue review.",
             ],
@@ -2300,6 +2524,7 @@ def build_hall_edge_detail(model: dict[str, Any]) -> str:
     run_x, run_y, run_w, run_h = 110.0, 255.0, 720.0, 255.0
     y_scale = run_w / 18.0
     family_centre = model.get("family_centre")
+    central_distributor = model.get("central_distributor")
     deck = _space_index(model)["DECK"]
     family = _space_index(model)["FAM"]
     segments = [
@@ -2307,11 +2532,11 @@ def build_hall_edge_detail(model: dict[str, Any]) -> str:
         (5.0, deck["y"] + deck["d"], "MINI DECK", COLORS["deck"]),
         (
             family["y"] if family_centre else 8.5,
-            11.0,
-            "FAMILY ROOM" if family_centre else "FAMILY LOUNGE",
+            12.45 if central_distributor else 11.0,
+            "FAMILY DISTRIBUTOR" if central_distributor else "FAMILY ROOM" if family_centre else "FAMILY LOUNGE",
             COLORS["shared"],
         ),
-        (11.0, 12.45, "F2 LOBBY", COLORS["circulation"]),
+        *([] if central_distributor else [(11.0, 12.45, "F2 LOBBY", COLORS["circulation"])]),
         (12.45, 18.0, "CHILD 2 BEDROOM", COLORS["bedroom"]),
     ]
     for low, high, label, color in segments:

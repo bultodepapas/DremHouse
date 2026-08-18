@@ -15,6 +15,12 @@ baseline, or authorize procurement or construction.
 > D-060 and P2 b16/R13 subsequently implement the first spatial recommendation in section
 > 4.1 by consolidating the family centre. This document remains the independent review of
 > R12; its other findings are not closed by that later issue.
+> D-061/P2 b17-R14 further removes the residual double-corridor condition by opening the
+> stair into a family distributor and reducing permanent common circulation to one short
+> wellness/egress spur. Fire/life-safety acceptance remains open.
+> D-062/P2 b18-R15 then absorbs that residual 6.525 m² spur into a 22.62 m² L-shaped
+> dry/wet wellness suite. A 1.20 m clear route to the exterior-stair reserve remains, but
+> professional acceptance of a route through the dry wellness threshold is still open.
 
 ## Executive assessment
 

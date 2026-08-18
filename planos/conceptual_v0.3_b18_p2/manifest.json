@@ -1,0 +1,18 @@
+{
+  "revision": "0.3-draft-18-P2",
+  "status": "issued for coordination under D-062; fire/egress route remains open; not for construction",
+  "source": "dreamhouse/p2_b18_delta.json",
+  "source_sha256": "4b275dc1fcb3228f74c169ebe4e22ff0bb2a9eb659b5de20c1ac2eb2acb73e6c",
+  "generator": "dreamhouse/generate_p2_b18.py",
+  "supersedes": "0.3-draft-17-P2 / R14",
+  "outputs": [
+    "DH-ARQ-PLN-002-R15_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R15_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R15_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R15_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R15_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R15_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

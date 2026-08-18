@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>22</strong> current SVG/PNG pairs · <strong>77</strong> preserved versioned sheets · <strong>58</strong> documents · <strong>51</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>22</strong> current SVG/PNG pairs · <strong>89</strong> preserved versioned sheets · <strong>60</strong> documents · <strong>53</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -61,9 +61,9 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-16-P2</sub>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-18-P2</sub>
   <br><strong>Upper-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b16_p2/DH-ARQ-PLN-002-R13_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b18_p2/DH-ARQ-PLN-002-R15_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
@@ -97,23 +97,23 @@ structure, and performance—not from arbitrary forms or decorative layers.
 <tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
-  <br><sub><strong>Architecture · acoustic partition</strong> · 0.3-draft-16-P2</sub>
+  <br><sub><strong>Architecture · acoustic partition</strong> · 0.3-draft-18-P2</sub>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b16_p2/DH-ARQ-DET-003-R13_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b18_p2/DH-ARQ-DET-003-R15_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg" alt="Current Dream House P2-W04 continuous hall and workshop edge acoustic enclosure detail" width="100%"></a>
-  <br><sub><strong>Architecture · acoustic hall edge</strong> · 0.3-draft-16-P2</sub>
+  <br><sub><strong>Architecture · acoustic hall edge</strong> · 0.3-draft-18-P2</sub>
   <br><strong>P2-W04 · continuous hall-edge enclosure</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b16_p2/DH-ARQ-DET-004-R13_P2-HALL-EDGE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b18_p2/DH-ARQ-DET-004-R15_P2-HALL-EDGE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
-  <br><sub><strong>Architecture · refined P2 envelope</strong> · 0.3-draft-16-P2</sub>
+  <br><sub><strong>Architecture · refined P2 envelope</strong> · 0.3-draft-18-P2</sub>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b16_p2/DH-ARQ-DET-005-R13_P2-EXTERIOR-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b18_p2/DH-ARQ-DET-005-R15_P2-EXTERIOR-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>

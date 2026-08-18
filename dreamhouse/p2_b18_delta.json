@@ -1,0 +1,88 @@
+{
+  "base_model": "dreamhouse/p2_b17_delta.json",
+  "base_model_sha256": "6b9e98c1bcdfe6c3c8394d663413db6de8102c9a9baa17153d15ffe39488defd",
+  "revision": "0.3-draft-18-P2",
+  "drawing_revision": "R15",
+  "status": "issued for coordination under D-062; fire/egress route remains open; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-17-P2 / R14",
+  "decision": "D-062",
+  "change": {
+    "summary": "Absorb the residual rear spur into an L-shaped wellness suite as a dry threshold while preserving a 1.20 m clear route to the exterior-stair reserve.",
+    "remove_space_ids": ["F2-SPUR"],
+    "replace_spaces": [
+      {
+        "id": "WELL-D",
+        "name": "Wellness dry threshold / change / route",
+        "kind": "shared",
+        "phase": 2,
+        "x": 31.5,
+        "y": 11.0,
+        "w": 4.5,
+        "d": 1.45
+      }
+    ],
+    "remove_door_ids": [],
+    "replace_doors": [
+      {
+        "id": "D-DIST-SPUR",
+        "connects": ["FAM-N", "WELL-D"],
+        "wall": "vertical",
+        "x": 31.5,
+        "at": 11.15,
+        "width": 1.1,
+        "swing": "east",
+        "kind": "door"
+      },
+      {
+        "id": "D-WELL",
+        "connects": ["WELL-D", "WELL"],
+        "wall": "horizontal",
+        "y": 12.45,
+        "at": 33.1,
+        "width": 2.9,
+        "swing": "north",
+        "kind": "opening"
+      }
+    ],
+    "egress_access_space": "WELL-D"
+  },
+  "central_distributor": {
+    "main_space_id": "FAM",
+    "extension_space_id": "FAM-N",
+    "short_spur_id": "WELL-D",
+    "main_gross_area_m2": 37.8,
+    "extension_gross_area_m2": 15.225,
+    "short_spur_gross_area_m2": 6.525,
+    "temporary_phase_boundary_y": 11.0,
+    "phase_rule": "Close Y=11 during Phase 1; remove the temporary partition across the shared centre when Phase 2 is completed.",
+    "study_counter": {
+      "x": 22.0,
+      "y": 11.72,
+      "w": 4.2,
+      "d": 0.45
+    },
+    "fire_hold_point": "The desired direct stair arrival does not establish an approved fire strategy; retain or add a compact rated/glazed vestibule if required by professional design."
+  },
+  "wellness_suite": {
+    "space_ids": ["WELL-D", "WELL"],
+    "dry_threshold_space_id": "WELL-D",
+    "gross_area_m2": 22.62,
+    "route_clear_m": 1.2,
+    "wet_dry_separation": true,
+    "programme": [
+      "change bench",
+      "towel and equipment storage",
+      "dry cooling and recline",
+      "sauna",
+      "shower"
+    ],
+    "egress_rule": "Maintain a continuous 1.20 m clear lane through the dry threshold to the rear exterior-stair reserve; final acceptance is subject to professional fire review.",
+    "relaxation_bench": {
+      "x": 33.45,
+      "y": 14.25,
+      "w": 2.2,
+      "d": 0.75
+    }
+  }
+}

@@ -89,9 +89,14 @@ they stay stable while their explicitly promoted versioned source can advance.
   experience, access, acoustic, envelope, structural and services interfaces; recommendations
   only, with no change to geometry, decisions, scope or cost baseline.
 - [Coherent P2 family centre — draft 16](02_arquitectura/centro_familiar_p2_v0.3_b16.md):
-  D-060/R13 consolidates the fragmented lounge, gallery and private hall into one
-  7.60 × 3.60 m family room while preserving the 270 m² envelope and recording the
-  unchanged Child Suite 1 access as a separate open recommendation.
+  superseded D-060/R13 predecessor that consolidated the fragmented lounge, gallery and
+  private hall before the residual double-corridor condition was removed.
+- [P2 stair-arrival family distributor — draft 17](02_arquitectura/distribuidor_familiar_p2_v0.3_b17.md):
+  superseded D-061/R14 predecessor that opens the stair into a 37.80 m² furnished family
+  distributor and converts the former Phase 2 lobby into a shared study edge.
+- [Expanded P2 wellness — draft 18](02_arquitectura/wellness_p2_v0.3_b18.md):
+  D-062/R15 absorbs the residual 6.525 m² rear spur into a 22.62 m² L-shaped dry/wet
+  wellness suite while retaining a 1.20 m clear route to the exterior-stair reserve.
 
 ## 03 — Engineering
 

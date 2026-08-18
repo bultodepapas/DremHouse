@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.6
+**Versión:** 0.3.8
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -286,10 +286,40 @@ but no saving is booked until its full elevation, acoustic performance, guarding
 are designed and quoted. **No price, saving, increase, contingency change, or target change
 is recognized by D-060.**
 
+### 0.3-P — D-061 stair-arrival family-distributor scope
+
+D-061 removes the separate 10.44 m² gross protected-arrival room and replaces the permanent
+21.75 m² gross Phase 2 lobby with a 15.225 m² open family study/distribution edge plus one
+6.525 m² short wellness/egress spur. Explicit permanent common-corridor area reduces from
+32.19 m² gross to 6.525 m² gross; the released area becomes furnished shared space within
+the unchanged 270 m² P2 envelope.
+
+Permanent partition, door-set, corridor-finish, lighting and electrical quantities must be
+remeasured. The open family edge adds a study counter, while the professional fire strategy
+may require a compact rated or glazed stair vestibule, smoke-control measures and specialist
+doors. These potential reductions and additions cannot be netted until the fire strategy,
+partition schedule and joinery specification are coordinated. **No price, saving, increase,
+contingency change, or target change is recognized by D-061.**
+
+### 0.3-Q — D-062 expanded P2 wellness scope
+
+D-062 absorbs the former 6.525 m² rear corridor/spur into the wellness programme, taking
+the coordinated dry/wet suite from 16.095 m² to 22.62 m² gross within the unchanged 270 m²
+P2 envelope. It removes a separate corridor finish category but adds dry wellness
+flooring, changing/storage joinery, cooling/recline furniture, lighting and ventilation
+coordination. Waterproofing limits, drainage, slip resistance and any rated separation
+required along the 1.20 m reserved exterior route must be developed and measured.
+
+The finish-category shift cannot be treated as a saving because the new wellness finish
+and fire/egress scope may cost more than ordinary corridor work. **No price, saving,
+increase, contingency change, or target change is recognized by D-062.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-Q   | 2026-08-18 | D-062 absorbs the 6.525 m² rear spur into a 22.62 m² L-shaped dry/wet wellness suite and retains a 1.20 m clear route to the exterior-stair reserve. Wellness finishes, joinery, ventilation, waterproofing limits and possible rated route separation require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
+| 0.3-P   | 2026-08-18 | D-061 replaces the separate stair arrival and full 15 m Phase 2 lobby with a 37.80 m² family distributor, 15.225 m² open study edge and one 6.525 m² short spur. Wall, door, finish, joinery and possible rated-vestibule quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-O   | 2026-08-18 | D-060 consolidates the fragmented P2 family lounge, gallery and private hall as one 27.36 m² gross family room, adds a 4.20 m fitted library wall and reduces the mini-deck depth to 2.40 m. Partition, door, glazing and joinery quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-N   | 2026-08-13 | D-059 replaces the 180 mm P2 exterior study wall on the north, south and rear/east edges with the 300 mm nominal P2-W05 double-frame envelope. Corrugated sheet remains outside; the P2 interior receives concealed framing/services and a smooth board finish. All layers, openings, flashings, seals, thermal bridges, fire/cavity barriers and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-M   | 2026-08-13 | D-058 adds the full-height 18.00 m P2-W04 enclosure at X=21 toward the hall/workshops, with 250 mm nominal opaque portions and GLZ-DECK as the only planned interruption. Wall-area, glazing, seals, head/floor/structure junctions, fire stopping, access and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
