@@ -84,6 +84,10 @@ they stay stable while their explicitly promoted versioned source can advance.
   independent review of b04→b08 and model E0 against the Constitution, program, and hard
   rules. It records 15 verified findings on the parametric geometry and issued sheets as
   input to v0.4; it does not alter the target, decisions, or baseline.
+- [Upper-floor architectural review — R12](02_arquitectura/upper_floor_architectural_review_2026_08.md):
+  independent visual and technical assessment of the current P2 plan, its domestic
+  experience, access, acoustic, envelope, structural and services interfaces; recommendations
+  only, with no change to geometry, decisions, scope or cost baseline.
 
 ## 03 — Engineering
 
