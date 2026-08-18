@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.5
+**Versión:** 0.3.6
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -270,10 +270,27 @@ access, fire and moisture requirements must be measured first. The gross P2 enve
 unchanged; net areas reduce only by the additional exterior-wall thickness. **No price,
 saving, increase, contingency change, or target change is recognized by D-059.**
 
+### 0.3-O — D-060 coherent P2 family-centre scope
+
+D-060 keeps the 270 m² P2 envelope and all suite, phase, structural-reservation and wall-
+assembly controls unchanged. It removes two internal spatial subdivisions from the active
+plan, consolidates their area into one 7.60 × 3.60 m family room, replaces the former
+dedicated gallery strip with a 4.20 m fitted library wall, and reduces the mini-deck plan
+depth from 3.50 m to 2.40 m. The final partition take-off, acoustic-glazing height and
+framing, fitted-library specification, lighting and electrical layout must be measured
+from developed details.
+
+The change is expected to reduce residual internal partition/door scope while moving some
+joinery into one deliberate fitted element. The shorter GLZ-DECK run may offer a saving,
+but no saving is booked until its full elevation, acoustic performance, guarding and frame
+are designed and quoted. **No price, saving, increase, contingency change, or target change
+is recognized by D-060.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-O   | 2026-08-18 | D-060 consolidates the fragmented P2 family lounge, gallery and private hall as one 27.36 m² gross family room, adds a 4.20 m fitted library wall and reduces the mini-deck depth to 2.40 m. Partition, door, glazing and joinery quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-N   | 2026-08-13 | D-059 replaces the 180 mm P2 exterior study wall on the north, south and rear/east edges with the 300 mm nominal P2-W05 double-frame envelope. Corrugated sheet remains outside; the P2 interior receives concealed framing/services and a smooth board finish. All layers, openings, flashings, seals, thermal bridges, fire/cavity barriers and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-M   | 2026-08-13 | D-058 adds the full-height 18.00 m P2-W04 enclosure at X=21 toward the hall/workshops, with 250 mm nominal opaque portions and GLZ-DECK as the only planned interruption. Wall-area, glazing, seals, head/floor/structure junctions, fire stopping, access and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-L   | 2026-08-13 | D-057 fixes P2-W01 at 250 mm nominal for ordinary dry interior upper-floor partitions: twin independent metal frames, glass wool in both frames, reclaimed concealed gypsum board and new visible finish board. Phase 2 is rebalanced within the unchanged gross envelope to retain 1.20 m clear circulation. Exterior, sauna/wet, protected-stair/fire-rated, technical and structural wall types remain excluded and unpriced. Reuse is not counted as a saving until yield and handling are measured; **no price, saving, increase, contingency, or target change is recognized.** |

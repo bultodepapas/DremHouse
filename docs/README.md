@@ -85,9 +85,13 @@ they stay stable while their explicitly promoted versioned source can advance.
   rules. It records 15 verified findings on the parametric geometry and issued sheets as
   input to v0.4; it does not alter the target, decisions, or baseline.
 - [Upper-floor architectural review — R12](02_arquitectura/upper_floor_architectural_review_2026_08.md):
-  independent visual and technical assessment of the current P2 plan, its domestic
+  independent visual and technical assessment of the superseded R12 P2 plan, its domestic
   experience, access, acoustic, envelope, structural and services interfaces; recommendations
   only, with no change to geometry, decisions, scope or cost baseline.
+- [Coherent P2 family centre — draft 16](02_arquitectura/centro_familiar_p2_v0.3_b16.md):
+  D-060/R13 consolidates the fragmented lounge, gallery and private hall into one
+  7.60 × 3.60 m family room while preserving the 270 m² envelope and recording the
+  unchanged Child Suite 1 access as a separate open recommendation.
 
 ## 03 — Engineering
 

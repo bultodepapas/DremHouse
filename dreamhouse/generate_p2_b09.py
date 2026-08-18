@@ -379,6 +379,25 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
     )
     checks.append(("P2-PHASING", phase_ok, "F1 and F2 meet at one isolatable Y=11.00 m boundary"))
 
+    family_centre = model.get("family_centre")
+    if family_centre:
+        family = by_id.get(family_centre["space_id"])
+        target_width = float(family_centre["gross_width_m"])
+        target_depth = float(family_centre["gross_depth_m"])
+        family_ok = bool(family) and math.isclose(
+            float(family["w"]), target_width, abs_tol=tolerance
+        ) and math.isclose(float(family["d"]), target_depth, abs_tol=tolerance)
+        checks.append(
+            (
+                "P2-FAMILY-CENTRE",
+                family_ok,
+                (
+                    f"One coherent family room is coordinated at {target_width:.2f} x "
+                    f"{target_depth:.2f} m gross with circulation absorbed at its edges"
+                ),
+            )
+        )
+
     door_errors: list[str] = []
     graph: dict[str, set[str]] = {space_id: set() for space_id in by_id}
     for door in model["doors"]:
@@ -936,12 +955,43 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
             css_class="furniture sofa",
         )
     )
+    family_centre = model.get("family_centre")
+    if family_centre:
+        library = family_centre["fitted_library"]
+        parts.extend(
+            [
+                _rect(
+                    _sx(float(library["x"])),
+                    _sy(float(library["y"]) + float(library["d"])),
+                    float(library["w"]) * SCALE,
+                    float(library["d"]) * SCALE,
+                    fill="#b99d78",
+                    stroke="#705f4d",
+                    stroke_width=1,
+                    rx=2,
+                    css_class="furniture fitted-library",
+                ),
+                _text(
+                    _sx(float(library["x"]) + float(library["w"]) / 2.0),
+                    _sy(float(library["y"]) + float(library["d"]) / 2.0) + 2,
+                    "FITTED LIBRARY WALL",
+                    6.2,
+                    anchor="middle",
+                    weight=700,
+                    fill="#ffffff",
+                ),
+            ]
+        )
     deck = by_id["DECK"]
     for offset in (0.45, 1.55):
         parts.append(
             _rect(
                 _sx(deck["x"] + offset),
-                _sy(deck["y"] + 2.45),
+                _sy(
+                    deck["y"] + deck["d"] - 0.30
+                    if family_centre
+                    else deck["y"] + 2.45
+                ),
                 0.70 * SCALE,
                 0.70 * SCALE,
                 fill="#d3b98c",
@@ -1298,10 +1348,15 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     acoustic = model.get("acoustic_partition")
     hall_edge = model.get("hall_edge_partition")
     exterior_wall = model.get("exterior_wall_assembly")
+    family_centre = model.get("family_centre")
     position_lines = (
         (
             [
-                "Prioritize the primary suite without enlarging P2.",
+                (
+                    "Consolidate the shared centre as one 7.60 x 3.60 m family room."
+                    if family_centre
+                    else "Prioritize the primary suite without enlarging P2."
+                ),
                 "Move laundry into PB storage behind the Great Wall.",
                 "Keep the large exposed X=21 truss on the hall side of P2-W04.",
                 "P2-W01 / W04 close the interior and hall-facing boundaries.",
@@ -1360,7 +1415,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     fixes = (
         [
             ("PRIMARY", "Bathroom 17.6 m2 + dressing/filter 17.6 m2 meet the brief."),
-            ("LAUNDRY", "Washer, dryer and sink move to PB storage behind the Great Wall."),
+            (
+                "FAMILY" if family_centre else "LAUNDRY",
+                (
+                    "One 27.4 m2 family room replaces lounge, gallery and private-hall fragments."
+                    if family_centre
+                    else "Washer, dryer and sink move to PB storage behind the Great Wall."
+                ),
+            ),
             ("EGRESS", "A theft-resistant retractable exterior-stair envelope is reserved."),
             ("VIEW", "Mini-deck sightline governs the single large X=21 truss."),
             ("STRUCTURE", "Four D-048 column reservations remain at stair corners."),
@@ -1403,7 +1465,15 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
         ("Guest suite", sum(s["w"] * s["d"] for s in model["spaces"] if s.get("suite") == "G")),
         ("Primary private rooms", sum(s["w"] * s["d"] for s in model["spaces"] if s.get("suite") == "M")),
         ("Mini deck", by_id["DECK"]["w"] * by_id["DECK"]["d"]),
-        ("Wellness", by_id["WELL"]["w"] * by_id["WELL"]["d"]),
+        (
+            "Family room" if family_centre else "Wellness",
+            (
+                by_id[family_centre["space_id"]]["w"]
+                * by_id[family_centre["space_id"]]["d"]
+                if family_centre
+                else by_id["WELL"]["w"] * by_id["WELL"]["d"]
+            ),
+        ),
     ]
     for index, (label, area) in enumerate(rows):
         y = 692 + index * 30
@@ -1475,7 +1545,9 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-059 · REFINED DOUBLE-FRAME P2 EXTERIOR ENVELOPE · DESIGN COORDINATION"
+        "D-060 · COHERENT P2 FAMILY CENTRE · DESIGN COORDINATION"
+        if model.get("family_centre") and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-059 · REFINED DOUBLE-FRAME P2 EXTERIOR ENVELOPE · DESIGN COORDINATION"
         if model.get("exterior_wall_assembly")
         else "D-058 · CONTINUOUS X=21 ACOUSTIC ENCLOSURE · DESIGN COORDINATION"
         if model.get("hall_edge_partition")
@@ -1522,7 +1594,11 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     parts = _svg_start(
         "Dream House coordinated upper-floor plan",
         (
-            "An upper-floor revision prioritizing the primary suite, relocating laundry to PB and reserving a retractable exterior stair. Not for construction."
+            (
+                "An upper-floor revision consolidating the family centre as one coherent shared room while retaining the coordinated suites and interfaces. Not for construction."
+                if model.get("family_centre")
+                else "An upper-floor revision prioritizing the primary suite, relocating laundry to PB and reserving a retractable exterior stair. Not for construction."
+            )
             if owner_priority_revision
             else "A b04-led upper-floor revision with explicit access, b06 dimensional corrections and D-048 stair-column reservations. Not for construction."
         ),
@@ -1534,7 +1610,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-059 refined exterior envelope + D-058 hall edge + D-057 partitions"
+            "D-060 coherent family centre + D-057/D-058/D-059 wall controls"
+            if model.get("family_centre")
+            else "D-059 refined exterior envelope + D-058 hall edge + D-057 partitions"
             if model.get("exterior_wall_assembly")
             else "D-058 continuous hall-edge enclosure + D-057 wall control"
             if model.get("hall_edge_partition")
@@ -1628,10 +1706,13 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         cx, cy = _plan_point(space, origin=origin, bottom=bottom, scale=scale)
         parts.append(_text(cx, cy + 2, space["id"], 6.5, anchor="middle", weight=700))
 
+    centre_path = ["FAM"] if "HALL-C" not in by_id else ["HALL-C"]
     route_ids = {
         "H1-D": (
             ["H1-D", "FAM", "HALL-A", "HALL-C", "ARR", "ESC"]
             if "HALL-A" in by_id
+            else ["H1-D", "DECK", "FAM", "ARR", "ESC"]
+            if "HALL-C" not in by_id
             else ["H1-D", "DECK", "FAM", "HALL-C", "ARR", "ESC"]
         ),
         "M-D": (
@@ -1639,9 +1720,9 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
             if "M-PASS" in by_id
             else ["M-D", "M-C", "ARR", "ESC"]
         ),
-        "H2-D": ["H2-D", "F2-HALL", "HALL-C", "ARR", "ESC"],
-        "G-D": ["G-D", "G-ENTRY", "F2-HALL", "HALL-C", "ARR", "ESC"],
-        "WELL": ["WELL", "F2-HALL", "HALL-C", "ARR", "ESC"],
+        "H2-D": ["H2-D", "F2-HALL", *centre_path, "ARR", "ESC"],
+        "G-D": ["G-D", "G-ENTRY", "F2-HALL", *centre_path, "ARR", "ESC"],
+        "WELL": ["WELL", "F2-HALL", *centre_path, "ARR", "ESC"],
     }
     for index, path_ids in enumerate(route_ids.values()):
         points = [_plan_point(by_id[space_id], origin=origin, bottom=bottom, scale=scale) for space_id in path_ids]
@@ -2218,10 +2299,18 @@ def build_hall_edge_detail(model: dict[str, Any]) -> str:
     _panel_title(parts, 70, 165, "01", "UNFOLDED X=21 EDGE · P2 SIDE")
     run_x, run_y, run_w, run_h = 110.0, 255.0, 720.0, 255.0
     y_scale = run_w / 18.0
+    family_centre = model.get("family_centre")
+    deck = _space_index(model)["DECK"]
+    family = _space_index(model)["FAM"]
     segments = [
         (0.0, 5.0, "CHILD 1 BEDROOM", COLORS["bedroom"]),
-        (5.0, 8.5, "MINI DECK", COLORS["deck"]),
-        (8.5, 11.0, "FAMILY LOUNGE", COLORS["shared"]),
+        (5.0, deck["y"] + deck["d"], "MINI DECK", COLORS["deck"]),
+        (
+            family["y"] if family_centre else 8.5,
+            11.0,
+            "FAMILY ROOM" if family_centre else "FAMILY LOUNGE",
+            COLORS["shared"],
+        ),
         (11.0, 12.45, "F2 LOBBY", COLORS["circulation"]),
         (12.45, 18.0, "CHILD 2 BEDROOM", COLORS["bedroom"]),
     ]

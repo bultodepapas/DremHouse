@@ -1,8 +1,8 @@
 # Current drawing aliases
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.3<br>
-**Date:** 2026-08-13<br>
+**Version:** 1.4<br>
+**Date:** 2026-08-18<br>
 **Construction authority:** none
 
 This generated directory contains **22 stable SVG/PNG pairs**

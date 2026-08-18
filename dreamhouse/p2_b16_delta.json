@@ -1,0 +1,94 @@
+{
+  "base_model": "dreamhouse/p2_b15.json",
+  "base_model_sha256": "f0a8b5e03fd1f642fb2deabe4ff70e47546cd2adc1bd5e1bc71237c0fc7dec1c",
+  "revision": "0.3-draft-16-P2",
+  "drawing_revision": "R13",
+  "status": "issued for coordination under D-060; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-15-P2 / R12",
+  "decision": "D-060",
+  "change": {
+    "summary": "Consolidate the fragmented family lounge, gallery and private hall as one coherent shared room without enlarging P2.",
+    "remove_space_ids": ["FAM-A", "HALL-C"],
+    "replace_spaces": [
+      {
+        "id": "DECK",
+        "name": "Acoustic mini deck",
+        "kind": "deck",
+        "phase": 1,
+        "x": 21.0,
+        "y": 5.0,
+        "w": 2.8,
+        "d": 2.4
+      },
+      {
+        "id": "FAM",
+        "name": "Family room / library",
+        "kind": "shared",
+        "phase": 1,
+        "x": 21.0,
+        "y": 7.4,
+        "w": 7.6,
+        "d": 3.6
+      }
+    ],
+    "remove_door_ids": ["D-HALL-C", "D-FAM"],
+    "replace_doors": [
+      {
+        "id": "D-ARR-HALL",
+        "connects": ["ARR", "FAM"],
+        "wall": "vertical",
+        "x": 28.6,
+        "at": 9.15,
+        "width": 1.0,
+        "swing": "west",
+        "kind": "door"
+      },
+      {
+        "id": "D-DECK",
+        "connects": ["DECK", "FAM"],
+        "wall": "horizontal",
+        "y": 7.4,
+        "at": 21.75,
+        "width": 1.0,
+        "swing": "north",
+        "kind": "door"
+      },
+      {
+        "id": "D-F2",
+        "connects": ["FAM", "F2-HALL"],
+        "wall": "horizontal",
+        "y": 11.0,
+        "at": 27.3,
+        "width": 1.0,
+        "swing": "north",
+        "kind": "door"
+      }
+    ],
+    "replace_internal_glazing": [
+      {
+        "id": "GLZ-DECK",
+        "room_id": "DECK",
+        "edge": "west",
+        "from": 5.25,
+        "to": 7.15,
+        "acoustic": true,
+        "guard_height_m": 1.1
+      }
+    ]
+  },
+  "family_centre": {
+    "space_id": "FAM",
+    "gross_width_m": 7.6,
+    "gross_depth_m": 3.6,
+    "gross_area_m2": 27.36,
+    "planning_rule": "One recognizable shared room; circulation runs along the east and north edges rather than occupying separate rooms.",
+    "fitted_library": {
+      "x": 24.0,
+      "y": 7.55,
+      "w": 4.2,
+      "d": 0.35
+    },
+    "access_scope": "Child Suite 1 continues to use the mini deck in this iteration; its access correction remains a separate recommended action."
+  }
+}

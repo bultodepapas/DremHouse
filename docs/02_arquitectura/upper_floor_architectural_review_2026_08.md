@@ -11,6 +11,11 @@ drawings
 does not modify a hard rule, adopt a design decision, freeze geometry, change the cost
 baseline, or authorize procurement or construction.
 
+> [!NOTE]
+> D-060 and P2 b16/R13 subsequently implement the first spatial recommendation in section
+> 4.1 by consolidating the family centre. This document remains the independent review of
+> R12; its other findings are not closed by that later issue.
+
 ## Executive assessment
 
 The current upper-floor plan is a disciplined and largely coherent coordination model,
