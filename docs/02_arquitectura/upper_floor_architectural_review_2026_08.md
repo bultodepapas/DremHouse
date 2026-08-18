@@ -21,6 +21,10 @@ baseline, or authorize procurement or construction.
 > D-062/P2 b18-R15 then absorbs that residual 6.525 m² spur into a 22.62 m² L-shaped
 > dry/wet wellness suite. A 1.20 m clear route to the exterior-stair reserve remains, but
 > professional acceptance of a route through the dry wellness threshold is still open.
+> D-063/P2 b19-R16 subsequently changes hard rule 11 at the owner's explicit request:
+> the former mini deck, family distributor and study edge now share a 7.45 m open guarded
+> frontage toward the hall. Bedroom ends remain enclosed; guard, fire, structure and
+> acoustic consequences remain open professional gates.
 
 ## Executive assessment
 

@@ -1,13 +1,13 @@
 # P2 Hall-Edge Acoustic Enclosure — b14/R11
 
-**Status:** P2-W04 basis remains active under D-058; b14/R11 plan superseded by
-b15/R12 under D-059; not for construction  
+**Status:** D-058/P2-W04 continuity partially superseded by D-063 at Y=5.00–12.45;
+retained as P2-W04R at both bedroom ends; b14/R11 plan superseded; not for construction<br>
 **Version:** 0.3-draft-14-P2 / R11  
 **Date:** 2026-08-13  
 **Sources:** Constitution hard rule 11; D-052, D-057, D-058; p2 b13/R10 predecessor  
 **Supersedes:** b13/R10 as the current P2 plan; retains its P2-W01 assembly basis  
-**Superseded by:** b15/R12 for the current P2 plan and exterior envelope; P2-W04 remains
-the active hall-edge requirement  
+**Superseded by:** b19/R16 for the current P2 plan and open family-balcony edge; P2-W04R
+remains active only at Y=0.00–5.00 and Y=12.45–18.00<br>
 **Approval pending:** architect of record, structural engineer, acoustic consultant,
 fire/life-safety professional, glazing/guarding designer, selected-system manufacturer,
 and full-height mock-up review

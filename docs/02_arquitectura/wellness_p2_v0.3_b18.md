@@ -1,7 +1,8 @@
 # Expanded P2 wellness — draft 18
 
-**Status:** active schematic coordination hypothesis under D-062; fire/egress route
-acceptance remains open; not for construction<br>
+**Status:** superseded by D-063/P2 b19-R16 as the current upper-floor plan; retained as
+the direct wellness predecessor; fire/egress route acceptance remains open; not for
+construction<br>
 **Version:** 0.3-draft-18-P2 / R15<br>
 **Date:** 2026-08-18<br>
 **Source:** explicit owner instruction following review of P2 b17/R14; D-011, D-021,

@@ -631,7 +631,11 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             (
                 "P2-EDGE-TRUSS-BRIEF",
                 edge_ok,
-                "X=21 architectural brief requires one large exposed industrial truss while protecting the mini-deck view",
+                (
+                    "X=21 architectural brief requires one large exposed industrial truss while protecting the open family-balcony view"
+                    if model.get("family_balcony")
+                    else "X=21 architectural brief requires one large exposed industrial truss while protecting the mini-deck view"
+                ),
             )
         )
 
@@ -667,6 +671,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
 
     hall_edge = model.get("hall_edge_partition")
     if hall_edge:
+        family_balcony = model.get("family_balcony")
         acoustic_glazing = {
             item["id"]
             for item in model.get("internal_glazing", [])
@@ -683,7 +688,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             for opening in scheduled_openings
         )
         hall_edge_ok = (
-            hall_edge.get("id") == "P2-W04"
+            hall_edge.get("id") in {"P2-W04", "P2-W04R"}
             and math.isclose(float(hall_edge.get("axis_x", 0.0)), 21.0, abs_tol=tolerance)
             and math.isclose(float(hall_edge.get("from_y", -1.0)), 0.0, abs_tol=tolerance)
             and math.isclose(float(hall_edge.get("to_y", -1.0)), 18.0, abs_tol=tolerance)
@@ -697,9 +702,32 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             (
                 "P2-W04-HALL-EDGE",
                 hall_edge_ok,
-                "D-058 closes the full 18.00 m X=21 hall/workshop edge with 250 mm opaque construction; GLZ-DECK is the only scheduled acoustic opening",
+                (
+                    "D-063 retains full-height P2-W04R only at the two bedroom edges and opens the 7.45 m family-balcony frontage"
+                    if family_balcony
+                    else "D-058 closes the full 18.00 m X=21 hall/workshop edge with 250 mm opaque construction; GLZ-DECK is the only scheduled acoustic opening"
+                ),
             )
         )
+        if family_balcony:
+            open_from = float(family_balcony["from_y"])
+            open_to = float(family_balcony["to_y"])
+            balcony_ok = (
+                math.isclose(float(family_balcony["axis_x"]), 21.0, abs_tol=tolerance)
+                and math.isclose(open_from, 5.0, abs_tol=tolerance)
+                and math.isclose(open_to, 12.45, abs_tol=tolerance)
+                and math.isclose(open_to - open_from, 7.45, abs_tol=tolerance)
+                and float(family_balcony["guard_height_m"]) >= 1.10 - tolerance
+                and family_balcony.get("continuous_guard") is True
+                and not model.get("internal_glazing")
+            )
+            checks.append(
+                (
+                    "P2-FAMILY-BALCONY",
+                    balcony_ok,
+                    "Mini deck, family distributor and study edge share a 7.45 m open hall frontage with a continuous 1.10 m minimum guard",
+                )
+            )
 
     exterior_wall = model.get("exterior_wall_assembly")
     if exterior_wall:
@@ -777,7 +805,11 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
                 "rule_id": "P2-EDGE-TRUSS",
                 "status": "OPEN",
                 "message": (
-                    "The large exposed X=21 truss must preserve the mini-deck view; members, joints, fire protection and services remain undesigned"
+                    (
+                        "The large exposed X=21 truss must preserve the family-balcony opening; guard, members, joints and fire protection remain undesigned"
+                        if model.get("family_balcony")
+                        else "The large exposed X=21 truss must preserve the mini-deck view; members, joints, fire protection and services remain undesigned"
+                    )
                     if edge_intent
                     else "The X=21 edge truss must preserve the mini-deck view, doors, ceiling and services"
                 ),
@@ -808,6 +840,17 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
                 "message": (
                     "The reserved exterior route crosses the dry wellness threshold; "
                     "professional fire review must accept it or require a separated clear lane"
+                ),
+            }
+        )
+    if model.get("family_balcony"):
+        results.append(
+            {
+                "rule_id": "P2-FAMILY-BALCONY-PERFORMANCE",
+                "status": "OPEN",
+                "message": (
+                    "The open family balcony intentionally gives up D-058 acoustic continuity; "
+                    "guarding, smoke transfer and hall-to-suite noise require professional design"
                 ),
             }
         )
@@ -954,25 +997,59 @@ def _draw_partition_walls(parts: list[str], model: dict[str, Any]) -> None:
 
 
 def _draw_hall_edge_wall(parts: list[str], model: dict[str, Any]) -> None:
-    """Draw the D-058 full P2 enclosure before cutting its scheduled glazing."""
+    """Draw the coordinated X=21 enclosure and any controlled open balcony edge."""
 
     wall = model.get("hall_edge_partition")
     if not wall:
         return
     x = _sx(float(wall["axis_x"]))
-    parts.append(
-        _line(
-            x,
-            _sy(float(wall["from_y"])),
-            x,
-            _sy(float(wall["to_y"])),
-            stroke=INK,
-            stroke_width=float(wall["nominal_total_m"]) * SCALE,
-            stroke_linecap="butt",
-            css_class="hall-edge-wall p2-w04",
-            data_wall_type=wall["id"],
-        )
+    family_balcony = model.get("family_balcony")
+    segments = (
+        [
+            (float(wall["from_y"]), float(family_balcony["from_y"])),
+            (float(family_balcony["to_y"]), float(wall["to_y"])),
+        ]
+        if family_balcony
+        else [(float(wall["from_y"]), float(wall["to_y"]))]
     )
+    for low, high in segments:
+        parts.append(
+            _line(
+                x,
+                _sy(low),
+                x,
+                _sy(high),
+                stroke=INK,
+                stroke_width=float(wall["nominal_total_m"]) * SCALE,
+                stroke_linecap="butt",
+                css_class="hall-edge-wall p2-w04",
+                data_wall_type=wall["id"],
+            )
+        )
+    if family_balcony:
+        parts.extend(
+            [
+                _line(
+                    x,
+                    _sy(float(family_balcony["from_y"])),
+                    x,
+                    _sy(float(family_balcony["to_y"])),
+                    stroke=AMBER,
+                    stroke_width=5,
+                    stroke_dasharray="12 4",
+                    stroke_linecap="butt",
+                    css_class="family-balcony-guard",
+                ),
+                _text(
+                    x + 10,
+                    (_sy(float(family_balcony["from_y"])) + _sy(float(family_balcony["to_y"]))) / 2,
+                    "OPEN FAMILY BALCONY · CONTINUOUS GUARD",
+                    6.6,
+                    weight=700,
+                    fill=AMBER,
+                ),
+            ]
+        )
 
 
 def _draw_exterior_walls(parts: list[str], model: dict[str, Any]) -> None:
@@ -1491,11 +1568,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     family_centre = model.get("family_centre")
     central_distributor = model.get("central_distributor")
     wellness_suite = model.get("wellness_suite")
+    family_balcony = model.get("family_balcony")
     position_lines = (
         (
             [
                 (
-                    "Absorb the rear spur into a 22.62 m2 dry/wet wellness suite."
+                    "Open 7.45 m of the family edge as one internal hall balcony."
+                    if family_balcony
+                    else "Absorb the rear spur into a 22.62 m2 dry/wet wellness suite."
                     if wellness_suite
                     else "Open the stair into one 10.50 x 3.60 m family distributor."
                     if central_distributor
@@ -1505,7 +1585,11 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                 ),
                 "Move laundry into PB storage behind the Great Wall.",
                 "Keep the large exposed X=21 truss on the hall side of P2-W04.",
-                "P2-W01 / W04 close the interior and hall-facing boundaries.",
+                (
+                    "P2-W04R closes bedroom ends; the shared family frontage stays open."
+                    if family_balcony
+                    else "P2-W01 / W04 close the interior and hall-facing boundaries."
+                ),
                 "P2-W05 gives all exterior P2 rooms a refined double-frame envelope.",
             ]
             if exterior_wall
@@ -1519,7 +1603,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                     else []
                 ),
                 *(
-                    ["Close the full X=21 hall/workshop edge under D-058."]
+                    ["Open the family frontage; retain P2-W04R only at bedroom ends."]
+                    if family_balcony
+                    else ["Close the full X=21 hall/workshop edge under D-058."]
                     if hall_edge
                     else []
                 ),
@@ -1574,9 +1660,11 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                 ),
             ),
             (
-                "WELLNESS" if wellness_suite else "EGRESS",
+                "BALCONY" if family_balcony else "WELLNESS" if wellness_suite else "EGRESS",
                 (
-                    "22.62 m2 combines dry threshold, cooling/recline, sauna and shower."
+                    "Mini deck + family centre share one 7.45 m open guarded hall edge."
+                    if family_balcony
+                    else "22.62 m2 combines dry threshold, cooling/recline, sauna and shower."
                     if wellness_suite
                     else "A theft-resistant retractable exterior-stair envelope is reserved."
                 ),
@@ -1588,7 +1676,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                     (
                         "ACOUSTIC" if hall_edge else "P2-W01",
                         (
-                            "W01/W04: 250 mm acoustic; W05: 300 mm exterior, smooth inside."
+                            "W01/W04R: 250 mm at enclosed zones; family balcony edge open."
+                            if family_balcony
+                            else "W01/W04: 250 mm acoustic; W05: 300 mm exterior, smooth inside."
                             if exterior_wall
                             else "P2-W01 + continuous P2-W04: 250 mm opaque wall; only deck glazing interrupts."
                             if hall_edge
@@ -1660,7 +1750,12 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
             _line(1350, 712, 1402, 712, stroke=TEAL, stroke_width=7),
             _text(1415, 715, "exterior glazing", 7.5),
             _line(1350, 740, 1402, 740, stroke=AMBER, stroke_width=7),
-            _text(1415, 743, "acoustic deck glazing", 7.5),
+            _text(
+                1415,
+                743,
+                "open balcony guard" if family_balcony else "acoustic deck glazing",
+                7.5,
+            ),
             _rect(1350, 758, 12, 12, fill="#fff", stroke=PURPLE, stroke_width=2),
             _text(1374, 769, "D-048 column reserve", 7.5),
             _line(1350, 793, 1402, 793, stroke=PURPLE, stroke_width=3, stroke_dasharray="8 5"),
@@ -1672,7 +1767,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                         1415,
                         823,
                         (
-                            "P2-W01/W04 · 250 · W05 · 300 mm"
+                            "P2-W01/W04R · 250 · W05 · 300 mm"
+                            if family_balcony and exterior_wall
+                            else "P2-W01/W04 · 250 · W05 · 300 mm"
                             if exterior_wall
                             else "P2-W01 / W04 · 250 mm nominal"
                             if hall_edge
@@ -1684,7 +1781,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                         1350,
                         848,
                         (
-                            "W05: corrugated outside only; smooth concealed interior."
+                            "W04R closes bedrooms; family edge is open and guarded."
+                            if family_balcony
+                            else "W05: corrugated outside only; smooth concealed interior."
                             if exterior_wall
                             else "W04 is full-height; GLZ-DECK is its only planned opening."
                             if hall_edge
@@ -1710,7 +1809,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-062 · EXPANDED P2 WELLNESS · DESIGN COORDINATION"
+        "D-063 · OPEN FAMILY BALCONY · DESIGN COORDINATION"
+        if model.get("family_balcony")
+        and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DET-004"))
+        else "D-062 · EXPANDED P2 WELLNESS · DESIGN COORDINATION"
         if model.get("wellness_suite") and sheet_id.startswith("DH-ARQ-PLN-002")
         else "D-061 · P2 FAMILY DISTRIBUTOR · DESIGN COORDINATION"
         if model.get("central_distributor") and sheet_id.startswith("DH-ARQ-PLN-002")
@@ -1764,7 +1866,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision absorbing the rear spur into an L-shaped dry/wet wellness suite while preserving a clear reserved exterior route. Not for construction."
+                "An upper-floor revision joining the mini deck and family centre behind one 7.45 m open guarded balcony edge toward the double-height hall. Not for construction."
+                if model.get("family_balcony")
+                else "An upper-floor revision absorbing the rear spur into an L-shaped dry/wet wellness suite while preserving a clear reserved exterior route. Not for construction."
                 if model.get("wellness_suite")
                 else "An upper-floor revision opening the stair into one usable family distributor and replacing the long Phase 2 lobby with a short spur. Not for construction."
                 if model.get("central_distributor")
@@ -1783,7 +1887,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-062 expanded wellness + D-057/D-058/D-059 wall controls"
+            "D-063 open family balcony + retained bedroom-edge P2-W04R"
+            if model.get("family_balcony")
+            else "D-062 expanded wellness + D-057/D-058/D-059 wall controls"
             if model.get("wellness_suite")
             else "D-061 family distributor + D-057/D-058/D-059 wall controls"
             if model.get("central_distributor")
@@ -2064,6 +2170,7 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
     egress = model.get("egress_reserve")
     edge = model.get("edge_truss_intent")
     hall_edge = model.get("hall_edge_partition")
+    family_balcony = model.get("family_balcony")
     if not (laundry and egress and edge):
         raise P2ModelError("Owner-priorities detail requires laundry, egress and edge-truss data")
     report = _report(model)
@@ -2091,7 +2198,9 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
         detail_sheet_id,
         "OWNER PRIORITIES · ARCHITECTURAL INTERFACES",
         (
-            "PB laundry + retractable stair + exposed truss outside continuous P2-W04"
+            "PB laundry + retractable stair + open family balcony at exposed truss"
+            if family_balcony
+            else "PB laundry + retractable stair + exposed truss outside continuous P2-W04"
             if hall_edge
             else "PB laundry + retractable stair + large exposed X=21 truss"
         ),
@@ -2189,13 +2298,15 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
         790,
         "03",
         (
-            "X=21 EDGE · EXPOSED TRUSS + CONTINUOUS P2-W04"
+            "X=21 EDGE · EXPOSED TRUSS + OPEN FAMILY BALCONY"
+            if family_balcony
+            else "X=21 EDGE · EXPOSED TRUSS + CONTINUOUS P2-W04"
             if hall_edge
             else "X=21 EDGE · ONE LARGE INDUSTRIAL TRUSS"
         ),
     )
     tx0, tx1, top_y, bottom_y = 105.0, 740.0, 845.0, 965.0
-    if hall_edge:
+    if hall_edge and not family_balcony:
         parts.extend(
             [
                 _rect(
@@ -2225,6 +2336,13 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
             _line(tx0, bottom_y, tx1, bottom_y, stroke=INK, stroke_width=9),
         ]
     )
+    if family_balcony:
+        parts.extend(
+            [
+                _line(tx0, bottom_y - 8, tx1, bottom_y - 8, stroke=AMBER, stroke_width=4, stroke_dasharray="12 5"),
+                _text((tx0 + tx1) / 2, top_y + 22, "OPEN FAMILY BALCONY · CONTINUOUS GUARD", 7.2, anchor="middle", weight=700, fill=AMBER),
+            ]
+        )
     panels = 6
     panel = (tx1 - tx0) / panels
     for index in range(panels):
@@ -2251,10 +2369,14 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
                 [
                     "A visible truss is acceptable—and desirable—when it reads as one large,",
                     "deep, load-bearing industrial object. Small decorative trusses are rejected.",
-                    "The mini-deck view remains primary; member topology, depth, joints, fire",
+                    "The open family-balcony view remains primary; member topology, depth, joints, fire"
+                    if family_balcony
+                    else "The mini-deck view remains primary; member topology, depth, joints, fire",
                     "protection, vibration and services still require structural coordination.",
                     *(
-                        ["D-058: keep it hall-side; do not puncture or rigidly bridge P2-W04."]
+                        ["D-063: coordinate the 7.45 m guard, edge beam and smoke/noise transfer."]
+                        if family_balcony
+                        else ["D-058: keep it hall-side; do not puncture or rigidly bridge P2-W04."]
                         if hall_edge
                         else []
                     ),
@@ -2483,8 +2605,150 @@ def build_acoustic_partition_detail(model: dict[str, Any]) -> str:
     return output
 
 
+def build_family_balcony_detail(model: dict[str, Any]) -> str:
+    """Draw the D-063 open family-balcony edge and retained bedroom enclosure."""
+
+    wall = model["hall_edge_partition"]
+    balcony = model["family_balcony"]
+    report = _report(model)
+    _assert_renderable(report)
+    digest = hashlib.sha256(
+        json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    sheet_id = f"DH-ARQ-DET-004-{model['drawing_revision']}"
+    metadata = {
+        "drawing": sheet_id,
+        "revision": model["revision"],
+        "model_sha256": digest,
+        "status": model["status"],
+        "wall_type": wall["id"],
+        "open_balcony_length_m": float(balcony["to_y"]) - float(balcony["from_y"]),
+        "construction_authority": False,
+        "acoustic_continuity_claimed": False,
+        "fire_rating_claimed": False,
+    }
+    parts = _svg_start(
+        "Dream House open family balcony at the P2 hall edge",
+        "D-063 coordination detail for a 7.45 m open guarded family frontage with bedroom enclosure retained at both ends. Not for construction.",
+        metadata,
+    )
+    _header(
+        parts,
+        model,
+        sheet_id,
+        "P2-W04R · OPEN FAMILY BALCONY / RETAINED SUITE EDGE",
+        "D-063 · 7.45 m open frontage · continuous guard · bedrooms remain enclosed",
+    )
+
+    _panel_title(parts, 70, 165, "01", "UNFOLDED X=21 EDGE · P2 SIDE")
+    run_x, run_y, run_w, run_h = 110.0, 255.0, 720.0, 255.0
+    y_scale = run_w / 18.0
+    open_from = float(balcony["from_y"])
+    open_to = float(balcony["to_y"])
+    for low, high, label in (
+        (0.0, open_from, "CHILD 1 · ENCLOSED"),
+        (open_to, 18.0, "CHILD 2 · ENCLOSED"),
+    ):
+        x = run_x + low * y_scale
+        width = (high - low) * y_scale
+        parts.extend(
+            [
+                _rect(x, run_y, width, run_h, fill=COLORS["bedroom"], stroke=INK, stroke_width=7, css_class="p2-w04r-suite-edge"),
+                _text(x + width / 2, run_y + 126, label, 8, anchor="middle", weight=700),
+                _text(x + width / 2, run_y + 150, "P2-W04R FULL HEIGHT", 6.8, anchor="middle", fill=TEAL),
+            ]
+        )
+    bx = run_x + open_from * y_scale
+    bw = (open_to - open_from) * y_scale
+    parts.extend(
+        [
+            _rect(bx, run_y, bw, run_h, fill="#f6ead8", stroke=AMBER, stroke_width=3, stroke_dasharray="12 5", css_class="open-family-balcony"),
+            _line(bx, run_y + run_h - 18, bx + bw, run_y + run_h - 18, stroke=AMBER, stroke_width=6, css_class="family-balcony-guard"),
+            _text(bx + bw / 2, run_y + 104, "OPEN FAMILY BALCONY", 10, anchor="middle", weight=700, fill=AMBER),
+            _text(bx + bw / 2, run_y + 132, "MINI DECK + FAMILY DISTRIBUTOR + STUDY EDGE", 6.8, anchor="middle", weight=700),
+            _text(bx + bw / 2, run_y + 160, "1.10 m MIN GUARD · HEIGHT / LOADS TBD", 6.8, anchor="middle", weight=700, fill=AMBER),
+            _line(run_x, 220, run_x + run_w, 220, stroke=TEAL, stroke_width=1.8),
+            _line(run_x, 211, run_x, 229, stroke=TEAL, stroke_width=1.8),
+            _line(run_x + run_w, 211, run_x + run_w, 229, stroke=TEAL, stroke_width=1.8),
+            _text(run_x + run_w / 2, 205, "18.00 m HALL EDGE · 7.45 m OPEN / 10.55 m ENCLOSED", 9.5, anchor="middle", weight=700, fill=TEAL),
+            _text(run_x, 555, "Y=0.00 · LOW EAVE", 7.2, weight=700, fill=MUTED),
+            _text(run_x + run_w, 555, "Y=18.00 · HIGH EAVE", 7.2, anchor="end", weight=700, fill=MUTED),
+            _text(run_x + run_w / 2, 592, "NO ACOUSTIC GLAZING AT THE OPEN FAMILY FRONTAGE", 8.5, anchor="middle", weight=700, fill=RED),
+        ]
+    )
+
+    _panel_title(parts, 930, 165, "02", "SCHEMATIC SECTION AT OPEN EDGE", width=650)
+    parts.extend(
+        [
+            _rect(980, 490, 560, 22, fill="#c8c1b7", stroke=INK, stroke_width=1.2),
+            _text(1515, 538, "P2 FLOOR / EDGE BEAM", 7.4, anchor="end", weight=700),
+            _line(1115, 490, 1115, 365, stroke=AMBER, stroke_width=8, css_class="family-balcony-guard"),
+            _line(1088, 365, 1142, 365, stroke=AMBER, stroke_width=5),
+            _text(1150, 375, "CONTINUOUS GUARD", 8, weight=700, fill=AMBER),
+            _text(1150, 398, "≥1.10 m · NON-CLIMBABLE", 7.2, weight=700),
+            _line(1115, 270, 995, 405, stroke="#4d626a", stroke_width=8, stroke_linecap="round"),
+            _line(995, 405, 1115, 455, stroke="#4d626a", stroke_width=8, stroke_linecap="round"),
+            _text(980, 380, "EXPOSED X=21", 7.2, anchor="end", weight=700),
+            _text(980, 403, "TRUSS / EDGE", 8.4, anchor="end", weight=700),
+            _text(1035, 540, "DOUBLE-HEIGHT HALL / WORKSHOPS", 7.2, anchor="middle", weight=700, fill=AMBER),
+            _text(1390, 540, "FAMILY BALCONY", 7.2, anchor="middle", weight=700, fill=TEAL),
+            _text(1260, 585, "Coordinate guard anchors, edge beam, vibration and truss clearance", 7.4, anchor="middle"),
+            _text(1260, 606, "without assuming the architectural line is a structural design.", 7.4, anchor="middle"),
+        ]
+    )
+
+    _panel_title(parts, 70, 690, "03", "ARCHITECTURAL CONTROL")
+    parts.append(
+        _multiline(
+            70,
+            730,
+            [
+                "Open the complete Y=5.00–12.45 family frontage; do not leave residual wall piers.",
+                "Join the former mini deck to the family distributor with a full 2.80 m opening.",
+                "Keep both bedroom end zones fully enclosed with acoustically controlled doors.",
+                "Use one visually quiet, continuous and non-climbable guard along the void.",
+            ],
+            8.8,
+            leading=1.55,
+        )
+    )
+
+    _panel_title(parts, 930, 690, "04", "OPEN PROFESSIONAL GATES", width=650)
+    parts.append(
+        _multiline(
+            930,
+            730,
+            [
+                "Guard height, loads, openings, anchors and impact resistance.",
+                "Edge beam, floor vibration, exposed-truss topology and fire protection.",
+                "Smoke movement and required separation from the workshop/hall volume.",
+                "Hall noise transfer to the family centre and through suite entrance doors.",
+                "Lighting, glare, falling-object control and cleaning access over the void.",
+            ],
+            8.5,
+            leading=1.52,
+            fill=RED,
+        )
+    )
+    parts.append(_rect(930, 910, 650, 94, fill="#f5ded8", stroke="#bf7468", stroke_width=1.2, rx=6))
+    parts.extend(
+        [
+            _text(952, 940, "AUTHORITY", 8, weight=700, fill=RED),
+            _text(952, 969, "Owner-approved spatial intent; guard, structure, fire and acoustic performance remain undesigned.", 8.0, weight=700, fill="#6f3028"),
+        ]
+    )
+    _footer(parts, model, digest, sheet_id)
+    parts.append("</svg>\n")
+    output = "".join(parts)
+    ET.fromstring(output)
+    return output
+
+
 def build_hall_edge_detail(model: dict[str, Any]) -> str:
     """Draw the D-058 continuous X=21 hall/workshop-edge enclosure concept."""
+
+    if model.get("family_balcony"):
+        return build_family_balcony_detail(model)
 
     wall = model.get("hall_edge_partition")
     if not wall:

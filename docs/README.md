@@ -70,8 +70,8 @@ they stay stable while their explicitly promoted versioned source can advance.
   reclaimed-board acceptance rules, and rebalances Phase 2 to retain 1.20 m clear
   circulation without enlarging the upper floor.
 - [P2 hall-edge acoustic enclosure — draft 14](02_arquitectura/cierre_acustico_borde_p2_v0.3_b14.md):
-  D-058 closes the complete 18.00 m X=21 edge toward the double-height hall/workshops
-  with full-height P2-W04, retaining GLZ-DECK as the only planned acoustic opening.
+  historical D-058 enclosure basis, partially superseded by D-063 across the active
+  family-balcony frontage while retained as P2-W04R at both bedroom ends.
 - [P2 refined exterior envelope — draft 15](02_arquitectura/envolvente_exterior_p2_v0.3_b15.md):
   D-059 gives the three exterior P2 edges a 300 mm nominal double-frame P2-W05 envelope,
   keeping corrugated metal outside while the residential interior is smooth and all
@@ -95,8 +95,10 @@ they stay stable while their explicitly promoted versioned source can advance.
   superseded D-061/R14 predecessor that opens the stair into a 37.80 m² furnished family
   distributor and converts the former Phase 2 lobby into a shared study edge.
 - [Expanded P2 wellness — draft 18](02_arquitectura/wellness_p2_v0.3_b18.md):
-  D-062/R15 absorbs the residual 6.525 m² rear spur into a 22.62 m² L-shaped dry/wet
-  wellness suite while retaining a 1.20 m clear route to the exterior-stair reserve.
+  superseded D-062/R15 predecessor that absorbs the residual rear spur into the wellness.
+- [Open P2 family balcony — draft 19](02_arquitectura/balcon_familiar_p2_v0.3_b19.md):
+  D-063/R16 joins the former mini deck, family distributor and study edge behind one
+  7.45 m open guarded frontage while retaining full-height bedroom-edge enclosures.
 
 ## 03 — Engineering
 

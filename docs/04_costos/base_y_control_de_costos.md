@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.8
+**Versión:** 0.3.9
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -314,10 +314,25 @@ The finish-category shift cannot be treated as a saving because the new wellness
 and fire/egress scope may cost more than ordinary corridor work. **No price, saving,
 increase, contingency change, or target change is recognized by D-062.**
 
+### 0.3-R — D-063 open P2 family-balcony scope
+
+D-063 removes the 7.45 m family-facing portion of the full-height P2-W04 acoustic
+enclosure and deletes GLZ-DECK, while retaining P2-W04R at the two bedroom ends. It adds
+a continuous engineered guard, edge-beam and anchor coordination, phased temporary
+guarding, and potentially stronger suite entrance doors, local rated returns or smoke-
+control measures. The affected scope lies principally in chapters 05/06/10/13/14/17/19/
+21/22/26.
+
+The removed wall and glazing may reduce cost, but this cannot be booked against the guard,
+structure, fire and acoustic consequences until developed quantities and quotations are
+available. **No price, saving, increase, contingency change, or target change is recognized
+by D-063.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-R   | 2026-08-18 | D-063 removes 7.45 m of full-height P2-W04 and GLZ-DECK to create one open family balcony, retains P2-W04R at both bedroom ends, and adds continuous guard/edge coordination. Removed enclosure scope cannot be netted against guard, structure, fire, smoke and suite-acoustic measures until quoted; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-Q   | 2026-08-18 | D-062 absorbs the 6.525 m² rear spur into a 22.62 m² L-shaped dry/wet wellness suite and retains a 1.20 m clear route to the exterior-stair reserve. Wellness finishes, joinery, ventilation, waterproofing limits and possible rated route separation require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-P   | 2026-08-18 | D-061 replaces the separate stair arrival and full 15 m Phase 2 lobby with a 37.80 m² family distributor, 15.225 m² open study edge and one 6.525 m² short spur. Wall, door, finish, joinery and possible rated-vestibule quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-O   | 2026-08-18 | D-060 consolidates the fragmented P2 family lounge, gallery and private hall as one 27.36 m² gross family room, adds a 4.20 m fitted library wall and reduces the mini-deck depth to 2.40 m. Partition, door, glazing and joinery quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |

@@ -1,8 +1,8 @@
 # Project Constitution
 
 **Status:** active  
-**Version:** 0.2  
-**Date:** 2026-08-12  
+**Version:** 0.3<br>
+**Date:** 2026-08-18<br>
 **Primary source:** consolidated concept document and conceptual plan v0.2.  
 **Language note:** controlled English translation under D-044; no design change.
 
@@ -39,8 +39,13 @@ garage. The owner's technical life is part of the architecture, not a use to be 
    their respective ratios.)_
 10. The primary suite will be clearly dominant, with a large dressing room and the most
     substantial bathroom.
-11. P2 will be private and acoustically enclosed. It will not be a mezzanine or a hotel-like
-    gallery open to the hall. The mini deck will provide the controlled visual connection.
+11. The four P2 suites will remain private and acoustically enclosed. The shared family
+   centre may form one internal balcony open to the hall from Y=5.00 to Y=12.45 under
+   **D-063**, with continuous guarding and professional fire, smoke, acoustic and structural
+   design. P2 will not become a full-width mezzanine or hotel-like bedroom gallery.
+   _(Original wording required all of P2 to be acoustically enclosed and allowed only the
+   mini deck as a controlled visual connection. Modified by **D-063**, 2026-08-18, at the
+   owner's explicit request.)_
 12. The RC/DIY/electronics/3D-printing workshop will remain open and integrated.
 13. There will be one project car inside the building, in a workshop garage; daily-use
     vehicles will remain outside.
