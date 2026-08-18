@@ -25,6 +25,9 @@ baseline, or authorize procurement or construction.
 > the former mini deck, family distributor and study edge now share a 7.45 m open guarded
 > frontage toward the hall. Bedroom ends remain enclosed; guard, fire, structure and
 > acoustic consequences remain open professional gates.
+> D-064/P2 b20-R17 subsequently removes the F1/F2 overlay from the main architectural
+> plan for graphic clarity only. The Y=11.00 m phase boundary remains active in the model
+> and dedicated access/egress diagram.
 
 ## Executive assessment
 

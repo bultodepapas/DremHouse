@@ -1758,8 +1758,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
             ),
             _rect(1350, 758, 12, 12, fill="#fff", stroke=PURPLE, stroke_width=2),
             _text(1374, 769, "D-048 column reserve", 7.5),
-            _line(1350, 793, 1402, 793, stroke=PURPLE, stroke_width=3, stroke_dasharray="8 5"),
-            _text(1415, 796, "F1 / F2 boundary", 7.5),
+            *(
+                []
+                if model.get("hide_phase_boundary_on_plan")
+                else [
+                    _line(1350, 793, 1402, 793, stroke=PURPLE, stroke_width=3, stroke_dasharray="8 5"),
+                    _text(1415, 796, "F1 / F2 boundary", 7.5),
+                ]
+            ),
             *(
                 [
                     _line(1350, 820, 1402, 820, stroke=INK, stroke_width=8.3),
@@ -1809,7 +1815,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-063 · OPEN FAMILY BALCONY · DESIGN COORDINATION"
+        "D-064 · CLEAN P2 PLAN GRAPHICS · DESIGN COORDINATION"
+        if model.get("hide_phase_boundary_on_plan")
+        and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-063 · OPEN FAMILY BALCONY · DESIGN COORDINATION"
         if model.get("family_balcony")
         and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DET-004"))
         else "D-062 · EXPANDED P2 WELLNESS · DESIGN COORDINATION"
@@ -1887,7 +1896,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-063 open family balcony + retained bedroom-edge P2-W04R"
+            "D-064 clean plan graphics · phasing retained in dedicated diagram"
+            if model.get("hide_phase_boundary_on_plan")
+            else "D-063 open family balcony + retained bedroom-edge P2-W04R"
             if model.get("family_balcony")
             else "D-062 expanded wellness + D-057/D-058/D-059 wall controls"
             if model.get("wellness_suite")
@@ -1920,11 +1931,12 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     _draw_windows(parts, model)
     _draw_egress_reserve(parts, model)
     phase_y = _sy(model["phase_boundary_y"])
-    parts.append(_line(_sx(21), phase_y, _sx(36), phase_y, stroke=PURPLE, stroke_width=3, stroke_dasharray="9 6", css_class="phase-boundary"))
-    parts.append(_text((_sx(21) + _sx(36)) / 2, phase_y - 8, "ONE ISOLATABLE F1 / F2 BOUNDARY", 7.4, anchor="middle", weight=700, fill=PURPLE))
+    if not model.get("hide_phase_boundary_on_plan"):
+        parts.append(_line(_sx(21), phase_y, _sx(36), phase_y, stroke=PURPLE, stroke_width=3, stroke_dasharray="9 6", css_class="phase-boundary"))
+        parts.append(_text((_sx(21) + _sx(36)) / 2, phase_y - 8, "ONE ISOLATABLE F1 / F2 BOUNDARY", 7.4, anchor="middle", weight=700, fill=PURPLE))
     for door in model["doors"]:
         _draw_door(parts, door, model)
-    if model.get("central_distributor"):
+    if model.get("central_distributor") and not model.get("hide_phase_boundary_on_plan"):
         parts.append(
             _line(
                 _sx(21),

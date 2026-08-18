@@ -1,0 +1,18 @@
+{
+  "revision": "0.3-draft-20-P2",
+  "status": "issued for coordination under D-064; main-plan phasing overlay suppressed for visual clarity; not for construction",
+  "source": "dreamhouse/p2_b20_delta.json",
+  "source_sha256": "f7bcc095996aa18e7e40630b5b7c099c4ebbd88dd9e2f8c66212bdd1dba09288",
+  "generator": "dreamhouse/generate_p2_b20.py",
+  "supersedes": "0.3-draft-19-P2 / R16",
+  "outputs": [
+    "DH-ARQ-PLN-002-R17_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R17_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R17_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R17_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R17_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R17_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

@@ -97,8 +97,11 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Expanded P2 wellness — draft 18](02_arquitectura/wellness_p2_v0.3_b18.md):
   superseded D-062/R15 predecessor that absorbs the residual rear spur into the wellness.
 - [Open P2 family balcony — draft 19](02_arquitectura/balcon_familiar_p2_v0.3_b19.md):
-  D-063/R16 joins the former mini deck, family distributor and study edge behind one
-  7.45 m open guarded frontage while retaining full-height bedroom-edge enclosures.
+  retained D-063 spatial basis joining the former mini deck, family distributor and study
+  edge behind one 7.45 m open guarded frontage.
+- [P2 main-plan graphic clarity — draft 20](02_arquitectura/claridad_grafica_p2_v0.3_b20.md):
+  D-064/R17 removes the F1/F2 overlay from the main plan while retaining it in the model
+  and dedicated access/egress and phasing diagram.
 
 ## 03 — Engineering
 

@@ -1,7 +1,8 @@
 # Open P2 family balcony — draft 19
 
-**Status:** active owner-approved schematic coordination hypothesis under D-063; guard,
-structure, fire and acoustic performance remain open; not for construction<br>
+**Status:** spatial basis retained under D-063; superseded by D-064/P2 b20-R17 only as
+the current published drawing issue; guard, structure, fire and acoustic performance
+remain open; not for construction<br>
 **Version:** 0.3-draft-19-P2 / R16<br>
 **Date:** 2026-08-18<br>
 **Source:** explicit owner instruction following visual review of P2 b18/R15; D-052,

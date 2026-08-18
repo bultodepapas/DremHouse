@@ -1,0 +1,17 @@
+{
+  "base_model": "dreamhouse/p2_b19_delta.json",
+  "base_model_sha256": "1c44da27d310f156cfc4693d5df69edaf7a8072828cca873d3191086eaba0213",
+  "revision": "0.3-draft-20-P2",
+  "drawing_revision": "R17",
+  "status": "issued for coordination under D-064; main-plan phasing overlay suppressed for visual clarity; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-19-P2 / R16",
+  "decision": "D-064",
+  "change": {
+    "summary": "Remove the F1/F2 phase-boundary overlay and legend key from the main upper-floor plan while retaining the phase boundary in the model and dedicated access/egress diagram.",
+    "hide_phase_boundary_on_plan": true,
+    "geometry_changed": false,
+    "programme_changed": false,
+    "cost_scope_changed": false
+  }
+}
