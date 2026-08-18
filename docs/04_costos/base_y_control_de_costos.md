@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.10
+**Versión:** 0.3.11
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
@@ -341,10 +341,24 @@ against new wall, door, joinery, screen, façade return, curtain and electrical 
 **No price, saving, increase, contingency change, or target change is recognized by
 D-065.**
 
+### 0.3-T — D-066 unified primary bathroom scope
+
+D-066 keeps the primary bathroom at 17.60 m² gross while treating it as one L-shaped wet
+room. It removes the full 2.40 m intermediate partition and door, replaces duplicated
+fixture allowances with one coordinated shower, tub, double vanity, WC and linen layout,
+and introduces a short WC privacy screen. Affected scope lies principally in chapters
+10/14/16/17/19/21/22/23.
+
+The deleted wall and door cannot be treated as a saving until netted against continuous
+waterproofing and falls, drainage changes, ventilation, electrical safety, joinery,
+screening, plumbing-acoustic treatment and maintenance access. **No price, saving,
+increase, contingency change, or target change is recognized by D-066.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-T   | 2026-08-18 | D-066 unifies the unchanged 17.60 m² gross primary bathroom, removes the full 2.40 m intermediate wall and door, and coordinates one fixture programme. Waterproofing, drainage, ventilation, electrical, joinery and privacy quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-S   | 2026-08-18 | D-065 redistributes the unchanged 66.28 m² primary suite into a 35.24 m² bedroom, 13.44 m² dressing and unchanged 17.60 m² bathroom; it changes partitions, doors, wardrobes, privacy screen and the south window. Quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-R   | 2026-08-18 | D-063 removes 7.45 m of full-height P2-W04 and GLZ-DECK to create one open family balcony, retains P2-W04R at both bedroom ends, and adds continuous guard/edge coordination. Removed enclosure scope cannot be netted against guard, structure, fire, smoke and suite-acoustic measures until quoted; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-Q   | 2026-08-18 | D-062 absorbs the 6.525 m² rear spur into a 22.62 m² L-shaped dry/wet wellness suite and retains a 1.20 m clear route to the exterior-stair reserve. Wellness finishes, joinery, ventilation, waterproofing limits and possible rated route separation require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |

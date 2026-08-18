@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.9<br>
+**Version:** 1.10<br>
 **Date:** 2026-08-18<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -26,7 +26,7 @@ record, repository README, and presentation do not change when a new issue is pr
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-21-P2 · <a href="../../planos/conceptual_v0.3_b21_p2/DH-ARQ-PLN-002-R18_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-22-P2 · <a href="../../planos/conceptual_v0.3_b22_p2/DH-ARQ-PLN-002-R19_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -57,19 +57,19 @@ record, repository README, and presentation do not change when a new issue is pr
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
-  <br><sub>0.3-draft-21-P2 · <a href="../../planos/conceptual_v0.3_b21_p2/DH-ARQ-DET-003-R18_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-22-P2 · <a href="../../planos/conceptual_v0.3_b22_p2/DH-ARQ-DET-003-R19_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
-  <br><sub>0.3-draft-21-P2 · <a href="../../planos/conceptual_v0.3_b21_p2/DH-ARQ-DET-004-R18_P2-HALL-EDGE.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-22-P2 · <a href="../../planos/conceptual_v0.3_b22_p2/DH-ARQ-DET-004-R19_P2-HALL-EDGE.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
-  <br><sub>0.3-draft-21-P2 · <a href="../../planos/conceptual_v0.3_b21_p2/DH-ARQ-DET-005-R18_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-22-P2 · <a href="../../planos/conceptual_v0.3_b22_p2/DH-ARQ-DET-005-R19_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>

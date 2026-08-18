@@ -102,8 +102,11 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [P2 main-plan graphic clarity — draft 20](02_arquitectura/claridad_grafica_p2_v0.3_b20.md):
   retained D-064 graphic basis removing the F1/F2 overlay from the main plan.
 - [Primary-suite rebalance — draft 21](02_arquitectura/rebalance_suite_principal_p2_v0.3_b21.md):
-  D-065/R18 moves the compact dressing beside the Child 1 service band, enlarges the
-  bedroom to 35.24 m² gross and retains the unchanged 66.28 m² primary allocation.
+  retained D-065 spatial basis moving the compact dressing beside the Child 1 service
+  band and enlarging the bedroom to 35.24 m² gross.
+- [Unified primary bathroom — draft 22](02_arquitectura/bano_principal_unificado_p2_v0.3_b22.md):
+  D-066/R19 treats the 17.60 m² gross L-shaped bathroom as one room, removes its full
+  2.40 m intermediate wall and door, and coordinates one fixture programme.
 
 ## 03 — Engineering
 

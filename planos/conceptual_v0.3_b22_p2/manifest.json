@@ -1,0 +1,18 @@
+{
+  "revision": "0.3-draft-22-P2",
+  "status": "issued for coordination under D-066; primary-bathroom waterproofing, drainage, ventilation, privacy and detailed MEP remain open; not for construction",
+  "source": "dreamhouse/p2_b22_delta.json",
+  "source_sha256": "f57e90d86e2ca74eea10a6932c0536d20c8a9cb581c0eb7d2c6058f0749b6ce2",
+  "generator": "dreamhouse/generate_p2_b22.py",
+  "supersedes": "0.3-draft-21-P2 / R18",
+  "outputs": [
+    "DH-ARQ-PLN-002-R19_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R19_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R19_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R19_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R19_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R19_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

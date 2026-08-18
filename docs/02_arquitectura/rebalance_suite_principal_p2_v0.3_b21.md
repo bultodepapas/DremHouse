@@ -1,7 +1,7 @@
 # Primary-suite rebalance — draft 21
 
-**Status:** active schematic coordination hypothesis under D-065; privacy, joinery and
-façade detail remain open; not for construction<br>
+**Status:** retained D-065 spatial basis; superseded by D-066/P2 b22-R19 only as the
+current published issue; privacy, joinery and façade detail remain open; not for construction<br>
 **Version:** 0.3-draft-21-P2 / R18<br>
 **Date:** 2026-08-18<br>
 **Source:** explicit owner approval following analysis of the R17 primary dressing/filter.

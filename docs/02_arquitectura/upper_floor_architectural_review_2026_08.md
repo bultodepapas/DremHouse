@@ -31,6 +31,9 @@ baseline, or authorize procurement or construction.
 > D-065/P2 b21-R18 subsequently addresses section 4.4 by moving the primary dressing out
 > of the daily entry path, reducing it to 13.44 m² gross and enlarging the combined bedroom
 > to 35.24 m² gross. Detailed privacy, joinery and façade coordination remain open.
+> D-066/P2 b22-R19 subsequently unifies the 17.60 m² gross primary bathroom as one
+> L-shaped room, removes its full 2.40 m intermediate wall and door, and replaces the
+> duplicated fixtures with one coordinated programme. Detailed wet-services design remains open.
 
 ## Executive assessment
 

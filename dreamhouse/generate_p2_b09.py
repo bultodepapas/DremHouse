@@ -532,6 +532,35 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             "Guest bedroom, bathroom and wardrobe remain within coordinated programme bands",
         )
     )
+    primary_bathroom_unified = model.get("primary_bathroom_unified")
+    if primary_bathroom_unified:
+        bathroom_ids = primary_bathroom_unified["space_ids"]
+        unified_gross = sum(
+            by_id[space_id]["w"] * by_id[space_id]["d"] for space_id in bathroom_ids
+        )
+        wet_opening = next(
+            (door for door in model["doors"] if door["id"] == "D-M-WET"), None
+        )
+        unified_ok = (
+            math.isclose(unified_gross, 17.60, abs_tol=tolerance)
+            and math.isclose(
+                float(primary_bathroom_unified["schematic_net_area_m2"]),
+                15.66,
+                abs_tol=tolerance,
+            )
+            and wet_opening is not None
+            and wet_opening["kind"] == "opening"
+            and math.isclose(float(wet_opening["width"]), 2.40, abs_tol=tolerance)
+            and math.isclose(float(wet_opening["at"]), 5.00, abs_tol=tolerance)
+            and len(primary_bathroom_unified["fixtures"]) == 5
+        )
+        checks.append(
+            (
+                "P2-PRIMARY-BATHROOM-UNIFIED",
+                unified_ok,
+                "The 17.60 m2 gross L-shaped primary bathroom is one 15.66 m2 schematic-net room with the full 2.40 m internal boundary open",
+            )
+        )
     wellness_suite = model.get("wellness_suite")
     wellness_ids = wellness_suite["space_ids"] if wellness_suite else ["WELL"]
     wellness_gross = sum(
@@ -939,6 +968,9 @@ def _header(parts: list[str], model: dict[str, Any], sheet: str, title: str, sub
 
 
 def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
+    primary_bathroom_unified = model.get("primary_bathroom_unified")
+    if primary_bathroom_unified and space["id"] == "M-B":
+        return ""
     x = _sx(space["x"] + space["w"] / 2.0)
     y = _sy(space["y"] + space["d"] / 2.0)
     pixel_width = space["w"] * SCALE
@@ -949,7 +981,13 @@ def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
     label_width = max(8, int(pixel_width / max(1.0, size * 0.58)))
     primary_rebalance = model.get("primary_suite_rebalance")
     name_lines = textwrap.wrap(space["name"].replace(" / ", " "), width=label_width)
-    if primary_rebalance and space["id"] in {"M-D", "M-L"}:
+    if primary_bathroom_unified and space["id"] == "M-B-A":
+        lines = [
+            "Primary bathroom",
+            f"{float(primary_bathroom_unified['schematic_net_area_m2']):.2f} m2 net schematic",
+            f"{float(primary_bathroom_unified['gross_area_m2']):.2f} m2 gross unified",
+        ]
+    elif primary_rebalance and space["id"] in {"M-D", "M-L"}:
         lines = name_lines + [
             f"{float(primary_rebalance['bedroom_gross_area_m2']):.2f} m2 gross combined"
         ]
@@ -959,6 +997,7 @@ def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
         pixel_height >= 90
         and pixel_width >= 80
         and not (primary_rebalance and space["id"] in {"M-D", "M-L"})
+        and not (primary_bathroom_unified and space["id"] in {"M-B", "M-B-A"})
     ):
         lines.append(f"gross {space['w']:.2f} x {space['d']:.2f}")
     total = (len(lines) - 1) * size * 1.25
@@ -1309,7 +1348,13 @@ def _draw_furniture(parts: list[str], model: dict[str, Any]) -> None:
 
 def _draw_bath_fixtures(parts: list[str], model: dict[str, Any]) -> None:
     by_id = _space_index(model)
-    room_ids = [room_id for room_id in ("H1-B", "H2-B", "G-B", "M-B", "M-B-A") if room_id in by_id]
+    primary_bathroom_unified = model.get("primary_bathroom_unified")
+    room_ids = [
+        room_id
+        for room_id in ("H1-B", "H2-B", "G-B", "M-B", "M-B-A")
+        if room_id in by_id
+        and not (primary_bathroom_unified and room_id in {"M-B", "M-B-A"})
+    ]
     for room_id in room_ids:
         room = by_id[room_id]
         clear_x = room["x"] + 0.16
@@ -1355,6 +1400,51 @@ def _draw_bath_fixtures(parts: list[str], model: dict[str, Any]) -> None:
                 stroke_width=0.9,
                 rx=5,
                 css_class="fixture wc",
+            )
+        )
+
+    if primary_bathroom_unified:
+        colors = {
+            "shower": "#d7edf0",
+            "tub": "#f5f5f1",
+            "vanity": "#e6d5b9",
+            "wc": "#ffffff",
+            "linen": "#d7c5aa",
+        }
+        for fixture in primary_bathroom_unified["fixtures"]:
+            parts.extend(
+                [
+                    _rect(
+                        _sx(float(fixture["x"])),
+                        _sy(float(fixture["y"]) + float(fixture["d"])),
+                        float(fixture["w"]) * SCALE,
+                        float(fixture["d"]) * SCALE,
+                        fill=colors[fixture["type"]],
+                        stroke="#617078",
+                        stroke_width=0.9,
+                        rx=4,
+                        css_class=f"fixture primary-{fixture['type']}",
+                    ),
+                    _text(
+                        _sx(float(fixture["x"]) + float(fixture["w"]) / 2.0),
+                        _sy(float(fixture["y"]) + float(fixture["d"]) / 2.0) + 2,
+                        fixture["label"],
+                        5.8,
+                        anchor="middle",
+                        weight=700,
+                    ),
+                ]
+            )
+        screen = primary_bathroom_unified["wc_privacy_screen"]
+        parts.append(
+            _line(
+                _sx(float(screen["x"])),
+                _sy(float(screen["y"])),
+                _sx(float(screen["x"])),
+                _sy(float(screen["y"]) + float(screen["length"])),
+                stroke="#705f4d",
+                stroke_width=3,
+                css_class="primary-bathroom-wc-screen",
             )
         )
 
@@ -1637,11 +1727,14 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     wellness_suite = model.get("wellness_suite")
     family_balcony = model.get("family_balcony")
     primary_rebalance = model.get("primary_suite_rebalance")
+    primary_bathroom_unified = model.get("primary_bathroom_unified")
     position_lines = (
         (
             [
                 (
-                    "Move the compact dressing beside the Child 1 service band."
+                    "Unify the 17.60 m2 primary bathroom as one open L-shaped room."
+                    if primary_bathroom_unified
+                    else "Move the compact dressing beside the Child 1 service band."
                     if primary_rebalance
                     else "Open 7.45 m of the family edge as one internal hall balcony."
                     if family_balcony
@@ -1719,7 +1812,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
             (
                 "PRIMARY",
                 (
-                    "Bedroom 35.24 m2 + compact dressing 13.44 m2 + bathroom 17.60 m2."
+                    "Unified bathroom 17.60 m2 gross / 15.66 m2 schematic net; no intermediate door."
+                    if primary_bathroom_unified
+                    else "Bedroom 35.24 m2 + compact dressing 13.44 m2 + bathroom 17.60 m2."
                     if primary_rebalance
                     else "Bathroom 17.6 m2 + dressing/filter 17.6 m2 meet the brief."
                 ),
@@ -1892,7 +1987,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-065 · PRIMARY SUITE REBALANCE · DESIGN COORDINATION"
+        "D-066 · UNIFIED PRIMARY BATHROOM · DESIGN COORDINATION"
+        if model.get("primary_bathroom_unified")
+        and sheet_id.startswith("DH-ARQ-PLN-002")
+        else "D-065 · PRIMARY SUITE REBALANCE · DESIGN COORDINATION"
         if model.get("primary_suite_rebalance")
         and sheet_id.startswith("DH-ARQ-PLN-002")
         else "D-064 · CLEAN P2 PLAN GRAPHICS · DESIGN COORDINATION"
@@ -1955,7 +2053,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision relocating and compacting the primary dressing beside the Child 1 service band while enlarging the bedroom. Not for construction."
+                "An upper-floor revision unifying the primary bathroom as one L-shaped room without an intermediate wall or door. Not for construction."
+                if model.get("primary_bathroom_unified")
+                else "An upper-floor revision relocating and compacting the primary dressing beside the Child 1 service band while enlarging the bedroom. Not for construction."
                 if model.get("primary_suite_rebalance")
                 else "An upper-floor revision joining the mini deck and family centre behind one 7.45 m open guarded balcony edge toward the double-height hall. Not for construction."
                 if model.get("family_balcony")
@@ -1978,7 +2078,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-065 compact dressing + enlarged primary bedroom"
+            "D-066 unified primary bathroom + D-065 suite rebalance"
+            if model.get("primary_bathroom_unified")
+            else "D-065 compact dressing + enlarged primary bedroom"
             if model.get("primary_suite_rebalance")
             else "D-064 clean plan graphics · phasing retained in dedicated diagram"
             if model.get("hide_phase_boundary_on_plan")

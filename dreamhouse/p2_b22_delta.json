@@ -1,0 +1,46 @@
+{
+  "base_model": "dreamhouse/p2_b21_delta.json",
+  "base_model_sha256": "bd8425e071e6a87b688534203773cabb374a0edaac8db7445d1e6adb9cec76f3",
+  "revision": "0.3-draft-22-P2",
+  "drawing_revision": "R19",
+  "status": "issued for coordination under D-066; primary-bathroom waterproofing, drainage, ventilation, privacy and detailed MEP remain open; not for construction",
+  "date": "2026-08-18",
+  "supersedes": "0.3-draft-21-P2 / R18",
+  "decision": "D-066",
+  "change": {
+    "summary": "Unify the two primary-bathroom zones as one L-shaped room, remove the full intermediate wall and door, and coordinate one non-duplicated fixture programme.",
+    "replace_space_names": {
+      "M-B-A": "Primary bathroom bathing zone",
+      "M-B": "Primary bathroom vanity / WC zone"
+    },
+    "replace_doors": [
+      {
+        "id": "D-M-WET",
+        "connects": ["M-B", "M-B-A"],
+        "wall": "vertical",
+        "x": 28.6,
+        "at": 5.0,
+        "width": 2.4,
+        "swing": "west",
+        "kind": "opening"
+      }
+    ]
+  },
+  "primary_bathroom_unified": {
+    "space_ids": ["M-B-A", "M-B"],
+    "gross_area_m2": 17.6,
+    "schematic_net_area_m2": 15.66,
+    "shared_opening_m": 2.4,
+    "programme": ["walk-in shower", "freestanding tub", "double vanity", "WC", "linen storage"],
+    "fixtures": [
+      {"type": "shower", "label": "WALK-IN SHOWER", "x": 24.05, "y": 5.2, "w": 1.45, "d": 1.55},
+      {"type": "tub", "label": "TUB", "x": 26.0, "y": 5.25, "w": 1.9, "d": 0.85},
+      {"type": "vanity", "label": "DOUBLE VANITY", "x": 25.75, "y": 6.8, "w": 2.5, "d": 0.42},
+      {"type": "wc", "label": "WC", "x": 28.85, "y": 4.45, "w": 0.7, "d": 0.85},
+      {"type": "linen", "label": "LINEN", "x": 28.8, "y": 6.65, "w": 1.35, "d": 0.45}
+    ],
+    "wc_privacy_screen": {"x": 29.75, "y": 4.35, "length": 1.1},
+    "planning_rule": "Treat M-B-A and M-B only as a parametric tessellation of one L-shaped bathroom; the complete 2.40 m shared edge is open and has no door leaf.",
+    "net_area_basis": "Schematic net area calculated from the L-shaped gross area with a 0.10 m inward wet-wall allowance around its 19.80 m perimeter: 17.60 - (0.10 x 19.80) + 0.04 = 15.66 m2."
+  }
+}
