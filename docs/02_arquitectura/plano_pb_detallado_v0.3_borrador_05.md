@@ -1,10 +1,15 @@
 # Planta baja detallada v0.3 — borrador 05
 
-**Estatus:** hipótesis activa de coordinación arquitectónica; no apta para construir  
+**Estatus:** retained predecessor; superseded by D-068/PB b24 for workstation geometry
+and side-workstation openings; all other stated limitations remain; not for construction
 **Versión:** 0.3-borrador-05-PB  
 **Fecha:** 2026-08-11  
 **Alcance:** planta baja exclusivamente  
 **Fuente:** b04/R03, constitución, programa y bases de diseño activas.
+
+> **Supersession note — 2026-08-20.** D-068/PB b24 replaces the two floating desk
+> symbols with one mirrored pair of wall-integrated workstations and modelled side
+> windows. This historical issue remains the source for unaffected PB b05 geometry.
 
 ## Propósito
 

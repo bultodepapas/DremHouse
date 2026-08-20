@@ -1,8 +1,8 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Versión:** 0.3
+**Fecha:** 2026-08-20
 
 ## Alcance
 
@@ -18,6 +18,8 @@ cargas y análisis sería falsa ingeniería.
 - Cargas localizadas del elevador, taller y almacenamiento.
 - Vibración/ruido de P2 sobre cocina y vida social.
 - Interacción entre estructura visible, portones, paneles, vidrio, redes y drenaje.
+- D-068 workstation and workshop-bench rails, facade-opening trimmers, local eccentric
+  loads and vibration without loading window frames or assuming facade girts are adequate.
 - Viento, sismo, estabilidad global, flechas y derivas de una caja liviana de gran tamaño.
 
 ## Datos de entrada obligatorios
@@ -123,3 +125,6 @@ visible no exime protección ni inspección futura.
 - Fabricar acero con planos conceptuales.
 - Perforar vigas o losa sin aprobación del diseñador.
 - Ocultar cambios de campo que alteren el camino de cargas.
+- Field-weld D-068 workstation or bench brackets to primary steel, load window frames,
+  or classify the furniture service rail as gravity/lateral structure without the
+  structural engineer's coordinated design and inspection requirements.

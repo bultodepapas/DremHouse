@@ -53,7 +53,12 @@ they stay stable while their explicitly promoted versioned source can advance.
   predecessor whose preferred upper-floor spatial centre is carried through D-049 into
   active D-050/D-059 R12.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
-  study wall thicknesses, Great Wall, reorganized core, kitchen, and equipped workshop.
+  predecessor retaining study wall thicknesses, Great Wall, reorganized core, kitchen,
+  and equipped workshop; its workstation geometry is superseded by D-068/PB b24.
+- [PB integrated workstations — draft 24](02_arquitectura/pb_integrated_workstations_v0.3_b24.md):
+  D-068 replaces the floating desk symbols with one mirrored pair of wall-integrated
+  steel/timber workstations, equal landscape windows, a shared workshop-bench family and
+  explicit structural, facade, MEP, comfort and cost hold points.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

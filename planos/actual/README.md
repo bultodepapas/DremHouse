@@ -1,11 +1,11 @@
 # Current drawing aliases
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.11<br>
-**Date:** 2026-08-18<br>
+**Version:** 1.12<br>
+**Date:** 2026-08-20<br>
 **Construction authority:** none
 
-This generated directory contains **22 stable SVG/PNG pairs**
+This generated directory contains **23 stable SVG/PNG pairs**
 representing the issues currently used for project coordination.
 
 - [Open the visual drawing index](../README.md)

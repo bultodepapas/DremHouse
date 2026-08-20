@@ -121,7 +121,18 @@ def plan_sheet(p):
     L, W = p["envelope"]["length"], p["envelope"]["width"]
     ext = p["envelope"]["exterior_wall"]
     wall = p["great_wall"]
-    parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">', title_block("PLN-001-R04", "PLANTA BAJA DETALLADA · ANTEPROYECTO", "Rev. 0.3-borrador-05-PB · espesores y equipamiento de estudio · cotas en metros")]
+    meta = p.get("drawing_meta", {})
+    parts = [
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',
+        title_block(
+            meta.get("plan_code", "PLN-001-R04"),
+            meta.get("plan_title", "PLANTA BAJA DETALLADA · ANTEPROYECTO"),
+            meta.get(
+                "plan_subtitle",
+                "Rev. 0.3-borrador-05-PB · espesores y equipamiento de estudio · cotas en metros",
+            ),
+        ),
+    ]
     parts.append('<defs><pattern id="concrete" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 9L9 0" stroke="#d9d7d1" stroke-width=".5"/></pattern><pattern id="wood" width="8" height="8" patternUnits="userSpaceOnUse"><line x1="2" y1="0" x2="2" y2="8" stroke="#9a704d" stroke-width="1"/></pattern><pattern id="service" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M0 0L7 7M7 0L0 7" stroke="#c5ceca" stroke-width=".45"/></pattern></defs>')
 
     # Exterior platform and continuous industrial slab.
@@ -198,14 +209,115 @@ def plan_sheet(p):
     parts.append(plan_rect(14.4,7.1,4.8,1.05,fill="#bda893",stroke="#796756",stroke_width="1",rx="10"))
     parts.append(table_symbol(16.0,5.45,1.6,1.2,"CENTRO"))
 
-    # Workstations, glazing and acoustic curtain pockets.
-    for y,label in ((0.35,"TRABAJO 1 · 3×3"),(14.65,"TRABAJO 2 · 3×3")):
-        parts.append(plan_rect(13.0,y,3.0,3.0,fill="#d3ded9",stroke="#5d6d69",stroke_width="1"))
-        parts.append(table_symbol(13.35,y+.35,2.2,.75,"ESCRITORIO"))
-        parts.append(text(sx(14.5),sy(y+2.55),label,7,weight=700))
+    # Workstations, glazing and acoustic curtain pockets. Later revisions can describe
+    # the pair parametrically; b05 retains the original historical symbols.
+    if p.get("workstations"):
+        workstation_windows = {item["id"]: item for item in p["workstation_glazing"]}
+        for ws in p["workstations"]:
+            is_a = ws["side"] == "A"
+            zone_y = ext if is_a else W - ext - ws["zone_depth"]
+            work_y = ext if is_a else W - ext - ws["worktop_depth"]
+            chair_y = work_y + ws["worktop_depth"] + 0.35 if is_a else work_y - 1.0
+            zone_width = ws["zone_x1"] - ws["zone_x0"]
+            parts.append(
+                plan_rect(
+                    ws["zone_x0"],
+                    zone_y,
+                    zone_width,
+                    ws["zone_depth"],
+                    fill="#e8f0ed",
+                    stroke="#5d6d69",
+                    stroke_width="1.2",
+                    stroke_dasharray="7 4",
+                    opacity=".62",
+                )
+            )
+            parts.append(
+                plan_rect(
+                    ws["worktop_x0"],
+                    work_y,
+                    ws["worktop_length"],
+                    ws["worktop_depth"],
+                    fill="#d7c29b",
+                    stroke="#3d4c51",
+                    stroke_width="1.4",
+                    rx="2",
+                )
+            )
+            parts.append(
+                text(
+                    sx(ws["worktop_x0"] + ws["worktop_length"] / 2),
+                    sy(work_y + ws["worktop_depth"] / 2) + 2,
+                    "FIXED WORKTOP",
+                    5.8,
+                    weight=700,
+                    fill="#4f3925",
+                )
+            )
+            rail_y = sy(ext if is_a else W - ext)
+            parts.append(
+                f'<line x1="{sx(ws["worktop_x0"])}" y1="{rail_y}" '
+                f'x2="{sx(ws["worktop_x0"] + ws["worktop_length"])}" y2="{rail_y}" '
+                'stroke="#26363b" stroke-width="4"/>'
+            )
+            for bx in (0.2, 1.2, 2.2):
+                px = sx(ws["worktop_x0"] + bx)
+                inner_y = sy(ext + ws["worktop_depth"] if is_a else W - ext - ws["worktop_depth"])
+                parts.append(
+                    f'<line x1="{px}" y1="{rail_y}" x2="{px}" y2="{inner_y}" '
+                    'stroke="#3d4c51" stroke-width="1.5"/>'
+                )
+            parts.append(
+                plan_rect(
+                    ws["worktop_x0"] + ws["worktop_length"] / 2 - 0.33,
+                    chair_y,
+                    0.66,
+                    0.66,
+                    fill="#f5f1e8",
+                    stroke="#667378",
+                    stroke_width="1",
+                    rx="8",
+                )
+            )
+            label_y = zone_y + ws["zone_depth"] - 0.32 if is_a else zone_y + 0.32
+            window = workstation_windows[ws["window_id"]]
+            parts.append(
+                text(
+                    sx((ws["zone_x0"] + ws["zone_x1"]) / 2),
+                    sy(label_y),
+                    f'{ws["name"].upper()} · 3 × 3 m CLEAR',
+                    6.6,
+                    weight=700,
+                    fill="#294b52",
+                )
+            )
+            facade_y = sy(0 if is_a else W)
+            parts.append(
+                f'<line x1="{sx(window["x0"])}" y1="{facade_y}" '
+                f'x2="{sx(window["x1"])}" y2="{facade_y}" '
+                'stroke="#27859a" stroke-width="8"/>'
+            )
+            parts.append(
+                text(
+                    sx((window["x0"] + window["x1"]) / 2),
+                    # On Side A the neighbouring main-glazing label occupies the
+                    # exterior strip; keep this label inside its own 3 m bay.
+                    facade_y + (-32 if is_a else -10),
+                    f'{window["name"].upper()} · {window["x1"] - window["x0"]:.2f} m',
+                    6.5,
+                    weight=700,
+                    fill="#246b7a",
+                )
+            )
+    else:
+        for y,label in ((0.35,"TRABAJO 1 · 3×3"),(14.65,"TRABAJO 2 · 3×3")):
+            parts.append(plan_rect(13.0,y,3.0,3.0,fill="#d3ded9",stroke="#5d6d69",stroke_width="1"))
+            parts.append(table_symbol(13.35,y+.35,2.2,.75,"ESCRITORIO"))
+            parts.append(text(sx(14.5),sy(y+2.55),label,7,weight=700))
     parts.append(f'<line x1="{sx(16.2)}" y1="{sy(0)}" x2="{sx(20.5)}" y2="{sy(0)}" stroke="#27859a" stroke-width="8"/>')
     parts.append(f'<line x1="{sx(16.2)}" y1="{sy(.28)}" x2="{sx(20.5)}" y2="{sy(.28)}" stroke="#846e93" stroke-width="2" stroke-dasharray="5 3"/>')
-    parts.append(text(sx(18.35),sy(.55),"VIDRIO PRINCIPAL PROVISIONAL · bolsillo de cortina acústica",7,fill="#246b7a"))
+    main_glazing_label_y = sy(0) + 15 if p.get("workstations") else sy(.55)
+    parts.append(text(sx(18.35),main_glazing_label_y,"VIDRIO PRINCIPAL PROVISIONAL · bolsillo de cortina acústica",7,fill="#246b7a"))
 
     # Car bay and lift safety envelope.
     parts.append(plan_rect(1.6,.45,6.4,5.9,fill="none",stroke="#b14e35",stroke_width="1.8",stroke_dasharray="9 5"))
@@ -213,12 +325,48 @@ def plan_sheet(p):
     parts.append(car_symbol(2.25,1.55))
     for px in (2.0,6.85):
         parts.append(plan_rect(px,.65,.35,4.0,fill="#48555b",stroke="#263238",stroke_width="1"))
-    parts.append(plan_rect(.55,5.85,9.0,.75,fill="#aeb9bc",stroke="#5d6a6e",stroke_width="1"))
-    parts.append(text(sx(5.05),sy(6.225)+3,"BANCO AUTOMOTRIZ 9,00 m · extracción en fuente / potencia dedicada",7))
+    if p.get("built_in_benches"):
+        car_bench = next(item for item in p["built_in_benches"] if item["id"] == "PB-BENCH-CAR")
+        parts.append(
+            plan_rect(
+                car_bench["x0"], car_bench["y0"], car_bench["length"], car_bench["depth"],
+                fill="#aeb9bc", stroke="#314247", stroke_width="1.4",
+            )
+        )
+        parts.append(
+            text(
+                sx(car_bench["x0"] + car_bench["length"] / 2),
+                sy(car_bench["y0"] + car_bench["depth"] / 2) + 3,
+                "PROJECT-CAR STEEL BENCH · LIFT HOLD",
+                6.5,
+                weight=700,
+            )
+        )
+    else:
+        parts.append(plan_rect(.55,5.85,9.0,.75,fill="#aeb9bc",stroke="#5d6a6e",stroke_width="1"))
+        parts.append(text(sx(5.05),sy(6.225)+3,"BANCO AUTOMOTRIZ 9,00 m · extracción en fuente / potencia dedicada",7))
 
     # RC/DIY benches, printers, LiPo and local extraction.
-    parts.append(plan_rect(.55,16.65,9.0,.75,fill="#aeb9bc",stroke="#5d6a6e",stroke_width="1"))
-    parts.append(text(sx(5.05),sy(17.03)+3,"BANCO RC / ELECTRÓNICA 9,00 m",7))
+    if p.get("built_in_benches"):
+        rc_bench = next(item for item in p["built_in_benches"] if item["id"] == "PB-BENCH-RC")
+        parts.append(
+            plan_rect(
+                rc_bench["x0"], rc_bench["y0"], rc_bench["length"], rc_bench["depth"],
+                fill="#aeb9bc", stroke="#314247", stroke_width="1.4",
+            )
+        )
+        parts.append(
+            text(
+                sx(rc_bench["x0"] + rc_bench["length"] / 2),
+                sy(rc_bench["y0"]) + 10,
+                "RC / ELECTRONICS INTEGRATED BENCH · 9.00 m",
+                6.5,
+                weight=700,
+            )
+        )
+    else:
+        parts.append(plan_rect(.55,16.65,9.0,.75,fill="#aeb9bc",stroke="#5d6a6e",stroke_width="1"))
+        parts.append(text(sx(5.05),sy(17.03)+3,"BANCO RC / ELECTRÓNICA 9,00 m",7))
     parts.append(table_symbol(2.8,12.7,4.5,1.6,"BANCO CENTRAL RC · 4,50 × 1,60"))
     parts.append(plan_rect(.65,14.4,1.2,1.8,fill="#c8d2d4",stroke="#54636a",stroke_width="1"))
     parts.append(text(sx(1.25),sy(15.3)+3,"3D ×3",7,weight=700))
@@ -252,7 +400,10 @@ def plan_sheet(p):
     for g in p["technical_glazing"]:
         yy=sy(0) if g["side"]=="A" else sy(18)
         parts.append(f'<line x1="{sx(g["x0"])}" y1="{yy}" x2="{sx(g["x1"])}" y2="{yy}" stroke="#27859a" stroke-width="8"/>')
-        offset=-13 if g["side"]=="A" else 18
+        if p.get("workstations"):
+            offset = 15 if g["side"] == "A" else -10
+        else:
+            offset=-13 if g["side"]=="A" else 18
         parts.append(text((sx(g["x0"])+sx(g["x1"]))/2,yy+offset,g["name"].upper()+" · 7,20 m",7,weight=700,fill="#246b7a"))
 
     # Grid and dimensions.
@@ -448,9 +599,18 @@ def rear_elevation_sheet(p):
 
 def side_elevation_sheet(p,side):
     is_a=side=="A"
-    code="ELE-003-R04" if is_a else "ELE-004-R04"
-    title_value=f"FACHADA LATERAL {side} · NAVE DE 36 m"
-    subtitle=("Evento principal de vidrio en sala + ventanas privadas provisionales" if is_a else "Fachada de control: taller/vida doméstica + ventanas privadas provisionales")
+    meta = p.get("drawing_meta", {})
+    code = meta.get("side_a_code" if is_a else "side_b_code", "ELE-003-R04" if is_a else "ELE-004-R04")
+    title_value = meta.get(
+        "side_a_title" if is_a else "side_b_title",
+        f"FACHADA LATERAL {side} · NAVE DE 36 m",
+    )
+    subtitle = meta.get(
+        "side_subtitle",
+        "Evento principal de vidrio en sala + ventanas privadas provisionales"
+        if is_a
+        else "Fachada de control: taller/vida doméstica + ventanas privadas provisionales",
+    )
     parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block(code,title_value,subtitle+" · orientación cardinal pendiente de predio")]
     left,base,sc=105,645,32.5
     # El alero de cada lateral sale de la fuente única de cubierta, no de un literal.
@@ -497,10 +657,103 @@ def side_elevation_sheet(p,side):
     else:
         parts.append(rect(gx,gy,gw,gh,fill="none",stroke="#27859a",stroke_width="2",stroke_dasharray="9 5"))
         parts.append(text(gx+gw/2,gy+gh/2,"ALTERNATIVA SEGÚN PREDIO",8,weight=700,fill="#246b7a"))
-    # Workstation opening toward the chosen landscape side.
-    wx=left+13.0*sc; wy=base-2.35*sc; ww=3.0*sc; wh=1.65*sc
-    parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2"))
-    parts.append(text(wx+ww/2,wy+wh/2+3,"TRABAJO "+("1" if is_a else "2"),7,weight=700,fill="#eff5f5"))
+    # Workstation opening and fixed worktop. Later revisions derive both from the
+    # parametric pair so plan and elevations cannot diverge.
+    if p.get("workstation_glazing"):
+        workstation_window = next(
+            item for item in p["workstation_glazing"] if item["side"] == side
+        )
+        workstation = next(item for item in p["workstations"] if item["side"] == side)
+        wx = left + workstation_window["x0"] * sc
+        ww = (workstation_window["x1"] - workstation_window["x0"]) * sc
+        wh = workstation_window["height"] * sc
+        wy = base - (workstation_window["sill"] + workstation_window["height"]) * sc
+        parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2.4"))
+        for i in range(1, workstation_window.get("modules", 1)):
+            xx = wx + ww * i / workstation_window["modules"]
+            parts.append(
+                f'<line x1="{xx}" y1="{wy}" x2="{xx}" y2="{wy+wh}" '
+                'stroke="#9bb3b8" stroke-width="1.1"/>'
+            )
+        worktop_x = left + workstation["worktop_x0"] * sc
+        worktop_w = workstation["worktop_length"] * sc
+        worktop_y = base - workstation["worktop_height"] * sc
+        rail_y = base - 0.68 * sc
+        parts.append(
+            f'<line x1="{worktop_x}" y1="{worktop_y}" '
+            f'x2="{worktop_x+worktop_w}" y2="{worktop_y}" '
+            'stroke="#c49a62" stroke-width="8"/>'
+        )
+        parts.append(
+            f'<line x1="{worktop_x}" y1="{rail_y}" '
+            f'x2="{worktop_x+worktop_w}" y2="{rail_y}" '
+            'stroke="#26363b" stroke-width="4"/>'
+        )
+        for fraction in (0.12, 0.5, 0.88):
+            px = worktop_x + worktop_w * fraction
+            parts.append(
+                f'<polyline points="{px-7},{rail_y} {px},{rail_y+12} {px+7},{rail_y}" '
+                'fill="none" stroke="#26363b" stroke-width="2"/>'
+            )
+        parts.append(
+            text(
+                wx + ww / 2,
+                wy + wh / 2 - 2,
+                workstation_window["name"].upper(),
+                7.5,
+                weight=700,
+                fill="#eff5f5",
+            )
+        )
+        parts.append(
+            text(
+                wx + ww / 2,
+                wy + wh / 2 + 14,
+                f'{workstation_window["x1"] - workstation_window["x0"]:.2f} × '
+                f'{workstation_window["height"]:.2f} m · sill {workstation_window["sill"]:.2f} m',
+                6.5,
+                fill="#eff5f5",
+            )
+        )
+        parts.append(
+            text(
+                worktop_x + worktop_w / 2,
+                worktop_y - 9,
+                "INTEGRATED STEEL / TIMBER WORKTOP",
+                5.6,
+                weight=700,
+                fill="#5c4229",
+            )
+        )
+        if is_a:
+            junction_x = left + workstation_window["x1"] * sc
+            junction_w = (16.2 - workstation_window["x1"]) * sc
+            parts.append(
+                rect(
+                    junction_x,
+                    base - 3.15 * sc,
+                    junction_w,
+                    3.15 * sc,
+                    fill="#c69755",
+                    stroke="#7d542b",
+                    stroke_width="1",
+                    opacity=".78",
+                )
+            )
+            parts.append(
+                text(
+                    junction_x + junction_w / 2,
+                    base - 3.15 * sc - 10,
+                    "0.20 m MULLION / TRIMMER HOLD",
+                    5.8,
+                    weight=700,
+                    fill="#8e3825",
+                )
+            )
+    else:
+        wx=left+13.0*sc; wy=base-2.35*sc; ww=3.0*sc; wh=1.65*sc
+        parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2"))
+        parts.append(text(wx+ww/2,wy+wh/2+3,"TRABAJO "+("1" if is_a else "2"),7,weight=700,fill="#eff5f5"))
     # P2 bedroom windows differ by side but retain few, repeated openings.
     wins=[g for g in p["bedroom_glazing"] if g["facade"]==side]
     for g in wins:

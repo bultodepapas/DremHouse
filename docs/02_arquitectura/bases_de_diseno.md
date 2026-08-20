@@ -1,8 +1,8 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.4
-**Fecha:** 2026-08-13
+**Versión:** 0.5
+**Fecha:** 2026-08-20
 
 ## Forma y modulación
 
@@ -106,6 +106,21 @@ hygrothermal analysis. Window openings, roof/eave, slab edge, corners, flashings
 resistance, fire/cavity barriers and thermal bridges remain separate professional gates.
 
 ## Detalle y mantenibilidad
+
+### PB integrated workstation and workshop-bench family
+
+D-068 requires two permanent PB workstations as one mirrored pair: one against each long
+wall, both facing equal nominal landscape windows and both carried by dedicated bolted
+secondary-steel service rails. The 3 × 3 m workstation reservations remain clearance
+envelopes, not rooms or raised floor zones. The workstations and technical benches share
+an economical steel-rail / replaceable-timber-worktop grammar, while their dimensions and
+design loads may differ by use.
+
+Do not assign primary gravity, lateral, facade or window-support functions to this fixed
+furniture family. Coordinate local loads, deflection, vibration, trimmers, connections,
+fire/corrosion protection, flashing, thermal bridges, condensation, power/data access,
+glare and shading through the D-068 hold points. See
+[PB integrated workstations — draft 24](pb_integrated_workstations_v0.3_b24.md).
 
 - Repetir familias de componentes.
 - Diseñar encuentros panel–estructura–vidrio–portón antes de fabricar.

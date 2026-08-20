@@ -1,0 +1,139 @@
+{
+  "revision": "0.3-draft-24-PB",
+  "status": "issued for coordination under D-068; workstation structure, facade junctions, glazing performance and final equipment remain open; not for construction",
+  "checks": [
+    {
+      "rule_id": "PB-ENV",
+      "status": "PASS",
+      "message": "Envolvente nominal 18 × 36 m"
+    },
+    {
+      "rule_id": "PB-FRONT",
+      "status": "PASS",
+      "message": "Exactamente tres accesos frontales"
+    },
+    {
+      "rule_id": "PB-CORE-SUM",
+      "status": "PASS",
+      "message": "Núcleo conserva 81,00 m² brutos"
+    },
+    {
+      "rule_id": "PB-CORE-COVER",
+      "status": "PASS",
+      "message": "Núcleo cubre los 18,00 m sin vacíos"
+    },
+    {
+      "rule_id": "PB-CORE-CLOSURE",
+      "status": "PASS",
+      "message": "Núcleo: 16.94 m netos + 0.70 m de tabiques + 2×0.18 m de envolvente = 18,00 m"
+    },
+    {
+      "rule_id": "PB-GREAT-WALL",
+      "status": "PASS",
+      "message": "Gran muro continuo en X=31,50 m con espesor conceptual 0,20 m"
+    },
+    {
+      "rule_id": "PB-CORE-DOORS",
+      "status": "PASS",
+      "message": "Cinco accesos del núcleo de mínimo 0,90 m"
+    },
+    {
+      "rule_id": "PB-REAR-EXITS",
+      "status": "PASS",
+      "message": "Bodega y escalera conservan salidas posteriores"
+    },
+    {
+      "rule_id": "PB-KITCHEN-CLEAR",
+      "status": "PASS",
+      "message": "Paso operativo cocina = 1.20 m"
+    },
+    {
+      "rule_id": "PB-PANTRY-ADJ",
+      "status": "PASS",
+      "message": "Pantry se ubica junto al frente de cocina"
+    },
+    {
+      "rule_id": "PB-STAIR-ALIGN",
+      "status": "PASS",
+      "message": "Escalera conserva alineación Y=7,40–11,00 m con P2"
+    },
+    {
+      "rule_id": "PB-TECH-GLAZING",
+      "status": "PASS",
+      "message": "Dos ventanales técnicos grandes, modulados y equivalentes"
+    },
+    {
+      "rule_id": "P2-BEDROOM-GLAZING",
+      "status": "PASS",
+      "message": "Cuatro dormitorios representan vidrio casi piso a techo"
+    },
+    {
+      "rule_id": "PB-P2-WINDOW-SYNC",
+      "status": "PASS",
+      "message": "Vanos de dormitorio idénticos en pb_b05.json y p2_b10.json"
+    },
+    {
+      "rule_id": "PB-GLAZING-IN-ROOM",
+      "status": "PASS",
+      "message": "Cada vano cae dentro del muro de su dormitorio"
+    },
+    {
+      "rule_id": "PB-WS-PAIR",
+      "status": "PASS",
+      "message": "Exactly one permanent wall-integrated workstation is reserved on each long side."
+    },
+    {
+      "rule_id": "PB-WS-MIRROR",
+      "status": "PASS",
+      "message": "The Side A and Side B workstation geometry is identical before reflection across Y=9.00 m."
+    },
+    {
+      "rule_id": "PB-WS-WALL-CONTACT",
+      "status": "PASS",
+      "message": "Both worktops meet the interior wall/service-rail plane: Y=0.18 m and Y=17.82 m."
+    },
+    {
+      "rule_id": "PB-WS-GLAZING-SYMMETRY",
+      "status": "PASS",
+      "message": "The two workstation windows have identical nominal geometry and module count."
+    },
+    {
+      "rule_id": "PB-WS-PLAN-ELEVATION-SYNC",
+      "status": "PASS",
+      "message": "Each workstation clearance zone and its facade opening share the same X extent."
+    },
+    {
+      "rule_id": "PB-WS-SILL-CLEARANCE",
+      "status": "PASS",
+      "message": "Window sill is 0.15 m above the test worktop."
+    },
+    {
+      "rule_id": "PB-WS-AXIS-CLEAR",
+      "status": "PASS",
+      "message": "Both 3.00 m workstation clearance zones remain outside the 4.00 m central perceptual axis."
+    },
+    {
+      "rule_id": "PB-WS-STRUCTURAL-BAY",
+      "status": "PASS",
+      "message": "Both workstation openings remain inside the X=12–18 m primary-frame bay pending trimmer design."
+    },
+    {
+      "rule_id": "PB-WS-BENCH-FAMILY",
+      "status": "PASS",
+      "message": "The RC and project-car benches reference the same steel-rail / replaceable-worktop family."
+    },
+    {
+      "rule_id": "PB-WS-A-MAIN-GLAZING-JUNCTION",
+      "status": "OPEN",
+      "message": "Side A retains a 0.20 m nominal mullion/trimmer hold between workstation and main glazing; detailed facade and structural design remain open."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-LIFT-INTERFACE",
+      "status": "OPEN",
+      "message": "The project-car bench remains in its predecessor test position; real lift, vehicle and tool envelopes govern final support and location."
+    }
+  ],
+  "passed": 24,
+  "open": 2,
+  "failed": 0
+}

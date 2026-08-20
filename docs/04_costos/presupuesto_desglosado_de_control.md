@@ -2,8 +2,9 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3
+**Versión:** 0.3.1
 **Fecha de precios:** 2026-08-11  
+**Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
 **Origen:** desglose atómico del target de obra física v0.2 ($941 M) y del reparto de
 fases F1/F2 de la estrategia de dos fases.  
@@ -263,6 +264,12 @@ fácilmente $8–15 M. Es hard rule: no eliminar; optimizar dimensión y especif
 | 13.03  | Puerta peatonal central 1,60 × 2,50 | un  |    1 |  $1.400.000 |  $1.400.000 | baja-media | Perfil de catálogo                |
 | 13.04  | Persianas y mosquiteros selectivos  | gl  |    1 |    $500.000 |    $500.000 | baja       | Solo donde aportan                |
 | 13.05  | Soportes y sellos de carpintería    | gl  |    1 |    $500.000 |    $500.000 | media      | Fijaciones y sellos               |
+| 13.06  | D-068 PB workstation glazing pair   | m²  | 9,90 |         TBC | not included | baja     | 2 × 3,00 × 1,65 m; reconcile before pricing |
+
+`13.06` is an unpriced measurement alert. The predecessor elevations already showed the
+same 9.90 m² nominal glass area, but it was not a named PB opening or cost-code join. It
+does not change the $20 M chapter control subtotal until duplication against `13.02`,
+facade scope, selected systems and comparable quotations are resolved.
 
 ---
 
@@ -389,6 +396,11 @@ registran como **equipamiento**, fuera de obra.
 | 21.05  | Banco central RC 1,60 × 4,50                  | gl  |    1 |  $3.000.000 | $3.000.000 | $1.500.000 | $1.500.000 | baja-media | Base robusta F1; almacenamiento F2 |
 | 21.06  | Cajoneras y gabinetes técnicos adicionales    | gl  |    1 |  $3.000.000 | $3.000.000 |         $0 | $3.000.000 | baja-media | F2                                 |
 | 21.07  | Almacenamiento de aviones/lavandería/linen    | gl  |    1 |  $2.000.000 | $2.000.000 |         $0 | $2.000.000 | baja-media | F2                                 |
+| 21.08  | D-068 integrated PB workstation pair          | un  |    2 |          TBC | not included | not included | $0 | baja | Steel rail, brackets, timber top and tray; reconcile allowances |
+
+`21.08` is an unpriced Phase 1 scope alert. Do not add it to the $30 M chapter control
+subtotal until the fixed-joinery and workshop-bench allowances are reconciled and the
+secondary steel, worktops, brackets, trays and storage are specified and quoted.
 
 ---
 

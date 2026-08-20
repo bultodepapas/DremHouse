@@ -1,8 +1,8 @@
 # Relaciones y experiencia espacial
 
 **Estatus:** activo  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11
+**Versión:** 0.2
+**Fecha:** 2026-08-20
 
 ## Secuencia maestra
 
@@ -19,7 +19,10 @@ cuatro bandas dentro de una sola vista transversal.
   diferenciados.
 - Eje peatonal: centrado, intuitivo y libre; no es corredor construido.
 - Sala: después del atelier y en doble altura; no debajo de P2.
-- Escritorios: separados, fuera de la franja sucia y orientados a vidrio/paisaje.
+- Workstations under D-068: separate, outside the dirty technical strip, mirrored against
+  the two long walls, fixed to dedicated secondary-steel service rails and directly
+  oriented toward equal nominal landscape windows. The 3 × 3 m reservations are clearance
+  envelopes, not enclosed offices or raised floor zones.
 - Comedor: en la transición de alturas.
 - Cocina: bajo P2, delante del núcleo y vinculada a apoyo limpio.
 - Bodega: acceso interior y exterior posterior; no comparte ambiente con homelab.

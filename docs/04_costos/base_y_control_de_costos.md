@@ -1,8 +1,9 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.12
+**Versión:** 0.3.13
 **Fecha de precios declarada por la fuente:** 2026-08-11  
+**Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
 — APU de hipótesis por partida (cantidades, precios unitarios, fases F1/F2 y
@@ -365,10 +366,34 @@ The omitted screen cannot be booked as a saving until the final furniture, light
 outlet and privacy strategy is measured and quoted. **No price, saving, increase,
 contingency change, or target change is recognized by D-067.**
 
+### 0.3-V — D-068 integrated PB workstation pair
+
+D-068 converts the two ground-floor desk symbols into fixed, mirrored wall-integrated
+workstations with dedicated secondary-steel service rails, bolted brackets, replaceable
+timber worktops, accessible power/data trays and two equal modelled facade openings. The
+predecessor elevations already depicted two nominal 3.00 × 1.65 m workstation windows
+(9.90 m² combined), but those openings were hard-coded outside the PB opening data and
+were not separately traceable in the cost model. D-068 makes that quantity explicit and
+repositions the test sills without increasing the nominal glass area shown by the
+predecessor elevations.
+
+Affected scope lies principally in chapters 05/06/09/10/13/17/18/21: opening trimmers
+and secondary steel; facade returns, flashing and seals; glass and frames; task power,
+lighting and data; worktops, brackets and storage. The Side A 0.20 m workstation/main-
+glazing junction and the project-car bench/lift interface remain open and can change
+quantities.
+
+The two workstations and 9.90 m² of glazing are recorded as unpriced measurement alerts
+in the atomic estimate. They may already overlap unidentified allowances in chapters 13
+and 21, so adding a price before one-to-one cost-code reconciliation would risk double
+counting. **No price, saving, increase, contingency change, phase-total change, or target
+change is recognized by D-068.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-V   | 2026-08-20 | D-068 makes two mirrored wall-integrated PB workstations, their dedicated secondary-steel/service interfaces and the predecessor pair of 3.00 × 1.65 m side windows explicit. The 9.90 m² glazing pair and two fixed workstations remain unpriced measurement alerts pending cost-code reconciliation and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-U   | 2026-08-18 | D-067 removes the 1.45 m fitted privacy screen and identifies the unchanged 35.24 m² gross primary bedroom with one name and one plan label. Final furniture, lighting, outlet and privacy scope requires coordination; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-T   | 2026-08-18 | D-066 unifies the unchanged 17.60 m² gross primary bathroom, removes the full 2.40 m intermediate wall and door, and coordinates one fixture programme. Waterproofing, drainage, ventilation, electrical, joinery and privacy quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-S   | 2026-08-18 | D-065 redistributes the unchanged 66.28 m² primary suite into a 35.24 m² bedroom, 13.44 m² dressing and unchanged 17.60 m² bathroom; it changes partitions, doors, wardrobes, privacy screen and the south window. Quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |

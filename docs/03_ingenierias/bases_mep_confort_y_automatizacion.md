@@ -1,8 +1,8 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Versión:** 0.3
+**Fecha:** 2026-08-20
 
 ## Filosofía
 
@@ -32,6 +32,11 @@ La iluminación se organizará por capas: general integrada a estructura, tarea 
 y cocina, ambiental residencial, circulación/seguridad y exterior. Evitar que una pieza
 decorativa compita con la nave o sea indispensable para iluminarla.
 
+Under D-068, each fixed PB workstation receives an accessible task-power and lighting
+interface below the worktop. Keep outlet boxes, drivers and cable trays removable without
+disturbing the facade air/water seals, window drainage or structural connections. Final
+outlet counts and equipment loads require the real computer and peripheral schedule.
+
 ## Datos, red y automatización
 
 - Rack con acceso frontal/posterior, energía, ventilación y detección.
@@ -42,6 +47,10 @@ decorativa compita con la nave o sea indispensable para iluminarla.
 - Etiquetado extremo a extremo y planos as-built.
 - Sensores de temperatura, humedad, CO, CO₂, VOC, partículas, fugas, presencia, puertas,
   energía, lluvia y condiciones exteriores según análisis de riesgo.
+
+Route dedicated data to both D-068 workstations through the accessible steel service-rail
+zone. Maintain power/data separation, bond exposed metal where required, retain spare
+conduit capacity and avoid inaccessible cables inside primary steel or window frames.
 
 Home Assistant coordinará confort, alertas y eficiencia, pero detección/alarma exigida,
 protecciones eléctricas, controles de seguridad de equipos y paro de emergencia conservarán
