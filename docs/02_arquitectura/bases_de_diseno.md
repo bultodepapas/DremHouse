@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.5
+**Versión:** 0.6
 **Fecha:** 2026-08-20
 
 ## Forma y modulación
@@ -121,6 +121,13 @@ furniture family. Coordinate local loads, deflection, vibration, trimmers, conne
 fire/corrosion protection, flashing, thermal bridges, condensation, power/data access,
 glare and shading through the D-068 hold points. See
 [PB integrated workstations — draft 24](pb_integrated_workstations_v0.3_b24.md).
+
+D-069 retains this family and enlarges each workstation to a 3.00 × 0.90 m full-bay
+worktop with two 0.70 m-wide suspended steel three-drawer cabinets and a 1.60 m clear
+central knee/chair opening. The increased storage makes loaded-drawer, impact, racking,
+deflection and cable-access checks more important. Treat these as test dimensions pending
+the real equipment schedule and a full-scale joinery mock-up. See
+[PB enlarged workstation cabinets — draft 25](pb_enlarged_workstation_cabinets_v0.3_b25.md).
 
 - Repetir familias de componentes.
 - Diseñar encuentros panel–estructura–vidrio–portón antes de fabricar.

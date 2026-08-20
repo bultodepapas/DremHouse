@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.1
+**Versión:** 0.3.2
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -396,11 +396,13 @@ registran como **equipamiento**, fuera de obra.
 | 21.05  | Banco central RC 1,60 × 4,50                  | gl  |    1 |  $3.000.000 | $3.000.000 | $1.500.000 | $1.500.000 | baja-media | Base robusta F1; almacenamiento F2 |
 | 21.06  | Cajoneras y gabinetes técnicos adicionales    | gl  |    1 |  $3.000.000 | $3.000.000 |         $0 | $3.000.000 | baja-media | F2                                 |
 | 21.07  | Almacenamiento de aviones/lavandería/linen    | gl  |    1 |  $2.000.000 | $2.000.000 |         $0 | $2.000.000 | baja-media | F2                                 |
-| 21.08  | D-068 integrated PB workstation pair          | un  |    2 |          TBC | not included | not included | $0 | baja | Steel rail, brackets, timber top and tray; reconcile allowances |
+| 21.08  | D-068/D-069 enlarged PB workstation pair     | un  |    2 |          TBC | not included | not included | $0 | baja | 2 × 3.00 × 0.90 m tops + 4 suspended steel cabinets; reconcile allowances |
 
-`21.08` is an unpriced Phase 1 scope alert. Do not add it to the $30 M chapter control
-subtotal until the fixed-joinery and workshop-bench allowances are reconciled and the
-secondary steel, worktops, brackets, trays and storage are specified and quoted.
+`21.08` is an unpriced Phase 1 scope alert. D-069 updates the same line rather than adding
+a duplicate: 5.40 m² total worktop area, four 0.70 × 0.75 × 0.62 m suspended steel
+cabinet units and twelve drawers. Do not add it to the $30 M chapter control subtotal
+until fixed-joinery and workshop-bench allowances are reconciled and the secondary steel,
+worktops, brackets, trays, cabinets and storage loads are specified and quoted.
 
 ---
 

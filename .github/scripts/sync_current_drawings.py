@@ -241,7 +241,8 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b24_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b25_pb/`,
+`conceptual_v0.3_b24_pb/`,
 `conceptual_v0.3_b23_p2/`, `estructura/`, and `integracion_v0.4_i01/`—remain preserved.
 They are not renamed or overwritten.
 
@@ -313,7 +314,7 @@ The publication layer currently contains **{len(drawings)} SVG/PNG pairs**:
 **{architecture} architectural views** and **{structure} structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
-owner-priority interfaces, the D-068 PB workstation/bench family, structural
+owner-priority interfaces, the D-069 PB workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
@@ -322,8 +323,8 @@ The set must be read together:
 - the ground-floor base sheet predates D-050's laundry relocation, which is explicitly
   shown in the current owner-priorities detail;
 - the ground-floor plan, both side elevations and PB workstation detail coordinate the
-  D-068 mirrored wall-integrated workstations, while their secondary steel, facade and
-  MEP interfaces remain open;
+  D-069 enlarged mirrored workstations and suspended steel drawer cabinets, while their
+  secondary steel, joinery, facade and MEP interfaces remain open;
 - the rear façade remains supplemented by D-051's retractable-stair reserve;
 - roof form is represented by the b07 sections and façades, while the current rooflight
   position is represented by the 0.4-I01/D-054 roof plan and daylight section; and

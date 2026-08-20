@@ -1,7 +1,7 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.3
+**Versión:** 0.4
 **Fecha:** 2026-08-20
 
 ## Filosofía
@@ -51,6 +51,11 @@ outlet counts and equipment loads require the real computer and peripheral sched
 Route dedicated data to both D-068 workstations through the accessible steel service-rail
 zone. Maintain power/data separation, bond exposed metal where required, retain spare
 conduit capacity and avoid inaccessible cables inside primary steel or window frames.
+
+D-069 cabinet banks may not block that accessible service zone. Coordinate cable entries,
+drawer extension, ventilation for equipment stored in cabinets and removable access
+panels with the full-scale workstation mock-up; bond the powder-coated steel carcasses
+where required by the electrical design.
 
 Home Assistant coordinará confort, alertas y eficiencia, pero detección/alarma exigida,
 protecciones eléctricas, controles de seguridad de equipos y paro de emergencia conservarán

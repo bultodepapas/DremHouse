@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.13
+**Versión:** 0.3.14
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -389,10 +389,27 @@ and 21, so adding a price before one-to-one cost-code reconciliation would risk 
 counting. **No price, saving, increase, contingency change, phase-total change, or target
 change is recognized by D-068.**
 
+### 0.3-W — D-069 enlarged worktops and suspended drawer cabinets
+
+D-069 replaces the b24 2.40 × 0.80 m open worktop test with two full-bay 3.00 × 0.90 m
+worktops and four large suspended powder-coated-steel cabinet units. Nominal worktop area
+increases from 3.84 m² to 5.40 m² for the pair, a 1.56 m² increase, and the joinery scope
+now explicitly includes twelve large drawers, slides, pulls, cabinet carcasses, attachment
+hardware and removable service access. The 9.90 m² workstation glazing quantity is
+unchanged.
+
+This increases unpriced exposure in chapters 05/06/17/18/21 through secondary steel,
+loaded-cabinet support, coatings, task services and fixed joinery. Update atomic alert
+`21.08`; do not create a second cost line that would double count the D-068 pair. Real
+equipment, storage loads, structural design, cabinet specification, mock-up and comparable
+quotations are required. **No price, saving, increase, contingency change, phase-total
+change, or target change is recognized by D-069.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-W   | 2026-08-20 | D-069 enlarges the two D-068 worktops from 3.84 m² to 5.40 m² combined and adds four suspended steel cabinet units with twelve drawers. Atomic alert `21.08` is updated in place to avoid double counting; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-V   | 2026-08-20 | D-068 makes two mirrored wall-integrated PB workstations, their dedicated secondary-steel/service interfaces and the predecessor pair of 3.00 × 1.65 m side windows explicit. The 9.90 m² glazing pair and two fixed workstations remain unpriced measurement alerts pending cost-code reconciliation and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-U   | 2026-08-18 | D-067 removes the 1.45 m fitted privacy screen and identifies the unchanged 35.24 m² gross primary bedroom with one name and one plan label. Final furniture, lighting, outlet and privacy scope requires coordination; **no price, saving, increase, contingency or target change is recognized.** |
 | 0.3-T   | 2026-08-18 | D-066 unifies the unchanged 17.60 m² gross primary bathroom, removes the full 2.40 m intermediate wall and door, and coordinates one fixture programme. Waterproofing, drainage, ventilation, electrical, joinery and privacy quantities require remeasurement; **no price, saving, increase, contingency or target change is recognized.** |

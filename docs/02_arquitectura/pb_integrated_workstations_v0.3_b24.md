@@ -1,10 +1,14 @@
 # PB integrated workstations — draft 24
 
-**Status:** active schematic coordination hypothesis under D-068; not for construction
+**Status:** retained predecessor; joinery size superseded by D-069/PB b25; not for construction
 **Version:** 0.3-draft-24-PB
 **Date:** 2026-08-20
 **Scope:** ground floor (PB), both long-side facades, workstation/bench architectural family
 **Source:** owner visual review of the current PB SVGs, D-068, PB b05/R04 and roof/facade b07/R06.
+
+> **Supersession note — 2026-08-20.** D-069/PB b25 retains the mirrored wall/window
+> concept and enlarges each worktop from 2.40 × 0.80 m to 3.00 × 0.90 m, adding two
+> substantial suspended steel drawer cabinets. This issue remains the predecessor record.
 
 ## Purpose
 

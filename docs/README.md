@@ -54,11 +54,13 @@ they stay stable while their explicitly promoted versioned source can advance.
   active D-050/D-059 R12.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   predecessor retaining study wall thicknesses, Great Wall, reorganized core, kitchen,
-  and equipped workshop; its workstation geometry is superseded by D-068/PB b24.
+  and equipped workshop; its workstation geometry is superseded by D-068/D-069 and PB b25.
 - [PB integrated workstations — draft 24](02_arquitectura/pb_integrated_workstations_v0.3_b24.md):
-  D-068 replaces the floating desk symbols with one mirrored pair of wall-integrated
-  steel/timber workstations, equal landscape windows, a shared workshop-bench family and
-  explicit structural, facade, MEP, comfort and cost hold points.
+  retained D-068 predecessor that replaces the floating desk symbols with one mirrored
+  pair of wall-integrated workstations and equal landscape windows.
+- [PB enlarged workstation cabinets — draft 25](02_arquitectura/pb_enlarged_workstation_cabinets_v0.3_b25.md):
+  active D-069 issue with full-bay 3.00 × 0.90 m worktops, four large suspended steel
+  three-drawer cabinets and explicit structural, joinery, MEP and cost hold points.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

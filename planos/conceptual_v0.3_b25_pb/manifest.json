@@ -1,0 +1,16 @@
+{
+  "revision": "0.3-draft-25-PB",
+  "status": "issued for coordination under D-069; enlarged cabinetry, structural attachment, facade interfaces and final equipment remain open; not for construction",
+  "source": "dreamhouse/pb_b25_delta.json",
+  "source_sha256": "2d41642fe8a9d4f3d0cf05ed590020a16e12426809fa7134c2f3bcb7df3b22fb",
+  "generator": "dreamhouse/generate_pb_b25.py",
+  "supersedes": "0.3-draft-24-PB / R05-R07-R00 for ground-floor workstation and cabinetry coordination only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R06_PB-ENLARGED-INTEGRATED-WORKSTATIONS.svg",
+    "DH-ARQ-ELE-003-R08_SIDE-A-FULL-BAY-WORKSTATION.svg",
+    "DH-ARQ-ELE-004-R08_SIDE-B-FULL-BAY-WORKSTATION.svg",
+    "DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

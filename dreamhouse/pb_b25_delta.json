@@ -1,0 +1,39 @@
+{
+  "base_delta": "dreamhouse/pb_b24_delta.json",
+  "base_delta_sha256": "a3997e0e5d89b48515a5e8bd331a2cb307b5c241a69a50e45a8cd623ed03bc7a",
+  "revision": "0.3-draft-25-PB",
+  "status": "issued for coordination under D-069; enlarged cabinetry, structural attachment, facade interfaces and final equipment remain open; not for construction",
+  "date": "2026-08-20",
+  "supersedes": "0.3-draft-24-PB / R05-R07-R00 for ground-floor workstation and cabinetry coordination only",
+  "decision": "D-069",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R06",
+    "plan_title": "COORDINATED GROUND FLOOR · ENLARGED WORKSTATIONS",
+    "plan_subtitle": "D-069 full-bay worktops + suspended steel drawer cabinets · study dimensions in metres",
+    "side_a_code": "ELE-003-R08",
+    "side_b_code": "ELE-004-R08",
+    "side_a_title": "SIDE A ELEVATION · FULL-BAY WORKSTATION",
+    "side_b_title": "SIDE B ELEVATION · FULL-BAY WORKSTATION",
+    "side_subtitle": "D-069 full-width worktop + two large suspended steel drawer cabinets",
+    "detail_code": "DET-006-R01",
+    "detail_title": "PB ENLARGED WORKSTATION + CABINET FAMILY",
+    "detail_subtitle": "D-069 full-bay worktop · suspended steel drawer banks · not for construction"
+  },
+  "workstation_update": {
+    "worktop_x0": 13.0,
+    "worktop_length": 3.0,
+    "worktop_depth": 0.9,
+    "worktop_height": 0.75,
+    "drawer_cabinet_width": 0.7,
+    "drawer_cabinet_depth": 0.75,
+    "drawer_cabinet_height": 0.62,
+    "drawer_cabinet_count": 2,
+    "drawer_levels": 3,
+    "central_knee_clear_width": 1.6,
+    "cabinet_material": "powder-coated steel cabinet carcass and drawer fronts suspended from the dedicated secondary-steel workstation frame"
+  },
+  "coordination_holds_append": [
+    "The enlarged worktop and two loaded drawer cabinets increase local dead, storage, eccentric and impact demands on each secondary-steel service frame; profiles, brackets, fasteners and deflection limits require structural design.",
+    "Final drawer slides, handles, locks, cable routes and chair/monitor clearances require a full-scale joinery mock-up before fabrication."
+  ]
+}

@@ -244,6 +244,38 @@ def plan_sheet(p):
                     rx="2",
                 )
             )
+            cabinet_width = ws.get("drawer_cabinet_width")
+            cabinet_depth = ws.get("drawer_cabinet_depth")
+            if cabinet_width and cabinet_depth:
+                cabinet_y = (
+                    ext if is_a else W - ext - cabinet_depth
+                )
+                for cabinet_x in (
+                    ws["worktop_x0"],
+                    ws["worktop_x0"] + ws["worktop_length"] - cabinet_width,
+                ):
+                    parts.append(
+                        plan_rect(
+                            cabinet_x,
+                            cabinet_y,
+                            cabinet_width,
+                            cabinet_depth,
+                            fill="#9e7650",
+                            stroke="#3d4c51",
+                            stroke_width="1.1",
+                            rx="1",
+                        )
+                    )
+                    parts.append(
+                        text(
+                            sx(cabinet_x + cabinet_width / 2),
+                            sy(cabinet_y + cabinet_depth / 2) + 1.5,
+                            f'{ws.get("drawer_levels", 3)}D',
+                            4.8,
+                            weight=700,
+                            fill="#fff8ed",
+                        )
+                    )
             parts.append(
                 text(
                     sx(ws["worktop_x0"] + ws["worktop_length"] / 2),
@@ -695,6 +727,31 @@ def side_elevation_sheet(p,side):
                 f'<polyline points="{px-7},{rail_y} {px},{rail_y+12} {px+7},{rail_y}" '
                 'fill="none" stroke="#26363b" stroke-width="2"/>'
             )
+        cabinet_width = workstation.get("drawer_cabinet_width")
+        cabinet_height = workstation.get("drawer_cabinet_height")
+        if cabinet_width and cabinet_height:
+            cabinet_top = worktop_y + 4
+            cabinet_h = cabinet_height * sc
+            cabinet_w = cabinet_width * sc
+            for cabinet_x in (worktop_x, worktop_x + worktop_w - cabinet_w):
+                parts.append(
+                    rect(
+                        cabinet_x,
+                        cabinet_top,
+                        cabinet_w,
+                        cabinet_h,
+                        fill="#8d6745",
+                        stroke="#26363b",
+                        stroke_width="1.2",
+                    )
+                )
+                for drawer in range(1, workstation.get("drawer_levels", 3)):
+                    drawer_y = cabinet_top + cabinet_h * drawer / workstation.get("drawer_levels", 3)
+                    parts.append(
+                        f'<line x1="{cabinet_x}" y1="{drawer_y}" '
+                        f'x2="{cabinet_x+cabinet_w}" y2="{drawer_y}" '
+                        'stroke="#d6c1a5" stroke-width=".8"/>'
+                    )
         parts.append(
             text(
                 wx + ww / 2,

@@ -1,7 +1,7 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.3
+**Versión:** 0.4
 **Fecha:** 2026-08-20
 
 ## Alcance
@@ -20,6 +20,8 @@ cargas y análisis sería falsa ingeniería.
 - Interacción entre estructura visible, portones, paneles, vidrio, redes y drenaje.
 - D-068 workstation and workshop-bench rails, facade-opening trimmers, local eccentric
   loads and vibration without loading window frames or assuming facade girts are adequate.
+- D-069 loaded drawer, impact and racking demands from four large suspended steel cabinet
+  units, including serviceability of the 3.00 × 0.90 m worktops and secondary frames.
 - Viento, sismo, estabilidad global, flechas y derivas de una caja liviana de gran tamaño.
 
 ## Datos de entrada obligatorios

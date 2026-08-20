@@ -144,12 +144,16 @@ def translate_visible_text(svg: str) -> str:
 def workstation_detail_sheet(model: dict[str, Any]) -> str:
     window = model["workstation_glazing"][0]
     workstation = model["workstations"][0]
+    meta = model.get("drawing_meta", {})
     parts = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',
         base.title_block(
-            "DET-006-R00",
-            "PB INTEGRATED WORKSTATION + BENCH FAMILY",
-            "D-068 coordination detail · mirrored pair · dedicated secondary steel · not for construction",
+            meta.get("detail_code", "DET-006-R00"),
+            meta.get("detail_title", "PB INTEGRATED WORKSTATION + BENCH FAMILY"),
+            meta.get(
+                "detail_subtitle",
+                "D-068 coordination detail · mirrored pair · dedicated secondary steel · not for construction",
+            ),
         ),
     ]
 
@@ -172,7 +176,7 @@ def workstation_detail_sheet(model: dict[str, Any]) -> str:
     parts.append(base.text(wall_x+58, (head_y+sill_y)/2, "COORDINATED WINDOW FRAME", 9, "start", 700, "#294f58"))
     parts.append(base.rect(wall_x-4, rail_y-10, 48, 20, fill="#26363b", stroke="#172126", stroke_width="1"))
     parts.append(base.rect(wall_x+20, worktop_y-7, 260, 14, fill="#c99f6b", stroke="#5b432b", stroke_width="1.5"))
-    parts.append(base.text(wall_x+150, worktop_y+3, "REPLACEABLE TIMBER WORKTOP · 0.80 m TEST DEPTH", 7, weight=700, fill="#3f2d20"))
+    parts.append(base.text(wall_x+150, worktop_y+3, f'REPLACEABLE TIMBER WORKTOP · {workstation["worktop_depth"]:.2f} m TEST DEPTH', 7, weight=700, fill="#3f2d20"))
     parts.append(
         f'<polygon points="{wall_x+42},{rail_y+8} {wall_x+142},{worktop_y+7} '
         f'{wall_x+42},{worktop_y+7}" fill="none" stroke="#26363b" stroke-width="4"/>'
@@ -199,29 +203,56 @@ def workstation_detail_sheet(model: dict[str, Any]) -> str:
     for i in (1, 2):
         xx = ex + ew * i / 3
         parts.append(f'<line x1="{xx}" y1="{ey}" x2="{xx}" y2="{ey+eh}" stroke="#9bb3b8" stroke-width="2"/>')
-    work_x, work_y, work_w = ex + 51, ey + eh + 26, ew - 102
+    window_width = window["x1"] - window["x0"]
+    work_w = ew * workstation["worktop_length"] / window_width
+    work_x, work_y = ex + (ew - work_w) / 2, ey + eh + 26
     parts.append(f'<line x1="{work_x}" y1="{work_y}" x2="{work_x+work_w}" y2="{work_y}" stroke="#c49a62" stroke-width="14"/>')
     parts.append(f'<line x1="{work_x}" y1="{work_y+15}" x2="{work_x+work_w}" y2="{work_y+15}" stroke="#26363b" stroke-width="6"/>')
     for fraction in (0.12, 0.5, 0.88):
         px = work_x + work_w * fraction
         parts.append(f'<polyline points="{px-12},{work_y+16} {px},{work_y+42} {px+12},{work_y+16}" fill="none" stroke="#26363b" stroke-width="3"/>')
+    cabinet_width = workstation.get("drawer_cabinet_width")
+    cabinet_height = workstation.get("drawer_cabinet_height")
+    if cabinet_width and cabinet_height:
+        module_scale = ew / window_width
+        cabinet_w = cabinet_width * module_scale
+        cabinet_h = cabinet_height * module_scale
+        cabinet_y = work_y + 18
+        for cabinet_x in (work_x, work_x + work_w - cabinet_w):
+            parts.append(base.rect(cabinet_x, cabinet_y, cabinet_w, cabinet_h, fill="#8d6745", stroke="#26363b", stroke_width="2"))
+            for drawer in range(1, workstation.get("drawer_levels", 3)):
+                drawer_y = cabinet_y + cabinet_h * drawer / workstation.get("drawer_levels", 3)
+                parts.append(f'<line x1="{cabinet_x}" y1="{drawer_y}" x2="{cabinet_x+cabinet_w}" y2="{drawer_y}" stroke="#d6c1a5" stroke-width="1.2"/>')
+            for drawer in range(workstation.get("drawer_levels", 3)):
+                handle_y = cabinet_y + cabinet_h * (drawer + 0.5) / workstation.get("drawer_levels", 3)
+                parts.append(f'<line x1="{cabinet_x+cabinet_w*.38}" y1="{handle_y}" x2="{cabinet_x+cabinet_w*.62}" y2="{handle_y}" stroke="#efe2cf" stroke-width="2"/>')
     parts.append(base.text(ex+ew/2, ey+eh/2, "DIRECT LANDSCAPE VIEW", 12, weight=700, fill="#eff5f5"))
-    parts.append(base.text(ex+ew/2, work_y-14, "FIXED WORKSTATION · 2.40 m TEST LENGTH", 9, weight=700, fill="#5b432b"))
-    parts.append(base.text(ex+ew/2, work_y+72, "Same geometry on Side A and Side B; reflect across Y=9.00 m", 8, weight=700, fill="#294b52"))
+    parts.append(base.text(ex+ew/2, work_y-14, f'FIXED WORKSTATION · {workstation["worktop_length"]:.2f} m TEST LENGTH', 9, weight=700, fill="#5b432b"))
+    caption_y = work_y + (142 if cabinet_width else 72)
+    parts.append(base.text(ex+ew/2, caption_y, "Same geometry on Side A and Side B; reflect across Y=9.00 m", 8, weight=700, fill="#294b52"))
 
     # C — kit and hold points.
-    parts.append(base.text(660, 620, "C · COMMON LOW-COST KIT OF PARTS", 14, "start", 700))
+    kit_title_y = 660 if cabinet_width else 620
+    kit_start_y = 680 if cabinet_width else 650
+    kit_step = 32 if cabinet_width else 42
+    kit_height = 24 if cabinet_width else 32
+    parts.append(base.text(660, kit_title_y, "C · COMMON LOW-COST KIT OF PARTS", 14, "start", 700))
+    worktop_note = (
+        "Replaceable timber top + two large suspended steel three-drawer cabinets"
+        if cabinet_width
+        else "Replaceable local timber worktop; desks and benches may use different duty classes"
+    )
     kit = [
         ("01", "Dedicated secondary-steel rail and bolted brackets"),
-        ("02", "Replaceable local timber worktop; desks and benches may use different duty classes"),
+        ("02", worktop_note),
         ("03", "Accessible separated power/data tray and task-lighting provision"),
         ("04", "Window trimmers, seals, flashing and thermal bridge resolved as one facade detail"),
     ]
     for index, (number, note) in enumerate(kit):
-        y = 650 + index * 42
-        parts.append(base.rect(660, y, 620, 32, fill="#f1eee7", stroke="#c0bbb0", stroke_width=".8"))
-        parts.append(base.text(676, y+21, number, 8, "start", 700, "#8e3825"))
-        parts.append(base.text(710, y+21, note, 7.5, "start"))
+        y = kit_start_y + index * kit_step
+        parts.append(base.rect(660, y, 620, kit_height, fill="#f1eee7", stroke="#c0bbb0", stroke_width=".8"))
+        parts.append(base.text(676, y+18, number, 8, "start", 700, "#8e3825"))
+        parts.append(base.text(710, y+18, note, 7.5, "start"))
 
     parts.append(base.rect(70, 825, 1260, 55, fill="#fff4df", stroke="#bd5c3c", stroke_width="1"))
     parts.append(base.text(88, 848, "ENGINEERING HOLD", 10, "start", 700, "#8e3825"))

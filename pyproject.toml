@@ -28,6 +28,7 @@ include = ["dreamhouse*"]
 "dreamhouse" = [
   "pb_b05.json",
   "pb_b24_delta.json",
+  "pb_b25_delta.json",
   "p2_b06.json",
   "p2_b09.json",
   "p2_b10.json",

@@ -48,16 +48,16 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>23</strong> current SVG/PNG pairs · <strong>123</strong> preserved versioned sheets · <strong>66</strong> documents · <strong>59</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>23</strong> current SVG/PNG pairs · <strong>127</strong> preserved versioned sheets · <strong>67</strong> documents · <strong>60</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor schematic plan with mirrored wall-integrated workstations" width="100%"></a>
-  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-24-PB</sub>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor schematic plan with enlarged mirrored workstations and steel drawer cabinets" width="100%"></a>
+  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-25-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b24_pb/DH-ARQ-PLN-001-R05_PB-INTEGRATED-WORKSTATIONS.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b25_pb/DH-ARQ-PLN-001-R06_PB-ENLARGED-INTEGRATED-WORKSTATIONS.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
@@ -96,10 +96,10 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </tr>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House integrated ground-floor workstation and workshop-bench schematic detail" width="100%"></a>
-  <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-24-PB</sub>
-  <br><strong>PB integrated workstation + bench family</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b24_pb/DH-ARQ-DET-006-R00_PB-INTEGRATED-WORKSTATIONS.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House enlarged ground-floor workstation and suspended steel cabinet schematic detail" width="100%"></a>
+  <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-25-PB</sub>
+  <br><strong>PB enlarged workstation + cabinet family</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b25_pb/DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>

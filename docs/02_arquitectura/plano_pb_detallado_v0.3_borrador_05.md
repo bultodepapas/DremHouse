@@ -1,7 +1,8 @@
 # Planta baja detallada v0.3 — borrador 05
 
-**Estatus:** retained predecessor; superseded by D-068/PB b24 for workstation geometry
-and side-workstation openings; all other stated limitations remain; not for construction
+**Estatus:** retained predecessor; superseded by D-068/D-069 and current PB b25 for
+workstation geometry, cabinetry and side-workstation openings; all other stated
+limitations remain; not for construction
 **Versión:** 0.3-borrador-05-PB  
 **Fecha:** 2026-08-11  
 **Alcance:** planta baja exclusivamente  
@@ -9,7 +10,8 @@ and side-workstation openings; all other stated limitations remain; not for cons
 
 > **Supersession note — 2026-08-20.** D-068/PB b24 replaces the two floating desk
 > symbols with one mirrored pair of wall-integrated workstations and modelled side
-> windows. This historical issue remains the source for unaffected PB b05 geometry.
+> windows; D-069/PB b25 enlarges their worktops and adds suspended steel drawer cabinets.
+> This historical issue remains the source for unaffected PB b05 geometry.
 
 ## Propósito
 
