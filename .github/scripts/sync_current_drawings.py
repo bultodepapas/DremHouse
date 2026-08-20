@@ -241,7 +241,9 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b27_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b29_pb/`,
+`conceptual_v0.3_b28_pb/`,
+`conceptual_v0.3_b27_pb/`,
 `conceptual_v0.3_b26_pb/`,
 `conceptual_v0.3_b25_pb/`,
 `conceptual_v0.3_b24_pb/`,
@@ -316,8 +318,8 @@ The publication layer currently contains **{len(drawings)} SVG/PNG pairs**:
 **{architecture} architectural views** and **{structure} structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
-owner-priority interfaces, the D-071 PB living/Side B TV wall and D-069 workstation/cabinet
-family, structural
+owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB
+living/Side B TV wall and D-069 workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
@@ -328,6 +330,9 @@ The set must be read together:
 - the ground-floor plan and TV-wall elevation coordinate the D-071 living group directly
   against the Side B perimeter wall, independent dining and clear pedestrian axis; the
   earlier Side B issue removes the unassigned alternative opening;
+- the same ground-floor plan coordinates D-073's two 9.00 m technical benches from their
+  front interior corners and retains D-072's inward-shifted lift envelope; door-jamb and
+  real equipment clearances remain open;
 - both side elevations and the PB workstation detail retain the D-069 enlarged mirrored
   workstations and suspended steel drawer cabinets, while secondary steel, joinery,
   facade, TV-wall backing, AV and MEP interfaces remain open;

@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.15<br>
+**Version:** 1.17<br>
 **Date:** 2026-08-20<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -19,9 +19,9 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with enlarged workstations, living room facing a 100-inch TV on the Side B hall wall, clear central axis and dining beside the kitchen" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with corner-start wall-integrated Project Car and RC workshop benches, enlarged workstations, living room facing a 100-inch TV on the Side B wall, dining and kitchen" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-27-PB · <a href="../../planos/conceptual_v0.3_b27_pb/DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-29-PB · <a href="../../planos/conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
@@ -106,8 +106,8 @@ The publication layer currently contains **24 SVG/PNG pairs**:
 **19 architectural views** and **5 structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
-owner-priority interfaces, the D-071 PB living/Side B TV wall and D-069 workstation/cabinet
-family, structural
+owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB
+living/Side B TV wall and D-069 workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
@@ -118,6 +118,9 @@ The set must be read together:
 - the ground-floor plan and TV-wall elevation coordinate the D-071 living group directly
   against the Side B perimeter wall, independent dining and clear pedestrian axis; the
   earlier Side B issue removes the unassigned alternative opening;
+- the same ground-floor plan coordinates D-073's two 9.00 m technical benches from their
+  front interior corners and retains D-072's inward-shifted lift envelope; door-jamb and
+  real equipment clearances remain open;
 - both side elevations and the PB workstation detail retain the D-069 enlarged mirrored
   workstations and suspended steel drawer cabinets, while secondary steel, joinery,
   facade, TV-wall backing, AV and MEP interfaces remain open;

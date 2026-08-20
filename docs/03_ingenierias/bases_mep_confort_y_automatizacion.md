@@ -1,7 +1,7 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.6
+**Versión:** 0.8
 **Fecha:** 2026-08-20
 
 ## Filosofía
@@ -56,6 +56,16 @@ D-069 cabinet banks may not block that accessible service zone. Coordinate cable
 drawer extension, ventilation for equipment stored in cabinets and removable access
 panels with the full-scale workstation mock-up; bond the powder-coated steel carcasses
 where required by the electrical design.
+
+Under D-072, route project-car task power, lighting, source extraction, controls and any
+compressed-air service through an accessible Side A bench zone. Keep isolators reachable,
+protect services from vehicle/tool impact and preserve technical-window drainage and
+facade air/water seals. The selected lift and vehicle must govern final outlet, hose,
+duct, emergency-stop and equipment-clearance positions.
+
+Under D-073, start both accessible bench-service rails at the front interior corners but
+keep isolators, bends and removable covers clear of industrial-door jambs, tracks, guards
+and seals. Do not create concealed dead-end service pockets at either corner.
 
 Under D-071, provide an accessible service zone at the Side B perimeter wall for dedicated
 power, data, spare AV conduits, speakers, controls and equipment ventilation. Keep

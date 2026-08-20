@@ -1,7 +1,7 @@
 # Programa arquitectónico
 
 **Estatus:** activo para prueba v0.3  
-**Versión:** 0.4
+**Versión:** 0.6
 **Fecha:** 2026-08-20
 **Nota:** áreas brutas/nominales sin descontar estructura, cerramientos y acabados.
 
@@ -45,14 +45,22 @@ debe probar estructura, sellos, drenaje, maniobra y sistema comercial de portone
 | Territorio car project              |              ≈7,0 × 10,5 m = 73,5 m² |
 | Prisma operativo lift/vehículo      |                         ≈6,0 × 8,5 m |
 | Territorio RC/DIY                   |              ≈7,0 × 10,5 m = 73,5 m² |
-| Banco longitudinal principal        |              ≈9 m; fondo 0,75–0,80 m |
+| Banco Project Car contra lateral A  | 9,00 × 0,75 m; starts X=0,18 m; worktop +0,90 m |
+| Banco RC/electrónica contra lateral B | 9,00 × 0,75 m; starts X=0,18 m; worktop +0,90 m |
 | Tramo secundario opcional           |                               ≈4–5 m |
 | Banco central RC                    |                       ≈1,60 × 4,50 m |
 | Circulación alrededor del banco     | mínimo ≈1,20 m; deseable 1,40–1,50 m |
 | Franja de respiración antes de sala |                           ≈1,8–2,0 m |
 
-Debe comprobarse con el carro, lift, carros de herramienta, aviones RC e impresoras 3D
-reales. La reserva dimensional no reemplaza la ficha técnica del equipo.
+Under D-072 both long technical benches are fixed against opposite perimeter walls and
+sit below their respective technical windows. The project-car lift/vehicle test envelope
+shifts inward, but its 0.12 m plan gap to the bench is graphic non-overlap only. Verify
+the real car, lift, open doors, tool carts, source extraction and manufacturer working
+clearances; the dimensional reserve does not replace equipment data.
+
+Under D-073 both benches begin at their respective front interior corners and end at
+X=9.18 m. The nominal 0.27 m gaps to the adjacent front industrial-door openings require
+developed jamb, track, seal, guard and maintenance coordination.
 
 ## Zona social y doméstica
 

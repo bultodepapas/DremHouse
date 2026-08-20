@@ -510,12 +510,53 @@ def plan_sheet(p):
     main_glazing_label_y = sy(0) + 15 if p.get("workstations") else sy(.55)
     parts.append(text(sx(18.35),main_glazing_label_y,"VIDRIO PRINCIPAL PROVISIONAL · bolsillo de cortina acústica",7,fill="#246b7a"))
 
-    # Car bay and lift safety envelope.
-    parts.append(plan_rect(1.6,.45,6.4,5.9,fill="none",stroke="#b14e35",stroke_width="1.8",stroke_dasharray="9 5"))
-    parts.append(text(sx(4.8),sy(6.15),"PRISMA DE EXCLUSIÓN LIFT / VEHÍCULO",7,weight=700,fill="#9a3d2a"))
-    parts.append(car_symbol(2.25,1.55))
-    for px in (2.0,6.85):
-        parts.append(plan_rect(px,.65,.35,4.0,fill="#48555b",stroke="#263238",stroke_width="1"))
+    # Car bay and lift safety envelope. Later revisions can shift the full test
+    # assembly inward as one unit to coordinate a permanent wall-side workbench.
+    car_lift = p.get(
+        "car_lift_layout",
+        {
+            "envelope": {"x": 1.6, "y": 0.45, "w": 6.4, "d": 5.9},
+            "car": {"x": 2.25, "y": 1.55},
+            "posts": {"x": [2.0, 6.85], "y": 0.65, "w": 0.35, "d": 4.0},
+        },
+    )
+    lift_envelope = car_lift["envelope"]
+    parts.append(
+        plan_rect(
+            lift_envelope["x"],
+            lift_envelope["y"],
+            lift_envelope["w"],
+            lift_envelope["d"],
+            fill="none",
+            stroke="#b14e35",
+            stroke_width="1.8",
+            stroke_dasharray="9 5",
+        )
+    )
+    parts.append(
+        text(
+            sx(lift_envelope["x"] + lift_envelope["w"] / 2),
+            sy(lift_envelope["y"] + lift_envelope["d"] - 0.5),
+            "PRISMA DE EXCLUSIÓN LIFT / VEHÍCULO",
+            7,
+            weight=700,
+            fill="#9a3d2a",
+        )
+    )
+    parts.append(car_symbol(car_lift["car"]["x"], car_lift["car"]["y"]))
+    lift_posts = car_lift["posts"]
+    for post_x in lift_posts["x"]:
+        parts.append(
+            plan_rect(
+                post_x,
+                lift_posts["y"],
+                lift_posts["w"],
+                lift_posts["d"],
+                fill="#48555b",
+                stroke="#263238",
+                stroke_width="1",
+            )
+        )
     if p.get("built_in_benches"):
         car_bench = next(item for item in p["built_in_benches"] if item["id"] == "PB-BENCH-CAR")
         parts.append(
@@ -528,7 +569,9 @@ def plan_sheet(p):
             text(
                 sx(car_bench["x0"] + car_bench["length"] / 2),
                 sy(car_bench["y0"] + car_bench["depth"] / 2) + 3,
-                "PROJECT-CAR STEEL BENCH · LIFT HOLD",
+                "WALL-INTEGRATED PROJECT-CAR BENCH · 9.00 m"
+                if car_bench.get("mounting") == "side_a_perimeter"
+                else "PROJECT-CAR STEEL BENCH · LIFT HOLD",
                 6.5,
                 weight=700,
             )

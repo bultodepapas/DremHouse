@@ -1,0 +1,52 @@
+{
+  "base_delta": "dreamhouse/pb_b27_delta.json",
+  "base_delta_sha256": "d522e6e37a8a6f76df51dc0ec48aabe4de1a15b616c130e33a2488e2d2627afa",
+  "revision": "0.3-draft-28-PB",
+  "status": "issued for coordination under D-072; real lift, vehicle, tool storage, bench structure, extraction, MEP and facade interfaces remain open; not for construction",
+  "date": "2026-08-20",
+  "supersedes": "0.3-draft-27-PB / PLN-001-R08 for the project-car workbench and lift test position only",
+  "decision": "D-072",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R09",
+    "plan_title": "COORDINATED GROUND FLOOR · WALL-INTEGRATED WORKBENCH",
+    "plan_subtitle": "D-072 fixes the 9.00 m project-car bench to the Side A wall · lift test envelope shifted clear"
+  },
+  "built_in_benches": [
+    {
+      "id": "PB-BENCH-CAR",
+      "name": "Project-car integrated workbench",
+      "x0": 0.55,
+      "y0": 0.18,
+      "length": 9.0,
+      "depth": 0.75,
+      "worktop_height": 0.9,
+      "mounting": "side_a_perimeter",
+      "support_family": "D-068 steel rail and replaceable timber worktop",
+      "reservation": "wall-side test position below the project-car technical window; lift envelope shifted inward and real equipment governs"
+    },
+    {
+      "id": "PB-BENCH-RC",
+      "name": "RC / electronics integrated workbench",
+      "x0": 0.55,
+      "y0": 17.07,
+      "length": 9.0,
+      "depth": 0.75,
+      "worktop_height": 0.9,
+      "mounting": "side_b_perimeter",
+      "support_family": "D-068 steel rail and replaceable timber worktop",
+      "reservation": "wall-side test position below the RC / aircraft technical window"
+    }
+  ],
+  "car_lift_layout": {
+    "envelope": { "x": 1.6, "y": 1.05, "w": 6.4, "d": 5.9 },
+    "car": { "x": 2.25, "y": 2.15 },
+    "posts": { "x": [2.0, 6.85], "y": 1.25, "w": 0.35, "d": 4.0 },
+    "bench_clearance": 0.12,
+    "status": "schematic fit only; real lift, vehicle, doors, tool carts and manufacturer clearances govern"
+  },
+  "coordination_holds_append": [
+    "D-072 moves the project-car bench from its floating predecessor position to the Side A perimeter wall at Y=0.18–0.93 m, below the project-car technical window.",
+    "The lift/vehicle test envelope shifts 0.60 m inward to Y=1.05–6.95 m, preserving a nominal 0.12 m graphic separation from the bench and stopping before the Y=7.00 m central axis. This is not manufacturer clearance approval.",
+    "Verify real lift posts, arms, doors, vehicle overhang, tool carts, bench drawers, source extraction, power, compressed air, lighting, window drainage, wall backing and emergency working clearances before procurement."
+  ]
+}

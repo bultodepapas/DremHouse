@@ -1,0 +1,47 @@
+{
+  "base_delta": "dreamhouse/pb_b28_delta.json",
+  "base_delta_sha256": "0ee96f6b606dd67861f1a4f94bb46afc609ddcd765692423317b86449e117bac",
+  "revision": "0.3-draft-29-PB",
+  "status": "issued for coordination under D-073; front-corner bench junctions, real lift/vehicle, bench structure, extraction, MEP and facade interfaces remain open; not for construction",
+  "date": "2026-08-20",
+  "supersedes": "0.3-draft-28-PB / PLN-001-R09 for the longitudinal start position of both technical workbenches only",
+  "decision": "D-073",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R10",
+    "plan_title": "COORDINATED GROUND FLOOR · CORNER-START WORKBENCHES",
+    "plan_subtitle": "D-073 starts both 9.00 m technical benches at the front interior corners · Side A + Side B"
+  },
+  "built_in_benches": [
+    {
+      "id": "PB-BENCH-CAR",
+      "name": "Project-car integrated workbench",
+      "x0": 0.18,
+      "y0": 0.18,
+      "length": 9.0,
+      "depth": 0.75,
+      "worktop_height": 0.9,
+      "mounting": "side_a_perimeter",
+      "start_condition": "front_inner_corner",
+      "support_family": "D-068 steel rail and replaceable timber worktop",
+      "reservation": "starts at the Side A/front interior corner below the project-car technical window; real lift and front-door interfaces govern"
+    },
+    {
+      "id": "PB-BENCH-RC",
+      "name": "RC / electronics integrated workbench",
+      "x0": 0.18,
+      "y0": 17.07,
+      "length": 9.0,
+      "depth": 0.75,
+      "worktop_height": 0.9,
+      "mounting": "side_b_perimeter",
+      "start_condition": "front_inner_corner",
+      "support_family": "D-068 steel rail and replaceable timber worktop",
+      "reservation": "starts at the Side B/front interior corner below the RC / aircraft technical window; real front-door interfaces govern"
+    }
+  ],
+  "coordination_holds_append": [
+    "D-073 removes the nominal 0.37 m front-end gap from both technical benches. Each 9.00 m bench starts at X=0.18 m, the interior face of the front wall, and ends at X=9.18 m.",
+    "The corner-start geometry leaves a nominal 0.27 m plan separation between each 0.75 m-deep side-wall bench and its adjacent 4.80 m front industrial-door opening. Coordinate jambs, tracks, seals, guards, handles and maintenance access with the selected door system.",
+    "Provide a buildable corner/end condition with no inaccessible dirt trap, while retaining removable bench services, facade drainage and independent structural backing."
+  ]
+}

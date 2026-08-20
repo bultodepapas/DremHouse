@@ -1,7 +1,7 @@
 # Relaciones y experiencia espacial
 
 **Estatus:** activo  
-**Versión:** 0.5
+**Versión:** 0.7
 **Fecha:** 2026-08-20
 
 ## Secuencia maestra
@@ -17,6 +17,12 @@ cuatro bandas dentro de una sola vista transversal.
 
 - Car bay y RC/DIY: misma banda, lados opuestos, sin muro; extracción y almacenamiento
   diferenciados.
+- Technical workbenches under D-072: the 9.00 m project-car bench is fixed against Side A
+  below its technical window and the RC/electronics bench remains against Side B. The
+  lift/vehicle test envelope moves inward; real operating and safety clearances govern.
+- Corner starts under D-073: both technical benches begin at X=0.18 m against the front
+  interior corners, eliminating unusable end gaps while retaining coordinated separation
+  from the adjacent industrial-door openings.
 - Eje peatonal: centrado, intuitivo y libre; no es corredor construido.
 - Living / TV lounge under D-071: in the Side B half of the double-height hall, with the
   100-inch television fixed directly to the Side B perimeter wall. The sofa, chaise,

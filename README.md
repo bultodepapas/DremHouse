@@ -48,16 +48,16 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>24</strong> current SVG/PNG pairs · <strong>132</strong> preserved versioned sheets · <strong>69</strong> documents · <strong>62</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>24</strong> current SVG/PNG pairs · <strong>134</strong> preserved versioned sheets · <strong>71</strong> documents · <strong>64</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with enlarged workstations, living room facing a 100-inch TV on the Side B hall wall, clear central axis and dining beside the kitchen" width="100%"></a>
-  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-27-PB</sub>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with corner-start wall-integrated Project Car and RC workshop benches, enlarged workstations, living room facing a 100-inch TV on the Side B wall, dining and kitchen" width="100%"></a>
+  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-29-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b27_pb/DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>

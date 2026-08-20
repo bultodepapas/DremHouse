@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.8
+**Versión:** 0.10
 **Fecha:** 2026-08-20
 
 ## Forma y modulación
@@ -128,6 +128,20 @@ central knee/chair opening. The increased storage makes loaded-drawer, impact, r
 deflection and cable-access checks more important. Treat these as test dimensions pending
 the real equipment schedule and a full-scale joinery mock-up. See
 [PB enlarged workstation cabinets — draft 25](pb_enlarged_workstation_cabinets_v0.3_b25.md).
+
+D-072 applies the same permanent-infrastructure logic to the project-car bench: the
+9.00 × 0.75 m worktop moves against Side A below its technical window, matching the
+existing wall-side RC/electronics bench on Side B. The lift test envelope shifts 0.60 m
+inward only to prove plan non-overlap; its 0.12 m gap is not an operational clearance.
+Coordinate the real lift, vehicle, doors, cabinets, tool carts, extraction, services,
+wall backing and facade seals before fabrication. See
+[PB Side A project-car workbench — draft 28](pb_side_a_project_car_workbench_v0.3_b28.md).
+
+D-073 moves both bench starts from X=0.55 m to the front interior corners at X=0.18 m,
+without changing their 9.00 m lengths. Resolve each 0.27 m nominal bench/industrial-door
+gap as one developed jamb, track, seal, guard and removable-service detail; the plan gap
+does not authorize a product or safe clearance. See
+[PB corner-start technical workbenches — draft 29](pb_corner_start_workbenches_v0.3_b29.md).
 
 ### PB living, dining and media wall
 

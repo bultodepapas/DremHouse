@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.16
+**Versión:** 0.3.18
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -435,10 +435,38 @@ target. The 100-inch television, speakers and active AV remain owner equipment o
 physical works. **No price, saving, increase, contingency change, phase-total change, or
 target change is recognized by D-071.**
 
+### 0.3-Z — D-072 Side A wall-integrated project-car bench
+
+D-072 relocates the existing nominal 9.00 × 0.75 m project-car bench against the Side A
+wall and shifts the unpriced lift/vehicle test envelope inward. It does not add bench
+length: the existing `21.04` allowance remains the only priced control line. Wall backing,
+secondary-steel rail, loaded cabinets, extraction, task power/lighting, compressed air and
+facade/window interfaces must be reconciled against that allowance and chapters
+05/06/09/13/17/19/21 after real equipment selection.
+
+The lift remains Phase 2 under D-016; moving its schematic envelope is not a quantity or
+price change. No saving is booked for removing the floating location because position was
+not separately priced. **No price, saving, increase, contingency change, phase-total
+change, or target change is recognized by D-072.**
+
+### 0.3-AA — D-073 corner-start technical benches
+
+D-073 moves both existing 9.00 m technical bench starts from X=0.55 m to X=0.18 m. It
+adds no worktop length and does not change the `21.04` control quantity or the D-068/D-069
+unpriced workstation alert. Developed front-corner ends may affect jamb/track guards,
+removable service-rail terminations, seals and backing, but those interfaces must first be
+reconciled with the selected industrial-door and bench systems.
+
+No saving is booked for eliminating the two 0.37 m empty gaps, and no cost is added before
+detail and quotations. **No price, saving, increase, contingency change, phase-total
+change, or target change is recognized by D-073.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AA  | 2026-08-20 | D-073 moves both existing 9.00 m technical bench starts to X=0.18 m at the front interior corners without changing quantity. Door-jamb/track, guard, seal, backing and removable-service end details require reconciliation; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
+| 0.3-Z   | 2026-08-20 | D-072 moves the existing 9.00 × 0.75 m project-car bench against Side A and shifts the unpriced lift/vehicle test envelope inward. Existing priced control `21.04` is retained without adding length; backing, services and real equipment interfaces require reconciliation. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-Y   | 2026-08-20 | D-071 deletes the unpriced X=21 freestanding media partition and dining sideboard, replacing them with a 16.72 m² Side B wall finish/mounting field, local verified backing, sealed service penetrations and the retained 3.40 m AV console. Alerts `14.07` and `21.09` are updated in place; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-X   | 2026-08-20 | D-070 adds a 15.96 m² partial acoustic media wall, secondary frame/reinforcement, 3.40 m AV console, 3.80 m dining sideboard and building-service interfaces while classifying the 100-inch TV and active AV as owner equipment. Alerts `14.07` and `21.09` remain unpriced; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-W   | 2026-08-20 | D-069 enlarges the two D-068 worktops from 3.84 m² to 5.40 m² combined and adds four suspended steel cabinet units with twelve drawers. Atomic alert `21.08` is updated in place to avoid double counting; **no price, saving, increase, contingency, phase-total or target change is recognized.** |

@@ -1,7 +1,7 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.6
+**Versión:** 0.8
 **Fecha:** 2026-08-20
 
 ## Alcance
@@ -22,6 +22,10 @@ cargas y análisis sería falsa ingeniería.
   loads and vibration without loading window frames or assuming facade girts are adequate.
 - D-069 loaded drawer, impact and racking demands from four large suspended steel cabinet
   units, including serviceability of the 3.00 × 0.90 m worktops and secondary frames.
+- D-072 Side A project-car bench rail, loaded storage/impact demands, facade/window
+  interface and compatibility with the real inward-shifted lift/vehicle envelope.
+- D-073 front-corner bench end connections and their proximity to both industrial-door
+  jamb/track zones without transferring loads into door frames or facade girts.
 - D-071 local TV backing within the Side B exterior wall, including TV/mount eccentric
   load, console load, verified load transfer, sealed penetrations and enclosure continuity.
 - Viento, sismo, estabilidad global, flechas y derivas de una caja liviana de gran tamaño.
@@ -134,3 +138,5 @@ visible no exime protección ni inspección futura.
   structural engineer's coordinated design and inspection requirements.
 - Load the Side B cladding, workstation window frame or unverified facade girts with the
   D-071 TV/mount, or puncture enclosure layers without coordinated backing and seals.
+- Treat D-072's 0.12 m graphic bench/lift gap as a safe operating, vehicle-door,
+  maintenance or emergency clearance, or load the technical window/facade with the bench.

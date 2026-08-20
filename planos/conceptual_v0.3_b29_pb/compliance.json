@@ -1,0 +1,249 @@
+{
+  "revision": "0.3-draft-29-PB",
+  "status": "issued for coordination under D-073; front-corner bench junctions, real lift/vehicle, bench structure, extraction, MEP and facade interfaces remain open; not for construction",
+  "checks": [
+    {
+      "rule_id": "PB-ENV",
+      "status": "PASS",
+      "message": "Envolvente nominal 18 × 36 m"
+    },
+    {
+      "rule_id": "PB-FRONT",
+      "status": "PASS",
+      "message": "Exactamente tres accesos frontales"
+    },
+    {
+      "rule_id": "PB-CORE-SUM",
+      "status": "PASS",
+      "message": "Núcleo conserva 81,00 m² brutos"
+    },
+    {
+      "rule_id": "PB-CORE-COVER",
+      "status": "PASS",
+      "message": "Núcleo cubre los 18,00 m sin vacíos"
+    },
+    {
+      "rule_id": "PB-CORE-CLOSURE",
+      "status": "PASS",
+      "message": "Núcleo: 16.94 m netos + 0.70 m de tabiques + 2×0.18 m de envolvente = 18,00 m"
+    },
+    {
+      "rule_id": "PB-GREAT-WALL",
+      "status": "PASS",
+      "message": "Gran muro continuo en X=31,50 m con espesor conceptual 0,20 m"
+    },
+    {
+      "rule_id": "PB-CORE-DOORS",
+      "status": "PASS",
+      "message": "Cinco accesos del núcleo de mínimo 0,90 m"
+    },
+    {
+      "rule_id": "PB-REAR-EXITS",
+      "status": "PASS",
+      "message": "Bodega y escalera conservan salidas posteriores"
+    },
+    {
+      "rule_id": "PB-KITCHEN-CLEAR",
+      "status": "PASS",
+      "message": "Paso operativo cocina = 1.20 m"
+    },
+    {
+      "rule_id": "PB-PANTRY-ADJ",
+      "status": "PASS",
+      "message": "Pantry se ubica junto al frente de cocina"
+    },
+    {
+      "rule_id": "PB-STAIR-ALIGN",
+      "status": "PASS",
+      "message": "Escalera conserva alineación Y=7,40–11,00 m con P2"
+    },
+    {
+      "rule_id": "PB-TECH-GLAZING",
+      "status": "PASS",
+      "message": "Dos ventanales técnicos grandes, modulados y equivalentes"
+    },
+    {
+      "rule_id": "P2-BEDROOM-GLAZING",
+      "status": "PASS",
+      "message": "Cuatro dormitorios representan vidrio casi piso a techo"
+    },
+    {
+      "rule_id": "PB-P2-WINDOW-SYNC",
+      "status": "PASS",
+      "message": "Vanos de dormitorio idénticos en pb_b05.json y p2_b10.json"
+    },
+    {
+      "rule_id": "PB-GLAZING-IN-ROOM",
+      "status": "PASS",
+      "message": "Cada vano cae dentro del muro de su dormitorio"
+    },
+    {
+      "rule_id": "PB-WS-PAIR",
+      "status": "PASS",
+      "message": "Exactly one permanent wall-integrated workstation is reserved on each long side."
+    },
+    {
+      "rule_id": "PB-WS-MIRROR",
+      "status": "PASS",
+      "message": "The Side A and Side B workstation geometry is identical before reflection across Y=9.00 m."
+    },
+    {
+      "rule_id": "PB-WS-WALL-CONTACT",
+      "status": "PASS",
+      "message": "Both worktops meet the interior wall/service-rail plane: Y=0.18 m and Y=17.82 m."
+    },
+    {
+      "rule_id": "PB-WS-GLAZING-SYMMETRY",
+      "status": "PASS",
+      "message": "The two workstation windows have identical nominal geometry and module count."
+    },
+    {
+      "rule_id": "PB-WS-PLAN-ELEVATION-SYNC",
+      "status": "PASS",
+      "message": "Each workstation clearance zone and its facade opening share the same X extent."
+    },
+    {
+      "rule_id": "PB-WS-SILL-CLEARANCE",
+      "status": "PASS",
+      "message": "Window sill is 0.15 m above the test worktop."
+    },
+    {
+      "rule_id": "PB-WS-AXIS-CLEAR",
+      "status": "PASS",
+      "message": "Both 3.00 m workstation clearance zones remain outside the 4.00 m central perceptual axis."
+    },
+    {
+      "rule_id": "PB-WS-STRUCTURAL-BAY",
+      "status": "PASS",
+      "message": "Both workstation openings remain inside the X=12–18 m primary-frame bay pending trimmer design."
+    },
+    {
+      "rule_id": "PB-WS-BENCH-FAMILY",
+      "status": "PASS",
+      "message": "The RC and project-car benches reference the same steel-rail / replaceable-worktop family."
+    },
+    {
+      "rule_id": "PB-WS-A-MAIN-GLAZING-JUNCTION",
+      "status": "OPEN",
+      "message": "Side A retains a 0.20 m nominal mullion/trimmer hold between workstation and main glazing; detailed facade and structural design remain open."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-LIFT-INTERFACE",
+      "status": "OPEN",
+      "message": "The wall-integrated project-car bench and inward-shifted lift envelope close schematically; real lift, vehicle, door, tool and manufacturer clearances govern."
+    },
+    {
+      "rule_id": "PB-WS-FULL-BAY-WORKTOP",
+      "status": "PASS",
+      "message": "Each worktop spans the full 3.00 m workstation/window bay."
+    },
+    {
+      "rule_id": "PB-WS-CONTROLLED-DEPTH",
+      "status": "PASS",
+      "message": "Both enlarged worktops are 0.90 m deep and remain below the 1.00 m depth limit."
+    },
+    {
+      "rule_id": "PB-WS-CABINETRY-MIRROR",
+      "status": "PASS",
+      "message": "Each side has the same pair of large suspended three-drawer steel cabinets."
+    },
+    {
+      "rule_id": "PB-WS-KNEE-CLEARANCE",
+      "status": "PASS",
+      "message": "The central knee/chair opening is 1.60 m clear."
+    },
+    {
+      "rule_id": "PB-WS-CABINET-WITHIN-TOP",
+      "status": "PASS",
+      "message": "Drawer cabinets remain within the worktop depth and suspended above the floor."
+    },
+    {
+      "rule_id": "PB-SOCIAL-AXIS-CLEAR",
+      "status": "PASS",
+      "message": "Living furniture begins at Y=11.35 m beyond the Y=11.00 m pedestrian axis."
+    },
+    {
+      "rule_id": "PB-SOCIAL-WORKSTATION-CLEAR",
+      "status": "PASS",
+      "message": "Living furniture starts at X=16.20 m beyond the workstation-2 zone ending at X=16.00 m."
+    },
+    {
+      "rule_id": "PB-TV-SIDE-B-PERIMETER",
+      "status": "PASS",
+      "message": "The 100-inch TV mounting field is directly on the Side B perimeter wall and no internal media partition remains."
+    },
+    {
+      "rule_id": "PB-TV-100-IN-ENVELOPE",
+      "status": "PASS",
+      "message": "The 100-inch 16:9 test envelope is 2.214 × 1.245 m."
+    },
+    {
+      "rule_id": "PB-TV-VIEWING-DISTANCE",
+      "status": "PASS",
+      "message": "The test viewing point is 4.10 m from the Side B TV wall."
+    },
+    {
+      "rule_id": "PB-DINING-INDEPENDENT",
+      "status": "PASS",
+      "message": "The 12-seat dining table remains beside the kitchen and no longer depends on a reverse-face media partition."
+    },
+    {
+      "rule_id": "PB-SIDE-B-SOLID-HALL-BAY",
+      "status": "PASS",
+      "message": "The Side B hall bay remains solid behind the TV mounting field pending site design."
+    },
+    {
+      "rule_id": "PB-TV-PERIMETER-BACKING",
+      "status": "OPEN",
+      "message": "Local Side B wall backing, mount loads, facade penetrations and enclosure continuity require structural/facade design."
+    },
+    {
+      "rule_id": "PB-TV-AV-MEP",
+      "status": "OPEN",
+      "message": "Real TV, mount, speakers, power, data, AV, ventilation and replacement access remain open."
+    },
+    {
+      "rule_id": "PB-TV-GLARE-SIDE-B",
+      "status": "OPEN",
+      "message": "Side B daylight, glare and blackout control remain dependent on the selected site and facade design."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-SIDE-A-WALL",
+      "status": "PASS",
+      "message": "The 9.00 m project-car bench is fixed directly against the Side A perimeter wall."
+    },
+    {
+      "rule_id": "PB-TECHNICAL-BENCHES-PERIMETER",
+      "status": "PASS",
+      "message": "Both long technical workbenches are now wall-side elements on opposite hall walls."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-BELOW-WINDOW",
+      "status": "PASS",
+      "message": "The project-car bench spans below the full technical window without raising its test worktop above the sill."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-LIFT-GRAPHIC-SEPARATION",
+      "status": "PASS",
+      "message": "The shifted lift envelope retains 0.12 m graphic separation from the bench and stops before the central axis."
+    },
+    {
+      "rule_id": "PB-TECH-BENCHES-FRONT-CORNER-START",
+      "status": "PASS",
+      "message": "Both 9.00 m technical benches begin at X=0.18 m, the front interior corner."
+    },
+    {
+      "rule_id": "PB-TECH-BENCHES-LENGTH-RETAINED",
+      "status": "PASS",
+      "message": "Both benches retain 9.00 m length and terminate at X=9.18 m."
+    },
+    {
+      "rule_id": "PB-TECH-BENCHES-FRONT-DOOR-SEPARATION",
+      "status": "PASS",
+      "message": "The corner-start benches retain nominal plan gaps of 0.27 m and 0.27 m to the adjacent front door openings."
+    }
+  ],
+  "passed": 43,
+  "open": 5,
+  "failed": 0
+}

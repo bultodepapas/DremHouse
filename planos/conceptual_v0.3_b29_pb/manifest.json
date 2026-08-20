@@ -1,0 +1,13 @@
+{
+  "revision": "0.3-draft-29-PB",
+  "status": "issued for coordination under D-073; front-corner bench junctions, real lift/vehicle, bench structure, extraction, MEP and facade interfaces remain open; not for construction",
+  "source": "dreamhouse/pb_b29_delta.json",
+  "source_sha256": "0a8e2ef8fdf2e5245b7b5420be2a131b22a3b3b5fcd7d771c3af60b7323911dc",
+  "generator": "dreamhouse/generate_pb_b29.py",
+  "supersedes": "0.3-draft-28-PB / PLN-001-R09 for the longitudinal start position of both technical workbenches only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

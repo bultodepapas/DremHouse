@@ -1,0 +1,13 @@
+{
+  "revision": "0.3-draft-28-PB",
+  "status": "issued for coordination under D-072; real lift, vehicle, tool storage, bench structure, extraction, MEP and facade interfaces remain open; not for construction",
+  "source": "dreamhouse/pb_b28_delta.json",
+  "source_sha256": "0ee96f6b606dd67861f1a4f94bb46afc609ddcd765692423317b86449e117bac",
+  "generator": "dreamhouse/generate_pb_b28.py",
+  "supersedes": "0.3-draft-27-PB / PLN-001-R08 for the project-car workbench and lift test position only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R09_PB-WALL-INTEGRATED-WORKBENCH.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

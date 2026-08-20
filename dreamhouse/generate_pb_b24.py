@@ -356,7 +356,13 @@ def validate_b24(model: dict[str, Any]) -> list[dict[str, str]]:
     add(
         "PB-CAR-BENCH-LIFT-INTERFACE",
         False,
-        "The project-car bench remains in its predecessor test position; real lift, vehicle and tool envelopes govern final support and location.",
+        (
+            "The wall-integrated project-car bench and inward-shifted lift envelope close "
+            "schematically; real lift, vehicle, door, tool and manufacturer clearances govern."
+            if model.get("car_lift_layout")
+            else "The project-car bench remains in its predecessor test position; real lift, "
+            "vehicle and tool envelopes govern final support and location."
+        ),
         open_gate=True,
     )
     return checks

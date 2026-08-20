@@ -1,7 +1,7 @@
 # Dream House drawings
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.15<br>
+**Version:** 1.17<br>
 **Date:** 2026-08-20<br>
 **Source:** [`actual/catalog.json`](actual/catalog.json)
 
@@ -15,9 +15,9 @@
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with enlarged workstations, living room facing a 100-inch TV on the Side B hall wall, clear central axis and dining beside the kitchen" width="100%"></a>
+  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with corner-start wall-integrated Project Car and RC workshop benches, enlarged workstations, living room facing a 100-inch TV on the Side B wall, dining and kitchen" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-27-PB · <a href="conceptual_v0.3_b27_pb/DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-29-PB · <a href="conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
@@ -103,7 +103,7 @@ all architectural sheets with the structural studies and their open gates.
 
 | Stable ID | Drawing | Current aliases | Preserved issue | Status / limitation |
 | --- | --- | --- | --- | --- |
-| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-27-PB](conceptual_v0.3_b27_pb/DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg) | issued for coordination under D-071; Side B wall backing, AV/MEP, glare control, furniture products and facade performance remain open; not for construction |
+| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-29-PB](conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg) | issued for coordination under D-073; front-corner bench junctions, real lift/vehicle, bench structure, extraction, MEP and facade interfaces remain open; not for construction |
 | `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-PLN-002-R20_P2-COORDINATED.svg) | issued for coordination under D-067; primary-bedroom furniture, lighting, privacy and facade detail remain open; not for construction |
 | `architecture-roof-plan` | Roof and rooflight plan | [SVG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg) · [PNG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-daylight-section` | Rooflight daylight section | [SVG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg) · [PNG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg) | active D-054 schematic coordination hypothesis; not for construction |
@@ -134,7 +134,9 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b27_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b29_pb/`,
+`conceptual_v0.3_b28_pb/`,
+`conceptual_v0.3_b27_pb/`,
 `conceptual_v0.3_b26_pb/`,
 `conceptual_v0.3_b25_pb/`,
 `conceptual_v0.3_b24_pb/`,

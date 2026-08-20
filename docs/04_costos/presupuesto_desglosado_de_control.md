@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.4
+**Versión:** 0.3.6
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -398,7 +398,7 @@ registran como **equipamiento**, fuera de obra.
 | 21.01  | Walk-in closet principal                      | gl  |    1 |  $9.000.000 | $9.000.000 | $9.000.000 |         $0 | baja-media | Vestidor 15–16 m², obra            |
 | 21.02  | Closets de suites de hijos                    | un  |    2 |  $2.500.000 | $5.000.000 | $2.500.000 | $2.500.000 | baja-media | Hijo 1 en F1; hijo 2 en F2         |
 | 21.03  | Closet de huéspedes                           | gl  |    1 |  $1.500.000 | $1.500.000 |         $0 | $1.500.000 | baja-media | F2                                 |
-| 21.04  | Banco longitudinal del taller (con cajoneras) | ml  |    9 |    $722.222 | $6.500.000 | $4.000.000 | $2.500.000 | baja-media | F1 banco esencial; módulos F2      |
+| 21.04  | D-072/D-073 banco Project Car contra lateral A | ml  |    9 |    $722.222 | $6.500.000 | $4.000.000 | $2.500.000 | baja-media | Starts at front corner; existing allowance retained; wall rail/backing, door-jamb end, cabinets, extraction and services require reconciliation |
 | 21.05  | Banco central RC 1,60 × 4,50                  | gl  |    1 |  $3.000.000 | $3.000.000 | $1.500.000 | $1.500.000 | baja-media | Base robusta F1; almacenamiento F2 |
 | 21.06  | Cajoneras y gabinetes técnicos adicionales    | gl  |    1 |  $3.000.000 | $3.000.000 |         $0 | $3.000.000 | baja-media | F2                                 |
 | 21.07  | Almacenamiento de aviones/lavandería/linen    | gl  |    1 |  $2.000.000 | $2.000.000 |         $0 | $2.000.000 | baja-media | F2                                 |
