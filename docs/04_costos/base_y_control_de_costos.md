@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.14
+**Versión:** 0.3.16
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -405,10 +405,42 @@ equipment, storage loads, structural design, cabinet specification, mock-up and 
 quotations are required. **No price, saving, increase, contingency change, phase-total
 change, or target change is recognized by D-069.**
 
+### 0.3-X — D-070 living / media wall and dining hinge
+
+D-070 removes unpriced abstract furniture graphics and introduces measurable construction
+scope: one nominal 4.20 × 3.80 m partial acoustic media wall, secondary framing and
+reinforcement, a 3.40 m accessible AV console, a 3.80 m dining-side sideboard and dedicated
+power/data/AV/ventilation provisions. The retained 12-seat dining table changes position
+but not its control envelope. Removing the unassigned Side B alternative-opening graphic
+does not book a glazing saving because that opening was never adopted or priced.
+
+The 100-inch television, speakers and active AV components are owner equipment outside
+the physical-works target. Wall framing/finishes, reinforcement, console, sideboard and
+building services affect chapters 05/06/14/17/18/19/21. Record the media wall and fixed
+joinery as unpriced alerts `14.07` and `21.09`; reconcile them against acoustic, fixed-
+joinery and electrical allowances before pricing. **No price, saving, increase,
+contingency change, phase-total change, or target change is recognized by D-070.**
+
+### 0.3-Y — D-071 Side B perimeter-wall TV correction
+
+D-071 deletes the unpriced freestanding X=21 media partition and its 3.80 m reverse-face
+dining sideboard. It replaces that scope with one nominal 4.40 × 3.80 m interior acoustic
+finish/mounting field, locally designed backing within the existing Side B exterior wall,
+sealed power/data/AV penetrations and the retained 3.40 m accessible console. The
+12-seat dining table changes relationship only; it does not create new measured scope.
+
+Update alerts `14.07` and `21.09` in place to avoid double counting D-070. The deleted
+partition and sideboard cannot be booked as savings because neither was priced into the
+target. The 100-inch television, speakers and active AV remain owner equipment outside
+physical works. **No price, saving, increase, contingency change, phase-total change, or
+target change is recognized by D-071.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-Y   | 2026-08-20 | D-071 deletes the unpriced X=21 freestanding media partition and dining sideboard, replacing them with a 16.72 m² Side B wall finish/mounting field, local verified backing, sealed service penetrations and the retained 3.40 m AV console. Alerts `14.07` and `21.09` are updated in place; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
+| 0.3-X   | 2026-08-20 | D-070 adds a 15.96 m² partial acoustic media wall, secondary frame/reinforcement, 3.40 m AV console, 3.80 m dining sideboard and building-service interfaces while classifying the 100-inch TV and active AV as owner equipment. Alerts `14.07` and `21.09` remain unpriced; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-W   | 2026-08-20 | D-069 enlarges the two D-068 worktops from 3.84 m² to 5.40 m² combined and adds four suspended steel cabinet units with twelve drawers. Atomic alert `21.08` is updated in place to avoid double counting; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-V   | 2026-08-20 | D-068 makes two mirrored wall-integrated PB workstations, their dedicated secondary-steel/service interfaces and the predecessor pair of 3.00 × 1.65 m side windows explicit. The 9.90 m² glazing pair and two fixed workstations remain unpriced measurement alerts pending cost-code reconciliation and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-U   | 2026-08-18 | D-067 removes the 1.45 m fitted privacy screen and identifies the unchanged 35.24 m² gross primary bedroom with one name and one plan label. Final furniture, lighting, outlet and privacy scope requires coordination; **no price, saving, increase, contingency or target change is recognized.** |

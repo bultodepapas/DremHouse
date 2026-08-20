@@ -1,0 +1,89 @@
+{
+  "base_delta": "dreamhouse/pb_b26_delta.json",
+  "base_delta_sha256": "32908339b5cd7392bd42764a15cebf96ee96261b685635b888048681be2a57e3",
+  "revision": "0.3-draft-27-PB",
+  "status": "issued for coordination under D-071; Side B wall backing, AV/MEP, glare control, furniture products and facade performance remain open; not for construction",
+  "date": "2026-08-20",
+  "supersedes": "0.3-draft-26-PB / PLN-001-R07 and ELE-INT-002-R00 for the ground-floor living/TV arrangement only",
+  "decision": "D-071",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R08",
+    "plan_title": "COORDINATED GROUND FLOOR · PERIMETER-WALL TV LIVING",
+    "plan_subtitle": "D-071 places the 100-inch TV on the Side B wall of the hall · no internal media partition",
+    "media_code": "ELE-INT-002-R01",
+    "media_title": "PB LIVING / 100-INCH TV ON SIDE B WALL",
+    "media_subtitle": "D-071 interior coordination · existing hall perimeter wall + accessible AV console · not for construction"
+  },
+  "social_layout": {
+    "program_territories": [
+      {
+        "x": 12.5,
+        "y": 0.18,
+        "w": 8.5,
+        "d": 17.64,
+        "label": "DOUBLE-HEIGHT SOCIAL HALL",
+        "color": "#e6d7c7",
+        "label_y": 7.35
+      },
+      {
+        "x": 21.0,
+        "y": 0.18,
+        "w": 5.5,
+        "d": 6.82,
+        "label": "DINING",
+        "color": "#e7d3b9",
+        "label_y": 6.45
+      },
+      {
+        "x": 26.5,
+        "y": 0.18,
+        "w": 5.0,
+        "d": 6.82,
+        "label": "KITCHEN",
+        "color": "#ead4b6",
+        "label_y": 6.45
+      }
+    ],
+    "living": {
+      "label_x": 18.6,
+      "label_y": 11.55,
+      "rug": { "x": 16.2, "y": 11.35, "w": 4.6, "d": 6.0 },
+      "sofa": { "x": 16.55, "y": 12.0, "length": 4.0, "depth": 1.05, "orientation": "horizontal" },
+      "chaise": { "x": 16.55, "y": 12.0, "length": 1.1, "depth": 2.7, "w": 1.1, "d": 2.7 },
+      "coffee_table": { "x": 18.05, "y": 14.05, "w": 1.6, "d": 1.0 },
+      "chairs": [
+        { "x": 17.1, "y": 16.1 },
+        { "x": 20.05, "y": 15.8 }
+      ]
+    },
+    "media_wall": {
+      "mounting": "side_b_perimeter",
+      "side": "B",
+      "x0": 16.4,
+      "x1": 20.8,
+      "y": 17.82,
+      "backing_depth": 0.12,
+      "height": 3.8,
+      "finish": "warm acoustic mounting field fixed to independently verified backing within the existing Side B exterior wall",
+      "tv_diagonal_inches": 100.0,
+      "tv_aspect_ratio": "16:9",
+      "tv_width": 2.214,
+      "tv_height": 1.245,
+      "tv_center_height": 1.25,
+      "tv_center_x": 18.6,
+      "viewing_point_y": 13.72,
+      "viewing_distance": 4.1,
+      "console": { "x": 16.9, "length": 3.4, "depth": 0.45, "height": 0.45 },
+      "wall_relation": "mounted directly to the Side B perimeter wall of the industrial hall; no freestanding partition and no dining reverse face"
+    },
+    "dining": {
+      "table": { "x": 22.6, "y": 2.5, "length": 3.6, "depth": 1.3 },
+      "chairs_per_side": 6
+    }
+  },
+  "coordination_holds_append": [
+    "D-071 removes the X=21.00 m freestanding media partition. The 100-inch TV and its acoustic mounting field are fixed directly to the existing Side B perimeter wall between X=16.40 m and X=20.80 m.",
+    "Verify local Side B wall studs/girts, thermal and vapour-control continuity, acoustic isolation, mount loads, service penetrations and replacement access without assigning gravity or lateral capacity to unverified facade members.",
+    "The Side B TV field depends on a solid, glare-controlled interior surface. Final site orientation, external openings, daylight, blackout strategy and facade performance remain open professional coordination gates."
+  ]
+}

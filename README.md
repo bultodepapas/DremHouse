@@ -48,16 +48,16 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>23</strong> current SVG/PNG pairs · <strong>127</strong> preserved versioned sheets · <strong>67</strong> documents · <strong>60</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>24</strong> current SVG/PNG pairs · <strong>132</strong> preserved versioned sheets · <strong>69</strong> documents · <strong>62</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor schematic plan with enlarged mirrored workstations and steel drawer cabinets" width="100%"></a>
-  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-25-PB</sub>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with enlarged workstations, living room facing a 100-inch TV on the Side B hall wall, clear central axis and dining beside the kitchen" width="100%"></a>
+  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-27-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b25_pb/DH-ARQ-PLN-001-R06_PB-ENLARGED-INTEGRATED-WORKSTATIONS.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b27_pb/DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
@@ -96,39 +96,47 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </tr>
 <tr>
 <td width="50%" valign="top">
+  <a href="planos/actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.svg"><img src="planos/actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.svg" alt="Dream House ground-floor living-room interior elevation with a 100-inch television mounted directly on the Side B perimeter wall and relationship plan" width="100%"></a>
+  <br><sub><strong>Architecture · PB media wall</strong> · 0.3-draft-27-PB</sub>
+  <br><strong>PB living / 100-inch TV on Side B wall</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+</td>
+<td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House enlarged ground-floor workstation and suspended steel cabinet schematic detail" width="100%"></a>
   <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-25-PB</sub>
   <br><strong>PB enlarged workstation + cabinet family</strong>
   <br><sub><a href="planos/conceptual_v0.3_b25_pb/DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
   <br><sub><strong>Architecture · acoustic partition</strong> · 0.3-draft-23-P2</sub>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
   <br><sub><a href="planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><sub><strong>Architecture · open family balcony</strong> · 0.3-draft-23-P2</sub>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
   <br><sub><a href="planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
   <br><sub><strong>Architecture · refined P2 envelope</strong> · 0.3-draft-23-P2</sub>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
   <br><sub><a href="planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><sub><strong>Engineering · E1 screening</strong> · 0.3 + E1 0.2</sub>
   <br><strong>Integrated structural evidence</strong>
   <br><sub><a href="planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><sub><strong>Engineering · vertical continuity</strong> · 0.3 + E1 0.2</sub>

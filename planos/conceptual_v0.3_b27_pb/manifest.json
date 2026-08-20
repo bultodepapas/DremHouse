@@ -1,0 +1,14 @@
+{
+  "revision": "0.3-draft-27-PB",
+  "status": "issued for coordination under D-071; Side B wall backing, AV/MEP, glare control, furniture products and facade performance remain open; not for construction",
+  "source": "dreamhouse/pb_b27_delta.json",
+  "source_sha256": "d522e6e37a8a6f76df51dc0ec48aabe4de1a15b616c130e33a2488e2d2627afa",
+  "generator": "dreamhouse/generate_pb_b27.py",
+  "supersedes": "0.3-draft-26-PB / PLN-001-R07 and ELE-INT-002-R00 for the ground-floor living/TV arrangement only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg",
+    "DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

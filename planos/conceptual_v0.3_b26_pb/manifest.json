@@ -1,0 +1,15 @@
+{
+  "revision": "0.3-draft-26-PB",
+  "status": "issued for coordination under D-070; media-wall structure, AV/MEP, glare control, furniture products and primary glazing remain open; not for construction",
+  "source": "dreamhouse/pb_b26_delta.json",
+  "source_sha256": "32908339b5cd7392bd42764a15cebf96ee96261b685635b888048681be2a57e3",
+  "generator": "dreamhouse/generate_pb_b26.py",
+  "supersedes": "0.3-draft-25-PB / PLN-001-R06 for ground-floor social furniture and 0.3-draft-25-PB / ELE-004-R08 for the unassigned Side B hall-bay graphic only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R07_PB-LIVING-DINING-MEDIA.svg",
+    "DH-ARQ-ELE-004-R09_SIDE-B-SOLID-HALL-BAY.svg",
+    "DH-ARQ-ELE-INT-002-R00_PB-100IN-MEDIA-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.13<br>
+**Version:** 1.15<br>
 **Date:** 2026-08-20<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -19,9 +19,9 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor schematic plan with enlarged mirrored workstations and steel drawer cabinets" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with enlarged workstations, living room facing a 100-inch TV on the Side B hall wall, clear central axis and dining beside the kitchen" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-25-PB · <a href="../../planos/conceptual_v0.3_b25_pb/DH-ARQ-PLN-001-R06_PB-ENLARGED-INTEGRATED-WORKSTATIONS.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-27-PB · <a href="../../planos/conceptual_v0.3_b27_pb/DH-ARQ-PLN-001-R08_PB-SIDE-B-WALL-TV-LIVING.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
@@ -55,34 +55,41 @@ record, repository README, and presentation do not change when a new issue is pr
 </tr>
 <tr>
 <td width="50%" valign="top">
+  <a href="../../planos/actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.svg"><img src="../../planos/actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.png" alt="Dream House ground-floor living-room interior elevation with a 100-inch television mounted directly on the Side B perimeter wall and relationship plan" width="100%"></a>
+  <br><strong>PB living / 100-inch TV on Side B wall</strong>
+  <br><sub>0.3-draft-27-PB · <a href="../../planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg">versioned source</a></sub>
+</td>
+<td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png" alt="Dream House enlarged ground-floor workstation and suspended steel cabinet schematic detail" width="100%"></a>
   <br><strong>PB enlarged workstation + cabinet family</strong>
   <br><sub>0.3-draft-25-PB · <a href="../../planos/conceptual_v0.3_b25_pb/DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
   <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
   <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
   <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><strong>Integrated structural evidence</strong>
   <br><sub>0.3 + E1 0.2 · <a href="../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><strong>Stair-frame continuity</strong>
@@ -95,11 +102,12 @@ record, repository README, and presentation do not change when a new issue is pr
 
 ## What the set contains
 
-The publication layer currently contains **23 SVG/PNG pairs**:
-**18 architectural views** and **5 structural coordination
+The publication layer currently contains **24 SVG/PNG pairs**:
+**19 architectural views** and **5 structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
-owner-priority interfaces, the D-069 PB workstation/cabinet family, structural
+owner-priority interfaces, the D-071 PB living/Side B TV wall and D-069 workstation/cabinet
+family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
@@ -107,9 +115,12 @@ The set must be read together:
 
 - the ground-floor base sheet predates D-050's laundry relocation, which is explicitly
   shown in the current owner-priorities detail;
-- the ground-floor plan, both side elevations and PB workstation detail coordinate the
-  D-069 enlarged mirrored workstations and suspended steel drawer cabinets, while their
-  secondary steel, joinery, facade and MEP interfaces remain open;
+- the ground-floor plan and TV-wall elevation coordinate the D-071 living group directly
+  against the Side B perimeter wall, independent dining and clear pedestrian axis; the
+  earlier Side B issue removes the unassigned alternative opening;
+- both side elevations and the PB workstation detail retain the D-069 enlarged mirrored
+  workstations and suspended steel drawer cabinets, while secondary steel, joinery,
+  facade, TV-wall backing, AV and MEP interfaces remain open;
 - the rear façade remains supplemented by D-051's retractable-stair reserve;
 - roof form is represented by the b07 sections and façades, while the current rooflight
   position is represented by the 0.4-I01/D-054 roof plan and daylight section; and

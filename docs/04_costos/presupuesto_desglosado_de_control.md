@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.2
+**Versión:** 0.3.4
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-20
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -283,6 +283,12 @@ facade scope, selected systems and comparable quotations are resolved.
 | 14.04  | Puertas interiores P2                   | un  |    7 |    $700.000 |  $4.900.000 |  $2.400.000 | $2.500.000 | media     | Suites + lavandería + hall; F2 = zona diferida      |
 | 14.05  | Puertas interiores PB                   | un  |    2 |    $500.000 |  $1.000.000 |  $1.000.000 |         $0 | media     | Núcleo + bodega                                     |
 | 14.06  | Remates, ajustes y sellos               | gl  |    1 |  $1.000.000 |  $1.000.000 |    $700.000 |   $300.000 | media     | Igualación de acabados en F2                        |
+| 14.07  | D-071 Side B acoustic TV mounting field | m²  | 16,72 |          TBC | not included | not included | $0 | baja | 4,40 × 3,80 m finish + local backing within existing exterior wall |
+
+`14.07` is an unpriced Phase 1 measurement alert. It excludes the television and active
+AV equipment. Do not add it to the $38 M chapter subtotal until its local backing,
+acoustic/fire/enclosure interfaces, sealed penetrations and overlap with `14.03` are
+reconciled. D-071 deletes rather than prices D-070's freestanding partition.
 
 ---
 
@@ -397,12 +403,18 @@ registran como **equipamiento**, fuera de obra.
 | 21.06  | Cajoneras y gabinetes técnicos adicionales    | gl  |    1 |  $3.000.000 | $3.000.000 |         $0 | $3.000.000 | baja-media | F2                                 |
 | 21.07  | Almacenamiento de aviones/lavandería/linen    | gl  |    1 |  $2.000.000 | $2.000.000 |         $0 | $2.000.000 | baja-media | F2                                 |
 | 21.08  | D-068/D-069 enlarged PB workstation pair     | un  |    2 |          TBC | not included | not included | $0 | baja | 2 × 3.00 × 0.90 m tops + 4 suspended steel cabinets; reconcile allowances |
+| 21.09  | D-071 fixed Side B AV console                | gl  |    1 |          TBC | not included | not included | $0 | baja | 3.40 m accessible console; D-070 reverse-face sideboard deleted; equipment excluded |
 
 `21.08` is an unpriced Phase 1 scope alert. D-069 updates the same line rather than adding
 a duplicate: 5.40 m² total worktop area, four 0.70 × 0.75 × 0.62 m suspended steel
 cabinet units and twelve drawers. Do not add it to the $30 M chapter control subtotal
 until fixed-joinery and workshop-bench allowances are reconciled and the secondary steel,
 worktops, brackets, trays, cabinets and storage loads are specified and quoted.
+
+`21.09` is an unpriced Phase 1 fixed-joinery alert. Coordinate service access, equipment
+ventilation and local backing with `14.07`, electrical/data chapters and existing
+allowances. The D-070 sideboard is deleted and was never priced. The 100-inch television,
+speakers and active AV remain owner equipment outside the physical-works subtotal.
 
 ---
 

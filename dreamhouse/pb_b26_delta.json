@@ -1,0 +1,92 @@
+{
+  "base_delta": "dreamhouse/pb_b25_delta.json",
+  "base_delta_sha256": "2d41642fe8a9d4f3d0cf05ed590020a16e12426809fa7134c2f3bcb7df3b22fb",
+  "revision": "0.3-draft-26-PB",
+  "status": "issued for coordination under D-070; media-wall structure, AV/MEP, glare control, furniture products and primary glazing remain open; not for construction",
+  "date": "2026-08-20",
+  "supersedes": "0.3-draft-25-PB / PLN-001-R06 for ground-floor social furniture and 0.3-draft-25-PB / ELE-004-R08 for the unassigned Side B hall-bay graphic only",
+  "decision": "D-070",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R07",
+    "plan_title": "COORDINATED GROUND FLOOR · LIVING / DINING / MEDIA",
+    "plan_subtitle": "D-070 explicit 100-inch TV lounge + dining hinge · central pedestrian axis retained",
+    "side_b_code": "ELE-004-R09",
+    "side_b_title": "SIDE B ELEVATION · WORKSTATION + SOLID HALL BAY",
+    "side_subtitle": "D-070 removes the unassigned alternative opening",
+    "media_code": "ELE-INT-002-R00",
+    "media_title": "PB LIVING / 100-INCH MEDIA WALL",
+    "media_subtitle": "D-070 interior coordination · TV equipment envelope + dining reverse face · not for construction"
+  },
+  "side_b_main_bay": "solid",
+  "social_layout": {
+    "program_territories": [
+      {
+        "x": 12.5,
+        "y": 0.18,
+        "w": 8.5,
+        "d": 17.64,
+        "label": "DOUBLE-HEIGHT SOCIAL HALL",
+        "color": "#e6d7c7",
+        "label_y": 13.0
+      },
+      {
+        "x": 21.0,
+        "y": 0.18,
+        "w": 5.5,
+        "d": 6.82,
+        "label": "DINING",
+        "color": "#e7d3b9",
+        "label_y": 6.45
+      },
+      {
+        "x": 26.5,
+        "y": 0.18,
+        "w": 5.0,
+        "d": 6.82,
+        "label": "KITCHEN + DOMESTIC GALLERY",
+        "color": "#ead4b6",
+        "label_y": 6.45
+      }
+    ],
+    "living": {
+      "label_x": 18.55,
+      "label_y": 2.75,
+      "rug": { "x": 16.0, "y": 1.45, "w": 4.6, "d": 5.4 },
+      "sofa": { "x": 16.0, "y": 3.2, "depth": 1.05, "length": 3.5 },
+      "chaise": { "x": 16.0, "y": 5.75, "length": 2.45, "depth": 0.95 },
+      "coffee_table": { "x": 17.6, "y": 3.4, "w": 1.4, "d": 1.7 },
+      "chairs": [
+        { "x": 18.2, "y": 1.95 },
+        { "x": 19.5, "y": 6.2 }
+      ]
+    },
+    "media_wall": {
+      "x": 21.0,
+      "y0": 2.0,
+      "y1": 6.2,
+      "thickness": 0.25,
+      "height": 3.8,
+      "finish": "warm acoustic timber panel over an independently coordinated secondary metal frame",
+      "tv_diagonal_inches": 100.0,
+      "tv_aspect_ratio": "16:9",
+      "tv_width": 2.214,
+      "tv_height": 1.245,
+      "tv_center_height": 1.25,
+      "tv_center_y": 4.1,
+      "viewing_point_x": 16.85,
+      "viewing_distance": 3.9,
+      "console": { "y": 2.4, "length": 3.4, "depth": 0.45, "height": 0.45 },
+      "reverse_face": "3.80 m dining sideboard/service face"
+    },
+    "dining": {
+      "table": { "x": 22.6, "y": 2.5, "length": 3.6, "depth": 1.3 },
+      "chairs_per_side": 6,
+      "sideboard": { "x": 21.1, "y": 2.2, "depth": 0.4, "length": 3.8 }
+    }
+  },
+  "coordination_holds_append": [
+    "The D-070 media wall aligns with the X=21.00 m upper-floor edge but is not assigned any primary structural function; its frame, attachments and compatibility with the D-043 edge-truss study remain professional design gates.",
+    "The 100-inch TV is an owner equipment envelope, not a selected product. Confirm actual mass, mount pattern, ventilation, access, power, data, AV conduits, speakers, controls and replacement route before fabrication.",
+    "The primary Side A glazing remains governed by open finding H-07. Coordinate glare and blackout control without reducing the owner-approved workstation windows or freezing site orientation."
+  ]
+}

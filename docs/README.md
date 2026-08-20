@@ -59,8 +59,14 @@ they stay stable while their explicitly promoted versioned source can advance.
   retained D-068 predecessor that replaces the floating desk symbols with one mirrored
   pair of wall-integrated workstations and equal landscape windows.
 - [PB enlarged workstation cabinets — draft 25](02_arquitectura/pb_enlarged_workstation_cabinets_v0.3_b25.md):
-  active D-069 issue with full-bay 3.00 × 0.90 m worktops, four large suspended steel
-  three-drawer cabinets and explicit structural, joinery, MEP and cost hold points.
+  retained D-069 workstation/cabinet basis with full-bay 3.00 × 0.90 m worktops and four
+  large suspended steel three-drawer cabinets, inherited unchanged by PB b27.
+- [PB living, dining and media wall — draft 26](02_arquitectura/pb_living_dining_media_v0.3_b26.md):
+  superseded D-070 predecessor that first made the living/dining programme explicit but
+  tested a rejected freestanding X=21 media partition.
+- [PB living / TV on the Side B perimeter wall — draft 27](02_arquitectura/pb_side_b_wall_tv_living_v0.3_b27.md):
+  active D-071 correction mounting the 100-inch TV directly to the Side B hall wall,
+  reorienting the living group and retaining a clear pedestrian axis.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

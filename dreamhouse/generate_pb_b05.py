@@ -142,24 +142,33 @@ def plan_sheet(p):
     parts.append(plan_rect(ext, ext, L-2*ext, W-2*ext, fill="#fbfaf7", stroke="#7b878a", stroke_width="1.2"))
 
     # Program territories, without creating walls.
-    zones = [
-        (0.18,0.18,10.32,6.82,"CAR PROJECT · 70,4 m² netos aprox.","#d6e0e4"),
-        (0.18,11.0,10.32,6.82,"RC / DIY · 70,4 m² netos aprox.","#d6e0e4"),
-        (10.5,0.18,2.0,17.64,"FRANJA DE RESPIRACIÓN", "#f1eee7"),
-        (12.5,3.2,8.5,11.6,"SALA MONUMENTAL", "#e6d7c7"),
-        (21.0,0.18,5.5,7.82,"COMEDOR", "#e7d3b9"),
-        (21.0,11.0,5.5,6.82,"ESTAR / TRANSICIÓN", "#e7d3b9"),
-        (26.5,0.18,5.0,17.64,"COCINA + GALERÍA DOMÉSTICA", "#ead4b6")
-    ]
-    for x,y,w,d,label,color in zones:
+    social_layout = p.get("social_layout")
+    if social_layout:
+        zones = [
+            (0.18,0.18,10.32,6.82,"CAR PROJECT · 70,4 m² netos aprox.","#d6e0e4",None),
+            (0.18,11.0,10.32,6.82,"RC / DIY · 70,4 m² netos aprox.","#d6e0e4",None),
+            (10.5,0.18,2.0,17.64,"FRANJA DE RESPIRACIÓN", "#f1eee7",12.0),
+            *[
+                (
+                    zone["x"], zone["y"], zone["w"], zone["d"],
+                    zone["label"], zone["color"], zone.get("label_y"),
+                )
+                for zone in social_layout["program_territories"]
+            ],
+        ]
+    else:
+        zones = [
+            (0.18,0.18,10.32,6.82,"CAR PROJECT · 70,4 m² netos aprox.","#d6e0e4",None),
+            (0.18,11.0,10.32,6.82,"RC / DIY · 70,4 m² netos aprox.","#d6e0e4",None),
+            (10.5,0.18,2.0,17.64,"FRANJA DE RESPIRACIÓN", "#f1eee7",12.0),
+            (12.5,3.2,8.5,11.6,"SALA MONUMENTAL", "#e6d7c7",12.6),
+            (21.0,0.18,5.5,7.82,"COMEDOR", "#e7d3b9",None),
+            (21.0,11.0,5.5,6.82,"ESTAR / TRANSICIÓN", "#e7d3b9",None),
+            (26.5,0.18,5.0,17.64,"COCINA + GALERÍA DOMÉSTICA", "#ead4b6",14.0),
+        ]
+    for x,y,w,d,label,color,explicit_label_y in zones:
         parts.append(plan_rect(x,y,w,d,fill=color,stroke="#9aa2a2",stroke_width=".7",stroke_dasharray="5 4",opacity=".72"))
-        label_y = y+d/2
-        if label.startswith("FRANJA"):
-            label_y = 12.0
-        elif label.startswith("SALA"):
-            label_y = 12.6
-        elif label.startswith("COCINA"):
-            label_y = 14.0
+        label_y = explicit_label_y if explicit_label_y is not None else y+d/2
         parts.append(text(sx(x+w/2),sy(label_y),label,9,weight=700,fill="#45545a"))
 
     # Clear central axis.
@@ -199,15 +208,165 @@ def plan_sheet(p):
     parts.append(text(sx(29),sy(1.6),"1,20 m operativo",7,fill="#7b552b"))
     parts.append(text(sx(29),sy(4.15),"≥1,50 m social",7,fill="#7b552b"))
 
-    # Dining and living furniture.
-    parts.append(table_symbol(22.0,2.2,3.6,1.3,"MESA 12 P · 3,60 × 1,30"))
-    for i in range(6):
-        parts.append(chair(sx(22.3+i*.6),sy(2.0)))
-        parts.append(chair(sx(22.3+i*.6),sy(3.7)))
-    parts.append(plan_rect(14.0,3.7,5.8,5.0,fill="#d9c6b2",stroke="#8b7765",stroke_width="1",rx="18"))
-    parts.append(plan_rect(14.4,4.1,4.8,1.05,fill="#bda893",stroke="#796756",stroke_width="1",rx="10"))
-    parts.append(plan_rect(14.4,7.1,4.8,1.05,fill="#bda893",stroke="#796756",stroke_width="1",rx="10"))
-    parts.append(table_symbol(16.0,5.45,1.6,1.2,"CENTRO"))
+    # Dining and living furniture. Later revisions can replace the inherited abstract
+    # sofa block with a coordinated media-wall layout while preserving the b05 issue.
+    if social_layout:
+        living = social_layout["living"]
+        rug = living["rug"]
+        parts.append(
+            plan_rect(
+                rug["x"], rug["y"], rug["w"], rug["d"],
+                fill="#d8c5ae", stroke="#927a61", stroke_width="1",
+                stroke_dasharray="5 3", rx="14", opacity=".82",
+            )
+        )
+        sofa = living["sofa"]
+        sofa_is_horizontal = sofa.get("orientation", "vertical") == "horizontal"
+        sofa_w = sofa["length"] if sofa_is_horizontal else sofa["depth"]
+        sofa_d = sofa["depth"] if sofa_is_horizontal else sofa["length"]
+        parts.append(
+            plan_rect(
+                sofa["x"], sofa["y"], sofa_w, sofa_d,
+                fill="#aa9077", stroke="#685748", stroke_width="1.3", rx="9",
+            )
+        )
+        parts.append(
+            text(
+                sx(sofa["x"] + sofa_w / 2),
+                sy(sofa["y"] + sofa_d / 2),
+                f'{sofa["length"]:.2f} m SOFA', 6.2, weight=700,
+                fill="#f9f3e8", rotate=0 if sofa_is_horizontal else -90,
+            )
+        )
+        chaise = living["chaise"]
+        chaise_w = chaise.get("w", chaise["length"])
+        chaise_d = chaise.get("d", chaise["depth"])
+        parts.append(
+            plan_rect(
+                chaise["x"], chaise["y"], chaise_w, chaise_d,
+                fill="#aa9077", stroke="#685748", stroke_width="1.3", rx="9",
+            )
+        )
+        coffee = living["coffee_table"]
+        parts.append(
+            plan_rect(
+                coffee["x"], coffee["y"], coffee["w"], coffee["d"],
+                fill="#d9c8ae", stroke="#695947", stroke_width="1.1", rx="5",
+            )
+        )
+        parts.append(text(sx(coffee["x"] + coffee["w"] / 2), sy(coffee["y"] + coffee["d"] / 2)+2, "COFFEE", 5.7, weight=700))
+        for lounge_chair in living["chairs"]:
+            parts.append(chair(sx(lounge_chair["x"]), sy(lounge_chair["y"]), r=11))
+        parts.append(text(sx(living["label_x"]), sy(living["label_y"]), "LIVING / 100-IN TV LOUNGE", 7.2, weight=700, fill="#60472e"))
+
+        media = social_layout["media_wall"]
+        if media.get("mounting") == "side_b_perimeter":
+            wall_y = media["y"]
+            wall_length = media["x1"] - media["x0"]
+            # This is only the interior mounting/backing zone. The existing exterior
+            # wall remains the enclosure and no freestanding partition is introduced.
+            parts.append(
+                plan_rect(
+                    media["x0"], wall_y - media["backing_depth"],
+                    wall_length, media["backing_depth"],
+                    fill="#4b3b31", stroke="#241e1a", stroke_width="1.5",
+                )
+            )
+            tv_x0 = media["tv_center_x"] - media["tv_width"] / 2
+            parts.append(
+                f'<line x1="{sx(tv_x0)}" y1="{sy(wall_y)+3}" '
+                f'x2="{sx(tv_x0+media["tv_width"])}" y2="{sy(wall_y)+3}" '
+                'stroke="#111719" stroke-width="6"/>'
+            )
+            console = media["console"]
+            parts.append(
+                plan_rect(
+                    console["x"], wall_y - console["depth"],
+                    console["length"], console["depth"],
+                    fill="#75583f", stroke="#3f3025", stroke_width="1",
+                )
+            )
+            parts.append(
+                text(
+                    sx(media["tv_center_x"]), sy(wall_y - console["depth"] - 0.14),
+                    "100-IN TV · SIDE B WALL", 6.3, weight=700, fill="#332923",
+                )
+            )
+            view_x = media["tv_center_x"]
+            view_y0 = media["viewing_point_y"]
+            view_y1 = wall_y
+            parts.append(
+                f'<line x1="{sx(view_x)}" y1="{sy(view_y0)}" '
+                f'x2="{sx(view_x)}" y2="{sy(view_y1)}" '
+                'stroke="#a46d20" stroke-width="1" stroke-dasharray="5 3"/>'
+            )
+            parts.append(
+                text(
+                    sx(view_x)+7, (sy(view_y0)+sy(view_y1))/2,
+                    f'{media["viewing_distance"]:.2f} m VIEW', 5.8,
+                    "start", 700, "#8a5b1c", rotate=-90,
+                )
+            )
+        else:
+            wall_x = media["x"] - media["thickness"]
+            wall_length = media["y1"] - media["y0"]
+            parts.append(
+                plan_rect(
+                    wall_x, media["y0"], media["thickness"], wall_length,
+                    fill="#4b3b31", stroke="#241e1a", stroke_width="1.5",
+                )
+            )
+            tv_y0 = media["tv_center_y"] - media["tv_width"] / 2
+            parts.append(
+                f'<line x1="{sx(wall_x)-3}" y1="{sy(tv_y0)}" '
+                f'x2="{sx(wall_x)-3}" y2="{sy(tv_y0+media["tv_width"])}" '
+                'stroke="#111719" stroke-width="6"/>'
+            )
+            console = media["console"]
+            parts.append(
+                plan_rect(
+                    wall_x - console["depth"], console["y"],
+                    console["depth"], console["length"],
+                    fill="#75583f", stroke="#3f3025", stroke_width="1",
+                )
+            )
+            parts.append(
+                text(
+                    sx(wall_x - console["depth"] - 0.08), sy(media["tv_center_y"]),
+                    "100-IN TV / MEDIA WALL", 6.3, "end", 700, "#332923",
+                )
+            )
+            view_y = media["tv_center_y"]
+            view_x0 = media.get("viewing_point_x", sofa["x"] + sofa["depth"])
+            view_x1 = wall_x
+            parts.append(
+                f'<line x1="{sx(view_x0)}" y1="{sy(view_y)}" '
+                f'x2="{sx(view_x1)}" y2="{sy(view_y)}" '
+                'stroke="#a46d20" stroke-width="1" stroke-dasharray="5 3"/>'
+            )
+            parts.append(text((sx(view_x0)+sx(view_x1))/2, sy(view_y)-6, f'{media["viewing_distance"]:.2f} m VIEW', 5.8, weight=700, fill="#8a5b1c"))
+
+        dining = social_layout["dining"]
+        table = dining["table"]
+        parts.append(table_symbol(table["x"],table["y"],table["length"],table["depth"],"12-SEAT DINING · 3.60 × 1.30"))
+        chair_step = table["length"] / dining["chairs_per_side"]
+        for i in range(dining["chairs_per_side"]):
+            chair_x = table["x"] + chair_step * (i + 0.5)
+            parts.append(chair(sx(chair_x),sy(table["y"]-.25)))
+            parts.append(chair(sx(chair_x),sy(table["y"]+table["depth"]+.25)))
+        sideboard = dining.get("sideboard")
+        if sideboard:
+            parts.append(plan_rect(sideboard["x"],sideboard["y"],sideboard["depth"],sideboard["length"],fill="#a98460",stroke="#5a4330",stroke_width="1"))
+            parts.append(text(sx(sideboard["x"]+sideboard["depth"]/2),sy(sideboard["y"]+sideboard["length"]/2),"DINING SIDEBOARD",5.5,weight=700,fill="#f8f1e7",rotate=-90))
+    else:
+        parts.append(table_symbol(22.0,2.2,3.6,1.3,"MESA 12 P · 3,60 × 1,30"))
+        for i in range(6):
+            parts.append(chair(sx(22.3+i*.6),sy(2.0)))
+            parts.append(chair(sx(22.3+i*.6),sy(3.7)))
+        parts.append(plan_rect(14.0,3.7,5.8,5.0,fill="#d9c6b2",stroke="#8b7765",stroke_width="1",rx="18"))
+        parts.append(plan_rect(14.4,4.1,4.8,1.05,fill="#bda893",stroke="#796756",stroke_width="1",rx="10"))
+        parts.append(plan_rect(14.4,7.1,4.8,1.05,fill="#bda893",stroke="#796756",stroke_width="1",rx="10"))
+        parts.append(table_symbol(16.0,5.45,1.6,1.2,"CENTRO"))
 
     # Workstations, glazing and acoustic curtain pockets. Later revisions can describe
     # the pair parametrically; b05 retains the original historical symbols.
@@ -686,7 +845,7 @@ def side_elevation_sheet(p,side):
             xx=gx+gw*i/4
             parts.append(f'<line x1="{xx}" y1="{gy}" x2="{xx}" y2="{base}" stroke="#8aa4a9"/>')
         parts.append(text(gx+gw/2,gy+gh/2,"EVENTO PRINCIPAL SALA",9,weight=700,fill="#eff5f5"))
-    else:
+    elif p.get("side_b_main_bay") != "solid":
         parts.append(rect(gx,gy,gw,gh,fill="none",stroke="#27859a",stroke_width="2",stroke_dasharray="9 5"))
         parts.append(text(gx+gw/2,gy+gh/2,"ALTERNATIVA SEGÚN PREDIO",8,weight=700,fill="#246b7a"))
     # Workstation opening and fixed worktop. Later revisions derive both from the

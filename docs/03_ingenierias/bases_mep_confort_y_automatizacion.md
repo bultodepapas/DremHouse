@@ -1,7 +1,7 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.4
+**Versión:** 0.6
 **Fecha:** 2026-08-20
 
 ## Filosofía
@@ -56,6 +56,13 @@ D-069 cabinet banks may not block that accessible service zone. Coordinate cable
 drawer extension, ventilation for equipment stored in cabinets and removable access
 panels with the full-scale workstation mock-up; bond the powder-coated steel carcasses
 where required by the electrical design.
+
+Under D-071, provide an accessible service zone at the Side B perimeter wall for dedicated
+power, data, spare AV conduits, speakers, controls and equipment ventilation. Keep
+connectors, power supplies and active devices replaceable without opening the exterior
+wall or compromising insulation, vapour, air/water, fire and acoustic layers. Coordinate
+screen glare and motorized blackout control with the selected site, retain autonomous
+manual operation and do not treat the 100-inch test envelope as a selected product.
 
 Home Assistant coordinará confort, alertas y eficiencia, pero detección/alarma exigida,
 protecciones eléctricas, controles de seguridad de equipos y paro de emergencia conservarán

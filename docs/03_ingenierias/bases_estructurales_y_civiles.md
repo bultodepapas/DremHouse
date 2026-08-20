@@ -1,7 +1,7 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.4
+**Versión:** 0.6
 **Fecha:** 2026-08-20
 
 ## Alcance
@@ -22,6 +22,8 @@ cargas y análisis sería falsa ingeniería.
   loads and vibration without loading window frames or assuming facade girts are adequate.
 - D-069 loaded drawer, impact and racking demands from four large suspended steel cabinet
   units, including serviceability of the 3.00 × 0.90 m worktops and secondary frames.
+- D-071 local TV backing within the Side B exterior wall, including TV/mount eccentric
+  load, console load, verified load transfer, sealed penetrations and enclosure continuity.
 - Viento, sismo, estabilidad global, flechas y derivas de una caja liviana de gran tamaño.
 
 ## Datos de entrada obligatorios
@@ -130,3 +132,5 @@ visible no exime protección ni inspección futura.
 - Field-weld D-068 workstation or bench brackets to primary steel, load window frames,
   or classify the furniture service rail as gravity/lateral structure without the
   structural engineer's coordinated design and inspection requirements.
+- Load the Side B cladding, workstation window frame or unverified facade girts with the
+  D-071 TV/mount, or puncture enclosure layers without coordinated backing and seals.

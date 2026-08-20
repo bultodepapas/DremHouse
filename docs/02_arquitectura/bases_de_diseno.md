@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.6
+**Versión:** 0.8
 **Fecha:** 2026-08-20
 
 ## Forma y modulación
@@ -128,6 +128,21 @@ central knee/chair opening. The increased storage makes loaded-drawer, impact, r
 deflection and cable-access checks more important. Treat these as test dimensions pending
 the real equipment schedule and a full-scale joinery mock-up. See
 [PB enlarged workstation cabinets — draft 25](pb_enlarged_workstation_cabinets_v0.3_b25.md).
+
+### PB living, dining and media wall
+
+D-070 removed the abstract PB sofa block, empty lounge/transition field and unassigned
+Side B opening. D-071 retains those corrections but rejects D-070's freestanding X=21
+media partition. The 100-inch television is fixed directly to a 4.40 m mounting field on
+the Side B perimeter wall; the living group turns to face it beyond Y=11.00 m and east of
+workstation 2. The retained 12-seat dining table remains independently beside the kitchen.
+
+The mounting field is a local finish, backing and service zone within the existing
+exterior-wall assembly, not a room divider or selected primary structure. Coordinate its
+warm acoustic finish, matte screen background, AV console, local backing, sealed service
+penetrations, 4.10 m sightline and site-dependent glare control. See
+[PB Side B wall TV living — draft 27](pb_side_b_wall_tv_living_v0.3_b27.md). The
+[superseded D-070 study](pb_living_dining_media_v0.3_b26.md) remains historical evidence.
 
 - Repetir familias de componentes.
 - Diseñar encuentros panel–estructura–vidrio–portón antes de fabricar.

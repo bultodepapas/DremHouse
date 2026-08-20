@@ -1,8 +1,8 @@
 # Programa arquitectónico
 
 **Estatus:** activo para prueba v0.3  
-**Versión:** 0.2
-**Fecha:** 2026-08-11  
+**Versión:** 0.4
+**Fecha:** 2026-08-20
 **Nota:** áreas brutas/nominales sin descontar estructura, cerramientos y acabados.
 
 ## Cuadro general
@@ -64,6 +64,9 @@ reales. La reserva dimensional no reemplaza la ficha técnica del equipo.
 | Evento principal de vidrio    |    ≈7–9 m de ancho; altura por diseñar |
 | Territorio comedor            |                               ≈6 × 5 m |
 | Mesa comedor                  |         ≈1,30 × 3,60 m; 10–12 personas |
+| TV principal                  | 100 in; envelope 2,214 × 1,245 m under D-071 |
+| Campo multimedia              | ≈4,40 m wide on the Side B perimeter wall; no internal partition |
+| Distancia de visión TV        | ≈4,10 m test value; verify with real equipment |
 | Muro equipado cocina          |                             ≈7,0–7,5 m |
 | Isla de prueba                |      hasta 4,80 × 1,40 m; no congelada |
 | Pasos de cocina               | operativo ≈1,30–1,40 m; social ≈1,50 m |
@@ -71,6 +74,12 @@ reales. La reserva dimensional no reemplaza la ficha técnica del equipo.
 La cocina incluye refrigeración abundante, hornos, placa, lavavajillas, almacenamiento y
 residuos. El congelador horizontal se prefiere en apoyo limpio próximo, no consumiendo
 frente premium de cocina.
+
+Under D-071 the living group sits beyond Y=11.00 m and faces the Side B perimeter wall;
+the dining table remains independently beside the kitchen. No freestanding media
+partition is permitted. The television is owner equipment; local wall backing, acoustic
+finish, accessible AV console and service routes are construction-scope alerts pending
+design and cost reconciliation.
 
 ## Núcleo posterior PB — distribución nominal
 
