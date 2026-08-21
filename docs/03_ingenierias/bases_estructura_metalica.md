@@ -2,11 +2,11 @@
 
 **Estatus:** base de coordinación; hipótesis de ingeniería; no es memoria de cálculo
 ni diseño profesional
-**Versión:** 0.5
-**Fecha de corte:** 2026-08-12
+**Versión:** 0.6
+**Fecha de corte:** 2026-08-21
 **Fuentes:** constitución del proyecto, programa arquitectónico v0.2, plano conceptual
 v0.2, bases estructurales y civiles v0.2, presupuesto desglosado de control, auditoría de
-costos 2026-08, herramientas digitales (modelos E0/E1), D-043/D-045/D-047/D-048 y técnicas que
+costos 2026-08, herramientas digitales (modelos E0/E1), D-043/D-045/D-047/D-048/D-074 y técnicas que
 abaratan costos.
 **Aprobación pendiente:** ingeniero estructural, arquitecto coordinador, propietario.
 
@@ -42,6 +42,14 @@ D-048 adds a geometry-controlled study: continue the Great Wall stair-jamb colum
 (36.00, 11.00). The enclosure frame—not the stair flights—is the preferred structural
 study. No section, bracing topology, collector, drift joint, base, foundation, fire
 protection, or roof gravity role is selected.
+
+D-074 adds one shared architectural stair model inside those unchanged column lines. Its
+22 equal 172.7 mm risers, two 1.40 m flights, 270 mm goings and +1.90 m intermediate
+landing are coordination geometry, not a fabricated steel stair. The stringers and flights
+remain excluded from the primary lateral system. Column restraints at landings, drift
+interfaces, diaphragm collectors, torsion, member/joint resistance, erection and fire
+protection require explicit analysis. CF-011 blocks the rear-discharge interface because
+the current rear door plane meets the intermediate landing rather than PB grade.
 
 Revision 0.4 also records a precedence correction: earlier derived prose describing
 three P2 beams, an assigned longitudinal shear-core role, or an adopted strip foundation

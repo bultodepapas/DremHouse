@@ -1,8 +1,8 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.4
-**Date:** 2026-08-13
+**Version:** 0.5
+**Date:** 2026-08-21
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -45,7 +45,8 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Current drawings and visual index](02_arquitectura/planos_actuales.md): stable current
   plans, roof views, sections, all four façades, details, and their versioned provenance.
 - [Architectural design basis](02_arquitectura/bases_de_diseno.md)
-- [Visualization control](02_arquitectura/control_de_visualizaciones.md)
+- [Visualization control and ChatGPT image prompt kit](02_arquitectura/control_de_visualizaciones.md):
+  four reference-grounded prompts, targeted correction prompts, and an acceptance checklist.
 - [Concept plan v0.3 — first parametric draft](02_arquitectura/plano_conceptual_v0.3_borrador.md)
 - [Concept plan v0.3 — draft 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
@@ -141,6 +142,10 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Unified primary-bedroom reading — draft 23](02_arquitectura/habitacion_principal_unificada_p2_v0.3_b23.md):
   D-067/R20 removes the fitted privacy screen and gives the complete 35.24 m² gross
   primary bedroom one name and one plan label.
+- [Shared PB/P2 stair-core coordination — PB b33 / P2 b24](02_arquitectura/stair_core_coordination_v0.3_b33_b24.md):
+  D-074/SC-01 gives both current plans one 22-riser dogleg geometry, one set of four
+  foundation-to-roof column coordinates and opposite level-correct arrows; CF-011 keeps
+  the unresolved rear grade-discharge level conflict explicit.
 
 ## 03 — Engineering
 

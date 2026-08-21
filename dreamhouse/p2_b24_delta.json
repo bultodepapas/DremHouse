@@ -1,0 +1,19 @@
+{
+  "base_model": "dreamhouse/p2_b23_delta.json",
+  "base_model_sha256": "a3d89ce5c6ecad4fc9c2892d1cf1d2ddd24bc2e5631178732bf1a3f48f520392",
+  "stair_core": "dreamhouse/stair_core.json",
+  "revision": "0.3-draft-24-P2",
+  "drawing_revision": "R21",
+  "status": "issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design, guards, members, joints, bases and foundations remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-23-P2 / R20 for stair geometry, stair-door location and four-column representation only",
+  "decision": "D-074",
+  "change": {
+    "summary": "Use the same SC-01 dogleg geometry and four column coordinates as PB, and align the P2 stair door with the upper-flight top platform.",
+    "stair_door": {
+      "id": "D-STAIR",
+      "at": 9.5,
+      "width": 1.0
+    }
+  }
+}

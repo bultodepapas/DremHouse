@@ -1,8 +1,8 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.10
-**Fecha:** 2026-08-20
+**Versión:** 0.11
+**Fecha:** 2026-08-21
 
 ## Forma y modulación
 
@@ -16,6 +16,19 @@
 
 - P2 empieza nominalmente en X=21 m.
 - Nivel P2 ≈+3,80 m, sujeto a canto real de estructura y redes.
+
+### Shared stair-core control — D-074 / SC-01
+
+- PB and P2 use the same enclosure at X=31.50–36.00 m and Y=7.40–11.00 m.
+- The schematic dogleg uses 22 equal 172.7 mm risers, 20 equal 270 mm goings, two
+  1.40 m flights and a 1.40 m intermediate landing at +1.90 m.
+- PB reads the lower flight up to P2; P2 reads the upper flight down to PB. Neither plan
+  may redraw the stair independently of `dreamhouse/stair_core.json`.
+- The four D-048 column reservations remain exact at the enclosure corners. Stair flights
+  have no primary lateral-system role and require drift-compatible interfaces.
+- CF-011 is a blocking section-level conflict: the rear door plane meets the +1.90 m
+  intermediate landing, not PB grade. Do not claim direct discharge until a coordinated
+  alternative is professionally accepted.
 - Bajo P2: 3,05–3,20 m libres.
 - Habitaciones: 3,00–3,15 m libres.
 - Nave: 7,20–7,80 m interiores de estudio.

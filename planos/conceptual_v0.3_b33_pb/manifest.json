@@ -1,0 +1,16 @@
+{
+  "revision": "0.3-draft-33-PB",
+  "status": "issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design, guards, members, joints, bases and foundations remain open; not for construction",
+  "source": "dreamhouse/pb_b33_delta.json",
+  "source_sha256": "c4bc685eaed7a6bf074a5ba45f73da1f63bc25de569c456c901e55e376fb48a8",
+  "shared_stair_source": "dreamhouse/stair_core.json",
+  "shared_stair_sha256": "26b418181bc52005ad5cd7ff2cb5f47554a1579b2fb91f8f0f21f462fd7fb138",
+  "generator": "dreamhouse/generate_pb_b33.py",
+  "supersedes": "0.3-draft-29-PB / PLN-001-R10 for stair geometry and four-column representation only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg",
+    "DH-ARQ-DET-001-R05_PB-STAIR-CORE.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

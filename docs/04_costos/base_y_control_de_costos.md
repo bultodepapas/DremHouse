@@ -1,9 +1,9 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.18
+**Versión:** 0.3.19
 **Fecha de precios declarada por la fuente:** 2026-08-11  
-**Document update:** 2026-08-20
+**Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
 — APU de hipótesis por partida (cantidades, precios unitarios, fases F1/F2 y
@@ -461,10 +461,31 @@ No saving is booked for eliminating the two 0.37 m empty gaps, and no cost is ad
 detail and quotations. **No price, saving, increase, contingency change, phase-total
 change, or target change is recognized by D-073.**
 
+### 0.3-AB — D-074 shared PB/P2 stair core
+
+D-074 replaces two contradictory stair symbols with one measurable SC-01 geometry inside
+the unchanged 4.50 × 3.60 m enclosure. The coordination quantity is now explicit: two
+1.40 m-wide straight flights, 22 equal risers, 20 equal goings, one 1.40 m intermediate
+landing, four foundation-to-roof column reservations and drift-compatible stair/frame
+interfaces. This is a geometry control, not a selected stair or steel specification.
+
+Cost codes for structural steel, metal stair fabrication, landings, guards, handrails,
+fire/smoke enclosure, doors, finishes, erection, temporary works, bases and foundations
+must be remeasured after CF-011 is resolved. The current rear-door concept cannot be priced
+as a functioning grade discharge because it meets the +1.90 m landing plane. Alternative
+topologies or a protected exit passage may change core partitions, usable area, steel mass,
+fire scope and foundations; compare them before freezing the stair.
+
+No saving is booked for removing inconsistent graphics, and no increase is booked before
+the section, fire strategy, structural design, quantity take-off and quotations exist.
+**No price, saving, increase, contingency change, phase-total change, or target change is
+recognized by D-074.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AB  | 2026-08-21 | D-074 coordinates one shared 22-riser PB/P2 dogleg stair and four continuous column reservations inside the unchanged core. Stair steel, landings, fire/smoke enclosure, guards, connections, erection, bases and foundations require remeasurement after CF-011 rear grade-discharge resolution; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AA  | 2026-08-20 | D-073 moves both existing 9.00 m technical bench starts to X=0.18 m at the front interior corners without changing quantity. Door-jamb/track, guard, seal, backing and removable-service end details require reconciliation; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-Z   | 2026-08-20 | D-072 moves the existing 9.00 × 0.75 m project-car bench against Side A and shifts the unpriced lift/vehicle test envelope inward. Existing priced control `21.04` is retained without adding length; backing, services and real equipment interfaces require reconciliation. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-Y   | 2026-08-20 | D-071 deletes the unpriced X=21 freestanding media partition and dining sideboard, replacing them with a 16.72 m² Side B wall finish/mounting field, local verified backing, sealed service penetrations and the retained 3.40 m AV console. Alerts `14.07` and `21.09` are updated in place; **no price, saving, increase, contingency, phase-total or target change is recognized.** |

@@ -1,8 +1,8 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.17<br>
-**Date:** 2026-08-20<br>
+**Version:** 1.18<br>
+**Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
 This page is the visual entry point to the current coordinated state of Dream House. It
@@ -19,14 +19,14 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with corner-start wall-integrated Project Car and RC workshop benches, enlarged workstations, living room facing a 100-inch TV on the Side B wall, dining and kitchen" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with the coordinated 22-riser stair core, four column reservations, workshops, living, dining and kitchen" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-29-PB · <a href="../../planos/conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-33-PB · <a href="../../planos/conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-PLN-002-R20_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-24-P2 · <a href="../../planos/conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "revision": "SC-01",
+  "date": "2026-08-21",
+  "decision": "D-074",
+  "status": "schematic coordination hypothesis; not for construction",
+  "units": "m",
+  "coordinate_system": {
+    "x_axis": "hall longitudinal axis; front to rear",
+    "y_axis": "hall transverse axis; Side A to Side B",
+    "z_axis": "vertical; PB finished floor is 0.00 m"
+  },
+  "enclosure": {
+    "x0": 31.5,
+    "x1": 36.0,
+    "y0": 7.4,
+    "y1": 11.0,
+    "wall_thickness": 0.2
+  },
+  "levels": {
+    "pb_finished_floor": 0.0,
+    "intermediate_landing": 1.9,
+    "p2_finished_floor": 3.8
+  },
+  "stair": {
+    "arrangement": "two-flight dogleg with parallel straight flights and one rear intermediate landing",
+    "total_risers": 22,
+    "risers_per_flight": [11, 11],
+    "treads_per_flight": [10, 10],
+    "going": 0.27,
+    "flight_width": 1.4,
+    "clear_gap_between_flights": 0.2,
+    "side_clearance": 0.1,
+    "intermediate_landing_depth": 1.4,
+    "lower_flight": {
+      "id": "ST-F1",
+      "x0": 31.7,
+      "x1": 34.4,
+      "y0": 7.7,
+      "y1": 9.1,
+      "up_direction": "+X",
+      "z0": 0.0,
+      "z1": 1.9
+    },
+    "upper_flight": {
+      "id": "ST-F2",
+      "x0": 31.7,
+      "x1": 34.4,
+      "y0": 9.3,
+      "y1": 10.7,
+      "up_direction": "-X",
+      "z0": 1.9,
+      "z1": 3.8
+    },
+    "intermediate_landing": {
+      "id": "ST-L1",
+      "x0": 34.4,
+      "x1": 35.8,
+      "y0": 7.7,
+      "y1": 10.7,
+      "level": 1.9
+    },
+    "pb_access_platform": {
+      "location": "outside the enclosure on the Great Wall side",
+      "door_reference_y": 8.65,
+      "clear_y0": 7.9,
+      "door_width": 1.0,
+      "served_flight": "ST-F1"
+    },
+    "p2_access_platform": {
+      "location": "family distributor outside the enclosure on the Great Wall side",
+      "door_y0": 9.5,
+      "door_width": 1.0,
+      "served_flight": "ST-F2"
+    }
+  },
+  "structure": {
+    "preferred_concept": "independent four-column steel stair-enclosure frame",
+    "column_reservation_size": 0.3,
+    "column_reservations": [
+      { "id": "GW-STAIR-S", "x": 31.5, "y": 7.4, "source": "reused Great Wall line" },
+      { "id": "GW-STAIR-N", "x": 31.5, "y": 11.0, "source": "reused Great Wall line" },
+      { "id": "STAIR-REAR-S", "x": 36.0, "y": 7.4, "source": "new rear line" },
+      { "id": "STAIR-REAR-N", "x": 36.0, "y": 11.0, "source": "new rear line" }
+    ],
+    "stair_flights_primary_lateral_role": false,
+    "drift_compatible_stair_connections_required": true,
+    "landing_beams_as_column_restraints_resolved": false,
+    "member_sections_selected": false,
+    "connections_bases_foundations_fire_resolved": false
+  },
+  "code_screen": {
+    "basis": "NSR-10 Title K as modified by Colombia Decree 340 of 2012; professional classification and approval remain required",
+    "minimum_screened_width": 1.2,
+    "two_risers_plus_going_min": 0.6,
+    "two_risers_plus_going_max": 0.64,
+    "maximum_rise_between_landings": 3.6,
+    "minimum_headroom": 2.05,
+    "headroom_verified": false,
+    "guard_handrail_fire_smoke_verified": false
+  },
+  "open_conflicts": [
+    {
+      "id": "CF-011",
+      "topic": "rear grade discharge versus dogleg intermediate-landing level",
+      "rear_door_id": "EXT-ESC",
+      "rear_door_level": 0.0,
+      "landing_level_at_rear_door_plane": 1.9,
+      "status": "open",
+      "rule": "Do not depict or count the current rear opening as a resolved grade discharge until a sectioned alternative is selected and professionally checked."
+    }
+  ]
+}

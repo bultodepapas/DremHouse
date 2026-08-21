@@ -1,8 +1,8 @@
 # Dream House drawings
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.17<br>
-**Date:** 2026-08-20<br>
+**Version:** 1.18<br>
+**Date:** 2026-08-21<br>
 **Source:** [`actual/catalog.json`](actual/catalog.json)
 
 > [!IMPORTANT]
@@ -15,14 +15,14 @@
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with corner-start wall-integrated Project Car and RC workshop benches, enlarged workstations, living room facing a 100-inch TV on the Side B wall, dining and kitchen" width="100%"></a>
+  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with the coordinated 22-riser stair core, four column reservations, workshops, living, dining and kitchen" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-29-PB · <a href="conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-33-PB · <a href="conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House coordinated upper-floor schematic plan" width="100%"></a>
+  <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-PLN-002-R20_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-24-P2 · <a href="conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -103,8 +103,8 @@ all architectural sheets with the structural studies and their open gates.
 
 | Stable ID | Drawing | Current aliases | Preserved issue | Status / limitation |
 | --- | --- | --- | --- | --- |
-| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-29-PB](conceptual_v0.3_b29_pb/DH-ARQ-PLN-001-R10_PB-CORNER-START-WORKBENCHES.svg) | issued for coordination under D-073; front-corner bench junctions, real lift/vehicle, bench structure, extraction, MEP and facade interfaces remain open; not for construction |
-| `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-PLN-002-R20_P2-COORDINATED.svg) | issued for coordination under D-067; primary-bedroom furniture, lighting, privacy and facade detail remain open; not for construction |
+| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-33-PB](conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg) | issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design and structural details remain open; not for construction |
+| `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg) | issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design and structural details remain open; not for construction |
 | `architecture-roof-plan` | Roof and rooflight plan | [SVG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg) · [PNG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-daylight-section` | Rooflight daylight section | [SVG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg) · [PNG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-longitudinal-section` | Longitudinal roof section | [SVG](actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.svg) · [PNG](actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.png) | [0.3-borrador-07-CUBIERTA](conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg) | active roof-form schematic basis; not for construction |
@@ -114,10 +114,10 @@ all architectural sheets with the structural studies and their open gates.
 | `architecture-side-a-elevation` | Side A façade | [SVG](actual/DH-ARQ-ELE-003_CURRENT-SIDE-A.svg) · [PNG](actual/DH-ARQ-ELE-003_CURRENT-SIDE-A.png) | [0.3-draft-25-PB](conceptual_v0.3_b25_pb/DH-ARQ-ELE-003-R08_SIDE-A-FULL-BAY-WORKSTATION.svg) | issued for D-069 facade/joinery coordination; mullion/trimmer, structure, seals, drainage, glazing performance and site orientation remain open; not for construction |
 | `architecture-side-b-elevation` | Side B façade | [SVG](actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg) · [PNG](actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.png) | [0.3-draft-26-PB](conceptual_v0.3_b26_pb/DH-ARQ-ELE-004-R09_SIDE-B-SOLID-HALL-BAY.svg) | issued for D-070 facade coordination; final site response, structure, seals, drainage and performance remain open; not for construction |
 | `architecture-great-wall-elevation` | Great Wall | [SVG](actual/DH-ARQ-ELE-INT-001_CURRENT-GREAT-WALL.svg) · [PNG](actual/DH-ARQ-ELE-INT-001_CURRENT-GREAT-WALL.png) | [0.3-borrador-05-PB](conceptual_v0.3_b05_pb/DH-ARQ-ELE-INT-001-R04_GRAN-MURO.svg) | active architectural intent, supplemented by structural coordination |
-| `architecture-ground-floor-core` | Ground-floor service core | [SVG](actual/DH-ARQ-DET-001_CURRENT-GROUND-FLOOR-CORE.svg) · [PNG](actual/DH-ARQ-DET-001_CURRENT-GROUND-FLOOR-CORE.png) | [0.3-borrador-05-PB](conceptual_v0.3_b05_pb/DH-ARQ-DET-001-R04_NUCLEO-PB.svg) | active service-core schematic basis, supplemented by D-050 |
+| `architecture-ground-floor-core` | Ground-floor service core | [SVG](actual/DH-ARQ-DET-001_CURRENT-GROUND-FLOOR-CORE.svg) · [PNG](actual/DH-ARQ-DET-001_CURRENT-GROUND-FLOOR-CORE.png) | [0.3-draft-33-PB](conceptual_v0.3_b33_pb/DH-ARQ-DET-001-R05_PB-STAIR-CORE.svg) | issued for D-074 stair-core coordination; CF-011 and all professional design gates remain open; not for construction |
 | `architecture-pb-media-wall` | PB living / 100-inch TV on Side B wall | [SVG](actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.svg) · [PNG](actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.png) | [0.3-draft-27-PB](conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg) | owner-corrected D-071 architectural intent; perimeter-wall backing, TV product, AV/MEP, glare, enclosure and acoustic details remain open; not for construction |
 | `architecture-pb-integrated-workstations` | PB enlarged workstation + cabinet family | [SVG](actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg) · [PNG](actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png) | [0.3-draft-25-PB](conceptual_v0.3_b25_pb/DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg) | owner-approved D-069 architectural intent; loaded cabinetry, secondary steel, connections, facade assembly, MEP and environmental performance remain open; not for construction |
-| `architecture-access-egress` | Upper-floor access and egress | [SVG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.svg) · [PNG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DIA-001-R20_P2-ACCESS-EGRESS.svg) | active schematic coordination hypothesis; life-safety design remains open |
+| `architecture-access-egress` | Upper-floor access and egress | [SVG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.svg) · [PNG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-DIA-001-R21_P2-ACCESS-EGRESS.svg) | active D-074 schematic coordination hypothesis; life-safety and rear grade discharge remain open |
 | `architecture-owner-priorities` | Active coordination interfaces | [SVG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.svg) · [PNG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-002-R20_OWNER-PRIORITIES.svg) | issued for coordination under D-065; not for construction |
 | `architecture-p2-acoustic-partition` | P2-W01 · 250 mm acoustic wall | [SVG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg) · [PNG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg) | frozen design control for coordination; no tested acoustic or fire rating; not for construction |
 | `architecture-p2-hall-edge` | P2-W04R · open balcony / retained suite edge | [SVG](actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg) · [PNG](actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg) | owner-approved spatial intent; guard, structure, fire, smoke and acoustic performance remain open; not for construction |

@@ -1,0 +1,20 @@
+{
+  "revision": "0.3-draft-24-P2",
+  "status": "issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design, guards, members, joints, bases and foundations remain open; not for construction",
+  "source": "dreamhouse/p2_b24_delta.json",
+  "source_sha256": "f921065ed04985a62a884594c0667ef69d87f594b3753157a0ed2332fddd36c3",
+  "generator": "dreamhouse/generate_p2_b24.py",
+  "supersedes": "0.3-draft-23-P2 / R20 for stair geometry, stair-door location and four-column representation only",
+  "outputs": [
+    "DH-ARQ-PLN-002-R21_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R21_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R21_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R21_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R21_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R21_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ],
+  "shared_stair_source": "dreamhouse/stair_core.json",
+  "shared_stair_sha256": "26b418181bc52005ad5cd7ff2cb5f47554a1579b2fb91f8f0f21f462fd7fb138"
+}

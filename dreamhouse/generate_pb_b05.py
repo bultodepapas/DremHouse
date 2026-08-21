@@ -70,8 +70,13 @@ def door_on_wall(x, y, width, emphasized=False):
     )
 
 
-def rear_door(y, width):
+def rear_door(y, width, *, unresolved=False):
     x, y1, y2 = sx(36), sy(y + width), sy(y)
+    if unresolved:
+        return (
+            f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2}" stroke="#a63f31" '
+            'stroke-width="5" stroke-dasharray="5 3" class="rear-discharge-level-conflict"/>'
+        )
     return f'<line x1="{x}" y1="{y1}" x2="{x}" y2="{y2}" stroke="#236a45" stroke-width="7"/>'
 
 
@@ -96,7 +101,71 @@ def chair(cx, cy, r=7):
     return f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="#f4f1ea" stroke="#667378"/>'
 
 
-def stair_symbol():
+def stair_symbol(stair_core=None):
+    if stair_core:
+        stair = stair_core["stair"]
+        lower = stair["lower_flight"]
+        upper = stair["upper_flight"]
+        landing = stair["intermediate_landing"]
+        pieces = [f'<g class="canonical-stair-core" data-stair-model-revision="{stair_core["revision"]}">']
+        pieces.append(
+            plan_rect(
+                lower["x0"], lower["y0"], lower["x1"] - lower["x0"], lower["y1"] - lower["y0"],
+                fill="#eee9e1", stroke="#45545a", stroke_width="1.1", **{"class": "stair-flight lower-flight"},
+            )
+        )
+        pieces.append(
+            plan_rect(
+                upper["x0"], upper["y0"], upper["x1"] - upper["x0"], upper["y1"] - upper["y0"],
+                fill="#f6f2eb", stroke="#76558f", stroke_width="1.0", stroke_dasharray="5 3",
+                **{"class": "stair-flight upper-flight overhead"},
+            )
+        )
+        pieces.append(
+            plan_rect(
+                landing["x0"], landing["y0"], landing["x1"] - landing["x0"], landing["y1"] - landing["y0"],
+                fill="#e3ddd3", stroke="#45545a", stroke_width="1.1", **{"class": "stair-landing intermediate-landing"},
+            )
+        )
+        going = stair["going"]
+        for flight, css_class in ((lower, "lower-tread"), (upper, "upper-tread")):
+            for index in range(1, stair["treads_per_flight"][0] + 1):
+                x = flight["x0"] + index * going
+                pieces.append(
+                    f'<line x1="{sx(x)}" y1="{sy(flight["y0"])}" x2="{sx(x)}" y2="{sy(flight["y1"])}" '
+                    f'stroke="#69777c" stroke-width="0.8" class="stair-tread {css_class}"/>'
+                )
+        lower_y = (lower["y0"] + lower["y1"]) / 2
+        upper_y = (upper["y0"] + upper["y1"]) / 2
+        pieces.extend(
+            [
+                f'<line x1="{sx(lower["x0"] + .25)}" y1="{sy(lower_y)}" x2="{sx(lower["x1"] - .20)}" y2="{sy(lower_y)}" stroke="#45545a" stroke-width="1.5"/>',
+                f'<polyline points="{sx(lower["x1"]-.38)},{sy(lower_y-.12)} {sx(lower["x1"]-.20)},{sy(lower_y)} {sx(lower["x1"]-.38)},{sy(lower_y+.12)}" fill="none" stroke="#45545a" stroke-width="1.5"/>',
+                text(sx(33.05), sy(lower_y) - 5, "UP TO P2", 5.4, weight=700),
+                f'<line x1="{sx(upper["x1"] - .25)}" y1="{sy(upper_y)}" x2="{sx(upper["x0"] + .20)}" y2="{sy(upper_y)}" stroke="#76558f" stroke-width="1.2" stroke-dasharray="4 3"/>',
+                text(sx(33.05), sy(upper_y) - 5, "UPPER FLIGHT ABOVE", 4.8, weight=700, fill="#76558f"),
+                text(sx(35.1), sy(9.2), "+1.90", 4.8, weight=700, fill="#59676c", rotate=-90),
+            ]
+        )
+        for column in stair_core["structure"]["column_reservations"]:
+            pieces.append(
+                rect(
+                    sx(column["x"]) - 5, sy(column["y"]) - 5, 10, 10,
+                    fill="#ffffff", stroke="#76558f", stroke_width="2",
+                    data_column_id=column["id"], **{"class": "d048-column-reservation"},
+                )
+            )
+        conflict = stair_core["open_conflicts"][0]
+        pieces.extend(
+            [
+                f'<circle cx="{sx(35.88)}" cy="{sy(8.65)}" r="6" fill="#fff" stroke="#a63f31" stroke-width="1.5" class="rear-discharge-level-conflict"/>',
+                f'<path d="M {sx(35.76)} {sy(8.77)} L {sx(36.0)} {sy(8.53)} M {sx(35.76)} {sy(8.53)} L {sx(36.0)} {sy(8.77)}" stroke="#a63f31" stroke-width="1.4" class="rear-discharge-level-conflict"/>',
+                f'<metadata class="stair-conflict-metadata">{esc(conflict["id"] + ": " + conflict["topic"])}</metadata>',
+            ]
+        )
+        pieces.append("</g>")
+        return "".join(pieces)
+
     x, y, w, d = sx(31.72), sy(10.78), 4.06*S, 3.16*S
     pieces = [rect(x, y, w, d, fill="#f0ebe4", stroke="#45545a", stroke_width="1.2")]
     for i in range(1, 11):
@@ -190,8 +259,14 @@ def plan_sheet(p):
     for boundary in (2.4,7.4,11.0,13.4):
         thick = p["design_values"]["partition_stair"] if boundary in (7.4,11.0) else partition
         parts.append(plan_rect(31.7,boundary-thick/2,4.12,thick,fill="#526168",stroke="none"))
+    unresolved_rear_discharge = bool(p.get("stair_core", {}).get("open_conflicts"))
     for d in p["exterior_doors"]:
-        parts.append(rear_door(d["y"],d["width"]))
+        parts.append(
+            rear_door(
+                d["y"], d["width"],
+                unresolved=unresolved_rear_discharge and d["id"] == "EXT-ESC",
+            )
+        )
 
     # Kitchen, pantry relationship and equipment.
     k = p["kitchen"]
@@ -720,7 +795,7 @@ def plan_sheet(p):
     parts.append(text(sx(32.55),sy(1.15)+3,"FRÍO",6,weight=700))
     parts.append(plan_rect(34.0,.45,1.45,1.4,fill="#d9d1bd",stroke="#6d6657",stroke_width="1"))
     parts.append(text(sx(34.725),sy(1.15)+3,"LIMPIEZA",6,weight=700))
-    parts.append(stair_symbol())
+    parts.append(stair_symbol(p.get("stair_core")))
 
 
     # Front openings.
@@ -1158,7 +1233,12 @@ def note_box(message):
 
 
 def core_sheet(p):
-    parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("DET-001-R04","DETALLE AMPLIADO · NÚCLEO POSTERIOR PB","Planta de coordinación 1:50 conceptual · áreas netas provisionales con cerramientos de estudio")]
+    meta = p.get("drawing_meta", {})
+    parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block(
+        meta.get("core_code", "DET-001-R04"),
+        meta.get("core_title", "DETALLE AMPLIADO · NÚCLEO POSTERIOR PB"),
+        meta.get("core_subtitle", "Planta de coordinación 1:50 conceptual · áreas netas provisionales con cerramientos de estudio"),
+    )]
     x0,y0,sc=300,115,36
     depth=4.5
     parts.append('<defs><pattern id="wood2" width="8" height="8" patternUnits="userSpaceOnUse"><line x1="2" y1="0" x2="2" y2="8" stroke="#8d6747"/></pattern></defs>')
@@ -1172,8 +1252,18 @@ def core_sheet(p):
         ny0,ny1=core_net_y(room,p)
         net_width=max(0,ny1-ny0)
         net_area=clear_depth*net_width
-        parts.append(text(x0+depth*sc/2,yy+hh/2-5,room["name"],10,weight=700))
-        parts.append(text(x0+depth*sc/2,yy+hh/2+12,f"≈ {net_area:.1f} m² netos provisionales",8,fill="#4f5e63"))
+        label_y = yy + hh / 2 - 5
+        area_y = yy + hh / 2 + 12
+        if p.get("stair_core") and room["id"] == "PAN":
+            label_y = yy + hh - 17
+            area_y = yy + hh - 6
+        parts.append(text(x0+depth*sc/2,label_y,room["name"],8.5 if p.get("stair_core") else 10,weight=700))
+        area_label = (
+            f"approx. {net_area:.1f} m2 schematic net"
+            if p.get("stair_core")
+            else f"≈ {net_area:.1f} m² netos provisionales"
+        )
+        parts.append(text(x0+depth*sc/2,area_y,area_label,7 if p.get("stair_core") else 8,fill="#4f5e63"))
     parts.append(rect(x0,y0,.20*sc,18*sc,fill="url(#wood2)",stroke="#6c4b32",stroke_width="1.4"))
     parts.append(rect(x0+(depth-ext)*sc,y0,ext*sc,18*sc,fill="#59666b",stroke="#263238",stroke_width="1"))
     for boundary in (2.4,7.4,11.0,13.4):
@@ -1181,28 +1271,43 @@ def core_sheet(p):
         parts.append(rect(x0+.2*sc,y0+(boundary-th/2)*sc,(depth-.2-ext)*sc,th*sc,fill="#58666b",stroke="none"))
     # Enlarged equipment callouts.
     parts.append(rect(x0+1.0*sc,y0+.35*sc,1.0*sc,1.45*sc,fill="#ece5d0",stroke="#5d645d"))
-    parts.append(text(x0+1.5*sc,y0+1.1*sc,"frío",7,weight=700))
+    parts.append(text(x0+1.5*sc,y0+1.1*sc,"cold" if p.get("stair_core") else "frío",7,weight=700))
     parts.append(rect(x0+2.55*sc,y0+.35*sc,1.25*sc,1.45*sc,fill="#ece5d0",stroke="#5d645d"))
-    parts.append(text(x0+3.175*sc,y0+1.1*sc,"limpieza",7,weight=700))
-    parts.append(stair_detail(x0,y0,sc))
+    parts.append(text(x0+3.175*sc,y0+1.1*sc,"cleaning" if p.get("stair_core") else "limpieza",7,weight=700))
+    parts.append(stair_detail(x0,y0,sc,p.get("stair_core")))
     parts.append(rect(x0+.55*sc,y0+11.30*sc,1.2*sc,1.1*sc,fill="none",stroke="#27859a",stroke_width="1.2"))
     parts.append(f'<ellipse cx="{x0+3.75*sc}" cy="{y0+12.05*sc}" rx="11" ry="15" fill="#fff" stroke="#59686d"/>')
     parts.append(rect(x0+2.15*sc,y0+12.55*sc,1.05*sc,.45*sc,fill="#fff",stroke="#59686d"))
     parts.append(rect(x0+.55*sc,y0+13.85*sc,1.05*sc,.8*sc,fill="#424f54",stroke="#263238"))
     parts.append(text(x0+1.075*sc,y0+14.3*sc,"rack",7,weight=700,fill="#fff"))
     parts.append(rect(x0+2.5*sc,y0+13.85*sc,1.25*sc,1.7*sc,fill="#e2e7e4",stroke="#59686d"))
-    parts.append(text(x0+3.125*sc,y0+14.7*sc,"UPS / tableros",6,weight=700))
+    parts.append(text(x0+3.125*sc,y0+14.7*sc,"UPS / panels" if p.get("stair_core") else "UPS / tableros",6,weight=700))
     # Doors and rear exits.
     for room in p["core"]:
         yy=y0+(room["door_y"]-.45)*sc
         parts.append(f'<line x1="{x0}" y1="{yy}" x2="{x0}" y2="{yy+room["door_width"]*sc}" stroke="#9d4a2f" stroke-width="5"/>')
+    unresolved_rear_discharge = bool(p.get("stair_core", {}).get("open_conflicts"))
     for d in p["exterior_doors"]:
         yy=y0+(d["y"]-.5)*sc
-        parts.append(f'<line x1="{x0+depth*sc}" y1="{yy}" x2="{x0+depth*sc}" y2="{yy+d["width"]*sc}" stroke="#236a45" stroke-width="6"/>')
+        if unresolved_rear_discharge and d["id"] == "EXT-ESC":
+            parts.append(f'<line x1="{x0+depth*sc}" y1="{yy}" x2="{x0+depth*sc}" y2="{yy+d["width"]*sc}" stroke="#a63f31" stroke-width="5" stroke-dasharray="5 3" class="rear-discharge-level-conflict"/>')
+        else:
+            parts.append(f'<line x1="{x0+depth*sc}" y1="{yy}" x2="{x0+depth*sc}" y2="{yy+d["width"]*sc}" stroke="#236a45" stroke-width="6"/>')
     # Notes panel.
     nx=570
-    parts.append(text(nx,130,"CAPAS DE ESTUDIO",14,"start",700,"#6c452e"))
-    notes=[
+    parts.append(text(nx,130,"STUDY LAYERS" if p.get("stair_core") else "CAPAS DE ESTUDIO",14,"start",700,"#6c452e"))
+    notes=(
+      [
+        "Great Wall: 0.20 m conceptual total; accessible subframe, absorber and slatted finish.",
+        "Standard partitions: 0.15 m with acoustic performance to be selected.",
+        "Stair: 22 equal risers at 172.7 mm; 20 goings at 270 mm; two 1.40 m flights.",
+        "Four 0.30 m column coordination reserves align PB, P2, foundations and roof lines.",
+        "The 4.10 x 3.20 m clear stair rectangle closes exactly inside the 4.50 x 3.60 m enclosure.",
+        "Stringers, landings and stair connections remain independent of the primary lateral system.",
+        "CF-011: the rear door meets the +1.90 m landing plane, not PB grade; do not claim discharge.",
+        "Headroom, fire/smoke protection, guards, handrails, doors, bases and foundations remain open.",
+      ]
+      if p.get("stair_core") else [
         "Gran muro: 0,20 m total conceptual; subestructura, absorbente y acabado listonado registrable.",
         "Particiones estándar: 0,15 m con desempeño acústico por definir.",
         "Escalera: cerramientos de 0,20 m y descarga posterior; resistencia al fuego pendiente.",
@@ -1211,21 +1316,104 @@ def core_sheet(p):
         "No mezclar drenajes ni agua sobre rack/UPS; coordinar bandejas, detección, ventilación y acceso posterior.",
         "Bodega y homelab quedan separados por escalera y baño; pantry queda contiguo a cocina.",
         "Todas las áreas netas son aproximadas y se recalculan después de estructura y especificaciones."
-    ]
+      ]
+    )
     for i,n in enumerate(notes):
         parts.append(rect(nx,155+i*63,720,48,fill="#f5f2ea",stroke="#c7c3b9",stroke_width=".7"))
         parts.append(text(nx+15,176+i*63,f"{i+1:02d}",10,"start",700,"#9b4e32"))
         parts.append(text(nx+52,176+i*63,n,8,"start"))
     parts.append(rect(nx,690,720,125,fill="#fff4df",stroke="#bd5c3c"))
-    parts.append(text(nx+18,718,"COORDINACIONES BLOQUEANTES",12,"start",700,"#8e3825"))
-    blocks=["huella/contrahuella/gálibo y puertas de escalera", "extracción y aire de reposición del baño/homelab", "rutas hidráulicas y sanitarias hacia P2", "protección contra incendio y segunda salida", "equipos reales, registros y radios de mantenimiento"]
+    parts.append(text(nx+18,718,"BLOCKING COORDINATION" if p.get("stair_core") else "COORDINACIONES BLOQUEANTES",12,"start",700,"#8e3825"))
+    blocks=(
+        [
+            "select a buildable rear grade-discharge alternative and verify it in section",
+            "verify 2.05 m minimum headroom with actual stringer and landing-beam depths",
+            "design fire/smoke enclosure, doors, guards, handrails and slip-resistant finish",
+            "analyse the four-column frame, diaphragm collectors, drift joints and erection",
+            "size members, joints, bases and foundations from site and geotechnical inputs",
+        ]
+        if p.get("stair_core") else
+        ["huella/contrahuella/gálibo y puertas de escalera", "extracción y aire de reposición del baño/homelab", "rutas hidráulicas y sanitarias hacia P2", "protección contra incendio y segunda salida", "equipos reales, registros y radios de mantenimiento"]
+    )
     for i,b in enumerate(blocks):
         parts.append(text(nx+22,742+i*15,"• "+b,8,"start",700 if i==3 else 400,"#8e3825" if i==3 else "#3f4c51"))
     parts.append('</svg>')
     return ''.join(parts)
 
 
-def stair_detail(x0,y0,sc):
+def stair_detail(x0,y0,sc,stair_core=None):
+    if stair_core:
+        enclosure = stair_core["enclosure"]
+        stair = stair_core["stair"]
+        lower = stair["lower_flight"]
+        upper = stair["upper_flight"]
+        landing = stair["intermediate_landing"]
+
+        def px(value):
+            return x0 + (value - enclosure["x0"]) * sc
+
+        def py(value):
+            return y0 + value * sc
+
+        pieces = [f'<g class="canonical-stair-core" data-stair-model-revision="{stair_core["revision"]}">']
+        for flight, dash, css_class in (
+            (lower, None, "lower-flight"),
+            (upper, "5 3", "upper-flight overhead"),
+        ):
+            attrs = {
+                "fill": "#eee9e1",
+                "stroke": "#76558f" if dash else "#45545a",
+                "stroke_width": "1.1",
+                "class": f"stair-flight {css_class}",
+            }
+            if dash:
+                attrs["stroke_dasharray"] = dash
+            pieces.append(
+                rect(
+                    px(flight["x0"]), py(flight["y0"]),
+                    (flight["x1"] - flight["x0"]) * sc,
+                    (flight["y1"] - flight["y0"]) * sc,
+                    **attrs,
+                )
+            )
+            for index in range(1, stair["treads_per_flight"][0] + 1):
+                xx = px(flight["x0"] + index * stair["going"])
+                pieces.append(
+                    f'<line x1="{xx}" y1="{py(flight["y0"])}" x2="{xx}" y2="{py(flight["y1"])}" '
+                    'stroke="#69777c" stroke-width="0.8" class="stair-tread"/>'
+                )
+        pieces.append(
+            rect(
+                px(landing["x0"]), py(landing["y0"]),
+                (landing["x1"] - landing["x0"]) * sc,
+                (landing["y1"] - landing["y0"]) * sc,
+                fill="#e3ddd3", stroke="#45545a", stroke_width="1.1",
+                **{"class": "stair-landing intermediate-landing"},
+            )
+        )
+        lower_y = (lower["y0"] + lower["y1"]) / 2
+        upper_y = (upper["y0"] + upper["y1"]) / 2
+        pieces.extend(
+            [
+                f'<line x1="{px(lower["x0"] + .20)}" y1="{py(lower_y)}" x2="{px(lower["x1"] - .18)}" y2="{py(lower_y)}" stroke="#45545a" stroke-width="1.2"/>',
+                f'<polyline points="{px(lower["x1"]-.34)},{py(lower_y-.10)} {px(lower["x1"]-.18)},{py(lower_y)} {px(lower["x1"]-.34)},{py(lower_y+.10)}" fill="none" stroke="#45545a" stroke-width="1.2"/>',
+                f'<line x1="{px(upper["x1"] - .20)}" y1="{py(upper_y)}" x2="{px(upper["x0"] + .18)}" y2="{py(upper_y)}" stroke="#76558f" stroke-width="1.0" stroke-dasharray="4 3"/>',
+                text(px(35.1), py(8.65), "22R", 6.2, weight=700),
+                text(px(35.1), py(9.08), "R 172.7", 5.5, weight=700),
+                text(px(35.1), py(9.48), "G 270", 5.5, weight=700),
+            ]
+        )
+        for column in stair_core["structure"]["column_reservations"]:
+            pieces.append(
+                rect(
+                    px(column["x"]) - 5, py(column["y"]) - 5, 10, 10,
+                    fill="#fff", stroke="#76558f", stroke_width="2",
+                    data_column_id=column["id"], **{"class": "d048-column-reservation"},
+                )
+            )
+        pieces.append("</g>")
+        return "".join(pieces)
+
     x=x0+.35*sc; y=y0+7.62*sc; w=3.8*sc; h=3.0*sc
     pieces=[rect(x,y,w,h,fill="#efeae3",stroke="#46545a")]
     for i in range(1,11):

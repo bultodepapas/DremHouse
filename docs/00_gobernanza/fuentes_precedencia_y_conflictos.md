@@ -1,10 +1,10 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 0.8
-**Date:** 2026-08-18
+**Version:** 0.9
+**Date:** 2026-08-21
 **Language note:** controlled English translation under D-044; D-063 incorporated into
-CF-009/CF-010 and the hard-rule modification register.
+CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate.
 
 ## Precedence
 
@@ -162,6 +162,32 @@ not yet have a coordinated structural, movement or fire-protection detail.
   fire/life-safety professional must close the interface before developed-design freeze.
   Hall-to-family acoustic isolation is intentionally relinquished by the owner; suite
   noise control and smoke movement are not resolved by that preference.
+
+### CF-011 — Rear grade discharge versus the coordinated dogleg stair
+
+D-028 requires the protected stair to discharge directly to the rear. The predecessor PB
+graphics showed a rear opening at the same plan position as the stair but did not model
+risers, landings or levels consistently. D-074/SC-01 now coordinates the unchanged
+4.50 × 3.60 m enclosure as a conventional two-flight dogleg: 11 risers reach the rear
+intermediate landing at **+1.90 m**, then 11 more risers reach P2 at **+3.80 m**. The
+current rear-door plane therefore intersects the intermediate landing rather than a PB
+grade landing.
+
+- **Geometric rule:** PB and P2 must continue to show the same SC-01 flights, landing,
+  doors and four column coordinates. The rear opening is shown as an unresolved level
+  conflict, not as a functioning exit.
+- **Prohibited inference:** do not call the current rear opening a direct grade discharge,
+  count it as an approved exit, or design/fabricate the stair from the plan symbols.
+- **Resolution alternatives to study:** revise the stair topology within or beyond the
+  present enclosure; provide a separately protected grade-level exit passage with verified
+  headroom; or revise the core geometry through an explicit owner decision. Each alternative
+  must preserve the Great Wall, P2 access, four-column load path, fire/smoke enclosure,
+  usable widths and cost control.
+- **Required evidence:** coordinated plan and longitudinal section, occupancy and egress
+  classification, door/landing/headroom checks, structural analysis, fire strategy, and
+  measured cost comparison by the responsible professionals.
+- **Status:** critical, open. D-074 resolves PB/P2 graphic and mathematical concordance;
+  it deliberately does not resolve direct discharge.
 
 ## Resolution rule
 

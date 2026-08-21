@@ -2,10 +2,10 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.9
-**Date:** 2026-08-13
+**Version:** 0.10
+**Date:** 2026-08-21
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053–D-059; architectural drafts b05–b15 and implementation issues 0.4-I01–I04;
+D-053–D-059, D-074; architectural drafts PB b05–b33 and P2 b09–b24 and implementation issues 0.4-I01–I04;
 `pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `p2_b14.json`; `p2_b15.json`;
 `rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
@@ -163,6 +163,18 @@ clearances, and erection remain unresolved. The official
 [AISC lateral-systems guidance](https://www.aisc.org/architecture-center/resources/engineering-basics/lateral-systems/)
 is used only to reinforce the early coordination principle that doors and windows govern
 whether diagonal or rigid-frame solutions are feasible.
+
+D-074/SC-01 now supplies the missing shared stair arithmetic without changing the D-048
+column coordinates: 22 equal 172.7 mm risers, two 1.40 m flights with ten 270 mm goings
+each, and a 1.40 m rear intermediate landing at +1.90 m. The PB and P2 generators read
+that same model and use level-correct arrows. This closes the graphic/parametric mismatch,
+not the structural system. Landing-beam restraint, stringer forces, drift slots, guards,
+fire enclosure and headroom remain unresolved.
+
+SC-01 also exposes CF-011: the rear door plane coincides with the +1.90 m intermediate
+landing rather than PB grade. Until a sectioned alternative is adopted, the opening is not
+a resolved direct discharge and cannot be used to close the fire/egress or structural-door
+interface gates.
 
 ### 4.4 Lateral path and diaphragm
 

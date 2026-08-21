@@ -18,6 +18,8 @@ from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
 
+from dreamhouse.architecture.stair_core import validate_stair_core
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA = Path(__file__).with_name("p2_b09.json")
 OUT = ROOT / "planos" / "conceptual_v0.3_b09_p2"
@@ -930,6 +932,25 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
                 "message": "P2-W05 hygrothermal, wind, fire and window interfaces await professional design",
             }
         )
+    stair_core = model.get("stair_core")
+    if stair_core:
+        results.extend(validate_stair_core(stair_core))
+        stair_door = next((door for door in model["doors"] if door["id"] == "D-STAIR"), None)
+        upper = stair_core["stair"]["upper_flight"]
+        access = stair_core["stair"]["p2_access_platform"]
+        door_ok = bool(stair_door) and math.isclose(
+            float(stair_door["at"]), float(access["door_y0"]), abs_tol=tolerance
+        ) and float(stair_door["at"]) >= float(upper["y0"]) - tolerance and (
+            float(stair_door["at"]) + float(stair_door["width"])
+            <= float(upper["y1"]) + tolerance
+        )
+        results.append(
+            {
+                "rule_id": "P2-STAIR-ACCESS-FLIGHT",
+                "status": "PASS" if door_ok else "FAIL",
+                "message": "The P2 family-distributor door aligns with the upper-flight top platform.",
+            }
+        )
     return results
 
 
@@ -1479,7 +1500,86 @@ def _draw_bath_fixtures(parts: list[str], model: dict[str, Any]) -> None:
         )
 
 
-def _draw_stair(parts: list[str]) -> None:
+def _draw_stair(parts: list[str], model: dict[str, Any] | None = None) -> None:
+    stair_core = model.get("stair_core") if model else None
+    if stair_core:
+        stair = stair_core["stair"]
+        lower = stair["lower_flight"]
+        upper = stair["upper_flight"]
+        landing = stair["intermediate_landing"]
+        parts.append(
+            f'<g class="canonical-stair-core" data-stair-model-revision="{_esc(stair_core["revision"])}">'
+        )
+        parts.extend(
+            [
+                _rect(
+                    _sx(float(lower["x0"])),
+                    _sy(float(lower["y1"])),
+                    (float(lower["x1"]) - float(lower["x0"])) * SCALE,
+                    (float(lower["y1"]) - float(lower["y0"])) * SCALE,
+                    fill="#f6f2eb",
+                    stroke=PURPLE,
+                    stroke_width=1.0,
+                    stroke_dasharray="5 3",
+                    css_class="stair-flight lower-flight below",
+                ),
+                _rect(
+                    _sx(float(upper["x0"])),
+                    _sy(float(upper["y1"])),
+                    (float(upper["x1"]) - float(upper["x0"])) * SCALE,
+                    (float(upper["y1"]) - float(upper["y0"])) * SCALE,
+                    fill="#ebe7e1",
+                    stroke=MUTED,
+                    stroke_width=1.0,
+                    css_class="stair-flight upper-flight",
+                ),
+                _rect(
+                    _sx(float(landing["x0"])),
+                    _sy(float(landing["y1"])),
+                    (float(landing["x1"]) - float(landing["x0"])) * SCALE,
+                    (float(landing["y1"]) - float(landing["y0"])) * SCALE,
+                    fill="#e3ddd3",
+                    stroke=MUTED,
+                    stroke_width=1.0,
+                    css_class="stair-landing intermediate-landing",
+                ),
+            ]
+        )
+        for flight, css_class in ((lower, "lower-tread"), (upper, "upper-tread")):
+            for index in range(1, int(stair["treads_per_flight"][0]) + 1):
+                x = float(flight["x0"]) + index * float(stair["going"])
+                parts.append(
+                    _line(
+                        _sx(x), _sy(float(flight["y0"])),
+                        _sx(x), _sy(float(flight["y1"])),
+                        stroke="#7a868a", stroke_width=0.7,
+                        css_class=f"stair-tread {css_class}",
+                    )
+                )
+        upper_mid_y = (float(upper["y0"]) + float(upper["y1"])) / 2.0
+        lower_mid_y = (float(lower["y0"]) + float(lower["y1"])) / 2.0
+        parts.extend(
+            [
+                _line(
+                    _sx(float(upper["x0"]) + 0.25), _sy(upper_mid_y),
+                    _sx(float(upper["x1"]) - 0.20), _sy(upper_mid_y),
+                    stroke=PURPLE, stroke_width=1.8, marker_end="url(#up-arrow)",
+                    css_class="stair-direction p2-down-direction",
+                ),
+                _text(_sx(33.05), _sy(upper_mid_y) - 8, "DN TO PB", 6.5, anchor="middle", weight=700, fill=PURPLE),
+                _line(
+                    _sx(float(lower["x1"]) - 0.25), _sy(lower_mid_y),
+                    _sx(float(lower["x0"]) + 0.20), _sy(lower_mid_y),
+                    stroke=PURPLE, stroke_width=1.1, stroke_dasharray="4 3",
+                    css_class="stair-direction lower-flight-below",
+                ),
+                _text(_sx(33.05), _sy(lower_mid_y) - 8, "LOWER FLIGHT BELOW", 5.3, anchor="middle", weight=700, fill=MUTED),
+                _text(_sx(35.1), _sy(9.2), "LANDING +1.90", 5.2, anchor="middle", weight=700, fill=MUTED),
+            ]
+        )
+        parts.append("</g>")
+        return
+
     x0, x1 = _sx(31.82), _sx(35.68)
     lower_top, lower_bottom = _sy(9.12), _sy(7.72)
     upper_top, upper_bottom = _sy(10.68), _sy(9.28)
@@ -1759,8 +1859,17 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     primary_rebalance = model.get("primary_suite_rebalance")
     primary_bathroom_unified = model.get("primary_bathroom_unified")
     primary_bedroom_unified = model.get("primary_bedroom_unified")
+    stair_core = model.get("stair_core")
     position_lines = (
-        (
+        [
+            "Use one shared SC-01 stair geometry in PB and P2.",
+            "Coordinate 22 equal risers and two 1.40 m straight flights.",
+            "Move the P2 door to the upper-flight top platform.",
+            "Keep the same four foundation-to-roof column coordinates.",
+            "Retain CF-011 until rear grade discharge is solved in section.",
+        ]
+        if stair_core
+        else (
             [
                 (
                     "Read the 35.24 m2 primary bedroom as one room without a privacy screen."
@@ -1842,6 +1951,15 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     child_delta = abs(net_area(by_id["H1-D"], envelope) - net_area(by_id["H2-D"], envelope))
     fixes = (
         [
+            ("STAIR", "One dogleg model replaces the contradictory PB/P2 stair symbols."),
+            ("MATH", "22R @ 172.7 mm + 20G @ 270 mm; 2R+G = 615.5 mm."),
+            ("WIDTH", "Flights and intermediate landing are each 1.40 m clear."),
+            ("PB / P2", "PB reads UP on ST-F1; P2 reads DN from ST-F2."),
+            ("COLUMNS", "Four SC-01/D-048 column IDs retain identical coordinates."),
+            ("CF-011", "Rear grade discharge remains open; the landing there is +1.90 m."),
+        ]
+        if stair_core
+        else [
             (
                 "PRIMARY",
                 (
@@ -1945,10 +2063,22 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
 
     _panel_title(parts, x, 895, "04", "OPEN DESIGN GATES")
     open_items = [item for item in report["checks"] if item["status"] == "OPEN"]
-    for index, item in enumerate(open_items):
+    visible_open_items = open_items[:4]
+    for index, item in enumerate(visible_open_items):
         y = 928 + index * 27
         parts.append(_circle_status(x + 7, y - 3, RED))
         parts.append(_text(x + 24, y, item["message"], 7.5))
+    if len(open_items) > len(visible_open_items):
+        parts.append(
+            _text(
+                x + 24,
+                1041,
+                f"+ {len(open_items) - len(visible_open_items)} additional open gates in compliance.json",
+                7.5,
+                weight=700,
+                fill=RED,
+            )
+        )
 
     parts.extend(
         [
@@ -2022,7 +2152,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-067 · UNIFIED PRIMARY BEDROOM · DESIGN COORDINATION"
+        "D-074 · SHARED PB/P2 STAIR CORE · DESIGN COORDINATION"
+        if model.get("stair_core")
+        and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DIA-001"))
+        else "D-067 · UNIFIED PRIMARY BEDROOM · DESIGN COORDINATION"
         if model.get("primary_bedroom_unified")
         and sheet_id.startswith("DH-ARQ-PLN-002")
         else "D-066 · UNIFIED PRIMARY BATHROOM · DESIGN COORDINATION"
@@ -2091,7 +2224,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision reading the combined primary bedroom as one room and removing its fitted privacy screen. Not for construction."
+                "An upper-floor revision coordinating the same mathematical stair and four column reservations used by PB. Not for construction."
+                if model.get("stair_core")
+                else "An upper-floor revision reading the combined primary bedroom as one room and removing its fitted privacy screen. Not for construction."
                 if model.get("primary_bedroom_unified")
                 else "An upper-floor revision unifying the primary bathroom as one L-shaped room without an intermediate wall or door. Not for construction."
                 if model.get("primary_bathroom_unified")
@@ -2118,7 +2253,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-067 one primary bedroom + D-066 unified bathroom"
+            "D-074 shared PB/P2 stair + four continuous column reserves"
+            if model.get("stair_core")
+            else "D-067 one primary bedroom + D-066 unified bathroom"
             if model.get("primary_bedroom_unified")
             else "D-066 unified primary bathroom + D-065 suite rebalance"
             if model.get("primary_bathroom_unified")
@@ -2151,7 +2288,7 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
     _draw_rooms(parts, model)
     _draw_furniture(parts, model)
     _draw_bath_fixtures(parts, model)
-    _draw_stair(parts)
+    _draw_stair(parts, model)
     _draw_partition_walls(parts, model)
     _draw_exterior_walls(parts, model)
     _draw_hall_edge_wall(parts, model)
@@ -3414,6 +3551,10 @@ def generate(
         "supersedes": model["supersedes"],
         "outputs": [*outputs, "compliance.json", "manifest.json"],
     }
+    if model.get("stair_core") and model.get("stair_core_source"):
+        shared_source = ROOT / model["stair_core_source"]
+        manifest["shared_stair_source"] = model["stair_core_source"]
+        manifest["shared_stair_sha256"] = hashlib.sha256(shared_source.read_bytes()).hexdigest()
     out_dir.joinpath("manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
