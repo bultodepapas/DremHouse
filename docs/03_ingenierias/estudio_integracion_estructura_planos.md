@@ -2,10 +2,10 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.11
+**Version:** 0.12
 **Date:** 2026-08-21
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053–D-059, D-074, D-080; architectural drafts PB b05–b33 and P2 b09–b25 and implementation issues 0.4-I01–I04;
+D-053–D-059, D-074, D-080, D-082; architectural drafts PB b05–b36 and P2 b09–b27 and implementation issues 0.4-I01–I04;
 `pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `p2_b14.json`; `p2_b15.json`;
 `rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
@@ -49,6 +49,14 @@ selected-product masses, and P2-W05 panel/girt wind reactions and attachments re
 undesigned. The next structural issue must consume b25, perform those comparisons,
 resolve the CF-010 truss/wall interface and retain a fail-closed result when an allowance
 is exceeded.
+
+D-082/P2 b27 retains the D-080 wall geometry and D-081 corner representation but changes
+the rear supplementary-rescue interface. The earlier inclined mechanism is superseded by
+an operable rescue window and a vertical foldout ladder. Its fixed inner rail must connect
+to verified primary or engineered secondary structure; the insulated facade panel,
+cladding skin, window frame and unverified girts receive no assumed ladder load. Bracket
+reactions, repeated-use/dynamic effects, eccentricity, local reinforcement, corrosion,
+water/air continuity and installation access remain outside the current E1 screen.
 
 ## 2. New integrated evidence sheet
 
@@ -237,10 +245,13 @@ declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
 8. **Stair core versus protected egress.** D-048 improves the possible continuous load
    path, but braces, column encasement, landing joints, deflected shapes, bases, and
    collectors must preserve stair width, headroom, fire rating, and direct discharge.
-9. **Retractable stair versus life safety and rear structure.** D-051 reserves a second
-   route from the common Phase 2 lobby and clears the D-048 corner coordinate. Its landing,
-   deployment loads, façade support, corrosion, guards, fail-safe operation, and emergency
-   acceptance remain unproved; the reserve receives no exit credit at E1.
+9. **D-082 foldout ladder versus life safety and rear structure.** The D-051 generic
+   reserve is now corrected as one operable window beside a vertical foldout ladder. The
+   current plan screens clear of the D-048 corner and PB opening below, but bracket loads,
+   local facade reinforcement, eccentric/dynamic deployment effects, transfer handholds
+   or platform, corrosion, water/air continuity, fall protection and authority acceptance
+   remain unproved. The facade panel and window frame carry no assumed ladder load, and
+   the reserve receives no required-exit credit at E1 under CF-012.
 10. **D-080 wall family versus mass, wind, thermal bridges and concealed steel.** The
     north, south and rear P2 walls integrate an insulated corrugated facade panel with one
     independent private-side lining. Selected panel spans, girts, fasteners, window

@@ -1,7 +1,7 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 1.3
+**Version:** 1.4
 **Date:** 2026-08-21
 **Language note:** controlled English translation under D-044; D-063 incorporated into
 CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
@@ -10,7 +10,8 @@ and glazing geometry without selecting structure, facade products or cost; D-079
 differentiates the technical workbenches and RC support envelopes without closing real
 equipment, ergonomic, structural, electrical/ESD, extraction, battery or cost gates;
 D-080 replaces the undifferentiated P2 wall thicknesses without closing acoustic, fire,
-structural, wind, hygrothermal, product or cost gates.
+structural, wind, hygrothermal, product or cost gates; D-082/CF-012 corrects the rear
+foldout-ladder typology without treating it as a required second exit.
 
 ## Precedence
 
@@ -202,6 +203,36 @@ grade landing.
   measured cost comparison by the responsible professionals.
 - **Status:** critical, open. D-074 resolves PB/P2 graphic and mathematical concordance;
   it deliberately does not resolve direct discharge.
+
+### CF-012 — Foldout rescue ladder versus the required second means of egress
+
+D-082/P2 b27 replaces the former inclined retractable-stair image with a real product
+family: an operable rescue window beside a vertical wall-mounted foldout ladder. The
+owner's security and compactness intent is compatible with this supplementary device,
+but it does not resolve the project's required number or type of exits.
+
+- **Regulatory conflict:** NSR-10 Title K, as amended by Decreto 340 de 2012, requires a
+  stair serving as a means of evacuation to be a fixed permanent construction. The
+  foldout ladder changes configuration during use and therefore may not be credited by
+  this project as the required second exit without written acceptance from the competent
+  Colombian authority and the architect/fire professional of record.
+- **Product-evidence boundary:** ICC-ES ESR-4824 evaluates a foldout ladder used beside a
+  code-complying emergency escape/rescue opening for limited low-rise conditions, but
+  expressly leaves use as a required means of egress outside its scope. The report is
+  useful technical evidence; it is not Colombian approval and does not design the
+  connection to the Dream House structure.
+- **Interim architectural rule:** retain `W-EGRESS-P2` at Y=11.25–12.25 m and the ladder
+  axis at Y=10.65 m as schematic coordination only. Keep the 0.80 × 0.80 m deployment
+  zone clear and do not pass in front of any lower opening. The current PB b36 screen
+  shows 0.60 m between that clear zone and `EXT-ESC`; recheck after every rear-facade,
+  grade, utility or landscape change.
+- **Required evidence:** occupancy and exit analysis; authority acceptance; selected
+  product evaluation and installation manual; verified rescue-opening clear size, sill,
+  hardware and transfer; structural design of brackets/anchors and facade reinforcement;
+  descent-control, fall, electrical, drainage, corrosion, inspection, maintenance and
+  emergency-drill plan; comparable delivered-and-installed quotations.
+- **Status:** critical, open. D-082 resolves the requested device typology and drawing
+  error only. D-021 remains the governing fire/life-safety decision gate.
 
 ## Resolution rule
 

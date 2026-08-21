@@ -1,0 +1,20 @@
+{
+  "revision": "0.3-draft-27-P2",
+  "status": "issued for D-082 supplementary rear rescue-window and vertical foldout escape-ladder coordination; required egress, local approval, product, anchorage, transfer safety and cost remain open; not for construction",
+  "source": "dreamhouse/p2_b27_delta.json",
+  "source_sha256": "6efe6bf52da6744e5bec24683f59671444b50532fe2f83a43fab6f2b13a923eb",
+  "generator": "dreamhouse/generate_p2_b27.py",
+  "supersedes": "0.3-draft-26-P2 / R23 for the rear supplementary escape/rescue reserve only; D-080 wall geometry and D-081 corner graphics remain unchanged",
+  "outputs": [
+    "DH-ARQ-PLN-002-R24_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R24_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R24_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R24_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R24_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R24_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ],
+  "shared_stair_source": "dreamhouse/stair_core.json",
+  "shared_stair_sha256": "26b418181bc52005ad5cd7ff2cb5f47554a1579b2fb91f8f0f21f462fd7fb138"
+}

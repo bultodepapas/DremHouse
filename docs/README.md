@@ -124,6 +124,10 @@ they stay stable while their explicitly promoted versioned source can advance.
   active D-080 wall schedule assigning realistic 90/150/200/230 mm zones by duty,
   integrating the insulated industrial shell with one private lining and recording
   geometry, quantity, cost, structural and professional hold points.
+- [P2 rear rescue window and foldout escape ladder — b27/R24](02_arquitectura/p2_foldout_escape_ladder_coordination_v0.3_b27.md):
+  active D-082 correction replacing the inclined retractable-stair image with an operable
+  rescue window and vertical wall-mounted foldout ladder, retained only as supplementary
+  escape/rescue equipment under CF-012.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):

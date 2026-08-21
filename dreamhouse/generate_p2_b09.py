@@ -119,6 +119,12 @@ def _fmt(value: float, digits: int = 2) -> str:
     return f"{value:.{digits}f}"
 
 
+def _is_foldout_escape_ladder(reserve: dict[str, Any] | None) -> bool:
+    """Identify the D-082 wall-mounted vertical foldout escape-ladder reserve."""
+
+    return bool(reserve and reserve.get("system") == "vertical_foldout_escape_ladder")
+
+
 def _sx(x: float, *, origin: float = PLAN_X, scale: float = SCALE) -> float:
     return origin + (x - 21.0) * scale
 
@@ -710,7 +716,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         access_space = by_id.get(egress.get("access_space"))
         start = float(egress["from"])
         width = float(egress["width"])
-        egress_ok = (
+        common_egress_ok = (
             egress.get("edge") == "east"
             and access_space is not None
             and math.isclose(
@@ -719,15 +725,68 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             and start >= float(access_space["y"]) - tolerance
             and start + width <= float(access_space["y"] + access_space["d"]) + tolerance
             and width >= 0.90 - tolerance
-            and float(egress["retracted_clearance_above_grade_m"]) > 0.0
             and start >= 11.25 - tolerance
         )
+        if _is_foldout_escape_ladder(egress):
+            escape_window = next(
+                (
+                    window
+                    for window in model["windows"]
+                    if window["id"] == egress.get("rescue_opening_id")
+                ),
+                None,
+            )
+            ladder_axis = float(egress["ladder_axis_y"])
+            zone = egress["clear_deployment_zone_m"]
+            pb_screen = egress["pb_opening_screen"]
+            egress_ok = (
+                common_egress_ok
+                and escape_window is not None
+                and escape_window.get("room_id") == egress.get("access_space")
+                and escape_window.get("escape_rescue") is True
+                and math.isclose(float(escape_window["from"]), start, abs_tol=tolerance)
+                and math.isclose(
+                    float(escape_window["to"]), start + width, abs_tol=tolerance
+                )
+                and math.isclose(
+                    start - ladder_axis,
+                    float(egress["jamb_offset_m"]),
+                    abs_tol=tolerance,
+                )
+                and egress.get("deployment_direction") == "perpendicular_to_wall"
+                and egress.get("release_location") == "served_opening_only"
+                and 0.08 - tolerance <= float(egress["closed_profile_m"]) <= 0.11 + tolerance
+                and float(zone["outward"]) >= 0.80 - tolerance
+                and float(zone["along_wall"]) >= 0.80 - tolerance
+                and 0.45 - tolerance
+                <= float(egress["bottom_rung_above_grade_m"])
+                <= 0.65 + tolerance
+                and 0.28 - tolerance <= float(egress["rung_spacing_m"]) <= 0.32 + tolerance
+                and 0.55 - tolerance <= float(egress["rung_width_m"]) <= 0.65 + tolerance
+                and float(egress["usable_rung_width_m"]) <= float(egress["rung_width_m"])
+                and float(egress["served_level_m"]) <= float(egress["maximum_climb_m"])
+                and math.isclose(
+                    ladder_axis - float(zone["along_wall"]) / 2.0,
+                    float(pb_screen["clear_zone_from_y"]),
+                    abs_tol=tolerance,
+                )
+                and float(pb_screen["clear_zone_from_y"])
+                - float(pb_screen["nearest_opening_to_y"])
+                >= float(pb_screen["minimum_clearance_m"]) - tolerance
+                and egress.get("code_role") == "supplementary_escape_rescue_device"
+            )
+        else:
+            egress_ok = common_egress_ok and float(
+                egress["retracted_clearance_above_grade_m"]
+            ) > 0.0
         checks.append(
             (
                 "P2-RETRACTABLE-STAIR-RESERVE",
                 egress_ok,
                 (
-                    "Rear-facade retractable stair reserve is reached directly from the "
+                    "Rear operable rescue window reaches a wall-mounted vertical foldout ladder; its 0.80 x 0.80 m deployment zone clears the screened PB opening below"
+                    if _is_foldout_escape_ladder(egress)
+                    else "Rear-facade retractable stair reserve is reached directly from the "
                     + (
                         "dry wellness threshold and clears the D-048 corner"
                         if model.get("wellness_suite")
@@ -1015,7 +1074,9 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
                 "rule_id": "LIFE-EGRESS-2",
                 "status": "OPEN",
                 "message": (
-                    "A rear retractable stair is reserved, but its acceptance as a second exit awaits D-021 and professional fire review"
+                    "A rear rescue window and vertical foldout ladder are reserved as a supplementary escape/rescue device; they are not credited as the required second exit"
+                    if _is_foldout_escape_ladder(egress)
+                    else "A rear retractable stair is reserved, but its acceptance as a second exit awaits D-021 and professional fire review"
                     if egress
                     else "Second independent P2 exit awaits D-021 occupancy and fire review"
                 ),
@@ -1813,6 +1874,11 @@ def _draw_windows(parts: list[str], model: dict[str, Any]) -> None:
         float(exterior_wall["nominal_total_m"]) * SCALE + 2 if exterior_wall else 0.0
     )
     for window in model["windows"]:
+        window_class = (
+            "exterior-window rescue-window"
+            if window.get("escape_rescue")
+            else "exterior-window"
+        )
         if window["edge"] in {"south", "north"}:
             y = _sy(0.0 if window["edge"] == "south" else 18.0)
             x0, x1 = _sx(window["from"]), _sx(window["to"])
@@ -1830,7 +1896,18 @@ def _draw_windows(parts: list[str], model: dict[str, Any]) -> None:
                         data_opening_id=window["id"],
                     )
                 )
-            parts.append(_line(x0, y, x1, y, stroke=TEAL, stroke_width=8, css_class="exterior-window"))
+            parts.append(
+                _line(
+                    x0,
+                    y,
+                    x1,
+                    y,
+                    stroke=TEAL,
+                    stroke_width=8,
+                    css_class=window_class,
+                    data_opening_id=window["id"] if window.get("escape_rescue") else None,
+                )
+            )
             parts.append(_line(x0, y, x1, y, stroke="#d9f2f5", stroke_width=2, css_class="window-glass"))
         else:
             x = _sx(36.0)
@@ -1849,7 +1926,18 @@ def _draw_windows(parts: list[str], model: dict[str, Any]) -> None:
                         data_opening_id=window["id"],
                     )
                 )
-            parts.append(_line(x, y0, x, y1, stroke=TEAL, stroke_width=8, css_class="exterior-window"))
+            parts.append(
+                _line(
+                    x,
+                    y0,
+                    x,
+                    y1,
+                    stroke=TEAL,
+                    stroke_width=8,
+                    css_class=window_class,
+                    data_opening_id=window["id"] if window.get("escape_rescue") else None,
+                )
+            )
             parts.append(_line(x, y0, x, y1, stroke="#d9f2f5", stroke_width=2, css_class="window-glass"))
     for glazing in model["internal_glazing"]:
         wall = model.get("hall_edge_partition")
@@ -1878,6 +1966,66 @@ def _draw_egress_reserve(parts: list[str], model: dict[str, Any]) -> None:
     if not reserve:
         return
     x = _sx(36.0)
+    if _is_foldout_escape_ladder(reserve):
+        ladder_y = _sy(float(reserve["ladder_axis_y"]))
+        zone = reserve["clear_deployment_zone_m"]
+        outward = float(zone["outward"]) * SCALE
+        along_wall = float(zone["along_wall"]) * SCALE
+        profile = max(float(reserve["closed_profile_m"]) * SCALE, 6.0)
+        parts.extend(
+            [
+                _rect(
+                    x + 5,
+                    ladder_y - along_wall / 2.0,
+                    outward,
+                    along_wall,
+                    fill="none",
+                    stroke=RED,
+                    stroke_width=1.5,
+                    stroke_dasharray="6 4",
+                    css_class="foldout-ladder-deployment-zone",
+                    data_ladder_id=reserve["id"],
+                ),
+                _rect(
+                    x + 4,
+                    ladder_y - profile / 2.0,
+                    profile,
+                    profile,
+                    fill=RED,
+                    stroke=PAPER,
+                    stroke_width=1.0,
+                    css_class="foldout-ladder-closed-profile",
+                    data_ladder_id=reserve["id"],
+                ),
+                _line(
+                    x,
+                    _sy(float(reserve["from"])),
+                    x + 7,
+                    ladder_y,
+                    stroke=RED,
+                    stroke_width=1.4,
+                    stroke_dasharray="3 3",
+                    css_class="window-ladder-transfer",
+                ),
+                _text(
+                    x + outward + 11,
+                    ladder_y - 2,
+                    "FOLDOUT ESCAPE",
+                    5.2,
+                    weight=700,
+                    fill=RED,
+                ),
+                _text(
+                    x + outward + 11,
+                    ladder_y + 7,
+                    "LADDER · CLOSED",
+                    5.2,
+                    weight=700,
+                    fill=RED,
+                ),
+            ]
+        )
+        return
     y0 = _sy(float(reserve["from"]) + float(reserve["width"]))
     y1 = _sy(float(reserve["from"]))
     parts.extend(
@@ -2128,6 +2276,16 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     )
     fixes = (
         [
+            ("TYPE", "Vertical wall-mounted foldout ladder replaces the inclined stair sketch."),
+            ("WINDOW", "W-EGRESS-P2 is an operable rescue window, not an exterior door."),
+            ("OFFSET", "Ladder axis is screened 0.60 m south of the served window jamb."),
+            ("CLEAR", "Keep a 0.80 x 0.80 m obstacle-free gravity-deployment zone."),
+            ("PB BELOW", "Current clear zone remains 0.60 m north of PB opening EXT-ESC."),
+            ("CF-012", "Supplementary rescue device only; required second exit remains open."),
+        ]
+        if _is_foldout_escape_ladder(model.get("egress_reserve"))
+        else
+        [
             ("STAIR", "One dogleg model replaces the contradictory PB/P2 stair symbols."),
             ("MATH", "22R @ 172.7 mm + 20G @ 270 mm; 2R+G = 615.5 mm."),
             ("WIDTH", "Flights and intermediate landing are each 1.40 m clear."),
@@ -2168,6 +2326,8 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                     if family_balcony
                     else "22.62 m2 combines dry threshold, cooling/recline, sauna and shower."
                     if wellness_suite
+                    else "A rescue window serves a wall-mounted gravity-assisted foldout ladder."
+                    if _is_foldout_escape_ladder(model.get("egress_reserve"))
                     else "A theft-resistant retractable exterior-stair envelope is reserved."
                 ),
             ),
@@ -2335,7 +2495,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-080 · DIFFERENTIATED P2 WALL FAMILY · DESIGN COORDINATION"
+        "D-082 · VERTICAL FOLDOUT ESCAPE LADDER · SUPPLEMENTARY RESCUE RESERVE"
+        if _is_foldout_escape_ladder(model.get("egress_reserve"))
+        and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DIA-001", "DH-ARQ-DET-002"))
+        else "D-080 · DIFFERENTIATED P2 WALL FAMILY · DESIGN COORDINATION"
         if model.get("wall_schedule")
         and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DET-003", "DH-ARQ-DET-004", "DH-ARQ-DET-005"))
         else "D-074 · SHARED PB/P2 STAIR CORE · DESIGN COORDINATION"
@@ -2410,7 +2573,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision assigning economical wall thickness by acoustic, wet, hot-side, protected-core and exterior duty. Not for construction."
+                "An upper-floor revision coordinating an operable rear rescue window beside a wall-mounted vertical foldout escape ladder. The device is supplementary and not credited as a required exit. Not for construction."
+                if _is_foldout_escape_ladder(model.get("egress_reserve"))
+                else "An upper-floor revision assigning economical wall thickness by acoustic, wet, hot-side, protected-core and exterior duty. Not for construction."
                 if model.get("wall_schedule")
                 else "An upper-floor revision coordinating the same mathematical stair and four column reservations used by PB. Not for construction."
                 if model.get("stair_core")
@@ -2441,7 +2606,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-080 realistic wall family · 90 / 150 / 200 / 230 mm"
+            "D-082 rescue window + wall-mounted vertical foldout ladder"
+            if _is_foldout_escape_ladder(model.get("egress_reserve"))
+            else "D-080 realistic wall family · 90 / 150 / 200 / 230 mm"
             if model.get("wall_schedule")
             else "D-074 shared PB/P2 stair + four continuous column reserves"
             if model.get("stair_core")
@@ -2539,7 +2706,11 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
     }
     parts = _svg_start(
         "Dream House upper-floor access and egress diagram",
-        "Verified room-access graph and indicative single-stair travel paths. The second independent exit remains open.",
+        (
+            "Verified room-access graph, indicative single-stair travel paths and a supplementary rear rescue window with vertical foldout ladder. The required second independent exit remains open."
+            if _is_foldout_escape_ladder(model.get("egress_reserve"))
+            else "Verified room-access graph and indicative single-stair travel paths. The second independent exit remains open."
+        ),
         metadata,
     )
     _header(
@@ -2547,7 +2718,11 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
         model,
         access_sheet_id,
         "UPPER-FLOOR ACCESS + EGRESS LOGIC",
-        "topology verified · life-safety design remains open",
+        (
+            "D-082 supplementary rescue reserve · required egress remains open"
+            if _is_foldout_escape_ladder(model.get("egress_reserve"))
+            else "topology verified · life-safety design remains open"
+        ),
     )
     origin, bottom, scale = 95.0, 910.0, 36.0
     by_id = _space_index(model)
@@ -2619,27 +2794,115 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
     egress = model.get("egress_reserve")
     if egress:
         lobby = _plan_point(by_id[egress["access_space"]], origin=origin, bottom=bottom, scale=scale)
-        exterior = (
-            _sx(36.0, origin=origin, scale=scale) + 76,
-            _sy(float(egress["from"]) + float(egress["width"]) / 2, bottom=bottom, scale=scale),
-        )
-        parts.extend(
-            [
-                f'<polyline points="{lobby[0]:.1f},{lobby[1]:.1f} {exterior[0]:.1f},{exterior[1]:.1f}" fill="none" stroke="{TEAL}" stroke-width="3" stroke-dasharray="7 4" marker-end="url(#route-arrow)" class="reserved-second-route"/>',
-                _rect(
-                    exterior[0] - 56,
-                    exterior[1] - 20,
-                    70,
-                    40,
-                    fill="none",
-                    stroke=TEAL,
-                    stroke_width=1.8,
-                    stroke_dasharray="6 4",
-                    css_class="retractable-stair-reserve",
+        if _is_foldout_escape_ladder(egress):
+            facade = _sx(36.0, origin=origin, scale=scale)
+            window = (
+                facade + 8,
+                _sy(
+                    float(egress["from"]) + float(egress["width"]) / 2,
+                    bottom=bottom,
+                    scale=scale,
                 ),
-                _text(exterior[0] - 21, exterior[1] - 27, "RESERVED SECOND ROUTE", 6.8, anchor="middle", weight=700, fill=TEAL),
-            ]
-        )
+            )
+            ladder = (
+                facade + 56,
+                _sy(float(egress["ladder_axis_y"]), bottom=bottom, scale=scale),
+            )
+            points = (
+                f"{lobby[0]:.1f},{lobby[1]:.1f} "
+                f"{window[0]:.1f},{window[1]:.1f} {ladder[0]:.1f},{ladder[1]:.1f}"
+            )
+            parts.extend(
+                [
+                    f'<polyline points="{points}" fill="none" stroke="{TEAL}" stroke-width="3" stroke-dasharray="7 4" marker-end="url(#route-arrow)" class="reserved-second-route supplementary-rescue-route"/>',
+                    _line(
+                        facade,
+                        _sy(float(egress["from"]), bottom=bottom, scale=scale),
+                        facade,
+                        _sy(
+                            float(egress["from"]) + float(egress["width"]),
+                            bottom=bottom,
+                            scale=scale,
+                        ),
+                        stroke=TEAL,
+                        stroke_width=7,
+                        css_class="rescue-window",
+                    ),
+                    _rect(
+                        facade + 4,
+                        ladder[1] - 16,
+                        36,
+                        32,
+                        fill="none",
+                        stroke=TEAL,
+                        stroke_width=1.8,
+                        stroke_dasharray="6 4",
+                        css_class="foldout-ladder-deployment-zone",
+                    ),
+                    _rect(
+                        facade + 4,
+                        ladder[1] - 4,
+                        8,
+                        8,
+                        fill=TEAL,
+                        stroke=PAPER,
+                        stroke_width=1,
+                        css_class="foldout-ladder-closed-profile",
+                    ),
+                    _text(
+                        facade + 18,
+                        window[1] - 25,
+                        "RESCUE WINDOW",
+                        6.6,
+                        anchor="middle",
+                        weight=700,
+                        fill=TEAL,
+                    ),
+                    _text(
+                        facade + 23,
+                        ladder[1] + 29,
+                        "FOLDOUT LADDER · SUPPLEMENTARY",
+                        6.2,
+                        anchor="middle",
+                        weight=700,
+                        fill=TEAL,
+                    ),
+                ]
+            )
+        else:
+            exterior = (
+                _sx(36.0, origin=origin, scale=scale) + 76,
+                _sy(
+                    float(egress["from"]) + float(egress["width"]) / 2,
+                    bottom=bottom,
+                    scale=scale,
+                ),
+            )
+            parts.extend(
+                [
+                    f'<polyline points="{lobby[0]:.1f},{lobby[1]:.1f} {exterior[0]:.1f},{exterior[1]:.1f}" fill="none" stroke="{TEAL}" stroke-width="3" stroke-dasharray="7 4" marker-end="url(#route-arrow)" class="reserved-second-route"/>',
+                    _rect(
+                        exterior[0] - 56,
+                        exterior[1] - 20,
+                        70,
+                        40,
+                        fill="none",
+                        stroke=TEAL,
+                        stroke_width=1.8,
+                        stroke_dasharray="6 4",
+                        css_class="retractable-stair-reserve",
+                    ),
+                    _text(
+                        exterior[0] - 21,
+                        exterior[1] - 27,
+                        "RESERVED SECOND ROUTE",
+                        6.8,
+                        anchor="middle",
+                        weight=700,
+                        fill=TEAL,
+                    ),
+                ]
+            )
 
     phase_y = _sy(model["phase_boundary_y"], bottom=bottom, scale=scale)
     parts.append(_line(origin, phase_y, origin + 15 * scale, phase_y, stroke=PURPLE, stroke_width=3, stroke_dasharray="9 6"))
@@ -2652,13 +2915,19 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
                 [
                     "Every enclosed room reaches ESC through a declared door/opening.",
                     (
-                        "The dry wellness threshold reaches the reserved rear stair."
+                        "The dry wellness threshold reaches the rescue window and foldout ladder."
+                        if _is_foldout_escape_ladder(egress)
+                        else "The dry wellness threshold reaches the reserved rear stair."
                         if wellness_suite
                         else "The short wellness/egress spur reaches the reserved rear stair."
                         if central_distributor
                         else "The Phase 2 lobby also reaches a reserved rear retractable stair."
                     ),
-                    "That exterior device is a geometric reserve, not an approved exit.",
+                    (
+                        "The ladder is supplementary rescue equipment, not an approved second exit."
+                        if _is_foldout_escape_ladder(egress)
+                        else "That exterior device is a geometric reserve, not an approved exit."
+                    ),
                     (
                         "The main stair opens to the family distributor; fire approval is open."
                         if central_distributor
@@ -2699,7 +2968,9 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
             572,
             [
                 (
-                    "A retractable exterior stair reserve is shown, but is not yet an accepted exit."
+                    "A foldout ladder is shown as supplementary rescue equipment, not an accepted exit."
+                    if _is_foldout_escape_ladder(egress)
+                    else "A retractable exterior stair reserve is shown, but is not yet an accepted exit."
                     if egress
                     else "The arrows converge on the only stair currently represented."
                 ),
@@ -2735,7 +3006,7 @@ def build_access_diagram(model: dict[str, Any], report: dict[str, Any] | None = 
 
 
 def build_owner_priorities_detail(model: dict[str, Any]) -> str:
-    """Draw the PB laundry, retractable-stair and exposed-truss coordination brief."""
+    """Draw the PB laundry, exterior escape reserve and exposed-truss coordination brief."""
 
     laundry = model.get("relocated_laundry")
     egress = model.get("egress_reserve")
@@ -2760,7 +3031,11 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
     }
     parts = _svg_start(
         "Dream House owner-priority coordination details",
-        "PB laundry relocation, retractable exterior stair reserve and large exposed edge-truss architectural brief.",
+        (
+            "PB laundry relocation, operable rear rescue window, wall-mounted vertical foldout escape-ladder reserve and large exposed edge-truss architectural brief."
+            if _is_foldout_escape_ladder(egress)
+            else "PB laundry relocation, retractable exterior stair reserve and large exposed edge-truss architectural brief."
+        ),
         metadata,
     )
     _header(
@@ -2769,7 +3044,11 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
         detail_sheet_id,
         "OWNER PRIORITIES · ARCHITECTURAL INTERFACES",
         (
-            "PB laundry + retractable stair + open family balcony at exposed truss"
+            "PB laundry + rescue window / foldout ladder + open family balcony"
+            if _is_foldout_escape_ladder(egress) and family_balcony
+            else "PB laundry + rescue window / foldout ladder + exposed truss"
+            if _is_foldout_escape_ladder(egress)
+            else "PB laundry + retractable stair + open family balcony at exposed truss"
             if family_balcony
             else "PB laundry + retractable stair + exposed truss outside continuous P2-W04"
             if hall_edge
@@ -2820,48 +3099,163 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
         )
     )
 
-    _panel_title(parts, 830, 166, "02", "REAR RETRACTABLE EXTERIOR STAIR RESERVE")
-    facade_x, ground_y, landing_y = 1020.0, 610.0, 365.0
-    parts.extend(
-        [
-            _line(870, ground_y, 1510, ground_y, stroke=INK, stroke_width=2),
-            _line(facade_x, 220, facade_x, ground_y, stroke=INK, stroke_width=6),
-            _rect(facade_x - 8, landing_y - 56, 16, 56, fill="#f5ded8", stroke=RED, stroke_width=2, css_class="egress-door"),
-            _line(facade_x, landing_y, 1130, landing_y, stroke=RED, stroke_width=5),
-            _text(1075, landing_y - 12, "P2 LANDING", 7.5, anchor="middle", weight=700, fill=RED),
-            _line(1130, landing_y, 1210, 465, stroke=RED, stroke_width=7, css_class="retracted-stair"),
-            _line(1210, 465, 1125, 520, stroke=RED, stroke_width=7, css_class="retracted-stair"),
-            _text(1218, 493, "RETRACTED", 8, weight=700, fill=RED),
-            _text(1218, 508, "LOWER END ABOVE GRADE", 7, weight=700, fill=RED),
-            _line(1130, landing_y, 1450, ground_y, stroke=TEAL, stroke_width=3, stroke_dasharray="10 6", css_class="deployed-stair"),
-            _line(1100, landing_y + 6, 1420, ground_y + 6, stroke=TEAL, stroke_width=3, stroke_dasharray="10 6", css_class="deployed-stair"),
-            _text(1380, 555, "DEPLOYED STUDY POSITION", 8, anchor="middle", weight=700, fill=TEAL),
-        ]
-    )
-    for index in range(9):
-        x = 1140 + index * 34
-        y = landing_y + 14 + index * 25.5
-        parts.append(_line(x, y, x + 24, y + 2, stroke=TEAL, stroke_width=1.2, stroke_dasharray="5 3"))
-    parts.append(
-        _multiline(
-            845,
-            655,
-            [
-                "Security intent: the lower flight does not touch grade while stored.",
-                (
-                    "Access is directly from the dry wellness threshold."
-                    if model.get("wellness_suite")
-                    else "Access is directly from the short common wellness/egress spur."
-                    if model.get("central_distributor")
-                    else "Access is directly from the common Phase 2 lobby, not through a bedroom."
-                ),
-                "Required study: counterbalanced/manual fail-safe deployment without a key from inside.",
-                "Do not count as a compliant second exit until fire, egress, accessibility and rescue review.",
-            ],
-            8.4,
-            leading=1.45,
+    if _is_foldout_escape_ladder(egress):
+        _panel_title(
+            parts,
+            830,
+            166,
+            "02",
+            "REAR RESCUE WINDOW + VERTICAL FOLDOUT ESCAPE LADDER",
         )
-    )
+        ground_y, p2_floor_y = 610.0, 390.0
+        elevation_scale = (ground_y - p2_floor_y) / float(egress["served_level_m"])
+        rescue_window = next(
+            window
+            for window in model["windows"]
+            if window["id"] == egress["rescue_opening_id"]
+        )
+        elevation_x0, elevation_x1 = 865.0, 1160.0
+        window_x0 = 935.0
+        window_x1 = window_x0 + float(egress["width"]) * elevation_scale
+        window_sill = p2_floor_y - float(rescue_window["sill"]) * elevation_scale
+        window_top = window_sill - float(rescue_window["height"]) * elevation_scale
+        ladder_x = window_x1 + float(egress["jamb_offset_m"]) * elevation_scale
+        section_wall_x = 1265.0
+        section_fixed_x = section_wall_x + float(egress["closed_profile_m"]) * elevation_scale
+        section_mobile_x = section_fixed_x + float(egress["rung_width_m"]) * elevation_scale
+        bottom_rung_y = ground_y - float(egress["bottom_rung_above_grade_m"]) * elevation_scale
+        rung_pitch = float(egress["rung_spacing_m"]) * elevation_scale
+        rung_count = 13
+        top_rung_y = bottom_rung_y - (rung_count - 1) * rung_pitch
+        clear_projection = float(egress["clear_deployment_zone_m"]["outward"]) * elevation_scale
+        parts.extend(
+            [
+                _text(875, 212, "REAR ELEVATION · STORED", 7.2, weight=700, fill=TEAL),
+                _rect(
+                    elevation_x0,
+                    230,
+                    elevation_x1 - elevation_x0,
+                    ground_y - 230,
+                    fill="#eef0eb",
+                    stroke="#c3ccce",
+                    stroke_width=1.2,
+                    css_class="rear-facade-study",
+                ),
+                _line(elevation_x0, ground_y, elevation_x1, ground_y, stroke=INK, stroke_width=2),
+                _line(elevation_x0, p2_floor_y, elevation_x1, p2_floor_y, stroke=MUTED, stroke_width=1.2),
+                _text(872, p2_floor_y - 8, "P2 +3.80 m", 6.8, weight=700, fill=MUTED),
+                _rect(
+                    window_x0,
+                    window_top,
+                    window_x1 - window_x0,
+                    window_sill - window_top,
+                    fill="#d9f2f5",
+                    stroke=TEAL,
+                    stroke_width=3,
+                    css_class="operable-rescue-window",
+                    data_opening_id=egress["rescue_opening_id"],
+                ),
+                _line(window_x0, window_top, window_x1, window_sill, stroke=TEAL, stroke_width=1),
+                _line(window_x1, window_top, window_x0, window_sill, stroke=TEAL, stroke_width=1),
+                _text(970, window_top - 10, "OPERABLE RESCUE WINDOW", 6.6, anchor="middle", weight=700, fill=TEAL),
+                _line(ladder_x, 248, ladder_x, bottom_rung_y, stroke=INK, stroke_width=6, css_class="foldout-ladder-fixed-rail"),
+                _line(ladder_x + 2.5, 248, ladder_x + 2.5, bottom_rung_y, stroke=RED, stroke_width=2.5, css_class="foldout-ladder-stored-rail"),
+                _rect(ladder_x - 7, 318, 14, 14, fill="#f5ded8", stroke=RED, stroke_width=1.5, css_class="top-release"),
+                _line(window_x1, 326, ladder_x - 8, 326, stroke=RED, stroke_width=1.4, stroke_dasharray="4 3"),
+                _text((window_x1 + ladder_x) / 2, 313, "TOP RELEASE", 6.2, anchor="middle", weight=700, fill=RED),
+                _line(window_x1, 355, ladder_x, 355, stroke=TEAL, stroke_width=1.4),
+                _text((window_x1 + ladder_x) / 2, 371, "0.60 m JAMB OFFSET", 6.2, anchor="middle", weight=700, fill=TEAL),
+                _text(ladder_x + 12, 548, "~0.10 m", 6.2, weight=700, fill=RED),
+                _text(ladder_x + 12, 561, "CLOSED PROFILE", 6.2, weight=700, fill=RED),
+                _text(1205, 212, "TRANSVERSE SECTION · DEPLOYED", 7.2, weight=700, fill=TEAL),
+                _line(1185, ground_y, 1510, ground_y, stroke=INK, stroke_width=2),
+                _line(section_wall_x, 230, section_wall_x, ground_y, stroke=INK, stroke_width=7),
+                _line(1195, p2_floor_y, section_wall_x, p2_floor_y, stroke=MUTED, stroke_width=1.2),
+                _line(section_fixed_x, 248, section_fixed_x, bottom_rung_y, stroke=INK, stroke_width=6, css_class="foldout-ladder-fixed-rail"),
+                _line(section_mobile_x, 248, section_mobile_x, bottom_rung_y, stroke=TEAL, stroke_width=6, css_class="foldout-ladder-mobile-rail"),
+                _line(section_wall_x + 2, 315, section_fixed_x, 315, stroke=RED, stroke_width=2, css_class="top-release"),
+                _text(1332, 264, "OUTWARD", 6.5, weight=700, fill=TEAL),
+                _text(1332, 277, "CONTROLLED", 6.5, weight=700, fill=TEAL),
+                _text(1332, 290, "GRAVITY-ASSIST", 6.5, weight=700, fill=TEAL),
+                f'<path d="M {section_fixed_x + 8:.1f} 300 Q {section_mobile_x + 12:.1f} 320 {section_mobile_x + 14:.1f} 375" fill="none" stroke="{TEAL}" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#route-arrow)" class="deployment-motion"/>',
+                _line(section_wall_x + 2, window_top, section_wall_x + 2, window_sill, stroke=PAPER, stroke_width=9, css_class="rescue-window-section"),
+                _text(1200, (window_top + window_sill) / 2 + 2, "WINDOW", 6.2, weight=700, fill=TEAL),
+                _line(section_mobile_x + 20, bottom_rung_y, section_mobile_x + 20, ground_y, stroke=RED, stroke_width=1.2),
+                _line(section_mobile_x + 13, bottom_rung_y, section_mobile_x + 27, bottom_rung_y, stroke=RED, stroke_width=1.2),
+                _line(section_mobile_x + 13, ground_y, section_mobile_x + 27, ground_y, stroke=RED, stroke_width=1.2),
+                _text(section_mobile_x + 34, 596, "0.60 m", 6.2, weight=700, fill=RED),
+                _rect(section_wall_x, 224, clear_projection, bottom_rung_y - 224 + 15, fill="none", stroke=TEAL, stroke_width=1.2, stroke_dasharray="7 4", css_class="clear-ladder-envelope"),
+            ]
+        )
+        for rung_y in [top_rung_y + index * rung_pitch for index in range(rung_count)]:
+            parts.append(
+                _line(
+                    section_fixed_x,
+                    rung_y,
+                    section_mobile_x,
+                    rung_y,
+                    stroke=TEAL,
+                    stroke_width=2,
+                    css_class="foldout-ladder-rung",
+                )
+            )
+        parts.append(
+            _multiline(
+                845,
+                652,
+                [
+                    "Fixed inner rail anchors to verified structure; the outer rail descends and the rungs rotate 90 degrees.",
+                    "Release is reachable only from the served window, without a key; no ground-level operating handle.",
+                    "Keep the 0.80 x 0.80 m deployment zone, facade structure, wiring, drainage and grade unobstructed.",
+                    "Supplementary escape/rescue device only: CF-012 and professional fire approval remain open.",
+                ],
+                8.1,
+                leading=1.45,
+            )
+        )
+    else:
+        _panel_title(parts, 830, 166, "02", "REAR RETRACTABLE EXTERIOR STAIR RESERVE")
+        facade_x, ground_y, landing_y = 1020.0, 610.0, 365.0
+        parts.extend(
+            [
+                _line(870, ground_y, 1510, ground_y, stroke=INK, stroke_width=2),
+                _line(facade_x, 220, facade_x, ground_y, stroke=INK, stroke_width=6),
+                _rect(facade_x - 8, landing_y - 56, 16, 56, fill="#f5ded8", stroke=RED, stroke_width=2, css_class="egress-door"),
+                _line(facade_x, landing_y, 1130, landing_y, stroke=RED, stroke_width=5),
+                _text(1075, landing_y - 12, "P2 LANDING", 7.5, anchor="middle", weight=700, fill=RED),
+                _line(1130, landing_y, 1210, 465, stroke=RED, stroke_width=7, css_class="retracted-stair"),
+                _line(1210, 465, 1125, 520, stroke=RED, stroke_width=7, css_class="retracted-stair"),
+                _text(1218, 493, "RETRACTED", 8, weight=700, fill=RED),
+                _text(1218, 508, "LOWER END ABOVE GRADE", 7, weight=700, fill=RED),
+                _line(1130, landing_y, 1450, ground_y, stroke=TEAL, stroke_width=3, stroke_dasharray="10 6", css_class="deployed-stair"),
+                _line(1100, landing_y + 6, 1420, ground_y + 6, stroke=TEAL, stroke_width=3, stroke_dasharray="10 6", css_class="deployed-stair"),
+                _text(1380, 555, "DEPLOYED STUDY POSITION", 8, anchor="middle", weight=700, fill=TEAL),
+            ]
+        )
+        for index in range(9):
+            x = 1140 + index * 34
+            y = landing_y + 14 + index * 25.5
+            parts.append(_line(x, y, x + 24, y + 2, stroke=TEAL, stroke_width=1.2, stroke_dasharray="5 3"))
+        parts.append(
+            _multiline(
+                845,
+                655,
+                [
+                    "Security intent: the lower flight does not touch grade while stored.",
+                    (
+                        "Access is directly from the dry wellness threshold."
+                        if model.get("wellness_suite")
+                        else "Access is directly from the short common wellness/egress spur."
+                        if model.get("central_distributor")
+                        else "Access is directly from the common Phase 2 lobby, not through a bedroom."
+                    ),
+                    "Required study: counterbalanced/manual fail-safe deployment without a key from inside.",
+                    "Do not count as a compliant second exit until fire, egress, accessibility and rescue review.",
+                ],
+                8.4,
+                leading=1.45,
+            )
+        )
 
     _panel_title(
         parts,

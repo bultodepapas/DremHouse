@@ -1,0 +1,61 @@
+{
+  "base_model": "dreamhouse/p2_b26_delta.json",
+  "base_model_sha256": "cc86ced7756e21157c06c2cbbe35ec1c549ec882923934e583304db4be0eae4e",
+  "revision": "0.3-draft-27-P2",
+  "drawing_revision": "R24",
+  "status": "issued for D-082 supplementary rear rescue-window and vertical foldout escape-ladder coordination; required egress, local approval, product, anchorage, transfer safety and cost remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-26-P2 / R23 for the rear supplementary escape/rescue reserve only; D-080 wall geometry and D-081 corner graphics remain unchanged",
+  "decision": "D-082",
+  "change": {
+    "summary": "Replace the incorrect inclined retractable-stair concept with an operable rear rescue window beside a wall-mounted vertical foldout ladder that deploys outward by controlled gravity assist.",
+    "rescue_window": {
+      "id": "W-EGRESS-P2",
+      "room_id": "WELL-D",
+      "edge": "east",
+      "from": 11.25,
+      "to": 12.25,
+      "height": 1.2,
+      "sill": 0.9,
+      "escape_rescue": true,
+      "operation": "side-hinged operable rescue opening; clear opening, hardware and inward/outward swing require product and fire review",
+      "authority": "schematic coordination hypothesis"
+    },
+    "egress_reserve": {
+      "id": "EXT-STAIR-2",
+      "access_space": "WELL-D",
+      "edge": "east",
+      "from": 11.25,
+      "width": 1.0,
+      "rescue_opening_id": "W-EGRESS-P2",
+      "system": "vertical_foldout_escape_ladder",
+      "type": "wall-mounted vertical foldout emergency escape ladder",
+      "ladder_axis_y": 10.65,
+      "jamb_offset_m": 0.6,
+      "closed_profile_m": 0.1,
+      "deployment_direction": "perpendicular_to_wall",
+      "deployment_mode": "manual top release with controlled gravity-assisted descent; fixed inner rail, moving outer rail and rungs rotating 90 degrees",
+      "release_location": "served_opening_only",
+      "clear_deployment_zone_m": {
+        "outward": 0.8,
+        "along_wall": 0.8
+      },
+      "bottom_rung_above_grade_m": 0.6,
+      "rung_spacing_m": 0.3,
+      "rung_width_m": 0.6,
+      "usable_rung_width_m": 0.49,
+      "served_level_m": 3.8,
+      "maximum_climb_m": 7.315,
+      "security_intent": "release without key from the served opening; no operating handle accessible from grade",
+      "pb_opening_screen": {
+        "nearest_opening_id": "EXT-ESC",
+        "nearest_opening_to_y": 9.65,
+        "clear_zone_from_y": 10.25,
+        "minimum_clearance_m": 0.6,
+        "status": "screened against current PB b36 geometry; recheck after any rear-facade change"
+      },
+      "code_role": "supplementary_escape_rescue_device",
+      "status": "architectural reserve only; not credited as a code-compliant exit or required means of egress"
+    }
+  }
+}

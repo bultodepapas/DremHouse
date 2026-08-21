@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.23<br>
+**Version:** 1.24<br>
 **Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -24,9 +24,9 @@ record, repository README, and presentation do not change when a new issue is pr
   <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with duty-based walls and a rear rescue window beside a wall-mounted vertical foldout escape ladder" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-26-P2 · <a href="../../planos/conceptual_v0.3_b26_p2/DH-ARQ-PLN-002-R23_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-27-P2 · <a href="../../planos/conceptual_v0.3_b27_p2/DH-ARQ-PLN-002-R24_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>

@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.9
+**Versión:** 0.3.10
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -277,12 +277,18 @@ fácilmente $8–15 M. Es hard rule: no eliminar; optimizar dimensión y especif
 | 13.04  | Persianas y mosquiteros selectivos  | gl  |    1 |    $500.000 |    $500.000 | baja       | Solo donde aportan                |
 | 13.05  | Soportes y sellos de carpintería    | gl  |    1 |    $500.000 |    $500.000 | media      | Fijaciones y sellos               |
 | 13.06  | D-069 retained Side B workstation window | m²  | 4,95 |      TBC | not included | baja     | 3,00 × 1,65 m; Side A is now joined to 12.01 by D-078 |
+| 13.07  | D-082 operable P2 rescue window    | un  |    1 |          TBC | not included | baja     | 1.00 × 1.20 m schematic opening; clear opening, hardware, safe glass, flashing and transfer pending |
 
 `13.06` is an unpriced measurement alert for the retained Side B window only. D-078 moves
 the former Side A member into the unified opening controlled under `12.01`; it must not be
 counted twice. The line does not change the $20 M chapter control subtotal until
 duplication against `13.02`, facade scope, selected systems and comparable quotations are
 resolved.
+
+`13.07` is an unpriced measurement alert for the D-082 rescue-opening package. Reconcile
+it with `13.01`, the P2 facade opening deduction, safe glazing, hardware operable without
+a key, flashing, seals and any transfer handhold or platform. The line does not change
+the $20 M chapter control subtotal.
 
 ---
 
@@ -458,6 +464,13 @@ subtotal or claim a target increase until local modular quotations and a mock-up
 | 22.03  | Barandas y pasamanos                          | ml  |   20 |    $125.000 | $2.500.000 |     media | Vida segura; completa en F1         |
 | 22.04  | Iluminación integrada                         | gl  |    1 |    $800.000 |   $800.000 |     media | Integrada a estructura              |
 | 22.05  | Protección y pintura                          | gl  |    1 |  $1.200.000 | $1.200.000 |     media | Esquema por exposición              |
+| 22.06  | D-082 vertical foldout escape-ladder package | gl  |    1 |          TBC | not included | baja | Proprietary ladder, release, brackets, facade reinforcement, anchors, freight, installation and inspection |
+
+`22.06` is an unpriced supplementary rescue-equipment alert, not part of the required
+permanent-stair allowance in `22.01`–`22.05`. Price the complete installed package and
+reconcile secondary steel, corrosion protection, facade access and transfer aids with
+Chapters 05/06/09/10/13. Do not add it to the $12 M chapter subtotal or credit it as a
+code-compliant second exit before CF-012 is resolved.
 
 ---
 
@@ -646,6 +659,9 @@ confianza y variación frente a este desglose.
   v0.4. **El target no cambia** hasta cotizar en PE-1/PE-2.
 - v0.3.9 (D-080): adds unpriced reconciliation alerts `09.04` and `14.08` for the
   differentiated P2 wall schedule. **No subtotal, phase, contingency or target changes.**
+- v0.3.10 (D-082): adds unpriced alerts `13.07` and `22.06` for the operable rescue
+  window and complete vertical foldout-ladder package. **No subtotal, phase, contingency
+  or target changes.**
 - Cambios futuros: registrar origen, necesidad, alternativas, costo, plazo, efecto
   técnico, decisión y partida afectada. Ningún ahorro se contabiliza hasta documentar
   el alcance eliminado.

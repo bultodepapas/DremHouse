@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.23
+**Versión:** 0.3.24
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -576,10 +576,33 @@ wall areas by type, height, phase and opening. **No price, saving, increase, con
 change, phase-total change, or target change is recognized by D-080 before tested-system
 selection, coordinated quantities and comparable local quotations.**
 
+### 0.3-AG — D-082 rescue window and vertical foldout escape ladder
+
+D-082 replaces the unmeasurable inclined retractable-stair concept with two explicit
+scope packages: one operable P2 rescue window and one proprietary wall-mounted vertical
+foldout ladder, including verified facade support, anchors, flashings, controlled release,
+transfer handholds or platform if required, corrosion protection, delivery, installation,
+inspection and maintenance access. The 1.00 × 1.20 m opening study and the ladder's
+0.10 m closed-profile / 0.80 × 0.80 m clear-zone benchmarks are not purchase dimensions.
+
+Price the operable window under Chapter 13 and the complete ladder/anchorage package
+under Chapter 22 without duplicating facade panel, secondary steel or access hardware.
+Add unpriced alerts `13.07` and `22.06`. Use a proprietary evaluated system as the base
+comparison; locally fabricated alternatives must carry equivalent engineering, testing,
+documentation, warranty and professional responsibility. Compare delivered-and-installed
+Colombian quotations, because import freight, taxes, availability and service may reverse
+an apparent product-price advantage.
+
+The former generic reserve in D-050 was already unpriced. D-082 therefore makes scope
+measurable but recognizes no saving or increase. **No price, contingency change,
+phase-total change or target change is recognized before CF-012 life-safety resolution,
+product selection, structural design and comparable quotations.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AG  | 2026-08-21 | D-082 replaces the generic inclined retractable-stair reserve with one operable rescue window and one proprietary wall-mounted vertical foldout-ladder package. Add TBC alerts `13.07` and `22.06`; price window, complete ladder, anchors, facade reinforcement, flashing, transfer aids, freight, installation and inspection without duplication. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AF  | 2026-08-21 | D-080 differentiates P2 walls at 90/150/200/230 mm by duty and screens about 8.15 m² less wall footprint than predecessor nominal thicknesses. Chapters 09/10/14/23 require one-to-one remeasurement; add TBC alerts `09.04` and `14.08` to prevent facade/lining double counting. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AE  | 2026-08-21 | D-079 retains 20.70 m² of technical-workbench surface but makes twelve 1.50 m wall modules, three 1.50 m central-island modules, one heavy-force bay, three manual-adjustable ESD-capable RC modules, solder extraction and service zones measurable. The 9.00 m RC wall bench becomes unpriced alert `21.10`; local modular fabrication is the base pricing route. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AD  | 2026-08-21 | D-078 replaces 18.495 m² of two-event Side A glazing with one 20.88 m² modular opening (+2.385 m² / 12.9%) while reducing outer opening perimeter by 4.00 m / 16.5%. The Side A worktop increases by 2.16 m² / 80%, and one three-drawer cabinet is added. Price a direct rugged industrial envelope rather than premium facade treatment; chapters 05/06/09/10/12/13/17/18/21 require reconciliation and quotations. **No price, saving, increase, contingency, phase-total or target change is recognized.** |

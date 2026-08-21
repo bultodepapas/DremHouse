@@ -126,6 +126,20 @@ concealed-service experience established by D-059.
 
 See [P2 wall-thickness coordination — b25/R22](p2_wall_thickness_coordination_v0.3_b25.md).
 
+### P2 supplementary rear escape/rescue reserve — D-082
+
+D-082 replaces the incorrect inclined retractable-stair image with one operable rear
+rescue window beside a wall-mounted vertical foldout ladder. The inner rail remains fixed
+to verified facade structure; a top release deploys the outer rail and rotating rungs by
+controlled gravity assist. Keep the ladder south of the opening and preserve its screened
+0.80 × 0.80 m clear deployment zone without crossing any PB opening below.
+
+The device is supplementary rescue equipment only. It is not credited as a required
+second exit, an accessible means of egress or a replacement for the permanent stair.
+Product selection, opening/transfer safety, anchors, facade interfaces, fire approval,
+inspection, maintenance and cost remain open under CF-012. See
+[P2 rear rescue window and foldout escape ladder — b27/R24](p2_foldout_escape_ladder_coordination_v0.3_b27.md).
+
 ## Detalle y mantenibilidad
 
 ### PB integrated workstation and workshop-bench family
