@@ -1,7 +1,7 @@
 # Dream House Project Record
 
-**Status:** active  
-**Version:** 0.10
+**Status:** active
+**Version:** 0.12
 **Date:** 2026-08-21
 
 > [!NOTE]
@@ -251,6 +251,15 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Cost-efficient construction techniques and materials](08_investigacion/tecnicas_que_abaratan_costos.md):
   research into lower-cost methods applicable to the hall, including risks and
   order-of-magnitude value-engineering potential.
+- [SVG drawing-system audit and improvement plan](08_investigacion/svg_drawing_system_improvement_plan.md):
+  code and rendered-output audit of all 27 current sheets, with a graphic-only migration
+  contract, research-backed professional/didactic graphic system, shared SVG architecture,
+  collision/readability controls, sheet-by-sheet actions and acceptance gates that
+  preserve the architectural design.
+- [Architectural drawing communication research](08_investigacion/architectural_drawing_conventions_research.md):
+  sixteen comparative studies covering lines, sheets, title blocks, lettering,
+  dimensions, layers, symbols, information reliability, colour, diagrams, egress, SVG
+  structure and incremental QA; recommendations only, with primary-source register.
 
 ## How to use the project record
 
