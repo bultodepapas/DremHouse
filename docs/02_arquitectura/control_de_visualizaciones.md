@@ -1,15 +1,14 @@
 # Visualization control and ChatGPT image prompt kit
 
 **Status:** active; schematic-design communication only; not for construction<br>
-**Version:** 0.7<br>
+**Version:** 0.8<br>
 **Date:** 2026-08-21<br>
 **Sources:** Project Constitution; D-033, D-039, D-052, D-054, D-056, D-059,
-D-063, D-067–D-079; current-drawing catalog; and the six-source current OpenAI research
+D-063, D-067–D-083; current-drawing catalog; and the six-source current OpenAI research
 matrix below<br>
-**Supersedes:** visualization control v0.6 where D-079 differentiates and modularizes the
-technical workbench system and separates the RC support-equipment envelopes; the D-076
-research method, D-078 interior-led/exterior-performance intent and all unaffected view
-controls remain unchanged
+**Supersedes:** visualization control v0.7 only where D-083 changes bedroom and desk-window
+geometry; the D-076 research method, D-078 interior-led/exterior-performance intent,
+D-079 technical workbench system and all unaffected view controls remain unchanged
 
 ## Authority
 
@@ -98,9 +97,11 @@ the generated image obeys an exact physical camera model.
 - A clear `4.00 m` perceptual pedestrian axis, with no constructed corridor, furniture,
   vehicle, island, or partition blocking it.
 - On Side A, one centred `5.40 × 0.90 m` shared two-person workstation below one
-  `7.20 × 2.90 m` modular work/hall opening, with three suspended cabinets defining two
+  `7.20 × 3.05 m` modular work/hall opening, with sill and worktop aligned at +0.75 m
+  across an independent shadow/service gap and three suspended cabinets defining two
   equal positions. On Side B, retain the separate D-069 `3.00 × 0.90 m` single
-  workstation and its `3.00 × 1.65 m` window. Both read as permanent infrastructure.
+  workstation and its D-083 `3.00 × 1.80 m` window, also with sill +0.75 m. Both read
+  as permanent infrastructure.
 - The living group in the double-height Side B zone, facing a `100-inch` television
   mounted directly on the Side B perimeter wall. There is no freestanding media wall.
 - One centred `3.20 × 1.10 m` 12-seat dining group on Side B opposite the full-span Side A
@@ -159,8 +160,9 @@ lower reinforced vice/heavy-force bay; the RC/electronics bench has three clean 
 ESD work modules. Retain the separate three-module, two-sided central RC island and separate
 3D-printer and LiPo support stations. Farther inside on Side A, show one
 centred 5.40 m shared two-person worktop with three suspended steel cabinets below one
-7.20 × 2.90 m modular work/hall opening. On Side B, retain the separate 3.00 m single
-workstation below its smaller landscape window. Keep the 4 m central axis fully
+7.20 × 3.05 m modular work/hall opening whose sill aligns with the +0.75 m worktop. On
+Side B, retain the separate 3.00 m single workstation below its 3.00 × 1.80 m landscape
+window, also aligned at +0.75 m. Keep the 4 m central axis fully
 clear. Place the living group in the double-height Side B zone facing the 100-inch TV fixed
 directly to the Side B perimeter wall. Keep the centred 3.20 × 1.10 m 12-seat dining table
 on Side B opposite the full-span Side A kitchen and its long dry island, across rather than
@@ -400,7 +402,8 @@ wall-integrated workstation, dining group, camera, materials, lighting, and all 
 ```text
 Edit only the Side A workstation and adjacent opening. Restore one centred 5.40 m
 two-person wall-integrated worktop with three suspended steel drawer cabinets below one
-7.20 × 2.90 m modular work/hall opening. Remove the predecessor separate workstation
+7.20 × 3.05 m modular work/hall opening, with its sill visually aligned to the +0.75 m
+worktop across a narrow independent shadow/service gap. Remove the predecessor separate workstation
 window, narrow junction and adjacent full-height glazing. Keep the exterior treatment
 direct and industrial, with no feature frame or decorative cladding change. Preserve the
 camera, hall, project car/lift, central route, lighting and every unrelated element.
@@ -465,13 +468,16 @@ Reject or correct the image if any applicable answer is **no**.
 - [ ] Does the image avoid claiming that the open lift/bench clearance gate is resolved?
 - [ ] Is the `4 m` central axis clear?
 - [ ] Is the Side A shared two-person workstation centred below one 7.20 m modular opening,
-      with three cabinets, while the separate Side B single workstation remains present?
+      with its sill aligned to the +0.75 m worktop and three cabinets, while the separate
+      Side B single workstation and its aligned sill remain present?
 - [ ] Is the living group oriented to the TV directly on the Side B perimeter wall?
 - [ ] Is one centred 12-seat dining group on Side B opposite the full-span Side A kitchen,
       with the clear central axis unobstructed between them?
 - [ ] Are dining and kitchen independent of any invented media partition?
 - [ ] Does the Great Wall read as one continuous warm rear plane with flush doors?
 - [ ] Is only the `7.45 m` family frontage open, with both bedroom ends still enclosed?
+- [ ] When bedrooms are visible, do their openings read as repeated 1.20 m near-floor-to-
+      ceiling modules rather than invented curtain wall or single oversized glass sheets?
 - [ ] Is there only one large exposed edge truss?
 - [ ] Are there exactly two separated rooflight events when the roof is visible?
 - [ ] Is glazing limited and intentional rather than a transparent-box treatment?

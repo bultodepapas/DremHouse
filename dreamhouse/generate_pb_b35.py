@@ -210,7 +210,8 @@ def shared_workstation_detail_sheet(model: dict[str, Any]) -> str:
     parts.append(base.text(75, 660, "No furniture load to glazing or unverified facade rails.", 7.5, "start", 400))
 
     parts.append(base.text(510, 120, "B · CENTRED INTERIOR ELEVATION", 14, "start", 700))
-    ex, ey, scale = 510.0, 170.0, 100.0
+    ex, scale = 510.0, 100.0
+    ey = floor_y - (window["sill"] + window["height"]) * scale
     ew = (window["x1"] - window["x0"]) * scale
     eh = window["height"] * scale
     parts.append(base.rect(ex, ey, ew, eh, fill="#426671", stroke="#172126", stroke_width="3"))
@@ -221,12 +222,13 @@ def shared_workstation_detail_sheet(model: dict[str, Any]) -> str:
     parts.append(f'<line x1="{centre_x}" y1="{ey-14}" x2="{centre_x}" y2="{floor_y+10}" stroke="#b56c31" stroke-width="1.2" stroke-dasharray="7 4"/>')
     worktop_x = ex + (workstation["worktop_x0"] - window["x0"]) * scale
     worktop_w = workstation["worktop_length"] * scale
-    parts.append(f'<line x1="{worktop_x}" y1="{worktop_y}" x2="{worktop_x+worktop_w}" y2="{worktop_y}" stroke="#c49a62" stroke-width="14"/>')
+    worktop_elevation_y = floor_y - workstation["worktop_height"] * scale
+    parts.append(f'<line x1="{worktop_x}" y1="{worktop_elevation_y}" x2="{worktop_x+worktop_w}" y2="{worktop_elevation_y}" stroke="#c49a62" stroke-width="14"/>')
     rail_y = floor_y - .68 * scale
     parts.append(f'<line x1="{worktop_x}" y1="{rail_y}" x2="{worktop_x+worktop_w}" y2="{rail_y}" stroke="#26363b" stroke-width="6"/>')
     cabinet_w = workstation["drawer_cabinet_width"] * scale
     cabinet_h = workstation["drawer_cabinet_height"] * scale
-    cabinet_y = worktop_y + 9
+    cabinet_y = worktop_elevation_y + 9
     for offset in workstation["drawer_cabinet_offsets"]:
         cabinet_x = worktop_x + offset * scale
         parts.append(base.rect(cabinet_x, cabinet_y, cabinet_w, cabinet_h, fill="#8d6745", stroke="#26363b", stroke_width="2"))

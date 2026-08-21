@@ -1,7 +1,7 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.9
+**Versión:** 0.10
 **Fecha:** 2026-08-21
 
 ## Filosofía
@@ -22,6 +22,12 @@ El estudio de cargas debe inventariar al menos:
 - cinco baños, lavandería y sauna;
 - calefacción, ventilación, extracción y destratificación;
 - portones, bombas, exteriores, futuro solar/baterías y cargas de reserva.
+
+Under D-083, both permanent desk-window sills share the +0.75 m worktop datum. Route
+power/data and removable service access through an independent 30–50 mm shadow gap;
+do not pierce facade drainage paths or place boxes, drivers or cable trays inside window
+frames. Coordinate monitors and operable panels before fixing outlets. The two technical-
+workbench window sills remain at +0.90 m under D-079.
 
 Definir capacidad de acometida, tableros, selectividad/protecciones, puesta a tierra,
 protección contra sobretensiones, circuitos dedicados, desconexiones visibles de equipos,

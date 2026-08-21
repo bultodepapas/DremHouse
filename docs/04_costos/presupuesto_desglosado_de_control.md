@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.10
+**Versión:** 0.3.11
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -248,12 +248,12 @@ interfaces and inner lining once across chapters 09/10/14/23.
 
 | Código | Partida                                            | Un  | Cant | P. unitario |    Subtotal | Confianza  | Fuente/supuesto                            |
 | ------ | -------------------------------------------------- | --- | ---: | ----------: | ----------: | ---------- | ------------------------------------------ |
-| 12.01  | Sistema modular de vidrio fijo low-e (perfiles)    | m²  |   28 |  $1.180.000 | $33.040.000 | baja-media | D-078 tests 20,88 m² within the retained allowance; final system pending |
+| 12.01  | Sistema modular de vidrio fijo low-e (perfiles)    | m²  |   28 |  $1.180.000 | $33.040.000 | baja-media | D-083 measures 21,96 m² Side A within the retained allowance; final system pending |
 | 12.02  | Estructura secundaria de soporte del vidrio        | gl  |    1 |  $2.760.000 |  $2.760.000 | baja-media | Largueros/travesaños coordinados con acero |
 | 12.03  | Herrajes, sellos y drenaje del sistema             | gl  |    1 |  $1.200.000 |  $1.200.000 | baja-media | Termopanel + low-e según modelo térmico    |
 | 12.04  | Montaje e izaje                                    | gl  |    1 |  $1.000.000 |  $1.000.000 | baja-media | Logística rural (R-19)                     |
 
-**D-078 measurement join:** the active Side A opening is **7.20 × 2.90 m = 20.88 m²**.
+**D-083 measurement update:** the active Side A opening is **7.20 × 3.05 m = 21.96 m²**.
 It replaces the former 18.495 m² combined Side A workstation/main-glazing geometry and
 remains below the 28 m² control allowance. This apparent area reserve is not a saving:
 safe glass, economical module widths, mullions, header/jamb steel, seals, drainage and
@@ -276,8 +276,9 @@ fácilmente $8–15 M. Es hard rule: no eliminar; optimizar dimensión y especif
 | 13.03  | Puerta peatonal central 1,60 × 2,50 | un  |    1 |  $1.400.000 |  $1.400.000 | baja-media | Perfil de catálogo                |
 | 13.04  | Persianas y mosquiteros selectivos  | gl  |    1 |    $500.000 |    $500.000 | baja       | Solo donde aportan                |
 | 13.05  | Soportes y sellos de carpintería    | gl  |    1 |    $500.000 |    $500.000 | media      | Fijaciones y sellos               |
-| 13.06  | D-069 retained Side B workstation window | m²  | 4,95 |      TBC | not included | baja     | 3,00 × 1,65 m; Side A is now joined to 12.01 by D-078 |
+| 13.06  | D-083 Side B workstation window         | m²  | 5,40 |      TBC | not included | baja     | 3,00 × 1,80 m; sill +0,75 m; Side A remains joined to 12.01 |
 | 13.07  | D-082 operable P2 rescue window    | un  |    1 |          TBC | not included | baja     | 1.00 × 1.20 m schematic opening; clear opening, hardware, safe glass, flashing and transfer pending |
+| 13.08  | D-083 net additional vertical glazing variance | m² | 5,565 | TBC | not included | baja | 4,035 m² bedroom + 1,530 m² desk delta; reconcile with 12.01/13.01/13.06; no duplication |
 
 `13.06` is an unpriced measurement alert for the retained Side B window only. D-078 moves
 the former Side A member into the unified opening controlled under `12.01`; it must not be
@@ -289,6 +290,14 @@ resolved.
 it with `13.01`, the P2 facade opening deduction, safe glazing, hardware operable without
 a key, flashing, seals and any transfer handhold or platform. The line does not change
 the $20 M chapter control subtotal.
+
+`13.08` records the net D-083 change against the immediately preceding geometry; it is
+not an additional glazing package to sum again. Active P2 windows now measure 54.72 m²,
+the Side A desk opening 21.96 m² and Side B 5.40 m². Reconcile the 4.035 m² bedroom
+delta and 1.530 m² desk delta one-to-one against `12.01`, `13.01` and `13.06`, including
+facade deductions, repeated modules, safe glass, fall protection, frames, structure,
+curtains, seals and drainage. The optional 8.64 m² dining study is excluded. The line
+does not change the $20 M chapter control subtotal.
 
 ---
 
@@ -662,6 +671,10 @@ confianza y variación frente a este desglose.
 - v0.3.10 (D-082): adds unpriced alerts `13.07` and `22.06` for the operable rescue
   window and complete vertical foldout-ladder package. **No subtotal, phase, contingency
   or target changes.**
+- v0.3.11 (D-083): updates Side A/Side B desk-window measurements, records 54.72 m² of
+  active P2 windows and adds the non-additive reconciliation alert `13.08` for the 5.565 m²
+  net vertical-glazing variance. The optional dining study remains excluded. **No subtotal,
+  phase, contingency or target changes.**
 - Cambios futuros: registrar origen, necesidad, alternativas, costo, plazo, efecto
   técnico, decisión y partida afectada. Ningún ahorro se contabiliza hasta documentar
   el alcance eliminado.

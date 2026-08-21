@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.24
+**Versión:** 0.3.25
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -197,8 +197,8 @@ or 23.04 m² glass hypothesis. The relocation reopens trimmers, purlins, diaphra
 curbs, drainage, fall protection, maintenance access, solar control, and related cost
 scope even if glass area is unchanged.
 
-D-055 requires derived quantity-to-cost traceability for the next stage. The current
-geometry measures approximately **55.02 m² of active P2 windows**, compared with the
+D-055 requires derived quantity-to-cost traceability for the next stage. The 0.4-I01
+integration snapshot measures approximately **55.02 m² of P2 windows**, compared with the
 **40 m²** P2-window control placeholder, and **41.76 m² of PB technical glazing**, whose
 coverage against the 12 m² service-window placeholder and other glass lines is not yet
 unambiguous. These are measurement alerts, not accepted additions to the budget. They
@@ -598,10 +598,39 @@ measurable but recognizes no saving or increase. **No price, contingency change,
 phase-total change or target change is recognized before CF-012 life-safety resolution,
 product selection, structural design and comparable quotations.**
 
+### 0.3-AH — D-083 bedroom and desk-window daylight coordination
+
+D-083 replaces the five preceding bedroom-window geometries with four 3.60 × 2.90 m
+openings and one 2.40 × 2.90 m rear opening. Schematic bedroom glazing changes from
+**44.685 m² to 48.720 m²**, an increase of **4.035 m²** before frame deductions. The
+wellness and D-082 rescue openings remain unchanged, so all active P2 vertical windows
+measure **54.72 m²**.
+
+Lowering the two desk-window sills from +0.90 m to +0.75 m while retaining their heads
+changes Side A from 20.88 m² to **21.96 m²** and Side B from 4.95 m² to **5.40 m²**.
+The desk-window increase is **1.53 m²**. Total D-083 additional vertical glazing is
+therefore **5.565 m²**, producing **123.84 m²** of active PB + P2 vertical glazing when
+the unchanged 41.76 m² PB technical glazing is included. The two 11.52 m² rooflights
+remain separate and unchanged.
+
+Remeasure chapters 05/06/09/10/12/13/17/18 for glass, frames, mullions, openings,
+facade-panel deductions, headers, jambs, girts, safe glass, fall protection, hardware,
+curtain pockets, flashings, seals, drainage and the desk shadow/service interfaces.
+Reconcile the Side A increase against the remaining `12.01` allowance and the Side B/P2
+changes against Chapter 13 without duplication. Add atomic alert `13.08` for the measured
+D-083 variance. The optional 8.64 m² dining opening is a non-adopted study and is excluded
+from quantities and pricing.
+
+No unit rate or selected system proves the cost effect: larger glass area may be partly
+offset by repeated 1.20 m modules, fewer unique sizes and standard fabrication. **No
+price, saving, increase, contingency change, phase-total change or target change is
+recognized before developed details and comparable local quotations.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AH  | 2026-08-21 | D-083 adds 4.035 m² to the five bedroom openings and 1.530 m² to the two desk openings, for 5.565 m² additional vertical glazing and 123.84 m² active PB + P2 vertical glazing. Reconcile chapters 12/13 and facade, structure, safety, curtain and desk interfaces; add unpriced alert `13.08`. The 8.64 m² dining-window study is excluded. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AG  | 2026-08-21 | D-082 replaces the generic inclined retractable-stair reserve with one operable rescue window and one proprietary wall-mounted vertical foldout-ladder package. Add TBC alerts `13.07` and `22.06`; price window, complete ladder, anchors, facade reinforcement, flashing, transfer aids, freight, installation and inspection without duplication. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AF  | 2026-08-21 | D-080 differentiates P2 walls at 90/150/200/230 mm by duty and screens about 8.15 m² less wall footprint than predecessor nominal thicknesses. Chapters 09/10/14/23 require one-to-one remeasurement; add TBC alerts `09.04` and `14.08` to prevent facade/lining double counting. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AE  | 2026-08-21 | D-079 retains 20.70 m² of technical-workbench surface but makes twelve 1.50 m wall modules, three 1.50 m central-island modules, one heavy-force bay, three manual-adjustable ESD-capable RC modules, solder extraction and service zones measurable. The 9.00 m RC wall bench becomes unpriced alert `21.10`; local modular fabrication is the base pricing route. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
@@ -624,7 +653,7 @@ product selection, structural design and comparable quotations.**
 | 0.3-N   | 2026-08-13 | D-059 replaces the 180 mm P2 exterior study wall on the north, south and rear/east edges with the 300 mm nominal P2-W05 double-frame envelope. Corrugated sheet remains outside; the P2 interior receives concealed framing/services and a smooth board finish. All layers, openings, flashings, seals, thermal bridges, fire/cavity barriers and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-M   | 2026-08-13 | D-058 adds the full-height 18.00 m P2-W04 enclosure at X=21 toward the hall/workshops, with 250 mm nominal opaque portions and GLZ-DECK as the only planned interruption. Wall-area, glazing, seals, head/floor/structure junctions, fire stopping, access and mock-up remain to be measured; **no price, saving, increase, contingency, or target change is recognized.** |
 | 0.3-L   | 2026-08-13 | D-057 fixes P2-W01 at 250 mm nominal for ordinary dry interior upper-floor partitions: twin independent metal frames, glass wool in both frames, reclaimed concealed gypsum board and new visible finish board. Phase 2 is rebalanced within the unchanged gross envelope to retain 1.20 m clear circulation. Exterior, sauna/wet, protected-stair/fire-rated, technical and structural wall types remain excluded and unpriced. Reuse is not counted as a saving until yield and handling are measured; **no price, saving, increase, contingency, or target change is recognized.** |
-| 0.3-K   | 2026-08-13 | D-054/D-055 integration control: reopens complete rooflight-assembly quantities after relocation; records active-model opening measurements of 55.02 m² P2 windows and 41.76 m² PB technical glazing against unresolved estimate placeholders; and requires a generated quantity ledger and cost mapping for Great Wall, structural, opening, equipment, and room changes. **No total, contingency, saving, or increase is recognized.** Affects principally 03/05/06/08/09/10/12/13/14/15/16/17/19/20/21/22/23/26 and remains blocked by PE-1/PE-2. |
+| 0.3-K   | 2026-08-13 | D-054/D-055 integration snapshot reopens complete rooflight-assembly quantities after relocation; records then-current opening measurements of 55.02 m² P2 windows and 41.76 m² PB technical glazing against unresolved estimate placeholders; and requires a generated quantity ledger and cost mapping for Great Wall, structural, opening, equipment, and room changes. D-083/AH now governs active window measurements. **No total, contingency, saving, or increase is recognized.** Affects principally 03/05/06/08/09/10/12/13/14/15/16/17/19/20/21/22/23/26 and remains blocked by PE-1/PE-2. |
 | 0.2     | 2026-08-11 | Target de obra física $941 M / control $988,05 M (fuente DOCX).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | 0.3     | 2026-08-11 | Desglose atómico por partida en `presupuesto_desglosado_de_control.md` sobre el mismo target. No cambia totales ni contingencia; no mejora la confianza global. Añade radar de reducción de costos e indicadores por capítulo.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | 0.3-A   | 2026-08-11 | Revisión arquitectónica b04: escalera con descarga posterior, puerta exterior de bodega, frontera aislable F1/F2 y ajuste de cocina. Impacto aún no cuantificado; afecta principalmente capítulos 10, 14, 19, 20, 22 y 24. No se modifica el target hasta medir y cotizar.                                                                                                                                                                                                                                                                                                                                                                                                                                        |

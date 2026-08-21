@@ -1,0 +1,127 @@
+{
+  "decision": "D-083",
+  "date": "2026-08-21",
+  "status": "adopted schematic window and daylight coordination basis; site, solar, privacy, structure, glazing safety, building physics, operation, drainage, curtains, cost and professional design remain open; not for construction",
+  "module_width_m": 1.2,
+  "upper_floor_level_m": 3.8,
+  "upper_floor_bedroom_windows": [
+    {
+      "id": "W-H1",
+      "room_id": "H1-D",
+      "edge": "south",
+      "from": 21.8,
+      "to": 25.4,
+      "height": 2.9,
+      "sill": 0.05,
+      "modules": 3,
+      "operation_intent": "fixed daylight modules plus at least one safely operable ventilation panel; final clear opening and hardware pending"
+    },
+    {
+      "id": "W-H2",
+      "room_id": "H2-D",
+      "edge": "north",
+      "from": 21.5,
+      "to": 25.1,
+      "height": 2.9,
+      "sill": 0.05,
+      "modules": 3,
+      "operation_intent": "fixed daylight modules plus at least one safely operable ventilation panel; final clear opening and hardware pending"
+    },
+    {
+      "id": "W-G",
+      "room_id": "G-D",
+      "edge": "north",
+      "from": 28.65,
+      "to": 32.25,
+      "height": 2.9,
+      "sill": 0.05,
+      "modules": 3,
+      "operation_intent": "fixed daylight modules plus at least one safely operable ventilation panel; final clear opening and hardware pending"
+    },
+    {
+      "id": "W-M-LAT-A",
+      "room_id": "M-D",
+      "edge": "south",
+      "from": 32.1,
+      "to": 35.7,
+      "height": 2.9,
+      "sill": 0.05,
+      "modules": 3,
+      "operation_intent": "fixed daylight modules plus at least one safely operable ventilation panel; final clear opening and hardware pending"
+    },
+    {
+      "id": "W-M-REAR",
+      "room_id": "M-D",
+      "edge": "east",
+      "from": 0.9,
+      "to": 3.3,
+      "height": 2.9,
+      "sill": 0.05,
+      "modules": 2,
+      "operation_intent": "fixed daylight modules plus at least one safely operable ventilation panel; final clear opening and hardware pending"
+    }
+  ],
+  "ground_floor_workstation_glazing": [
+    {
+      "id": "GLZ-WS-A",
+      "side": "A",
+      "name": "Unified Side A work / hall window",
+      "x0": 12.15,
+      "x1": 19.35,
+      "sill": 0.75,
+      "height": 3.05,
+      "head": 3.8,
+      "modules": 6,
+      "worktop_height": 0.75,
+      "status": "adopted schematic opening; modular panelization, operable areas and performance pending site and professional design"
+    },
+    {
+      "id": "GLZ-WS-B",
+      "side": "B",
+      "name": "Workstation 2 window",
+      "x0": 13.0,
+      "x1": 16.0,
+      "sill": 0.75,
+      "height": 1.8,
+      "head": 2.55,
+      "modules": 3,
+      "worktop_height": 0.75,
+      "status": "adopted schematic opening; modular panelization, operable areas and performance pending site and professional design"
+    }
+  ],
+  "technical_window_rule": {
+    "sill_m": 0.9,
+    "intent": "retain both technical-workbench window sills at +0.90 m; D-083 does not lower them because bench duties and adjustable modules differ from desk work"
+  },
+  "independent_desk_interface": {
+    "visual_alignment": "desk top and window sill share +0.75 m datum",
+    "shadow_service_gap_mm": [30, 50],
+    "requirements": [
+      "no furniture load into window frame or facade girt",
+      "independent drainage, flashings and seals",
+      "removable service access",
+      "coordinate monitors and mullion sightlines"
+    ]
+  },
+  "optional_dining_study": {
+    "id": "GLZ-DINING-STUDY-B",
+    "side": "B",
+    "x0": 23.85,
+    "x1": 28.65,
+    "sill": 0.75,
+    "height": 1.8,
+    "head": 2.55,
+    "modules": 4,
+    "status": "study only; excluded from adopted opening totals and drawings until site orientation, privacy, solar exposure, structure and cost are resolved"
+  },
+  "open_gates": [
+    "select the site and confirm cardinal orientation, views, privacy and external obstructions",
+    "run room-by-room daylight, glare, overheating and natural-ventilation analysis",
+    "design laminated safety glazing, fall protection and restrictors where required",
+    "coordinate operable areas, insect screens, rescue requirements and cleaning access",
+    "complete wind, header, jamb, girt, anchorage and drift design",
+    "complete thermal-bridge, condensation, acoustic, drainage, flashing and seal design",
+    "coordinate blackout curtains, tracks, furniture, monitors and mullion sightlines",
+    "build one representative sill / desk / facade mock-up and obtain comparable local quotations"
+  ]
+}

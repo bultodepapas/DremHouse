@@ -2173,7 +2173,17 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     primary_bathroom_unified = model.get("primary_bathroom_unified")
     primary_bedroom_unified = model.get("primary_bedroom_unified")
     stair_core = model.get("stair_core")
+    window_daylight = model.get("window_daylight_coordination")
     position_lines = (
+        [
+            "Use repeated 1.20 m modules for all five bedroom openings.",
+            "Set bedroom-window visual sills at +0.05 m and heads at +2.95 m.",
+            "Keep safety glass, fall protection and operability open to design.",
+            "Coordinate solar control, privacy, curtains and condensation by site.",
+            "Retain wellness and D-082 rescue-window geometry unchanged.",
+        ]
+        if window_daylight
+        else
         [
             "Use P2-W01A 90 mm only within the same dry suite.",
             "Use P2-W01B / W04R 200 mm at private and hall separations.",
@@ -2275,6 +2285,16 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
         - net_area(by_id["H2-D"], envelope, model)
     )
     fixes = (
+        [
+            ("MODULE", "H1, H2, guest and primary side use three repeated 1.20 m modules."),
+            ("CORNER", "Primary rear uses two 1.20 m modules with the three-module side opening."),
+            ("DATUM", "All five bedroom windows use sill +0.05 m and head +2.95 m."),
+            ("LIGHT", "Bedroom glass rises to 48.72 m2 without changing room or wall geometry."),
+            ("SAFETY", "Safe glass, fall protection, restrictors and operable panels remain open."),
+            ("SITE", "Orientation, glare, privacy, curtains and thermal performance remain open."),
+        ]
+        if window_daylight
+        else
         [
             ("TYPE", "Vertical wall-mounted foldout ladder replaces the inclined stair sketch."),
             ("WINDOW", "W-EGRESS-P2 is an operable rescue window, not an exterior door."),
@@ -2495,6 +2515,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
+        "D-083 · MODULAR NEAR-FLOOR-TO-CEILING BEDROOM WINDOWS · DAYLIGHT COORDINATION"
+        if model.get("window_daylight_coordination")
+        and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DIA-001", "DH-ARQ-DET-002", "DH-ARQ-DET-008"))
+        else
         "D-082 · VERTICAL FOLDOUT ESCAPE LADDER · SUPPLEMENTARY RESCUE RESERVE"
         if _is_foldout_escape_ladder(model.get("egress_reserve"))
         and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DIA-001", "DH-ARQ-DET-002"))
@@ -2573,7 +2597,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision coordinating an operable rear rescue window beside a wall-mounted vertical foldout escape ladder. The device is supplementary and not credited as a required exit. Not for construction."
+                "An upper-floor revision coordinating a repeated 1.20 m near-floor-to-ceiling bedroom-window family while retaining the D-082 supplementary rescue system. Not for construction."
+                if model.get("window_daylight_coordination")
+                else "An upper-floor revision coordinating an operable rear rescue window beside a wall-mounted vertical foldout escape ladder. The device is supplementary and not credited as a required exit. Not for construction."
                 if _is_foldout_escape_ladder(model.get("egress_reserve"))
                 else "An upper-floor revision assigning economical wall thickness by acoustic, wet, hot-side, protected-core and exterior duty. Not for construction."
                 if model.get("wall_schedule")
@@ -2606,7 +2632,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-082 rescue window + wall-mounted vertical foldout ladder"
+            "D-083 repeated 1.20 m bedroom-window family · sill +0.05 m · head +2.95 m"
+            if model.get("window_daylight_coordination")
+            else "D-082 rescue window + wall-mounted vertical foldout ladder"
             if _is_foldout_escape_ladder(model.get("egress_reserve"))
             else "D-080 realistic wall family · 90 / 150 / 200 / 230 mm"
             if model.get("wall_schedule")

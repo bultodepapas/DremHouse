@@ -48,22 +48,22 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>25</strong> current SVG/PNG pairs · <strong>172</strong> preserved versioned sheets · <strong>80</strong> documents · <strong>73</strong> decisions · <strong>7</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>81</strong> documents · <strong>74</strong> decisions · <strong>7</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with differentiated modular automotive and RC workbenches, central RC island, shared workstation, dining and coordinated stair core" width="100%"></a>
-  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-36-PB</sub>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with desk-level window sills, retained modular technical workbenches, domestic layout and coordinated stair core" width="100%"></a>
+  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-37-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b37_pb/DH-ARQ-PLN-001-R15_PB-WINDOW-DAYLIGHT-DATUMS.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with duty-based walls and a rear rescue window beside a wall-mounted vertical foldout escape ladder" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-27-P2</sub>
+  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with modular near-floor-to-ceiling bedroom windows, duty-based walls and retained supplementary rescue system" width="100%"></a>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-28-P2</sub>
   <br><strong>Upper-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b27_p2/DH-ARQ-PLN-002-R24_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b28_p2/DH-ARQ-PLN-002-R25_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
@@ -88,10 +88,10 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg" alt="Current Dream House rear façade schematic elevation" width="100%"></a>
-  <br><sub><strong>Architecture · rear elevation</strong> · 0.3-borrador-07-CUBIERTA</sub>
+  <a href="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg" alt="Current Dream House rear elevation with primary bedroom, wellness and rescue windows plus vertical foldout ladder" width="100%"></a>
+  <br><sub><strong>Architecture · rear elevation</strong> · 0.3-draft-37-PB</sub>
   <br><strong>Rear façade</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-002-R06_FACHADA-POSTERIOR-CUBIERTA.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b37_pb/DH-ARQ-ELE-002-R07_REAR-WINDOW-DAYLIGHT.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
@@ -102,10 +102,10 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><sub><a href="planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House Side A shared two-person workstation with three suspended cabinets and unified modular window schematic detail" width="100%"></a>
-  <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-35-PB</sub>
+  <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House Side A desk and window interface with aligned sill and worktop plus independent support and drainage" width="100%"></a>
+  <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-37-PB</sub>
   <br><strong>PB Side A shared two-person workstation</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b37_pb/DH-ARQ-DET-006-R03_PB-DESK-WINDOW-INTERFACE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
@@ -114,6 +114,20 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><sub><strong>Architecture · PB technical workbench detail</strong> · 0.3-draft-36-PB</sub>
   <br><strong>PB modular technical workbench system</strong>
   <br><sub><a href="planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+</td>
+<td width="50%" valign="top">
+  <a href="planos/actual/DH-ARQ-DET-008_CURRENT-P2-BEDROOM-WINDOWS.svg"><img src="planos/actual/DH-ARQ-DET-008_CURRENT-P2-BEDROOM-WINDOWS.svg" alt="Dream House bedroom window detail showing three-module and two-module near-floor-to-ceiling window families with open safety and performance gates" width="100%"></a>
+  <br><sub><strong>Architecture · P2 bedroom windows</strong> · 0.3-draft-28-P2</sub>
+  <br><strong>P2 modular near-floor-to-ceiling window family</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b28_p2/DH-ARQ-DET-008-R00_P2-BEDROOM-WINDOW-FAMILY.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+  <a href="planos/actual/DH-ARQ-SCH-001_CURRENT-WINDOW-SCHEDULE.svg"><img src="planos/actual/DH-ARQ-SCH-001_CURRENT-WINDOW-SCHEDULE.svg" alt="Dream House coordinated window schedule with identifiers, locations, dimensions, sill and head datums, modules and areas" width="100%"></a>
+  <br><sub><strong>Architecture · opening schedule</strong> · 0.3-draft-37-PB</sub>
+  <br><strong>Window and daylight schedule</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b37_pb/DH-ARQ-SCH-001-R00_D083-WINDOW-SCHEDULE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House second-floor wall schedule with realistic duty-based nominal thicknesses" width="100%"></a>

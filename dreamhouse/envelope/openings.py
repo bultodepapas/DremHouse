@@ -11,16 +11,22 @@ def _wall_opening(
     start_key, end_key = width_keys
     width = float(value[end_key]) - float(value[start_key])
     height = float(value["height"])
-    return {
+    sill = float(value.get("sill", 0.0))
+    item = {
         "id": value["id"],
         "kind": "vertical_glazing",
         "source": source,
         "location": value.get("edge", value.get("side", value.get("facade"))),
         "width_m": round(width, 3),
         "height_m": round(height, 3),
+        "sill_m": round(sill, 3),
+        "head_m": round(sill + height, 3),
         "area_m2": round(width * height, 3),
         "perimeter_m": round(2 * (width + height), 3),
     }
+    if value.get("modules") is not None:
+        item["modules"] = int(value["modules"])
+    return item
 
 
 def build_opening_schedule(
@@ -32,6 +38,10 @@ def build_opening_schedule(
         _wall_opening(value, source="PB.technical_glazing", width_keys=("x0", "x1"))
         for value in pb["technical_glazing"]
     ]
+    items.extend(
+        _wall_opening(value, source="PB.workstation_glazing", width_keys=("x0", "x1"))
+        for value in pb.get("workstation_glazing", [])
+    )
     items.extend(
         _wall_opening(value, source="P2.windows", width_keys=("from", "to"))
         for value in p2["windows"]
@@ -54,9 +64,14 @@ def build_opening_schedule(
     totals: dict[str, float] = {}
     for item in items:
         totals[item["kind"]] = round(totals.get(item["kind"], 0.0) + item["area_m2"], 3)
+    study_items = [
+        _wall_opening(value, source="D083.optional_study", width_keys=("x0", "x1"))
+        for value in pb.get("optional_opening_studies", [])
+    ]
     return {
         "revision": "0.4-I01-OPENINGS",
         "status": "derived quantity schedule; not procurement authority",
         "items": items,
+        "study_items_excluded_from_totals": study_items,
         "area_totals_m2": totals,
     }

@@ -1,0 +1,187 @@
+{
+  "revision": "0.3-D083-OPENINGS",
+  "status": "derived quantity schedule; not procurement authority",
+  "items": [
+    {
+      "id": "GLZ-CAR",
+      "kind": "vertical_glazing",
+      "source": "PB.technical_glazing",
+      "location": "A",
+      "width_m": 7.2,
+      "height_m": 2.9,
+      "sill_m": 0.9,
+      "head_m": 3.8,
+      "area_m2": 20.88,
+      "perimeter_m": 20.2,
+      "modules": 6
+    },
+    {
+      "id": "GLZ-RC",
+      "kind": "vertical_glazing",
+      "source": "PB.technical_glazing",
+      "location": "B",
+      "width_m": 7.2,
+      "height_m": 2.9,
+      "sill_m": 0.9,
+      "head_m": 3.8,
+      "area_m2": 20.88,
+      "perimeter_m": 20.2,
+      "modules": 6
+    },
+    {
+      "id": "GLZ-WS-A",
+      "kind": "vertical_glazing",
+      "source": "PB.workstation_glazing",
+      "location": "A",
+      "width_m": 7.2,
+      "height_m": 3.05,
+      "sill_m": 0.75,
+      "head_m": 3.8,
+      "area_m2": 21.96,
+      "perimeter_m": 20.5,
+      "modules": 6
+    },
+    {
+      "id": "GLZ-WS-B",
+      "kind": "vertical_glazing",
+      "source": "PB.workstation_glazing",
+      "location": "B",
+      "width_m": 3.0,
+      "height_m": 1.8,
+      "sill_m": 0.75,
+      "head_m": 2.55,
+      "area_m2": 5.4,
+      "perimeter_m": 9.6,
+      "modules": 3
+    },
+    {
+      "id": "W-H1",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "south",
+      "width_m": 3.6,
+      "height_m": 2.9,
+      "sill_m": 0.05,
+      "head_m": 2.95,
+      "area_m2": 10.44,
+      "perimeter_m": 13.0,
+      "modules": 3
+    },
+    {
+      "id": "W-M-LAT-A",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "south",
+      "width_m": 3.6,
+      "height_m": 2.9,
+      "sill_m": 0.05,
+      "head_m": 2.95,
+      "area_m2": 10.44,
+      "perimeter_m": 13.0,
+      "modules": 3
+    },
+    {
+      "id": "W-M-REAR",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "east",
+      "width_m": 2.4,
+      "height_m": 2.9,
+      "sill_m": 0.05,
+      "head_m": 2.95,
+      "area_m2": 6.96,
+      "perimeter_m": 10.6,
+      "modules": 2
+    },
+    {
+      "id": "W-H2",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "north",
+      "width_m": 3.6,
+      "height_m": 2.9,
+      "sill_m": 0.05,
+      "head_m": 2.95,
+      "area_m2": 10.44,
+      "perimeter_m": 13.0,
+      "modules": 3
+    },
+    {
+      "id": "W-G",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "north",
+      "width_m": 3.6,
+      "height_m": 2.9,
+      "sill_m": 0.05,
+      "head_m": 2.95,
+      "area_m2": 10.44,
+      "perimeter_m": 13.0,
+      "modules": 3
+    },
+    {
+      "id": "W-WELL",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "east",
+      "width_m": 4.0,
+      "height_m": 1.2,
+      "sill_m": 1.4,
+      "head_m": 2.6,
+      "area_m2": 4.8,
+      "perimeter_m": 10.4
+    },
+    {
+      "id": "W-EGRESS-P2",
+      "kind": "vertical_glazing",
+      "source": "P2.windows",
+      "location": "east",
+      "width_m": 1.0,
+      "height_m": 1.2,
+      "sill_m": 0.9,
+      "head_m": 2.1,
+      "area_m2": 1.2,
+      "perimeter_m": 4.4
+    },
+    {
+      "id": "RL-CAR",
+      "kind": "rooflight",
+      "source": "ROOFLIGHTS.rooflights",
+      "location": "DOUBLE HEIGHT / CAR HALF",
+      "width_m": 4.8,
+      "height_m": 2.4,
+      "area_m2": 11.52,
+      "perimeter_m": 14.4
+    },
+    {
+      "id": "RL-RC",
+      "kind": "rooflight",
+      "source": "ROOFLIGHTS.rooflights",
+      "location": "DOUBLE HEIGHT / RC HALF",
+      "width_m": 4.8,
+      "height_m": 2.4,
+      "area_m2": 11.52,
+      "perimeter_m": 14.4
+    }
+  ],
+  "study_items_excluded_from_totals": [
+    {
+      "id": "GLZ-DINING-STUDY-B",
+      "kind": "vertical_glazing",
+      "source": "D083.optional_study",
+      "location": "B",
+      "width_m": 4.8,
+      "height_m": 1.8,
+      "sill_m": 0.75,
+      "head_m": 2.55,
+      "area_m2": 8.64,
+      "perimeter_m": 13.2,
+      "modules": 4
+    }
+  ],
+  "area_totals_m2": {
+    "vertical_glazing": 123.84,
+    "rooflight": 23.04
+  },
+  "decision": "D-083"
+}

@@ -225,9 +225,10 @@ def render_drawings_readme(manifest: dict[str, Any]) -> str:
 {featured_gallery(drawings, from_docs=False)}
 
 The current state is a **coordinated set**, not a claim that one sheet contains every
-active decision. In particular, read the ground-floor plan with the owner-priorities
-detail for D-050's laundry reserve, the rear elevation with D-051's stair reserve, and
-all architectural sheets with the structural studies and their open gates.
+active decision. In particular, read the D-083 floor plans, elevations and window
+schedule together; read the D-082 access/owner-priorities sheets for the supplementary
+rescue system; and read all architectural sheets with the structural studies and their
+open gates.
 
 ## Complete current set
 
@@ -241,7 +242,8 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b36_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b37_pb/`,
+`conceptual_v0.3_b36_pb/`,
 `conceptual_v0.3_b35_pb/`,
 `conceptual_v0.3_b34_pb/`,
 `conceptual_v0.3_b29_pb/`,
@@ -250,14 +252,15 @@ Versioned folders and issued files—including `conceptual_v0.3_b36_pb/`,
 `conceptual_v0.3_b26_pb/`,
 `conceptual_v0.3_b25_pb/`,
 `conceptual_v0.3_b24_pb/`,
-`conceptual_v0.3_b23_p2/`, `estructura/`, and `integracion_v0.4_i01/`—remain preserved.
+`conceptual_v0.3_b28_p2/`, `conceptual_v0.3_b27_p2/`, `conceptual_v0.3_b23_p2/`,
+`estructura/`, and `integracion_v0.4_i01/`—remain preserved.
 They are not renamed or overwritten.
 
 When a new drawing becomes the active issue for one of the stable IDs:
 
 1. issue it under its versioned filename and retain its adjacent `manifest.json`;
 2. update that ID's `source`, `source_revision`, status, and catalog date;
-3. run `python .github/scripts/sync_current_drawings.py --write`;
+3. run `python3 .github/scripts/sync_current_drawings.py --write`;
 4. review the SVG and PNG, then run the command again with `--check`; and
 5. record any design, scope, or cost decision in the governing project documents.
 
@@ -282,7 +285,7 @@ representing the issues currently used for project coordination.
 - [Inspect the explicit promotion catalog](catalog.json)
 
 Do not edit aliases directly. Issue and preserve the versioned drawing first, update its
-catalog entry, and run `python .github/scripts/sync_current_drawings.py --write`.
+catalog entry, and run `python3 .github/scripts/sync_current_drawings.py --write`.
 
 “Current” does not mean frozen, approved, or suitable for construction. Every alias
 inherits the status and limitations of its versioned source.
@@ -321,26 +324,29 @@ The publication layer currently contains **{len(drawings)} SVG/PNG pairs**:
 **{architecture} architectural views** and **{structure} structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
-owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB
-living/Side B TV wall and D-078/D-069 workstation/cabinet family, structural
+owner-priority interfaces, the D-083 bedroom/desk window family and opening schedule,
+the D-079 corner-start technical workbenches, D-071 PB living/Side B TV wall and
+D-078/D-069 workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
 The set must be read together:
 
-- the ground-floor base sheet predates D-050's laundry relocation, which is explicitly
-  shown in the current owner-priorities detail;
+- the D-083 ground-floor sheet retains D-050's laundry relocation through the current
+  owner-priorities detail;
 - the ground-floor plan and TV-wall elevation coordinate the D-071 living group directly
   against the Side B perimeter wall, independent dining and clear pedestrian axis; the
   earlier Side B issue removes the unassigned alternative opening;
 - the same ground-floor plan coordinates D-073's two 9.00 m technical benches from their
   front interior corners and retains D-072's inward-shifted lift envelope; door-jamb and
   real equipment clearances remain open;
-- the Side A elevation and PB workstation detail show D-078's centred two-person worktop,
-  three cabinets and unified modular work/hall opening; the Side B elevation retains the
-  D-069 single workstation. Secondary steel, joinery, rugged-envelope performance,
+- the D-083 Side A/Side B elevations and PB workstation detail align both desk-window
+  sills with the +0.75 m worktops while keeping the technical windows at +0.90 m; the P2
+  window detail uses repeated 1.20 m near-floor-to-ceiling modules. Secondary steel,
+  joinery, rugged-envelope performance,
   facade structure, TV-wall backing, AV and MEP interfaces remain open;
-- the rear façade remains supplemented by D-051's retractable-stair reserve;
+- the D-083 rear façade shows the active primary/wellness windows and retained D-082
+  rescue window with vertical foldout ladder; CF-012 remains open;
 - roof form is represented by the b07 sections and façades, while the current rooflight
   position is represented by the 0.4-I01/D-054 roof plan and daylight section; and
 - structural sheets are screening and coordination evidence only; they do not select a

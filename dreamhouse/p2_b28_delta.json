@@ -1,0 +1,11 @@
+{
+  "base_model": "dreamhouse/p2_b27_delta.json",
+  "base_model_sha256": "6efe6bf52da6744e5bec24683f59671444b50532fe2f83a43fab6f2b13a923eb",
+  "window_source": "dreamhouse/window_daylight_d083.json",
+  "revision": "0.3-draft-28-P2",
+  "drawing_revision": "R25",
+  "status": "issued for D-083 modular near-floor-to-ceiling bedroom-window and daylight coordination; site, solar, privacy, structure, safe glazing, fall protection, operation, building physics, curtains and cost remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-27-P2 / R24 only for the five bedroom-window geometries and current upper-floor plan publication; D-080 walls, D-081 junction graphics and D-082 supplementary rescue system remain unchanged",
+  "decision": "D-083"
+}

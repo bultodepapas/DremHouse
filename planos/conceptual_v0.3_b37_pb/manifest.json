@@ -1,0 +1,28 @@
+{
+  "revision": "0.3-draft-37-PB",
+  "status": "issued for D-083 desk-sill, bedroom-window, elevation and opening-schedule coordination; site, solar, privacy, structure, safe glazing, building physics, operation, drainage, curtains and cost remain open; not for construction",
+  "decision": "D-083",
+  "source": "dreamhouse/pb_b37_delta.json",
+  "source_sha256": "e2ecdf6a9f650f1b0a6cefdd24a4b735553808da080ace8dae8a29cbfd7954e0",
+  "base_source": "dreamhouse/pb_b36_delta.json",
+  "base_source_sha256": "61584351947e722b860a1e82ac264e97a52cdaeec2abd66b3dd76bf8816071d9",
+  "window_source": "dreamhouse/window_daylight_d083.json",
+  "window_source_sha256": "f5708959e15431a32d6fea94699df1ae2db9896fb0c13b502558c0f24212e587",
+  "p2_source": "dreamhouse/p2_b28_delta.json",
+  "p2_source_sha256": "55b27230c2a2f48dc5842e77a8a769831cdb5891ebd6e93795eac59ac1df95ca",
+  "rooflight_source": "dreamhouse/rooflight_b12.json",
+  "rooflight_source_sha256": "fcf399053e05ccbe7e0e7620a7eef1c6a5b7cb950e546bf1f993bd399b6c18c7",
+  "generator": "dreamhouse/generate_pb_b37.py",
+  "supersedes": "0.3-draft-36-PB / PLN-001-R14 as the active PB plan and the prior Side A, Side B and rear elevation publications only for D-083 opening geometry; D-079 technical-window sills and workbench system remain unchanged",
+  "outputs": [
+    "DH-ARQ-PLN-001-R15_PB-WINDOW-DAYLIGHT-DATUMS.svg",
+    "DH-ARQ-ELE-002-R07_REAR-WINDOW-DAYLIGHT.svg",
+    "DH-ARQ-ELE-003-R10_SIDE-A-WINDOW-DAYLIGHT.svg",
+    "DH-ARQ-ELE-004-R10_SIDE-B-WINDOW-DAYLIGHT.svg",
+    "DH-ARQ-DET-006-R03_PB-DESK-WINDOW-INTERFACE.svg",
+    "DH-ARQ-SCH-001-R00_D083-WINDOW-SCHEDULE.svg",
+    "opening_schedule.json",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

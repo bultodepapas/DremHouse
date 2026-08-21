@@ -1,7 +1,7 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 1.4
+**Version:** 1.5
 **Date:** 2026-08-21
 **Language note:** controlled English translation under D-044; D-063 incorporated into
 CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
@@ -11,7 +11,9 @@ differentiates the technical workbenches and RC support envelopes without closin
 equipment, ergonomic, structural, electrical/ESD, extraction, battery or cost gates;
 D-080 replaces the undifferentiated P2 wall thicknesses without closing acoustic, fire,
 structural, wind, hygrothermal, product or cost gates; D-082/CF-012 corrects the rear
-foldout-ladder typology without treating it as a required second exit.
+foldout-ladder typology without treating it as a required second exit; D-083 coordinates
+bedroom and desk-window geometry without closing site, solar, privacy, safe-glazing,
+fall-protection, structural, building-physics, drainage or cost gates.
 
 ## Precedence
 
@@ -136,7 +138,7 @@ compatibility with the five openings shown in the interior elevation.
 - **Status:** authority conflict resolved by D-043 for gravity support; detailed design
   and the lateral function remain open.
 
-### CF-009 — D-080 P2 walls versus structural dead-load and wind allowances
+### CF-009 — D-080/D-083 P2 walls and openings versus structural dead-load and wind allowances
 
 D-080/P2 b25 replaces the predecessor universal 250 mm dry-wall rule and illustrative
 300 mm double-frame exterior build-up with a duty-based schedule: P2-W01A 90 mm,
@@ -148,6 +150,12 @@ model still uses a global `partitions_p2_kpa` allowance rather than scheduled wa
 lengths, selected-product masses or facade wind reactions, and the issued E0/E1 sheets
 predate P2 b25/R22.
 
+D-083/P2 b28 increases the five bedroom openings to 48.72 m² and PB b37 lowers both
+desk-window sills while retaining their heads. The resulting 123.84 m² active vertical-
+glazing schedule is measured but has not been reconciled with facade-panel deductions,
+girts, headers, jambs, wind reactions or the structural screening model. The optional
+dining opening remains excluded.
+
 - **Architectural rule:** P2 b25/R22 governs current P2 wall type and nominal-thickness
   coordination under D-080. Earlier D-057/D-059 documents remain historical for intent,
   not current thickness authority.
@@ -156,6 +164,9 @@ predate P2 b25/R22.
   installed mass, head reactions and local concentrations; reconcile them with the slab,
   beams and diaphragm. Design the selected P2-W05 panel, girts, fasteners and primary-steel
   attachments for project wind actions.
+- **Opening hold point:** design the D-083 bedroom and desk openings with the same wind,
+  drift, header, jamb, girt, anchor, fall-protection, safe-glass and building-physics model;
+  do not treat clean architectural elevation graphics as proof of capacity or performance.
 - **Publication rule:** current structural sheets remain screening evidence and may not
   be presented as coordinated construction design for D-080.
 - **Status:** open; the responsible structural engineer and architect of record must close
@@ -223,7 +234,7 @@ but it does not resolve the project's required number or type of exits.
   connection to the Dream House structure.
 - **Interim architectural rule:** retain `W-EGRESS-P2` at Y=11.25–12.25 m and the ladder
   axis at Y=10.65 m as schematic coordination only. Keep the 0.80 × 0.80 m deployment
-  zone clear and do not pass in front of any lower opening. The current PB b36 screen
+  zone clear and do not pass in front of any lower opening. The current PB b37 screen
   shows 0.60 m between that clear zone and `EXT-ESC`; recheck after every rear-facade,
   grade, utility or landscape change.
 - **Required evidence:** occupancy and exit analysis; authority acceptance; selected

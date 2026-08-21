@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.24<br>
+**Version:** 1.25<br>
 **Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -19,14 +19,14 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with differentiated modular automotive and RC workbenches, central RC island, shared workstation, dining and coordinated stair core" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with desk-level window sills, retained modular technical workbenches, domestic layout and coordinated stair core" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-37-PB · <a href="../../planos/conceptual_v0.3_b37_pb/DH-ARQ-PLN-001-R15_PB-WINDOW-DAYLIGHT-DATUMS.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with duty-based walls and a rear rescue window beside a wall-mounted vertical foldout escape ladder" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with modular near-floor-to-ceiling bedroom windows, duty-based walls and retained supplementary rescue system" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-27-P2 · <a href="../../planos/conceptual_v0.3_b27_p2/DH-ARQ-PLN-002-R24_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-28-P2 · <a href="../../planos/conceptual_v0.3_b28_p2/DH-ARQ-PLN-002-R25_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -48,9 +48,9 @@ record, repository README, and presentation do not change when a new issue is pr
   <br><sub>0.3-borrador-07-CUBIERTA · <a href="../../planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="../../planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.png" alt="Current Dream House rear façade schematic elevation" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.svg"><img src="../../planos/actual/DH-ARQ-ELE-002_CURRENT-REAR.png" alt="Current Dream House rear elevation with primary bedroom, wellness and rescue windows plus vertical foldout ladder" width="100%"></a>
   <br><strong>Rear façade</strong>
-  <br><sub>0.3-borrador-07-CUBIERTA · <a href="../../planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-002-R06_FACHADA-POSTERIOR-CUBIERTA.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-37-PB · <a href="../../planos/conceptual_v0.3_b37_pb/DH-ARQ-ELE-002-R07_REAR-WINDOW-DAYLIGHT.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -60,9 +60,9 @@ record, repository README, and presentation do not change when a new issue is pr
   <br><sub>0.3-draft-27-PB · <a href="../../planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png" alt="Dream House Side A shared two-person workstation with three suspended cabinets and unified modular window schematic detail" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png" alt="Dream House Side A desk and window interface with aligned sill and worktop plus independent support and drainage" width="100%"></a>
   <br><strong>PB Side A shared two-person workstation</strong>
-  <br><sub>0.3-draft-35-PB · <a href="../../planos/conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-37-PB · <a href="../../planos/conceptual_v0.3_b37_pb/DH-ARQ-DET-006-R03_PB-DESK-WINDOW-INTERFACE.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -70,6 +70,18 @@ record, repository README, and presentation do not change when a new issue is pr
   <a href="../../planos/actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.svg"><img src="../../planos/actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.png" alt="Dream House schematic technical workbench system showing automotive, RC electronics and central island modules with heights and open coordination gates" width="100%"></a>
   <br><strong>PB modular technical workbench system</strong>
   <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">versioned source</a></sub>
+</td>
+<td width="50%" valign="top">
+  <a href="../../planos/actual/DH-ARQ-DET-008_CURRENT-P2-BEDROOM-WINDOWS.svg"><img src="../../planos/actual/DH-ARQ-DET-008_CURRENT-P2-BEDROOM-WINDOWS.png" alt="Dream House bedroom window detail showing three-module and two-module near-floor-to-ceiling window families with open safety and performance gates" width="100%"></a>
+  <br><strong>P2 modular near-floor-to-ceiling window family</strong>
+  <br><sub>0.3-draft-28-P2 · <a href="../../planos/conceptual_v0.3_b28_p2/DH-ARQ-DET-008-R00_P2-BEDROOM-WINDOW-FAMILY.svg">versioned source</a></sub>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+  <a href="../../planos/actual/DH-ARQ-SCH-001_CURRENT-WINDOW-SCHEDULE.svg"><img src="../../planos/actual/DH-ARQ-SCH-001_CURRENT-WINDOW-SCHEDULE.png" alt="Dream House coordinated window schedule with identifiers, locations, dimensions, sill and head datums, modules and areas" width="100%"></a>
+  <br><strong>Window and daylight schedule</strong>
+  <br><sub>0.3-draft-37-PB · <a href="../../planos/conceptual_v0.3_b37_pb/DH-ARQ-SCH-001-R00_D083-WINDOW-SCHEDULE.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House second-floor wall schedule with realistic duty-based nominal thicknesses" width="100%"></a>
@@ -107,30 +119,33 @@ record, repository README, and presentation do not change when a new issue is pr
 
 ## What the set contains
 
-The publication layer currently contains **25 SVG/PNG pairs**:
-**20 architectural views** and **5 structural coordination
+The publication layer currently contains **27 SVG/PNG pairs**:
+**22 architectural views** and **5 structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
-owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB
-living/Side B TV wall and D-078/D-069 workstation/cabinet family, structural
+owner-priority interfaces, the D-083 bedroom/desk window family and opening schedule,
+the D-079 corner-start technical workbenches, D-071 PB living/Side B TV wall and
+D-078/D-069 workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
 The set must be read together:
 
-- the ground-floor base sheet predates D-050's laundry relocation, which is explicitly
-  shown in the current owner-priorities detail;
+- the D-083 ground-floor sheet retains D-050's laundry relocation through the current
+  owner-priorities detail;
 - the ground-floor plan and TV-wall elevation coordinate the D-071 living group directly
   against the Side B perimeter wall, independent dining and clear pedestrian axis; the
   earlier Side B issue removes the unassigned alternative opening;
 - the same ground-floor plan coordinates D-073's two 9.00 m technical benches from their
   front interior corners and retains D-072's inward-shifted lift envelope; door-jamb and
   real equipment clearances remain open;
-- the Side A elevation and PB workstation detail show D-078's centred two-person worktop,
-  three cabinets and unified modular work/hall opening; the Side B elevation retains the
-  D-069 single workstation. Secondary steel, joinery, rugged-envelope performance,
+- the D-083 Side A/Side B elevations and PB workstation detail align both desk-window
+  sills with the +0.75 m worktops while keeping the technical windows at +0.90 m; the P2
+  window detail uses repeated 1.20 m near-floor-to-ceiling modules. Secondary steel,
+  joinery, rugged-envelope performance,
   facade structure, TV-wall backing, AV and MEP interfaces remain open;
-- the rear façade remains supplemented by D-051's retractable-stair reserve;
+- the D-083 rear façade shows the active primary/wellness windows and retained D-082
+  rescue window with vertical foldout ladder; CF-012 remains open;
 - roof form is represented by the b07 sections and façades, while the current rooflight
   position is represented by the 0.4-I01/D-054 roof plan and daylight section; and
 - structural sheets are screening and coordination evidence only; they do not select a

@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.15
+**Versión:** 0.16
 **Fecha:** 2026-08-21
 
 ## Forma y modulación
@@ -46,6 +46,24 @@ La estrategia es **máximo efecto por unidad de vidrio**:
 
 Los servicios pueden ser opacos. Se exigirán orientación real, control de deslumbramiento,
 privacidad, ganancias/pérdidas, riesgo de condensación, sellos, drenajes y mantenimiento.
+
+### Window and daylight control — D-083
+
+- Use one economical **1.20 m module** for the five P2 bedroom openings. Child 1, Child 2,
+  guest and the primary side opening use 3.60 × 2.90 m; the primary rear opening uses
+  2.40 × 2.90 m.
+- Use a common **+0.05 m sill / +2.95 m head** to read as near floor to ceiling. This is
+  a visual datum, not a passed fall-protection or safety-glass detail.
+- Align both PB desk-window sills with their **+0.75 m worktops** while retaining the
+  preceding heads: GLZ-WS-A becomes 7.20 × 3.05 m and GLZ-WS-B becomes 3.00 × 1.80 m.
+- Keep both technical-workbench window sills at **+0.90 m**; D-083 does not override the
+  D-079 duty-specific bench heights.
+- Keep desk steel, frames, drainage and seals independent across a maintainable 30–50 mm
+  shadow/service gap. No furniture load enters a window frame or unverified facade girt.
+- Keep the 4.80 × 1.80 m Side B dining opening as an unadopted study only. Do not draw,
+  price or procure it before site, solar, privacy, structure and cost decisions.
+
+See [window and daylight coordination — PB b37 / P2 b28](window_daylight_coordination_v0.3_b37_b28.md).
 
 ## Materialidad
 
@@ -165,12 +183,15 @@ the real equipment schedule and a full-scale joinery mock-up. See
 [PB enlarged workstation cabinets — draft 25](pb_enlarged_workstation_cabinets_v0.3_b25.md).
 
 D-078 replaces the Side A member of that pair with one 5.40 × 0.90 m two-person
-worktop centred at X=15.75 m below one 7.20 × 2.90 m work/hall opening. Three 0.70 m
+worktop centred at X=15.75 m below one 7.20 m work/hall opening. D-083 lowers its sill
+to +0.75 m and retains the +3.80 m head, producing a 7.20 × 3.05 m opening. Three 0.70 m
 suspended cabinets create two equal 1.65 m clear positions. The Side B D-069 single
 workstation remains unchanged. This intentional asymmetry follows different interior
 programmes; exterior symmetry is not a design objective.
 
-The Side A opening is controlled from the interior and may not become a premium facade
+The Side A and Side B desk sills now align visually with their +0.75 m worktops under
+D-083, but remain structurally and environmentally independent. The Side A opening is
+controlled from the interior and may not become a premium facade
 gesture. Outside, use a direct rugged industrial envelope with repeatable replaceable
 modules, durable coatings, simple protected flashings and drainage. Resistance,
 weathering, safe replacement, maintenance and whole-life cost govern appearance. The

@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.9
+**Version:** 0.10
 **Date:** 2026-08-21
 
 > [!NOTE]
@@ -45,6 +45,9 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Current drawings and visual index](02_arquitectura/planos_actuales.md): stable current
   plans, roof views, sections, all four façades, details, and their versioned provenance.
 - [Architectural design basis](02_arquitectura/bases_de_diseno.md)
+- [Window and daylight coordination — PB b37 / P2 b28](02_arquitectura/window_daylight_coordination_v0.3_b37_b28.md):
+  D-083 repeated bedroom modules, desk-level sills, active opening quantities and the
+  unadopted dining-window study with all professional gates explicit.
 - [Visualization control and ChatGPT image prompt kit](02_arquitectura/control_de_visualizaciones.md):
   six-source 2026 research basis, four reference-grounded photorealistic prompts, targeted
   correction prompts, and an acceptance checklist.
@@ -97,7 +100,7 @@ they stay stable while their explicitly promoted versioned source can advance.
   suspended cabinets below one 7.20 m modular work/hall opening. The concept is controlled
   from the interior; outside remains a rugged, resistant and economical industrial envelope.
 - [PB modular technical workbenches — b36](02_arquitectura/pb_modular_technical_workbenches_v0.3_b36.md):
-  active D-079 ground-floor issue differentiating the automotive and RC/electronics wall
+  retained D-079 technical-workbench issue differentiating the automotive and RC/electronics wall
   benches as two economical six-module systems, retaining the three-module central RC
   island and leaving real-equipment, ergonomic, MEP, safety and cost gates explicit.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
@@ -125,7 +128,7 @@ they stay stable while their explicitly promoted versioned source can advance.
   integrating the insulated industrial shell with one private lining and recording
   geometry, quantity, cost, structural and professional hold points.
 - [P2 rear rescue window and foldout escape ladder — b27/R24](02_arquitectura/p2_foldout_escape_ladder_coordination_v0.3_b27.md):
-  active D-082 correction replacing the inclined retractable-stair image with an operable
+  retained D-082 correction replacing the inclined retractable-stair image with an operable
   rescue window and vertical wall-mounted foldout ladder, retained only as supplementary
   escape/rescue equipment under CF-012.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
