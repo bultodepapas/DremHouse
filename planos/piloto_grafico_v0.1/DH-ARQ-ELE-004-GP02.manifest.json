@@ -1,0 +1,16 @@
+{
+  "construction_authority": false,
+  "date": "2026-08-21",
+  "decision_ids": [
+    "D-083"
+  ],
+  "generator": "dreamhouse/svg/pilot_side_b.py",
+  "output": "DH-ARQ-ELE-004-GP02_SIDE-B-READABILITY-PILOT.svg",
+  "output_sha256": "8854fdbd42a6b645cee086ceaffb600f3c752a152d3bc383b92341b413ef1b38",
+  "pilot": "GP02",
+  "sheet": "DH-ARQ-ELE-004",
+  "source": "planos/actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg",
+  "source_revision": "ELE-004-R10 / 0.3-draft-37-PB",
+  "source_sha256": "b0bd4a7e7df00981d45dff749c45c59849e7ef431b660b994929f90c7d444e1f",
+  "status": "presentation-only graphic pilot; not current; not for construction"
+}

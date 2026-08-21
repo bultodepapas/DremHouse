@@ -1,0 +1,13 @@
+{
+  "construction_authority": false,
+  "date": "2026-08-21",
+  "generator": "dreamhouse/svg/pilot_ground_floor.py",
+  "output": "DH-ARQ-PLN-001-GP01_GROUND-FLOOR-READABILITY-PILOT.svg",
+  "output_sha256": "3f72e95a7cb2eaaf358036e0de76ea035ba5178ade12fed669a7aca9bba94d1f",
+  "pilot": "GP01",
+  "sheet": "DH-ARQ-PLN-001",
+  "source": "planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg",
+  "source_revision": "PLN-001-R15 / 0.3-draft-37-PB",
+  "source_sha256": "20b32c55fffdb89f833bab5369bc052b5e99a552587753d71831260194982aca",
+  "status": "presentation-only graphic pilot; not current; not for construction"
+}

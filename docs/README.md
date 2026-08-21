@@ -260,6 +260,14 @@ they stay stable while their explicitly promoted versioned source can advance.
   sixteen comparative studies covering lines, sheets, title blocks, lettering,
   dimensions, layers, symbols, information reliability, colour, diagrams, egress, SVG
   structure and incremental QA; recommendations only, with primary-source register.
+- [SVG graphic pilot 01 visual review](08_investigacion/svg_graphic_pilot_01_visual_review.md):
+  implementation and colour/grayscale/reduced-size review of the ground-floor
+  presentation pilot, including exact geometry-preservation checks, corrected label
+  conflicts, measured results and remaining rollout gates.
+- [SVG graphic pilot 02 visual review](08_investigacion/svg_graphic_pilot_02_visual_review.md):
+  Side B elevation pilot with larger model view, direct opening IDs, explicit separation
+  of adopted/excluded/open information, geometry-preservation checks and reusable visual
+  audit output.
 
 ## How to use the project record
 

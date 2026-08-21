@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1684" height="1191" viewBox="0 0 1684 1191" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="gp02-title gp02-desc" data-sheet-id="DH-ARQ-ELE-004" data-revision="GP02" data-status="graphic-pilot-not-current" data-construction-authority="false">
+  <title id="gp02-title">Side B elevation readability pilot GP02</title>
+  <desc id="gp02-desc">Presentation-only pilot of the Side B facade elevation. The current R10 envelope, openings, levels and dimensions are copied without coordinate changes. Adopted D-083 openings, the excluded dining-window study and open professional gates are identified in separate evidence panels.</desc>
+  <metadata>{"construction_authority": false, "date": "2026-08-21", "decision_ids": ["D-083"], "pilot": "GP02", "sheet": "DH-ARQ-ELE-004", "source": "planos/actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg", "source_revision": "ELE-004-R10 / 0.3-draft-37-PB", "source_sha256": "b0bd4a7e7df00981d45dff749c45c59849e7ef431b660b994929f90c7d444e1f", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
+  <style>:root {
+  --paper: #F4F0E7;
+  --panel: #FFFDFA;
+  --ink: #172A32;
+  --muted: #536168;
+  --info: #1D7480;
+  --open: #8A5A16;
+  --conflict: #A33F31;
+  --hypothesis: #66538A;
+  --material: #74543C;
+}
+text {
+  font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
+  text-rendering: geometricPrecision;
+}
+.new-title { fill: var(--ink); font-weight: 700; letter-spacing: .15px; }
+.new-eyebrow { fill: var(--info); font-weight: 700; letter-spacing: .9px; }
+.new-body { fill: var(--ink); }
+.new-muted { fill: var(--muted); }
+.new-open { fill: var(--open); font-weight: 700; }
+.new-conflict { fill: var(--conflict); font-weight: 700; }
+.new-hypothesis { fill: var(--hypothesis); font-weight: 700; }
+.new-on-dark { fill: #FFFDFA; }
+.new-on-dark-muted { fill: #DDE4E2; }
+.new-on-dark-alert { fill: #FFB4A8; font-weight: 800; }
+.key-tag {
+  fill: var(--ink);
+  stroke: var(--panel);
+  stroke-width: 4px;
+  paint-order: stroke fill;
+  font-weight: 800;
+  letter-spacing: .25px;
+}
+.model-primary {
+  fill: var(--ink);
+  stroke: var(--panel);
+  stroke-width: 2.4px;
+  paint-order: stroke fill;
+  font-weight: 650;
+}
+.model-secondary { font-weight: 550; }
+.sheet-rule { stroke: #B9C0BD; stroke-width: 1; }
+.panel-rule { stroke: #CBD0CC; stroke-width: 1; }
+.status-open-box {
+  fill: #FBF0D9;
+  stroke: var(--open);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+.status-hypothesis-box {
+  fill: #F0ECF6;
+  stroke: var(--hypothesis);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}</style>
+  <defs>
+    <pattern id="metals" width="14" height="14" patternUnits="userSpaceOnUse">
+      <line x1="3" y1="0" x2="3" y2="14" stroke="#90999b" stroke-width=".7" />
+    </pattern>
+  </defs>
+  <g id="layer-background" data-layer="background">
+    <rect width="1684" height="1191" fill="#F4F0E7" />
+    <rect x="36" y="116" width="1612" height="674" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="36" y="806" width="760" height="202" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="812" y="806" width="390" height="202" rx="5" fill="#FFFDFA" class="status-hypothesis-box" />
+    <rect x="1218" y="806" width="430" height="202" rx="5" fill="#FFFDFA" class="status-open-box" />
+  </g>
+  <g id="layer-model" data-layer="model-geometry-and-annotations" transform="translate(14 -268) scale(1.2)">
+    <rect x="105" y="391.5" width="1170.0" height="253.5" fill="#C7CDCB" stroke="#172A32" stroke-width="4" data-source-index="3" data-model-id="ENV-SIDE-B" />
+    <rect x="105" y="391.5" width="1170.0" height="253.5" fill="url(#metals)" stroke="none" opacity=".65" data-source-index="4" data-model-id="ENV-SIDE-B" />
+    <line x1="105" y1="391.5" x2="1275.0" y2="391.5" stroke="#e6e9e7" stroke-width="4" data-source-index="5" data-model-id="ENV-SIDE-B" />
+    <text x="1265.0" y="379.5" font-size="9.6" text-anchor="end" font-weight="700" fill="#172A32" data-source-index="6" data-model-id="ENV-SIDE-B" data-text-role="primary">HIGH EAVE ≈ 7.80 m</text>
+    <line x1="787.5" y1="391.5" x2="787.5" y2="645" stroke="#68777A" stroke-width="1.2" stroke-dasharray="7 5" data-source-index="7" data-model-id="ENV-SIDE-B" />
+    <line x1="787.5" y1="521.5" x2="1275.0" y2="521.5" stroke="#68777A" stroke-width="1.2" stroke-dasharray="7 5" data-source-index="8" data-model-id="ENV-SIDE-B" />
+    <text x="978" y="512.5" font-size="9.6" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="9" data-model-id="ENV-SIDE-B" data-source-label="REAR UPPER FLOOR · 15.00 m" data-text-role="primary">P2 · 15.00 m</text>
+    <rect x="153.75" y="521.5" width="233.99999999999997" height="94.25" fill="#2F6570" stroke="#172A32" stroke-width="2.8" data-source-index="10" data-model-id="GLZ-RC" />
+    <line x1="192.75" y1="521.5" x2="192.75" y2="615.75" stroke="#8eabb1" stroke-width="1.2" data-source-index="11" data-model-id="GLZ-RC" />
+    <line x1="231.75" y1="521.5" x2="231.75" y2="615.75" stroke="#8eabb1" stroke-width="1.2" data-source-index="12" data-model-id="GLZ-RC" />
+    <line x1="270.75" y1="521.5" x2="270.75" y2="615.75" stroke="#8eabb1" stroke-width="1.2" data-source-index="13" data-model-id="GLZ-RC" />
+    <line x1="309.75" y1="521.5" x2="309.75" y2="615.75" stroke="#8eabb1" stroke-width="1.2" data-source-index="14" data-model-id="GLZ-RC" />
+    <line x1="348.75" y1="521.5" x2="348.75" y2="615.75" stroke="#8eabb1" stroke-width="1.2" data-source-index="15" data-model-id="GLZ-RC" />
+    <line x1="153.75" y1="589.36" x2="387.75" y2="589.36" stroke="#8eabb1" stroke-width="1.2" data-source-index="16" data-model-id="GLZ-RC" />
+    <path d="M 198.6 593.36 L 212.25 608.21 L 225.89999999999998 593.36" fill="none" stroke="#d4e1e3" stroke-width="1.4" data-source-index="17" data-model-id="GLZ-RC" />
+    <path d="M 315.6 593.36 L 329.25 608.21 L 342.90000000000003 593.36" fill="none" stroke="#d4e1e3" stroke-width="1.4" data-source-index="18" data-model-id="GLZ-RC" />
+    <text x="270.75" y="564.625" font-size="9.6" text-anchor="middle" font-weight="700" fill="#FFFDFA" data-source-index="19" data-model-id="GLZ-RC" data-source-label="RC / AIRCRAFT WORKSHOP WINDOW" data-text-role="opening">GLZ-RC · 6 × 1.20 m MODULES</text>
+    <text x="270.75" y="583.625" font-size="9.6" text-anchor="middle" font-weight="700" fill="#FFFDFA" data-source-index="20" data-model-id="GLZ-RC" data-source-label="7.20 × 2.90 m · sill 0.90 m" data-text-role="opening">7.20 × 2.90 m · sill +0.90 m</text>
+    <rect x="527.5" y="562.125" width="97.5" height="58.5" fill="#376C77" stroke="#172A32" stroke-width="2.4" data-source-index="21" data-model-id="GLZ-WS-B" />
+    <line x1="560.0" y1="562.125" x2="560.0" y2="620.625" stroke="#9bb3b8" stroke-width="1.1" data-source-index="22" data-model-id="GLZ-WS-B" />
+    <line x1="592.5" y1="562.125" x2="592.5" y2="620.625" stroke="#9bb3b8" stroke-width="1.1" data-source-index="23" data-model-id="GLZ-WS-B" />
+    <line x1="527.5" y1="620.625" x2="625.0" y2="620.625" stroke="#c49a62" stroke-width="8" data-source-index="24" data-model-id="GLZ-WS-B" />
+    <line x1="527.5" y1="622.9" x2="625.0" y2="622.9" stroke="#26363b" stroke-width="4" data-source-index="25" data-model-id="GLZ-WS-B" />
+    <polyline points="532.2,622.9 539.2,634.9 546.2,622.9" fill="none" stroke="#26363b" stroke-width="2" data-source-index="26" data-model-id="GLZ-WS-B" />
+    <polyline points="569.25,622.9 576.25,634.9 583.25,622.9" fill="none" stroke="#26363b" stroke-width="2" data-source-index="27" data-model-id="GLZ-WS-B" />
+    <polyline points="606.3,622.9 613.3,634.9 620.3,622.9" fill="none" stroke="#26363b" stroke-width="2" data-source-index="28" data-model-id="GLZ-WS-B" />
+    <rect x="527.5" y="624.625" width="22.75" height="20.15" fill="#8d6745" stroke="#26363b" stroke-width="1.2" data-source-index="29" data-model-id="GLZ-WS-B" />
+    <line x1="527.5" y1="631.3416666666667" x2="550.25" y2="631.3416666666667" stroke="#d6c1a5" stroke-width=".8" data-source-index="30" data-model-id="GLZ-WS-B" />
+    <line x1="527.5" y1="638.0583333333333" x2="550.25" y2="638.0583333333333" stroke="#d6c1a5" stroke-width=".8" data-source-index="31" data-model-id="GLZ-WS-B" />
+    <rect x="602.25" y="624.625" width="22.75" height="20.15" fill="#8d6745" stroke="#26363b" stroke-width="1.2" data-source-index="32" data-model-id="GLZ-WS-B" />
+    <line x1="602.25" y1="631.3416666666667" x2="625.0" y2="631.3416666666667" stroke="#d6c1a5" stroke-width=".8" data-source-index="33" data-model-id="GLZ-WS-B" />
+    <line x1="602.25" y1="638.0583333333333" x2="625.0" y2="638.0583333333333" stroke="#d6c1a5" stroke-width=".8" data-source-index="34" data-model-id="GLZ-WS-B" />
+    <text x="576.25" y="548" font-size="9.2" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="35" data-model-id="GLZ-WS-B" data-source-label="WORKSTATION 2 WINDOW" data-text-role="opening">GLZ-WS-B · 3 MODULES</text>
+    <text x="576.25" y="558.5" font-size="8.6" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="36" data-model-id="GLZ-WS-B" data-source-label="3.00 × 1.80 m · sill 0.75 m" data-text-role="opening">3.00 × 1.80 m · sill +0.75 m</text>
+    <text x="576.25" y="638" font-size="8.6" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="37" data-model-id="GLZ-WS-B" data-source-label="INTEGRATED STEEL / TIMBER WORKTOP" data-text-role="opening">PB-WS-B</text>
+    <rect x="803.75" y="425.625" width="117.00000000000004" height="94.25" fill="#356A75" stroke="#172A32" stroke-width="2" data-source-index="38" data-model-id="W-H2" />
+    <line x1="803.75" y1="487.375" x2="920.75" y2="487.375" stroke="#d2e0e2" stroke-width="1.4" data-source-index="39" data-model-id="W-H2" />
+    <text x="862.25" y="475.75" font-size="9.6" text-anchor="middle" font-weight="700" fill="#FFFDFA" data-source-index="40" data-model-id="W-H2" data-source-label="CHILD 2 BEDROOM · NEAR FLOOR TO CEILING" data-text-role="opening">W-H2 · 3 × 1.20</text>
+    <rect x="1036.125" y="425.625" width="117.00000000000004" height="94.25" fill="#356A75" stroke="#172A32" stroke-width="2" data-source-index="41" data-model-id="W-G" />
+    <line x1="1036.125" y1="487.375" x2="1153.125" y2="487.375" stroke="#d2e0e2" stroke-width="1.4" data-source-index="42" data-model-id="W-G" />
+    <text x="1080" y="475.75" font-size="9.6" text-anchor="middle" font-weight="700" fill="#FFFDFA" data-source-index="43" data-model-id="W-G" data-source-label="GUEST BEDROOM · NEAR FLOOR TO CEILING" data-text-role="opening">W-G · 3 × 1.20</text>
+    <line x1="446.25" y1="406.5" x2="446.25" y2="645" stroke="#536168" stroke-width="3" data-source-index="44" data-model-id="STRUCTURAL-GRID-REFERENCE" />
+    <rect x="441.25" y="627" width="10" height="18" fill="#536168" data-source-index="45" data-model-id="STRUCTURAL-GRID-REFERENCE" />
+    <line x1="787.5" y1="406.5" x2="787.5" y2="645" stroke="#536168" stroke-width="3" data-source-index="46" data-model-id="STRUCTURAL-GRID-REFERENCE" />
+    <rect x="782.5" y="627" width="10" height="18" fill="#536168" data-source-index="47" data-model-id="STRUCTURAL-GRID-REFERENCE" />
+    <line x1="1128.75" y1="406.5" x2="1128.75" y2="645" stroke="#536168" stroke-width="3" data-source-index="48" data-model-id="STRUCTURAL-GRID-REFERENCE" />
+    <rect x="1123.75" y="627" width="10" height="18" fill="#536168" data-source-index="49" data-model-id="STRUCTURAL-GRID-REFERENCE" />
+    <rect x="80" y="645" width="1220.0" height="38" fill="#E4E0D7" stroke="#77817F" data-source-index="50" data-model-id="EXTERNAL-LEVEL-REFERENCE" />
+    <text x="690.0" y="670" font-size="9.6" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="51" data-model-id="EXTERNAL-LEVEL-REFERENCE" data-text-role="primary">EXTERNAL LEVEL / PERIMETER DRAINAGE PENDING SURVEY</text>
+    <line x1="105" y1="735" x2="1275.0" y2="735" stroke="#536168" data-source-index="52" data-model-id="LONGITUDINAL-DIMENSIONS" />
+    <line x1="105.0" y1="728" x2="105.0" y2="742" stroke="#536168" data-source-index="53" data-model-id="LONGITUDINAL-DIMENSIONS" />
+    <text x="275.625" y="726" font-size="9.6" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="54" data-model-id="LONGITUDINAL-DIMENSIONS" data-text-role="dimension">10.50 technical</text>
+    <line x1="446.25" y1="728" x2="446.25" y2="742" stroke="#536168" data-source-index="55" data-model-id="LONGITUDINAL-DIMENSIONS" />
+    <text x="616.875" y="726" font-size="9.6" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="56" data-model-id="LONGITUDINAL-DIMENSIONS" data-text-role="dimension">10.50 monumental</text>
+    <line x1="787.5" y1="728" x2="787.5" y2="742" stroke="#536168" data-source-index="57" data-model-id="LONGITUDINAL-DIMENSIONS" />
+    <text x="958.125" y="726" font-size="9.6" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="58" data-model-id="LONGITUDINAL-DIMENSIONS" data-text-role="dimension">10.50 domestic</text>
+    <line x1="1128.75" y1="728" x2="1128.75" y2="742" stroke="#536168" data-source-index="59" data-model-id="LONGITUDINAL-DIMENSIONS" />
+    <text x="1201.875" y="726" font-size="9.6" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="60" data-model-id="LONGITUDINAL-DIMENSIONS" data-text-role="dimension">4.50 core</text>
+    <line x1="1275.0" y1="728" x2="1275.0" y2="742" stroke="#536168" data-source-index="61" data-model-id="LONGITUDINAL-DIMENSIONS" />
+    <text x="690.0" y="762" font-size="11.5" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="62" data-model-id="LONGITUDINAL-DIMENSIONS" data-text-role="dimension">36.00 m</text>
+  </g>
+  <g id="layer-annotations" data-layer="annotations-and-evidence">
+    <text x="56" y="838" font-size="12.5" class="new-title">ADOPTED SCHEMATIC OPENINGS · D-083</text>
+    <text x="56" y="868" font-size="10.2" class="new-eyebrow">GLZ-RC</text>
+    <text x="160" y="868" font-size="10" class="new-body">7.20 × 2.90 m · sill +0.90 m · 6 modules · RC / aircraft workshop</text>
+    <text x="56" y="900" font-size="10.2" class="new-eyebrow">GLZ-WS-B</text>
+    <text x="160" y="900" font-size="10" class="new-body">3.00 × 1.80 m · sill +0.75 m · 3 modules · workstation datum</text>
+    <text x="56" y="932" font-size="10.2" class="new-eyebrow">W-H2</text>
+    <text x="160" y="932" font-size="10" class="new-body">3.60 × 2.90 m · sill +0.05 m · head +2.95 m · 3 modules</text>
+    <text x="56" y="964" font-size="10.2" class="new-eyebrow">W-G</text>
+    <text x="160" y="964" font-size="10" class="new-body">3.60 × 2.90 m · sill +0.05 m · head +2.95 m · 3 modules</text>
+    <text x="56" y="991" font-size="9.8" class="new-muted">PB-WS-B worktop +0.75 m · window/worktop structures remain independent across a maintainable 30–50 mm gap.</text>
+  </g>
+  <g id="layer-status" data-layer="status-and-conflicts">
+    <text x="832" y="838" font-size="12.5" class="new-hypothesis">NOT ADOPTED</text>
+    <text x="832" y="868" font-size="11" class="new-title">GLZ-DINING-STUDY-B</text>
+    <text x="832" y="892" font-size="10" class="new-body">4.80 × 1.80 m · sill +0.75 m</text>
+    <text x="832" y="922" font-size="10" class="new-muted">
+      <tspan x="832" dy="0">Excluded from the façade geometry, active opening</tspan>
+      <tspan x="832" dy="13">quantities and pricing. The dining bay remains</tspan>
+      <tspan x="832" dy="13">solid in this pilot.</tspan>
+    </text>
+    <text x="1238" y="838" font-size="12.5" class="new-open">OPEN · DO NOT FREEZE</text>
+    <text x="1238" y="868" font-size="10" class="new-open">•</text>
+    <text x="1256" y="868" font-size="10" class="new-body">Site and cardinal orientation</text>
+    <text x="1238" y="892" font-size="10" class="new-open">•</text>
+    <text x="1256" y="892" font-size="10" class="new-body">Solar control, glare, views and privacy</text>
+    <text x="1238" y="916" font-size="10" class="new-open">•</text>
+    <text x="1256" y="916" font-size="10" class="new-body">Safe glazing, fall protection and operability</text>
+    <text x="1238" y="940" font-size="10" class="new-open">•</text>
+    <text x="1256" y="940" font-size="10" class="new-body">Headers, jambs, girts, anchors and wind</text>
+    <text x="1238" y="964" font-size="10" class="new-open">•</text>
+    <text x="1256" y="964" font-size="10" class="new-body">Thermal bridges, condensation and drainage</text>
+    <text x="1238" y="988" font-size="10" class="new-open">•</text>
+    <text x="1256" y="988" font-size="10" class="new-body">Selected products, quantities and local cost</text>
+  </g>
+  <g id="layer-sheet-header" data-layer="titleblock">
+    <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 02 · PRESENTATION ONLY</text>
+    <text x="36" y="70" font-size="24" class="new-title">SIDE B · OPENING COORDINATION</text>
+    <text x="36" y="96" font-size="11" class="new-muted">Same R10 geometry and values · larger elevation · direct IDs · adopted / excluded / open states</text>
+    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end">DH-ARQ-ELE-004</text>
+    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP02 · NOT CURRENT</text>
+    <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
+  </g>
+  <g id="layer-sheet" data-layer="titleblock">
+    <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
+    <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
+    <text x="56" y="1082" font-size="10.2" class="new-on-dark">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
+    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted">Source: ELE-004-R10 / 0.3-draft-37-PB · Decision basis: D-083 · Source-space geometry and displayed dimensions preserved.</text>
+    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted">Open gates: site/orientation · solar/privacy · structure/wind · safe glazing/fall · building physics/drainage · products/cost</text>
+    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end">2026-08-21</text>
+  </g>
+</svg>
