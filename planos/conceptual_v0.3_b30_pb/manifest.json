@@ -1,0 +1,14 @@
+{
+  "revision": "0.3-option-30-PB",
+  "status": "owner-requested kitchen/dining option study; D-024 and CF-006 remain open; does not supersede PB b29; not for construction",
+  "source": "dreamhouse/pb_b30_delta.json",
+  "source_sha256": "178697fd8f3c2910de1cec1aa26e76ecd6c35c934d105f5ef3e57479682b8abe",
+  "generator": "dreamhouse/generate_pb_b30.py",
+  "supersedes": "none; compares with active 0.3-draft-29-PB / PLN-001-R10 for kitchen and dining only",
+  "outputs": [
+    "DH-ARQ-PLN-001-S01_PB-KITCHEN-DINING-OPTION.svg",
+    "DH-ARQ-OPT-001-R00_PB-KITCHEN-DINING-STUDY.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

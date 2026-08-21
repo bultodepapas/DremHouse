@@ -1,0 +1,14 @@
+{
+  "revision": "0.3-option-31-PB",
+  "status": "owner-directed centred 12-seat dining refinement; evidence-based option; does not supersede active PB b29 or modify D-071; not for construction",
+  "source": "dreamhouse/pb_b31_delta.json",
+  "source_sha256": "008d55bc110bb2907a7d1640781c0c14f982a49af81ff162b75478b41928a57c",
+  "generator": "dreamhouse/generate_pb_b31.py",
+  "supersedes": "0.3-option-30-PB for dining-table size, chair topology and centring only; neither option supersedes active 0.3-draft-29-PB",
+  "outputs": [
+    "DH-ARQ-PLN-001-S02_PB-CENTRED-12-SEAT-DINING.svg",
+    "DH-ARQ-OPT-002-R00_PB-CENTRED-DINING-STUDY.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

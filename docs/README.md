@@ -73,6 +73,14 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [PB corner-start technical workbenches — draft 29](02_arquitectura/pb_corner_start_workbenches_v0.3_b29.md):
   active D-073 correction starting both 9.00 m technical benches at their respective
   front interior corners while preserving adjacent industrial-door coordination gates.
+- [PB kitchen and dining option study — b30](02_arquitectura/pb_kitchen_dining_option_study_v0.3_b30.md):
+  non-adopted predecessor testing a full domestic-bay kitchen composition, a 7.20 m
+  island and the 12-seat dining group opposite; its dining size and position are refined
+  by b31.
+- [PB centred 12-seat dining option study — b31](02_arquitectura/pb_centered_dining_option_study_v0.3_b31.md):
+  owner-directed, researched refinement using a 3.20 × 1.10 m table with 5+5+2 chairs and
+  a symmetric 1.10 m clearance envelope centred in the Side B domestic territory; PB b29
+  and D-071 remain active.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

@@ -1,0 +1,78 @@
+{
+  "base_delta": "dreamhouse/pb_b30_delta.json",
+  "base_delta_sha256": "178697fd8f3c2910de1cec1aa26e76ecd6c35c934d105f5ef3e57479682b8abe",
+  "revision": "0.3-option-31-PB",
+  "status": "owner-directed centred 12-seat dining refinement; evidence-based option; does not supersede active PB b29 or modify D-071; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-option-30-PB for dining-table size, chair topology and centring only; neither option supersedes active 0.3-draft-29-PB",
+  "decision": "D-024-open / D-074-not-created",
+  "drawing_meta": {
+    "plan_code": "PLN-001-S02",
+    "plan_title": "GROUND FLOOR OPTION STUDY · CENTRED 12-SEAT DINING",
+    "plan_subtitle": "Owner-directed refinement · 3.20 × 1.10 m researched table · 5 + 5 side chairs + 2 head chairs · centred in the Side B domestic half",
+    "study_code": "OPT-002-R00",
+    "study_title": "PB DINING · RESEARCHED 12-SEAT TABLE + TRUE CENTRING",
+    "study_subtitle": "3.20 × 1.10 m table centred with its symmetric chair and circulation envelope in the 10.50 × 6.82 m dining territory"
+  },
+  "dining": {
+    "territory": {
+      "x": 21.00,
+      "y": 11.00,
+      "width": 10.50,
+      "depth": 6.82
+    },
+    "table": {
+      "x": 24.65,
+      "y": 13.86,
+      "length": 3.20,
+      "depth": 1.10,
+      "height": 0.75,
+      "label": "12P · 3.20 × 1.10"
+    },
+    "chairs_per_side": 5,
+    "end_chairs": 1,
+    "seat_count": 12,
+    "clearance_around_table": 1.10,
+    "group_envelope": {
+      "x": 23.55,
+      "y": 12.76,
+      "width": 5.40,
+      "depth": 3.30
+    },
+    "centre": {
+      "x": 26.25,
+      "y": 14.41
+    },
+    "use": "formal 12-seat table; daily meals use the eight-seat island",
+    "research_basis": "120 in / approximately 3.05 m commercial 12-seat benchmark, adjusted to 3.20 m for 0.64 m per side chair; 1.10 m depth remains within standard-to-extra-deep commercial examples."
+  },
+  "research_sources": [
+    {
+      "title": "West Elm — The Right Size Dining Table for Your Space",
+      "url": "https://www.westelm.com/pages/ideas-and-advice/what-size-dining-table/",
+      "evidence": "approximately 24 in per person; 120 in table seats 12; allow 3 ft clearance around the table"
+    },
+    {
+      "title": "West Elm — Blakley Solid Wood Dining Table",
+      "url": "https://aktest2-www.westelm.com/products/mp-blakley-dining-table-60-120-mp052/",
+      "evidence": "120 in width seats 12; 39 in standard or 45 in extra-deep top"
+    },
+    {
+      "title": "Pottery Barn — Keaton Communal Dining Table",
+      "url": "https://www.potterybarn.com/products/keaton-communal-wood-dining-table/pip-print.html",
+      "evidence": "120 × 52 in product has a stated 10–12 seat capacity"
+    },
+    {
+      "title": "IKEA — 3 tips for buying a dining table",
+      "url": "https://www.ikea.com/us/en/rooms/dining/how-to/3-tips-for-buying-a-dining-table-pubf11224c6/",
+      "evidence": "approximately 24 in eating width per person and at least 32 in behind the table"
+    }
+  ],
+  "coordination_holds_append": [
+    "The b31 table and symmetric 5+5+2 chair group are centred at X=26.25 m, Y=14.41 m in the 10.50 × 6.82 m Side B dining territory, not merely aligned to an edge or door.",
+    "The 3.20 × 1.10 m table is an evidence-based coordination envelope, not a selected product. Leg/pedestal positions, apron, chair width, armrests and actual manufacturer seating capacity govern procurement.",
+    "The 1.10 m clearance envelope follows the upper end of the researched 36–44 in chair/passage guidance. The larger available residual margins remain shared open-space buffers, not required furniture clearances.",
+    "Centre any linear pendant or pendant group on the final table, not on the larger dining territory; coordinate circuit and support only after the table position is adopted.",
+    "This refinement supersedes b30 only as the latest option study. PB b29 and D-071 remain active until the opposite-side dining move is explicitly adopted."
+  ]
+}

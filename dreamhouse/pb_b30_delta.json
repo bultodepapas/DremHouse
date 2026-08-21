@@ -1,0 +1,103 @@
+{
+  "base_delta": "dreamhouse/pb_b29_delta.json",
+  "base_delta_sha256": "0a8e2ef8fdf2e5245b7b5420be2a131b22a3b3b5fcd7d771c3af60b7323911dc",
+  "revision": "0.3-option-30-PB",
+  "status": "owner-requested kitchen/dining option study; D-024 and CF-006 remain open; does not supersede PB b29; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "none; compares with active 0.3-draft-29-PB / PLN-001-R10 for kitchen and dining only",
+  "decision": "D-024-open",
+  "drawing_meta": {
+    "plan_code": "PLN-001-S01",
+    "plan_title": "GROUND FLOOR OPTION STUDY · FULL-SPAN KITCHEN + OPPOSITE DINING",
+    "plan_subtitle": "Owner-requested architectural test · 7.20 m island within a 10.05 m kitchen wall composition · no current-plan promotion",
+    "study_code": "OPT-001-R00",
+    "study_title": "PB KITCHEN / DINING · CURRENT DIAGNOSIS + PREFERRED TEST",
+    "study_subtitle": "Current 4.50 m wall run and 3.60 m island compared with a full domestic-bay composition"
+  },
+  "kitchen": {
+    "wall_run": {
+      "x": 21.15,
+      "y": 0.25,
+      "length": 10.05,
+      "depth": 0.75
+    },
+    "wall_modules": [
+      { "x": 21.15, "length": 1.50, "label": "COFFEE / STORE" },
+      { "x": 22.65, "length": 0.90, "label": "FR" },
+      { "x": 23.55, "length": 0.90, "label": "FZ" },
+      { "x": 24.45, "length": 0.60, "label": "OV" },
+      { "x": 25.05, "length": 1.20, "label": "LAND" },
+      { "x": 26.25, "length": 0.90, "label": "HOB" },
+      { "x": 27.15, "length": 1.20, "label": "PREP" },
+      { "x": 28.35, "length": 0.90, "label": "SINK" },
+      { "x": 29.25, "length": 0.60, "label": "DW" },
+      { "x": 29.85, "length": 0.60, "label": "BIN" },
+      { "x": 30.45, "length": 0.75, "label": "LAND" }
+    ],
+    "tall_block_length": 2.40,
+    "active_counter_length": 7.65,
+    "island": {
+      "x": 22.40,
+      "y": 2.35,
+      "length": 7.20,
+      "depth": 1.25,
+      "label": "7.20 m FULL-SPAN ISLAND · DRY PREP + 8 SEATS",
+      "label_font_size": 6.4
+    },
+    "island_seating": {
+      "count": 8,
+      "end_margin": 0.50,
+      "offset": 0.25
+    },
+    "operating_clearance": 1.30,
+    "social_clearance": 1.50,
+    "dimension_labels": true,
+    "service_strategy": "Keep water, drainage and extraction on the Side A wall; keep the long island dry except for power/data to control cost and maintenance."
+  },
+  "program_territories": [
+    {
+      "x": 12.50,
+      "y": 0.18,
+      "w": 8.50,
+      "d": 17.64,
+      "label": "DOUBLE-HEIGHT SOCIAL HALL",
+      "color": "#e6d7c7",
+      "label_y": 7.35
+    },
+    {
+      "x": 21.00,
+      "y": 0.18,
+      "w": 10.50,
+      "d": 6.82,
+      "label": "FULL-SPAN KITCHEN",
+      "color": "#ead4b6",
+      "label_y": 6.45
+    },
+    {
+      "x": 21.00,
+      "y": 11.00,
+      "w": 10.50,
+      "d": 6.82,
+      "label": "DINING OPPOSITE KITCHEN",
+      "color": "#e7d3b9",
+      "label_y": 11.55
+    }
+  ],
+  "dining": {
+    "table": {
+      "x": 24.20,
+      "y": 13.00,
+      "length": 3.60,
+      "depth": 1.30
+    },
+    "chairs_per_side": 6,
+    "use": "formal 12-seat table; daily meals use the eight-seat island"
+  },
+  "coordination_holds_append": [
+    "This owner-requested option does not supersede PB b29, modify D-071 or close D-024/CF-006. Promote it only after the owner confirms the preferred island length and opposite-side dining relationship and a new decision records the departure from D-071's beside-kitchen dining position.",
+    "The 7.20 m island uses the practical clear span between 1.40 m and 1.90 m end routes; a literal 10.50 m wall-to-wall island would obstruct circulation to the pantry/Great Wall and is not recommended.",
+    "Keep water, drainage and cooking extraction on the Side A wall and treat the island as dry prep/seating to avoid avoidable slab penetrations, service loops and maintenance risk.",
+    "The opposite dining table remains outside the Y=7.00–11.00 m pedestrian axis and clear of the bathroom and homelab doors, but its longer serving route should be accepted only with daily island seating and a mobile serving trolley.",
+    "Site orientation, dining-side daylight/opening, P2 facade alignment, real appliance schedule, extract route, lighting, power and detailed joinery remain open professional design gates."
+  ]
+}

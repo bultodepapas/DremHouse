@@ -197,16 +197,75 @@ def plan_sheet(p):
     k = p["kitchen"]
     kr, ki = k["wall_run"], k["island"]
     parts.append(plan_rect(kr["x"],kr["y"],kr["length"],kr["depth"],fill="#b69066",stroke="#60492f",stroke_width="1.2"))
-    modules = [(26.7,"FR"),(27.6,"H"),(28.5,"PL"),(29.4,"LV"),(30.3,"AL")]
-    for mx,label in modules:
-        parts.append(plan_rect(mx,.25,.85,.75,fill="none",stroke="#72583c",stroke_width=".7"))
-        parts.append(text(sx(mx+.425),sy(.63)+3,label,6,weight=700))
+    modules = k.get("wall_modules")
+    if modules:
+        for module in modules:
+            mx = module["x"]
+            module_length = module["length"]
+            parts.append(
+                plan_rect(
+                    mx,
+                    kr["y"],
+                    module_length,
+                    kr["depth"],
+                    fill=module.get("fill", "none"),
+                    stroke="#72583c",
+                    stroke_width=".7",
+                )
+            )
+            parts.append(
+                text(
+                    sx(mx + module_length / 2),
+                    sy(kr["y"] + kr["depth"] / 2) + 3,
+                    module["label"],
+                    module.get("font_size", 5.5),
+                    weight=700,
+                )
+            )
+    else:
+        modules = [(26.7,"FR"),(27.6,"H"),(28.5,"PL"),(29.4,"LV"),(30.3,"AL")]
+        for mx,label in modules:
+            parts.append(plan_rect(mx,.25,.85,.75,fill="none",stroke="#72583c",stroke_width=".7"))
+            parts.append(text(sx(mx+.425),sy(.63)+3,label,6,weight=700))
     parts.append(plan_rect(ki["x"],ki["y"],ki["length"],ki["depth"],fill="#d1b187",stroke="#60492f",stroke_width="1.3",rx="3"))
-    parts.append(text(sx(ki["x"]+ki["length"]/2),sy(ki["y"]+ki["depth"]/2)+3,"ISLA 3,60 × 1,20 · 4 puestos",8,weight=700))
-    for i in range(4):
-        parts.append(chair(sx(27.35+i*.85),sy(3.65)))
-    parts.append(text(sx(29),sy(1.6),"1,20 m operativo",7,fill="#7b552b"))
-    parts.append(text(sx(29),sy(4.15),"≥1,50 m social",7,fill="#7b552b"))
+    island_label = ki.get("label", "ISLA 3,60 × 1,20 · 4 puestos")
+    parts.append(text(sx(ki["x"]+ki["length"]/2),sy(ki["y"]+ki["depth"]/2)+3,island_label,ki.get("label_font_size",8),weight=700))
+    seating = k.get("island_seating")
+    if seating:
+        count = seating["count"]
+        end_margin = seating.get("end_margin", 0.45)
+        usable_length = ki["length"] - 2 * end_margin
+        for i in range(count):
+            chair_x = ki["x"] + end_margin + usable_length * (i + 0.5) / count
+            parts.append(chair(sx(chair_x),sy(ki["y"]+ki["depth"]+seating.get("offset",.25))))
+    else:
+        for i in range(4):
+            parts.append(chair(sx(27.35+i*.85),sy(3.65)))
+    if k.get("dimension_labels"):
+        operating_clearance = ki["y"] - (kr["y"] + kr["depth"])
+        parts.append(
+            text(
+                sx(ki["x"] + ki["length"] / 2),
+                sy((kr["y"] + kr["depth"] + ki["y"]) / 2),
+                f'{operating_clearance:.2f} m WORKING AISLE',
+                6.4,
+                weight=700,
+                fill="#7b552b",
+            )
+        )
+        parts.append(
+            text(
+                sx(ki["x"] + ki["length"] / 2),
+                sy(ki["y"] + ki["depth"] + .72),
+                f'≥{k["social_clearance"]:.2f} m SOCIAL SIDE',
+                6.4,
+                weight=700,
+                fill="#7b552b",
+            )
+        )
+    else:
+        parts.append(text(sx(29),sy(1.6),"1,20 m operativo",7,fill="#7b552b"))
+        parts.append(text(sx(29),sy(4.15),"≥1,50 m social",7,fill="#7b552b"))
 
     # Dining and living furniture. Later revisions can replace the inherited abstract
     # sofa block with a coordinated media-wall layout while preserving the b05 issue.
@@ -348,12 +407,52 @@ def plan_sheet(p):
 
         dining = social_layout["dining"]
         table = dining["table"]
-        parts.append(table_symbol(table["x"],table["y"],table["length"],table["depth"],"12-SEAT DINING · 3.60 × 1.30"))
+        clearance = dining.get("clearance_around_table")
+        if clearance:
+            parts.append(
+                plan_rect(
+                    table["x"] - clearance,
+                    table["y"] - clearance,
+                    table["length"] + 2 * clearance,
+                    table["depth"] + 2 * clearance,
+                    fill="none",
+                    stroke="#aa7b31",
+                    stroke_width="1",
+                    stroke_dasharray="5 4",
+                )
+            )
+            parts.append(
+                text(
+                    sx(table["x"] + table["length"] / 2),
+                    sy(table["y"] - clearance + .16),
+                    f'{clearance:.2f} m CHAIR / WALK CLEARANCE ENVELOPE',
+                    5.5,
+                    weight=700,
+                    fill="#8a6518",
+                )
+            )
+        dining_label = table.get(
+            "label",
+            f'12-SEAT DINING · {table["length"]:.2f} × {table["depth"]:.2f}',
+        )
+        parts.append(
+            table_symbol(
+                table["x"],
+                table["y"],
+                table["length"],
+                table["depth"],
+                dining_label,
+            )
+        )
         chair_step = table["length"] / dining["chairs_per_side"]
         for i in range(dining["chairs_per_side"]):
             chair_x = table["x"] + chair_step * (i + 0.5)
             parts.append(chair(sx(chair_x),sy(table["y"]-.25)))
             parts.append(chair(sx(chair_x),sy(table["y"]+table["depth"]+.25)))
+        for i in range(dining.get("end_chairs", 0)):
+            chair_y = table["y"] + table["depth"] * (i + .5) / dining["end_chairs"]
+            parts.append(chair(sx(table["x"]-.25),sy(chair_y)))
+            parts.append(chair(sx(table["x"]+table["length"]+.25),sy(chair_y)))
         sideboard = dining.get("sideboard")
         if sideboard:
             parts.append(plan_rect(sideboard["x"],sideboard["y"],sideboard["depth"],sideboard["length"],fill="#a98460",stroke="#5a4330",stroke_width="1"))
