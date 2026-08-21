@@ -1,0 +1,27 @@
+{
+  "base_delta": "dreamhouse/pb_b32_delta.json",
+  "base_delta_sha256": "3b5337000e9f6cc3b7112d3495753a7ec93d2243bef6d6cea9712df7dafabaf1",
+  "stair_core": "dreamhouse/stair_core.json",
+  "revision": "0.3-draft-34-PB",
+  "status": "issued for D-077 integrated ground-floor coordination; kitchen products, real lift/vehicle, CF-011 rear discharge, fire/smoke design, steel details and costs remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-33-PB / PLN-001-R11 as the active PB plan; adopts the b32 domestic layout and car/lift centring while retaining SC-01",
+  "decision": "D-077",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R12",
+    "plan_title": "COORDINATED GROUND FLOOR · RESTORED DOMESTIC LAYOUT",
+    "plan_subtitle": "D-077 centred dining + full-span kitchen + centred Project Car/lift · SC-01 stair retained"
+  },
+  "coordination_holds_remove_contains": [
+    "The D-070 media wall aligns",
+    "The lift/vehicle test envelope shifts 0.60 m inward",
+    "This owner-requested option does not supersede PB b29",
+    "This refinement supersedes b30 only as the latest option study"
+  ],
+  "coordination_holds_append": [
+    "D-077 adopts the b32 domestic relationship: the centred 12-seat dining group occupies Side B opposite the full-span Side A kitchen across the clear central axis.",
+    "D-077 adopts the complete centred Project Car/lift test group from b32 while retaining both D-073 corner-start wall benches.",
+    "D-077 retains the D-074 SC-01 stair model, all four exact column reservations and the open CF-011 rear-discharge conflict without geometric change.",
+    "The 7.20 m dry island and 10.05 m wall composition are active schematic coordination envelopes only; D-024 product, appliance, MEP, joinery and cost selection remains open."
+  ]
+}

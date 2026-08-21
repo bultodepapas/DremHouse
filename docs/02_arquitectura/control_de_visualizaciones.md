@@ -1,13 +1,13 @@
 # Visualization control and ChatGPT image prompt kit
 
 **Status:** active; schematic-design communication only; not for construction<br>
-**Version:** 0.4<br>
+**Version:** 0.5<br>
 **Date:** 2026-08-21<br>
 **Sources:** Project Constitution; D-033, D-039, D-052, D-054, D-056, D-059,
-D-063, D-067–D-076; current-drawing catalog; and the six-source current OpenAI research
+D-063, D-067–D-077; current-drawing catalog; and the six-source current OpenAI research
 matrix below<br>
-**Supersedes:** visualization control v0.3 for prompt method and wording only; no design,
-geometry, scope, or cost change
+**Supersedes:** visualization control v0.4 only where D-077 changes PB kitchen, dining and
+Project Car/lift prompt geometry; the D-076 research method remains unchanged
 
 ## Authority
 
@@ -94,8 +94,9 @@ the generated image obeys an exact physical camera model.
   an equal side window and reading as permanent house-scale infrastructure.
 - The living group in the double-height Side B zone, facing a `100-inch` television
   mounted directly on the Side B perimeter wall. There is no freestanding media wall.
-- The independent 12-seat dining group beside the kitchen; the kitchen and rear domestic
-  zone sit below P2.
+- One centred `3.20 × 1.10 m` 12-seat dining group on Side B opposite the full-span Side A
+  kitchen across the clear axis. The dry `7.20 × 1.25 m` island has eight schematic seats;
+  the kitchen and rear domestic zone sit below P2.
 - The Great Wall at `X=31.50 m` reads as one warm timber/acoustic plane with flush service
   doors and a more legible protected-stair portal.
 - The shared P2 family centre has one `7.45 m` open internal-balcony frontage with a
@@ -143,10 +144,12 @@ between them. Keep one 9 m wall-integrated workbench along each side, beginning 
 front interior corner below the technical window. Farther inside, retain the two mirrored
 wall-integrated workstations and their equal side windows. Keep the 4 m central axis fully
 clear. Place the living group in the double-height Side B zone facing the 100-inch TV fixed
-directly to the Side B perimeter wall. Keep the 12-seat dining table independent beside
-the kitchen. P2 begins only after the first 21 m; show its guarded 7.45 m open family
-balcony between two full-height enclosed suite ends and one large exposed industrial edge
-truss. Finish the view with the warm timber/acoustic Great Wall and its flush doors.
+directly to the Side B perimeter wall. Keep the centred 3.20 × 1.10 m 12-seat dining table
+on Side B opposite the full-span Side A kitchen and its long dry island, across rather than
+inside the clear central axis. P2 begins only after the first 21 m; show its guarded 7.45 m
+open family balcony between two full-height enclosed suite ends and one large exposed
+industrial edge truss. Finish the view with the warm timber/acoustic Great Wall and its
+flush doors.
 
 Material and light: use honest, economical industrial materials—dark exposed primary steel
 with a clear regular-bay rhythm, lightly worn polished concrete, insulated metal envelope,
@@ -198,8 +201,9 @@ within the existing Side B exterior wall, above a low accessible 3.40 m AV conso
 is no freestanding wall or room divider. The approximately 4 m sofa, chaise, two chairs,
 and rug form one coherent group facing the television while remaining completely outside
 the clear 4 m pedestrian axis. The workstation remains a separate permanent 3 m-wide
-wall-integrated element under its own equal landscape window. Dining remains an independent
-12-seat group beside the kitchen rather than an extension of the media wall.
+wall-integrated element under its own equal landscape window. Dining remains a centred
+3.20 × 1.10 m independent 12-seat group on Side B opposite the full-span Side A kitchen,
+rather than an extension of the media wall. Keep the clear central axis between them.
 
 Material and light: combine dark exposed structural steel, lightly worn polished concrete,
 warm timber or slatted acoustic lining at the TV field, robust neutral upholstery, and a
@@ -365,6 +369,17 @@ Keep the living furniture facing that wall and outside the central axis. Preserv
 wall-integrated workstation, dining group, camera, materials, lighting, and all other areas.
 ```
 
+### Restore the kitchen and dining relationship
+
+```text
+Edit only the kitchen and dining arrangement. Restore the full-span Side A kitchen wall
+and its long dry eight-seat island below P2. Place one centred 12-seat rectangular dining
+table on Side B directly opposite the kitchen, with five chairs on each long side, one at
+each end, and generous symmetric circulation around it. Keep the clear central axis fully
+open between kitchen and dining. Preserve the living group, TV wall, stair, camera,
+materials, lighting, and every unrelated element exactly unchanged.
+```
+
 ### Restore the three-door front façade
 
 ```text
@@ -409,6 +424,8 @@ Reject or correct the image if any applicable answer is **no**.
 - [ ] Is the `4 m` central axis clear?
 - [ ] Are both mirrored workstations present and outside the dirty technical strip?
 - [ ] Is the living group oriented to the TV directly on the Side B perimeter wall?
+- [ ] Is one centred 12-seat dining group on Side B opposite the full-span Side A kitchen,
+      with the clear central axis unobstructed between them?
 - [ ] Are dining and kitchen independent of any invented media partition?
 - [ ] Does the Great Wall read as one continuous warm rear plane with flush doors?
 - [ ] Is only the `7.45 m` family frontage open, with both bedroom ends still enclosed?

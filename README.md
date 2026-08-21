@@ -48,16 +48,16 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>24</strong> current SVG/PNG pairs · <strong>148</strong> preserved versioned sheets · <strong>75</strong> documents · <strong>66</strong> decisions · <strong>7</strong> open conflicts</sub>
+  <sub><strong>24</strong> current SVG/PNG pairs · <strong>149</strong> preserved versioned sheets · <strong>76</strong> documents · <strong>68</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with the coordinated 22-riser stair core, four column reservations, workshops, living, dining and kitchen" width="100%"></a>
-  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-33-PB</sub>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with centred opposite dining and kitchen, centred project car and lift, coordinated 22-riser stair core and four column reservations" width="100%"></a>
+  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-34-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b34_pb/DH-ARQ-PLN-001-R12_PB-INTEGRATED-RESTORATION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>

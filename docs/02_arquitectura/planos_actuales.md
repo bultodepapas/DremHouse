@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.18<br>
+**Version:** 1.19<br>
 **Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -19,9 +19,9 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with the coordinated 22-riser stair core, four column reservations, workshops, living, dining and kitchen" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with centred opposite dining and kitchen, centred project car and lift, coordinated 22-riser stair core and four column reservations" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-33-PB · <a href="../../planos/conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-34-PB · <a href="../../planos/conceptual_v0.3_b34_pb/DH-ARQ-PLN-001-R12_PB-INTEGRATED-RESTORATION.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>

@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.6
+**Version:** 0.7
 **Date:** 2026-08-21
 
 > [!NOTE]
@@ -73,20 +73,24 @@ they stay stable while their explicitly promoted versioned source can advance.
   retained D-072 predecessor fixing the 9.00 m project-car bench against Side A and
   shifting the schematic lift envelope inward without claiming real equipment clearance.
 - [PB corner-start technical workbenches — draft 29](02_arquitectura/pb_corner_start_workbenches_v0.3_b29.md):
-  active D-073 correction starting both 9.00 m technical benches at their respective
+  retained D-073 correction starting both 9.00 m technical benches at their respective
   front interior corners while preserving adjacent industrial-door coordination gates.
 - [PB kitchen and dining option study — b30](02_arquitectura/pb_kitchen_dining_option_study_v0.3_b30.md):
   non-adopted predecessor testing a full domestic-bay kitchen composition, a 7.20 m
   island and the 12-seat dining group opposite; its dining size and position are refined
   by b31.
 - [PB centred 12-seat dining option study — b31](02_arquitectura/pb_centered_dining_option_study_v0.3_b31.md):
-  owner-directed, researched refinement using a 3.20 × 1.10 m table with 5+5+2 chairs and
-  a symmetric 1.10 m clearance envelope centred in the Side B domestic territory; PB b29
-  and D-071 remain active; its Project Car position is refined by b32.
+  predecessor research using a 3.20 × 1.10 m table with 5+5+2 chairs and a symmetric
+  1.10 m clearance envelope centred in the Side B domestic territory; its geometry is
+  adopted in PB b34.
 - [PB centred Project Car and lift option study — b32](02_arquitectura/pb_centered_project_car_option_study_v0.3_b32.md):
-  owner-directed refinement centring the complete vehicle, lift-post and exclusion-envelope
-  group in the usable Side A technical bay, with equal 1.96 m end residuals; PB b29 and
-  D-073 remain active.
+  predecessor refinement centring the complete vehicle, lift-post and exclusion-envelope
+  group in the usable Side A technical bay, with equal 1.96 m end residuals; its domestic
+  and vehicle geometry is adopted in PB b34.
+- [PB restored domestic layout — b34](02_arquitectura/pb_restored_domestic_layout_v0.3_b34.md):
+  active D-077 ground-floor issue combining the preferred full-span kitchen, centred
+  opposite dining and centred Project Car/lift with the unchanged SC-01 stair and four
+  foundation-to-roof column reservations.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.
@@ -144,9 +148,9 @@ they stay stable while their explicitly promoted versioned source can advance.
   D-067/R20 removes the fitted privacy screen and gives the complete 35.24 m² gross
   primary bedroom one name and one plan label.
 - [Shared PB/P2 stair-core coordination — PB b33 / P2 b24](02_arquitectura/stair_core_coordination_v0.3_b33_b24.md):
-  D-074/SC-01 gives both current plans one 22-riser dogleg geometry, one set of four
-  foundation-to-roof column coordinates and opposite level-correct arrows; CF-011 keeps
-  the unresolved rear grade-discharge level conflict explicit.
+  D-074/SC-01 gives PB and P2 one 22-riser dogleg geometry, one set of four
+  foundation-to-roof column coordinates and opposite level-correct arrows; PB b34 retains
+  it unchanged and CF-011 keeps the unresolved rear grade-discharge level conflict explicit.
 
 ## 03 — Engineering
 

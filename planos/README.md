@@ -1,7 +1,7 @@
 # Dream House drawings
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.18<br>
+**Version:** 1.19<br>
 **Date:** 2026-08-21<br>
 **Source:** [`actual/catalog.json`](actual/catalog.json)
 
@@ -15,9 +15,9 @@
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with the coordinated 22-riser stair core, four column reservations, workshops, living, dining and kitchen" width="100%"></a>
+  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with centred opposite dining and kitchen, centred project car and lift, coordinated 22-riser stair core and four column reservations" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-33-PB · <a href="conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-34-PB · <a href="conceptual_v0.3_b34_pb/DH-ARQ-PLN-001-R12_PB-INTEGRATED-RESTORATION.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
@@ -103,7 +103,7 @@ all architectural sheets with the structural studies and their open gates.
 
 | Stable ID | Drawing | Current aliases | Preserved issue | Status / limitation |
 | --- | --- | --- | --- | --- |
-| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-33-PB](conceptual_v0.3_b33_pb/DH-ARQ-PLN-001-R11_PB-STAIR-CORE.svg) | issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design and structural details remain open; not for construction |
+| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-34-PB](conceptual_v0.3_b34_pb/DH-ARQ-PLN-001-R12_PB-INTEGRATED-RESTORATION.svg) | issued for D-077 integrated ground-floor coordination; kitchen products, real lift/vehicle, CF-011 rear discharge, fire/smoke design, steel details and costs remain open; not for construction |
 | `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg) | issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design and structural details remain open; not for construction |
 | `architecture-roof-plan` | Roof and rooflight plan | [SVG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg) · [PNG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-daylight-section` | Rooflight daylight section | [SVG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg) · [PNG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg) | active D-054 schematic coordination hypothesis; not for construction |

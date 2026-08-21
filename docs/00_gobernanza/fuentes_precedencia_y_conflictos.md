@@ -1,10 +1,11 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 0.9
+**Version:** 1.0
 **Date:** 2026-08-21
 **Language note:** controlled English translation under D-044; D-063 incorporated into
-CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate.
+CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
+CF-006 without freezing products, MEP, joinery, or cost.
 
 ## Precedence
 
@@ -89,9 +90,15 @@ the correct areas are 90 m² and 81 m² respectively.
 
 The narrative proposes 3.6–4.0 × 1.10–1.25 m; plan v0.2 proposes 4.80 × 1.40 m.
 
-- **Interim rule:** 4.80 × 1.40 m is the test envelope. Adopt it only if ergonomics,
-  services, daily use, and cost justify its size.
-- **Status:** open until the v0.3 kitchen layout is completed.
+- **Schematic geometric resolution:** D-077/PB b34 adopts a dry 7.20 × 1.25 m island with
+  eight test seats, opposite a centred 12-seat dining group, as the active spatial
+  coordination envelope. This later owner decision supersedes both earlier island
+  envelopes for the active PB plan.
+- **Remaining gates:** D-024 still governs final product and equipment selection. Verify
+  appliance modules, MEP, end routes, seating ergonomics, joinery fabrication, daylight,
+  maintenance and Chapter 20 cost before freezing or procuring the kitchen.
+- **Status:** schematic geometry resolved by D-077; developed selection and cost remain
+  open under D-024.
 
 ### CF-007 — Actual scope of the COP 988.05 million total
 

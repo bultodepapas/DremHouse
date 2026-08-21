@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.11
+**Versión:** 0.12
 **Fecha:** 2026-08-21
 
 ## Forma y modulación
@@ -156,13 +156,17 @@ gap as one developed jamb, track, seal, guard and removable-service detail; the 
 does not authorize a product or safe clearance. See
 [PB corner-start technical workbenches — draft 29](pb_corner_start_workbenches_v0.3_b29.md).
 
-### PB living, dining and media wall
+### PB living, dining, kitchen and media wall
 
 D-070 removed the abstract PB sofa block, empty lounge/transition field and unassigned
 Side B opening. D-071 retains those corrections but rejects D-070's freestanding X=21
 media partition. The 100-inch television is fixed directly to a 4.40 m mounting field on
 the Side B perimeter wall; the living group turns to face it beyond Y=11.00 m and east of
-workstation 2. The retained 12-seat dining table remains independently beside the kitchen.
+workstation 2. D-077 replaces only the inherited compact dining/kitchen relationship: one
+centred 3.20 × 1.10 m table for 12 people now sits on Side B opposite the full-span Side A
+kitchen across the clear axis. The kitchen uses a 10.05 m wall run and a dry
+7.20 × 1.25 m island with eight schematic seats. The dining group retains a symmetric
+1.10 m chair/walk envelope and remains independent of the media wall.
 
 The mounting field is a local finish, backing and service zone within the existing
 exterior-wall assembly, not a room divider or selected primary structure. Coordinate its
@@ -170,6 +174,9 @@ warm acoustic finish, matte screen background, AV console, local backing, sealed
 penetrations, 4.10 m sightline and site-dependent glare control. See
 [PB Side B wall TV living — draft 27](pb_side_b_wall_tv_living_v0.3_b27.md). The
 [superseded D-070 study](pb_living_dining_media_v0.3_b26.md) remains historical evidence.
+See [PB b34 restored domestic layout](pb_restored_domestic_layout_v0.3_b34.md) for the
+current kitchen/dining, centred Project Car/lift and retained SC-01 relationship. D-024,
+appliance/MEP selection and Chapter 20 remeasurement remain open.
 
 - Repetir familias de componentes.
 - Diseñar encuentros panel–estructura–vidrio–portón antes de fabricar.

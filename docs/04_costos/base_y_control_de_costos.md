@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.19
+**Versión:** 0.3.20
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -481,10 +481,29 @@ the section, fire strategy, structural design, quantity take-off and quotations 
 **No price, saving, increase, contingency change, phase-total change, or target change is
 recognized by D-074.**
 
+### 0.3-AC — D-077 restored kitchen/dining and centred vehicle layout
+
+D-077 promotes the PB b32 domestic geometry into the active PB plan while retaining the
+SC-01 stair and four columns. The 10.05 m wall run remains within the budget source's
+12.00 ml cabinet allowance only if both documents use the same measurement convention;
+that equivalence is not yet demonstrated. The adopted schematic island is 7.20 m long,
+**2.40 m / 50% longer** than control item `20.02`'s 4.80 m island. Wall run plus island
+measure **17.25 m**, which is **3.25 m / 23.2% greater** than item `20.03`'s 14.00 ml
+countertop allowance before joints, end panels, upstands or waste.
+
+The centred dining furniture and the centred Project Car/lift test group do not by
+themselves add physical-work quantity. However, kitchen cabinets, countertop area and
+length, supports, power/data, seating edge, appliances and fabrication must be remeasured
+against `20.01`–`20.04`; the dry-island service strategy must be preserved unless a later
+MEP/cost decision accepts otherwise. **No price, saving, increase, contingency change,
+phase-total change, or target change is recognized by D-077 before coordinated quantities
+and comparable quotations exist.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AC  | 2026-08-21 | D-077 adopts the 10.05 m kitchen wall, 7.20 × 1.25 m dry island and opposite centred dining geometry. The island is 2.40 m / 50% longer than `20.02`; the 17.25 m wall-plus-island length is 3.25 m / 23.2% above the `20.03` countertop allowance. Chapter 20 requires remeasurement and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AB  | 2026-08-21 | D-074 coordinates one shared 22-riser PB/P2 dogleg stair and four continuous column reservations inside the unchanged core. Stair steel, landings, fire/smoke enclosure, guards, connections, erection, bases and foundations require remeasurement after CF-011 rear grade-discharge resolution; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AA  | 2026-08-20 | D-073 moves both existing 9.00 m technical bench starts to X=0.18 m at the front interior corners without changing quantity. Door-jamb/track, guard, seal, backing and removable-service end details require reconciliation; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-Z   | 2026-08-20 | D-072 moves the existing 9.00 × 0.75 m project-car bench against Side A and shifts the unpriced lift/vehicle test envelope inward. Existing priced control `21.04` is retained without adding length; backing, services and real equipment interfaces require reconciliation. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
