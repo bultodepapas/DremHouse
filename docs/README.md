@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.5
+**Version:** 0.6
 **Date:** 2026-08-21
 
 > [!NOTE]
@@ -46,7 +46,8 @@ they stay stable while their explicitly promoted versioned source can advance.
   plans, roof views, sections, all four façades, details, and their versioned provenance.
 - [Architectural design basis](02_arquitectura/bases_de_diseno.md)
 - [Visualization control and ChatGPT image prompt kit](02_arquitectura/control_de_visualizaciones.md):
-  four reference-grounded prompts, targeted correction prompts, and an acceptance checklist.
+  six-source 2026 research basis, four reference-grounded photorealistic prompts, targeted
+  correction prompts, and an acceptance checklist.
 - [Concept plan v0.3 — first parametric draft](02_arquitectura/plano_conceptual_v0.3_borrador.md)
 - [Concept plan v0.3 — draft 02](02_arquitectura/plano_conceptual_v0.3_borrador_02.md)
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)

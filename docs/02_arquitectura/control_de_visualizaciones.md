@@ -1,12 +1,13 @@
 # Visualization control and ChatGPT image prompt kit
 
 **Status:** active; schematic-design communication only; not for construction<br>
-**Version:** 0.3<br>
+**Version:** 0.4<br>
 **Date:** 2026-08-21<br>
 **Sources:** Project Constitution; D-033, D-039, D-052, D-054, D-056, D-059,
-D-063, D-067–D-075; current-drawing catalog; and the
-[official OpenAI image prompting guide](https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide)<br>
-**Supersedes:** visualization control v0.2; no design, geometry, scope, or cost change
+D-063, D-067–D-076; current-drawing catalog; and the six-source current OpenAI research
+matrix below<br>
+**Supersedes:** visualization control v0.3 for prompt method and wording only; no design,
+geometry, scope, or cost change
 
 ## Authority
 
@@ -20,6 +21,42 @@ reference set. Their SVGs remain schematic coordination drawings with exactly th
 authority and limitations of their preserved versioned sources. PNGs are previews. An
 AI-generated image is lower in precedence than every drawing and project document.
 
+## Research basis — six current official sources
+
+The following sources were reviewed on 2026-08-21. The first is a dated April 2026
+production guide for GPT Image 2; the other five are the current official OpenAI product
+and API documentation. The research is deliberately limited to primary OpenAI sources
+because this kit is intended for ChatGPT Images, not for a model-agnostic prompt contest.
+
+| # | Current source | Finding adopted in this kit |
+| ---: | --- | --- |
+| 1 | [GPT Image Generation Models Prompting Guide](https://learn.chatgpt.com/cookbook/examples/multimodal/image-gen-models-prompting-guide), 2026-04-21 | Use **photorealistic** explicitly; describe the capture as a real photograph; specify observable framing, light, materials, wear and imperfections; treat lens specifications as a look rather than exact optical simulation. |
+| 2 | [Image generation in ChatGPT](https://learn.chatgpt.com/docs/image-generation), current at review | State purpose, subject, setting, composition, visual style and only the relevant framing/material constraints. Use concrete visual language and repeat requirements that must remain fixed. |
+| 3 | [Image generation API guide](https://developers.openai.com/api/docs/guides/tools-image-generation), current at review | Prefer the verbs **create**, **draw** or **edit**; use multi-turn editing for refinement; change one item per follow-up. Where an API workflow is used, test composition economically before a final high-fidelity render. |
+| 4 | [Images and vision guide](https://developers.openai.com/api/docs/guides/images-vision), current at review | Multiple images can be supplied together, but they consume context and must be selected deliberately. Keep the reference set small and relevant. |
+| 5 | [Image inputs in ChatGPT](https://learn.chatgpt.com/docs/image-inputs), current at review | Identify every uploaded image and explain what it controls and how the images relate; never assume the model will infer reference precedence. |
+| 6 | [Prompting guide](https://developers.openai.com/api/docs/guides/prompting), current at review | Treat prompts like controlled project artifacts: version them, use representative acceptance checks, review every change and retain a rollback path. |
+
+### Adopted prompt protocol
+
+Every master prompt therefore uses the same information order:
+
+1. **Purpose and reference map:** what the image evaluates and what each numbered drawing
+   controls.
+2. **Capture:** viewpoint, framing, perspective and visible spatial sequence.
+3. **Architecture:** only the programme and geometry that must read in that view.
+4. **Photographic reality:** physically plausible daylight, contact shadows, reflections,
+   joints, seams, texture, wear and tonal range.
+5. **Invariants and exclusions:** the small set of conditions that would make an image
+   false if violated.
+6. **Output:** one image and its aspect ratio.
+
+Long architectural prompts are justified only because each view reconciles several
+drawings and hard constraints. Do not add decorative adjectives, duplicate prohibitions,
+exact camera jargon that cannot be visually assessed, or instructions unrelated to the
+acceptance checklist. Generate the base composition once, then use surgical edits instead
+of repeatedly replacing the whole prompt.
+
 ## How to use this kit in ChatGPT Images
 
 1. Start a new chat for each view so instructions from a previous image do not drift into
@@ -27,16 +64,17 @@ AI-generated image is lower in precedence than every drawing and project documen
 2. Upload only the reference images listed for that prompt, in the stated order. Four
    well-chosen references are preferable to a large, ambiguous set.
 3. Paste the prompt without deleting its geometry or exclusion clauses. Select a
-   landscape `16:9` aspect ratio when the interface offers an aspect-ratio control.
+   landscape `16:9` aspect ratio when the interface offers an aspect-ratio control. If an
+   API workflow exposes quality, prove composition first at low or medium quality and use
+   high quality only for the accepted final composition.
 4. Review the result against the acceptance checklist. If one item is wrong, use one
    targeted correction prompt; do not request a broad restyle at the same time.
 5. Treat all landscape, furniture, lighting, equipment, and material detail beyond the
    sources as an illustrative visualization hypothesis.
 
-The prompt structure follows the current OpenAI recommendation for complex image tasks:
-scene and purpose first, then subject and composition, followed by key details and
-explicit constraints. Each prompt names what the references control and what must remain
-unchanged.
+Each prompt names what the references control and what must remain unchanged. Lens values
+communicate approximate field of view and perspective only; they are not an assertion that
+the generated image obeys an exact physical camera model.
 
 ## Current design controls that every relevant view must preserve
 
@@ -84,7 +122,8 @@ unchanged.
 ### Paste this prompt
 
 ```text
-Create one photorealistic architectural visualization for schematic-design communication.
+Create one photorealistic architectural photograph for schematic-design communication,
+captured as if the completed space were photographed on site rather than rendered as CGI.
 Image 1 controls the ground-floor layout, Image 2 controls the partial upper floor and open
 family balcony, Image 3 controls the longitudinal proportions and heights, and Image 4
 controls the Great Wall. Treat the drawings as geometry references, not as graphic style.
@@ -114,8 +153,11 @@ with a clear regular-bay rhythm, lightly worn polished concrete, insulated metal
 replaceable timber worktops, powder-coated steel cabinets, and timber concentrated at the Great Wall and
 selected domestic elements. Use cool, soft Boyacá highland daylight through the limited
 side glazing and the two separated rooflights, balanced by restrained warm task lighting.
-The image must feel quiet, inhabited, durable, and exceptionally well proportioned, not
-like a glossy showroom or a luxury hotel.
+Include physically plausible seams, fasteners, contact shadows, restrained reflections,
+slight surface variation, and normal wear. Use a natural tonal range without artificial
+bloom, excessive sharpening, or perfectly polished CGI surfaces. The image must feel
+quiet, inhabited, durable, and exceptionally well proportioned, not like a glossy showroom
+or a luxury hotel.
 
 Hard constraints: do not shorten the hall; do not widen P2 or move it to the front; do not
 add interior rooms on the open ground floor; do not block the central axis; do not add a
@@ -137,8 +179,9 @@ collage, plan, axonometric, cutaway, or mood board.
 ### Paste this prompt
 
 ```text
-Create one photorealistic interior architectural image for evaluating the Dream House
-living zone and its relationship to the open hall. Image 1 controls the ground-floor
+Create one photorealistic interior architectural photograph for evaluating the Dream House
+living zone and its relationship to the open hall, captured as a believable real camera
+image rather than polished CGI. Image 1 controls the ground-floor
 layout, Image 2 controls the TV wall and furniture relationship, Image 3 controls P2, and
 Image 4 controls the open family-balcony edge. Preserve their geometry and do not copy
 their drawing graphics or labels.
@@ -162,8 +205,9 @@ Material and light: combine dark exposed structural steel, lightly worn polished
 warm timber or slatted acoustic lining at the TV field, robust neutral upholstery, and a
 restrained palette of charcoal, warm brown, off-white, and muted green. Use soft overcast
 Boyacá daylight, controlled screen reflections, warm localized lighting, realistic material
-imperfections, and natural contrast. Keep the mood domestic and calm inside the large
-industrial volume.
+imperfections, correct contact shadows, restrained reflections, and natural contrast.
+Avoid artificial bloom, excessive sharpening, and uniformly perfect surfaces. Keep the
+mood domestic and calm inside the large industrial volume.
 
 Hard constraints: keep the television on the Side B perimeter wall; keep the adjacent
 workstation and window; keep the central route unobstructed; retain the partial P2 and only
@@ -184,8 +228,9 @@ No people, text, logos, labels, or watermark. Produce one landscape 16:9 image o
 ### Paste this prompt
 
 ```text
-Create one photorealistic architectural visualization of the shared P2 family centre as an
-internal balcony overlooking the double-height hall. Image 1 controls the upper-floor
+Create one photorealistic architectural photograph of the shared P2 family centre as an
+internal balcony overlooking the double-height hall, captured as a real built interior
+rather than polished CGI. Image 1 controls the upper-floor
 rooms and family centre, Image 2 controls the retained enclosed ends and open guarded edge,
 Image 3 controls the section, and Image 4 controls the hall below. Use the references as
 spatial control for this visualization and do not reproduce their annotations.
@@ -210,7 +255,9 @@ Material and light: the family level feels refined, warm, and quiet with smooth 
 walls, timber joinery, acoustic textiles, and durable neutral furniture. The hall remains
 honestly industrial with dark exposed steel and polished concrete. Use cool diffuse daylight
 from the limited side windows and two separated rooflights, with warm localized light at
-the family lounge. Show believable scale, edges, shadows, and material wear.
+the family lounge. Show believable scale, construction joints, contact shadows, restrained
+reflections, slight material variation, and normal wear. Avoid artificial bloom and
+uniformly perfect surfaces.
 
 Hard constraints: do not turn P2 into a full-width mezzanine or hotel gallery; do not use
 glass to close the 7.45 m opening; do not expose corrugated metal, framing, bracing, ducts,
@@ -231,17 +278,22 @@ logos, or watermark. Produce one landscape 16:9 image only.
 ### Paste this prompt
 
 ```text
-Create one photorealistic exterior architectural image for evaluating the Dream House front
-identity. Image 1 controls the front façade and its three openings, Images 2 and 3 control
-the long side elevations and roof slope, and Image 4 controls the roof and two rooflights.
-Treat every landscape element as illustrative because the actual site is not yet selected.
+Create one photorealistic exterior architectural photograph for evaluating the Dream House
+front identity, captured as if the completed building were photographed on site rather
+than rendered as CGI. Image 1 controls the front façade and exactly three openings. Image 2
+controls Side A, Image 3 controls Side B, and Image 4 controls the mono-pitch roof and
+exactly two separated rooflights. Preserve the drawings' geometry and proportions, not
+their linework, colors, text, or graphic style. Treat every landscape element as
+illustrative because the actual site is not yet selected.
 
 Scene and composition: show a human-eye-level three-quarter view from the continuous front
-concrete apron, far enough away to include the full 18 m front façade and enough of one
+concrete apron, far enough away to include the complete 18 m front façade and enough of one
 36 m side wall to communicate the building's exceptional length. Use a level rectilinear
-35 mm architectural-photography view with verticals vertical and modest perspective. The
+architectural-photography view with the natural perspective of an approximately 35 mm
+full-frame lens, verticals vertical, no fisheye stretching, and no dramatic tilt. Let the
+long side recede naturally without making the front appear wider than the drawing. The
 building must read immediately as one sober rectangular industrial hall converted into a
-home, not as a conventional house with a large garage.
+home, not as a conventional house with an attached garage.
 
 Architecture: preserve exactly three front entrances—one large industrial project-car door,
 one central pedestrian door, and one equally legible large RC/DIY-workshop door. Preserve
@@ -249,19 +301,26 @@ the simple continuous mono-pitch roof, the low-to-high side relationship shown i
 elevations, the restrained side glazing, and only two separated rooflights. Use a continuous
 insulated corrugated-metal envelope, crisp dark steel trims, robust industrial doors, a
 simple central pedestrian portal, and a continuous drained concrete apron meeting level
-grass. Keep the mass calm, repetitive, economical, and nearly monolithic.
+grass. Show plausible panel modules, flashings, closures, gutters, downpipes, door tracks,
+thresholds, sealant joints, and slab-to-wall contact. Keep the mass calm, repetitive,
+economical, and nearly monolithic.
 
 Material and atmosphere: matte medium-grey metal, charcoal frames and doors, subtle warm
-timber only at the pedestrian threshold, realistic seams, flashings, drainage, weathering,
-and cool overcast Boyacá highland daylight. Use restrained native grass and a few distant
-highland trees only as atmosphere, with no claim of actual site conditions. The result
-should feel durable, quiet, precise, and buildable rather than glamorous or futuristic.
+timber only at the pedestrian threshold, subtle coating variation, restrained weathering,
+and cool overcast Boyacá highland daylight. Use a neutral white balance, soft physically
+consistent shadows, believable reflections, contact darkening at joints, and natural tonal
+range without artificial bloom, HDR halos, excessive sharpening, or uniformly perfect CGI
+surfaces. Use restrained native grass and a few distant highland trees only as atmosphere,
+with no claim of actual site conditions. The result should feel durable, quiet, precise,
+photographically believable, and buildable rather than glamorous or futuristic.
 
-Hard constraints: no gable roof, porch, canopy, dormer, chimney, external balcony, side
-stair, extra door, extra rooflight, glass-box façade, exposed domestic rooms, daily-use
-vehicles, perimeter wall, ornamental landscaping, mountains dominating the image, or
-decorative structural gestures. Do not place the project car outside. No people, signage,
-text, logos, dimensions, or watermark. Produce one landscape 16:9 image only.
+Invariants and exclusions: keep exactly three front entrances, one continuous mono-pitch
+roof, two rooflights, restrained side glazing, one rectangular volume, and the continuous
+front apron. Do not add a gable, porch, canopy, dormer, chimney, external balcony, side
+stair, extra opening, glass-box façade, exposed domestic room, daily-use vehicle, perimeter
+wall, ornamental landscaping, dominant mountain backdrop, or decorative structural
+gesture. Do not place the project car outside. No people, signage, text, logos, dimensions,
+or watermark. Produce one landscape 16:9 image only, not a collage or alternate option.
 ```
 
 ## Targeted correction prompts
@@ -325,6 +384,18 @@ Keep the approved geometry, camera, crop, lighting, palette, and all unrelated c
 exactly unchanged.
 ```
 
+### Restore photographic realism
+
+```text
+Edit only the photographic realism. Preserve the exact building geometry, openings, roof,
+camera position, crop, object placement, landscape extent, and lighting direction. Replace
+uniformly perfect CGI surfaces with physically plausible panel seams, fasteners, flashings,
+sealant joints, subtle coating variation, restrained weathering, correct contact shadows,
+believable reflections, and a natural camera tonal range. Remove artificial bloom, HDR
+halos, excessive sharpening, plastic textures, and dramatic cinematic grading. Do not add,
+remove, or relocate any architectural or landscape element.
+```
+
 ## Acceptance checklist
 
 Reject or correct the image if any applicable answer is **no**.
@@ -345,6 +416,10 @@ Reject or correct the image if any applicable answer is **no**.
 - [ ] Are there exactly two separated rooflight events when the roof is visible?
 - [ ] Is glazing limited and intentional rather than a transparent-box treatment?
 - [ ] Are private P2 interiors smooth and domestic rather than exposed corrugated metal?
+- [ ] Do construction joints, contacts, shadows, and reflections look physically plausible?
+- [ ] Are materials naturally varied rather than uniformly perfect or plastic-looking?
+- [ ] Is the image free of artificial bloom, HDR halos, fisheye distortion, and excessive
+      sharpening?
 - [ ] Are there no labels, dimensions, logos, watermark, or invented programme elements?
 
 ## Publication rule
