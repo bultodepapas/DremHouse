@@ -1,8 +1,8 @@
 # Bases MEP, confort y automatización
 
 **Estatus:** base de coordinación; no es diseño ejecutable  
-**Versión:** 0.8
-**Fecha:** 2026-08-20
+**Versión:** 0.9
+**Fecha:** 2026-08-21
 
 ## Filosofía
 
@@ -66,6 +66,22 @@ duct, emergency-stop and equipment-clearance positions.
 Under D-073, start both accessible bench-service rails at the front interior corners but
 keep isolators, bends and removable covers clear of industrial-door jambs, tracks, guards
 and seals. Do not create concealed dead-end service pockets at either corner.
+
+Under D-079, distribute services on the common six-module spine without making the two
+benches equal. Project Car requires impact-protected task power, visible isolation,
+lighting and coordinated compressed-air/source-extraction options based on real tools.
+RC modules R2–R4 require dedicated clean-electronics power, data, manual height-adjustment
+clearance and localized ESD coordination; R3 additionally requires effective solder-fume
+capture at source. Bond the ESD common point to the designed protective-earth system and
+do not create an independent intuitive earth electrode.
+
+Retain all power, data, air and extraction covers removable within the 0.12 m rear service
+zone. Keep the +0.90 m technical-window sills, flashings and drainage independent of the
+worktops. The 3D-printer and LiPo envelopes move 0.40 m inward to clear the RC operating
+strip, but real printer materials/emissions and the complete battery fleet, chargers,
+noncombustible enclosure, ventilation, monitoring, detection and fire response remain
+professional equipment/risk inputs. Final electrical work must use the RETIE version
+applicable at design and construction and legally competent professionals.
 
 Under D-071, provide an accessible service zone at the Side B perimeter wall for dedicated
 power, data, spare AV conduits, speakers, controls and equipment ventilation. Keep

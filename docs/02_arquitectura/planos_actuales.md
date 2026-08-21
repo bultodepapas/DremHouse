@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.20<br>
+**Version:** 1.21<br>
 **Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -19,9 +19,9 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with centred Side A shared workstation and unified window, opposite dining and kitchen, centred project car and coordinated stair core" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with differentiated modular automotive and RC workbenches, central RC island, shared workstation, dining and coordinated stair core" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-35-PB · <a href="../../planos/conceptual_v0.3_b35_pb/DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
@@ -67,29 +67,34 @@ record, repository README, and presentation do not change when a new issue is pr
 </tr>
 <tr>
 <td width="50%" valign="top">
+  <a href="../../planos/actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.svg"><img src="../../planos/actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.png" alt="Dream House schematic technical workbench system showing automotive, RC electronics and central island modules with heights and open coordination gates" width="100%"></a>
+  <br><strong>PB modular technical workbench system</strong>
+  <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">versioned source</a></sub>
+</td>
+<td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
   <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
   <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">versioned source</a></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
   <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="../../planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><strong>Integrated structural evidence</strong>
   <br><sub>0.3 + E1 0.2 · <a href="../../planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">versioned source</a></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><strong>Stair-frame continuity</strong>
@@ -102,8 +107,8 @@ record, repository README, and presentation do not change when a new issue is pr
 
 ## What the set contains
 
-The publication layer currently contains **24 SVG/PNG pairs**:
-**19 architectural views** and **5 structural coordination
+The publication layer currently contains **25 SVG/PNG pairs**:
+**20 architectural views** and **5 structural coordination
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
 owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB

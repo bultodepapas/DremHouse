@@ -1,6 +1,7 @@
 # PB corner-start technical workbenches — draft 29
 
-**Status:** active schematic coordination hypothesis under D-073; not for construction
+**Status:** retained D-073 corner-coordinate basis; modular, height, operating-strip and
+RC support-equipment definition superseded by D-079/PB b36; not for construction
 **Version:** 0.3-draft-29-PB
 **Date:** 2026-08-20
 **Scope:** longitudinal start of the Project Car and RC/electronics wall benches
@@ -19,7 +20,9 @@ permanent, building-integrated character.
 | RC/electronics | Side B | X=0.18 m | X=9.18 m | 0.75 m |
 
 Both benches remain below their technical windows and retain the D-068 secondary-steel
-rail/replaceable-worktop family. D-072's lift test position remains unchanged.
+rail/replaceable-worktop family. D-079/PB b36 retains their start and end coordinates while
+differentiating module duty, height and operating strips and moving the separate RC support
+envelopes inward. Its current lift relationship remains an explicit open test.
 
 ## Front-corner coordination
 

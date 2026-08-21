@@ -1,0 +1,21 @@
+{
+  "revision": "0.3-draft-36-PB",
+  "status": "issued for D-079 technical-workbench modular and ergonomic coordination; owner anthropometry, real lift, equipment, loads, extraction, electrical/ESD design, joinery and cost remain open; not for construction",
+  "decision": "D-079",
+  "source": "dreamhouse/pb_b36_delta.json",
+  "source_sha256": "61584351947e722b860a1e82ac264e97a52cdaeec2abd66b3dd76bf8816071d9",
+  "base_source": "dreamhouse/pb_b35_delta.json",
+  "base_source_sha256": "e1e335aed015f890ef5646b9a2b47c8823025ee1a3dc8825e8f54202cbd6c498",
+  "generator": "dreamhouse/generate_pb_b36.py",
+  "supersedes": "0.3-draft-35-PB / PLN-001-R13 as the active PB plan and D-072/D-073 only for technical-workbench module, height, operating-strip and RC-support-equipment coordination; all D-078 Side A workstation/opening sheets remain active",
+  "retained_sources": [
+    "planos/conceptual_v0.3_b35_pb/DH-ARQ-ELE-003-R09_SIDE-A-PERFORMANCE-FIRST-OPENING.svg",
+    "planos/conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg"
+  ],
+  "outputs": [
+    "DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg",
+    "DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

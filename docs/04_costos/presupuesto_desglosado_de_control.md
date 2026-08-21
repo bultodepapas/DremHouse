@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.7
+**Versión:** 0.3.8
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -406,12 +406,13 @@ registran como **equipamiento**, fuera de obra.
 | 21.01  | Walk-in closet principal                      | gl  |    1 |  $9.000.000 | $9.000.000 | $9.000.000 |         $0 | baja-media | Vestidor 15–16 m², obra            |
 | 21.02  | Closets de suites de hijos                    | un  |    2 |  $2.500.000 | $5.000.000 | $2.500.000 | $2.500.000 | baja-media | Hijo 1 en F1; hijo 2 en F2         |
 | 21.03  | Closet de huéspedes                           | gl  |    1 |  $1.500.000 | $1.500.000 |         $0 | $1.500.000 | baja-media | F2                                 |
-| 21.04  | D-072/D-073 banco Project Car contra lateral A | ml  |    9 |    $722.222 | $6.500.000 | $4.000.000 | $2.500.000 | baja-media | Starts at front corner; existing allowance retained; wall rail/backing, door-jamb end, cabinets, extraction and services require reconciliation |
-| 21.05  | Banco central RC 1,60 × 4,50                  | gl  |    1 |  $3.000.000 | $3.000.000 | $1.500.000 | $1.500.000 | baja-media | Base robusta F1; almacenamiento F2 |
+| 21.04  | D-079 Project Car six-module wall bench       | ml  |    9 |    $722.222 | $6.500.000 | $4.000.000 | $2.500.000 | baja-media | Six 1.50 m modules; one lower heavy-force bay; existing allowance retained pending complete reconciliation |
+| 21.05  | D-079 central RC island 4,50 × 1,60           | gl  |    1 |  $3.000.000 | $3.000.000 | $1.500.000 | $1.500.000 | baja-media | Three 1.50 m two-sided modules; +0.84 m test top; mobility and storage open |
 | 21.06  | Cajoneras y gabinetes técnicos adicionales    | gl  |    1 |  $3.000.000 | $3.000.000 |         $0 | $3.000.000 | baja-media | F2                                 |
 | 21.07  | Almacenamiento de aviones/lavandería/linen    | gl  |    1 |  $2.000.000 | $2.000.000 |         $0 | $2.000.000 | baja-media | F2                                 |
 | 21.08  | D-078 Side A shared + D-069 Side B workstation assemblies | un | 2 | TBC | not included | not included | $0 | baja | 7.56 m² total worktop + 5 suspended steel cabinets; reconcile allowances |
 | 21.09  | D-071 fixed Side B AV console                | gl  |    1 |          TBC | not included | not included | $0 | baja | 3.40 m accessible console; D-070 reverse-face sideboard deleted; equipment excluded |
+| 21.10  | D-079 RC/electronics six-module wall bench   | ml  |    9 |          TBC | not included | not included | $0 | baja | Three fixed + three manual-adjustable modules; localized ESD, solder extraction and services; not traceable in priced subtotal |
 
 `21.08` is an unpriced Phase 1 scope alert. D-078 replaces only the Side A portion of the
 former mirrored pair: the current scope is one **5.40 × 0.90 m** shared Side A worktop
@@ -425,6 +426,13 @@ trays, cabinets and storage loads are specified and quoted.
 ventilation and local backing with `14.07`, electrical/data chapters and existing
 allowances. The D-070 sideboard is deleted and was never priced. The 100-inch television,
 speakers and active AV remain owner equipment outside the physical-works subtotal.
+
+`21.10` exposes rather than adds the existing 9.00 m RC/electronics wall-bench scope. Its
+six 1.50 m modules include three fixed modules and three manual-adjustable 0.80 m-deep
+clean-electronics modules, localized ESD, one solder source-extraction position and a
+removable service spine. Reconcile possible overlap with `21.06`, chapters 17/18/19 and
+the inherited workshop allowance before pricing. Do not add the line to the $30 M chapter
+subtotal or claim a target increase until local modular quotations and a mock-up exist.
 
 ---
 

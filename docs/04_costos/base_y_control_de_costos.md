@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.21
+**Versión:** 0.3.22
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -524,10 +524,38 @@ durable coatings, protected flashings and accessible seals. Reconcile chapters 0
 **No price, saving, increase, contingency change, phase-total change, or target change is
 recognized by D-078 before coordinated quantities and comparable quotations exist.**
 
+### 0.3-AE — D-079 modular Project Car and RC workbench system
+
+D-079 changes no wall-bench length and no central-island footprint. The measurable test
+scope is now two **9.00 × 0.75 m** wall benches divided into twelve 1.50 m modules plus
+one retained **4.50 × 1.60 m** central RC island divided into three 1.50 m modules. Total
+technical-workbench surface remains approximately **20.70 m²**: 13.50 m² on the two wall
+runs and 7.20 m² on the central island.
+
+Within that unchanged area, D-079 introduces cost-relevant differentiation: one lower
+heavy-force/vice module, three 0.80 m-deep manual-adjustable RC modules, three localized
+ESD work surfaces, one solder source-extraction position, removable 0.12 m service zones,
+independent window/sill gaps and two explicit 1.20 m operating strips. The 3D-printer and
+LiPo envelopes move 0.40 m without adding equipment quantity.
+
+Existing Project Car control `21.04`, central RC control `21.05` and general storage
+control `21.06` remain pending one-to-one scope reconciliation. The second 9.00 m RC wall
+bench is not traceable as an independent priced item; add atomic alert `21.10` at TBC
+rather than silently absorbing it. Price six fixed Project Car modules, three fixed RC
+modules, three manual-adjustable RC modules and three central-island modules separately,
+using local fabrication and replaceable tops as the base option. Imported systems are
+dimensional/load benchmarks only.
+
+The Project Car operating-strip/lift overlap, real loads, owner anthropometry, door and
+window interfaces, RETIE, ESD, extraction and battery fire strategy can change scope.
+**No price, saving, increase, contingency change, phase-total change, or target change is
+recognized by D-079 before mock-ups, cost-code reconciliation and comparable quotations.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AE  | 2026-08-21 | D-079 retains 20.70 m² of technical-workbench surface but makes twelve 1.50 m wall modules, three 1.50 m central-island modules, one heavy-force bay, three manual-adjustable ESD-capable RC modules, solder extraction and service zones measurable. The 9.00 m RC wall bench becomes unpriced alert `21.10`; local modular fabrication is the base pricing route. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AD  | 2026-08-21 | D-078 replaces 18.495 m² of two-event Side A glazing with one 20.88 m² modular opening (+2.385 m² / 12.9%) while reducing outer opening perimeter by 4.00 m / 16.5%. The Side A worktop increases by 2.16 m² / 80%, and one three-drawer cabinet is added. Price a direct rugged industrial envelope rather than premium facade treatment; chapters 05/06/09/10/12/13/17/18/21 require reconciliation and quotations. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AC  | 2026-08-21 | D-077 adopts the 10.05 m kitchen wall, 7.20 × 1.25 m dry island and opposite centred dining geometry. The island is 2.40 m / 50% longer than `20.02`; the 17.25 m wall-plus-island length is 3.25 m / 23.2% above the `20.03` countertop allowance. Chapter 20 requires remeasurement and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AB  | 2026-08-21 | D-074 coordinates one shared 22-riser PB/P2 dogleg stair and four continuous column reservations inside the unchanged core. Stair steel, landings, fire/smoke enclosure, guards, connections, erection, bases and foundations require remeasurement after CF-011 rear grade-discharge resolution; **no price, saving, increase, contingency, phase-total or target change is recognized.** |

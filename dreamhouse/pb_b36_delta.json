@@ -1,0 +1,127 @@
+{
+  "base_delta": "dreamhouse/pb_b35_delta.json",
+  "base_delta_sha256": "e1e335aed015f890ef5646b9a2b47c8823025ee1a3dc8825e8f54202cbd6c498",
+  "revision": "0.3-draft-36-PB",
+  "status": "issued for D-079 technical-workbench modular and ergonomic coordination; owner anthropometry, real lift, equipment, loads, extraction, electrical/ESD design, joinery and cost remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-35-PB / PLN-001-R13 as the active PB plan and D-072/D-073 only for technical-workbench module, height, operating-strip and RC-support-equipment coordination; all D-078 Side A workstation/opening sheets remain active",
+  "decision": "D-079",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R14",
+    "plan_title": "COORDINATED GROUND FLOOR · MODULAR TECHNICAL WORKBENCHES",
+    "plan_subtitle": "D-079 differentiates Project Car, RC/electronics and central RC assembly work while retaining the D-078 interior-led hall"
+  },
+  "technical_bench_detail_meta": {
+    "code": "DET-007-R01",
+    "title": "PB TECHNICAL WORKBENCH SYSTEM",
+    "subtitle": "D-079 six 1.50 m modules per wall bench + 4.50 × 1.60 m central RC assembly island · not for construction"
+  },
+  "built_in_benches": [
+    {
+      "id": "PB-BENCH-CAR",
+      "name": "Project-car modular integrated workbench",
+      "x0": 0.18,
+      "y0": 0.18,
+      "length": 9.0,
+      "depth": 0.75,
+      "worktop_height": 0.90,
+      "mounting": "side_a_perimeter",
+      "start_condition": "front_inner_corner",
+      "support_family": "D-068 steel rail retained as the D-079 six-module bolted secondary-steel service spine with replaceable local worktops; duty-specific inserts and no facade structural function",
+      "module_count": 6,
+      "module_width": 1.50,
+      "module_top_heights": [0.90, 0.84, 0.90, 0.90, 0.90, 0.90],
+      "module_top_depths": [0.75, 0.75, 0.75, 0.75, 0.75, 0.75],
+      "module_roles": [
+        "door / service transition",
+        "lower heavy-force / vice bay",
+        "general mechanical assembly",
+        "general mechanical assembly",
+        "diagnostics / clean mechanical",
+        "parts landing / storage"
+      ],
+      "heavy_module_index": 1,
+      "storage_module_indices_test": [2, 4, 5],
+      "rear_service_zone": 0.12,
+      "active_depth": 0.63,
+      "operating_strip_depth": 1.20,
+      "operating_strip_y0": 0.93,
+      "operating_strip_y1": 2.13,
+      "reservation": "six replaceable 1.50 m modules begin at the Side A/front interior corner below the technical window; the second module is a 0.84 m heavy-force test bay; real lift, vehicle, vice, drawer and front-door interfaces govern"
+    },
+    {
+      "id": "PB-BENCH-RC",
+      "name": "RC / electronics modular integrated workbench",
+      "x0": 0.18,
+      "y0": 17.07,
+      "length": 9.0,
+      "depth": 0.75,
+      "worktop_height": 0.90,
+      "mounting": "side_b_perimeter",
+      "start_condition": "front_inner_corner",
+      "support_family": "D-068 steel rail retained as the D-079 six-module bolted secondary-steel service spine with replaceable local worktops; duty-specific inserts and no facade structural function",
+      "module_count": 6,
+      "module_width": 1.50,
+      "module_top_heights": [0.90, 0.90, 0.90, 0.90, 0.90, 0.90],
+      "module_top_depths": [0.75, 0.80, 0.80, 0.80, 0.75, 0.75],
+      "module_roles": [
+        "door transition / model mechanics",
+        "adjustable clean electronics / ESD",
+        "adjustable soldering / ESD + source extraction",
+        "adjustable instruments / test / ESD",
+        "tools / fasteners",
+        "clean landing / storage"
+      ],
+      "adjustable_module_indices": [1, 2, 3],
+      "adjustment_min_height": 0.70,
+      "adjustment_max_height": 1.10,
+      "esd_module_indices": [1, 2, 3],
+      "solder_module_index": 2,
+      "rear_service_zone": 0.12,
+      "active_depth": 0.63,
+      "operating_strip_depth": 1.20,
+      "operating_strip_y0": 15.87,
+      "operating_strip_y1": 17.07,
+      "reservation": "six replaceable 1.50 m modules begin at the Side B/front interior corner; three 0.80 m-deep manual-adjustable electronics modules test a 0.70–1.10 m range; only the clean modules receive a coordinated ESD worksurface and common-point ground"
+    }
+  ],
+  "central_rc_bench": {
+    "id": "PB-BENCH-RC-CENTRAL",
+    "name": "Central RC two-sided assembly island",
+    "x": 2.80,
+    "y": 12.70,
+    "length": 4.50,
+    "depth": 1.60,
+    "height": 0.84,
+    "module_count": 3,
+    "module_width": 1.50,
+    "half_depth": 0.80,
+    "access": "all_sides",
+    "surface": "flat replaceable light-colour assembly/cutting surface; not the primary soldering or LiPo-charging station",
+    "mobility_status": "fixed versus lockable-mobile support remains open pending flatness, stability and cost mock-up"
+  },
+  "rc_support_equipment": {
+    "printer_zone": {"x": 0.65, "y": 14.00, "w": 1.20, "d": 1.80, "label": "3D ×3"},
+    "lipo_zone": {"x": 8.15, "y": 14.00, "w": 1.25, "d": 1.80, "label": "LiPo · SEPARATE / VENTILATED"},
+    "shift_from_predecessor": 0.40,
+    "reason": "move both support-equipment envelopes inward to retain at least 1.20 m between their rear edge and the fixed RC wall bench"
+  },
+  "research_basis": [
+    "CCOHS task-relative standing work heights: precision above elbow, light work slightly below and heavy downward-force work substantially below elbow; owner anthropometry and mock-up still govern",
+    "Bott/LISTA industrial benchmarks support 0.75 m depth, approximately 0.84–0.90 m fixed heights and modular heavy-duty construction",
+    "Treston electronics benchmarks support 0.80 m depth and 0.70–1.10 m height-adjustable ESD-capable modules",
+    "ESD Association guidance requires dissipative worksurface, personnel grounding and a common point bonded to equipment protective earth",
+    "HSE solder guidance requires effective source extraction rather than a simple fume-dispersing fan",
+    "Real lift manufacturer bay geometry and obstruction clearances govern over the current schematic exclusion envelope"
+  ],
+  "coordination_holds_append": [
+    "D-079 retains both 9.00 × 0.75 m corner-start wall-bench footprints and divides each into six replaceable 1.50 m modules; the two sides deliberately receive different duty classes, heights, surfaces and services.",
+    "The Project Car bench tests five modules at +0.90 m and one lower heavy-force/vice module at +0.84 m. Final heights require owner elbow-height measurement, real tasks and a full-scale mock-up.",
+    "The RC wall bench tests three 0.80 m-deep manual-adjustable clean-electronics modules with a +0.70–1.10 m range inside the retained 0.75 m building datum; fixed model-mechanics, tools and landing modules remain at +0.90 m.",
+    "Only the clean RC electronics modules receive an ESD worksurface and common-point ground bonded to protective earth. The soldering module requires effective source extraction. LiPo charging remains a separate noncombustible, ventilated and professionally assessed station.",
+    "The central RC island remains 4.50 × 1.60 m, is divided into three 1.50 m modules and tests a +0.84 m top for large-object assembly from both sides. Fixed versus lockable-mobile support remains open.",
+    "The 1.20 m Project Car bench operating strip overlaps the schematic lift/vehicle envelope by 1.10 m. This is an explicit product-selection and simultaneous-use conflict, not a passed clearance.",
+    "The 3D-printer and LiPo support-equipment envelopes move 0.40 m inward in the RC bay so the 1.20 m wall-bench operating strip remains graphically clear. Extraction, battery fire strategy and real equipment still govern.",
+    "Wall-bench tops remain structurally and environmentally independent of the +0.90 m technical-window sill. Detail a removable rear service zone, maintainable shadow gap, drainage and seals without loading window frames or facade girts."
+  ]
+}

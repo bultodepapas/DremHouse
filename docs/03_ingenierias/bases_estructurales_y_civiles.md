@@ -1,7 +1,7 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.9
+**Versión:** 0.10
 **Fecha:** 2026-08-21
 
 ## Alcance
@@ -30,6 +30,11 @@ cargas y análisis sería falsa ingeniería.
   interface and compatibility with the real inward-shifted lift/vehicle envelope.
 - D-073 front-corner bench end connections and their proximity to both industrial-door
   jamb/track zones without transferring loads into door frames or facade girts.
+- D-079 six-module wall-bench service spines, localized +0.84 m heavy-force/vice bay,
+  three manual-adjustable RC inserts, central RC island support and all resulting static,
+  loaded-drawer, local impact, racking, vibration, flatness and bolted-backing demands.
+  Treat commercial catalogue capacities as benchmarks only; design from the real tool,
+  workpiece and user load schedule with serviceability and replaceability criteria.
 - D-071 local TV backing within the Side B exterior wall, including TV/mount eccentric
   load, console load, verified load transfer, sealed penetrations and enclosure continuity.
 - Viento, sismo, estabilidad global, flechas y derivas de una caja liviana de gran tamaño.
@@ -142,5 +147,8 @@ visible no exime protección ni inspección futura.
   structural engineer's coordinated design and inspection requirements.
 - Load the Side B cladding, workstation window frame or unverified facade girts with the
   D-071 TV/mount, or puncture enclosure layers without coordinated backing and seals.
-- Treat D-072's 0.12 m graphic bench/lift gap as a safe operating, vehicle-door,
+- Treat predecessor D-072's `0.12 m` or current D-079's `0.10 m` graphic bench/lift gap as a safe operating, vehicle-door,
   maintenance or emergency clearance, or load the technical window/facade with the bench.
+- Treat D-079's 1.20 m operating strips as accepted lift, tool-cart, drawer, emergency or
+  simultaneous-use clearances, or attach the common service spine, vice, central RC island
+  or adjustable inserts to glazing, door frames or unverified facade girts.

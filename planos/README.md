@@ -1,7 +1,7 @@
 # Dream House drawings
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.20<br>
+**Version:** 1.21<br>
 **Date:** 2026-08-21<br>
 **Source:** [`actual/catalog.json`](actual/catalog.json)
 
@@ -15,9 +15,9 @@
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with centred Side A shared workstation and unified window, opposite dining and kitchen, centred project car and coordinated stair core" width="100%"></a>
+  <a href="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with differentiated modular automotive and RC workbenches, central RC island, shared workstation, dining and coordinated stair core" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-35-PB · <a href="conceptual_v0.3_b35_pb/DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-36-PB · <a href="conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
@@ -63,29 +63,34 @@
 </tr>
 <tr>
 <td width="50%" valign="top">
+  <a href="actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.svg"><img src="actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.png" alt="Dream House schematic technical workbench system showing automotive, RC electronics and central island modules with heights and open coordination gates" width="100%"></a>
+  <br><strong>PB modular technical workbench system</strong>
+  <br><sub>0.3-draft-36-PB · <a href="conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">versioned source</a></sub>
+</td>
+<td width="50%" valign="top">
   <a href="actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
   <br><strong>P2-W01 · 250 mm acoustic wall</strong>
   <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
   <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">versioned source</a></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
   <br><strong>P2-W05 · double-frame exterior wall</strong>
   <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
   <a href="actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"><img src="actual/DH-EST-E1-001_CURRENT-SYNTHESIS.png" alt="Current Dream House integrated E1 structural screening sheet" width="100%"></a>
   <br><strong>Integrated structural evidence</strong>
   <br><sub>0.3 + E1 0.2 · <a href="estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg">versioned source</a></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
   <a href="actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg"><img src="actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.png" alt="Current Dream House vertical continuity and stair-frame structural study" width="100%"></a>
   <br><strong>Stair-frame continuity</strong>
@@ -103,7 +108,7 @@ all architectural sheets with the structural studies and their open gates.
 
 | Stable ID | Drawing | Current aliases | Preserved issue | Status / limitation |
 | --- | --- | --- | --- | --- |
-| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-35-PB](conceptual_v0.3_b35_pb/DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg) | issued for D-078 Side A unified interior workstation/window coordination; facade expression is subordinate to robust economical envelope performance; structure, drainage, glazing, MEP, joinery and cost remain open; not for construction |
+| `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-36-PB](conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg) | issued for D-079 technical-workbench modular and ergonomic coordination; owner anthropometry, real lift, equipment, loads, extraction, electrical/ESD design, joinery and cost remain open; not for construction |
 | `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg) | issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design and structural details remain open; not for construction |
 | `architecture-roof-plan` | Roof and rooflight plan | [SVG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg) · [PNG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-daylight-section` | Rooflight daylight section | [SVG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg) · [PNG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg) | active D-054 schematic coordination hypothesis; not for construction |
@@ -117,6 +122,7 @@ all architectural sheets with the structural studies and their open gates.
 | `architecture-ground-floor-core` | Ground-floor service core | [SVG](actual/DH-ARQ-DET-001_CURRENT-GROUND-FLOOR-CORE.svg) · [PNG](actual/DH-ARQ-DET-001_CURRENT-GROUND-FLOOR-CORE.png) | [0.3-draft-33-PB](conceptual_v0.3_b33_pb/DH-ARQ-DET-001-R05_PB-STAIR-CORE.svg) | issued for D-074 stair-core coordination; CF-011 and all professional design gates remain open; not for construction |
 | `architecture-pb-media-wall` | PB living / 100-inch TV on Side B wall | [SVG](actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.svg) · [PNG](actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.png) | [0.3-draft-27-PB](conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg) | owner-corrected D-071 architectural intent; perimeter-wall backing, TV product, AV/MEP, glare, enclosure and acoustic details remain open; not for construction |
 | `architecture-pb-integrated-workstations` | PB Side A shared two-person workstation | [SVG](actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg) · [PNG](actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png) | [0.3-draft-35-PB](conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg) | owner-approved D-078 interior-led architectural intent; secondary steel, connections, mullion sightlines, facade performance, MEP, mock-up and cost remain open; not for construction |
+| `architecture-pb-technical-workbenches` | PB modular technical workbench system | [SVG](actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.svg) · [PNG](actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.png) | [0.3-draft-36-PB](conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg) | issued for D-079 modular and ergonomic coordination; real equipment, lift clearance, anthropometry, structure, electrical and ESD design, extraction, battery safety, joinery and cost remain open; not for construction |
 | `architecture-access-egress` | Upper-floor access and egress | [SVG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.svg) · [PNG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-DIA-001-R21_P2-ACCESS-EGRESS.svg) | active D-074 schematic coordination hypothesis; life-safety and rear grade discharge remain open |
 | `architecture-owner-priorities` | Active coordination interfaces | [SVG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.svg) · [PNG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-002-R20_OWNER-PRIORITIES.svg) | issued for coordination under D-065; not for construction |
 | `architecture-p2-acoustic-partition` | P2-W01 · 250 mm acoustic wall | [SVG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg) · [PNG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg) | frozen design control for coordination; no tested acoustic or fire rating; not for construction |
@@ -134,7 +140,8 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b35_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b36_pb/`,
+`conceptual_v0.3_b35_pb/`,
 `conceptual_v0.3_b34_pb/`,
 `conceptual_v0.3_b29_pb/`,
 `conceptual_v0.3_b28_pb/`,

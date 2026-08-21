@@ -241,7 +241,8 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b35_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b36_pb/`,
+`conceptual_v0.3_b35_pb/`,
 `conceptual_v0.3_b34_pb/`,
 `conceptual_v0.3_b29_pb/`,
 `conceptual_v0.3_b28_pb/`,

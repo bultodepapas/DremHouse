@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "version": "1.20",
+  "version": "1.21",
   "date": "2026-08-21",
   "status": "active publication index; source drawings retain their discipline status and authority",
   "raster_width_px": 1400,
@@ -10,11 +10,11 @@
       "group": "Architecture",
       "eyebrow": "Architecture · ground floor",
       "title": "Ground-floor plan",
-      "summary": "D-078 centres one Side A 5.40 m two-person workstation with three cabinets below one 7.20 m modular work/hall opening while retaining all D-077 dining, kitchen, Project Car/lift and SC-01 geometry.",
-      "alt": "Current Dream House ground-floor plan with centred Side A shared workstation and unified window, opposite dining and kitchen, centred project car and coordinated stair core",
-      "source": "planos/conceptual_v0.3_b35_pb/DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg",
-      "source_revision": "0.3-draft-35-PB",
-      "status": "issued for D-078 Side A unified interior workstation/window coordination; facade expression is subordinate to robust economical envelope performance; structure, drainage, glazing, MEP, joinery and cost remain open; not for construction",
+      "summary": "D-079 differentiates the two 9.00 m wall benches as six-module Project Car and RC/electronics systems, retains the three-module two-sided RC island and moves separate support envelopes inward while preserving D-078, D-077 and SC-01 geometry.",
+      "alt": "Current Dream House ground-floor plan with differentiated modular automotive and RC workbenches, central RC island, shared workstation, dining and coordinated stair core",
+      "source": "planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg",
+      "source_revision": "0.3-draft-36-PB",
+      "status": "issued for D-079 technical-workbench modular and ergonomic coordination; owner anthropometry, real lift, equipment, loads, extraction, electrical/ESD design, joinery and cost remain open; not for construction",
       "canonical": "DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR",
       "featured": true
     },
@@ -185,6 +185,19 @@
       "source_revision": "0.3-draft-35-PB",
       "status": "owner-approved D-078 interior-led architectural intent; secondary steel, connections, mullion sightlines, facade performance, MEP, mock-up and cost remain open; not for construction",
       "canonical": "DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS",
+      "featured": true
+    },
+    {
+      "id": "architecture-pb-technical-workbenches",
+      "group": "Architecture",
+      "eyebrow": "Architecture · PB technical workbench detail",
+      "title": "PB modular technical workbench system",
+      "summary": "D-079 coordinates two differentiated six-module wall benches, one lower automotive heavy-force bay, three adjustable RC/ESD modules, the three-module two-sided RC island and explicit clearance and services gates.",
+      "alt": "Dream House schematic technical workbench system showing automotive, RC electronics and central island modules with heights and open coordination gates",
+      "source": "planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg",
+      "source_revision": "0.3-draft-36-PB",
+      "status": "issued for D-079 modular and ergonomic coordination; real equipment, lift clearance, anthropometry, structure, electrical and ESD design, extraction, battery safety, joinery and cost remain open; not for construction",
+      "canonical": "DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES",
       "featured": true
     },
     {

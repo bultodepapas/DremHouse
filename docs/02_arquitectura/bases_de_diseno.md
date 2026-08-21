@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.13
+**Versión:** 0.14
 **Fecha:** 2026-08-21
 
 ## Forma y modulación
@@ -169,6 +169,23 @@ without changing their 9.00 m lengths. Resolve each 0.27 m nominal bench/industr
 gap as one developed jamb, track, seal, guard and removable-service detail; the plan gap
 does not authorize a product or safe clearance. See
 [PB corner-start technical workbenches — draft 29](pb_corner_start_workbenches_v0.3_b29.md).
+
+D-079 retains the two 9.00 × 0.75 m D-073 footprints and converts each into six
+replaceable 1.50 m modules. The common grid is an economical local-fabrication and
+phasing rule, not equal duty. Project Car tests five +0.90 m general modules and one
++0.84 m heavy-force/vice module. RC/electronics tests three 0.80 m-deep manual-adjustable
++0.70–1.10 m clean modules with localized ESD, while the remaining model/tool/landing
+modules stay at +0.90 m. The central 4.50 × 1.60 m RC island becomes three 1.50 m
+two-sided modules at a +0.84 m test height.
+
+Reserve a 1.20 m operating strip at both wall benches. The Project Car strip overlaps the
+generic lift/vehicle envelope by 1.10 m; do not resolve that conflict by silently moving
+or shrinking unselected equipment. Select the real lift and vehicle, record owner
+anthropometry, test full-scale modules and coordinate doors, windows, vice/impact loads,
+drawers, RETIE, ESD, extraction, LiPo fire strategy and cost before fabrication. The
+technical-window sill and worktop may align visually at +0.90 m but require independent
+support, drainage, seals and a maintainable shadow/service gap. See
+[PB modular technical workbenches — draft 36](pb_modular_technical_workbenches_v0.3_b36.md).
 
 ### PB living, dining, kitchen and media wall
 

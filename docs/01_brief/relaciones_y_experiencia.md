@@ -1,7 +1,7 @@
 # Relaciones y experiencia espacial
 
 **Estatus:** activo  
-**Versión:** 0.8
+**Versión:** 0.9
 **Fecha:** 2026-08-21
 
 ## Secuencia maestra
@@ -23,6 +23,16 @@ cuatro bandas dentro de una sola vista transversal.
 - Corner starts under D-073: both technical benches begin at X=0.18 m against the front
   interior corners, eliminating unusable end gaps while retaining coordinated separation
   from the adjacent industrial-door openings.
+- Technical workbench differentiation under D-079: both 9.00 × 0.75 m runs use six
+  replaceable 1.50 m modules, but they are not functional mirrors. Project Car combines
+  one +0.84 m heavy-force bay with five +0.90 m general bays. RC/electronics combines
+  fixed model/tool/landing bays with three 0.80 m-deep manual-adjustable clean modules,
+  localized ESD and solder source extraction. Keep a 1.20 m operating strip at each wall;
+  the Project Car strip remains unresolved against the real lift and vehicle.
+- Central RC assembly under D-079: retain the 4.50 × 1.60 m island as a +0.84 m,
+  three-module, two-sided large-object surface. Keep its clear relationship to the
+  pedestrian axis and wall-bench operating strip; fixed versus lockable-mobile support
+  remains a mock-up decision.
 - Eje peatonal: centrado, intuitivo y libre; no es corredor construido.
 - Living / TV lounge under D-071: in the Side B half of the double-height hall, with the
   100-inch television fixed directly to the Side B perimeter wall. The sofa, chaise,

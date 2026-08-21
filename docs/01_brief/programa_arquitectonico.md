@@ -1,8 +1,8 @@
 # Programa arquitectónico
 
 **Estatus:** activo para prueba v0.3  
-**Versión:** 0.6
-**Fecha:** 2026-08-20
+**Versión:** 0.7
+**Fecha:** 2026-08-21
 **Nota:** áreas brutas/nominales sin descontar estructura, cerramientos y acabados.
 
 ## Cuadro general
@@ -45,22 +45,30 @@ debe probar estructura, sellos, drenaje, maniobra y sistema comercial de portone
 | Territorio car project              |              ≈7,0 × 10,5 m = 73,5 m² |
 | Prisma operativo lift/vehículo      |                         ≈6,0 × 8,5 m |
 | Territorio RC/DIY                   |              ≈7,0 × 10,5 m = 73,5 m² |
-| Banco Project Car contra lateral A  | 9,00 × 0,75 m; starts X=0,18 m; worktop +0,90 m |
-| Banco RC/electrónica contra lateral B | 9,00 × 0,75 m; starts X=0,18 m; worktop +0,90 m |
+| Banco Project Car contra lateral A  | 9,00 × 0,75 m; six 1,50 m modules; five tops +0,90 m + one heavy-force test at +0,84 m |
+| Banco RC/electrónica contra lateral B | 9,00 × 0,75 m; six 1,50 m modules; R2–R4 manual-adjustable +0,70–1,10 m |
 | Tramo secundario opcional           |                               ≈4–5 m |
-| Banco central RC                    |                       ≈1,60 × 4,50 m |
+| Banco central RC                    | 4,50 × 1,60 m; three 1,50 m modules; two-sided top +0,84 m test |
 | Circulación alrededor del banco     | mínimo ≈1,20 m; deseable 1,40–1,50 m |
 | Franja de respiración antes de sala |                           ≈1,8–2,0 m |
 
 Under D-072 both long technical benches are fixed against opposite perimeter walls and
-sit below their respective technical windows. The project-car lift/vehicle test envelope
-shifts inward, but its 0.12 m plan gap to the bench is graphic non-overlap only. Verify
-the real car, lift, open doors, tool carts, source extraction and manufacturer working
-clearances; the dimensional reserve does not replace equipment data.
+sit below their respective technical windows. The current Project Car lift/vehicle test
+envelope retains only 0.10 m graphic separation from the bench. D-079 adds a 1.20 m bench
+operating strip, which overlaps that unselected envelope by 1.10 m and therefore remains
+an explicit product/simultaneous-use conflict. Verify the real car, lift, open doors, tool
+carts, drawer extension, source extraction and manufacturer working clearances.
 
 Under D-073 both benches begin at their respective front interior corners and end at
 X=9.18 m. The nominal 0.27 m gaps to the adjacent front industrial-door openings require
 developed jamb, track, seal, guard and maintenance coordination.
+
+Under D-079 the common footprint becomes an economical modular grammar rather than a
+common duty class. Each 9.00 m run uses six replaceable 1.50 m modules. Project Car
+retains one lower heavy-force test bay; RC/electronics uses three localized adjustable
+ESD-capable clean modules and one source-extraction position. The central RC island remains
+two-sided. Final heights require owner anthropometry, real work objects and full-scale
+mock-ups; final ESD, extraction, LiPo and electrical design require competent specialists.
 
 ## Zona social y doméstica
 

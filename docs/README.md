@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.8
+**Version:** 0.9
 **Date:** 2026-08-21
 
 > [!NOTE]
@@ -71,10 +71,12 @@ they stay stable while their explicitly promoted versioned source can advance.
   reorienting the living group and retaining a clear pedestrian axis.
 - [PB Side A project-car workbench — draft 28](02_arquitectura/pb_side_a_project_car_workbench_v0.3_b28.md):
   retained D-072 predecessor fixing the 9.00 m project-car bench against Side A and
-  shifting the schematic lift envelope inward without claiming real equipment clearance.
+  shifting the schematic lift envelope inward without claiming real equipment clearance;
+  D-079 supersedes its undivided bench and graphic gap.
 - [PB corner-start technical workbenches — draft 29](02_arquitectura/pb_corner_start_workbenches_v0.3_b29.md):
   retained D-073 correction starting both 9.00 m technical benches at their respective
-  front interior corners while preserving adjacent industrial-door coordination gates.
+  front interior corners while preserving adjacent industrial-door coordination gates;
+  D-079 retains those coordinates and supersedes the undifferentiated bench definition.
 - [PB kitchen and dining option study — b30](02_arquitectura/pb_kitchen_dining_option_study_v0.3_b30.md):
   non-adopted predecessor testing a full domestic-bay kitchen composition, a 7.20 m
   island and the 12-seat dining group opposite; its dining size and position are refined
@@ -91,9 +93,13 @@ they stay stable while their explicitly promoted versioned source can advance.
   retained D-077 predecessor combining the preferred full-span kitchen, centred opposite
   dining and centred Project Car/lift with SC-01; all of that geometry is retained by b35.
 - [PB Side A shared workstation and unified opening — b35](02_arquitectura/pb_side_a_shared_workstation_v0.3_b35.md):
-  active D-078 ground-floor issue centring one 5.40 m two-person worktop with three
+  retained D-078 workstation/opening issue centring one 5.40 m two-person worktop with three
   suspended cabinets below one 7.20 m modular work/hall opening. The concept is controlled
   from the interior; outside remains a rugged, resistant and economical industrial envelope.
+- [PB modular technical workbenches — b36](02_arquitectura/pb_modular_technical_workbenches_v0.3_b36.md):
+  active D-079 ground-floor issue differentiating the automotive and RC/electronics wall
+  benches as two economical six-module systems, retaining the three-module central RC
+  island and leaving real-equipment, ergonomic, MEP, safety and cost gates explicit.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

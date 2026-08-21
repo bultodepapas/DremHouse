@@ -1,14 +1,15 @@
 # Visualization control and ChatGPT image prompt kit
 
 **Status:** active; schematic-design communication only; not for construction<br>
-**Version:** 0.6<br>
+**Version:** 0.7<br>
 **Date:** 2026-08-21<br>
 **Sources:** Project Constitution; D-033, D-039, D-052, D-054, D-056, D-059,
-D-063, D-067–D-078; current-drawing catalog; and the six-source current OpenAI research
+D-063, D-067–D-079; current-drawing catalog; and the six-source current OpenAI research
 matrix below<br>
-**Supersedes:** visualization control v0.5 where D-078 changes the Side A workstation,
-main-glazing relationship and exterior-envelope emphasis; the D-076 research method and
-all unaffected view controls remain unchanged
+**Supersedes:** visualization control v0.6 where D-079 differentiates and modularizes the
+technical workbench system and separates the RC support-equipment envelopes; the D-076
+research method, D-078 interior-led/exterior-performance intent and all unaffected view
+controls remain unchanged
 
 ## Authority
 
@@ -87,8 +88,13 @@ the generated image obeys an exact physical camera model.
   pedestrian door, and one large RC/DIY-workshop door.
 - One project car and a realistically scaled automotive-lift envelope on Side A; the
   open RC/electronics workshop on Side B. No wall divides the two technical areas.
-- One `9.00 m` wall-integrated technical bench beginning at each front interior corner,
-  below its respective technical window.
+- Two wall-integrated `9.00 × 0.75 m` technical benches, each beginning at its front
+  interior corner below its respective technical window and divided into six replaceable
+  `1.50 m` modules. They share one economical local-fabrication grammar but must not read
+  as identical furniture: the Side A Project Car bench has one lower heavy-force/vice bay;
+  the Side B RC/electronics bench has three clean, manually height-adjustable modules with
+  localized ESD control. Retain the separate `4.50 × 1.60 m`, three-module, two-sided RC
+  island and keep the 3D-printer and LiPo envelopes independent of the wall bench.
 - A clear `4.00 m` perceptual pedestrian axis, with no constructed corridor, furniture,
   vehicle, island, or partition blocking it.
 - On Side A, one centred `5.40 × 0.90 m` shared two-person workstation below one
@@ -147,7 +153,11 @@ Architecture and programme: show one 18 m-wide industrial hall under one continu
 mono-pitch roof. In the front technical band, place the single project car and automotive
 lift on the right and the open RC/electronics workshop on the left, with no partition
 between them. Keep one 9 m wall-integrated workbench along each side, beginning at its
-front interior corner below the technical window. Farther inside on Side A, show one
+front interior corner below the technical window, and divide each into six subtle 1.50 m
+modules. Make their duties legible without showroom styling: the automotive bench has one
+lower reinforced vice/heavy-force bay; the RC/electronics bench has three clean adjustable
+ESD work modules. Retain the separate three-module, two-sided central RC island and separate
+3D-printer and LiPo support stations. Farther inside on Side A, show one
 centred 5.40 m shared two-person worktop with three suspended steel cabinets below one
 7.20 × 2.90 m modular work/hall opening. On Side B, retain the separate 3.00 m single
 workstation below its smaller landscape window. Keep the 4 m central axis fully
@@ -368,8 +378,12 @@ edge truss and preserve every other element, including camera, light, materials,
 ```text
 Edit only the front technical band. Keep one project car and lift on Side A and the open
 RC/electronics workshop on Side B, with no dividing wall. Restore one 9 m wall-integrated
-bench along each side, beginning at its front interior corner below its technical window.
-Keep the 4 m central pedestrian axis empty and preserve the camera and all later zones.
+bench along each side, beginning at its front interior corner below its technical window,
+and divide each into six replaceable 1.50 m modules. Give the automotive bench one visibly
+lower reinforced heavy-force/vice bay. Give the RC bench three clean height-adjustable ESD
+modules, retain the separate three-module two-sided RC island, and keep the 3D-printer and
+LiPo stations separate. Keep the 4 m central pedestrian axis empty and preserve the camera
+and all later zones. Do not imply that the unresolved lift/bench overlap is approved.
 ```
 
 ### Restore the Side B media wall
@@ -444,6 +458,11 @@ Reject or correct the image if any applicable answer is **no**.
 - [ ] Are there exactly three front entrances?
 - [ ] Are the project car/lift and RC workshop on opposite sides of one open technical band?
 - [ ] Do both `9 m` technical benches begin at the front corners below their side windows?
+- [ ] Does each wall bench read as six replaceable `1.50 m` modules, with one lower
+      heavy-force bay on Side A and three clean adjustable ESD modules on Side B?
+- [ ] Does the separate RC island read as three two-sided modules, with 3D-printer and
+      LiPo support stations kept separate from the wall bench?
+- [ ] Does the image avoid claiming that the open lift/bench clearance gate is resolved?
 - [ ] Is the `4 m` central axis clear?
 - [ ] Is the Side A shared two-person workstation centred below one 7.20 m modular opening,
       with three cabinets, while the separate Side B single workstation remains present?

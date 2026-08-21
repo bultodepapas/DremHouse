@@ -744,20 +744,70 @@ def plan_sheet(p):
         )
     if p.get("built_in_benches"):
         car_bench = next(item for item in p["built_in_benches"] if item["id"] == "PB-BENCH-CAR")
-        parts.append(
-            plan_rect(
-                car_bench["x0"], car_bench["y0"], car_bench["length"], car_bench["depth"],
-                fill="#aeb9bc", stroke="#314247", stroke_width="1.4",
+        if car_bench.get("module_count"):
+            module_width = car_bench["module_width"]
+            for module_index in range(car_bench["module_count"]):
+                fill = "#9b8772" if module_index == car_bench.get("heavy_module_index") else "#aeb9bc"
+                parts.append(
+                    plan_rect(
+                        car_bench["x0"] + module_index * module_width,
+                        car_bench["y0"],
+                        module_width,
+                        car_bench["depth"],
+                        fill=fill,
+                        stroke="#314247",
+                        stroke_width="1.1",
+                    )
+                )
+                parts.append(
+                    text(
+                        sx(car_bench["x0"] + (module_index + .5) * module_width),
+                        sy(car_bench["y0"] + car_bench["depth"] / 2) + 2,
+                        f"C{module_index + 1}",
+                        5.5,
+                        weight=700,
+                        fill="#26363b",
+                    )
+                )
+            parts.append(
+                plan_rect(
+                    car_bench["x0"],
+                    car_bench["operating_strip_y0"],
+                    car_bench["length"],
+                    car_bench["operating_strip_depth"],
+                    fill="none",
+                    stroke="#b56c31",
+                    stroke_width="1.0",
+                    stroke_dasharray="5 4",
+                )
             )
-        )
+            parts.append(
+                text(
+                    sx(car_bench["x0"] + car_bench["length"] / 2),
+                    sy(car_bench["operating_strip_y0"] + .18),
+                    "1.20 m BENCH OPERATING STRIP · LIFT OVERLAP OPEN",
+                    5.5,
+                    weight=700,
+                    fill="#9a4a2b",
+                )
+            )
+        else:
+            parts.append(
+                plan_rect(
+                    car_bench["x0"], car_bench["y0"], car_bench["length"], car_bench["depth"],
+                    fill="#aeb9bc", stroke="#314247", stroke_width="1.4",
+                )
+            )
         parts.append(
             text(
                 sx(car_bench["x0"] + car_bench["length"] / 2),
                 sy(car_bench["y0"] + car_bench["depth"] / 2) + 3,
-                "WALL-INTEGRATED PROJECT-CAR BENCH · 9.00 m"
+                "PROJECT-CAR MODULAR BENCH · 6 × 1.50 m · +0.84 / +0.90"
+                if car_bench.get("module_count")
+                else "WALL-INTEGRATED PROJECT-CAR BENCH · 9.00 m"
                 if car_bench.get("mounting") == "side_a_perimeter"
                 else "PROJECT-CAR STEEL BENCH · LIFT HOLD",
-                6.5,
+                5.8 if car_bench.get("module_count") else 6.5,
                 weight=700,
             )
         )
@@ -768,31 +818,100 @@ def plan_sheet(p):
     # RC/DIY benches, printers, LiPo and local extraction.
     if p.get("built_in_benches"):
         rc_bench = next(item for item in p["built_in_benches"] if item["id"] == "PB-BENCH-RC")
-        parts.append(
-            plan_rect(
-                rc_bench["x0"], rc_bench["y0"], rc_bench["length"], rc_bench["depth"],
-                fill="#aeb9bc", stroke="#314247", stroke_width="1.4",
+        if rc_bench.get("module_count"):
+            module_width = rc_bench["module_width"]
+            adjustable = set(rc_bench.get("adjustable_module_indices", []))
+            for module_index in range(rc_bench["module_count"]):
+                parts.append(
+                    plan_rect(
+                        rc_bench["x0"] + module_index * module_width,
+                        rc_bench["y0"],
+                        module_width,
+                        rc_bench["depth"],
+                        fill="#9fc4c4" if module_index in adjustable else "#aeb9bc",
+                        stroke="#314247",
+                        stroke_width="1.1",
+                    )
+                )
+                parts.append(
+                    text(
+                        sx(rc_bench["x0"] + (module_index + .5) * module_width),
+                        sy(rc_bench["y0"] + rc_bench["depth"] / 2) + 2,
+                        f"R{module_index + 1}",
+                        5.5,
+                        weight=700,
+                        fill="#26363b",
+                    )
+                )
+            parts.append(
+                plan_rect(
+                    rc_bench["x0"],
+                    rc_bench["operating_strip_y0"],
+                    rc_bench["length"],
+                    rc_bench["operating_strip_depth"],
+                    fill="none",
+                    stroke="#27859a",
+                    stroke_width="1.0",
+                    stroke_dasharray="5 4",
+                )
             )
-        )
+            parts.append(
+                text(
+                    sx(rc_bench["x0"] + rc_bench["length"] / 2),
+                    sy(rc_bench["operating_strip_y0"] + rc_bench["operating_strip_depth"] - .15),
+                    "1.20 m CLEAR BENCH OPERATING STRIP",
+                    5.5,
+                    weight=700,
+                    fill="#246b7a",
+                )
+            )
+        else:
+            parts.append(
+                plan_rect(
+                    rc_bench["x0"], rc_bench["y0"], rc_bench["length"], rc_bench["depth"],
+                    fill="#aeb9bc", stroke="#314247", stroke_width="1.4",
+                )
+            )
         parts.append(
             text(
                 sx(rc_bench["x0"] + rc_bench["length"] / 2),
                 sy(rc_bench["y0"]) + 10,
-                "RC / ELECTRONICS INTEGRATED BENCH · 9.00 m",
-                6.5,
+                "RC / ELECTRONICS MODULAR BENCH · 6 × 1.50 m · 3 ADJUSTABLE"
+                if rc_bench.get("module_count")
+                else "RC / ELECTRONICS INTEGRATED BENCH · 9.00 m",
+                5.8 if rc_bench.get("module_count") else 6.5,
                 weight=700,
             )
         )
     else:
         parts.append(plan_rect(.55,16.65,9.0,.75,fill="#aeb9bc",stroke="#5d6a6e",stroke_width="1"))
         parts.append(text(sx(5.05),sy(17.03)+3,"BANCO RC / ELECTRÓNICA 9,00 m",7))
-    parts.append(table_symbol(2.8,12.7,4.5,1.6,"BANCO CENTRAL RC · 4,50 × 1,60"))
-    parts.append(plan_rect(.65,14.4,1.2,1.8,fill="#c8d2d4",stroke="#54636a",stroke_width="1"))
-    parts.append(text(sx(1.25),sy(15.3)+3,"3D ×3",7,weight=700))
-    parts.append(plan_rect(8.15,14.4,1.25,1.8,fill="#d9c3b5",stroke="#8f4e38",stroke_width="1.2"))
-    parts.append(text(sx(8.775),sy(15.15),"LiPo",7,weight=700,fill="#8f3c28"))
-    parts.append(text(sx(8.775),sy(15.55),"ventilado",6,fill="#8f3c28"))
-    parts.append(f'<path d="M {sx(8.78)} {sy(16.2)} L {sx(8.78)} {sy(17.65)}" stroke="#27859a" stroke-width="2" stroke-dasharray="5 3"/>')
+    central_rc = p.get("central_rc_bench")
+    if central_rc:
+        parts.append(
+            table_symbol(
+                central_rc["x"], central_rc["y"], central_rc["length"], central_rc["depth"],
+                "CENTRAL RC ASSEMBLY ISLAND · 3 × 1.50 m · TOP +0.84",
+            )
+        )
+        for module_index in range(1, central_rc["module_count"]):
+            xx = sx(central_rc["x"] + module_index * central_rc["module_width"])
+            parts.append(
+                f'<line x1="{xx}" y1="{sy(central_rc["y"])}" x2="{xx}" '
+                f'y2="{sy(central_rc["y"] + central_rc["depth"])}" '
+                'stroke="#667579" stroke-width="1.1" stroke-dasharray="4 3"/>'
+            )
+    else:
+        parts.append(table_symbol(2.8,12.7,4.5,1.6,"BANCO CENTRAL RC · 4,50 × 1,60"))
+
+    rc_support = p.get("rc_support_equipment", {})
+    printer = rc_support.get("printer_zone", {"x": .65, "y": 14.4, "w": 1.2, "d": 1.8, "label": "3D ×3"})
+    lipo = rc_support.get("lipo_zone", {"x": 8.15, "y": 14.4, "w": 1.25, "d": 1.8, "label": "LiPo"})
+    parts.append(plan_rect(printer["x"],printer["y"],printer["w"],printer["d"],fill="#c8d2d4",stroke="#54636a",stroke_width="1"))
+    parts.append(text(sx(printer["x"] + printer["w"] / 2),sy(printer["y"] + printer["d"] / 2)+3,printer["label"],7,weight=700))
+    parts.append(plan_rect(lipo["x"],lipo["y"],lipo["w"],lipo["d"],fill="#d9c3b5",stroke="#8f4e38",stroke_width="1.2"))
+    parts.append(text(sx(lipo["x"] + lipo["w"] / 2),sy(lipo["y"] + lipo["d"] / 2)-4,lipo["label"],5.8,weight=700,fill="#8f3c28"))
+    parts.append(f'<path d="M {sx(lipo["x"] + lipo["w"] / 2)} {sy(lipo["y"] + lipo["d"])} L {sx(lipo["x"] + lipo["w"] / 2)} {sy(17.65)}" stroke="#27859a" stroke-width="2" stroke-dasharray="5 3"/>')
 
     # PB bathroom fixtures and technical rooms.
     parts.append(plan_rect(32.05,11.35,1.2,1.1,fill="none",stroke="#27859a",stroke_width="1.2"))
