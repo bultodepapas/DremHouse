@@ -1,0 +1,17 @@
+{
+  "revision": "0.3-draft-35-PB",
+  "status": "issued for D-078 Side A unified interior workstation/window coordination; facade expression is subordinate to robust economical envelope performance; structure, drainage, glazing, MEP, joinery and cost remain open; not for construction",
+  "source": "dreamhouse/pb_b35_delta.json",
+  "source_sha256": "e1e335aed015f890ef5646b9a2b47c8823025ee1a3dc8825e8f54202cbd6c498",
+  "base_source": "dreamhouse/pb_b34_delta.json",
+  "base_source_sha256": "150caaf4e2a0ac5062c92783fb1fabe5e493384d3837184c6170c28a9244b2c8",
+  "generator": "dreamhouse/generate_pb_b35.py",
+  "supersedes": "0.3-draft-34-PB / PLN-001-R12 as the active PB plan and 0.3-draft-25-PB / ELE-003-R08 and DET-006-R01 for Side A workstation/window coordination only",
+  "outputs": [
+    "DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg",
+    "DH-ARQ-ELE-003-R09_SIDE-A-PERFORMANCE-FIRST-OPENING.svg",
+    "DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}

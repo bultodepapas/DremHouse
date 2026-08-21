@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.12
+**Versión:** 0.13
 **Fecha:** 2026-08-21
 
 ## Forma y modulación
@@ -141,6 +141,20 @@ central knee/chair opening. The increased storage makes loaded-drawer, impact, r
 deflection and cable-access checks more important. Treat these as test dimensions pending
 the real equipment schedule and a full-scale joinery mock-up. See
 [PB enlarged workstation cabinets — draft 25](pb_enlarged_workstation_cabinets_v0.3_b25.md).
+
+D-078 replaces the Side A member of that pair with one 5.40 × 0.90 m two-person
+worktop centred at X=15.75 m below one 7.20 × 2.90 m work/hall opening. Three 0.70 m
+suspended cabinets create two equal 1.65 m clear positions. The Side B D-069 single
+workstation remains unchanged. This intentional asymmetry follows different interior
+programmes; exterior symmetry is not a design objective.
+
+The Side A opening is controlled from the interior and may not become a premium facade
+gesture. Outside, use a direct rugged industrial envelope with repeatable replaceable
+modules, durable coatings, simple protected flashings and drainage. Resistance,
+weathering, safe replacement, maintenance and whole-life cost govern appearance. The
+7.20 m opening still requires a professionally designed header, jambs, stability path,
+facade rails, safe glass, seals, thermal-bridge control and low-eave drainage. See
+[PB Side A shared workstation and unified opening — draft 35](pb_side_a_shared_workstation_v0.3_b35.md).
 
 D-072 applies the same permanent-infrastructure logic to the project-car bench: the
 9.00 × 0.75 m worktop moves against Side A below its technical window, matching the

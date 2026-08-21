@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.19<br>
+**Version:** 1.20<br>
 **Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -19,9 +19,9 @@ record, repository README, and presentation do not change when a new issue is pr
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with centred opposite dining and kitchen, centred project car and lift, coordinated 22-riser stair core and four column reservations" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png" alt="Current Dream House ground-floor plan with centred Side A shared workstation and unified window, opposite dining and kitchen, centred project car and coordinated stair core" width="100%"></a>
   <br><strong>Ground-floor plan</strong>
-  <br><sub>0.3-draft-34-PB · <a href="../../planos/conceptual_v0.3_b34_pb/DH-ARQ-PLN-001-R12_PB-INTEGRATED-RESTORATION.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-35-PB · <a href="../../planos/conceptual_v0.3_b35_pb/DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
@@ -60,9 +60,9 @@ record, repository README, and presentation do not change when a new issue is pr
   <br><sub>0.3-draft-27-PB · <a href="../../planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png" alt="Dream House enlarged ground-floor workstation and suspended steel cabinet schematic detail" width="100%"></a>
-  <br><strong>PB enlarged workstation + cabinet family</strong>
-  <br><sub>0.3-draft-25-PB · <a href="../../planos/conceptual_v0.3_b25_pb/DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg">versioned source</a></sub>
+  <a href="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="../../planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png" alt="Dream House Side A shared two-person workstation with three suspended cabinets and unified modular window schematic detail" width="100%"></a>
+  <br><strong>PB Side A shared two-person workstation</strong>
+  <br><sub>0.3-draft-35-PB · <a href="../../planos/conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -107,7 +107,7 @@ The publication layer currently contains **24 SVG/PNG pairs**:
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
 owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB
-living/Side B TV wall and D-069 workstation/cabinet family, structural
+living/Side B TV wall and D-078/D-069 workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
@@ -121,9 +121,10 @@ The set must be read together:
 - the same ground-floor plan coordinates D-073's two 9.00 m technical benches from their
   front interior corners and retains D-072's inward-shifted lift envelope; door-jamb and
   real equipment clearances remain open;
-- both side elevations and the PB workstation detail retain the D-069 enlarged mirrored
-  workstations and suspended steel drawer cabinets, while secondary steel, joinery,
-  facade, TV-wall backing, AV and MEP interfaces remain open;
+- the Side A elevation and PB workstation detail show D-078's centred two-person worktop,
+  three cabinets and unified modular work/hall opening; the Side B elevation retains the
+  D-069 single workstation. Secondary steel, joinery, rugged-envelope performance,
+  facade structure, TV-wall backing, AV and MEP interfaces remain open;
 - the rear façade remains supplemented by D-051's retractable-stair reserve;
 - roof form is represented by the b07 sections and façades, while the current rooflight
   position is represented by the 0.4-I01/D-054 roof plan and daylight section; and

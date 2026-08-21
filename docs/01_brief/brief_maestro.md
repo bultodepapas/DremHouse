@@ -1,8 +1,8 @@
 # Brief maestro
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.1  
-**Fecha:** 2026-08-11
+**Versión:** 0.2
+**Fecha:** 2026-08-21
 
 ## Encargo
 
@@ -21,8 +21,10 @@ bay, lugar de trabajo y paisaje productivo/recreativo.
 
 ## Ambición espacial
 
-El exterior debe ser sobrio, monolítico y casi obvio; el interior debe sorprender por
-escala, profundidad, luz y convivencia de técnica y hogar. El momento rector es entrar
+El exterior debe ser sobrio, monolítico y casi obvio: una envolvente industrial rugosa,
+resistente, mantenible y económicamente eficiente, sin gestos de fachada que no mejoren
+desempeño o vida útil. La arquitectura se concentra en la experiencia interior, que debe
+sorprender por escala, profundidad, luz y convivencia de técnica y hogar. El momento rector es entrar
 por la puerta peatonal central y descubrir de una vez:
 
 - RC/DIY a un lado y carro/lift al otro;
@@ -48,6 +50,8 @@ por la puerta peatonal central y descubrir de una vez:
 - La madera aparece en operaciones concentradas —especialmente pared posterior, cocina
   y nivel privado— y no convierte la nave en chalet.
 - La tecnología útil se integra; el desorden de cables y conduits no es estética.
+- La fachada exterior no es un objeto de lujo: paneles, vanos, remates y bajantes se
+  ordenan por resistencia, clima, reposición, mantenimiento y costo antes que por imagen.
 
 ## Programa no negociable
 

@@ -1,13 +1,14 @@
 # Visualization control and ChatGPT image prompt kit
 
 **Status:** active; schematic-design communication only; not for construction<br>
-**Version:** 0.5<br>
+**Version:** 0.6<br>
 **Date:** 2026-08-21<br>
 **Sources:** Project Constitution; D-033, D-039, D-052, D-054, D-056, D-059,
-D-063, D-067–D-077; current-drawing catalog; and the six-source current OpenAI research
+D-063, D-067–D-078; current-drawing catalog; and the six-source current OpenAI research
 matrix below<br>
-**Supersedes:** visualization control v0.4 only where D-077 changes PB kitchen, dining and
-Project Car/lift prompt geometry; the D-076 research method remains unchanged
+**Supersedes:** visualization control v0.5 where D-078 changes the Side A workstation,
+main-glazing relationship and exterior-envelope emphasis; the D-076 research method and
+all unaffected view controls remain unchanged
 
 ## Authority
 
@@ -90,8 +91,10 @@ the generated image obeys an exact physical camera model.
   below its respective technical window.
 - A clear `4.00 m` perceptual pedestrian axis, with no constructed corridor, furniture,
   vehicle, island, or partition blocking it.
-- Two mirrored wall-integrated workstations in the `X=13.00–16.00 m` band, each facing
-  an equal side window and reading as permanent house-scale infrastructure.
+- On Side A, one centred `5.40 × 0.90 m` shared two-person workstation below one
+  `7.20 × 2.90 m` modular work/hall opening, with three suspended cabinets defining two
+  equal positions. On Side B, retain the separate D-069 `3.00 × 0.90 m` single
+  workstation and its `3.00 × 1.65 m` window. Both read as permanent infrastructure.
 - The living group in the double-height Side B zone, facing a `100-inch` television
   mounted directly on the Side B perimeter wall. There is no freestanding media wall.
 - One centred `3.20 × 1.10 m` 12-seat dining group on Side B opposite the full-span Side A
@@ -110,6 +113,9 @@ the generated image obeys an exact physical camera model.
 - Dark visible steel in the hall, polished industrial concrete at ground level, restrained
   warm timber, and limited high-impact glazing. Private P2 interiors use smooth, quiet,
   domestic finishes and conceal framing and services.
+- Exterior formality has low priority. The outside must remain one direct, rugged,
+  weather-resistant and economically efficient industrial envelope. Do not invent premium
+  feature frames, decorative facade layers or bespoke curtain-wall gestures around D-078.
 
 ## Prompt 01 — Mandatory master interior view
 
@@ -141,8 +147,10 @@ Architecture and programme: show one 18 m-wide industrial hall under one continu
 mono-pitch roof. In the front technical band, place the single project car and automotive
 lift on the right and the open RC/electronics workshop on the left, with no partition
 between them. Keep one 9 m wall-integrated workbench along each side, beginning at its
-front interior corner below the technical window. Farther inside, retain the two mirrored
-wall-integrated workstations and their equal side windows. Keep the 4 m central axis fully
+front interior corner below the technical window. Farther inside on Side A, show one
+centred 5.40 m shared two-person worktop with three suspended steel cabinets below one
+7.20 × 2.90 m modular work/hall opening. On Side B, retain the separate 3.00 m single
+workstation below its smaller landscape window. Keep the 4 m central axis fully
 clear. Place the living group in the double-height Side B zone facing the 100-inch TV fixed
 directly to the Side B perimeter wall. Keep the centred 3.20 × 1.10 m 12-seat dining table
 on Side B opposite the full-span Side A kitchen and its long dry island, across rather than
@@ -270,7 +278,7 @@ an open stair, a balcony outside the hall, or extra rooflights. No people, text,
 logos, or watermark. Produce one landscape 16:9 image only.
 ```
 
-## Prompt 04 — Front exterior and three-door identity
+## Prompt 04 — Rugged industrial exterior and three-door front
 
 ### Upload these references in this order
 
@@ -282,8 +290,8 @@ logos, or watermark. Produce one landscape 16:9 image only.
 ### Paste this prompt
 
 ```text
-Create one photorealistic exterior architectural photograph for evaluating the Dream House
-front identity, captured as if the completed building were photographed on site rather
+Create one photorealistic exterior architectural record of the Dream House as a rugged,
+economical industrial envelope, captured as if the completed building were photographed on site rather
 than rendered as CGI. Image 1 controls the front façade and exactly three openings. Image 2
 controls Side A, Image 3 controls Side B, and Image 4 controls the mono-pitch roof and
 exactly two separated rooflights. Preserve the drawings' geometry and proportions, not
@@ -297,17 +305,21 @@ architectural-photography view with the natural perspective of an approximately 
 full-frame lens, verticals vertical, no fisheye stretching, and no dramatic tilt. Let the
 long side recede naturally without making the front appear wider than the drawing. The
 building must read immediately as one sober rectangular industrial hall converted into a
-home, not as a conventional house with an attached garage.
+home, not as a conventional house with an attached garage. Exterior appearance is not the
+design event; honestly document resistance, weathering, drainage, replaceable parts and
+economy while the primary architectural experience remains inside.
 
 Architecture: preserve exactly three front entrances—one large industrial project-car door,
 one central pedestrian door, and one equally legible large RC/DIY-workshop door. Preserve
 the simple continuous mono-pitch roof, the low-to-high side relationship shown in the
 elevations, the restrained side glazing, and only two separated rooflights. Use a continuous
-insulated corrugated-metal envelope, crisp dark steel trims, robust industrial doors, a
+insulated corrugated-metal envelope, simple protected dark steel trims, robust industrial doors, a
 simple central pedestrian portal, and a continuous drained concrete apron meeting level
 grass. Show plausible panel modules, flashings, closures, gutters, downpipes, door tracks,
-thresholds, sealant joints, and slab-to-wall contact. Keep the mass calm, repetitive,
-economical, and nearly monolithic.
+thresholds, sealant joints, and slab-to-wall contact. Where Side A is visible, show the
+D-078 7.20 m work/hall opening as one straightforward modular opening in the corrugated
+wall, without a feature frame, projecting portal or cladding change. Keep the mass calm,
+repetitive, economical, resistant and nearly monolithic.
 
 Material and atmosphere: matte medium-grey metal, charcoal frames and doors, subtle warm
 timber only at the pedestrian threshold, subtle coating variation, restrained weathering,
@@ -322,7 +334,7 @@ Invariants and exclusions: keep exactly three front entrances, one continuous mo
 roof, two rooflights, restrained side glazing, one rectangular volume, and the continuous
 front apron. Do not add a gable, porch, canopy, dormer, chimney, external balcony, side
 stair, extra opening, glass-box façade, exposed domestic room, daily-use vehicle, perimeter
-wall, ornamental landscaping, dominant mountain backdrop, or decorative structural
+wall, ornamental landscaping, dominant mountain backdrop, decorative facade frame or decorative structural
 gesture. Do not place the project car outside. No people, signage, text, logos, dimensions,
 or watermark. Produce one landscape 16:9 image only, not a collage or alternate option.
 ```
@@ -367,6 +379,17 @@ Edit only the living and media arrangement. Mount the 100-inch television direct
 existing Side B perimeter wall above the low AV console; remove any freestanding media wall.
 Keep the living furniture facing that wall and outside the central axis. Preserve the nearby
 wall-integrated workstation, dining group, camera, materials, lighting, and all other areas.
+```
+
+### Restore the Side A shared workstation
+
+```text
+Edit only the Side A workstation and adjacent opening. Restore one centred 5.40 m
+two-person wall-integrated worktop with three suspended steel drawer cabinets below one
+7.20 × 2.90 m modular work/hall opening. Remove the predecessor separate workstation
+window, narrow junction and adjacent full-height glazing. Keep the exterior treatment
+direct and industrial, with no feature frame or decorative cladding change. Preserve the
+camera, hall, project car/lift, central route, lighting and every unrelated element.
 ```
 
 ### Restore the kitchen and dining relationship
@@ -422,7 +445,8 @@ Reject or correct the image if any applicable answer is **no**.
 - [ ] Are the project car/lift and RC workshop on opposite sides of one open technical band?
 - [ ] Do both `9 m` technical benches begin at the front corners below their side windows?
 - [ ] Is the `4 m` central axis clear?
-- [ ] Are both mirrored workstations present and outside the dirty technical strip?
+- [ ] Is the Side A shared two-person workstation centred below one 7.20 m modular opening,
+      with three cabinets, while the separate Side B single workstation remains present?
 - [ ] Is the living group oriented to the TV directly on the Side B perimeter wall?
 - [ ] Is one centred 12-seat dining group on Side B opposite the full-span Side A kitchen,
       with the clear central axis unobstructed between them?
@@ -432,6 +456,8 @@ Reject or correct the image if any applicable answer is **no**.
 - [ ] Is there only one large exposed edge truss?
 - [ ] Are there exactly two separated rooflight events when the roof is visible?
 - [ ] Is glazing limited and intentional rather than a transparent-box treatment?
+- [ ] Does the exterior remain rugged, direct and industrial, without a premium frame or
+      decorative facade treatment around the Side A opening?
 - [ ] Are private P2 interiors smooth and domestic rather than exposed corrugated metal?
 - [ ] Do construction joints, contacts, shadows, and reflections look physically plausible?
 - [ ] Are materials naturally varied rather than uniformly perfect or plastic-looking?

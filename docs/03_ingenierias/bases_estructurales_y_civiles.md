@@ -1,8 +1,8 @@
 # Bases estructurales y civiles
 
 **Estatus:** base de coordinación; no es memoria de cálculo  
-**Versión:** 0.8
-**Fecha:** 2026-08-20
+**Versión:** 0.9
+**Fecha:** 2026-08-21
 
 ## Alcance
 
@@ -22,6 +22,10 @@ cargas y análisis sería falsa ingeniería.
   loads and vibration without loading window frames or assuming facade girts are adequate.
 - D-069 loaded drawer, impact and racking demands from four large suspended steel cabinet
   units, including serviceability of the 3.00 × 0.90 m worktops and secondary frames.
+- D-078 Side A 7.20 × 2.90 m unified opening across the neutral M60 test bay, including
+  header, jambs, facade rails, longitudinal stability, low-eave drainage and the
+  independent 5.40 m workstation frame carrying three loaded cabinets without relying on
+  glass or unverified girts.
 - D-072 Side A project-car bench rail, loaded storage/impact demands, facade/window
   interface and compatibility with the real inward-shifted lift/vehicle envelope.
 - D-073 front-corner bench end connections and their proximity to both industrial-door

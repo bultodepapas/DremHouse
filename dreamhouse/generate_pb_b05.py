@@ -583,10 +583,12 @@ def plan_sheet(p):
                 cabinet_y = (
                     ext if is_a else W - ext - cabinet_depth
                 )
-                for cabinet_x in (
-                    ws["worktop_x0"],
-                    ws["worktop_x0"] + ws["worktop_length"] - cabinet_width,
-                ):
+                cabinet_offsets = ws.get(
+                    "drawer_cabinet_offsets",
+                    [0.0, ws["worktop_length"] - cabinet_width],
+                )
+                for cabinet_offset in cabinet_offsets:
+                    cabinet_x = ws["worktop_x0"] + cabinet_offset
                     parts.append(
                         plan_rect(
                             cabinet_x,
@@ -625,32 +627,40 @@ def plan_sheet(p):
                 f'x2="{sx(ws["worktop_x0"] + ws["worktop_length"])}" y2="{rail_y}" '
                 'stroke="#26363b" stroke-width="4"/>'
             )
-            for bx in (0.2, 1.2, 2.2):
+            for bx in ws.get("support_offsets", (0.2, 1.2, 2.2)):
                 px = sx(ws["worktop_x0"] + bx)
                 inner_y = sy(ext + ws["worktop_depth"] if is_a else W - ext - ws["worktop_depth"])
                 parts.append(
                     f'<line x1="{px}" y1="{rail_y}" x2="{px}" y2="{inner_y}" '
                     'stroke="#3d4c51" stroke-width="1.5"/>'
                 )
-            parts.append(
-                plan_rect(
-                    ws["worktop_x0"] + ws["worktop_length"] / 2 - 0.33,
-                    chair_y,
-                    0.66,
-                    0.66,
-                    fill="#f5f1e8",
-                    stroke="#667378",
-                    stroke_width="1",
-                    rx="8",
-                )
+            chair_centres = ws.get(
+                "chair_centres_x",
+                [ws["worktop_x0"] + ws["worktop_length"] / 2],
             )
+            for chair_centre in chair_centres:
+                parts.append(
+                    plan_rect(
+                        chair_centre - 0.33,
+                        chair_y,
+                        0.66,
+                        0.66,
+                        fill="#f5f1e8",
+                        stroke="#667378",
+                        stroke_width="1",
+                        rx="8",
+                    )
+                )
             label_y = zone_y + ws["zone_depth"] - 0.32 if is_a else zone_y + 0.32
             window = workstation_windows[ws["window_id"]]
             parts.append(
                 text(
                     sx((ws["zone_x0"] + ws["zone_x1"]) / 2),
                     sy(label_y),
-                    f'{ws["name"].upper()} · 3 × 3 m CLEAR',
+                    ws.get(
+                        "clearance_label",
+                        f'{ws["name"].upper()} · 3 × 3 m CLEAR',
+                    ),
                     6.6,
                     weight=700,
                     fill="#294b52",
@@ -679,10 +689,11 @@ def plan_sheet(p):
             parts.append(plan_rect(13.0,y,3.0,3.0,fill="#d3ded9",stroke="#5d6d69",stroke_width="1"))
             parts.append(table_symbol(13.35,y+.35,2.2,.75,"ESCRITORIO"))
             parts.append(text(sx(14.5),sy(y+2.55),label,7,weight=700))
-    parts.append(f'<line x1="{sx(16.2)}" y1="{sy(0)}" x2="{sx(20.5)}" y2="{sy(0)}" stroke="#27859a" stroke-width="8"/>')
-    parts.append(f'<line x1="{sx(16.2)}" y1="{sy(.28)}" x2="{sx(20.5)}" y2="{sy(.28)}" stroke="#846e93" stroke-width="2" stroke-dasharray="5 3"/>')
-    main_glazing_label_y = sy(0) + 15 if p.get("workstations") else sy(.55)
-    parts.append(text(sx(18.35),main_glazing_label_y,"VIDRIO PRINCIPAL PROVISIONAL · bolsillo de cortina acústica",7,fill="#246b7a"))
+    if not p.get("side_a_unified_workstation"):
+        parts.append(f'<line x1="{sx(16.2)}" y1="{sy(0)}" x2="{sx(20.5)}" y2="{sy(0)}" stroke="#27859a" stroke-width="8"/>')
+        parts.append(f'<line x1="{sx(16.2)}" y1="{sy(.28)}" x2="{sx(20.5)}" y2="{sy(.28)}" stroke="#846e93" stroke-width="2" stroke-dasharray="5 3"/>')
+        main_glazing_label_y = sy(0) + 15 if p.get("workstations") else sy(.55)
+        parts.append(text(sx(18.35),main_glazing_label_y,"VIDRIO PRINCIPAL PROVISIONAL · bolsillo de cortina acústica",7,fill="#246b7a"))
 
     # Car bay and lift safety envelope. Later revisions can shift the full test
     # assembly inward as one unit to coordinate a permanent wall-side workbench.
@@ -1056,13 +1067,13 @@ def side_elevation_sheet(p,side):
     parts.append(text(tx+tw/2,ty+th/2+15,f'{tech["x1"]-tech["x0"]:.2f} × {tech["height"]:.2f} m · antepecho {tech["sill"]:.2f} m',7,fill="#eff5f5"))
     # PB glazing: A carries the primary event; B remains a reversible alternative.
     gx=left+16.2*sc; gw=4.3*sc; gy=base-3.15*sc; gh=3.15*sc
-    if is_a:
+    if is_a and not p.get("side_a_unified_workstation"):
         parts.append(rect(gx,gy,gw,gh,fill="#416771",stroke="#172126",stroke_width="2.5"))
         for i in range(1,4):
             xx=gx+gw*i/4
             parts.append(f'<line x1="{xx}" y1="{gy}" x2="{xx}" y2="{base}" stroke="#8aa4a9"/>')
         parts.append(text(gx+gw/2,gy+gh/2,"EVENTO PRINCIPAL SALA",9,weight=700,fill="#eff5f5"))
-    elif p.get("side_b_main_bay") != "solid":
+    elif not is_a and p.get("side_b_main_bay") != "solid":
         parts.append(rect(gx,gy,gw,gh,fill="none",stroke="#27859a",stroke_width="2",stroke_dasharray="9 5"))
         parts.append(text(gx+gw/2,gy+gh/2,"ALTERNATIVA SEGÚN PREDIO",8,weight=700,fill="#246b7a"))
     # Workstation opening and fixed worktop. Later revisions derive both from the
@@ -1097,7 +1108,7 @@ def side_elevation_sheet(p,side):
             f'x2="{worktop_x+worktop_w}" y2="{rail_y}" '
             'stroke="#26363b" stroke-width="4"/>'
         )
-        for fraction in (0.12, 0.5, 0.88):
+        for fraction in workstation.get("support_fractions", (0.12, 0.5, 0.88)):
             px = worktop_x + worktop_w * fraction
             parts.append(
                 f'<polyline points="{px-7},{rail_y} {px},{rail_y+12} {px+7},{rail_y}" '
@@ -1109,7 +1120,12 @@ def side_elevation_sheet(p,side):
             cabinet_top = worktop_y + 4
             cabinet_h = cabinet_height * sc
             cabinet_w = cabinet_width * sc
-            for cabinet_x in (worktop_x, worktop_x + worktop_w - cabinet_w):
+            cabinet_offsets = workstation.get(
+                "drawer_cabinet_offsets",
+                [0.0, workstation["worktop_length"] - cabinet_width],
+            )
+            for cabinet_offset in cabinet_offsets:
+                cabinet_x = worktop_x + cabinet_offset * sc
                 parts.append(
                     rect(
                         cabinet_x,
@@ -1158,7 +1174,7 @@ def side_elevation_sheet(p,side):
                 fill="#5c4229",
             )
         )
-        if is_a:
+        if is_a and not p.get("side_a_unified_workstation"):
             junction_x = left + workstation_window["x1"] * sc
             junction_w = (16.2 - workstation_window["x1"]) * sc
             parts.append(
@@ -1216,7 +1232,8 @@ def side_elevation_sheet(p,side):
         if i<len(labels):
             parts.append(text(left+(b+bounds[i+1])/2*sc,dimy-9,labels[i],8))
     parts.append(text(left+length/2,dimy+27,"36,00 m",11,weight=700))
-    parts.append(note_box("La posición de vidrio, ventanas, bajantes y panelización es una hipótesis coordinable. No adoptar orientación cardinal, protección solar ni huecos definitivos antes de seleccionar el predio."))
+    default_note = "La posición de vidrio, ventanas, bajantes y panelización es una hipótesis coordinable. No adoptar orientación cardinal, protección solar ni huecos definitivos antes de seleccionar el predio."
+    parts.append(note_box(p.get("side_a_facade_note", default_note) if is_a else default_note))
     parts.append('</svg>')
     return ''.join(parts)
 

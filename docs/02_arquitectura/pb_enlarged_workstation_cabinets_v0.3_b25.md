@@ -1,10 +1,16 @@
 # PB enlarged workstation cabinets — draft 25
 
-**Status:** active schematic coordination hypothesis under D-069; not for construction
+**Status:** retained predecessor for Side A; active Side B workstation basis under D-069; Side A geometry superseded by D-078/PB b35; not for construction
 **Version:** 0.3-draft-25-PB
 **Date:** 2026-08-20
 **Scope:** ground floor, paired wall-integrated workstations and cabinet storage
 **Source:** owner visual review of PB b24, D-068, D-069 and the b24 parametric model.
+
+> **Partial supersession — 2026-08-21.** D-078/PB b35 replaces the Side A 3.00 m
+> workstation, two cabinets, equal window and 0.20 m main-glazing junction with one
+> centred 5.40 m two-person worktop, three cabinets and one 7.20 m work/hall opening.
+> This document and D-069 continue to govern the unchanged Side B single workstation and
+> the common 0.90 m-deep worktop / suspended-steel cabinet / independent-rail family.
 
 ## Purpose
 

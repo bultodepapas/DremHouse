@@ -1,7 +1,7 @@
 # Current drawing aliases
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.19<br>
+**Version:** 1.20<br>
 **Date:** 2026-08-21<br>
 **Construction authority:** none
 

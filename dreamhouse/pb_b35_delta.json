@@ -1,0 +1,80 @@
+{
+  "base_delta": "dreamhouse/pb_b34_delta.json",
+  "base_delta_sha256": "150caaf4e2a0ac5062c92783fb1fabe5e493384d3837184c6170c28a9244b2c8",
+  "revision": "0.3-draft-35-PB",
+  "status": "issued for D-078 Side A unified interior workstation/window coordination; facade expression is subordinate to robust economical envelope performance; structure, drainage, glazing, MEP, joinery and cost remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-34-PB / PLN-001-R12 as the active PB plan and 0.3-draft-25-PB / ELE-003-R08 and DET-006-R01 for Side A workstation/window coordination only",
+  "decision": "D-078",
+  "drawing_meta": {
+    "plan_code": "PLN-001-R13",
+    "plan_title": "COORDINATED GROUND FLOOR · SIDE A SHARED WORKSTATION",
+    "plan_subtitle": "D-078 one centred 7.20 m work/hall opening + 5.40 m two-person worktop + three suspended cabinets",
+    "side_a_code": "ELE-003-R09",
+    "side_a_title": "SIDE A ENVELOPE · PERFORMANCE-FIRST OPENING",
+    "side_subtitle": "D-078 interior-led shared workstation · rugged economical industrial envelope outside",
+    "detail_code": "DET-006-R02",
+    "detail_title": "SIDE A SHARED TWO-PERSON WORKSTATION",
+    "detail_subtitle": "D-078 centred 5.40 m worktop + three suspended cabinets within one 7.20 m modular opening · not for construction"
+  },
+  "side_a_unified_workstation": {
+    "monumental_band_x0": 10.50,
+    "monumental_band_x1": 21.00,
+    "centre_x": 15.75,
+    "window_width": 7.20,
+    "opaque_pier_each_side": 1.65,
+    "worktop_end_glazing_each_side": 0.90,
+    "design_intent": "The composition is controlled from the hall interior. The exterior remains a direct, rugged and economical industrial envelope; the opening is not a decorative facade gesture."
+  },
+  "side_a_workstation": {
+    "id": "PB-WS-A",
+    "name": "Side A shared two-person workstation",
+    "side": "A",
+    "zone_x0": 12.15,
+    "zone_x1": 19.35,
+    "zone_depth": 3.00,
+    "worktop_x0": 13.05,
+    "worktop_length": 5.40,
+    "worktop_depth": 0.90,
+    "worktop_height": 0.75,
+    "window_id": "GLZ-WS-A",
+    "seat_count": 2,
+    "chair_centres_x": [14.575, 16.925],
+    "drawer_cabinet_width": 0.70,
+    "drawer_cabinet_depth": 0.75,
+    "drawer_cabinet_height": 0.62,
+    "drawer_cabinet_count": 3,
+    "drawer_cabinet_offsets": [0.00, 2.35, 4.70],
+    "drawer_levels": 3,
+    "central_knee_clear_width": 3.30,
+    "knee_clear_width_each": 1.65,
+    "support_offsets": [0.20, 1.45, 2.70, 3.95, 5.20],
+    "support_fractions": [0.04, 0.27, 0.50, 0.73, 0.96],
+    "clearance_label": "SIDE A SHARED WORKSTATION · 7.20 × 3.00 m CLEAR",
+    "support": "dedicated bolted secondary-steel service rail; no primary, lateral, facade or window-support function"
+  },
+  "side_a_glazing": {
+    "id": "GLZ-WS-A",
+    "side": "A",
+    "name": "Unified Side A work / hall window",
+    "x0": 12.15,
+    "x1": 19.35,
+    "sill": 0.90,
+    "height": 2.90,
+    "modules": 6,
+    "status": "one architectural opening assembled from replaceable economical modules; final panelization, operable areas and performance pending site and professional design"
+  },
+  "side_a_facade_note": "D-078 is an interior-led opening, not a facade showpiece. Outside, retain a direct rugged economical industrial envelope: durable corrugated panels, simple replaceable glazing modules, protected flashings and drainage. Appearance is subordinate to resistance, weathering, maintenance and cost.",
+  "coordination_holds_remove_contains": [
+    "The 0.20 m nominal junction between GLZ-WS-A",
+    "The primary Side A glazing remains governed by open finding H-07"
+  ],
+  "coordination_holds_append": [
+    "D-078 replaces the separate 3.00 m Side A workstation window, 0.20 m junction and 4.30 m provisional main glazing with one 7.20 × 2.90 m modular opening centred at X=15.75 m in the 10.50 m monumental band.",
+    "The 5.40 × 0.90 m Side A worktop is centred within the opening and provides two 1.65 m clear knee/chair bays between three 0.70 m suspended three-drawer steel cabinet units.",
+    "The Side B 3.00 × 0.90 m single workstation and its 3.00 × 1.65 m window remain unchanged; D-078 deliberately ends the strict D-068/D-069 workstation mirror because the two sides now serve different interior programmes.",
+    "Exterior appearance does not drive D-078. The Side A opening and envelope must prioritize ruggedness, weather resistance, drainage, replaceable standard parts, safe glazing, thermal performance, maintainability and whole-life cost.",
+    "The 7.20 m opening removes the predecessor 0.20 m trimmer reservation but does not remove the need for a professionally designed header, jambs, longitudinal stability path, facade rails, seals, flashings and low-eave drainage.",
+    "Final mullion positions must avoid primary monitor sightlines; workstation loads remain on dedicated secondary steel and may not be assigned to glazing frames or unverified facade girts."
+  ]
+}

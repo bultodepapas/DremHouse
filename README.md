@@ -48,16 +48,16 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>24</strong> current SVG/PNG pairs · <strong>149</strong> preserved versioned sheets · <strong>76</strong> documents · <strong>68</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>24</strong> current SVG/PNG pairs · <strong>152</strong> preserved versioned sheets · <strong>77</strong> documents · <strong>69</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
 <tr>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with centred opposite dining and kitchen, centred project car and lift, coordinated 22-riser stair core and four column reservations" width="100%"></a>
-  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-34-PB</sub>
+  <a href="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg" alt="Current Dream House ground-floor plan with centred Side A shared workstation and unified window, opposite dining and kitchen, centred project car and coordinated stair core" width="100%"></a>
+  <br><sub><strong>Architecture · ground floor</strong> · 0.3-draft-35-PB</sub>
   <br><strong>Ground-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b34_pb/DH-ARQ-PLN-001-R12_PB-INTEGRATED-RESTORATION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b35_pb/DH-ARQ-PLN-001-R13_PB-SIDE-A-SHARED-WORKSTATION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
@@ -102,10 +102,10 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><sub><a href="planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House enlarged ground-floor workstation and suspended steel cabinet schematic detail" width="100%"></a>
-  <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-25-PB</sub>
-  <br><strong>PB enlarged workstation + cabinet family</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b25_pb/DH-ARQ-DET-006-R01_ENLARGED-WORKSTATION-CABINET-FAMILY.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <a href="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg"><img src="planos/actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg" alt="Dream House Side A shared two-person workstation with three suspended cabinets and unified modular window schematic detail" width="100%"></a>
+  <br><sub><strong>Architecture · PB workstation detail</strong> · 0.3-draft-35-PB</sub>
+  <br><strong>PB Side A shared two-person workstation</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>

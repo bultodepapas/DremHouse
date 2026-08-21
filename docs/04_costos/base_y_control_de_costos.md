@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.20
+**Versión:** 0.3.21
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -499,10 +499,36 @@ MEP/cost decision accepts otherwise. **No price, saving, increase, contingency c
 phase-total change, or target change is recognized by D-077 before coordinated quantities
 and comparable quotations exist.**
 
+### 0.3-AD — D-078 Side A shared workstation and unified opening
+
+D-078 replaces two adjacent Side A openings—the 3.00 × 1.65 m workstation window and
+4.30 × 3.15 m provisional main glazing, separated by a 0.20 m junction—with one
+7.20 × 2.90 m modular opening. Gross glazing changes from approximately **18.495 m²**
+to **20.88 m²**, an increase of **2.385 m² / 12.9%** before frame deductions. The
+combined outer opening perimeter falls from approximately 24.20 m to 20.20 m, a reduction
+of **4.00 m / 16.5%** before internal mullions. The longer header, jambs, stability path,
+safe glass, facade rails, seals, flashings and low-eave drainage remain unpriced; reduced
+perimeter cannot be booked as a saving against increased glass without comparable
+fabricator quotations.
+
+The Side A worktop changes from 3.00 × 0.90 m to 5.40 × 0.90 m. Its area increases
+from 2.70 m² to 4.86 m², an increase of **2.16 m² / 80%**. One 0.70 × 0.75 ×
+0.62 m suspended steel three-drawer cabinet is added, taking the complete PB workstation
+family from four to five cabinets and from twelve to fifteen drawers. The Side B D-069
+workstation remains unchanged.
+
+The exterior is intentionally not assigned a premium facade system or decorative frame.
+Price a direct rugged industrial-envelope solution using repeatable replaceable modules,
+durable coatings, protected flashings and accessible seals. Reconcile chapters 05/06/09/
+10/12/13/17/18/21 and update atomic alert `21.08` without duplicating D-068/D-069 scope.
+**No price, saving, increase, contingency change, phase-total change, or target change is
+recognized by D-078 before coordinated quantities and comparable quotations exist.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AD  | 2026-08-21 | D-078 replaces 18.495 m² of two-event Side A glazing with one 20.88 m² modular opening (+2.385 m² / 12.9%) while reducing outer opening perimeter by 4.00 m / 16.5%. The Side A worktop increases by 2.16 m² / 80%, and one three-drawer cabinet is added. Price a direct rugged industrial envelope rather than premium facade treatment; chapters 05/06/09/10/12/13/17/18/21 require reconciliation and quotations. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AC  | 2026-08-21 | D-077 adopts the 10.05 m kitchen wall, 7.20 × 1.25 m dry island and opposite centred dining geometry. The island is 2.40 m / 50% longer than `20.02`; the 17.25 m wall-plus-island length is 3.25 m / 23.2% above the `20.03` countertop allowance. Chapter 20 requires remeasurement and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AB  | 2026-08-21 | D-074 coordinates one shared 22-riser PB/P2 dogleg stair and four continuous column reservations inside the unchanged core. Stair steel, landings, fire/smoke enclosure, guards, connections, erection, bases and foundations require remeasurement after CF-011 rear grade-discharge resolution; **no price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AA  | 2026-08-20 | D-073 moves both existing 9.00 m technical bench starts to X=0.18 m at the front interior corners without changing quantity. Door-jamb/track, guard, seal, backing and removable-service end details require reconciliation; **no price, saving, increase, contingency, phase-total or target change is recognized.** |

@@ -1,0 +1,464 @@
+{
+  "revision": "0.3-draft-35-PB",
+  "status": "issued for D-078 Side A unified interior workstation/window coordination; facade expression is subordinate to robust economical envelope performance; structure, drainage, glazing, MEP, joinery and cost remain open; not for construction",
+  "checks": [
+    {
+      "rule_id": "PB-ENV",
+      "status": "PASS",
+      "message": "Envolvente nominal 18 × 36 m"
+    },
+    {
+      "rule_id": "PB-FRONT",
+      "status": "PASS",
+      "message": "Exactamente tres accesos frontales"
+    },
+    {
+      "rule_id": "PB-CORE-SUM",
+      "status": "PASS",
+      "message": "Núcleo conserva 81,00 m² brutos"
+    },
+    {
+      "rule_id": "PB-CORE-COVER",
+      "status": "PASS",
+      "message": "Núcleo cubre los 18,00 m sin vacíos"
+    },
+    {
+      "rule_id": "PB-CORE-CLOSURE",
+      "status": "PASS",
+      "message": "Núcleo: 16.94 m netos + 0.70 m de tabiques + 2×0.18 m de envolvente = 18,00 m"
+    },
+    {
+      "rule_id": "PB-GREAT-WALL",
+      "status": "PASS",
+      "message": "Gran muro continuo en X=31,50 m con espesor conceptual 0,20 m"
+    },
+    {
+      "rule_id": "PB-CORE-DOORS",
+      "status": "PASS",
+      "message": "Cinco accesos del núcleo de mínimo 0,90 m"
+    },
+    {
+      "rule_id": "PB-REAR-EXITS",
+      "status": "PASS",
+      "message": "Bodega y escalera conservan salidas posteriores"
+    },
+    {
+      "rule_id": "PB-KITCHEN-CLEAR",
+      "status": "PASS",
+      "message": "Paso operativo cocina = 1.35 m"
+    },
+    {
+      "rule_id": "PB-PANTRY-ADJ",
+      "status": "PASS",
+      "message": "Pantry se ubica junto al frente de cocina"
+    },
+    {
+      "rule_id": "PB-STAIR-ALIGN",
+      "status": "PASS",
+      "message": "Escalera conserva alineación Y=7,40–11,00 m con P2"
+    },
+    {
+      "rule_id": "PB-TECH-GLAZING",
+      "status": "PASS",
+      "message": "Dos ventanales técnicos grandes, modulados y equivalentes"
+    },
+    {
+      "rule_id": "P2-BEDROOM-GLAZING",
+      "status": "PASS",
+      "message": "Cuatro dormitorios representan vidrio casi piso a techo"
+    },
+    {
+      "rule_id": "PB-P2-WINDOW-SYNC",
+      "status": "PASS",
+      "message": "Vanos de dormitorio idénticos en pb_b05.json y p2_b10.json"
+    },
+    {
+      "rule_id": "PB-GLAZING-IN-ROOM",
+      "status": "PASS",
+      "message": "Cada vano cae dentro del muro de su dormitorio"
+    },
+    {
+      "rule_id": "PB-WS-PAIR",
+      "status": "PASS",
+      "message": "Exactly one permanent wall-integrated workstation is reserved on each long side."
+    },
+    {
+      "rule_id": "PB-WS-MIRROR",
+      "status": "PASS",
+      "message": "D-078 deliberately replaces strict A/B workstation mirroring: Side A is a two-person work/hall assembly while Side B retains its single workstation."
+    },
+    {
+      "rule_id": "PB-WS-WALL-CONTACT",
+      "status": "PASS",
+      "message": "Both worktops meet the interior wall/service-rail plane: Y=0.18 m and Y=17.82 m."
+    },
+    {
+      "rule_id": "PB-WS-GLAZING-SYMMETRY",
+      "status": "PASS",
+      "message": "D-078 deliberately replaces equal A/B workstation windows; Side A now combines workstation and hall daylight in one opening while Side B remains unchanged."
+    },
+    {
+      "rule_id": "PB-WS-PLAN-ELEVATION-SYNC",
+      "status": "PASS",
+      "message": "Each workstation clearance zone and its facade opening share the same X extent."
+    },
+    {
+      "rule_id": "PB-WS-SILL-CLEARANCE",
+      "status": "PASS",
+      "message": "Window sill is 0.15 m above the test worktop."
+    },
+    {
+      "rule_id": "PB-WS-AXIS-CLEAR",
+      "status": "PASS",
+      "message": "Both 3.00 m workstation clearance zones remain outside the 4.00 m central perceptual axis."
+    },
+    {
+      "rule_id": "PB-WS-STRUCTURAL-BAY",
+      "status": "OPEN",
+      "message": "The centred 7.20 m Side A opening crosses the neutral X=12–18 m M60 test bay. Final primary frames, header, jambs, facade rails and longitudinal stability remain open."
+    },
+    {
+      "rule_id": "PB-WS-BENCH-FAMILY",
+      "status": "PASS",
+      "message": "The RC and project-car benches reference the same steel-rail / replaceable-worktop family."
+    },
+    {
+      "rule_id": "PB-WS-A-MAIN-GLAZING-JUNCTION",
+      "status": "PASS",
+      "message": "D-078 removes the separate 0.20 m workstation/main-glazing junction by replacing both predecessor openings with one architectural opening."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-LIFT-INTERFACE",
+      "status": "OPEN",
+      "message": "The wall-integrated project-car bench and inward-shifted lift envelope close schematically; real lift, vehicle, door, tool and manufacturer clearances govern."
+    },
+    {
+      "rule_id": "PB-WS-FULL-BAY-WORKTOP",
+      "status": "PASS",
+      "message": "D-078 centres the 5.40 m Side A worktop within the wider 7.20 m shared clearance and glazing bay; D-069 full-bay geometry remains only on Side B."
+    },
+    {
+      "rule_id": "PB-WS-CONTROLLED-DEPTH",
+      "status": "PASS",
+      "message": "Both enlarged worktops are 0.90 m deep and remain below the 1.00 m depth limit."
+    },
+    {
+      "rule_id": "PB-WS-CABINETRY-MIRROR",
+      "status": "PASS",
+      "message": "D-078 adopts three Side A cabinets for two seats and retains the D-069 two-cabinet single workstation on Side B."
+    },
+    {
+      "rule_id": "PB-WS-KNEE-CLEARANCE",
+      "status": "PASS",
+      "message": "D-078 provides two separate 1.65 m clear Side A knee/chair bays between three cabinets; the predecessor one-bay formula no longer governs Side A."
+    },
+    {
+      "rule_id": "PB-WS-CABINET-WITHIN-TOP",
+      "status": "PASS",
+      "message": "Drawer cabinets remain within the worktop depth and suspended above the floor."
+    },
+    {
+      "rule_id": "PB-SOCIAL-AXIS-CLEAR",
+      "status": "PASS",
+      "message": "Living furniture begins at Y=11.35 m beyond the Y=11.00 m pedestrian axis."
+    },
+    {
+      "rule_id": "PB-SOCIAL-WORKSTATION-CLEAR",
+      "status": "PASS",
+      "message": "Living furniture starts at X=16.20 m beyond the workstation-2 zone ending at X=16.00 m."
+    },
+    {
+      "rule_id": "PB-TV-SIDE-B-PERIMETER",
+      "status": "PASS",
+      "message": "The 100-inch TV mounting field is directly on the Side B perimeter wall and no internal media partition remains."
+    },
+    {
+      "rule_id": "PB-TV-100-IN-ENVELOPE",
+      "status": "PASS",
+      "message": "The 100-inch 16:9 test envelope is 2.214 × 1.245 m."
+    },
+    {
+      "rule_id": "PB-TV-VIEWING-DISTANCE",
+      "status": "PASS",
+      "message": "The test viewing point is 4.10 m from the Side B TV wall."
+    },
+    {
+      "rule_id": "PB-DINING-INDEPENDENT",
+      "status": "PASS",
+      "message": "The researched 12-seat group uses five chairs on each long side and one at each head; table size is validated separately by b31."
+    },
+    {
+      "rule_id": "PB-SIDE-B-SOLID-HALL-BAY",
+      "status": "PASS",
+      "message": "The Side B hall bay remains solid behind the TV mounting field pending site design."
+    },
+    {
+      "rule_id": "PB-TV-PERIMETER-BACKING",
+      "status": "OPEN",
+      "message": "Local Side B wall backing, mount loads, facade penetrations and enclosure continuity require structural/facade design."
+    },
+    {
+      "rule_id": "PB-TV-AV-MEP",
+      "status": "OPEN",
+      "message": "Real TV, mount, speakers, power, data, AV, ventilation and replacement access remain open."
+    },
+    {
+      "rule_id": "PB-TV-GLARE-SIDE-B",
+      "status": "OPEN",
+      "message": "Side B daylight, glare and blackout control remain dependent on the selected site and facade design."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-SIDE-A-WALL",
+      "status": "PASS",
+      "message": "The 9.00 m project-car bench is fixed directly against the Side A perimeter wall."
+    },
+    {
+      "rule_id": "PB-TECHNICAL-BENCHES-PERIMETER",
+      "status": "PASS",
+      "message": "Both long technical workbenches are now wall-side elements on opposite hall walls."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-BELOW-WINDOW",
+      "status": "PASS",
+      "message": "The project-car bench spans below the full technical window without raising its test worktop above the sill."
+    },
+    {
+      "rule_id": "PB-CAR-BENCH-LIFT-GRAPHIC-SEPARATION",
+      "status": "PASS",
+      "message": "The shifted lift envelope retains 0.10 m graphic separation from the bench and stops before the central axis."
+    },
+    {
+      "rule_id": "PB-TECH-BENCHES-FRONT-CORNER-START",
+      "status": "PASS",
+      "message": "Both 9.00 m technical benches begin at X=0.18 m, the front interior corner."
+    },
+    {
+      "rule_id": "PB-TECH-BENCHES-LENGTH-RETAINED",
+      "status": "PASS",
+      "message": "Both benches retain 9.00 m length and terminate at X=9.18 m."
+    },
+    {
+      "rule_id": "PB-TECH-BENCHES-FRONT-DOOR-SEPARATION",
+      "status": "PASS",
+      "message": "The corner-start benches retain nominal plan gaps of 0.27 m and 0.27 m to the adjacent front door openings."
+    },
+    {
+      "rule_id": "PB-KD-FULL-DOMESTIC-WALL",
+      "status": "PASS",
+      "message": "The kitchen wall composition spans 10.05 m of the 10.50 m domestic bay and stops 0.30 m before the Great Wall."
+    },
+    {
+      "rule_id": "PB-KD-WORKING-AISLE",
+      "status": "PASS",
+      "message": "The wall-to-island working aisle is 1.35 m."
+    },
+    {
+      "rule_id": "PB-KD-ISLAND-END-ROUTES",
+      "status": "PASS",
+      "message": "The 7.20 m island retains 1.40 m and 1.90 m clear end routes."
+    },
+    {
+      "rule_id": "PB-KD-CENTRAL-AXIS-CLEAR",
+      "status": "PASS",
+      "message": "Island seating ends at Y=4.11 m and dining begins at Y=13.35 m, outside the Y=7.00–11.00 m pedestrian axis."
+    },
+    {
+      "rule_id": "PB-KD-DINING-OPPOSITE",
+      "status": "PASS",
+      "message": "The independent 12-seat dining table occupies the Side B domestic bay opposite the kitchen."
+    },
+    {
+      "rule_id": "PB-KD-DINING-LIVING-SEPARATION",
+      "status": "PASS",
+      "message": "The dining table starts 3.85 m beyond the living rug."
+    },
+    {
+      "rule_id": "PB-KD-DRY-ISLAND-SERVICES",
+      "status": "PASS",
+      "message": "The option keeps water, drainage and extraction on the Side A wall; the island carries only dry prep/seating and coordinated power/data."
+    },
+    {
+      "rule_id": "PB-KD-OWNER-SELECTION",
+      "status": "PASS",
+      "message": "D-077 adopts the b32 opposite-dining/full-span-kitchen relationship as the active schematic PB basis; D-024 product and equipment selection remains open."
+    },
+    {
+      "rule_id": "PB-KD-APPLIANCE-MEP",
+      "status": "OPEN",
+      "message": "Real appliance sizes, extraction, circuits, lighting, plumbing, joinery and replacement access remain open."
+    },
+    {
+      "rule_id": "PB-KD-DINING-DAYLIGHT",
+      "status": "OPEN",
+      "message": "The Side B dining opening and glare/thermal strategy depend on the selected site and coordinated P2 facade."
+    },
+    {
+      "rule_id": "PB-KD-DINING-TRUE-CENTRE",
+      "status": "PASS",
+      "message": "The table and symmetric dining group are centred at X=26.25 m, Y=14.41 m in the 10.50 × 6.82 m territory."
+    },
+    {
+      "rule_id": "PB-KD-DINING-12-SEATS",
+      "status": "PASS",
+      "message": "The chair topology is 5 + 5 along the long sides and one chair at each head: 12 seats total."
+    },
+    {
+      "rule_id": "PB-KD-DINING-RESEARCHED-SIZE",
+      "status": "PASS",
+      "message": "The 3.20 × 1.10 m table provides 0.64 m per long-side chair and remains within the researched 12-seat product range."
+    },
+    {
+      "rule_id": "PB-KD-DINING-CLEARANCE-ENVELOPE",
+      "status": "PASS",
+      "message": "A 1.10 m chair/walk envelope is centred with 2.55 m and 1.76 m additional open-space buffers beyond it."
+    },
+    {
+      "rule_id": "PB-KD-DINING-PRODUCT-SELECTION",
+      "status": "OPEN",
+      "message": "Select the real table, base/leg geometry and chairs before procurement; nominal capacity does not prove that armchairs fit between the supports."
+    },
+    {
+      "rule_id": "PB-CAR-LIFT-LONGITUDINAL-CENTRE",
+      "status": "PASS",
+      "message": "The 6.40 m lift/vehicle envelope is centred at X=5.34 m in the X=0.18–10.50 m technical bay."
+    },
+    {
+      "rule_id": "PB-CAR-LIFT-EQUAL-END-RESIDUALS",
+      "status": "PASS",
+      "message": "The centred envelope leaves equal 1.96 m front and rear residuals."
+    },
+    {
+      "rule_id": "PB-CAR-LIFT-INTERNAL-CENTRE",
+      "status": "PASS",
+      "message": "Vehicle and symmetric post-pair centres coincide with the envelope at X=5.34 m, Y=3.965 m."
+    },
+    {
+      "rule_id": "PB-CAR-LIFT-CONSTRAINED-TRANSVERSE-FIT",
+      "status": "PASS",
+      "message": "The transverse envelope centre coincides with the usable-territory centre, leaving equal 0.100 m graphic residuals to the bench and axis."
+    },
+    {
+      "rule_id": "PB-CAR-LIFT-REAL-EQUIPMENT",
+      "status": "OPEN",
+      "message": "Real car and lift geometry, doors, arms, controls, tool carts, egress, slab loads, anchors and manufacturer working zones remain open."
+    },
+    {
+      "rule_id": "STAIR-ENCLOSURE",
+      "status": "PASS",
+      "message": "PB and P2 share one 4.50 x 3.60 m enclosure with a 4.10 x 3.20 m schematic clear rectangle."
+    },
+    {
+      "rule_id": "STAIR-RISERS",
+      "status": "PASS",
+      "message": "22 equal risers give 172.7 mm per riser over 3.80 m."
+    },
+    {
+      "rule_id": "STAIR-GOING-RULE",
+      "status": "PASS",
+      "message": "With a 270 mm going, 2R+G = 615.5 mm within the 600-640 mm screen."
+    },
+    {
+      "rule_id": "STAIR-FLIGHT-RUN",
+      "status": "PASS",
+      "message": "Both flights use 10 equal 270 mm goings for a 2.70 m run."
+    },
+    {
+      "rule_id": "STAIR-WIDTH-LANDING",
+      "status": "PASS",
+      "message": "Each flight is 1.40 m clear and the intermediate landing is 1.40 m deep."
+    },
+    {
+      "rule_id": "STAIR-TRANSVERSE-CLOSURE",
+      "status": "PASS",
+      "message": "0.10 + 1.40 + 0.20 + 1.40 + 0.10 = 3.20 m clear transverse closure."
+    },
+    {
+      "rule_id": "STAIR-LANDING-RISE",
+      "status": "PASS",
+      "message": "The intermediate landing is at +1.90 m, below the 3.60 m screened maximum rise between landings."
+    },
+    {
+      "rule_id": "STAIR-FOUR-COLUMNS",
+      "status": "PASS",
+      "message": "Four and only four foundation-to-roof column reservations coincide with the enclosure corners."
+    },
+    {
+      "rule_id": "STAIR-STRUCTURAL-SEPARATION",
+      "status": "PASS",
+      "message": "The independent enclosure frame carries the structural study; stair flights receive no primary lateral credit."
+    },
+    {
+      "rule_id": "STAIR-HEADROOM",
+      "status": "OPEN",
+      "message": "A longitudinal section must verify at least 2.05 m headroom, stringer depth, landing beams and door clearances."
+    },
+    {
+      "rule_id": "STAIR-REAR-DISCHARGE-LEVEL",
+      "status": "OPEN",
+      "message": "CF-011: the current rear-door plane meets the +1.90 m intermediate landing, not PB grade; a sectioned discharge alternative is required."
+    },
+    {
+      "rule_id": "PB34-D077-DOMESTIC-GEOMETRY",
+      "status": "PASS",
+      "message": "D-077 restores the centred 3.20 x 1.10 m, 5+5+2 dining group opposite the 10.05 m kitchen wall and 7.20 m dry island."
+    },
+    {
+      "rule_id": "PB34-DOMESTIC-CORE-SEPARATION",
+      "status": "PASS",
+      "message": "Dining, island and wall cabinets stop clear of the Great Wall and SC-01 core."
+    },
+    {
+      "rule_id": "PB34-STAIR-SHARED-FOOTPRINT",
+      "status": "PASS",
+      "message": "The restored PB layout retains SC-01 at X=31.50-36.00 m / Y=7.40-11.00 m."
+    },
+    {
+      "rule_id": "PB34-STAIR-ACCESS-FLIGHT",
+      "status": "PASS",
+      "message": "The PB Great Wall portal remains aligned with the SC-01 lower-flight access zone."
+    },
+    {
+      "rule_id": "PB34-STAIR-FOUR-COLUMN-SYNC",
+      "status": "PASS",
+      "message": "PB b34 retains the same four SC-01 column IDs and coordinates used by P2."
+    },
+    {
+      "rule_id": "PB35-D078-COMMON-CENTRE",
+      "status": "PASS",
+      "message": "Monumental band, 7.20 m opening and 5.40 m worktop share X=15.75 m exactly."
+    },
+    {
+      "rule_id": "PB35-D078-WINDOW-GEOMETRY",
+      "status": "PASS",
+      "message": "Side A uses one 7.20 × 2.90 m modular opening with a +0.90 m sill and +3.80 m head."
+    },
+    {
+      "rule_id": "PB35-D078-SYMMETRIC-RESIDUALS",
+      "status": "PASS",
+      "message": "The opening leaves equal 1.65 m opaque piers; the worktop leaves equal 0.90 m glazed ends."
+    },
+    {
+      "rule_id": "PB35-D078-TWO-SEATS-THREE-CABINETS",
+      "status": "PASS",
+      "message": "Three 0.70 m cabinets define two equal 1.65 m clear work positions within the 5.40 m top."
+    },
+    {
+      "rule_id": "PB35-D078-AXIS-AND-CAR-CLEAR",
+      "status": "PASS",
+      "message": "The shared Side A workstation remains outside the 4.00 m pedestrian axis and behind the car/lift territory."
+    },
+    {
+      "rule_id": "PB35-D078-INTERIOR-FIRST-ENVELOPE",
+      "status": "OPEN",
+      "message": "Exterior appearance is subordinate to internal light/use and a rugged economical industrial envelope. Verify panel gauge/coating, impact, safe glazing, replacement, thermal performance, seals, flashings, gutter/downpipes and whole-life cost."
+    },
+    {
+      "rule_id": "PB35-D078-MULLION-MONITOR-COORDINATION",
+      "status": "OPEN",
+      "message": "Six economical test modules do not freeze mullion positions. Coordinate real monitors, seated sightlines, operable panels, glass sizes and quotations before fabrication."
+    }
+  ],
+  "passed": 78,
+  "open": 13,
+  "failed": 0
+}

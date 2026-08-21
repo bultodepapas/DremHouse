@@ -1,11 +1,15 @@
 # Restored ground-floor domestic layout — PB b34
 
-**Status:** active schematic coordination basis; not for construction  
+**Status:** retained predecessor; D-077 domestic/vehicle/SC-01 geometry retained by D-078/PB b35, which supersedes this issue as current and changes Side A workstation/opening only; not for construction
 **Version:** 0.3-b34-PB / PLN-001-R12  
 **Date:** 2026-08-21  
 **Decision:** D-077  
 **Sources:** PB b32 domestic/vehicle study; D-071; D-073; D-074/SC-01; owner visual
 review dated 2026-08-21
+
+> **Supersession note — 2026-08-21.** D-078/PB b35 retains the complete D-077 kitchen,
+> dining, living, Project Car/lift and SC-01 geometry. It replaces only the Side A
+> workstation and adjacent glazing, and becomes the active PB publication issue.
 
 ## Outcome
 
@@ -27,8 +31,9 @@ The active schematic relationship is:
   1.96 m longitudinal residuals inside the usable technical bay.
 
 The D-071 living group and Side B perimeter-wall television, both D-073 9.00 m
-corner-start workbenches, the mirrored workstations and all front-door controls remain
-unchanged.
+corner-start workbenches, the predecessor mirrored workstations and all front-door
+controls remain unchanged in this retained issue. D-078 later replaces only the Side A
+member of that workstation pair.
 
 ## Stair and four-column relationship
 

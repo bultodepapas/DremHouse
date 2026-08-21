@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active  
-**Version:** 0.7
+**Version:** 0.8
 **Date:** 2026-08-21
 
 > [!NOTE]
@@ -61,8 +61,8 @@ they stay stable while their explicitly promoted versioned source can advance.
   retained D-068 predecessor that replaces the floating desk symbols with one mirrored
   pair of wall-integrated workstations and equal landscape windows.
 - [PB enlarged workstation cabinets — draft 25](02_arquitectura/pb_enlarged_workstation_cabinets_v0.3_b25.md):
-  retained D-069 workstation/cabinet basis with full-bay 3.00 × 0.90 m worktops and four
-  large suspended steel three-drawer cabinets, inherited unchanged by PB b28.
+  retained D-069 workstation/cabinet predecessor with the unchanged Side B 3.00 × 0.90 m
+  workstation still active; its Side A geometry is superseded by D-078/PB b35.
 - [PB living, dining and media wall — draft 26](02_arquitectura/pb_living_dining_media_v0.3_b26.md):
   superseded D-070 predecessor that first made the living/dining programme explicit but
   tested a rejected freestanding X=21 media partition.
@@ -88,9 +88,12 @@ they stay stable while their explicitly promoted versioned source can advance.
   group in the usable Side A technical bay, with equal 1.96 m end residuals; its domestic
   and vehicle geometry is adopted in PB b34.
 - [PB restored domestic layout — b34](02_arquitectura/pb_restored_domestic_layout_v0.3_b34.md):
-  active D-077 ground-floor issue combining the preferred full-span kitchen, centred
-  opposite dining and centred Project Car/lift with the unchanged SC-01 stair and four
-  foundation-to-roof column reservations.
+  retained D-077 predecessor combining the preferred full-span kitchen, centred opposite
+  dining and centred Project Car/lift with SC-01; all of that geometry is retained by b35.
+- [PB Side A shared workstation and unified opening — b35](02_arquitectura/pb_side_a_shared_workstation_v0.3_b35.md):
+  active D-078 ground-floor issue centring one 5.40 m two-person worktop with three
+  suspended cabinets below one 7.20 m modular work/hall opening. The concept is controlled
+  from the interior; outside remains a rugged, resistant and economical industrial envelope.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

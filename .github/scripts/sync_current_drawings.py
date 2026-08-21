@@ -241,7 +241,9 @@ Full provenance and SHA-256 hashes are recorded in
 
 ## History and update rule
 
-Versioned folders and issued files—including `conceptual_v0.3_b29_pb/`,
+Versioned folders and issued files—including `conceptual_v0.3_b35_pb/`,
+`conceptual_v0.3_b34_pb/`,
+`conceptual_v0.3_b29_pb/`,
 `conceptual_v0.3_b28_pb/`,
 `conceptual_v0.3_b27_pb/`,
 `conceptual_v0.3_b26_pb/`,
@@ -319,7 +321,7 @@ The publication layer currently contains **{len(drawings)} SVG/PNG pairs**:
 views**. It covers both floor plans, roof and rooflights, longitudinal and transverse
 sections, all four exterior elevations, the Great Wall and service core, access/egress,
 owner-priority interfaces, the D-073 corner-start technical workbenches, D-071 PB
-living/Side B TV wall and D-069 workstation/cabinet family, structural
+living/Side B TV wall and D-078/D-069 workstation/cabinet family, structural
 plans/elevations, the hybrid-wall study, E1 screening, and stair-frame vertical
 continuity.
 
@@ -333,9 +335,10 @@ The set must be read together:
 - the same ground-floor plan coordinates D-073's two 9.00 m technical benches from their
   front interior corners and retains D-072's inward-shifted lift envelope; door-jamb and
   real equipment clearances remain open;
-- both side elevations and the PB workstation detail retain the D-069 enlarged mirrored
-  workstations and suspended steel drawer cabinets, while secondary steel, joinery,
-  facade, TV-wall backing, AV and MEP interfaces remain open;
+- the Side A elevation and PB workstation detail show D-078's centred two-person worktop,
+  three cabinets and unified modular work/hall opening; the Side B elevation retains the
+  D-069 single workstation. Secondary steel, joinery, rugged-envelope performance,
+  facade structure, TV-wall backing, AV and MEP interfaces remain open;
 - the rear façade remains supplemented by D-051's retractable-stair reserve;
 - roof form is represented by the b07 sections and façades, while the current rooflight
   position is represented by the 0.4-I01/D-054 roof plan and daylight section; and

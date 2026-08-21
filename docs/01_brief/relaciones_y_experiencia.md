@@ -1,8 +1,8 @@
 # Relaciones y experiencia espacial
 
 **Estatus:** activo  
-**Versión:** 0.7
-**Fecha:** 2026-08-20
+**Versión:** 0.8
+**Fecha:** 2026-08-21
 
 ## Secuencia maestra
 
@@ -28,14 +28,15 @@ cuatro bandas dentro de una sola vista transversal.
   100-inch television fixed directly to the Side B perimeter wall. The sofa, chaise,
   chairs, rug, console and mounting field remain outside the 4.00 m central pedestrian
   axis and east of workstation 2; no internal media partition divides the hall.
-- Workstations under D-068/D-069: separate, outside the dirty technical strip, mirrored
-  against the two long walls, fixed to dedicated secondary-steel service frames and
-  directly oriented toward equal nominal landscape windows. Their full-bay 3.00 × 0.90 m
-  worktops and substantial suspended drawer cabinets should read as permanent house-scale
-  infrastructure. The 3 × 3 m reservations remain clearance envelopes, not enclosed
-  offices or raised floor zones.
-- Dining: independent 12-seat group beside the kitchen, visually connected to the hall
-  without relying on a media-wall reverse face or new room divider.
+- Workstations under D-078/D-069: Side A uses one 5.40 × 0.90 m shared two-person
+  worktop centred below one 7.20 × 2.90 m work/hall opening, with three suspended steel
+  drawer cabinets defining two equal 1.65 m clear positions. Side B retains the D-069
+  3.00 × 0.90 m single workstation, two cabinets and 3.00 × 1.65 m window. Both remain
+  outside the dirty technical strip and use dedicated secondary-steel service frames;
+  clearance envelopes are not rooms or raised platforms.
+- Dining under D-077: one centred independent 12-seat group on Side B opposite the
+  full-span Side A kitchen across the clear axis, without relying on a media-wall reverse
+  face or new room divider.
 - Cocina: bajo P2, delante del núcleo y vinculada a apoyo limpio.
 - Bodega: acceso interior y exterior posterior; no comparte ambiente con homelab.
 - Escalera: oculta pero localizable; su puerta tiene mayor legibilidad que baño/bodega.
@@ -53,6 +54,9 @@ de zonificación sin muros.
 
 ## Exterior
 
+- Architectural value is concentrated inside. Outside, retain one direct rugged
+  industrial envelope; facade appearance is subordinate to weather resistance, impact,
+  drainage, replaceable standard components, maintenance and whole-life cost.
 - Frente: continuidad entre losa interior, plataforma y césped.
 - Vehículos cotidianos: fuera de la nave, sin bloquear la apertura de los tres accesos.
 - Paisaje: pocos árboles nativos longevos, elegidos con el sitio; evitar fragmentación

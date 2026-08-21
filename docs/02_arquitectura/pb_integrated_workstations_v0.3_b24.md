@@ -1,6 +1,6 @@
 # PB integrated workstations — draft 24
 
-**Status:** retained predecessor; joinery size superseded by D-069/PB b25; not for construction
+**Status:** retained predecessor; joinery superseded by D-069 and Side A mirror/opening superseded by D-078/PB b35; not for construction
 **Version:** 0.3-draft-24-PB
 **Date:** 2026-08-20
 **Scope:** ground floor (PB), both long-side facades, workstation/bench architectural family
@@ -9,6 +9,11 @@
 > **Supersession note — 2026-08-20.** D-069/PB b25 retains the mirrored wall/window
 > concept and enlarges each worktop from 2.40 × 0.80 m to 3.00 × 0.90 m, adding two
 > substantial suspended steel drawer cabinets. This issue remains the predecessor record.
+>
+> **Side A supersession note — 2026-08-21.** D-078/PB b35 replaces strict A/B mirroring
+> on Side A only: one 7.20 m interior-led work/hall opening now serves a 5.40 m two-person
+> worktop with three cabinets. The D-068 independent rail/worktop family remains; the
+> D-069 Side B single workstation remains unchanged.
 
 ## Purpose
 

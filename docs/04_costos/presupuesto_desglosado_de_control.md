@@ -2,9 +2,9 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.6
+**Versión:** 0.3.7
 **Fecha de precios:** 2026-08-11  
-**Document update:** 2026-08-20
+**Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
 **Origen:** desglose atómico del target de obra física v0.2 ($941 M) y del reparto de
 fases F1/F2 de la estrategia de dos fases.  
@@ -243,10 +243,17 @@ antes de PE-2.
 
 | Código | Partida                                            | Un  | Cant | P. unitario |    Subtotal | Confianza  | Fuente/supuesto                            |
 | ------ | -------------------------------------------------- | --- | ---: | ----------: | ----------: | ---------- | ------------------------------------------ |
-| 12.01  | Sistema de vidrio termopanel fijo low-e (perfiles) | m²  |   28 |  $1.180.000 | $33.040.000 | baja-media | Evento ≈7 × 4 m de luz; por diseñar        |
+| 12.01  | Sistema modular de vidrio fijo low-e (perfiles)    | m²  |   28 |  $1.180.000 | $33.040.000 | baja-media | D-078 tests 20,88 m² within the retained allowance; final system pending |
 | 12.02  | Estructura secundaria de soporte del vidrio        | gl  |    1 |  $2.760.000 |  $2.760.000 | baja-media | Largueros/travesaños coordinados con acero |
 | 12.03  | Herrajes, sellos y drenaje del sistema             | gl  |    1 |  $1.200.000 |  $1.200.000 | baja-media | Termopanel + low-e según modelo térmico    |
 | 12.04  | Montaje e izaje                                    | gl  |    1 |  $1.000.000 |  $1.000.000 | baja-media | Logística rural (R-19)                     |
+
+**D-078 measurement join:** the active Side A opening is **7.20 × 2.90 m = 20.88 m²**.
+It replaces the former 18.495 m² combined Side A workstation/main-glazing geometry and
+remains below the 28 m² control allowance. This apparent area reserve is not a saving:
+safe glass, economical module widths, mullions, header/jamb steel, seals, drainage and
+installation must be specified and quoted first. The exterior is performance-first;
+there is no allowance for a decorative facade frame or premium curtain-wall expression.
 
 **Riesgo de control:** el precio implícito de $1.180.000/m² está por debajo de la
 referencia de muro cortina CYPE ($1.290.000–1.485.000/m²). Es un paño "contenido" (28
@@ -264,12 +271,13 @@ fácilmente $8–15 M. Es hard rule: no eliminar; optimizar dimensión y especif
 | 13.03  | Puerta peatonal central 1,60 × 2,50 | un  |    1 |  $1.400.000 |  $1.400.000 | baja-media | Perfil de catálogo                |
 | 13.04  | Persianas y mosquiteros selectivos  | gl  |    1 |    $500.000 |    $500.000 | baja       | Solo donde aportan                |
 | 13.05  | Soportes y sellos de carpintería    | gl  |    1 |    $500.000 |    $500.000 | media      | Fijaciones y sellos               |
-| 13.06  | D-068 PB workstation glazing pair   | m²  | 9,90 |         TBC | not included | baja     | 2 × 3,00 × 1,65 m; reconcile before pricing |
+| 13.06  | D-069 retained Side B workstation window | m²  | 4,95 |      TBC | not included | baja     | 3,00 × 1,65 m; Side A is now joined to 12.01 by D-078 |
 
-`13.06` is an unpriced measurement alert. The predecessor elevations already showed the
-same 9.90 m² nominal glass area, but it was not a named PB opening or cost-code join. It
-does not change the $20 M chapter control subtotal until duplication against `13.02`,
-facade scope, selected systems and comparable quotations are resolved.
+`13.06` is an unpriced measurement alert for the retained Side B window only. D-078 moves
+the former Side A member into the unified opening controlled under `12.01`; it must not be
+counted twice. The line does not change the $20 M chapter control subtotal until
+duplication against `13.02`, facade scope, selected systems and comparable quotations are
+resolved.
 
 ---
 
@@ -402,14 +410,16 @@ registran como **equipamiento**, fuera de obra.
 | 21.05  | Banco central RC 1,60 × 4,50                  | gl  |    1 |  $3.000.000 | $3.000.000 | $1.500.000 | $1.500.000 | baja-media | Base robusta F1; almacenamiento F2 |
 | 21.06  | Cajoneras y gabinetes técnicos adicionales    | gl  |    1 |  $3.000.000 | $3.000.000 |         $0 | $3.000.000 | baja-media | F2                                 |
 | 21.07  | Almacenamiento de aviones/lavandería/linen    | gl  |    1 |  $2.000.000 | $2.000.000 |         $0 | $2.000.000 | baja-media | F2                                 |
-| 21.08  | D-068/D-069 enlarged PB workstation pair     | un  |    2 |          TBC | not included | not included | $0 | baja | 2 × 3.00 × 0.90 m tops + 4 suspended steel cabinets; reconcile allowances |
+| 21.08  | D-078 Side A shared + D-069 Side B workstation assemblies | un | 2 | TBC | not included | not included | $0 | baja | 7.56 m² total worktop + 5 suspended steel cabinets; reconcile allowances |
 | 21.09  | D-071 fixed Side B AV console                | gl  |    1 |          TBC | not included | not included | $0 | baja | 3.40 m accessible console; D-070 reverse-face sideboard deleted; equipment excluded |
 
-`21.08` is an unpriced Phase 1 scope alert. D-069 updates the same line rather than adding
-a duplicate: 5.40 m² total worktop area, four 0.70 × 0.75 × 0.62 m suspended steel
-cabinet units and twelve drawers. Do not add it to the $30 M chapter control subtotal
-until fixed-joinery and workshop-bench allowances are reconciled and the secondary steel,
-worktops, brackets, trays, cabinets and storage loads are specified and quoted.
+`21.08` is an unpriced Phase 1 scope alert. D-078 replaces only the Side A portion of the
+former mirrored pair: the current scope is one **5.40 × 0.90 m** shared Side A worktop
+with three cabinets plus one retained **3.00 × 0.90 m** Side B worktop with two cabinets.
+The total is **7.56 m² of worktop, five 0.70 × 0.75 × 0.62 m suspended steel cabinets and
+fifteen drawers**. Do not add it to the $30 M chapter control subtotal until fixed-joinery
+and workshop-bench allowances are reconciled and the secondary steel, worktops, brackets,
+trays, cabinets and storage loads are specified and quoted.
 
 `21.09` is an unpriced Phase 1 fixed-joinery alert. Coordinate service access, equipment
 ventilation and local backing with `14.07`, electrical/data chapters and existing

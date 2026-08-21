@@ -1,11 +1,12 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 1.0
+**Version:** 1.1
 **Date:** 2026-08-21
 **Language note:** controlled English translation under D-044; D-063 incorporated into
 CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
-CF-006 without freezing products, MEP, joinery, or cost.
+CF-006 without freezing products, MEP, joinery, or cost; D-078 changes Side A workstation
+and glazing geometry without selecting structure, facade products or cost.
 
 ## Precedence
 
