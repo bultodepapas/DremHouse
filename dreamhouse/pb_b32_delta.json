@@ -1,0 +1,43 @@
+{
+  "base_delta": "dreamhouse/pb_b31_delta.json",
+  "base_delta_sha256": "008d55bc110bb2907a7d1640781c0c14f982a49af81ff162b75478b41928a57c",
+  "revision": "0.3-option-32-PB",
+  "status": "owner-directed centred project-car/lift refinement within the coordinated kitchen/dining option; does not supersede active PB b29; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-option-31-PB for project-car/lift position only; neither option supersedes active 0.3-draft-29-PB",
+  "decision": "D-074-not-created",
+  "drawing_meta": {
+    "plan_code": "PLN-001-S03",
+    "plan_title": "GROUND FLOOR OPTION STUDY · CENTRED PROJECT CAR + LIFT",
+    "plan_subtitle": "Owner-directed refinement · car, lift envelope and post pair centred in the usable Project Car technical bay · bench/axis constraints retained",
+    "study_code": "OPT-003-R00",
+    "study_title": "PB PROJECT CAR · TRUE CENTRING AFTER BENCH CLEARANCE",
+    "study_subtitle": "Complete car/lift group centred in both directions within the X=0.18–10.50 m and Y=0.93–7.00 m usable technical territory"
+  },
+  "car_territory": {
+    "x": 0.18,
+    "y": 0.93,
+    "width": 10.32,
+    "depth": 6.07,
+    "centre": { "x": 5.34, "y": 3.965 },
+    "definition": "usable Project Car territory after the 0.75 m Side A bench and before the Y=7.00 m central pedestrian axis"
+  },
+  "car_lift_layout": {
+    "envelope": { "x": 2.14, "y": 1.03, "w": 6.40, "d": 5.87 },
+    "car": { "x": 2.94, "y": 2.965, "w": 4.80, "d": 2.00 },
+    "posts": { "x": [2.74, 7.59], "y": 1.965, "w": 0.35, "d": 4.00 },
+    "centre": { "x": 5.34, "y": 3.965 },
+    "front_residual": 1.96,
+    "rear_residual": 1.96,
+    "bench_clearance": 0.10,
+    "axis_clearance": 0.10,
+    "status": "centred schematic fit only; real lift, vehicle, doors, arms, tool carts and manufacturer clearances govern"
+  },
+  "coordination_holds_append": [
+    "The complete project-car/lift group is centred longitudinally at X=5.34 m in the X=0.18–10.50 m technical bay, leaving equal 1.96 m residuals before and after the 6.40 m test envelope.",
+    "The usable transverse territory begins at Y=0.93 m after the wall bench and ends at Y=7.00 m before the pedestrian axis. The schematic lift envelope is centred exactly at Y=3.965 m and reduced by 0.03 m in depth to leave equal 0.10 m graphic residuals.",
+    "The 4.80 × 2.00 m vehicle symbol and the symmetric post pair share the lift-envelope centre at X=5.34 m, Y=3.965 m. This corrects the predecessor's internal offset as well as the bay offset.",
+    "The equal 0.10 m bench and axis gaps are graphic non-overlap values only. They do not establish safe working, escape, door-opening or manufacturer clearances.",
+    "Select the real car and lift before developed design; test door opening, lift arms, hood/trunk access, controls, tool carts, egress, slab loads, anchors, drainage and services."
+  ]
+}

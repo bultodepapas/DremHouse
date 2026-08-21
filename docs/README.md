@@ -80,7 +80,11 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [PB centred 12-seat dining option study — b31](02_arquitectura/pb_centered_dining_option_study_v0.3_b31.md):
   owner-directed, researched refinement using a 3.20 × 1.10 m table with 5+5+2 chairs and
   a symmetric 1.10 m clearance envelope centred in the Side B domestic territory; PB b29
-  and D-071 remain active.
+  and D-071 remain active; its Project Car position is refined by b32.
+- [PB centred Project Car and lift option study — b32](02_arquitectura/pb_centered_project_car_option_study_v0.3_b32.md):
+  owner-directed refinement centring the complete vehicle, lift-post and exclusion-envelope
+  group in the usable Side A technical bay, with equal 1.96 m end residuals; PB b29 and
+  D-073 remain active.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
   are retained in active R12.

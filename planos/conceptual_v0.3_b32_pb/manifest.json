@@ -1,0 +1,14 @@
+{
+  "revision": "0.3-option-32-PB",
+  "status": "owner-directed centred project-car/lift refinement within the coordinated kitchen/dining option; does not supersede active PB b29; not for construction",
+  "source": "dreamhouse/pb_b32_delta.json",
+  "source_sha256": "3b5337000e9f6cc3b7112d3495753a7ec93d2243bef6d6cea9712df7dafabaf1",
+  "generator": "dreamhouse/generate_pb_b32.py",
+  "supersedes": "0.3-option-31-PB for project-car/lift position only; neither option supersedes active 0.3-draft-29-PB",
+  "outputs": [
+    "DH-ARQ-PLN-001-S03_PB-CENTRED-PROJECT-CAR-LIFT.svg",
+    "DH-ARQ-OPT-003-R00_PB-PROJECT-CAR-CENTRING-STUDY.svg",
+    "compliance.json",
+    "manifest.json"
+  ]
+}
