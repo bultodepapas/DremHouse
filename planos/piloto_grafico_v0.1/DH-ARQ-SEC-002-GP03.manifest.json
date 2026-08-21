@@ -1,0 +1,17 @@
+{
+  "construction_authority": false,
+  "date": "2026-08-21",
+  "decision_ids": [
+    "D-039",
+    "D-044"
+  ],
+  "generator": "dreamhouse/svg/pilot_transverse_section.py",
+  "output": "DH-ARQ-SEC-002-GP03_TRANSVERSE-SECTION-READABILITY-PILOT.svg",
+  "output_sha256": "54ba31e8943bc3fe67eed297f07410d7adced246cd45e502324fe48a0e885a41",
+  "pilot": "GP03",
+  "sheet": "DH-ARQ-SEC-002",
+  "source": "planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg",
+  "source_revision": "SEC-002-R06 / 0.3-borrador-07-CUBIERTA",
+  "source_sha256": "5dc117bc1f3892f625cccab79a60bcd7b61845f5698a2a9d13ced90d518a1177",
+  "status": "presentation-only graphic pilot; not current; not for construction"
+}

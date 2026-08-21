@@ -268,6 +268,9 @@ they stay stable while their explicitly promoted versioned source can advance.
   Side B elevation pilot with larger model view, direct opening IDs, explicit separation
   of adopted/excluded/open information, geometry-preservation checks and reusable visual
   audit output.
+- [SVG graphic pilot 03 visual review](08_investigacion/svg_graphic_pilot_03_visual_review.md):
+  repaired scalable transverse-section pilot with English editorial text, typed PB/P2
+  level markers, explicit D-039 provisional/open states and exact source-geometry checks.
 
 ## How to use the project record
 

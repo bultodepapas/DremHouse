@@ -42,3 +42,25 @@ python3 -m dreamhouse.svg.audit \
 GP02 copies the R10 façade, opening, level and dimension geometry without coordinate
 changes. `GLZ-DINING-STUDY-B` remains outside the façade geometry and is shown only as a
 `NOT ADOPTED` evidence item.
+
+## GP03 — transverse roof-section readability
+
+- Source: `../actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg`
+- Generator: `../../dreamhouse/svg/pilot_transverse_section.py`
+- Output: `DH-ARQ-SEC-002-GP03_TRANSVERSE-SECTION-READABILITY-PILOT.svg`
+- Manifest: `DH-ARQ-SEC-002-GP03.manifest.json`
+- Review: `../../docs/08_investigacion/svg_graphic_pilot_03_visual_review.md`
+
+Regenerate the pilot and its untracked visual-review build from the repository root:
+
+```bash
+python3 -m dreamhouse.svg.pilot_transverse_section
+python3 -m dreamhouse.svg.audit \
+  --before planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg \
+  --after planos/piloto_grafico_v0.1/DH-ARQ-SEC-002-GP03_TRANSVERSE-SECTION-READABILITY-PILOT.svg \
+  --output-dir .build/svg-pilot/gp03 \
+  --prefix gp03
+```
+
+GP03 repairs the missing scalable viewport only in the pilot, copies the R06 technical
+geometry without coordinate changes and keeps D-039 explicitly provisional.

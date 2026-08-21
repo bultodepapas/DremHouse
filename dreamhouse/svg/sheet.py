@@ -190,6 +190,47 @@ def add_wrapped_text(
     return element, y + line_height * max(1, len(lines))
 
 
+def add_level_marker(
+    parent: ET.Element,
+    *,
+    target_x: float,
+    y: float,
+    label_x: float,
+    label: str,
+    relates_to: str,
+) -> ET.Element:
+    """Add a compact direct level marker without changing model geometry."""
+
+    group = ET.SubElement(
+        parent,
+        q("g"),
+        {"class": "level-marker", "data-relates-to": relates_to},
+    )
+    ET.SubElement(
+        group,
+        q("line"),
+        {
+            "x1": f"{label_x:g}",
+            "y1": f"{y:g}",
+            "x2": f"{target_x - 10:g}",
+            "y2": f"{y:g}",
+            "stroke": "#1D7480",
+            "stroke-width": "1.5",
+        },
+    )
+    ET.SubElement(
+        group,
+        q("polygon"),
+        {
+            "points": f"{target_x:g},{y:g} {target_x - 10:g},{y - 5:g} "
+            f"{target_x - 10:g},{y + 5:g}",
+            "fill": "#1D7480",
+        },
+    )
+    add_text(group, label_x, y - 8, label, size=10.2, css_class="new-body")
+    return group
+
+
 def add_header(
     root: ET.Element,
     *,
