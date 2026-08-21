@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "version": "1.22",
+  "version": "1.23",
   "date": "2026-08-21",
   "status": "active publication index; source drawings retain their discipline status and authority",
   "raster_width_px": 1400,
@@ -23,11 +23,11 @@
       "group": "Architecture",
       "eyebrow": "Architecture · upper floor",
       "title": "Upper-floor plan",
-      "summary": "D-080 differentiates second-floor walls at 90, 150, 200 and 230 mm by dry, privacy, wet, sauna, protected-core, hall-edge and exterior duty while retaining the D-074 stair and D-067 room geometry.",
+      "summary": "D-080 differentiates second-floor walls at 90, 150, 200 and 230 mm by duty; D-081 cleans the P2-W05 plan junctions without changing geometry, openings or thickness.",
       "alt": "Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations",
-      "source": "planos/conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg",
-      "source_revision": "0.3-draft-25-P2",
-      "status": "issued for D-080 differentiated P2 wall-thickness coordination; tested assemblies, structure, wind, hygrothermal analysis, products and cost remain open; not for construction",
+      "source": "planos/conceptual_v0.3_b26_p2/DH-ARQ-PLN-002-R23_P2-COORDINATED.svg",
+      "source_revision": "0.3-draft-26-P2",
+      "status": "issued for D-081 exterior-corner graphic correction while retaining the D-080 wall family; tested assemblies, structure, wind, hygrothermal analysis, products and cost remain open; not for construction",
       "canonical": "DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR",
       "featured": true
     },

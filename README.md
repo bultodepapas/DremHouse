@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>25</strong> current SVG/PNG pairs · <strong>160</strong> preserved versioned sheets · <strong>79</strong> documents · <strong>71</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>25</strong> current SVG/PNG pairs · <strong>166</strong> preserved versioned sheets · <strong>79</strong> documents · <strong>72</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -61,9 +61,9 @@ structure, and performance—not from arbitrary forms or decorative layers.
 </td>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-25-P2</sub>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-26-P2</sub>
   <br><strong>Upper-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b26_p2/DH-ARQ-PLN-002-R23_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>

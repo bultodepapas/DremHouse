@@ -1,0 +1,16 @@
+{
+  "base_model": "dreamhouse/p2_b25_delta.json",
+  "base_model_sha256": "c73d4b1a7853ea6cc1dc368b61a3ef8bd8a37b05a754d773a61a416c39abc563",
+  "revision": "0.3-draft-26-P2",
+  "drawing_revision": "R23",
+  "status": "issued for D-081 P2 exterior-corner graphic correction; D-080 wall geometry, thicknesses and open professional design gates remain unchanged; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-25-P2 / R22 for the upper-floor plan representation of the P2-W05 corner and hall-edge junctions only",
+  "decision": "D-081",
+  "change": {
+    "summary": "Overlap the P2-W05 wall-mass and interior-reading strokes at their plan junctions so the rear corners and hall-edge interfaces render cleanly at every zoom level.",
+    "drawing_controls": {
+      "exterior_wall_corner_join": "overlap"
+    }
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "revision": "0.3-draft-26-P2",
+  "passed": 41,
+  "open": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "rule_id": "P2-IDS",
+      "status": "PASS",
+      "message": "Space identifiers are unique"
+    },
+    {
+      "rule_id": "P2-FINITE",
+      "status": "PASS",
+      "message": "All room dimensions are finite and positive"
+    },
+    {
+      "rule_id": "P2-ENVELOPE",
+      "status": "PASS",
+      "message": "All spaces remain inside the 18 x 15 m P2 envelope"
+    },
+    {
+      "rule_id": "P2-NO-OVERLAP",
+      "status": "PASS",
+      "message": "No room overlaps"
+    },
+    {
+      "rule_id": "P2-AREA-CLOSURE",
+      "status": "PASS",
+      "message": "Gross room tessellation 270.000 m2 = envelope 270.000 m2"
+    },
+    {
+      "rule_id": "P2-CHILD-EQUAL",
+      "status": "PASS",
+      "message": "D-042 net bedrooms: H1 23.00 m2, H2 22.58 m2, delta 0.42 m2"
+    },
+    {
+      "rule_id": "P2-CHILD-PROPORTION",
+      "status": "PASS",
+      "message": "Child-bedroom ratios 1.05:1 and 1.21:1"
+    },
+    {
+      "rule_id": "P2-CIRCULATION",
+      "status": "PASS",
+      "message": "Narrowest declared circulation is G-ENTRY at 1.30 m clear"
+    },
+    {
+      "rule_id": "P2-PHASING",
+      "status": "PASS",
+      "message": "F1 and F2 meet at one isolatable Y=11.00 m boundary"
+    },
+    {
+      "rule_id": "P2-FAMILY-CENTRE",
+      "status": "PASS",
+      "message": "One coherent family room is coordinated at 10.50 x 3.60 m gross with circulation absorbed at its edges"
+    },
+    {
+      "rule_id": "P2-CENTRAL-DISTRIBUTOR",
+      "status": "PASS",
+      "message": "The stair opens to a 37.80 m2 family distributor; the 15.00 m lobby is replaced by a 15.23 m2 open study edge and a 6.53 m2 dry wellness threshold"
+    },
+    {
+      "rule_id": "P2-DOOR-GEOMETRY",
+      "status": "PASS",
+      "message": "All 20 doors/openings lie on the boundaries they connect"
+    },
+    {
+      "rule_id": "P2-ACCESS-GRAPH",
+      "status": "PASS",
+      "message": "Every enclosed space is connected to the protected stair"
+    },
+    {
+      "rule_id": "P2-WINDOWS",
+      "status": "PASS",
+      "message": "Every bedroom window lies on its room's exterior wall"
+    },
+    {
+      "rule_id": "P2-STAIR-ALIGNMENT",
+      "status": "PASS",
+      "message": "Protected stair remains aligned 1:1 with the PB core"
+    },
+    {
+      "rule_id": "P2-D048-COLUMNS",
+      "status": "PASS",
+      "message": "Four D-048 full-height column reservations remain at stair corners"
+    },
+    {
+      "rule_id": "P2-GUEST-PROGRAMME",
+      "status": "PASS",
+      "message": "Guest bedroom, bathroom and wardrobe remain within coordinated programme bands"
+    },
+    {
+      "rule_id": "P2-PRIMARY-BATHROOM-UNIFIED",
+      "status": "PASS",
+      "message": "The 17.60 m2 gross L-shaped primary bathroom is one 15.66 m2 schematic-net room with the full 2.40 m internal boundary open"
+    },
+    {
+      "rule_id": "P2-PRIMARY-BEDROOM-UNIFIED",
+      "status": "PASS",
+      "message": "The 35.24 m2 combined primary bedroom reads as one room with one name and no fitted privacy screen"
+    },
+    {
+      "rule_id": "P2-WELLNESS",
+      "status": "PASS",
+      "message": "Wellness is 22.62 m2 gross and fits a 2.40 m sauna"
+    },
+    {
+      "rule_id": "P2-WELLNESS-RELAXATION",
+      "status": "PASS",
+      "message": "The 22.62 m2 L-shaped wellness includes a dry threshold, relaxation zone and 1.20 m clear exterior route"
+    },
+    {
+      "rule_id": "PB-LAUNDRY-RESERVE",
+      "status": "PASS",
+      "message": "Laundry is reserved inside PB storage behind the Great Wall and below the primary wet band"
+    },
+    {
+      "rule_id": "P2-RETRACTABLE-STAIR-RESERVE",
+      "status": "PASS",
+      "message": "Rear-facade retractable stair reserve is reached directly from the dry wellness threshold and clears the D-048 corner"
+    },
+    {
+      "rule_id": "P2-EDGE-TRUSS-BRIEF",
+      "status": "PASS",
+      "message": "X=21 architectural brief requires one large exposed industrial truss while protecting the open family-balcony view"
+    },
+    {
+      "rule_id": "P2-WALL-SCHEDULE",
+      "status": "PASS",
+      "message": "D-080 differentiates wall thickness by duty: 90, 150, 200 and 230 mm coordination families"
+    },
+    {
+      "rule_id": "P2-W01B-200",
+      "status": "PASS",
+      "message": "D-080 P2-W01B is 200 mm nominal: two independent 64 mm insulated frames, a 20 mm clear gap and four outer board layers"
+    },
+    {
+      "rule_id": "P2-W01A-090",
+      "status": "PASS",
+      "message": "D-080 P2-W01A is a 90 mm nominal single-frame wall for low-risk dry boundaries within one suite"
+    },
+    {
+      "rule_id": "P2-W04-HALL-EDGE",
+      "status": "PASS",
+      "message": "D-063 retains full-height P2-W04R only at the two bedroom edges and opens the 7.45 m family-balcony frontage"
+    },
+    {
+      "rule_id": "P2-FAMILY-BALCONY",
+      "status": "PASS",
+      "message": "Mini deck, family distributor and study edge share a 7.45 m open hall frontage with a continuous 1.10 m minimum guard"
+    },
+    {
+      "rule_id": "P2-W05-230",
+      "status": "PASS",
+      "message": "D-080 P2-W05 integrates a 100 mm insulated corrugated facade panel with a 64 mm independent service lining in 230 mm nominal"
+    },
+    {
+      "rule_id": "P2-PRIMARY-PROGRAMME",
+      "status": "PASS",
+      "message": "D-065 coordinates a 35.24 m2 primary bedroom, 13.44 m2 compact dressing and 17.6 m2 bathroom"
+    },
+    {
+      "rule_id": "LIFE-EGRESS-2",
+      "status": "OPEN",
+      "message": "A rear retractable stair is reserved, but its acceptance as a second exit awaits D-021 and professional fire review"
+    },
+    {
+      "rule_id": "P2-EDGE-TRUSS",
+      "status": "OPEN",
+      "message": "The large exposed X=21 truss must preserve the family-balcony opening; guard, members, joints and fire protection remain undesigned"
+    },
+    {
+      "rule_id": "P2-SITE-ORIENTATION",
+      "status": "OPEN",
+      "message": "Solar control, privacy and final glazing await the selected site and orientation"
+    },
+    {
+      "rule_id": "P2-OPEN-STAIR-ARRIVAL-FIRE",
+      "status": "OPEN",
+      "message": "The stair-to-family-room arrival is an architectural objective only; fire separation, smoke control and door strategy await professional design"
+    },
+    {
+      "rule_id": "P2-WELLNESS-EGRESS-ROUTE",
+      "status": "OPEN",
+      "message": "The reserved exterior route crosses the dry wellness threshold; professional fire review must accept it or require a separated clear lane"
+    },
+    {
+      "rule_id": "P2-FAMILY-BALCONY-PERFORMANCE",
+      "status": "OPEN",
+      "message": "The open family balcony intentionally gives up D-058 acoustic continuity; guarding, smoke transfer and hall-to-suite noise require professional design"
+    },
+    {
+      "rule_id": "P2-W05-BUILDING-PHYSICS",
+      "status": "OPEN",
+      "message": "P2-W05 hygrothermal, wind, fire and window interfaces await professional design"
+    },
+    {
+      "rule_id": "STAIR-ENCLOSURE",
+      "status": "PASS",
+      "message": "PB and P2 share one 4.50 x 3.60 m enclosure with a 4.10 x 3.20 m schematic clear rectangle."
+    },
+    {
+      "rule_id": "STAIR-RISERS",
+      "status": "PASS",
+      "message": "22 equal risers give 172.7 mm per riser over 3.80 m."
+    },
+    {
+      "rule_id": "STAIR-GOING-RULE",
+      "status": "PASS",
+      "message": "With a 270 mm going, 2R+G = 615.5 mm within the 600-640 mm screen."
+    },
+    {
+      "rule_id": "STAIR-FLIGHT-RUN",
+      "status": "PASS",
+      "message": "Both flights use 10 equal 270 mm goings for a 2.70 m run."
+    },
+    {
+      "rule_id": "STAIR-WIDTH-LANDING",
+      "status": "PASS",
+      "message": "Each flight is 1.40 m clear and the intermediate landing is 1.40 m deep."
+    },
+    {
+      "rule_id": "STAIR-TRANSVERSE-CLOSURE",
+      "status": "PASS",
+      "message": "0.10 + 1.40 + 0.20 + 1.40 + 0.10 = 3.20 m clear transverse closure."
+    },
+    {
+      "rule_id": "STAIR-LANDING-RISE",
+      "status": "PASS",
+      "message": "The intermediate landing is at +1.90 m, below the 3.60 m screened maximum rise between landings."
+    },
+    {
+      "rule_id": "STAIR-FOUR-COLUMNS",
+      "status": "PASS",
+      "message": "Four and only four foundation-to-roof column reservations coincide with the enclosure corners."
+    },
+    {
+      "rule_id": "STAIR-STRUCTURAL-SEPARATION",
+      "status": "PASS",
+      "message": "The independent enclosure frame carries the structural study; stair flights receive no primary lateral credit."
+    },
+    {
+      "rule_id": "STAIR-HEADROOM",
+      "status": "OPEN",
+      "message": "A longitudinal section must verify at least 2.05 m headroom, stringer depth, landing beams and door clearances."
+    },
+    {
+      "rule_id": "STAIR-REAR-DISCHARGE-LEVEL",
+      "status": "OPEN",
+      "message": "CF-011: the current rear-door plane meets the +1.90 m intermediate landing, not PB grade; a sectioned discharge alternative is required."
+    },
+    {
+      "rule_id": "P2-STAIR-ACCESS-FLIGHT",
+      "status": "PASS",
+      "message": "The P2 family-distributor door aligns with the upper-flight top platform."
+    }
+  ]
+}

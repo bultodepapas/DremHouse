@@ -1,7 +1,7 @@
 # Dream House drawings
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.22<br>
+**Version:** 1.23<br>
 **Date:** 2026-08-21<br>
 **Source:** [`actual/catalog.json`](actual/catalog.json)
 
@@ -22,7 +22,7 @@
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-25-P2 · <a href="conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-26-P2 · <a href="conceptual_v0.3_b26_p2/DH-ARQ-PLN-002-R23_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -109,7 +109,7 @@ all architectural sheets with the structural studies and their open gates.
 | Stable ID | Drawing | Current aliases | Preserved issue | Status / limitation |
 | --- | --- | --- | --- | --- |
 | `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-36-PB](conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg) | issued for D-079 technical-workbench modular and ergonomic coordination; owner anthropometry, real lift, equipment, loads, extraction, electrical/ESD design, joinery and cost remain open; not for construction |
-| `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg) | issued for D-080 differentiated P2 wall-thickness coordination; tested assemblies, structure, wind, hygrothermal analysis, products and cost remain open; not for construction |
+| `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-26-P2](conceptual_v0.3_b26_p2/DH-ARQ-PLN-002-R23_P2-COORDINATED.svg) | issued for D-081 exterior-corner graphic correction while retaining the D-080 wall family; tested assemblies, structure, wind, hygrothermal analysis, products and cost remain open; not for construction |
 | `architecture-roof-plan` | Roof and rooflight plan | [SVG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg) · [PNG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-daylight-section` | Rooflight daylight section | [SVG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg) · [PNG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-longitudinal-section` | Longitudinal roof section | [SVG](actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.svg) · [PNG](actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.png) | [0.3-borrador-07-CUBIERTA](conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg) | active roof-form schematic basis; not for construction |

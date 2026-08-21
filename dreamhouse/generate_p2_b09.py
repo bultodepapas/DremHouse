@@ -1323,17 +1323,23 @@ def _draw_exterior_walls(parts: list[str], model: dict[str, Any]) -> None:
     if not wall:
         return
     width = float(wall["nominal_total_m"]) * SCALE
+    corner_linecap = (
+        "square"
+        if model.get("drawing_controls", {}).get("exterior_wall_corner_join")
+        == "overlap"
+        else "butt"
+    )
     common = {
         "stroke": "#36535d",
         "stroke_width": width,
-        "stroke_linecap": "butt",
+        "stroke_linecap": corner_linecap,
         "css_class": "exterior-wall p2-w05",
         "data_wall_type": wall["id"],
     }
     finish = {
         "stroke": "#dce8e5",
         "stroke_width": 2.4,
-        "stroke_linecap": "butt",
+        "stroke_linecap": corner_linecap,
         "css_class": (
             "p2-w05-refined-interior-reading"
             if model.get("wall_schedule")
