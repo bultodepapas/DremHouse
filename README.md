@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>25</strong> current SVG/PNG pairs · <strong>154</strong> preserved versioned sheets · <strong>78</strong> documents · <strong>70</strong> decisions · <strong>6</strong> open conflicts</sub>
+  <sub><strong>25</strong> current SVG/PNG pairs · <strong>160</strong> preserved versioned sheets · <strong>79</strong> documents · <strong>71</strong> decisions · <strong>6</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -60,10 +60,10 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><sub><a href="planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
-  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-24-P2</sub>
+  <a href="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg" alt="Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations" width="100%"></a>
+  <br><sub><strong>Architecture · upper floor</strong> · 0.3-draft-25-P2</sub>
   <br><strong>Upper-floor plan</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
@@ -116,24 +116,24 @@ structure, and performance—not from arbitrary forms or decorative layers.
   <br><sub><a href="planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
-  <br><sub><strong>Architecture · acoustic partition</strong> · 0.3-draft-23-P2</sub>
-  <br><strong>P2-W01 · 250 mm acoustic wall</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <a href="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg" alt="Current Dream House second-floor wall schedule with realistic duty-based nominal thicknesses" width="100%"></a>
+  <br><sub><strong>Architecture · P2 wall family</strong> · 0.3-draft-25-P2</sub>
+  <br><strong>P2 walls · 90 / 150 / 200 / 230 mm by duty</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b25_p2/DH-ARQ-DET-003-R22_P2-ACOUSTIC-PARTITION.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
   <a href="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
-  <br><sub><strong>Architecture · open family balcony</strong> · 0.3-draft-23-P2</sub>
+  <br><sub><strong>Architecture · open family balcony</strong> · 0.3-draft-25-P2</sub>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <br><sub><a href="planos/conceptual_v0.3_b25_p2/DH-ARQ-DET-004-R22_P2-HALL-EDGE.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
-  <br><sub><strong>Architecture · refined P2 envelope</strong> · 0.3-draft-23-P2</sub>
-  <br><strong>P2-W05 · double-frame exterior wall</strong>
-  <br><sub><a href="planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
+  <a href="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg" alt="Current Dream House P2-W05 nominal 230 millimetre integrated insulated-panel and residential-lining exterior-wall detail" width="100%"></a>
+  <br><sub><strong>Architecture · integrated P2 envelope</strong> · 0.3-draft-25-P2</sub>
+  <br><strong>P2-W05 · 230 mm insulated shell + lining</strong>
+  <br><sub><a href="planos/conceptual_v0.3_b25_p2/DH-ARQ-DET-005-R22_P2-EXTERIOR-WALL.svg">Versioned source</a> · scalable current SVG above · PNG fallback in <code>planos/actual/</code></sub>
 </td>
 </tr>
 <tr>

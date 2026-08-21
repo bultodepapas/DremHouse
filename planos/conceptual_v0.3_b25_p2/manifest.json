@@ -1,0 +1,20 @@
+{
+  "revision": "0.3-draft-25-P2",
+  "status": "issued for D-080 differentiated P2 wall-thickness coordination; tested acoustic and fire assemblies, wet and sauna details, structural anchorage, wind design, hygrothermal analysis, products and measured cost remain open; not for construction",
+  "source": "dreamhouse/p2_b25_delta.json",
+  "source_sha256": "c73d4b1a7853ea6cc1dc368b61a3ef8bd8a37b05a754d773a61a416c39abc563",
+  "generator": "dreamhouse/generate_p2_b25.py",
+  "supersedes": "0.3-draft-24-P2 / R21 for P2 wall classification, nominal thickness and schematic wall details only",
+  "outputs": [
+    "DH-ARQ-PLN-002-R22_P2-COORDINATED.svg",
+    "DH-ARQ-DIA-001-R22_P2-ACCESS-EGRESS.svg",
+    "DH-ARQ-DET-002-R22_OWNER-PRIORITIES.svg",
+    "DH-ARQ-DET-003-R22_P2-ACOUSTIC-PARTITION.svg",
+    "DH-ARQ-DET-004-R22_P2-HALL-EDGE.svg",
+    "DH-ARQ-DET-005-R22_P2-EXTERIOR-WALL.svg",
+    "compliance.json",
+    "manifest.json"
+  ],
+  "shared_stair_source": "dreamhouse/stair_core.json",
+  "shared_stair_sha256": "26b418181bc52005ad5cd7ff2cb5f47554a1579b2fb91f8f0f21f462fd7fb138"
+}

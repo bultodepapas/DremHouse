@@ -1,7 +1,7 @@
 # Current drawings and visual index
 
 **Status:** active publication guide; source-sheet limitations remain in force<br>
-**Version:** 1.21<br>
+**Version:** 1.22<br>
 **Date:** 2026-08-21<br>
 **Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
 
@@ -24,9 +24,9 @@ record, repository README, and presentation do not change when a new issue is pr
   <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
+  <a href="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="../../planos/actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-24-P2 · <a href="../../planos/conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-25-P2 · <a href="../../planos/conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -72,21 +72,21 @@ record, repository README, and presentation do not change when a new issue is pr
   <br><sub>0.3-draft-36-PB · <a href="../../planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
-  <br><strong>P2-W01 · 250 mm acoustic wall</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
+  <a href="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="../../planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House second-floor wall schedule with realistic duty-based nominal thicknesses" width="100%"></a>
+  <br><strong>P2 walls · 90 / 150 / 200 / 230 mm by duty</strong>
+  <br><sub>0.3-draft-25-P2 · <a href="../../planos/conceptual_v0.3_b25_p2/DH-ARQ-DET-003-R22_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
   <a href="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="../../planos/actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-25-P2 · <a href="../../planos/conceptual_v0.3_b25_p2/DH-ARQ-DET-004-R22_P2-HALL-EDGE.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
-  <br><strong>P2-W05 · double-frame exterior wall</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="../../planos/conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
+  <a href="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="../../planos/actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 230 millimetre integrated insulated-panel and residential-lining exterior-wall detail" width="100%"></a>
+  <br><strong>P2-W05 · 230 mm insulated shell + lining</strong>
+  <br><sub>0.3-draft-25-P2 · <a href="../../planos/conceptual_v0.3_b25_p2/DH-ARQ-DET-005-R22_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>

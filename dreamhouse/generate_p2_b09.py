@@ -201,6 +201,19 @@ def _boundary_wall_type(
     """Classify a shared P2 boundary for the coordination drawing only."""
 
     kinds = {a["kind"], b["kind"]}
+    wall_schedule = model.get("wall_schedule")
+    if wall_schedule:
+        if "vertical" in kinds:
+            wall_id, color, dash = "P2-W03", PURPLE, "7 4"
+        elif "wellness" in kinds:
+            wall_id, color, dash = "P2-W02S", GREEN, "6 3"
+        elif "bath" in kinds:
+            wall_id, color, dash = "P2-W02", AMBER, "5 3"
+        else:
+            suite_a, suite_b = a.get("suite"), b.get("suite")
+            wall_id = "P2-W01A" if suite_a == suite_b else "P2-W01B"
+            color, dash = (MUTED, None) if wall_id == "P2-W01A" else (TEAL, None)
+        return wall_id, float(wall_schedule[wall_id]["nominal_total_m"]), color, dash
     if "vertical" in kinds:
         return "P2-W03", float(model["envelope"]["wet_wall"]), PURPLE, "7 4"
     if kinds & {"bath", "wellness"}:
@@ -208,9 +221,63 @@ def _boundary_wall_type(
     return "P2-W01", float(model["envelope"]["partition"]), INK, None
 
 
-def net_dimensions(space: dict[str, Any], envelope: dict[str, Any]) -> tuple[float, float]:
+def _wall_side_allowances(
+    space: dict[str, Any], model: dict[str, Any]
+) -> dict[str, float]:
+    """Return conservative wall deductions at each room side for a scheduled wall family."""
+
+    envelope = model["envelope"]
+    tolerance = float(model["tolerances"]["geometry_m"])
+    ext = float(envelope["exterior_wall"])
+    hall_edge = float(envelope.get("hall_edge_wall", ext))
+    x0 = float(space["x"])
+    x1 = x0 + float(space["w"])
+    y0 = float(space["y"])
+    y1 = y0 + float(space["d"])
+    x_min = float(envelope["x"])
+    x_max = x_min + float(envelope["length"])
+    y_max = float(envelope["width"])
+    family_balcony = model.get("family_balcony")
+    hall_is_open = bool(
+        family_balcony
+        and y0 >= float(family_balcony["from_y"]) - tolerance
+        and y1 <= float(family_balcony["to_y"]) + tolerance
+    )
+    deductions = {
+        "x0": 0.0 if hall_is_open else hall_edge if math.isclose(x0, x_min, abs_tol=tolerance) else 0.0,
+        "x1": ext if math.isclose(x1, x_max, abs_tol=tolerance) else 0.0,
+        "y0": ext if math.isclose(y0, 0.0, abs_tol=tolerance) else 0.0,
+        "y1": ext if math.isclose(y1, y_max, abs_tol=tolerance) else 0.0,
+    }
+    for other in model["spaces"]:
+        if other["id"] == space["id"]:
+            continue
+        shared = _shared_boundary(space, other, tolerance)
+        if not shared:
+            continue
+        orientation, coordinate, _, _ = shared
+        _, thickness, _, _ = _boundary_wall_type(space, other, model)
+        half = thickness / 2.0
+        if orientation == "vertical":
+            side = "x0" if math.isclose(coordinate, x0, abs_tol=tolerance) else "x1"
+        else:
+            side = "y0" if math.isclose(coordinate, y0, abs_tol=tolerance) else "y1"
+        deductions[side] = max(deductions[side], half)
+    return deductions
+
+
+def net_dimensions(
+    space: dict[str, Any],
+    envelope: dict[str, Any],
+    model: dict[str, Any] | None = None,
+) -> tuple[float, float]:
     """Return schematic clear dimensions using half-partition allocation."""
 
+    if model and model.get("wall_schedule"):
+        deductions = _wall_side_allowances(space, model)
+        return max(0.0, float(space["w"]) - deductions["x0"] - deductions["x1"]), max(
+            0.0, float(space["d"]) - deductions["y0"] - deductions["y1"]
+        )
     tolerance = 1e-9
     ext = float(envelope["exterior_wall"])
     hall_edge = float(envelope.get("hall_edge_wall", ext))
@@ -231,8 +298,12 @@ def net_dimensions(space: dict[str, Any], envelope: dict[str, Any]) -> tuple[flo
     )
 
 
-def net_area(space: dict[str, Any], envelope: dict[str, Any]) -> float:
-    width, depth = net_dimensions(space, envelope)
+def net_area(
+    space: dict[str, Any],
+    envelope: dict[str, Any],
+    model: dict[str, Any] | None = None,
+) -> float:
+    width, depth = net_dimensions(space, envelope, model)
     return width * depth
 
 
@@ -334,10 +405,10 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         )
     )
 
-    n1 = net_area(by_id["H1-D"], envelope)
-    n2 = net_area(by_id["H2-D"], envelope)
-    dims1 = net_dimensions(by_id["H1-D"], envelope)
-    dims2 = net_dimensions(by_id["H2-D"], envelope)
+    n1 = net_area(by_id["H1-D"], envelope, model)
+    n2 = net_area(by_id["H2-D"], envelope, model)
+    dims1 = net_dimensions(by_id["H1-D"], envelope, model)
+    dims2 = net_dimensions(by_id["H2-D"], envelope, model)
     ratio1 = max(dims1) / min(dims1)
     ratio2 = max(dims2) / min(dims2)
     tolerances = model["tolerances"]
@@ -360,7 +431,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
 
     circulation = [space for space in spaces if space["kind"] == "circulation"]
     narrowest = min(
-        (min(net_dimensions(space, envelope)), space["id"]) for space in circulation
+        (min(net_dimensions(space, envelope, model)), space["id"]) for space in circulation
     )
     checks.append(
         (
@@ -592,7 +663,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         (
             "P2-WELLNESS",
             16.0 <= wellness_gross <= 24.0
-            and min(net_dimensions(by_id["WELL"], envelope)) >= 2.40 - tolerance,
+            and min(net_dimensions(by_id["WELL"], envelope, model)) >= 2.40 - tolerance,
             f"Wellness is {wellness_gross:.2f} m2 gross and fits a 2.40 m sauna",
         )
     )
@@ -602,9 +673,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         relaxation_ok = (
             bool(dry)
             and wellness_gross >= 22.0 - tolerance
-            and math.isclose(
-                min(net_dimensions(dry, envelope)), route_clear, abs_tol=tolerance
-            )
+            and min(net_dimensions(dry, envelope, model)) >= route_clear - tolerance
             and wellness_suite.get("wet_dry_separation") is True
         )
         checks.append(
@@ -690,6 +759,34 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             )
         )
 
+    wall_schedule = model.get("wall_schedule")
+    if wall_schedule:
+        expected_thicknesses = {
+            "P2-W01A": 0.09,
+            "P2-W01B": 0.20,
+            "P2-W02": 0.15,
+            "P2-W02S": 0.20,
+            "P2-W03": 0.20,
+            "P2-W04R": 0.20,
+            "P2-W05": 0.23,
+            "P2-W06": 0.09,
+        }
+        schedule_ok = set(wall_schedule) == set(expected_thicknesses) and all(
+            math.isclose(
+                float(wall_schedule[wall_id]["nominal_total_m"]),
+                expected,
+                abs_tol=tolerance,
+            )
+            for wall_id, expected in expected_thicknesses.items()
+        )
+        checks.append(
+            (
+                "P2-WALL-SCHEDULE",
+                schedule_ok,
+                "D-080 differentiates wall thickness by duty: 90, 150, 200 and 230 mm coordination families",
+            )
+        )
+
     acoustic = model.get("acoustic_partition")
     if acoustic:
         layers = acoustic.get("room_side_to_room_side_layers", [])
@@ -702,10 +799,18 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             if layer.get("material") == "metal stud frame with glass-wool infill"
         ]
         acoustic_ok = (
-            acoustic.get("id") == "P2-W01"
-            and math.isclose(float(acoustic.get("nominal_total_m", 0.0)), 0.25, abs_tol=tolerance)
-            and math.isclose(float(envelope["partition"]), 0.25, abs_tol=tolerance)
-            and math.isclose(layer_sum_mm, 250.8, abs_tol=0.01)
+            acoustic.get("id") == ("P2-W01B" if wall_schedule else "P2-W01")
+            and math.isclose(
+                float(acoustic.get("nominal_total_m", 0.0)),
+                0.20 if wall_schedule else 0.25,
+                abs_tol=tolerance,
+            )
+            and math.isclose(
+                float(envelope["partition"]),
+                0.09 if wall_schedule else 0.25,
+                abs_tol=tolerance,
+            )
+            and math.isclose(layer_sum_mm, 198.0 if wall_schedule else 250.8, abs_tol=0.01)
             and len(reused) == 2
             and len(new) == 2
             and len(frames) == 2
@@ -714,11 +819,37 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         )
         checks.append(
             (
-                "P2-W01-250",
+                "P2-W01B-200" if wall_schedule else "P2-W01-250",
                 acoustic_ok,
-                "D-057 P2-W01 is 250 mm nominal: two independent insulated frames, two concealed reclaimed boards and two new finish boards",
+                (
+                    "D-080 P2-W01B is 200 mm nominal: two independent 64 mm insulated frames, a 20 mm clear gap and four outer board layers"
+                    if wall_schedule
+                    else "D-057 P2-W01 is 250 mm nominal: two independent insulated frames, two concealed reclaimed boards and two new finish boards"
+                ),
             )
         )
+        if wall_schedule:
+            internal = model.get("internal_partition", {})
+            internal_layers = internal.get("room_side_to_room_side_layers", [])
+            internal_sum_mm = sum(float(layer.get("nominal_mm", 0.0)) for layer in internal_layers)
+            internal_ok = (
+                internal.get("id") == "P2-W01A"
+                and math.isclose(float(internal.get("nominal_total_m", 0.0)), 0.09, abs_tol=tolerance)
+                and math.isclose(internal_sum_mm, 89.0, abs_tol=0.01)
+                and [layer.get("material") for layer in internal_layers]
+                == [
+                    "new gypsum board",
+                    "metal stud frame with glass-wool infill",
+                    "new gypsum board",
+                ]
+            )
+            checks.append(
+                (
+                    "P2-W01A-090",
+                    internal_ok,
+                    "D-080 P2-W01A is a 90 mm nominal single-frame wall for low-risk dry boundaries within one suite",
+                )
+            )
 
     hall_edge = model.get("hall_edge_partition")
     if hall_edge:
@@ -738,15 +869,17 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             and float(glazing_by_id[opening]["to"]) <= float(hall_edge["to_y"]) + tolerance
             for opening in scheduled_openings
         )
+        hall_edge_nominal = 0.20 if wall_schedule else 0.25
+        hall_edge_reference = "P2-W01B" if wall_schedule else "P2-W01"
         hall_edge_ok = (
             hall_edge.get("id") in {"P2-W04", "P2-W04R"}
             and math.isclose(float(hall_edge.get("axis_x", 0.0)), 21.0, abs_tol=tolerance)
             and math.isclose(float(hall_edge.get("from_y", -1.0)), 0.0, abs_tol=tolerance)
             and math.isclose(float(hall_edge.get("to_y", -1.0)), 18.0, abs_tol=tolerance)
-            and math.isclose(float(hall_edge.get("nominal_total_m", 0.0)), 0.25, abs_tol=tolerance)
-            and math.isclose(float(envelope.get("hall_edge_wall", 0.0)), 0.25, abs_tol=tolerance)
+            and math.isclose(float(hall_edge.get("nominal_total_m", 0.0)), hall_edge_nominal, abs_tol=tolerance)
+            and math.isclose(float(envelope.get("hall_edge_wall", 0.0)), hall_edge_nominal, abs_tol=tolerance)
             and hall_edge.get("full_height") is True
-            and hall_edge.get("opaque_assembly_reference") == "P2-W01"
+            and hall_edge.get("opaque_assembly_reference") == hall_edge_reference
             and openings_ok
         )
         checks.append(
@@ -794,12 +927,24 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             exterior_wall.get("id") == "P2-W05"
             and set(exterior_wall.get("edges", [])) == {"south", "north", "east"}
             and math.isclose(
-                float(exterior_wall.get("nominal_total_m", 0.0)), 0.30, abs_tol=tolerance
+                float(exterior_wall.get("nominal_total_m", 0.0)),
+                0.23 if wall_schedule else 0.30,
+                abs_tol=tolerance,
             )
-            and math.isclose(float(envelope["exterior_wall"]), 0.30, abs_tol=tolerance)
-            and math.isclose(exterior_layer_sum_mm, 297.0, abs_tol=0.01)
-            and len(exterior_frames) == 2
-            and "corrugated metal rainscreen" in exterior_materials
+            and math.isclose(
+                float(envelope["exterior_wall"]),
+                0.23 if wall_schedule else 0.30,
+                abs_tol=tolerance,
+            )
+            and math.isclose(
+                exterior_layer_sum_mm, 229.0 if wall_schedule else 297.0, abs_tol=0.01
+            )
+            and len(exterior_frames) == (1 if wall_schedule else 2)
+            and (
+                "insulated corrugated metal facade panel" in exterior_materials
+                if wall_schedule
+                else "corrugated metal rainscreen" in exterior_materials
+            )
             and exterior_materials[-2:] == ["reclaimed gypsum board", "new gypsum board"]
             and all(
                 window.get("edge") in exterior_wall.get("edges", [])
@@ -809,9 +954,13 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         )
         checks.append(
             (
-                "P2-W05-300",
+                "P2-W05-230" if wall_schedule else "P2-W05-300",
                 exterior_wall_ok,
-                "D-059 P2-W05 closes the three exterior P2 edges with a 300 mm nominal double-frame envelope, corrugated metal outside only and a smooth concealed-structure interior",
+                (
+                    "D-080 P2-W05 integrates a 100 mm insulated corrugated facade panel with a 64 mm independent service lining in 230 mm nominal"
+                    if wall_schedule
+                    else "D-059 P2-W05 closes the three exterior P2 edges with a 300 mm nominal double-frame envelope, corrugated metal outside only and a smooth concealed-structure interior"
+                ),
             )
         )
 
@@ -1042,7 +1191,7 @@ def _room_label(space: dict[str, Any], model: dict[str, Any]) -> str:
     elif primary_rebalance and space["id"] in {"M-D", "M-L"}:
         lines = name_lines + [f"{float(primary_rebalance['bedroom_gross_area_m2']):.2f} m2 gross combined"]
     else:
-        lines = name_lines + [f"{net_area(space, model['envelope']):.1f} m2 net"]
+        lines = name_lines + [f"{net_area(space, model['envelope'], model):.1f} m2 net"]
     if (
         pixel_height >= 90
         and pixel_width >= 80
@@ -1168,7 +1317,7 @@ def _draw_hall_edge_wall(parts: list[str], model: dict[str, Any]) -> None:
 
 
 def _draw_exterior_walls(parts: list[str], model: dict[str, Any]) -> None:
-    """Draw the three D-059 double-frame P2 exterior edges before cutting openings."""
+    """Draw the three coordinated P2 exterior edges before cutting openings."""
 
     wall = model.get("exterior_wall_assembly")
     if not wall:
@@ -1185,7 +1334,11 @@ def _draw_exterior_walls(parts: list[str], model: dict[str, Any]) -> None:
         "stroke": "#dce8e5",
         "stroke_width": 2.4,
         "stroke_linecap": "butt",
-        "css_class": "p2-w05-double-frame-reading",
+        "css_class": (
+            "p2-w05-refined-interior-reading"
+            if model.get("wall_schedule")
+            else "p2-w05-double-frame-reading"
+        ),
     }
     edges = [
         (_sx(21.0), _sy(0.0), _sx(36.0), _sy(0.0)),
@@ -1608,10 +1761,16 @@ def _draw_door(parts: list[str], door: dict[str, Any], model: dict[str, Any] | N
     width_px = float(door["width"]) * SCALE
     opening_stroke = 5.5
     if model and model.get("acoustic_partition"):
-        opening_stroke = max(
-            float(model["envelope"]["partition"]),
-            float(model["envelope"]["wet_wall"]),
-        ) * SCALE + 2.0
+        if model.get("wall_schedule"):
+            opening_stroke = max(
+                float(model["wall_schedule"][wall_id]["nominal_total_m"])
+                for wall_id in ("P2-W01A", "P2-W01B", "P2-W02", "P2-W02S", "P2-W03")
+            ) * SCALE + 2.0
+        else:
+            opening_stroke = max(
+                float(model["envelope"]["partition"]),
+                float(model["envelope"]["wet_wall"]),
+            ) * SCALE + 2.0
     common = {"stroke": "#965039", "stroke_width": 1.3, "fill": "none", "css_class": "door"}
     if door["wall"] == "horizontal":
         x0 = _sx(float(door["at"]))
@@ -1862,6 +2021,15 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     stair_core = model.get("stair_core")
     position_lines = (
         [
+            "Use P2-W01A 90 mm only within the same dry suite.",
+            "Use P2-W01B / W04R 200 mm at private and hall separations.",
+            "Reserve 150 / 200 mm for wet, sauna and protected-core walls.",
+            "Integrate P2-W05 230 mm with the industrial insulated shell.",
+            "Keep fire, acoustic, wind and hygrothermal ratings open to design.",
+        ]
+        if model.get("wall_schedule")
+        else
+        [
             "Use one shared SC-01 stair geometry in PB and P2.",
             "Coordinate 22 equal risers and two 1.40 m straight flights.",
             "Move the P2 door to the upper-flight top platform.",
@@ -1948,7 +2116,10 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
     by_id = _space_index(model)
     envelope = model["envelope"]
     _panel_title(parts, x, 376, "02", "WHAT THIS REVISION FIXES")
-    child_delta = abs(net_area(by_id["H1-D"], envelope) - net_area(by_id["H2-D"], envelope))
+    child_delta = abs(
+        net_area(by_id["H1-D"], envelope, model)
+        - net_area(by_id["H2-D"], envelope, model)
+    )
     fixes = (
         [
             ("STAIR", "One dogleg model replaces the contradictory PB/P2 stair symbols."),
@@ -2001,7 +2172,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                     (
                         "ACOUSTIC" if hall_edge else "P2-W01",
                         (
-                            "W01/W04R: 250 mm at enclosed zones; family balcony edge open."
+                            "W01A 90 / W01B-W04R 200 / wet 150-200 / W05 230 mm."
+                            if model.get("wall_schedule")
+                            else "W01/W04R: 250 mm at enclosed zones; family balcony edge open."
                             if family_balcony
                             else "W01/W04: 250 mm acoustic; W05: 300 mm exterior, smooth inside."
                             if exterior_wall
@@ -2110,7 +2283,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                         1415,
                         823,
                         (
-                            "P2-W01/W04R · 250 · W05 · 300 mm"
+                            "W01A 90 · W01B/W04R 200 · W05 230 mm"
+                            if model.get("wall_schedule")
+                            else "P2-W01/W04R · 250 · W05 · 300 mm"
                             if family_balcony and exterior_wall
                             else "P2-W01/W04 · 250 · W05 · 300 mm"
                             if exterior_wall
@@ -2124,7 +2299,9 @@ def _right_notes(parts: list[str], model: dict[str, Any], report: dict[str, Any]
                         1350,
                         848,
                         (
-                            "W04R closes bedrooms; family edge is open and guarded."
+                            "Wet / sauna / protected-core reserves: 150 / 200 / 200 mm."
+                            if model.get("wall_schedule")
+                            else "W04R closes bedrooms; family edge is open and guarded."
                             if family_balcony
                             else "W05: corrugated outside only; smooth concealed interior."
                             if exterior_wall
@@ -2152,7 +2329,10 @@ def _circle_status(x: float, y: float, color: str) -> str:
 
 def _footer(parts: list[str], model: dict[str, Any], digest: str, sheet_id: str) -> None:
     outcome = (
-        "D-074 · SHARED PB/P2 STAIR CORE · DESIGN COORDINATION"
+        "D-080 · DIFFERENTIATED P2 WALL FAMILY · DESIGN COORDINATION"
+        if model.get("wall_schedule")
+        and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DET-003", "DH-ARQ-DET-004", "DH-ARQ-DET-005"))
+        else "D-074 · SHARED PB/P2 STAIR CORE · DESIGN COORDINATION"
         if model.get("stair_core")
         and sheet_id.startswith(("DH-ARQ-PLN-002", "DH-ARQ-DIA-001"))
         else "D-067 · UNIFIED PRIMARY BEDROOM · DESIGN COORDINATION"
@@ -2224,7 +2404,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         "Dream House coordinated upper-floor plan",
         (
             (
-                "An upper-floor revision coordinating the same mathematical stair and four column reservations used by PB. Not for construction."
+                "An upper-floor revision assigning economical wall thickness by acoustic, wet, hot-side, protected-core and exterior duty. Not for construction."
+                if model.get("wall_schedule")
+                else "An upper-floor revision coordinating the same mathematical stair and four column reservations used by PB. Not for construction."
                 if model.get("stair_core")
                 else "An upper-floor revision reading the combined primary bedroom as one room and removing its fitted privacy screen. Not for construction."
                 if model.get("primary_bedroom_unified")
@@ -2253,7 +2435,9 @@ def build_plan(model: dict[str, Any], report: dict[str, Any] | None = None) -> s
         plan_sheet_id,
         "COORDINATED UPPER FLOOR · SCHEMATIC DESIGN",
         (
-            "D-074 shared PB/P2 stair + four continuous column reserves"
+            "D-080 realistic wall family · 90 / 150 / 200 / 230 mm"
+            if model.get("wall_schedule")
+            else "D-074 shared PB/P2 stair + four continuous column reserves"
             if model.get("stair_core")
             else "D-067 one primary bedroom + D-066 unified bathroom"
             if model.get("primary_bedroom_unified")
@@ -2775,8 +2959,207 @@ def build_owner_priorities_detail(model: dict[str, Any]) -> str:
     return output
 
 
+def build_differentiated_wall_family_detail(model: dict[str, Any]) -> str:
+    """Draw the D-080 economical P2 wall family and its limits of authority."""
+
+    report = _report(model)
+    _assert_renderable(report)
+    digest = hashlib.sha256(
+        json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    schedule = model["wall_schedule"]
+    sheet_id = f"DH-ARQ-DET-003-{model['drawing_revision']}"
+    metadata = {
+        "drawing": sheet_id,
+        "revision": model["revision"],
+        "model_sha256": digest,
+        "status": model["status"],
+        "wall_types": list(schedule),
+        "construction_authority": False,
+        "acoustic_rating_claimed": False,
+        "fire_rating_claimed": False,
+    }
+    parts = _svg_start(
+        "Dream House D-080 differentiated P2 wall family",
+        "Economical wall thicknesses assigned by duty, with enhanced separation only where privacy, wet use, heat, protected circulation or weather exposure requires it. Not for construction.",
+        metadata,
+    )
+    _header(
+        parts,
+        model,
+        sheet_id,
+        "P2 WALL FAMILY · REALISTIC THICKNESS BY DUTY",
+        "D-080 · 90 / 150 / 200 / 230 mm coordination values · performance gates open",
+    )
+
+    layer_colors = {
+        "new gypsum board": "#f7f5ef",
+        "reclaimed gypsum board": "#d7d2c8",
+        "metal stud frame with glass-wool infill": "#d8e7df",
+        "clear air cavity": "#ffffff",
+    }
+
+    def draw_build_up(
+        assembly: dict[str, Any], y: float, title: str, note: str, scale: float
+    ) -> None:
+        x0, height = 120.0, 126.0
+        cursor = x0
+        parts.append(_text(70, y - 55, title, 10.5, weight=700, fill=TEAL))
+        parts.append(_text(70, y - 35, note, 7.2, fill=MUTED))
+        for index, layer in enumerate(assembly["room_side_to_room_side_layers"], start=1):
+            width = float(layer["nominal_mm"]) * scale
+            material = layer["material"]
+            parts.append(
+                _rect(
+                    cursor,
+                    y,
+                    width,
+                    height,
+                    fill=layer_colors[material],
+                    stroke=INK,
+                    stroke_width=1.0,
+                    css_class=f"wall-layer {material.replace(' ', '-').lower()}",
+                )
+            )
+            if material == "metal stud frame with glass-wool infill":
+                for offset in range(10, max(11, int(width)), 18):
+                    parts.append(
+                        _line(
+                            cursor + offset,
+                            y + 7,
+                            cursor + min(offset + 12, width - 3),
+                            y + height - 7,
+                            stroke=GREEN,
+                            stroke_width=0.9,
+                            opacity=0.65,
+                        )
+                    )
+            parts.append(
+                _text(cursor + width / 2, y + height + 20, str(index), 6.6, anchor="middle", weight=700)
+            )
+            cursor += width
+        nominal = int(round(float(assembly["nominal_total_m"]) * 1000.0))
+        layer_sum = sum(float(layer["nominal_mm"]) for layer in assembly["room_side_to_room_side_layers"])
+        parts.extend(
+            [
+                _line(x0, y - 2, cursor, y - 2, stroke=TEAL, stroke_width=1.6),
+                _line(x0, y - 9, x0, y + 5, stroke=TEAL, stroke_width=1.6),
+                _line(cursor, y - 9, cursor, y + 5, stroke=TEAL, stroke_width=1.6),
+                _text(
+                    (x0 + cursor) / 2,
+                    y - 10,
+                    f"{nominal} mm NOMINAL · {layer_sum:g} mm ILLUSTRATIVE SUM",
+                    7.8,
+                    anchor="middle",
+                    weight=700,
+                    fill=TEAL,
+                ),
+            ]
+        )
+
+    _panel_title(parts, 70, 165, "01", "TWO DRY-WALL DUTIES · SPEND MASS ONLY AT SEPARATIONS", width=830)
+    draw_build_up(
+        model["internal_partition"],
+        260,
+        "P2-W01A · 90 mm · SAME-SUITE DRY WALL",
+        "1 new board / 64 mm insulated frame / 1 new board · no rating claimed",
+        3.0,
+    )
+    draw_build_up(
+        model["acoustic_partition"],
+        555,
+        "P2-W01B · 200 mm · SUITE / COMMON SEPARATION",
+        "2 outer boards / 64 frame / 20 clear / 64 frame / 2 outer boards · independent frames",
+        3.0,
+    )
+    parts.append(
+        _multiline(
+            120,
+            735,
+            [
+                "Layer keys: 1…n follow room-side to room-side order in the controlled model.",
+                "Recovered gypsum is concealed only in W01B; visible faces remain new board.",
+            ],
+            7.4,
+            leading=1.55,
+            fill=MUTED,
+        )
+    )
+
+    _panel_title(parts, 960, 165, "02", "COORDINATION SCHEDULE", width=620)
+    headers = ("TYPE", "NOM.", "USE / LIMIT")
+    for x, label in zip((980, 1115, 1210), headers, strict=True):
+        parts.append(_text(x, 208, label, 7.2, weight=700, fill=MUTED))
+    rows = [
+        ("P2-W01A", "90", "dry wall inside one suite"),
+        ("P2-W01B", "200", "suite-to-suite / suite-to-common"),
+        ("P2-W02", "150", "wet / service wall; shafts thicken locally"),
+        ("P2-W02S", "200", "sauna / hot-side reserve; separate detail"),
+        ("P2-W03", "200", "stair / protected-core reserve only"),
+        ("P2-W04R", "200", "retained bedroom ends at hall edge"),
+        ("P2-W05", "230", "insulated shell + independent inner lining"),
+        ("P2-W06", "90", "reversible phase closure; upgrade if required"),
+    ]
+    for index, (wall_id, thickness, use) in enumerate(rows):
+        y = 245 + index * 50
+        parts.append(_rect(970, y - 24, 590, 39, fill="#eef2f0" if index % 2 == 0 else "#faf9f5"))
+        parts.extend(
+            [
+                _text(980, y, wall_id, 7.8, weight=700, fill=TEAL),
+                _text(1115, y, thickness + " mm", 7.5, weight=700),
+                _text(1210, y, use, 7.2),
+            ]
+        )
+
+    _panel_title(parts, 960, 680, "03", "PROFESSIONAL HOLD POINTS", width=620)
+    parts.append(
+        _multiline(
+            980,
+            720,
+            [
+                "Do not infer STC/Rw or fire resistance from thickness.",
+                "Select tested local systems after fire and acoustic briefs.",
+                "Engineer head tracks, anchors, bracing and steel interfaces.",
+                "Coordinate plumbing stacks before freezing W02 locally.",
+                "Mock up seals, outlets and reclaimed concealed board.",
+            ],
+            8.0,
+            leading=1.58,
+            fill=RED,
+        )
+    )
+
+    _panel_title(parts, 70, 865, "04", "ECONOMY / AUTHORITY")
+    parts.append(
+        _multiline(
+            70,
+            905,
+            [
+                "The 90 mm wall is restricted to low-risk same-suite boundaries; privacy boundaries keep twin independent frames.",
+                "Nominal thickness is a schematic design-control value, not a product order or construction dimension.",
+                "Wet, hot-side, protected-core and exterior types remain subject to professional assembly selection.",
+            ],
+            8.7,
+            leading=1.52,
+        )
+    )
+    parts.append(_rect(1120, 880, 440, 104, fill="#f5ded8", stroke="#bf7468", stroke_width=1.2, rx=6))
+    parts.append(_text(1142, 912, "NOT FOR CONSTRUCTION", 9, weight=700, fill=RED))
+    parts.append(_text(1142, 943, "No acoustic, fire, structural or moisture rating is claimed.", 7.4, fill="#6f3028"))
+    parts.append(_text(1142, 966, "D-080 replaces the former universal 250 mm dry-wall rule.", 7.4, fill="#6f3028"))
+
+    _footer(parts, model, digest, sheet_id)
+    parts.append("</svg>\n")
+    output = "".join(parts)
+    ET.fromstring(output)
+    return output
+
+
 def build_acoustic_partition_detail(model: dict[str, Any]) -> str:
     """Draw the D-057 P2-W01 coordination build-up and its limits of authority."""
+
+    if model.get("wall_schedule"):
+        return build_differentiated_wall_family_detail(model)
 
     acoustic = model.get("acoustic_partition")
     if not acoustic:
@@ -3036,7 +3419,18 @@ def build_family_balcony_detail(model: dict[str, Any]) -> str:
             [
                 _rect(x, run_y, width, run_h, fill=COLORS["bedroom"], stroke=INK, stroke_width=7, css_class="p2-w04r-suite-edge"),
                 _text(x + width / 2, run_y + 126, label, 8, anchor="middle", weight=700),
-                _text(x + width / 2, run_y + 150, "P2-W04R FULL HEIGHT", 6.8, anchor="middle", fill=TEAL),
+                _text(
+                    x + width / 2,
+                    run_y + 150,
+                    (
+                        "P2-W04R · 200 mm FULL HEIGHT"
+                        if model.get("wall_schedule")
+                        else "P2-W04R FULL HEIGHT"
+                    ),
+                    6.8,
+                    anchor="middle",
+                    fill=TEAL,
+                ),
             ]
         )
     bx = run_x + open_from * y_scale
@@ -3086,7 +3480,11 @@ def build_family_balcony_detail(model: dict[str, Any]) -> str:
             [
                 "Open the complete Y=5.00–12.45 family frontage; do not leave residual wall piers.",
                 "Join the former mini deck to the family distributor with a full 2.80 m opening.",
-                "Keep both bedroom end zones fully enclosed with acoustically controlled doors.",
+                (
+                    "Keep both bedroom end zones enclosed with P2-W04R / W01B 200 mm and controlled doors."
+                    if model.get("wall_schedule")
+                    else "Keep both bedroom end zones fully enclosed with acoustically controlled doors."
+                ),
                 "Use one visually quiet, continuous and non-climbable guard along the void.",
             ],
             8.8,
@@ -3313,8 +3711,170 @@ def build_hall_edge_detail(model: dict[str, Any]) -> str:
     return output
 
 
+def build_integrated_exterior_wall_detail(model: dict[str, Any]) -> str:
+    """Draw the D-080 insulated-shell-plus-lining P2-W05 concept."""
+
+    wall = model["exterior_wall_assembly"]
+    report = _report(model)
+    _assert_renderable(report)
+    digest = hashlib.sha256(
+        json.dumps(model, ensure_ascii=True, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    sheet_id = f"DH-ARQ-DET-005-{model['drawing_revision']}"
+    metadata = {
+        "drawing": sheet_id,
+        "revision": model["revision"],
+        "model_sha256": digest,
+        "status": model["status"],
+        "wall_type": wall["id"],
+        "nominal_total_mm": 230,
+        "construction_authority": False,
+        "thermal_performance_claimed": False,
+        "acoustic_rating_claimed": False,
+        "fire_rating_claimed": False,
+    }
+    parts = _svg_start(
+        "Dream House P2-W05 integrated 230 mm exterior wall",
+        "D-080 concept integrating the industrial insulated facade panel with an independent residential service lining, avoiding a redundant second exterior frame. Not for construction.",
+        metadata,
+    )
+    _header(
+        parts,
+        model,
+        sheet_id,
+        "P2-W05 · INTEGRATED INDUSTRIAL SHELL + PRIVATE LINING",
+        "D-080 · 230 mm nominal · 100 mm test-value panel, final core 80–120 mm open",
+    )
+
+    _panel_title(parts, 70, 165, "01", "OUTSIDE-TO-INSIDE BUILD-UP · 230 mm NOMINAL", width=880)
+    x0, y0, height, scale = 115.0, 290.0, 300.0, 2.8
+    layer_colors = {
+        "insulated corrugated metal facade panel": "#78919a",
+        "clear service and decoupling cavity": "#ffffff",
+        "metal stud frame with glass-wool infill": "#d8e7df",
+        "reclaimed gypsum board": "#d7d2c8",
+        "new gypsum board": "#f7f5ef",
+    }
+    labels = {
+        "insulated corrugated metal facade panel": "100 INSULATED CORRUGATED FACADE PANEL · TEST VALUE",
+        "clear service and decoupling cavity": "40 CLEAR DRAINABLE / SERVICE / DECOUPLING ZONE",
+        "metal stud frame with glass-wool infill": "64 INDEPENDENT SERVICE FRAME + 50 GLASS WOOL",
+        "reclaimed gypsum board": "12.5 RECLAIMED BOARD · CONCEALED ONLY",
+        "new gypsum board": "12.5 NEW SMOOTH FINISH BOARD",
+    }
+    cursor = x0
+    centres: list[tuple[float, dict[str, Any]]] = []
+    for layer in wall["outside_to_inside_layers"]:
+        width = float(layer["nominal_mm"]) * scale
+        material = layer["material"]
+        parts.append(
+            _rect(
+                cursor,
+                y0,
+                width,
+                height,
+                fill=layer_colors[material],
+                stroke=INK,
+                stroke_width=1.1,
+                css_class=f"exterior-wall-layer {material.replace(' ', '-').lower()}",
+            )
+        )
+        if material == "metal stud frame with glass-wool infill":
+            for offset in range(10, max(11, int(width)), 19):
+                parts.append(
+                    _line(
+                        cursor + offset,
+                        y0 + 8,
+                        cursor + min(offset + 13, width - 3),
+                        y0 + height - 8,
+                        stroke=GREEN,
+                        stroke_width=1.0,
+                        opacity=0.65,
+                    )
+                )
+        centres.append((cursor + width / 2, layer))
+        cursor += width
+    parts.extend(
+        [
+            _line(x0, 246, cursor, 246, stroke=TEAL, stroke_width=1.8),
+            _line(x0, 237, x0, 255, stroke=TEAL, stroke_width=1.8),
+            _line(cursor, 237, cursor, 255, stroke=TEAL, stroke_width=1.8),
+            _text((x0 + cursor) / 2, 230, "230 mm NOMINAL · 229 mm ILLUSTRATIVE SUM", 9.2, anchor="middle", weight=700, fill=TEAL),
+            _text(x0 - 20, y0 + height / 2, "OUTSIDE", 8.0, anchor="end", weight=700),
+            _text(cursor + 20, y0 + height / 2, "P2 INSIDE", 8.0, weight=700),
+        ]
+    )
+    for index, (_, layer) in enumerate(centres):
+        y = 650 + index * 48
+        parts.append(_rect(105, y - 15, 16, 16, fill=layer_colors[layer["material"]], stroke=INK, stroke_width=0.8))
+        parts.append(_text(137, y, labels[layer["material"]], 7.5, weight=700))
+
+    _panel_title(parts, 1010, 165, "02", "WHY IT IS MORE EFFICIENT", width=570)
+    parts.append(
+        _multiline(
+            1030,
+            210,
+            [
+                "The insulated metal panel is the weather shell.",
+                "One independent inner frame carries services and finish.",
+                "No redundant outer stud wall is added behind the panel.",
+                "Corrugated industrial character remains outside only.",
+                "Local column boxes may project beyond 230 mm.",
+            ],
+            8.3,
+            leading=1.58,
+        )
+    )
+
+    _panel_title(parts, 1010, 430, "03", "DO NOT FREEZE THE 100 mm CORE YET", width=570)
+    parts.append(
+        _multiline(
+            1030,
+            475,
+            [
+                "Choose the 80–120 mm panel after Boyaca climate analysis.",
+                "Coordinate condensation, vapour and continuous air control.",
+                "Select PIR or mineral-wool core from the fire strategy.",
+                "Verify wind spans, fasteners and primary-steel interfaces.",
+                "Detail windows, base, eaves, corners and cavity drainage.",
+            ],
+            8.1,
+            leading=1.58,
+            fill=RED,
+        )
+    )
+
+    _panel_title(parts, 1010, 705, "04", "PERIMETER / AUTHORITY", width=570)
+    parts.append(
+        _multiline(
+            1030,
+            750,
+            [
+                "Apply to south, north and rear/east P2 edges.",
+                "P2-W04R remains the separate hall-edge wall.",
+                "No U-value, fire, acoustic or structural rating is claimed.",
+                "Not for product order, fabrication or construction.",
+            ],
+            8.2,
+            leading=1.62,
+        )
+    )
+    parts.append(_rect(1030, 905, 520, 84, fill="#f5ded8", stroke="#bf7468", stroke_width=1.2, rx=6))
+    parts.append(_text(1052, 937, "D-080 REPLACES THE FORMER 300 mm DOUBLE-FRAME BASIS", 8.0, weight=700, fill=RED))
+    parts.append(_text(1052, 966, "Envelope experience retained; illustrative construction rationalized.", 7.4, fill="#6f3028"))
+
+    _footer(parts, model, digest, sheet_id)
+    parts.append("</svg>\n")
+    output = "".join(parts)
+    ET.fromstring(output)
+    return output
+
+
 def build_exterior_wall_detail(model: dict[str, Any]) -> str:
     """Draw the D-059 P2-W05 exterior double-frame envelope concept."""
+
+    if model.get("wall_schedule"):
+        return build_integrated_exterior_wall_detail(model)
 
     wall = model.get("exterior_wall_assembly")
     if not wall:

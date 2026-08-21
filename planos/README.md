@@ -1,7 +1,7 @@
 # Dream House drawings
 
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
-**Version:** 1.21<br>
+**Version:** 1.22<br>
 **Date:** 2026-08-21<br>
 **Source:** [`actual/catalog.json`](actual/catalog.json)
 
@@ -20,9 +20,9 @@
   <br><sub>0.3-draft-36-PB · <a href="conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with the coordinated 22-riser stair core and four continuous column reservations" width="100%"></a>
+  <a href="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg"><img src="actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png" alt="Current Dream House upper-floor plan with duty-based wall thicknesses, coordinated stair core and four continuous column reservations" width="100%"></a>
   <br><strong>Upper-floor plan</strong>
-  <br><sub>0.3-draft-24-P2 · <a href="conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-25-P2 · <a href="conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -68,21 +68,21 @@
   <br><sub>0.3-draft-36-PB · <a href="conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House P2-W01 nominal 250 millimetre acoustic partition coordination detail" width="100%"></a>
-  <br><strong>P2-W01 · 250 mm acoustic wall</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
+  <a href="actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"><img src="actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png" alt="Current Dream House second-floor wall schedule with realistic duty-based nominal thicknesses" width="100%"></a>
+  <br><strong>P2 walls · 90 / 150 / 200 / 230 mm by duty</strong>
+  <br><sub>0.3-draft-25-P2 · <a href="conceptual_v0.3_b25_p2/DH-ARQ-DET-003-R22_P2-ACOUSTIC-PARTITION.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
   <a href="actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg"><img src="actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png" alt="Current Dream House open family balcony and retained bedroom-edge enclosure detail" width="100%"></a>
   <br><strong>P2-W04R · open balcony / retained suite edge</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg">versioned source</a></sub>
+  <br><sub>0.3-draft-25-P2 · <a href="conceptual_v0.3_b25_p2/DH-ARQ-DET-004-R22_P2-HALL-EDGE.svg">versioned source</a></sub>
 </td>
 <td width="50%" valign="top">
-  <a href="actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 300 millimetre refined double-frame exterior-wall detail" width="100%"></a>
-  <br><strong>P2-W05 · double-frame exterior wall</strong>
-  <br><sub>0.3-draft-23-P2 · <a href="conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
+  <a href="actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg"><img src="actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png" alt="Current Dream House P2-W05 nominal 230 millimetre integrated insulated-panel and residential-lining exterior-wall detail" width="100%"></a>
+  <br><strong>P2-W05 · 230 mm insulated shell + lining</strong>
+  <br><sub>0.3-draft-25-P2 · <a href="conceptual_v0.3_b25_p2/DH-ARQ-DET-005-R22_P2-EXTERIOR-WALL.svg">versioned source</a></sub>
 </td>
 </tr>
 <tr>
@@ -109,7 +109,7 @@ all architectural sheets with the structural studies and their open gates.
 | Stable ID | Drawing | Current aliases | Preserved issue | Status / limitation |
 | --- | --- | --- | --- | --- |
 | `architecture-ground-floor` | Ground-floor plan | [SVG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.png) | [0.3-draft-36-PB](conceptual_v0.3_b36_pb/DH-ARQ-PLN-001-R14_PB-MODULAR-TECHNICAL-WORKBENCHES.svg) | issued for D-079 technical-workbench modular and ergonomic coordination; owner anthropometry, real lift, equipment, loads, extraction, electrical/ESD design, joinery and cost remain open; not for construction |
-| `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-PLN-002-R21_P2-COORDINATED.svg) | issued for D-074 stair-core coordination; CF-011 rear grade discharge, headroom, fire/smoke design and structural details remain open; not for construction |
+| `architecture-upper-floor` | Upper-floor plan | [SVG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.svg) · [PNG](actual/DH-ARQ-PLN-002_CURRENT-UPPER-FLOOR.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-PLN-002-R22_P2-COORDINATED.svg) | issued for D-080 differentiated P2 wall-thickness coordination; tested assemblies, structure, wind, hygrothermal analysis, products and cost remain open; not for construction |
 | `architecture-roof-plan` | Roof and rooflight plan | [SVG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.svg) · [PNG](actual/DH-ARQ-PLN-CUB-001_CURRENT-ROOF.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-PLN-CUB-001-R11_D054-HALF-CENTRES.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-daylight-section` | Rooflight daylight section | [SVG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.svg) · [PNG](actual/DH-ARQ-SEC-CUB-003_CURRENT-DAYLIGHT.png) | [0.4-I01-ROOFLIGHTS](integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg) | active D-054 schematic coordination hypothesis; not for construction |
 | `architecture-roof-longitudinal-section` | Longitudinal roof section | [SVG](actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.svg) · [PNG](actual/DH-ARQ-SEC-001_CURRENT-LONGITUDINAL.png) | [0.3-borrador-07-CUBIERTA](conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg) | active roof-form schematic basis; not for construction |
@@ -123,11 +123,11 @@ all architectural sheets with the structural studies and their open gates.
 | `architecture-pb-media-wall` | PB living / 100-inch TV on Side B wall | [SVG](actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.svg) · [PNG](actual/DH-ARQ-ELE-INT-002_CURRENT-PB-MEDIA-WALL.png) | [0.3-draft-27-PB](conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg) | owner-corrected D-071 architectural intent; perimeter-wall backing, TV product, AV/MEP, glare, enclosure and acoustic details remain open; not for construction |
 | `architecture-pb-integrated-workstations` | PB Side A shared two-person workstation | [SVG](actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.svg) · [PNG](actual/DH-ARQ-DET-006_CURRENT-PB-INTEGRATED-WORKSTATIONS.png) | [0.3-draft-35-PB](conceptual_v0.3_b35_pb/DH-ARQ-DET-006-R02_SIDE-A-SHARED-WORKSTATION.svg) | owner-approved D-078 interior-led architectural intent; secondary steel, connections, mullion sightlines, facade performance, MEP, mock-up and cost remain open; not for construction |
 | `architecture-pb-technical-workbenches` | PB modular technical workbench system | [SVG](actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.svg) · [PNG](actual/DH-ARQ-DET-007_CURRENT-PB-TECHNICAL-WORKBENCHES.png) | [0.3-draft-36-PB](conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg) | issued for D-079 modular and ergonomic coordination; real equipment, lift clearance, anthropometry, structure, electrical and ESD design, extraction, battery safety, joinery and cost remain open; not for construction |
-| `architecture-access-egress` | Upper-floor access and egress | [SVG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.svg) · [PNG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.png) | [0.3-draft-24-P2](conceptual_v0.3_b24_p2/DH-ARQ-DIA-001-R21_P2-ACCESS-EGRESS.svg) | active D-074 schematic coordination hypothesis; life-safety and rear grade discharge remain open |
-| `architecture-owner-priorities` | Active coordination interfaces | [SVG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.svg) · [PNG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-002-R20_OWNER-PRIORITIES.svg) | issued for coordination under D-065; not for construction |
-| `architecture-p2-acoustic-partition` | P2-W01 · 250 mm acoustic wall | [SVG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg) · [PNG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-003-R20_P2-ACOUSTIC-PARTITION.svg) | frozen design control for coordination; no tested acoustic or fire rating; not for construction |
-| `architecture-p2-hall-edge` | P2-W04R · open balcony / retained suite edge | [SVG](actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg) · [PNG](actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-004-R20_P2-HALL-EDGE.svg) | owner-approved spatial intent; guard, structure, fire, smoke and acoustic performance remain open; not for construction |
-| `architecture-p2-exterior-wall` | P2-W05 · double-frame exterior wall | [SVG](actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg) · [PNG](actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png) | [0.3-draft-23-P2](conceptual_v0.3_b23_p2/DH-ARQ-DET-005-R20_P2-EXTERIOR-WALL.svg) | frozen envelope and interior-experience intent; hygrothermal, wind, fire and window design remain open; not for construction |
+| `architecture-access-egress` | Upper-floor access and egress | [SVG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.svg) · [PNG](actual/DH-ARQ-DIA-001_CURRENT-ACCESS-EGRESS.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-DIA-001-R22_P2-ACCESS-EGRESS.svg) | active D-080 schematic coordination hypothesis; life-safety, tested wall assemblies and rear grade discharge remain open |
+| `architecture-owner-priorities` | Active coordination interfaces | [SVG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.svg) · [PNG](actual/DH-ARQ-DET-002_CURRENT-OWNER-PRIORITIES.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-DET-002-R22_OWNER-PRIORITIES.svg) | issued for coordination under D-080; not for construction |
+| `architecture-p2-acoustic-partition` | P2 walls · 90 / 150 / 200 / 230 mm by duty | [SVG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg) · [PNG](actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-DET-003-R22_P2-ACOUSTIC-PARTITION.svg) | issued for D-080 schematic coordination; no tested acoustic, fire, structural or moisture rating; not for construction |
+| `architecture-p2-hall-edge` | P2-W04R · open balcony / retained suite edge | [SVG](actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.svg) · [PNG](actual/DH-ARQ-DET-004_CURRENT-P2-HALL-EDGE.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-DET-004-R22_P2-HALL-EDGE.svg) | owner-approved spatial intent coordinated under D-080; guard, structure, fire, smoke and acoustic performance remain open; not for construction |
+| `architecture-p2-exterior-wall` | P2-W05 · 230 mm insulated shell + lining | [SVG](actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.svg) · [PNG](actual/DH-ARQ-DET-005_CURRENT-P2-EXTERIOR-WALL.png) | [0.3-draft-25-P2](conceptual_v0.3_b25_p2/DH-ARQ-DET-005-R22_P2-EXTERIOR-WALL.svg) | issued for D-080 schematic envelope coordination; panel core, hygrothermal, wind, fire, windows and products remain open; not for construction |
 | `structure-coordination-plan` | Structural inspection plan | [SVG](actual/DH-EST-E0-002_CURRENT-STRUCTURE-PLAN.svg) · [PNG](actual/DH-EST-E0-002_CURRENT-STRUCTURE-PLAN.png) | [0.3 + E1 0.2](estructura/DH-EST-E0-002_ESTRUCTURA-INSPECCION.svg) | active E0/E1 coordination evidence; no system or member selected |
 | `structure-lateral-a` | Side A structural elevation | [SVG](actual/DH-EST-E0-003_CURRENT-LATERAL-A.svg) · [PNG](actual/DH-EST-E0-003_CURRENT-LATERAL-A.png) | [0.3 + E1 0.2](estructura/DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg) | active E0/E1 coordination evidence; no lateral system selected |
 | `structure-great-wall` | Great Wall gravity study | [SVG](actual/DH-EST-E0-004_CURRENT-GREAT-WALL.svg) · [PNG](actual/DH-EST-E0-004_CURRENT-GREAT-WALL.png) | [0.3 + E1 0.2](estructura/DH-EST-E0-004_PARED-HIBRIDA.svg) | active E0 gravity-path hypothesis; not for construction |

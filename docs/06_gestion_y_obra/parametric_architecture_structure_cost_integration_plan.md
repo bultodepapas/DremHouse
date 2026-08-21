@@ -1,12 +1,12 @@
 # Parametric Architecture–Structure–Cost Integration Plan
 
 **Status:** implementation issue 0.4-I04 active; coordination basis; not for construction
-**Version:** 0.6
-**Date:** 2026-08-13  
+**Version:** 0.7
+**Date:** 2026-08-21
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
 **Primary authority:** Project Constitution, source-precedence register, D-043,
-D-045–D-048, D-050–D-059, and the active discipline records listed below
+D-045–D-048, D-050–D-059, D-074, D-080, and the active discipline records listed below
 **Prepared from:** complete repository review, active drawings and JSON models, Python
 call-path and test audit, cost-control records, and protected legacy source review  
 **Required reviewers:** owner, architect, structural engineer, cost planner/quantity
@@ -81,6 +81,20 @@ The deterministic package is written to
 The added open gate covers hygrothermal, wind, fire and window-interface design for
 P2-W05; no thermal/acoustic rating, structural capacity, quantity, cost or construction
 authority is inferred.
+
+## D-080 current-model gap after implementation issue 0.4-I04
+
+D-080/P2 b25/R22 is now the active architectural wall-thickness source. It replaces the
+universal 250 mm dry-wall assumption and 300 mm illustrative exterior build-up with the
+90/150/200/230 mm duty-based schedule. The P2 b25 drawing generator validates that
+schedule with **41 PASS, 9 OPEN and 0 FAIL**, but the cross-discipline 0.4-I04 pipeline
+has not yet consumed b25. I04 remains valid historical screening evidence for its stated
+D-059 scenario; it is not the current wall authority and may not be used to close CF-009.
+
+The next pipeline issue must import the b25 wall schedule, measure wall heights/areas and
+openings, attach selected-product masses, compare them with `partitions_p2_kpa`, map the
+P2-W05 panel/lining scope once across cost chapters 09/10/14/23 and fail closed when any
+structural, performance or budget allowance is exceeded.
 
 ## 1. Executive recommendation
 
@@ -171,7 +185,7 @@ These rules belong in automated scenario acceptance tests as well as in drawings
 | Decisions | `docs/00_gobernanza/registro_decisiones.md` | owner/project decisions |
 | Program | `docs/01_programa/programa_arquitectonico.md` | program and performance basis |
 | PB | `dreamhouse/pb_b05.json` and PB R04 sheet | active schematic hypothesis |
-| P2 | `dreamhouse/p2_b15.json` and P2 R12 sheets | issued for coordination under D-059; not for construction |
+| P2 | `dreamhouse/p2_b25_delta.json` and P2 b25/R22 sheets | active D-080 wall-thickness coordination; tested performance and construction design pending |
 | Roof | roof b07 record/model | active schematic hypothesis |
 | Rooflights | `dreamhouse/rooflight_b11.json` superseded in position by D-054 | geometry to revise |
 | Structure | `dreamhouse/structure/structure_system.json`, E0/E1 records and sheets | research/screening only |
@@ -1095,3 +1109,9 @@ double-frame envelope and freezes the smooth, concealed-structure residential in
 experience. This does not establish vapour-control placement, U-value, wind capacity,
 fire rating, window details, selected products, measured performance, quantities or
 costs.
+
+D-080 subsequently supersedes D-057's universal 250 mm dry-wall thickness and D-059's
+illustrative 300 mm double-frame exterior build-up while retaining their privacy and
+refined-interior intent. Its 90/150/200/230 mm wall family is the active architectural
+coordination input. Tested systems, mass/wind reconciliation, building physics, products,
+quantities and costs remain open, and the I04 integration scenario remains to be upgraded.

@@ -1,14 +1,16 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 1.2
+**Version:** 1.3
 **Date:** 2026-08-21
 **Language note:** controlled English translation under D-044; D-063 incorporated into
 CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
 CF-006 without freezing products, MEP, joinery, or cost; D-078 changes Side A workstation
 and glazing geometry without selecting structure, facade products or cost; D-079
 differentiates the technical workbenches and RC support envelopes without closing real
-equipment, ergonomic, structural, electrical/ESD, extraction, battery or cost gates.
+equipment, ergonomic, structural, electrical/ESD, extraction, battery or cost gates;
+D-080 replaces the undifferentiated P2 wall thicknesses without closing acoustic, fire,
+structural, wind, hygrothermal, product or cost gates.
 
 ## Precedence
 
@@ -133,28 +135,30 @@ compatibility with the five openings shown in the interior elevation.
 - **Status:** authority conflict resolved by D-043 for gravity support; detailed design
   and the lateral function remain open.
 
-### CF-009 — D-057/D-059 P2 walls versus structural dead-load and wind allowances
+### CF-009 — D-080 P2 walls versus structural dead-load and wind allowances
 
-D-057 fixes a 250 mm nominal P2 dry-partition assembly with two metal frames, four total
-gypsum-board layers, and glass wool in both frames. D-058 originally applied that opaque
-principle to the full 18.00 m X=21 hall edge as P2-W04; D-063 now removes it from
-Y=5.00–12.45 and retains P2-W04R only at the two bedroom ends. D-059 adds the 300 mm nominal P2-W05
-double-frame exterior envelope on the other three edges, including sheathing, rainscreen,
-two insulated frames and interior boards. The structural screening model still
-uses a global `partitions_p2_kpa` allowance rather than wall lengths and actual product
-masses or wind reactions, and the issued E0/E1 structural sheets predate P2 b15/R12.
+D-080/P2 b25 replaces the predecessor universal 250 mm dry-wall rule and illustrative
+300 mm double-frame exterior build-up with a duty-based schedule: P2-W01A 90 mm,
+P2-W01B/P2-W04R 200 mm, P2-W02 150 mm, P2-W02S/P2-W03 200 mm, P2-W05 230 mm and
+P2-W06 90 mm. It retains D-063's open Y=5.00–12.45 family edge. P2-W05 now coordinates
+the already-budgeted insulated industrial facade panel with one independent interior
+service lining rather than adding a second exterior stud wall. The structural screening
+model still uses a global `partitions_p2_kpa` allowance rather than scheduled wall
+lengths, selected-product masses or facade wind reactions, and the issued E0/E1 sheets
+predate P2 b25/R22.
 
-- **Architectural rule:** P2 b19/R16 governs current P2 wall geometry under D-057–D-063.
-- **Structural hold point:** do not infer that the existing partition allowance covers
-  P2-W01/P2-W04R/P2-W05 or the new guard/edge system. Measure wall lengths, openings and
-  guard/edge loads; select local products;
-  calculate installed mass including frames/boards/insulation/sheathing/rainscreen, and
-  compare the result with the allowance and local concentrations. Design P2-W05 studs,
-  sheathing, fasteners and attachments for wind before the next structural issue.
-- **Publication rule:** the current structural sheets remain screening evidence and may
-  not be presented as coordinated construction design for D-057–D-063.
-- **Status:** open; responsible structural engineer and architect of record must close it
-before developed-design freeze.
+- **Architectural rule:** P2 b25/R22 governs current P2 wall type and nominal-thickness
+  coordination under D-080. Earlier D-057/D-059 documents remain historical for intent,
+  not current thickness authority.
+- **Structural hold point:** do not infer that the global partition allowance covers the
+  scheduled types. Measure wall lengths and openings; select local products; calculate
+  installed mass, head reactions and local concentrations; reconcile them with the slab,
+  beams and diaphragm. Design the selected P2-W05 panel, girts, fasteners and primary-steel
+  attachments for project wind actions.
+- **Publication rule:** current structural sheets remain screening evidence and may not
+  be presented as coordinated construction design for D-080.
+- **Status:** open; the responsible structural engineer and architect of record must close
+  mass, wind and interface checks before developed-design freeze.
 
 ### CF-010 — D-052 exposed edge truss versus D-063 open family balcony
 

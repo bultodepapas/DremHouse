@@ -102,7 +102,7 @@ they stay stable while their explicitly promoted versioned source can advance.
   island and leaving real-equipment, ergonomic, MEP, safety and cost gates explicit.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
-  are retained in active R12.
+  are retained through active b25/R22.
 - [Coordinated upper floor v0.3 — draft 09](02_arquitectura/plano_p2_coordinado_v0.3_borrador_09.md):
   superseded D-049/R08 predecessor combining b04's spatial centre with b06 controls,
   explicit door topology, and D-048 stair-column reservations.
@@ -112,16 +112,18 @@ they stay stable while their explicitly promoted versioned source can advance.
   D-054 supersedes the b11/D-053 rooflight position, while D-057/R10 supersedes the P2
   wall-thickness and Phase 2 clearance portions without erasing this record.
 - [P2 acoustic partition coordination — draft 13](02_arquitectura/particion_acustica_p2_v0.3_b13.md):
-  D-057 freezes the 250 mm nominal P2-W01 dry-interior assembly, records the concealed
-  reclaimed-board acceptance rules, and rebalances Phase 2 to retain 1.20 m clear
-  circulation without enlarging the upper floor.
+  historical D-057 250 mm dry-wall basis; D-080 supersedes its universal thickness while
+  retaining its privacy and concealed-reuse intent in P2-W01B.
 - [P2 hall-edge acoustic enclosure — draft 14](02_arquitectura/cierre_acustico_borde_p2_v0.3_b14.md):
   historical D-058 enclosure basis, partially superseded by D-063 across the active
   family-balcony frontage while retained as P2-W04R at both bedroom ends.
 - [P2 refined exterior envelope — draft 15](02_arquitectura/envolvente_exterior_p2_v0.3_b15.md):
-  D-059 gives the three exterior P2 edges a 300 mm nominal double-frame P2-W05 envelope,
-  keeping corrugated metal outside while the residential interior is smooth and all
-  structure and services are concealed.
+  historical D-059 300 mm double-frame basis; D-080 retains its exterior/interior
+  experience while superseding its illustrative build-up.
+- [P2 wall-thickness coordination audit — b25/R22](02_arquitectura/p2_wall_thickness_coordination_v0.3_b25.md):
+  active D-080 wall schedule assigning realistic 90/150/200/230 mm zones by duty,
+  integrating the insulated industrial shell with one private lining and recording
+  geometry, quantity, cost, structural and professional hold points.
 - [Roof v0.3 — draft 07](02_arquitectura/cubierta_v0.3_borrador_07.md): restores the
   single transverse pitch, eave heights, and reading of all four façades.
 - [Workshop rooflights v0.3 — draft 08](02_arquitectura/claraboyas_talleres_v0.3_borrador_08.md):

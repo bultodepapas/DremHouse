@@ -1,7 +1,7 @@
 # Bases de diseño arquitectónico
 
 **Estatus:** activo para anteproyecto  
-**Versión:** 0.14
+**Versión:** 0.15
 **Fecha:** 2026-08-21
 
 ## Forma y modulación
@@ -73,50 +73,58 @@ No aceptar “acústica de hangar”. Distribuir absorción entre pared posterio
 bandas de cubierta, grandes textiles, cortinas compatibles, mobiliario y desacople de P2.
 Un estudio preliminar debe definir objetivos y áreas absorbentes antes de acabados.
 
-### P2 dry interior partition control
+### P2 wall-thickness control — D-080
 
-D-057 fixes P2-W01 at 250 mm nominal for ordinary dry upper-floor partitions. Use two
-independent light-gauge frames, nominal 50 mm glass wool within each frame, a clear
-central decoupling cavity, one accepted reclaimed concealed gypsum-board layer per face,
-and one new visible finish-board layer per face. Do not insert a third gypsum leaf in the
-central cavity. See [P2 acoustic partition coordination — b13/R10](particion_acustica_p2_v0.3_b13.md).
+D-080 assigns thickness by duty instead of repeating an enhanced wall everywhere. The
+active schematic schedule is:
 
-This control does not apply to façades, sauna hot-side/wet assemblies, protected stairs,
-fire-rated or technical enclosures, or structural walls. Those interfaces require
-separate details. No acoustic or fire rating is claimed until the selected products,
-doors, seals, penetrations, junctions, and full-height mock-up are verified.
+| Type | Nominal thickness | Controlled use |
+| --- | ---: | --- |
+| P2-W01A | 90 mm | Dry boundary entirely within one suite |
+| P2-W01B | 200 mm | Suite-to-suite or suite-to-common privacy boundary |
+| P2-W02 | 150 mm | Wet/service partition; increase locally for confirmed shafts |
+| P2-W02S | 200 mm | Sauna/hot-side coordination reserve; separate assembly pending |
+| P2-W03 | 200 mm | Stair/protected-core reserve; tested fire/smoke system pending |
+| P2-W04R | 200 mm | Retained bedroom ends at the open X=21 hall edge; use W01B intent |
+| P2-W05 | 230 mm | Three exterior P2 edges: insulated industrial panel plus inner lining |
+| P2-W06 | 90 mm | Reversible F1/F2 closure; upgrade if fire/smoke strategy requires it |
 
-### P2 hall/workshop edge enclosure
+P2-W01A uses one nominal 64 mm light-gauge frame, 50 mm wool and one new 12.5 mm board
+per face, producing an 89 mm illustrative sum within the 90 mm coordination value.
+Restrict it to same-suite dry boundaries. P2-W01B retains the economical privacy logic:
+two independent 64 mm frames, 50 mm wool in each, a 20 mm clear gap, one accepted
+reclaimed concealed board and one new visible board at each outer face. Its illustrative
+sum is 198 mm within a 200 mm coordination value. No tested acoustic or fire rating is
+claimed. Select locally available tested systems, compatible doors, seals, head tracks,
+penetrations and junctions before construction.
 
-D-058 requires P2-W04 along the complete 18.00 m X=21 edge between private P2 and the
-double-height hall/workshops. It is a full-height enclosure, not an open mezzanine edge.
-Opaque portions use the 250 mm nominal P2-W01 principle; GLZ-DECK at the mini deck is the
-only planned acoustic opening. Seal the wall continuously at the floor, returns,
-roof/soffit head, glazing frame, structure and services. See
-[P2 hall-edge acoustic enclosure — b14/R11](cierre_acustico_borde_p2_v0.3_b14.md).
+### P2 hall/workshop edge — D-063 / D-080
 
-D-052's single large exposed truss remains an architectural objective on the hall side,
-but it may not replace, puncture or rigidly bridge P2-W04. Structure, head movement,
-guarding, fire/smoke separation, glazing build-up and measured performance remain open
-professional design gates.
+The X=21 family frontage remains open from Y=5.00 to 12.45 under D-063, with one
+continuous guard. P2-W04R remains full height only at the two bedroom ends, totals
+10.55 m in plan and uses the 200 mm P2-W01B separation intent. The exposed D-052 truss,
+wall heads, edge beam, guard, anchors, roof movement, smoke movement and fire protection
+require one coordinated professional detail. Do not infer guard, truss or fire capacity
+from the architectural wall line.
 
-### P2 exterior double-frame envelope
+### P2 integrated exterior envelope — D-080
 
-D-059 requires P2-W05 on the three exterior P2 edges: south Y=0, north Y=18 and
-rear/east X=36. Coordinate it at 300 mm nominal as an economical asymmetric double wall.
-The outer leaf provides corrugated rainscreen, drainage, the continuous air/water layer,
-sheathing and an insulated wind-side frame. A clear service/decoupling cavity separates
-it from an independently insulated room-side frame with accepted reclaimed concealed
-board and new smooth finish board.
+P2-W05 applies to the south Y=0, north Y=18 and rear/east X=36 edges. Coordinate 230 mm
+nominal as an integrated system: a 100 mm insulated corrugated metal facade-panel test
+value, a 40 mm clear service/decoupling zone, one independent 64 mm frame with nominal
+50 mm wool, one accepted reclaimed concealed 12.5 mm board and one new smooth 12.5 mm
+finish board. The illustrative layer sum is 229 mm. This avoids constructing a redundant
+second exterior stud frame behind a panel already carried in the global envelope strategy.
 
-Corrugated sheet is an exterior material only. No sheet metal, framing, primary steel,
-bracing, membranes or services are exposed to private P2 rooms or circulation. See
-[P2 refined exterior envelope — b15/R12](envolvente_exterior_p2_v0.3_b15.md).
+The panel is not selected and 100 mm is not a frozen core thickness. Compare locally
+available 80–120 mm panel options after Boyacá climate, indoor-humidity, condensation,
+vapour/air-control, wind, fire and acoustic analyses. Choose core type from the fire and
+building-physics strategy, then engineer spans, girts, fasteners, corners, base, eaves,
+windows, drainage, flashings and thermal bridges. Local boxes around primary columns may
+project beyond 230 mm. Corrugated metal remains outside; private P2 retains the smooth,
+concealed-service experience established by D-059.
 
-Do not select a generic interior vapour barrier by intuition. Climate, indoor humidity,
-material permeability, condensation risk and drying direction require a project-specific
-hygrothermal analysis. Window openings, roof/eave, slab edge, corners, flashings, wind
-resistance, fire/cavity barriers and thermal bridges remain separate professional gates.
+See [P2 wall-thickness coordination — b25/R22](p2_wall_thickness_coordination_v0.3_b25.md).
 
 ## Detalle y mantenibilidad
 

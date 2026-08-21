@@ -1,6 +1,7 @@
 # Shared PB/P2 stair-core coordination — PB b33 / P2 b24
 
-**Status:** active schematic coordination hypothesis; not for construction  
+**Status:** D-074 stair geometry remains active; P2 b24 publication superseded by
+D-080/P2 b25 for walls only; not for construction
 **Version:** 0.3-b33-PB / 0.3-b24-P2  
 **Date:** 2026-08-21  
 **Decision:** D-074  

@@ -1,8 +1,8 @@
 # Decisiones y datos pendientes
 
 **Estatus:** activo  
-**Versión:** 0.3
-**Fecha:** 2026-08-13
+**Versión:** 0.4
+**Fecha:** 2026-08-21
 
 ## Prioridad inmediata — propietario
 
@@ -49,8 +49,11 @@
 - Matriz de rough-ins F1/F2 con inspección y as-built.
 - Shafts, rutas MEP y accesos de mantenimiento.
 - Objetivos de acústica, clima y calidad del aire.
-- P2-W05: productos locales, higrotermia, viento, fuego/cavity barriers, vanos,
-  encuentros y mock-up; mantener lámina y estructura fuera de la vista interior de P2.
+- D-080 P2 wall family: tested local P2-W01B/W03 systems, acoustic doors/seals, wet and
+  sauna details, shaft sizes, installed masses, head tracks and full-height mock-ups.
+- P2-W05: select the 80–120 mm panel core, products, hygrothermal/wind/fire performance,
+  girts, fasteners, openings, interfaces and mock-up; keep metal and structure outside the
+  private P2 visual field.
 - Cantidades de envolvente, acero y concreto de prediseño.
 
 ## Antes de licencia/contratación

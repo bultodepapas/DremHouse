@@ -2,7 +2,7 @@
 
 **Estatus:** borrador de control; hipótesis de cantidades y precios; no es presupuesto
 contractual  
-**Versión:** 0.3.8
+**Versión:** 0.3.9
 **Fecha de precios:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`
@@ -204,11 +204,16 @@ capítulos con mejor respaldo de precio.
 | 09.01  | Panel sándwich de fachada 50 mm | m²  |  640 |    $140.000 | $89.600.000 | media     | Envolvente ≈810 m² brutos − vanos            |
 | 09.02  | Fijaciones, sellos y juntas     | m²  |  640 |      $6.000 |  $3.840.000 | media     | Cintas de vapor y sellos de puentes térmicos |
 | 09.03  | Esquineros y cierres de panel   | ml  |   60 |     $26.000 |  $1.560.000 | media     | Remates de esquinas y encuentros             |
+| 09.04  | D-080 P2 panel-core and inner-lining reconciliation | m² | TBC | TBC | not included | baja | Compare selected 80–120 mm P2 panel and inner lining with `09.01`, `14.01`, `14.03` and Chapter 23; prevent double counting |
 
 **Riesgo de control:** el precio implícito de $140.000/m² está por debajo del rango CYPE
 observado de $150.000–200.000/m². Si la fachada neta real supera 640 m² o el sistema
 exige perfiles térmicos (que si), el capítulo puede crecer $10–30 M. Cotizar localmente
 antes de PE-2.
+
+`09.04` is a D-080 measurement/reconciliation alert and does not change the $95 M chapter
+subtotal. Price the selected P2 insulated panel, girts, fasteners, air/water seals, window
+interfaces and inner lining once across chapters 09/10/14/23.
 
 ---
 
@@ -292,11 +297,19 @@ resolved.
 | 14.05  | Puertas interiores PB                   | un  |    2 |    $500.000 |  $1.000.000 |  $1.000.000 |         $0 | media     | Núcleo + bodega                                     |
 | 14.06  | Remates, ajustes y sellos               | gl  |    1 |  $1.000.000 |  $1.000.000 |    $700.000 |   $300.000 | media     | Igualación de acabados en F2                        |
 | 14.07  | D-071 Side B acoustic TV mounting field | m²  | 16,72 |          TBC | not included | not included | $0 | baja | 4,40 × 3,80 m finish + local backing within existing exterior wall |
+| 14.08  | D-080 P2 wall schedule remeasurement    | m²  | TBC |          TBC | not included | not included | $0 | baja | Separate W01A/W01B/W02/W02S/W03/W04R/W05 lining/W06 by height, phase and opening |
 
 `14.07` is an unpriced Phase 1 measurement alert. It excludes the television and active
 AV equipment. Do not add it to the $38 M chapter subtotal until its local backing,
 acoustic/fire/enclosure interfaces, sealed penetrations and overlap with `14.03` are
 reconciled. D-071 deletes rather than prices D-070's freestanding partition.
+
+`14.08` is an unpriced D-080 measurement alert. The centreline screen records 82.30 m of
+opaque internal shared boundaries, 10.55 m of retained hall edge and 48.00 m of gross P2
+exterior perimeter before openings. Convert these runs to wall-face areas using confirmed
+heights and openings; price tested assemblies, doors, seals, heads, fire stopping, access,
+waste and mock-ups without duplicating `09.04` or Chapter 23. The line does not change the
+$38 M chapter subtotal.
 
 ---
 
@@ -631,6 +644,8 @@ confianza y variación frente a este desglose.
   vivo (CYPE/proveedores, 11-08-2026), correcciones de medición y partidas ausentes
   (cap. 26 incendio, cap. 27 SG-SST/ensayos, seguros, sauna, calentamiento) como insumo
   v0.4. **El target no cambia** hasta cotizar en PE-1/PE-2.
+- v0.3.9 (D-080): adds unpriced reconciliation alerts `09.04` and `14.08` for the
+  differentiated P2 wall schedule. **No subtotal, phase, contingency or target changes.**
 - Cambios futuros: registrar origen, necesidad, alternativas, costo, plazo, efecto
   técnico, decisión y partida afectada. Ningún ahorro se contabiliza hasta documentar
   el alcance eliminado.

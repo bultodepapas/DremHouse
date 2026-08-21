@@ -1,12 +1,15 @@
 # P2 Refined Exterior Envelope — b15/R12
 
-**Status:** issued for coordination under D-059; not for construction  
+**Status:** historical D-059 envelope concept; 300 mm double-frame build-up superseded by
+D-080/P2 b25; not for construction
 **Version:** 0.3-draft-15-P2 / R12  
 **Date:** 2026-08-13  
 **Sources:** Constitution hard rules 11, 19, 22 and 23; D-057–D-059; p2 b14/R11
 predecessor  
 **Supersedes:** b14/R11 as the current P2 plan and D-034's 180 mm study thickness on P2
 exterior walls only  
+**Superseded by:** D-080/P2 b25 for current P2-W05 thickness and integrated
+insulated-panel-plus-lining build-up; refined private-interior intent retained
 **Approval pending:** architect of record, envelope/building-physics professional,
 structural engineer, fire/life-safety professional, window supplier, selected-system
 manufacturers and representative mock-up review

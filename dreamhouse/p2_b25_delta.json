@@ -1,0 +1,156 @@
+{
+  "base_model": "dreamhouse/p2_b24_delta.json",
+  "base_model_sha256": "f921065ed04985a62a884594c0667ef69d87f594b3753157a0ed2332fddd36c3",
+  "revision": "0.3-draft-25-P2",
+  "drawing_revision": "R22",
+  "status": "issued for D-080 differentiated P2 wall-thickness coordination; tested acoustic and fire assemblies, wet and sauna details, structural anchorage, wind design, hygrothermal analysis, products and measured cost remain open; not for construction",
+  "date": "2026-08-21",
+  "supersedes": "0.3-draft-24-P2 / R21 for P2 wall classification, nominal thickness and schematic wall details only",
+  "decision": "D-080",
+  "change": {
+    "summary": "Replace the universal 250 mm dry-wall assumption and 300 mm double-frame exterior build-up with wall thicknesses differentiated by duty.",
+    "envelope": {
+      "exterior_wall": 0.23,
+      "hall_edge_wall": 0.2,
+      "partition": 0.09,
+      "wet_wall": 0.15
+    },
+    "wall_schedule": {
+      "P2-W01A": {
+        "name": "same-suite dry partition",
+        "nominal_total_m": 0.09,
+        "authority": "schematic coordination value"
+      },
+      "P2-W01B": {
+        "name": "enhanced suite and common-space separation",
+        "nominal_total_m": 0.2,
+        "authority": "schematic coordination value; tested acoustic assembly pending"
+      },
+      "P2-W02": {
+        "name": "wet and service partition",
+        "nominal_total_m": 0.15,
+        "authority": "coordination reserve; local shafts may increase"
+      },
+      "P2-W02S": {
+        "name": "sauna and hot-side wall",
+        "nominal_total_m": 0.2,
+        "authority": "coordination reserve; thermal and moisture assembly pending"
+      },
+      "P2-W03": {
+        "name": "stair and protected-core enclosure",
+        "nominal_total_m": 0.2,
+        "authority": "coordination reserve; tested fire and smoke assembly pending"
+      },
+      "P2-W04R": {
+        "name": "retained bedroom wall at open hall edge",
+        "nominal_total_m": 0.2,
+        "authority": "schematic coordination value; references P2-W01B"
+      },
+      "P2-W05": {
+        "name": "integrated insulated industrial shell and residential lining",
+        "nominal_total_m": 0.23,
+        "authority": "schematic coordination value; panel core and performance pending"
+      },
+      "P2-W06": {
+        "name": "reversible future-phase closure",
+        "nominal_total_m": 0.09,
+        "authority": "schematic reserve; upgrade if fire or smoke separation is required"
+      }
+    },
+    "internal_partition": {
+      "id": "P2-W01A",
+      "nominal_total_m": 0.09,
+      "room_side_to_room_side_layers": [
+        {
+          "material": "new gypsum board",
+          "nominal_mm": 12.5
+        },
+        {
+          "material": "metal stud frame with glass-wool infill",
+          "nominal_mm": 64,
+          "infill_nominal_mm": 50
+        },
+        {
+          "material": "new gypsum board",
+          "nominal_mm": 12.5
+        }
+      ],
+      "use": "low-risk dry boundaries entirely within one suite"
+    },
+    "acoustic_partition": {
+      "id": "P2-W01B",
+      "nominal_total_m": 0.2,
+      "room_side_to_room_side_layers": [
+        {
+          "material": "new gypsum board",
+          "nominal_mm": 12.5
+        },
+        {
+          "material": "reclaimed gypsum board",
+          "nominal_mm": 12.5
+        },
+        {
+          "material": "metal stud frame with glass-wool infill",
+          "nominal_mm": 64,
+          "infill_nominal_mm": 50
+        },
+        {
+          "material": "clear air cavity",
+          "nominal_mm": 20
+        },
+        {
+          "material": "metal stud frame with glass-wool infill",
+          "nominal_mm": 64,
+          "infill_nominal_mm": 50
+        },
+        {
+          "material": "reclaimed gypsum board",
+          "nominal_mm": 12.5
+        },
+        {
+          "material": "new gypsum board",
+          "nominal_mm": 12.5
+        }
+      ],
+      "use": "suite-to-suite and suite-to-common-space privacy boundaries",
+      "exclusions": [
+        "exterior walls",
+        "wet-area service walls",
+        "sauna hot-side walls",
+        "protected stair enclosures",
+        "shafts and structural walls"
+      ]
+    },
+    "hall_edge_partition": {
+      "nominal_total_m": 0.2,
+      "opaque_assembly_reference": "P2-W01B"
+    },
+    "exterior_wall_assembly": {
+      "nominal_total_m": 0.23,
+      "outside_to_inside_layers": [
+        {
+          "material": "insulated corrugated metal facade panel",
+          "nominal_mm": 100,
+          "note": "coordination test value only; select 80–120 mm core after thermal and fire design"
+        },
+        {
+          "material": "clear service and decoupling cavity",
+          "nominal_mm": 40
+        },
+        {
+          "material": "metal stud frame with glass-wool infill",
+          "nominal_mm": 64,
+          "infill_nominal_mm": 50
+        },
+        {
+          "material": "reclaimed gypsum board",
+          "nominal_mm": 12.5
+        },
+        {
+          "material": "new gypsum board",
+          "nominal_mm": 12.5
+        }
+      ]
+    }
+  }
+}

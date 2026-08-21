@@ -1,7 +1,7 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.22
+**Versión:** 0.3.23
 **Fecha de precios declarada por la fuente:** 2026-08-11  
 **Document update:** 2026-08-21
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
@@ -551,10 +551,36 @@ window interfaces, RETIE, ESD, extraction and battery fire strategy can change s
 **No price, saving, increase, contingency change, phase-total change, or target change is
 recognized by D-079 before mock-ups, cost-code reconciliation and comparable quotations.**
 
+### 0.3-AF — D-080 differentiated P2 wall family
+
+D-080 replaces the predecessor universal 250 mm dry-wall rule and 300 mm illustrative
+double-frame P2 facade with duty-based 90/150/200/230 mm coordination types. Screening
+of modeled opaque shared boundaries gives 9.14 m of P2-W01A, 12.19 m of P2-W01B,
+43.82 m of P2-W02, 5.55 m of P2-W02S and 11.60 m of P2-W03. P2-W04R retains 10.55 m at
+the two bedroom ends and P2-W05 applies to the 48.00 m exterior P2 perimeter before
+opening deductions.
+
+Against predecessor schematic thicknesses, this screens approximately **4.26 m²** less
+internal-wall footprint, **3.36 m²** less exterior-wall footprint and **0.53 m²** less
+retained hall-edge footprint: about **8.15 m² total** before intersections, local shafts,
+column boxes and tolerances. This is a spatial/quantity alert, not a saleable-area or cost
+saving. P2-W02 can thicken at stacks; P2-W03 depends on a tested fire/smoke assembly;
+P2-W05 may require an 80–120 mm panel core and engineered girts/fasteners; acoustic doors,
+seals, heads, fire stopping and mock-ups remain unpriced.
+
+The active cost base already prices 640 m² of 50 mm insulated facade panel under `09.01`,
+while the historical D-059 text added a second exterior wall concept. Reconcile chapters
+09/10/14/23 one-to-one so the selected insulated panel is not counted twice and the inner
+residential lining is not omitted. Add atomic alerts `09.04` and `14.08` at TBC; remeasure
+wall areas by type, height, phase and opening. **No price, saving, increase, contingency
+change, phase-total change, or target change is recognized by D-080 before tested-system
+selection, coordinated quantities and comparable local quotations.**
+
 ## Registro de versiones
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AF  | 2026-08-21 | D-080 differentiates P2 walls at 90/150/200/230 mm by duty and screens about 8.15 m² less wall footprint than predecessor nominal thicknesses. Chapters 09/10/14/23 require one-to-one remeasurement; add TBC alerts `09.04` and `14.08` to prevent facade/lining double counting. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AE  | 2026-08-21 | D-079 retains 20.70 m² of technical-workbench surface but makes twelve 1.50 m wall modules, three 1.50 m central-island modules, one heavy-force bay, three manual-adjustable ESD-capable RC modules, solder extraction and service zones measurable. The 9.00 m RC wall bench becomes unpriced alert `21.10`; local modular fabrication is the base pricing route. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AD  | 2026-08-21 | D-078 replaces 18.495 m² of two-event Side A glazing with one 20.88 m² modular opening (+2.385 m² / 12.9%) while reducing outer opening perimeter by 4.00 m / 16.5%. The Side A worktop increases by 2.16 m² / 80%, and one three-drawer cabinet is added. Price a direct rugged industrial envelope rather than premium facade treatment; chapters 05/06/09/10/12/13/17/18/21 require reconciliation and quotations. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AC  | 2026-08-21 | D-077 adopts the 10.05 m kitchen wall, 7.20 × 1.25 m dry island and opposite centred dining geometry. The island is 2.40 m / 50% longer than `20.02`; the 17.25 m wall-plus-island length is 3.25 m / 23.2% above the `20.03` countertop allowance. Chapter 20 requires remeasurement and quotations; **no price, saving, increase, contingency, phase-total or target change is recognized.** |

@@ -2,10 +2,10 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.10
+**Version:** 0.11
 **Date:** 2026-08-21
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053–D-059, D-074; architectural drafts PB b05–b33 and P2 b09–b24 and implementation issues 0.4-I01–I04;
+D-053–D-059, D-074, D-080; architectural drafts PB b05–b33 and P2 b09–b25 and implementation issues 0.4-I01–I04;
 `pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `p2_b14.json`; `p2_b15.json`;
 `rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
@@ -40,14 +40,15 @@ in one longitudinal half of the double-height hall. The structural generators re
 `p2_b10.json` and `rooflight_b12.json`; their deterministic re-run retains the same four
 compatible stair-frame lines and now records each rooflight/grid crossing explicitly.
 
-D-059 makes `p2_b15.json` the current architectural P2 source and preserves the four
-stair-frame coordinates. It carries D-057's P2-W01 and D-058's P2-W04 while adding the
-300 mm nominal P2-W05 double-frame exterior envelope. Under CF-009, the issued E0/E1
-sheets remain pre-D-057–D-059 screening evidence: their global partition dead-load
-allowance has not been checked against measured P2-W01/P2-W04/P2-W05 masses, and P2-W05
-wind reactions and attachments are undesigned. The next structural issue must consume
-b15, perform those comparisons, resolve the CF-010 truss/wall interface and retain a
-fail-closed result when an allowance is exceeded.
+D-080 makes P2 b25/R22 the current architectural wall source and preserves the D-074
+stair/four-column geometry. It replaces the predecessor universal 250 mm dry wall and
+300 mm double-frame exterior wall with a scheduled 90/150/200/230 mm family by duty.
+Under CF-009, the issued E0/E1 sheets remain pre-D-080 screening evidence: their global
+partition dead-load allowance has not been checked against measured wall lengths and
+selected-product masses, and P2-W05 panel/girt wind reactions and attachments remain
+undesigned. The next structural issue must consume b25, perform those comparisons,
+resolve the CF-010 truss/wall interface and retain a fail-closed result when an allowance
+is exceeded.
 
 ## 2. New integrated evidence sheet
 
@@ -240,12 +241,13 @@ declared hypothesis. It is deliberately paired with `DESIGN BLOCKED`.
    route from the common Phase 2 lobby and clears the D-048 corner coordinate. Its landing,
    deployment loads, façade support, corrosion, guards, fail-safe operation, and emergency
    acceptance remain unproved; the reserve receives no exit credit at E1.
-10. **P2-W05 versus wind, thermal bridges and concealed steel.** D-059 requires the
-    north, south and rear P2 walls to hide framing and primary steel from the private
-    interior while retaining an economical corrugated rainscreen outside. Studs,
-    sheathing, attachments, window framing and primary-steel junctions must transfer wind
-    without breaking water/air/thermal continuity or forcing exposed structure back into
-    P2. No member or fixing is selected by b15/R12.
+10. **D-080 wall family versus mass, wind, thermal bridges and concealed steel.** The
+    north, south and rear P2 walls integrate an insulated corrugated facade panel with one
+    independent private-side lining. Selected panel spans, girts, fasteners, window
+    framing and primary-steel junctions must transfer wind without breaking
+    water/air/thermal continuity. Internal selected-product masses, heads and local
+    concentrations must be reconciled with the global `partitions_p2_kpa` allowance. No
+    member, fixing, panel core or tested wall assembly is selected by b25/R22.
 
 ## 7. Explicit corrections to the previous integration study
 
