@@ -249,7 +249,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     annotations = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-annotations", "data-layer": "annotations-and-evidence"},
+        {
+            "id": "layer-annotations",
+            "data-layer": "annotations-and-evidence",
+            "data-contrast-bg": "#FFFDFA",
+        },
     )
     add_text(
         annotations,
@@ -285,11 +289,19 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         q("g"),
         {"id": "layer-status", "data-layer": "status-and-conflicts"},
     )
-    add_text(status, 832, 838, "NOT ADOPTED", size=12.5, css_class="new-hypothesis")
-    add_text(status, 832, 868, "GLZ-DINING-STUDY-B", size=11, css_class="new-title")
-    add_text(status, 832, 892, "4.80 × 1.80 m · sill +0.75 m", size=10, css_class="new-body")
+    excluded_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#F0ECF6"})
+    add_text(excluded_status, 832, 838, "NOT ADOPTED", size=12.5, css_class="new-hypothesis")
+    add_text(excluded_status, 832, 868, "GLZ-DINING-STUDY-B", size=11, css_class="new-title")
+    add_text(
+        excluded_status,
+        832,
+        892,
+        "4.80 × 1.80 m · sill +0.75 m",
+        size=10,
+        css_class="new-body",
+    )
     add_wrapped_text(
-        status,
+        excluded_status,
         832,
         922,
         "Excluded from the façade geometry, active opening quantities and pricing. The "
@@ -300,7 +312,15 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-muted",
     )
 
-    add_text(status, 1238, 838, "OPEN · DO NOT FREEZE", size=12.5, css_class="new-open")
+    open_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#FBF0D9"})
+    add_text(
+        open_status,
+        1238,
+        838,
+        "OPEN · DO NOT FREEZE",
+        size=12.5,
+        css_class="new-open",
+    )
     gates = [
         "Site and cardinal orientation",
         "Solar control, glare, views and privacy",
@@ -311,8 +331,8 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     ]
     y = 868
     for gate in gates:
-        add_text(status, 1238, y, "•", size=10, css_class="new-open")
-        add_text(status, 1256, y, gate, size=10, css_class="new-body")
+        add_text(open_status, 1238, y, "•", size=10, css_class="new-open")
+        add_text(open_status, 1256, y, gate, size=10, css_class="new-body")
         y += 24
 
     add_header(

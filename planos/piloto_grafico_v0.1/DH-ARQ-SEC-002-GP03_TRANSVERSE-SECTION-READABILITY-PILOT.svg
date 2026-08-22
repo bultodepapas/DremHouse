@@ -13,7 +13,29 @@
   --conflict: #A33F31;
   --hypothesis: #66538A;
   --material: #74543C;
+  --on-dark-muted: #DDE4E2;
+  --on-dark-alert: #FFB4A8;
+  --sheet-rule: #B9C0BD;
+  --panel-rule: #CBD0CC;
+  --open-surface: #FBF0D9;
+  --hypothesis-surface: #F0ECF6;
+  --table-row: #EEF2F0;
+  --table-row-alt: #F8F6F0;
+  --program-technical: #E9F0F2;
+  --program-buffer: #F7F4EC;
+  --program-living: #F2E8DE;
+  --program-kitchen: #F5E8D4;
+  --rooflight-surface: #9CC6CC;
+  --structure-gravity: #3D7186;
+  --trial: #BD7626;
+  --material-new-board: #AEB8B5;
+  --material-reclaimed: #E5DED2;
+  --material-insulated: #E1EEE7;
+  --material-insulation-edge: #39765A;
+  --material-air: #FFFFFF;
+  --material-air-marker: #798582;
 }
+
 text {
   font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
   text-rendering: geometricPrecision;
@@ -78,7 +100,7 @@ text {
     <line x1="170" y1="620" x2="926" y2="620" stroke="#536168" data-source-index="11" data-model-id="HALL-WIDTH-DIMENSION" />
     <text x="548.0" y="614" text-anchor="middle" font-size="9.6" data-source-index="12" data-model-id="HALL-WIDTH-DIMENSION" data-source-label="18,00 m · sentido bajo/alto reversible según predio y drenaje" data-text-role="dimension">18.00 m · low/high direction reversible pending site and drainage</text>
   </g>
-  <g id="layer-annotations" data-layer="levels-and-evidence">
+  <g id="layer-annotations" data-layer="levels-and-evidence" data-contrast-bg="#FFFDFA">
     <g class="level-marker" data-relates-to="PB-REFERENCE-LEVEL">
       <line x1="92" y1="682" x2="262" y2="682" stroke="#1D7480" stroke-width="1.5" />
       <polygon points="272,682 262,677 262,687" fill="#1D7480" />
@@ -91,56 +113,62 @@ text {
     </g>
   </g>
   <g id="layer-status" data-layer="status-and-open-gates">
-    <text x="56" y="838" font-size="12.5" class="new-hypothesis">ACTIVE PROVISIONAL DCV · D-039</text>
-    <text x="56" y="868" font-size="10" class="new-body">
-      <tspan x="56" dy="0">One continuous mono-pitch exterior roof plane; no ridge or</tspan>
-      <tspan x="56" dy="13">secondary roof form.</tspan>
-    </text>
-    <text x="56" y="912" font-size="10" class="new-eyebrow">Rise</text>
-    <text x="138" y="912" font-size="10" class="new-body">approx. 0.60 m across 18.00 m = 3.33%</text>
-    <text x="56" y="940" font-size="10" class="new-eyebrow">Eaves</text>
-    <text x="138" y="940" font-size="10" class="new-body">low approx. +7.20 m · high approx. +7.80 m</text>
-    <text x="56" y="970" font-size="9.8" class="new-muted">
-      <tspan x="56" dy="0">These values coordinate schematic design; they are not contractual</tspan>
-      <tspan x="56" dy="12.5">dimensions or a selected roof system.</tspan>
-    </text>
-    <text x="572" y="838" font-size="12.5" class="new-title">VERTICAL READING</text>
-    <text x="572" y="872" font-size="10" class="new-eyebrow">PB</text>
-    <text x="690" y="872" font-size="10" class="new-body">reference level +0.00</text>
-    <text x="572" y="903" font-size="10" class="new-eyebrow">P2</text>
-    <text x="690" y="903" font-size="10" class="new-body">finished floor approx. +3.80 m</text>
-    <text x="572" y="934" font-size="10" class="new-eyebrow">PB clear</text>
-    <text x="690" y="934" font-size="10" class="new-body">target 3.05–3.20 m below P2</text>
-    <text x="572" y="965" font-size="10" class="new-eyebrow">P2 ceiling</text>
-    <text x="690" y="965" font-size="10" class="new-body">horizontal 3.00–3.10 m + variable plenum</text>
-    <text x="572" y="986" font-size="9.8" class="new-muted">
-      <tspan x="572" dy="0">The section is diagrammatic: no assembly build-up, member size</tspan>
-      <tspan x="572" dy="12.5">or ceiling detail is selected.</tspan>
-    </text>
-    <text x="1088" y="838" font-size="12.5" class="new-open">OPEN · DO NOT FREEZE</text>
-    <text x="1088" y="868" font-size="10" class="new-open">•</text>
-    <text x="1106" y="868" font-size="10" class="new-body">
-      <tspan x="1106" dy="0">Side A / Side B low-high assignment pending site and orientation</tspan>
-    </text>
-    <text x="1088" y="888.5" font-size="10" class="new-open">•</text>
-    <text x="1106" y="888.5" font-size="10" class="new-body">
-      <tspan x="1106" dy="0">Final slope pending selected panel, structure, tolerances and</tspan>
-      <tspan x="1106" dy="12.5">warranty</tspan>
-    </text>
-    <text x="1088" y="921.5" font-size="10" class="new-open">•</text>
-    <text x="1106" y="921.5" font-size="10" class="new-body">
-      <tspan x="1106" dy="0">Rainfall, gutter, overflow, downpipe and discharge design</tspan>
-    </text>
-    <text x="1088" y="942" font-size="10" class="new-open">•</text>
-    <text x="1106" y="942" font-size="10" class="new-body">
-      <tspan x="1106" dy="0">Wind, uplift, fasteners, penetrations and maintenance access</tspan>
-    </text>
-    <text x="1088" y="962.5" font-size="10" class="new-open">•</text>
-    <text x="1106" y="962.5" font-size="10" class="new-body">
-      <tspan x="1106" dy="0">Insulation, condensation, thermal bridges and ceiling interfaces</tspan>
-    </text>
+    <g data-contrast-bg="#F0ECF6">
+      <text x="56" y="838" font-size="12.5" class="new-hypothesis">ACTIVE PROVISIONAL DCV · D-039</text>
+      <text x="56" y="868" font-size="10" class="new-body">
+        <tspan x="56" dy="0">One continuous mono-pitch exterior roof plane; no ridge or</tspan>
+        <tspan x="56" dy="13">secondary roof form.</tspan>
+      </text>
+      <text x="56" y="912" font-size="10" class="new-eyebrow">Rise</text>
+      <text x="138" y="912" font-size="10" class="new-body">approx. 0.60 m across 18.00 m = 3.33%</text>
+      <text x="56" y="940" font-size="10" class="new-eyebrow">Eaves</text>
+      <text x="138" y="940" font-size="10" class="new-body">low approx. +7.20 m · high approx. +7.80 m</text>
+      <text x="56" y="970" font-size="9.8" class="new-muted">
+        <tspan x="56" dy="0">These values coordinate schematic design; they are not contractual</tspan>
+        <tspan x="56" dy="12.5">dimensions or a selected roof system.</tspan>
+      </text>
+    </g>
+    <g data-contrast-bg="#FFFDFA">
+      <text x="572" y="838" font-size="12.5" class="new-title">VERTICAL READING</text>
+      <text x="572" y="872" font-size="10" class="new-eyebrow">PB</text>
+      <text x="690" y="872" font-size="10" class="new-body">reference level +0.00</text>
+      <text x="572" y="903" font-size="10" class="new-eyebrow">P2</text>
+      <text x="690" y="903" font-size="10" class="new-body">finished floor approx. +3.80 m</text>
+      <text x="572" y="934" font-size="10" class="new-eyebrow">PB clear</text>
+      <text x="690" y="934" font-size="10" class="new-body">target 3.05–3.20 m below P2</text>
+      <text x="572" y="965" font-size="10" class="new-eyebrow">P2 ceiling</text>
+      <text x="690" y="965" font-size="10" class="new-body">horizontal 3.00–3.10 m + variable plenum</text>
+      <text x="572" y="986" font-size="9.8" class="new-muted">
+        <tspan x="572" dy="0">The section is diagrammatic: no assembly build-up, member size</tspan>
+        <tspan x="572" dy="12.5">or ceiling detail is selected.</tspan>
+      </text>
+    </g>
+    <g data-contrast-bg="#FBF0D9">
+      <text x="1088" y="838" font-size="12.5" class="new-open">OPEN · DO NOT FREEZE</text>
+      <text x="1088" y="868" font-size="10" class="new-open">•</text>
+      <text x="1106" y="868" font-size="10" class="new-body">
+        <tspan x="1106" dy="0">Side A / Side B low-high assignment pending site and orientation</tspan>
+      </text>
+      <text x="1088" y="888.5" font-size="10" class="new-open">•</text>
+      <text x="1106" y="888.5" font-size="10" class="new-body">
+        <tspan x="1106" dy="0">Final slope pending selected panel, structure, tolerances and</tspan>
+        <tspan x="1106" dy="12.5">warranty</tspan>
+      </text>
+      <text x="1088" y="921.5" font-size="10" class="new-open">•</text>
+      <text x="1106" y="921.5" font-size="10" class="new-body">
+        <tspan x="1106" dy="0">Rainfall, gutter, overflow, downpipe and discharge design</tspan>
+      </text>
+      <text x="1088" y="942" font-size="10" class="new-open">•</text>
+      <text x="1106" y="942" font-size="10" class="new-body">
+        <tspan x="1106" dy="0">Wind, uplift, fasteners, penetrations and maintenance access</tspan>
+      </text>
+      <text x="1088" y="962.5" font-size="10" class="new-open">•</text>
+      <text x="1106" y="962.5" font-size="10" class="new-body">
+        <tspan x="1106" dy="0">Insulation, condensation, thermal bridges and ceiling interfaces</tspan>
+      </text>
+    </g>
   </g>
-  <g id="layer-sheet-header" data-layer="titleblock">
+  <g id="layer-sheet-header" data-layer="titleblock" data-contrast-bg="#F4F0E7">
     <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 03 · PRESENTATION ONLY</text>
     <text x="36" y="70" font-size="24" class="new-title">TRANSVERSE SECTION · MONO-PITCH ROOF</text>
     <text x="36" y="96" font-size="11" class="new-muted">Same R06 geometry and values · repaired scalable viewport · English editorial layer · provisional/open states</text>
@@ -148,7 +176,7 @@ text {
     <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP03 · NOT CURRENT</text>
     <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
   </g>
-  <g id="layer-sheet" data-layer="titleblock">
+  <g id="layer-sheet" data-layer="titleblock" data-contrast-bg="#172A32">
     <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
     <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
     <text x="56" y="1082" font-size="10.2" class="new-on-dark">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>

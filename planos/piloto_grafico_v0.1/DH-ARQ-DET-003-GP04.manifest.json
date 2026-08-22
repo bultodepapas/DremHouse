@@ -6,7 +6,7 @@
   ],
   "generator": "dreamhouse/svg/pilot_p2_wall_family.py",
   "output": "DH-ARQ-DET-003-GP04_P2-WALL-FAMILY-READABILITY-PILOT.svg",
-  "output_sha256": "dd23f68790094c44dbf3bb45323eb7d7a196f84add1116fe6b6f572222a725d9",
+  "output_sha256": "d109e00cb4476c3e019007170595d7522653ff73b3e002971685321e35dcc139",
   "pilot": "GP04",
   "sheet": "DH-ARQ-DET-003",
   "source": "planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg",

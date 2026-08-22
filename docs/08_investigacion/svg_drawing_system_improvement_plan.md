@@ -497,6 +497,14 @@ floor for GP01–GP05. Palette/contrast, bounds, typed collisions and the separa
 role threshold remain explicit follow-on gates. See
 [`svg_static_lint_v0.1.md`](svg_static_lint_v0.1.md); no current drawing has been promoted.
 
+**Palette/contrast note — 2026-08-22:** v0.2 adds one 30-token presentation palette,
+strict editorial-layer colour checks, warning-only inherited-model colour debt, typed
+semantic backgrounds and computed 4.5:1 normal / 3:1 large-text contrast. GP01–GP05 have
+zero presentation palette or contrast failures. Bounds and typed collisions remain the
+next gate. See
+[`svg_palette_contrast_lint_v0.2.md`](svg_palette_contrast_lint_v0.2.md); no current
+drawing has been promoted.
+
 ### 9.2 Geometry preservation tests
 
 Before changing a sheet family, record a structured geometry baseline from the active

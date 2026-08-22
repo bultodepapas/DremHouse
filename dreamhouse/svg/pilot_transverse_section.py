@@ -209,7 +209,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     annotations = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-annotations", "data-layer": "levels-and-evidence"},
+        {
+            "id": "layer-annotations",
+            "data-layer": "levels-and-evidence",
+            "data-contrast-bg": "#FFFDFA",
+        },
     )
     add_level_marker(
         annotations,
@@ -233,8 +237,9 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         q("g"),
         {"id": "layer-status", "data-layer": "status-and-open-gates"},
     )
+    provisional_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#F0ECF6"})
     add_text(
-        status,
+        provisional_status,
         56,
         838,
         "ACTIVE PROVISIONAL DCV · D-039",
@@ -242,7 +247,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-hypothesis",
     )
     add_wrapped_text(
-        status,
+        provisional_status,
         56,
         868,
         "One continuous mono-pitch exterior roof plane; no ridge or secondary roof form.",
@@ -250,12 +255,24 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         size=10,
         line_height=13,
     )
-    add_text(status, 56, 912, "Rise", size=10, css_class="new-eyebrow")
-    add_text(status, 138, 912, "approx. 0.60 m across 18.00 m = 3.33%", size=10)
-    add_text(status, 56, 940, "Eaves", size=10, css_class="new-eyebrow")
-    add_text(status, 138, 940, "low approx. +7.20 m · high approx. +7.80 m", size=10)
+    add_text(provisional_status, 56, 912, "Rise", size=10, css_class="new-eyebrow")
+    add_text(
+        provisional_status,
+        138,
+        912,
+        "approx. 0.60 m across 18.00 m = 3.33%",
+        size=10,
+    )
+    add_text(provisional_status, 56, 940, "Eaves", size=10, css_class="new-eyebrow")
+    add_text(
+        provisional_status,
+        138,
+        940,
+        "low approx. +7.20 m · high approx. +7.80 m",
+        size=10,
+    )
     add_wrapped_text(
-        status,
+        provisional_status,
         56,
         970,
         "These values coordinate schematic design; they are not contractual dimensions or a "
@@ -266,7 +283,8 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-muted",
     )
 
-    add_text(status, 572, 838, "VERTICAL READING", size=12.5, css_class="new-title")
+    vertical_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#FFFDFA"})
+    add_text(vertical_status, 572, 838, "VERTICAL READING", size=12.5, css_class="new-title")
     vertical_items = [
         ("PB", "reference level +0.00"),
         ("P2", "finished floor approx. +3.80 m"),
@@ -275,11 +293,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     ]
     y = 872
     for label, description in vertical_items:
-        add_text(status, 572, y, label, size=10, css_class="new-eyebrow")
-        add_text(status, 690, y, description, size=10, css_class="new-body")
+        add_text(vertical_status, 572, y, label, size=10, css_class="new-eyebrow")
+        add_text(vertical_status, 690, y, description, size=10, css_class="new-body")
         y += 31
     add_wrapped_text(
-        status,
+        vertical_status,
         572,
         986,
         "The section is diagrammatic: no assembly build-up, member size or ceiling detail is "
@@ -290,7 +308,15 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-muted",
     )
 
-    add_text(status, 1088, 838, "OPEN · DO NOT FREEZE", size=12.5, css_class="new-open")
+    open_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#FBF0D9"})
+    add_text(
+        open_status,
+        1088,
+        838,
+        "OPEN · DO NOT FREEZE",
+        size=12.5,
+        css_class="new-open",
+    )
     gates = [
         "Side A / Side B low-high assignment pending site and orientation",
         "Final slope pending selected panel, structure, tolerances and warranty",
@@ -300,9 +326,9 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     ]
     y = 868
     for gate in gates:
-        add_text(status, 1088, y, "•", size=10, css_class="new-open")
+        add_text(open_status, 1088, y, "•", size=10, css_class="new-open")
         _, bottom = add_wrapped_text(
-            status,
+            open_status,
             1106,
             y,
             gate,

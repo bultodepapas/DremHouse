@@ -23,6 +23,7 @@ from dreamhouse.svg.sheet import (
     q,
     sha256,
 )
+from dreamhouse.svg.theme import colour as theme_colour
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -232,9 +233,12 @@ def _add_rotated_text(
     angle: float = -90,
     css_class: str = "new-body",
     anchor: str = "middle",
+    contrast_bg: str | None = None,
 ) -> ET.Element:
     element = add_text(parent, x, y, value, size=size, css_class=css_class, anchor=anchor)
     element.set("transform", f"rotate({angle:g} {x:g} {y:g})")
+    if contrast_bg is not None:
+        element.set("data-contrast-bg", contrast_bg)
     return element
 
 
@@ -256,8 +260,7 @@ def _badge(
             "width": f"{width:g}",
             "height": "23",
             "rx": "11.5",
-            "fill": colour,
-            "fill-opacity": ".1",
+            "fill": "none",
             "stroke": colour,
             "stroke-width": "1",
         },
@@ -289,8 +292,22 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
         css_class="new-eyebrow",
         anchor="middle",
     )
-    _add_rotated_text(parent, 215.5, 372, "RL-CAR", css_class="new-on-dark")
-    _add_rotated_text(parent, 446.5, 372, "RL-RC", css_class="new-on-dark")
+    _add_rotated_text(
+        parent,
+        215.5,
+        372,
+        "RL-CAR",
+        css_class="new-title",
+        contrast_bg=theme_colour("rooflight-surface"),
+    )
+    _add_rotated_text(
+        parent,
+        446.5,
+        372,
+        "RL-RC",
+        css_class="new-title",
+        contrast_bg=theme_colour("rooflight-surface"),
+    )
     _add_rotated_text(
         parent,
         842.5,
@@ -354,8 +371,9 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
         )
         add_text(parent, 940, y + 4, label, size=9.8, css_class="new-body")
 
+    trial_note = ET.SubElement(parent, q("g"), {"data-contrast-bg": "#FBF0D9"})
     ET.SubElement(
-        parent,
+        trial_note,
         q("rect"),
         {
             "x": "910",
@@ -368,9 +386,9 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
             "stroke-dasharray": "6 4",
         },
     )
-    add_text(parent, 922, 425, "TRIAL ONLY", size=10.2, css_class="new-conflict")
+    add_text(trial_note, 922, 425, "TRIAL ONLY", size=10.2, css_class="new-conflict")
     add_wrapped_text(
-        parent,
+        trial_note,
         922,
         448,
         "Bay locations are diagrammatic. Openings, collectors, reversal and joints remain "
@@ -390,9 +408,11 @@ def _draw_evidence_matrix(parent: ET.Element) -> None:
 
     for index, (phenomenon, calc, evidence, design) in enumerate(EVIDENCE_ROWS):
         top = 188 + index * 42
+        row_background = "#EEF2F0" if index % 2 else "#FFFDFA"
+        row = ET.SubElement(parent, q("g"), {"data-contrast-bg": row_background})
         if index % 2:
             ET.SubElement(
-                parent,
+                row,
                 q("rect"),
                 {
                     "x": "1074",
@@ -404,11 +424,11 @@ def _draw_evidence_matrix(parent: ET.Element) -> None:
                 },
             )
         baseline = top + 23
-        add_text(parent, 1082, baseline, phenomenon, size=9.8, css_class="new-title")
+        add_text(row, 1082, baseline, phenomenon, size=9.8, css_class="new-title")
         calc_colour = "#A33F31" if calc.startswith("FAIL") else "#1D7480"
-        _badge(parent, x=1278, y=top + 7, width=82, label=calc, colour=calc_colour)
-        add_text(parent, 1374, baseline, evidence, size=9.8, css_class="new-body")
-        _badge(parent, x=1560, y=top + 7, width=72, label=design, colour="#A33F31")
+        _badge(row, x=1278, y=top + 7, width=82, label=calc, colour=calc_colour)
+        add_text(row, 1374, baseline, evidence, size=9.8, css_class="new-body")
+        _badge(row, x=1560, y=top + 7, width=72, label=design, colour="#A33F31")
 
     add_text(
         parent,
@@ -430,8 +450,9 @@ def _metric_card(
     note_class: str = "new-muted",
     value_two: str | None = None,
 ) -> None:
+    card = ET.SubElement(parent, q("g"), {"data-contrast-bg": "#EEF2F0"})
     ET.SubElement(
-        parent,
+        card,
         q("rect"),
         {
             "x": f"{x:g}",
@@ -443,13 +464,13 @@ def _metric_card(
             "stroke": "#CBD0CC",
         },
     )
-    add_text(parent, x + 10, 938, title, size=9.8, css_class="new-muted", weight=700)
-    add_text(parent, x + 10, 956, value, size=10.2, css_class="new-title")
+    add_text(card, x + 10, 938, title, size=9.8, css_class="new-muted", weight=700)
+    add_text(card, x + 10, 956, value, size=10.2, css_class="new-title")
     if value_two is None:
-        add_text(parent, x + 10, 973, note, size=9.8, css_class=note_class)
+        add_text(card, x + 10, 973, note, size=9.8, css_class=note_class)
     else:
-        add_text(parent, x + 10, 973, value_two, size=9.8, css_class="new-title")
-        add_text(parent, x + 171, 938, note, size=9.8, css_class=note_class, anchor="end")
+        add_text(card, x + 10, 973, value_two, size=9.8, css_class="new-title")
+        add_text(card, x + 171, 938, note, size=9.8, css_class=note_class, anchor="end")
 
 
 def _draw_truss_annotations(parent: ET.Element) -> None:
@@ -587,16 +608,23 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
         css_class="new-conflict",
     )
 
-    _panel_heading(parent, 1384, 860, "07 · FIRE SENSITIVITY · NOT A RATING", 244)
+    fire_annotations = ET.SubElement(parent, q("g"), {"data-contrast-bg": "#FBF0D9"})
+    _panel_heading(
+        fire_annotations,
+        1384,
+        860,
+        "07 · FIRE SENSITIVITY · NOT A RATING",
+        244,
+    )
     for y, temperature, ratio, css_class in (
         (908, "400°C", "0.65", "new-eyebrow"),
         (943, "550°C", "1.05", "new-conflict"),
         (978, "700°C", "2.84", "new-conflict"),
     ):
-        add_text(parent, 1384, y, temperature, size=9.8, css_class="new-title")
-        add_text(parent, 1582, y, ratio, size=9.8, css_class=css_class)
+        add_text(fire_annotations, 1384, y, temperature, size=9.8, css_class="new-title")
+        add_text(fire_annotations, 1582, y, ratio, size=9.8, css_class=css_class)
     add_text(
-        parent,
+        fire_annotations,
         1384,
         1000,
         "BLOCKED · 400°C sensitivity only; 550/700°C fail",
@@ -665,7 +693,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     annotations = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-annotations", "data-layer": "technical-labels-and-evidence"},
+        {
+            "id": "layer-annotations",
+            "data-layer": "technical-labels-and-evidence",
+            "data-contrast-bg": theme_colour("panel"),
+        },
     )
     _draw_plan_annotations(annotations)
     _draw_evidence_matrix(annotations)

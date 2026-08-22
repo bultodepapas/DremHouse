@@ -13,7 +13,29 @@
   --conflict: #A33F31;
   --hypothesis: #66538A;
   --material: #74543C;
+  --on-dark-muted: #DDE4E2;
+  --on-dark-alert: #FFB4A8;
+  --sheet-rule: #B9C0BD;
+  --panel-rule: #CBD0CC;
+  --open-surface: #FBF0D9;
+  --hypothesis-surface: #F0ECF6;
+  --table-row: #EEF2F0;
+  --table-row-alt: #F8F6F0;
+  --program-technical: #E9F0F2;
+  --program-buffer: #F7F4EC;
+  --program-living: #F2E8DE;
+  --program-kitchen: #F5E8D4;
+  --rooflight-surface: #9CC6CC;
+  --structure-gravity: #3D7186;
+  --trial: #BD7626;
+  --material-new-board: #AEB8B5;
+  --material-reclaimed: #E5DED2;
+  --material-insulated: #E1EEE7;
+  --material-insulation-edge: #39765A;
+  --material-air: #FFFFFF;
+  --material-air-marker: #798582;
 }
+
 text {
   font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
   text-rendering: geometricPrecision;
@@ -282,7 +304,7 @@ text {
       <line x1="1474" y1="963" x2="1474" y2="985" stroke="#172a32" stroke-width="0.8" stroke-dasharray="2 2" data-source-index="14" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
     </g>
   </g>
-  <g id="layer-annotations" data-layer="technical-labels-and-evidence">
+  <g id="layer-annotations" data-layer="technical-labels-and-evidence" data-contrast-bg="#FFFDFA">
     <text x="56" y="136" font-size="12.5" class="new-title">01 · INTEGRATED ROOF / P2 LOAD-PATH PLAN</text>
     <line x1="56" y1="148" x2="1026" y2="148" class="panel-rule" />
     <text x="100" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">A</text>
@@ -293,8 +315,8 @@ text {
     <text x="760" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">F</text>
     <text x="892" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">G</text>
     <text x="727" y="190" font-size="9.8" class="new-eyebrow" text-anchor="middle">P2 18 × 15 m · +3.80</text>
-    <text x="215.5" y="372" font-size="9.8" class="new-on-dark" text-anchor="middle" transform="rotate(-90 215.5 372)">RL-CAR</text>
-    <text x="446.5" y="372" font-size="9.8" class="new-on-dark" text-anchor="middle" transform="rotate(-90 446.5 372)">RL-RC</text>
+    <text x="215.5" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 215.5 372)" data-contrast-bg="#9CC6CC">RL-CAR</text>
+    <text x="446.5" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 446.5 372)" data-contrast-bg="#9CC6CC">RL-RC</text>
     <text x="842.5" y="367.6" font-size="9.8" class="new-hypothesis" text-anchor="middle" transform="rotate(-90 842.5 367.6)">D-048 CORE</text>
     <text x="496" y="356" font-size="10.2" class="key-tag" text-anchor="middle">DIAPHRAGM DEMAND · 8.77 kN/m</text>
     <text x="569" y="374.2" font-size="9.8" class="new-eyebrow" text-anchor="middle" transform="rotate(-90 569 374.2)">EDGE · X=21</text>
@@ -321,81 +343,101 @@ text {
     <text x="940" y="335" font-size="9.8" class="new-body">TRIAL BAYS</text>
     <line x1="910" y1="362" x2="932" y2="362" stroke="#A33F31" stroke-width="5" />
     <text x="940" y="366" font-size="9.8" class="new-body">OPEN GATE</text>
-    <rect x="910" y="403" width="116" height="145" rx="4" fill="#FBF0D9" stroke="#A33F31" stroke-dasharray="6 4" />
-    <text x="922" y="425" font-size="10.2" class="new-conflict">TRIAL ONLY</text>
-    <text x="922" y="448" font-size="9.8" class="new-body">
-      <tspan x="922" dy="0">Bay locations are</tspan>
-      <tspan x="922" dy="12.3">diagrammatic.</tspan>
-      <tspan x="922" dy="12.3">Openings,</tspan>
-      <tspan x="922" dy="12.3">collectors,</tspan>
-      <tspan x="922" dy="12.3">reversal and</tspan>
-      <tspan x="922" dy="12.3">joints remain</tspan>
-      <tspan x="922" dy="12.3">unresolved.</tspan>
-    </text>
+    <g data-contrast-bg="#FBF0D9">
+      <rect x="910" y="403" width="116" height="145" rx="4" fill="#FBF0D9" stroke="#A33F31" stroke-dasharray="6 4" />
+      <text x="922" y="425" font-size="10.2" class="new-conflict">TRIAL ONLY</text>
+      <text x="922" y="448" font-size="9.8" class="new-body">
+        <tspan x="922" dy="0">Bay locations are</tspan>
+        <tspan x="922" dy="12.3">diagrammatic.</tspan>
+        <tspan x="922" dy="12.3">Openings,</tspan>
+        <tspan x="922" dy="12.3">collectors,</tspan>
+        <tspan x="922" dy="12.3">reversal and</tspan>
+        <tspan x="922" dy="12.3">joints remain</tspan>
+        <tspan x="922" dy="12.3">unresolved.</tspan>
+      </text>
+    </g>
     <text x="1082" y="140" font-size="12.5" class="new-title">02 · CALCULATION ≠ DESIGN</text>
     <line x1="1082" y1="152" x2="1628" y2="152" class="panel-rule" />
     <text x="1082" y="177" font-size="9.8" class="new-muted" font-weight="700">PHENOMENON</text>
     <text x="1288" y="177" font-size="9.8" class="new-muted" font-weight="700">CALC</text>
     <text x="1374" y="177" font-size="9.8" class="new-muted" font-weight="700">EVIDENCE</text>
     <text x="1574" y="177" font-size="9.8" class="new-muted" font-weight="700">DESIGN</text>
-    <text x="1082" y="211" font-size="9.8" class="new-title">HSS LOCAL / BIAXIAL</text>
-    <rect x="1278" y="195" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="211" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-    <text x="1374" y="211" font-size="9.8" class="new-body">interaction 0.653</text>
-    <rect x="1560" y="195" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="211" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <rect x="1074" y="230" width="558" height="37" rx="3" fill="#EEF2F0" />
-    <text x="1082" y="253" font-size="9.8" class="new-title">CHORD LOCAL BENDING</text>
-    <rect x="1278" y="237" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="253" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-    <text x="1374" y="253" font-size="9.8" class="new-body">12.51 kN·m / 0.369</text>
-    <rect x="1560" y="237" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="253" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <text x="1082" y="295" font-size="9.8" class="new-title">MEMBER SECOND ORDER</text>
-    <rect x="1278" y="279" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="295" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-    <text x="1374" y="295" font-size="9.8" class="new-body">B1 1.255</text>
-    <rect x="1560" y="279" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="295" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <rect x="1074" y="314" width="558" height="37" rx="3" fill="#EEF2F0" />
-    <text x="1082" y="337" font-size="9.8" class="new-title">GENERIC JOINT PARTS</text>
-    <rect x="1278" y="321" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="337" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-    <text x="1374" y="337" font-size="9.8" class="new-body">ratio 0.387; HSS wall open</text>
-    <rect x="1560" y="321" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="337" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <text x="1082" y="379" font-size="9.8" class="new-title">TRIAL LATERAL BAYS</text>
-    <rect x="1278" y="363" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="379" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-    <text x="1374" y="379" font-size="9.8" class="new-body">63.2 kN / 0.622</text>
-    <rect x="1560" y="363" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="379" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <rect x="1074" y="398" width="558" height="37" rx="3" fill="#EEF2F0" />
-    <text x="1082" y="421" font-size="9.8" class="new-title">ROOF DIAPHRAGM</text>
-    <rect x="1278" y="405" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="421" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
-    <text x="1374" y="421" font-size="9.8" class="new-body">8.77 kN/m; deck open</text>
-    <rect x="1560" y="405" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="421" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <text x="1082" y="463" font-size="9.8" class="new-title">FIRE SENSITIVITY</text>
-    <rect x="1278" y="447" width="82" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1319" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">FAIL@550</text>
-    <text x="1374" y="463" font-size="9.8" class="new-body">ratios 0.65 / 1.05 / 2.84</text>
-    <rect x="1560" y="447" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <rect x="1074" y="482" width="558" height="37" rx="3" fill="#EEF2F0" />
-    <text x="1082" y="505" font-size="9.8" class="new-title">ERECTION / TRANSPORT</text>
-    <rect x="1278" y="489" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="505" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
-    <text x="1374" y="505" font-size="9.8" class="new-body">hook 15.8 kN; ≥2 pieces</text>
-    <rect x="1560" y="489" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="505" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
-    <text x="1082" y="547" font-size="9.8" class="new-title">BASE + TRIAL FOOTING</text>
-    <rect x="1278" y="531" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
-    <text x="1319" y="547" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-    <text x="1374" y="547" font-size="9.8" class="new-body">qmax 37.3 kPa; plate 0.205</text>
-    <rect x="1560" y="531" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
-    <text x="1596" y="547" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <g data-contrast-bg="#FFFDFA">
+      <text x="1082" y="211" font-size="9.8" class="new-title">HSS LOCAL / BIAXIAL</text>
+      <rect x="1278" y="195" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="211" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+      <text x="1374" y="211" font-size="9.8" class="new-body">interaction 0.653</text>
+      <rect x="1560" y="195" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="211" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="1074" y="230" width="558" height="37" rx="3" fill="#EEF2F0" />
+      <text x="1082" y="253" font-size="9.8" class="new-title">CHORD LOCAL BENDING</text>
+      <rect x="1278" y="237" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="253" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+      <text x="1374" y="253" font-size="9.8" class="new-body">12.51 kN·m / 0.369</text>
+      <rect x="1560" y="237" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="253" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#FFFDFA">
+      <text x="1082" y="295" font-size="9.8" class="new-title">MEMBER SECOND ORDER</text>
+      <rect x="1278" y="279" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="295" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+      <text x="1374" y="295" font-size="9.8" class="new-body">B1 1.255</text>
+      <rect x="1560" y="279" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="295" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="1074" y="314" width="558" height="37" rx="3" fill="#EEF2F0" />
+      <text x="1082" y="337" font-size="9.8" class="new-title">GENERIC JOINT PARTS</text>
+      <rect x="1278" y="321" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="337" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+      <text x="1374" y="337" font-size="9.8" class="new-body">ratio 0.387; HSS wall open</text>
+      <rect x="1560" y="321" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="337" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#FFFDFA">
+      <text x="1082" y="379" font-size="9.8" class="new-title">TRIAL LATERAL BAYS</text>
+      <rect x="1278" y="363" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="379" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+      <text x="1374" y="379" font-size="9.8" class="new-body">63.2 kN / 0.622</text>
+      <rect x="1560" y="363" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="379" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="1074" y="398" width="558" height="37" rx="3" fill="#EEF2F0" />
+      <text x="1082" y="421" font-size="9.8" class="new-title">ROOF DIAPHRAGM</text>
+      <rect x="1278" y="405" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="421" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
+      <text x="1374" y="421" font-size="9.8" class="new-body">8.77 kN/m; deck open</text>
+      <rect x="1560" y="405" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="421" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#FFFDFA">
+      <text x="1082" y="463" font-size="9.8" class="new-title">FIRE SENSITIVITY</text>
+      <rect x="1278" y="447" width="82" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1319" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">FAIL@550</text>
+      <text x="1374" y="463" font-size="9.8" class="new-body">ratios 0.65 / 1.05 / 2.84</text>
+      <rect x="1560" y="447" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="1074" y="482" width="558" height="37" rx="3" fill="#EEF2F0" />
+      <text x="1082" y="505" font-size="9.8" class="new-title">ERECTION / TRANSPORT</text>
+      <rect x="1278" y="489" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="505" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
+      <text x="1374" y="505" font-size="9.8" class="new-body">hook 15.8 kN; ≥2 pieces</text>
+      <rect x="1560" y="489" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="505" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
+    <g data-contrast-bg="#FFFDFA">
+      <text x="1082" y="547" font-size="9.8" class="new-title">BASE + TRIAL FOOTING</text>
+      <rect x="1278" y="531" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
+      <text x="1319" y="547" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+      <text x="1374" y="547" font-size="9.8" class="new-body">qmax 37.3 kPa; plate 0.205</text>
+      <rect x="1560" y="531" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
+      <text x="1596" y="547" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    </g>
     <text x="1082" y="592" font-size="9.8" class="new-conflict">PASS* = narrow component screen only · every system-level design gate remains open</text>
     <text x="56" y="655" font-size="12.5" class="new-title">03 · REFERENCE ROOF TRUSS + EXPLICIT RESTRAINT ASSUMPTIONS</text>
     <line x1="56" y1="667" x2="1026" y2="667" class="panel-rule" />
@@ -404,27 +446,37 @@ text {
     <text x="447" y="682" font-size="9.8" class="new-conflict">ILLUSTRATIVE TRANSPORT SPLIT</text>
     <text x="958" y="682" font-size="9.8" class="new-conflict" text-anchor="end">LOADS AT PANEL POINTS</text>
     <text x="530" y="906" font-size="9.8" class="new-title" text-anchor="middle">18.00 m TRANSVERSE SPAN · 6 PANELS · VARIABLE DEPTH 0.99→1.80 m</text>
-    <rect x="58" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-    <text x="68" y="938" font-size="9.8" class="new-muted" font-weight="700">TRIAL SECTIONS</text>
-    <text x="68" y="956" font-size="10.2" class="new-title">HSS120×120×6</text>
-    <text x="68" y="973" font-size="9.8" class="new-title">HSS100×100×6</text>
-    <text x="229" y="938" font-size="9.8" class="new-conflict" text-anchor="end">NOT SELECTED</text>
-    <rect x="251" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-    <text x="261" y="938" font-size="9.8" class="new-muted" font-weight="700">INTERACTION</text>
-    <text x="261" y="956" font-size="10.2" class="new-title">0.653</text>
-    <text x="261" y="973" font-size="9.8" class="new-muted">local M 12.51 kN·m</text>
-    <rect x="444" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-    <text x="454" y="938" font-size="9.8" class="new-muted" font-weight="700">SECOND ORDER</text>
-    <text x="454" y="956" font-size="10.2" class="new-title">B1 1.255</text>
-    <text x="454" y="973" font-size="9.8" class="new-muted">Euler ratio 0.203</text>
-    <rect x="637" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-    <text x="647" y="938" font-size="9.8" class="new-muted" font-weight="700">ENVELOPE</text>
-    <text x="647" y="956" font-size="10.2" class="new-title">Nmax 209.8 kN</text>
-    <text x="647" y="973" font-size="9.8" class="new-muted">Rdown 79.7 kN</text>
-    <rect x="830" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-    <text x="840" y="938" font-size="9.8" class="new-muted" font-weight="700">SPECIMEN</text>
-    <text x="840" y="956" font-size="10.2" class="new-title">1241 kg / truss</text>
-    <text x="840" y="973" font-size="9.8" class="new-muted">deflection 16.9 mm</text>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="58" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+      <text x="68" y="938" font-size="9.8" class="new-muted" font-weight="700">TRIAL SECTIONS</text>
+      <text x="68" y="956" font-size="10.2" class="new-title">HSS120×120×6</text>
+      <text x="68" y="973" font-size="9.8" class="new-title">HSS100×100×6</text>
+      <text x="229" y="938" font-size="9.8" class="new-conflict" text-anchor="end">NOT SELECTED</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="251" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+      <text x="261" y="938" font-size="9.8" class="new-muted" font-weight="700">INTERACTION</text>
+      <text x="261" y="956" font-size="10.2" class="new-title">0.653</text>
+      <text x="261" y="973" font-size="9.8" class="new-muted">local M 12.51 kN·m</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="444" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+      <text x="454" y="938" font-size="9.8" class="new-muted" font-weight="700">SECOND ORDER</text>
+      <text x="454" y="956" font-size="10.2" class="new-title">B1 1.255</text>
+      <text x="454" y="973" font-size="9.8" class="new-muted">Euler ratio 0.203</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="637" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+      <text x="647" y="938" font-size="9.8" class="new-muted" font-weight="700">ENVELOPE</text>
+      <text x="647" y="956" font-size="10.2" class="new-title">Nmax 209.8 kN</text>
+      <text x="647" y="973" font-size="9.8" class="new-muted">Rdown 79.7 kN</text>
+    </g>
+    <g data-contrast-bg="#EEF2F0">
+      <rect x="830" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+      <text x="840" y="938" font-size="9.8" class="new-muted" font-weight="700">SPECIMEN</text>
+      <text x="840" y="956" font-size="10.2" class="new-title">1241 kg / truss</text>
+      <text x="840" y="973" font-size="9.8" class="new-muted">deflection 16.9 mm</text>
+    </g>
     <text x="58" y="998" font-size="9.8" class="new-conflict">GRAVITY: roof/openings → purlins → M60 trusses → columns → base/footing → ground · lateral path, collectors, connections and foundations BLOCKED</text>
     <text x="1082" y="655" font-size="12.5" class="new-title">04 · GENERIC JOINT PARTS</text>
     <line x1="1082" y1="667" x2="1326" y2="667" class="panel-rule" />
@@ -446,17 +498,19 @@ text {
     <text x="1264" y="931" font-size="9.8" class="new-open" text-anchor="middle">9.1 kN</text>
     <text x="1082" y="982" font-size="9.8" class="new-title">18 m → ≥2 pieces at 12 m transport limit</text>
     <text x="1082" y="1000" font-size="9.8" class="new-conflict">BLOCKED · crane / lugs / splice / weather / bracing</text>
-    <text x="1384" y="860" font-size="12.5" class="new-title">07 · FIRE SENSITIVITY · NOT A RATING</text>
-    <line x1="1384" y1="872" x2="1628" y2="872" class="panel-rule" />
-    <text x="1384" y="908" font-size="9.8" class="new-title">400°C</text>
-    <text x="1582" y="908" font-size="9.8" class="new-eyebrow">0.65</text>
-    <text x="1384" y="943" font-size="9.8" class="new-title">550°C</text>
-    <text x="1582" y="943" font-size="9.8" class="new-conflict">1.05</text>
-    <text x="1384" y="978" font-size="9.8" class="new-title">700°C</text>
-    <text x="1582" y="978" font-size="9.8" class="new-conflict">2.84</text>
-    <text x="1384" y="1000" font-size="9.8" class="new-conflict">BLOCKED · 400°C sensitivity only; 550/700°C fail</text>
+    <g data-contrast-bg="#FBF0D9">
+      <text x="1384" y="860" font-size="12.5" class="new-title">07 · FIRE SENSITIVITY · NOT A RATING</text>
+      <line x1="1384" y1="872" x2="1628" y2="872" class="panel-rule" />
+      <text x="1384" y="908" font-size="9.8" class="new-title">400°C</text>
+      <text x="1582" y="908" font-size="9.8" class="new-eyebrow">0.65</text>
+      <text x="1384" y="943" font-size="9.8" class="new-title">550°C</text>
+      <text x="1582" y="943" font-size="9.8" class="new-conflict">1.05</text>
+      <text x="1384" y="978" font-size="9.8" class="new-title">700°C</text>
+      <text x="1582" y="978" font-size="9.8" class="new-conflict">2.84</text>
+      <text x="1384" y="1000" font-size="9.8" class="new-conflict">BLOCKED · 400°C sensitivity only; 550/700°C fail</text>
+    </g>
   </g>
-  <g id="layer-sheet-header" data-layer="titleblock">
+  <g id="layer-sheet-header" data-layer="titleblock" data-contrast-bg="#F4F0E7">
     <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 05 · PRESENTATION ONLY</text>
     <text x="36" y="70" font-size="24" class="new-title">INTEGRATED STRUCTURAL E1 · FAIL-CLOSED EVIDENCE</text>
     <text x="36" y="96" font-size="11" class="new-muted">Same R01 calculation-linked geometry and values · seven technical panels + authority block · narrow calculation ≠ system design</text>
@@ -464,7 +518,7 @@ text {
     <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP05 · NOT CURRENT</text>
     <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
   </g>
-  <g id="layer-sheet" data-layer="titleblock">
+  <g id="layer-sheet" data-layer="titleblock" data-contrast-bg="#172A32">
     <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
     <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
     <text x="56" y="1082" font-size="10.2" class="new-on-dark">Research screening complete; design blocked. No system, profile, PE-1 quantity, procurement, fabrication or construction release.</text>

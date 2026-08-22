@@ -1,9 +1,9 @@
 """Fail-closed static checks for Dream House SVG publication candidates.
 
-The first lint profile covers the shared pilot contract: document identity, accessibility,
-metadata and authority, unsafe content, semantic layers, stable model references, numeric
-safety and required-text preview size.  Precision normalization, palette/contrast, measured
-bounds and collision checks remain explicit follow-on gates.
+The staged lint profile covers the shared pilot contract: identity, accessibility,
+authority, unsafe content, layers, model references, numeric safety, controlled
+presentation colours, typed text contrast and required-text preview size. Precision
+normalization, measured bounds and collision checks remain explicit follow-on gates.
 """
 
 from __future__ import annotations
@@ -17,6 +17,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
+
+from dreamhouse.svg.theme import APPROVED_PRESENTATION_COLOURS
 
 
 SVG_NS = "http://www.w3.org/2000/svg"
@@ -70,6 +72,9 @@ SCALE_RE = re.compile(
     rf"scale\(\s*({NUMBER_PATTERN})(?:[ ,]+({NUMBER_PATTERN}))?\s*\)"
 )
 URL_RE = re.compile(r"url\(\s*(['\"]?)(.*?)\1\s*\)", re.IGNORECASE)
+HEX_COLOUR_RE = re.compile(r"#[0-9A-Fa-f]{6}\b")
+CSS_RULE_RE = re.compile(r"([^{}]+)\{([^{}]*)\}", re.DOTALL)
+CSS_VAR_RE = re.compile(r"var\(\s*(--[A-Za-z0-9_-]+)\s*\)")
 
 
 def q(tag: str) -> str:
@@ -486,6 +491,358 @@ def _check_numbers(
         )
 
 
+def _css_declarations(body: str) -> dict[str, str]:
+    declarations: dict[str, str] = {}
+    for declaration in body.split(";"):
+        name, separator, value = declaration.partition(":")
+        if separator and name.strip() and value.strip():
+            declarations[name.strip()] = value.strip()
+    return declarations
+
+
+def _parse_stylesheets(
+    root: ET.Element,
+) -> tuple[dict[str, str], list[tuple[str, dict[str, str]]]]:
+    variables: dict[str, str] = {}
+    rules: list[tuple[str, dict[str, str]]] = []
+    for style in root.iter(q("style")):
+        css = style.text or ""
+        for selectors, body in CSS_RULE_RE.findall(css):
+            declarations = _css_declarations(body)
+            for selector in selectors.split(","):
+                normalized = selector.strip()
+                if normalized == ":root":
+                    variables.update(
+                        (name, value)
+                        for name, value in declarations.items()
+                        if name.startswith("--")
+                    )
+                elif normalized:
+                    rules.append((normalized, declarations))
+    return variables, rules
+
+
+def _inline_declarations(element: ET.Element) -> dict[str, str]:
+    return _css_declarations(element.get("style", ""))
+
+
+def _selector_matches(element: ET.Element, selector: str) -> bool:
+    local_tag = element.tag.rsplit("}", 1)[-1] if isinstance(element.tag, str) else ""
+    if selector == local_tag:
+        return True
+    if selector.startswith(".") and re.fullmatch(r"\.[A-Za-z0-9_-]+", selector):
+        return selector[1:] in element.get("class", "").split()
+    return False
+
+
+def _selector_specificity(selector: str) -> int:
+    return 10 if selector.startswith(".") else 1
+
+
+def _resolve_css_value(value: str | None, variables: dict[str, str]) -> str | None:
+    if value is None:
+        return None
+    normalized = value.strip()
+    match = CSS_VAR_RE.fullmatch(normalized)
+    if match:
+        return variables.get(match.group(1))
+    return normalized
+
+
+def _computed_property(
+    element: ET.Element,
+    property_name: str,
+    *,
+    parent_map: dict[ET.Element, ET.Element],
+    variables: dict[str, str],
+    rules: list[tuple[str, dict[str, str]]],
+) -> str | None:
+    chain = [element]
+    while chain[-1] in parent_map:
+        chain.append(parent_map[chain[-1]])
+
+    value: str | None = None
+    for current in reversed(chain):
+        local_value: str | None = None
+        if property_name in current.attrib:
+            local_value = current.get(property_name)
+        matching_rules = [
+            (_selector_specificity(selector), index, declarations[property_name])
+            for index, (selector, declarations) in enumerate(rules)
+            if property_name in declarations and _selector_matches(current, selector)
+        ]
+        if matching_rules:
+            local_value = max(matching_rules)[2]
+        inline = _inline_declarations(current)
+        if property_name in inline:
+            local_value = inline[property_name]
+        if local_value is not None:
+            value = local_value
+    return _resolve_css_value(value, variables)
+
+
+def _normalise_colour(value: str | None, variables: dict[str, str]) -> str | None:
+    resolved = _resolve_css_value(value, variables)
+    if resolved is None or not HEX_COLOUR_RE.fullmatch(resolved):
+        return None
+    return resolved.upper()
+
+
+def _has_ancestor(
+    element: ET.Element,
+    *,
+    parent_map: dict[ET.Element, ET.Element],
+    tag: str | None = None,
+    element_id: str | None = None,
+) -> bool:
+    current: ET.Element | None = element
+    while current is not None:
+        if tag is not None and current.tag == q(tag):
+            return True
+        if element_id is not None and current.get("id") == element_id:
+            return True
+        current = parent_map.get(current)
+    return False
+
+
+def _check_palette(root: ET.Element, findings: list[Finding]) -> dict[str, Any]:
+    parent_map = {child: parent for parent in root.iter() for child in parent}
+    presentation_literals: list[str] = []
+    presentation_unapproved: list[str] = []
+    inherited_unapproved: list[str] = []
+    colour_attributes = {
+        "color",
+        "data-contrast-bg",
+        "fill",
+        "flood-color",
+        "stop-color",
+        "stroke",
+    }
+
+    for element in root.iter():
+        inherited_scope = _has_ancestor(
+            element,
+            parent_map=parent_map,
+            element_id="layer-model",
+        ) or _has_ancestor(element, parent_map=parent_map, tag="defs")
+        if element.tag == q("style"):
+            values = HEX_COLOUR_RE.findall(element.text or "")
+        else:
+            values = []
+            for attribute, value in element.attrib.items():
+                local_attribute = attribute.rsplit("}", 1)[-1]
+                if local_attribute in colour_attributes or local_attribute == "style":
+                    values.extend(HEX_COLOUR_RE.findall(value))
+        for raw_value in values:
+            value = raw_value.upper()
+            if inherited_scope:
+                if value not in APPROVED_PRESENTATION_COLOURS:
+                    inherited_unapproved.append(value)
+                continue
+            presentation_literals.append(value)
+            if value not in APPROVED_PRESENTATION_COLOURS:
+                presentation_unapproved.append(value)
+
+    if presentation_unapproved:
+        distinct = sorted(set(presentation_unapproved))
+        _finding(
+            findings,
+            "SVG-C001",
+            "error",
+            f"{len(presentation_unapproved)} presentation colour literals are outside the "
+            f"approved palette: {', '.join(distinct[:10])}",
+            root,
+        )
+    if inherited_unapproved:
+        distinct = sorted(set(inherited_unapproved))
+        _finding(
+            findings,
+            "SVG-C002",
+            "warning",
+            f"{len(inherited_unapproved)} inherited model/defs colour literals remain outside "
+            f"the presentation palette ({len(distinct)} distinct); examples: "
+            f"{', '.join(distinct[:8])}",
+            root,
+        )
+
+    return {
+        "presentation_colour_literals": len(presentation_literals),
+        "presentation_colours_declared": len(set(presentation_literals)),
+        "presentation_palette_failures": len(presentation_unapproved),
+        "inherited_off_palette_literals": len(inherited_unapproved),
+        "inherited_off_palette_colours": len(set(inherited_unapproved)),
+    }
+
+
+def _relative_luminance(colour: str) -> float:
+    channels = [int(colour[index : index + 2], 16) / 255 for index in (1, 3, 5)]
+    linear = [
+        channel / 12.92
+        if channel <= 0.04045
+        else ((channel + 0.055) / 1.055) ** 2.4
+        for channel in channels
+    ]
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+
+def _contrast_ratio(foreground: str, background: str) -> float:
+    lighter, darker = sorted(
+        (_relative_luminance(foreground), _relative_luminance(background)),
+        reverse=True,
+    )
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+def _nearest_contrast_background(
+    text: ET.Element,
+    *,
+    parent_map: dict[ET.Element, ET.Element],
+    variables: dict[str, str],
+) -> str | None:
+    current: ET.Element | None = text
+    while current is not None:
+        if "data-contrast-bg" in current.attrib:
+            return _normalise_colour(current.get("data-contrast-bg"), variables)
+        current = parent_map.get(current)
+    return None
+
+
+def _font_weight(value: str | None) -> int:
+    if value is None or value == "normal":
+        return 400
+    if value == "bold":
+        return 700
+    try:
+        return int(float(value))
+    except ValueError:
+        return 400
+
+
+def _text_example(text: ET.Element) -> str:
+    return " ".join(" ".join(piece.split()) for piece in text.itertext())[:60]
+
+
+def _check_contrast(
+    root: ET.Element,
+    findings: list[Finding],
+    *,
+    viewbox_width: float | None,
+    preview_width: int,
+    normal_contrast: float,
+    large_contrast: float,
+    large_text_px: float,
+    large_bold_text_px: float,
+) -> dict[str, Any]:
+    parent_map = {child: parent for parent in root.iter() for child in parent}
+    variables, rules = _parse_stylesheets(root)
+    missing_background: list[str] = []
+    invalid_colours: list[str] = []
+    failures: list[str] = []
+    ratios: list[float] = []
+    checked = 0
+    model_skipped = 0
+
+    for text, transform_scale, inside_model in _walk_text(root):
+        if inside_model or _has_ancestor(text, parent_map=parent_map, tag="defs"):
+            model_skipped += 1
+            continue
+        background = _nearest_contrast_background(
+            text,
+            parent_map=parent_map,
+            variables=variables,
+        )
+        example = _text_example(text) or _element_ref(text)
+        if background is None:
+            missing_background.append(example)
+            continue
+        foreground = _normalise_colour(
+            _computed_property(
+                text,
+                "fill",
+                parent_map=parent_map,
+                variables=variables,
+                rules=rules,
+            ),
+            variables,
+        )
+        if foreground is None:
+            invalid_colours.append(example)
+            continue
+
+        raw_size = text.get("font-size")
+        if (
+            viewbox_width is None
+            or viewbox_width <= 0
+            or raw_size is None
+            or not PLAIN_NUMBER_RE.fullmatch(raw_size)
+        ):
+            continue
+        effective_size = (
+            float(raw_size.removesuffix("px"))
+            * transform_scale
+            * preview_width
+            / viewbox_width
+        )
+        weight = _font_weight(
+            _computed_property(
+                text,
+                "font-weight",
+                parent_map=parent_map,
+                variables=variables,
+                rules=rules,
+            )
+        )
+        is_large = effective_size >= large_text_px or (
+            effective_size >= large_bold_text_px and weight >= 700
+        )
+        minimum = large_contrast if is_large else normal_contrast
+        ratio = _contrast_ratio(foreground, background)
+        ratios.append(ratio)
+        checked += 1
+        if ratio + 1e-9 < minimum:
+            failures.append(
+                f"{example!r} {ratio:.2f}:1 < {minimum:g}:1 "
+                f"({foreground} on {background})"
+            )
+
+    if missing_background:
+        _finding(
+            findings,
+            "SVG-C003",
+            "error",
+            f"{len(missing_background)} presentation texts lack a typed data-contrast-bg; "
+            f"examples: {', '.join(missing_background[:5])}",
+            root,
+        )
+    if invalid_colours:
+        _finding(
+            findings,
+            "SVG-C004",
+            "error",
+            f"{len(invalid_colours)} presentation text colours cannot be resolved to #RRGGBB; "
+            f"examples: {', '.join(invalid_colours[:5])}",
+            root,
+        )
+    if failures:
+        _finding(
+            findings,
+            "SVG-C005",
+            "error",
+            f"{len(failures)} presentation texts fail computed contrast; examples: "
+            f"{', '.join(failures[:4])}",
+            root,
+        )
+
+    return {
+        "contrast_text_elements": checked,
+        "minimum_contrast_ratio": min(ratios, default=None),
+        "contrast_failures": len(failures),
+        "untyped_contrast_backgrounds": len(missing_background),
+        "unresolved_text_colours": len(invalid_colours),
+        "model_text_contrast_skipped": model_skipped,
+    }
+
+
 def _walk_text(
     element: ET.Element,
     *,
@@ -614,6 +971,10 @@ def lint_file(
     *,
     preview_width: int = 1400,
     min_required_text_px: float = 8.0,
+    normal_contrast: float = 4.5,
+    large_contrast: float = 3.0,
+    large_text_px: float = 24.0,
+    large_bold_text_px: float = 18.66,
     max_precision: int = 6,
     strict_precision: bool = False,
 ) -> dict[str, Any]:
@@ -629,19 +990,31 @@ def lint_file(
     _check_security(root, findings)
     _check_style(root, findings)
     _check_layers(root, findings)
+    palette_metrics = _check_palette(root, findings)
     _check_numbers(
         root,
         findings,
         max_precision=max_precision,
         strict_precision=strict_precision,
     )
-    metrics = _check_text(
+    text_metrics = _check_text(
         root,
         findings,
         viewbox_width=viewbox_width,
         preview_width=preview_width,
         min_required_text_px=min_required_text_px,
     )
+    contrast_metrics = _check_contrast(
+        root,
+        findings,
+        viewbox_width=viewbox_width,
+        preview_width=preview_width,
+        normal_contrast=normal_contrast,
+        large_contrast=large_contrast,
+        large_text_px=large_text_px,
+        large_bold_text_px=large_bold_text_px,
+    )
+    metrics = {**text_metrics, **palette_metrics, **contrast_metrics}
     return _file_report(path, findings, metrics=metrics)
 
 
@@ -669,6 +1042,10 @@ def lint_paths(
     *,
     preview_width: int = 1400,
     min_required_text_px: float = 8.0,
+    normal_contrast: float = 4.5,
+    large_contrast: float = 3.0,
+    large_text_px: float = 24.0,
+    large_bold_text_px: float = 18.66,
     max_precision: int = 6,
     strict_precision: bool = False,
 ) -> dict[str, Any]:
@@ -677,6 +1054,10 @@ def lint_paths(
             path,
             preview_width=preview_width,
             min_required_text_px=min_required_text_px,
+            normal_contrast=normal_contrast,
+            large_contrast=large_contrast,
+            large_text_px=large_text_px,
+            large_bold_text_px=large_bold_text_px,
             max_precision=max_precision,
             strict_precision=strict_precision,
         )
@@ -685,10 +1066,14 @@ def lint_paths(
     errors = sum(file["errors"] for file in files)
     warnings = sum(file["warnings"] for file in files)
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "profile": {
+            "large_bold_text_px": large_bold_text_px,
+            "large_contrast": large_contrast,
+            "large_text_px": large_text_px,
             "max_precision": max_precision,
             "min_required_text_px": min_required_text_px,
+            "normal_contrast": normal_contrast,
             "preview_width_px": preview_width,
             "strict_precision": strict_precision,
         },
@@ -715,16 +1100,18 @@ def markdown_report(report: dict[str, Any]) -> str:
             f"**Errors:** {summary['errors']} · **Warning findings:** {summary['warnings']}"
         ),
         "",
-        "| File | Status | Errors | Warnings | Minimum effective text |",
-        "| --- | --- | ---: | ---: | ---: |",
+        "| File | Status | Errors | Warnings | Minimum text | Minimum contrast |",
+        "| --- | --- | ---: | ---: | ---: | ---: |",
     ]
     for file in report["files"]:
         minimum = file["metrics"].get("minimum_effective_text_px")
         minimum_label = "—" if minimum is None else f"{minimum:.2f} px"
+        contrast = file["metrics"].get("minimum_contrast_ratio")
+        contrast_label = "—" if contrast is None else f"{contrast:.2f}:1"
         path = str(file["path"]).replace("|", "\\|")
         lines.append(
             f"| `{path}` | {file['status']} | {file['errors']} | {file['warnings']} | "
-            f"{minimum_label} |"
+            f"{minimum_label} | {contrast_label} |"
         )
 
     for file in report["files"]:
@@ -777,6 +1164,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--markdown-output", type=Path)
     parser.add_argument("--preview-width", type=int, default=1400)
     parser.add_argument("--min-required-text-px", type=float, default=8.0)
+    parser.add_argument("--normal-contrast", type=float, default=4.5)
+    parser.add_argument("--large-contrast", type=float, default=3.0)
+    parser.add_argument("--large-text-px", type=float, default=24.0)
+    parser.add_argument("--large-bold-text-px", type=float, default=18.66)
     parser.add_argument("--max-precision", type=int, default=6)
     parser.add_argument("--strict-precision", action="store_true")
     parser.add_argument("--warnings-as-errors", action="store_true")
@@ -789,6 +1180,10 @@ def main(argv: list[str] | None = None) -> int:
         paths,
         preview_width=arguments.preview_width,
         min_required_text_px=arguments.min_required_text_px,
+        normal_contrast=arguments.normal_contrast,
+        large_contrast=arguments.large_contrast,
+        large_text_px=arguments.large_text_px,
+        large_bold_text_px=arguments.large_bold_text_px,
         max_precision=arguments.max_precision,
         strict_precision=arguments.strict_precision,
     )

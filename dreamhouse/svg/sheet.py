@@ -13,6 +13,8 @@ from collections.abc import Mapping
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.theme import colour, css_variable_block
+
 
 SVG_NS = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG_NS)
@@ -25,18 +27,11 @@ def q(tag: str) -> str:
     return f"{{{SVG_NS}}}{tag}"
 
 
-CSS = """
-:root {
-  --paper: #F4F0E7;
-  --panel: #FFFDFA;
-  --ink: #172A32;
-  --muted: #536168;
-  --info: #1D7480;
-  --open: #8A5A16;
-  --conflict: #A33F31;
-  --hypothesis: #66538A;
-  --material: #74543C;
-}
+CSS = (
+    ":root {\n"
+    + css_variable_block()
+    + "\n}\n"
+    + """
 text {
   font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
   text-rendering: geometricPrecision;
@@ -81,7 +76,8 @@ text {
   stroke-width: 1.5;
   stroke-dasharray: 7 5;
 }
-""".strip()
+"""
+).strip()
 
 
 def sha256(path: Path) -> str:
@@ -244,7 +240,15 @@ def add_header(
     sheet_id: str,
     issue_label: str,
 ) -> ET.Element:
-    group = ET.SubElement(root, q("g"), {"id": "layer-sheet-header", "data-layer": "titleblock"})
+    group = ET.SubElement(
+        root,
+        q("g"),
+        {
+            "id": "layer-sheet-header",
+            "data-layer": "titleblock",
+            "data-contrast-bg": colour("paper"),
+        },
+    )
     add_text(group, 36, 34, eyebrow, size=10.5, css_class="new-eyebrow")
     add_text(group, 36, 70, title, size=24, css_class="new-title")
     add_text(group, 36, 96, subtitle, size=11, css_class="new-muted")
@@ -266,7 +270,15 @@ def add_footer(
     gates_sentence: str,
     date: str,
 ) -> ET.Element:
-    group = ET.SubElement(root, q("g"), {"id": "layer-sheet", "data-layer": "titleblock"})
+    group = ET.SubElement(
+        root,
+        q("g"),
+        {
+            "id": "layer-sheet",
+            "data-layer": "titleblock",
+            "data-contrast-bg": colour("ink"),
+        },
+    )
     ET.SubElement(
         group,
         q("rect"),

@@ -10,7 +10,7 @@
   ],
   "generator": "dreamhouse/svg/pilot_e1_synthesis.py",
   "output": "DH-EST-E1-001-GP05_STRUCTURAL-EVIDENCE-READABILITY-PILOT.svg",
-  "output_sha256": "c90218c4189abaacf21345c42700dd455ec096081eb48d87b8fd148685a30831",
+  "output_sha256": "5d5d66cf3ff46c05f731ee17eeac954a72dab035a47ce55e40a97f994d1f0111",
   "pilot": "GP05",
   "selection_authority": false,
   "sheet": "DH-EST-E1-001",

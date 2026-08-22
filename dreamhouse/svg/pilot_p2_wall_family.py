@@ -382,7 +382,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     annotations = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-annotations", "data-layer": "schedule-and-layer-keys"},
+        {
+            "id": "layer-annotations",
+            "data-layer": "schedule-and-layer-keys",
+            "data-contrast-bg": "#FFFDFA",
+        },
     )
     _panel_heading(
         annotations,
@@ -453,22 +457,24 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     add_text(annotations, 1225, 186, "DUTY / LIMIT", size=9.8, css_class="new-muted", weight=700)
     for index, (wall_id, nominal, duty) in enumerate(SCHEDULE_ROWS):
         top = 199 + index * 56
+        row_colour = "#EEF2F0" if index % 2 == 0 else "#F8F6F0"
+        row = ET.SubElement(annotations, q("g"), {"data-contrast-bg": row_colour})
         ET.SubElement(
-            annotations,
+            row,
             q("rect"),
             {
                 "x": "1002",
                 "y": f"{top:g}",
                 "width": "626",
                 "height": "48",
-                "fill": "#EEF2F0" if index % 2 == 0 else "#F8F6F0",
+                "fill": row_colour,
             },
         )
         baseline = top + 22
-        add_text(annotations, 1014, baseline, wall_id, size=10, css_class="new-eyebrow")
-        add_text(annotations, 1128, baseline, nominal, size=10, css_class="new-title")
+        add_text(row, 1014, baseline, wall_id, size=10, css_class="new-eyebrow")
+        add_text(row, 1128, baseline, nominal, size=10, css_class="new-title")
         add_wrapped_text(
-            annotations,
+            row,
             1225,
             baseline,
             duty,
@@ -502,9 +508,10 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         q("g"),
         {"id": "layer-status", "data-layer": "authority-and-open-gates"},
     )
-    _panel_heading(status, 572, 757, "D-080 · CONTROL / ECONOMY", 460)
+    control_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#FFFDFA"})
+    _panel_heading(control_status, 572, 757, "D-080 · CONTROL / ECONOMY", 460)
     add_text(
-        status,
+        control_status,
         572,
         799,
         "ACTIVE SCHEMATIC COORDINATION",
@@ -522,7 +529,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     y = 829.0
     for paragraph in paragraphs:
         _, bottom = add_wrapped_text(
-            status,
+            control_status,
             572,
             y,
             paragraph,
@@ -532,7 +539,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         )
         y = bottom + 15
     add_text(
-        status,
+        control_status,
         572,
         986,
         "No product selected · no saving booked · no target change",
@@ -540,7 +547,8 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-conflict",
     )
 
-    _panel_heading(status, 1088, 757, "OPEN · DO NOT FREEZE", 540)
+    open_status = ET.SubElement(status, q("g"), {"data-contrast-bg": "#FBF0D9"})
+    _panel_heading(open_status, 1088, 757, "OPEN · DO NOT FREEZE", 540)
     gates = (
         "STC/Rw, fire, thermal and moisture performance",
         "tested local assemblies, acoustic doors and seals",
@@ -552,11 +560,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     )
     y = 799
     for gate in gates:
-        add_text(status, 1088, y, "•", size=10, css_class="new-open")
-        add_text(status, 1106, y, gate, size=9.7, css_class="new-body")
+        add_text(open_status, 1088, y, "•", size=10, css_class="new-open")
+        add_text(open_status, 1106, y, gate, size=9.7, css_class="new-body")
         y += 26
     add_text(
-        status,
+        open_status,
         1088,
         986,
         "Thickness alone proves no performance rating.",

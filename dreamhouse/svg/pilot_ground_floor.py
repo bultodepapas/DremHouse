@@ -16,6 +16,9 @@ import textwrap
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.sheet import CSS
+from dreamhouse.svg.theme import colour
+
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"
@@ -146,52 +149,6 @@ COORDINATION_BASIS = [
     "Slab, lift, drainage, structure, fire, extraction and MEP remain professional design gates.",
     "Worktops and equipment remain coordination envelopes pending real product data.",
 ]
-
-
-CSS = """
-:root {
-  --paper: #F4F0E7;
-  --panel: #FFFDFA;
-  --ink: #172A32;
-  --muted: #536168;
-  --info: #1D7480;
-  --open: #8A5A16;
-  --conflict: #A33F31;
-  --hypothesis: #66538A;
-  --material: #74543C;
-}
-text {
-  font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
-  text-rendering: geometricPrecision;
-}
-.new-title { fill: var(--ink); font-weight: 700; letter-spacing: .15px; }
-.new-eyebrow { fill: var(--info); font-weight: 700; letter-spacing: .9px; }
-.new-body { fill: var(--ink); }
-.new-muted { fill: var(--muted); }
-.new-open { fill: var(--open); font-weight: 700; }
-.new-conflict { fill: var(--conflict); font-weight: 700; }
-.new-on-dark { fill: #FFFDFA; }
-.new-on-dark-muted { fill: #DDE4E2; }
-.new-on-dark-alert { fill: #FFB4A8; font-weight: 800; }
-.key-tag {
-  fill: var(--ink);
-  stroke: var(--panel);
-  stroke-width: 4px;
-  paint-order: stroke fill;
-  font-weight: 800;
-  letter-spacing: .25px;
-}
-.model-primary {
-  fill: var(--ink);
-  stroke: var(--panel);
-  stroke-width: 2.4px;
-  paint-order: stroke fill;
-  font-weight: 650;
-}
-.model-secondary { font-weight: 550; }
-.sheet-rule { stroke: #B9C0BD; stroke-width: 1; }
-.panel-rule { stroke: #CBD0CC; stroke-width: 1; }
-""".strip()
 
 
 def sha256(path: Path) -> str:
@@ -431,7 +388,13 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         model.append(node)
 
     annotations = ET.SubElement(
-        root, q("g"), {"id": "layer-annotations", "data-layer": "legend-and-keynotes"}
+        root,
+        q("g"),
+        {
+            "id": "layer-annotations",
+            "data-layer": "legend-and-keynotes",
+            "data-contrast-bg": colour("panel"),
+        },
     )
     _add_text(annotations, 58, 886, "READING HIERARCHY", size=11.5, css_class="new-eyebrow")
     _add_text(
@@ -511,7 +474,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     sidebar = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-status", "data-layer": "status-and-keyed-notes"},
+        {
+            "id": "layer-status",
+            "data-layer": "status-and-keyed-notes",
+            "data-contrast-bg": colour("panel"),
+        },
     )
     _add_text(sidebar, 1324, 146, "KEYED COORDINATION ITEMS", size=12.5, css_class="new-title")
     _add_wrapped_text(
@@ -598,17 +565,25 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         y = bottom + 8
 
     sheet = ET.SubElement(root, q("g"), {"id": "layer-sheet", "data-layer": "titleblock"})
+    header = ET.SubElement(sheet, q("g"), {"data-contrast-bg": colour("paper")})
     _add_text(
-        sheet,
+        header,
         36,
         34,
         "GRAPHIC PILOT 01 · PRESENTATION ONLY",
         size=10.5,
         css_class="new-eyebrow",
     )
-    _add_text(sheet, 36, 70, "GROUND FLOOR · COORDINATED READING", size=24, css_class="new-title")
     _add_text(
-        sheet,
+        header,
+        36,
+        70,
+        "GROUND FLOOR · COORDINATED READING",
+        size=24,
+        css_class="new-title",
+    )
+    _add_text(
+        header,
         36,
         96,
         "Same R15 geometry and values · reduced annotation competition · professional "
@@ -616,9 +591,17 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         size=11,
         css_class="new-muted",
     )
-    _add_text(sheet, 1648, 56, "DH-ARQ-PLN-001", size=15, css_class="new-title", anchor="end")
     _add_text(
-        sheet,
+        header,
+        1648,
+        56,
+        "DH-ARQ-PLN-001",
+        size=15,
+        css_class="new-title",
+        anchor="end",
+    )
+    _add_text(
+        header,
         1648,
         80,
         "GP01 · NOT CURRENT",
@@ -627,13 +610,14 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         anchor="end",
     )
     ET.SubElement(
-        sheet,
+        header,
         q("line"),
         {"x1": "36", "y1": "105", "x2": "1648", "y2": "105", "class": "sheet-rule"},
     )
 
+    footer = ET.SubElement(sheet, q("g"), {"data-contrast-bg": colour("ink")})
     ET.SubElement(
-        sheet,
+        footer,
         q("rect"),
         {
             "x": "36",
@@ -644,9 +628,16 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
             "fill": "#172A32",
         },
     )
-    _add_text(sheet, 56, 1056, "NOT FOR CONSTRUCTION", size=13, css_class="new-on-dark-alert")
     _add_text(
-        sheet,
+        footer,
+        56,
+        1056,
+        "NOT FOR CONSTRUCTION",
+        size=13,
+        css_class="new-on-dark-alert",
+    )
+    _add_text(
+        footer,
         56,
         1082,
         "Graphic review only. This file is not the current drawing and creates no design, "
@@ -655,7 +646,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-on-dark",
     )
     _add_text(
-        sheet,
+        footer,
         56,
         1107,
         "Source: PLN-001-R15 / 0.3-draft-37-PB · Decision basis: D-083 · Model coordinates "
@@ -664,7 +655,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-on-dark-muted",
     )
     _add_text(
-        sheet,
+        footer,
         56,
         1132,
         "Open gates: site · solar/privacy · structure · safe glazing · building physics · "
@@ -673,7 +664,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         css_class="new-on-dark-muted",
     )
     _add_text(
-        sheet,
+        footer,
         1628,
         1132,
         "2026-08-21",

@@ -122,8 +122,9 @@ python3 -m dreamhouse.svg.lint planos/piloto_grafico_v0.1 \
   --markdown-output .build/svg-lint/pilots.md
 ```
 
-The v0.1 gate fails on identity, accessibility, authority, unsafe content, semantic-layer,
-model-reference, non-finite-number and required-text errors. It reports inherited
-precision, scaled-lineweight and source-microtext debt as warnings. See
-`../../docs/08_investigacion/svg_static_lint_v0.1.md` for the complete implemented boundary
-and follow-on checks.
+The v0.2 gate fails on identity, accessibility, authority, unsafe content, semantic-layer,
+model-reference, non-finite-number, presentation-palette, text-contrast and required-text
+errors. It reports inherited colour/precision, scaled-lineweight and source-microtext debt
+as warnings. See `../../docs/08_investigacion/svg_static_lint_v0.1.md` and
+`../../docs/08_investigacion/svg_palette_contrast_lint_v0.2.md` for the implemented boundary
+and remaining bounds/collision checks.

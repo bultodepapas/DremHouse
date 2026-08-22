@@ -135,7 +135,7 @@ cost.
 
 ## 7. Next controlled batch
 
-The next small increment should implement approved-colour and computed-contrast checks
-against shared theme tokens, with invalid fixtures and colour/grayscale render review.
-Bounds and typed-collision checks should follow as a separate geometric batch so their
-tolerances and exceptions remain reviewable.
+The planned palette/contrast increment was subsequently implemented as
+[`svg_palette_contrast_lint_v0.2.md`](svg_palette_contrast_lint_v0.2.md). Bounds and typed-
+collision checks remain the next separate geometric batch so their tolerances and
+exceptions remain reviewable.

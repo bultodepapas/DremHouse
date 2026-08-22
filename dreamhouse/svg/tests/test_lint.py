@@ -82,23 +82,33 @@ def valid_document() -> ET.Element:
     annotations = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-annotations", "data-layer": "annotations"},
+        {
+            "id": "layer-annotations",
+            "data-layer": "annotations",
+            "data-contrast-bg": "#FFFDFA",
+        },
     )
     annotation = ET.SubElement(
         annotations,
         q("text"),
-        {"x": "100", "y": "240", "font-size": "10", "data-text-role": "primary"},
+        {
+            "x": "100",
+            "y": "240",
+            "font-size": "10",
+            "class": "new-body",
+            "data-text-role": "primary",
+        },
     )
     annotation.text = "Primary label"
     sheet = ET.SubElement(
         root,
         q("g"),
-        {"id": "layer-sheet", "data-layer": "sheet"},
+        {"id": "layer-sheet", "data-layer": "sheet", "data-contrast-bg": "#FFFDFA"},
     )
     sheet_text = ET.SubElement(
         sheet,
         q("text"),
-        {"x": "100", "y": "1120", "font-size": "10"},
+        {"x": "100", "y": "1120", "font-size": "10", "class": "new-body"},
     )
     sheet_text.text = "Presentation only"
     return root
@@ -120,6 +130,13 @@ class TestStaticSvgLint(unittest.TestCase):
         self.assertEqual(exit_code(report), 0)
         self.assertTrue(
             all(file["metrics"]["required_text_below_minimum"] == 0 for file in report["files"])
+        )
+        self.assertTrue(all(file["metrics"]["contrast_failures"] == 0 for file in report["files"]))
+        self.assertTrue(
+            all(file["metrics"]["presentation_palette_failures"] == 0 for file in report["files"])
+        )
+        self.assertTrue(
+            all(file["metrics"]["minimum_contrast_ratio"] >= 4.5 for file in report["files"])
         )
 
     def test_malformed_svg_fails_closed(self) -> None:
@@ -221,6 +238,55 @@ class TestStaticSvgLint(unittest.TestCase):
         )
         self.assertEqual(ordinary_precision["severity"], "warning")
         self.assertEqual(strict_precision["severity"], "error")
+
+    def test_unapproved_presentation_colour_fails_but_model_colour_warns(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = valid_document()
+            background_rect = root.find(f"{q('g')}[@id='layer-background']/{q('rect')}")
+            model_rect = root.find(f"{q('g')}[@id='layer-model']/{q('g')}/{q('rect')}")
+            assert background_rect is not None and model_rect is not None
+            background_rect.set("fill", "#123456")
+            model_rect.set("stroke", "#654321")
+            path = write_svg(Path(temporary), root)
+
+            report = lint_file(path)
+
+        self.assertTrue({"SVG-C001", "SVG-C002"} <= finding_codes(report))
+        self.assertEqual(report["metrics"]["presentation_palette_failures"], 1)
+        self.assertEqual(report["metrics"]["inherited_off_palette_colours"], 1)
+        self.assertEqual(report["status"], "FAIL")
+
+    def test_missing_background_and_low_contrast_fail(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            missing_root = valid_document()
+            missing_annotations = missing_root.find(f"{q('g')}[@id='layer-annotations']")
+            assert missing_annotations is not None
+            missing_annotations.attrib.pop("data-contrast-bg")
+            missing_path = write_svg(Path(temporary), missing_root, "missing.svg")
+
+            low_root = valid_document()
+            low_annotations = low_root.find(f"{q('g')}[@id='layer-annotations']")
+            assert low_annotations is not None
+            low_annotations.set("data-contrast-bg", "#172A32")
+            low_path = write_svg(Path(temporary), low_root, "low.svg")
+
+            missing = lint_file(missing_path)
+            low = lint_file(low_path)
+
+        self.assertIn("SVG-C003", finding_codes(missing))
+        self.assertIn("SVG-C005", finding_codes(low))
+        self.assertEqual(missing["metrics"]["untyped_contrast_backgrounds"], 1)
+        self.assertEqual(low["metrics"]["contrast_failures"], 1)
+
+    def test_contrast_thresholds_are_configurable(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = write_svg(Path(temporary), valid_document())
+
+            ordinary = lint_file(path)
+            strict = lint_file(path, normal_contrast=15.0, large_contrast=15.0)
+
+        self.assertNotIn("SVG-C005", finding_codes(ordinary))
+        self.assertIn("SVG-C005", finding_codes(strict))
 
     def test_reports_are_deterministic_and_warnings_can_fail_ci(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

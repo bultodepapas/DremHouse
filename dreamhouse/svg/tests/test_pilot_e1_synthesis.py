@@ -148,6 +148,23 @@ class TestE1SynthesisGraphicPilot(unittest.TestCase):
             all(shape.get("vector-effect") == "non-scaling-stroke" for shape in shapes)
         )
 
+    def test_rooflight_labels_and_status_badges_have_redundant_high_contrast_cues(self) -> None:
+        texts = {
+            " ".join(text.itertext()).strip(): text for text in self.output_root.iter(q("text"))
+        }
+        for label in ("RL-CAR", "RL-RC"):
+            self.assertEqual(texts[label].get("class"), "new-title")
+            self.assertEqual(texts[label].get("data-contrast-bg"), "#9CC6CC")
+
+        badges = [
+            rect
+            for rect in self.output_root.iter(q("rect"))
+            if rect.get("height") == "23" and rect.get("rx") == "11.5"
+        ]
+        self.assertEqual(len(badges), 18)
+        self.assertTrue(all(badge.get("fill") == "none" for badge in badges))
+        self.assertTrue({"PASS*", "DEMAND", "FAIL@550", "BLOCKED"} <= set(texts))
+
 
 if __name__ == "__main__":
     unittest.main()

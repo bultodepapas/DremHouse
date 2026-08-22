@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.13
+**Version:** 0.14
 **Date:** 2026-08-22
 
 > [!NOTE]
@@ -281,6 +281,9 @@ they stay stable while their explicitly promoted versioned source can advance.
   Markdown/JSON pilot gate for accessibility, authority, unsafe content, IDs, semantic
   layers, model references, numeric safety and required-text preview size, with remaining
   contrast/bounds/collision work explicit.
+- [SVG palette and contrast lint v0.2](08_investigacion/svg_palette_contrast_lint_v0.2.md):
+  controlled 30-token presentation palette, typed semantic backgrounds and computed text
+  contrast across GP01–GP05, with inherited model colour debt retained as warnings.
 
 ## How to use the project record
 
