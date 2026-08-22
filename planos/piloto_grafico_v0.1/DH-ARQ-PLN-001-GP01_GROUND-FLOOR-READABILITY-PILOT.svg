@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1684" height="1191" viewBox="0 0 1684 1191" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="gp01-title gp01-desc" data-sheet-id="DH-ARQ-PLN-001" data-revision="GP01" data-status="graphic-pilot-not-current" data-construction-authority="false">
   <title id="gp01-title">Ground-floor readability pilot GP01</title>
   <desc id="gp01-desc">Presentation-only pilot of the coordinated ground-floor plan. Architectural geometry, dimensions, programme and open design gates are copied from the current R15 source.</desc>
-  <metadata>{"construction_authority": false, "date": "2026-08-21", "pilot": "GP01", "sheet": "DH-ARQ-PLN-001", "source": "planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg", "source_revision": "PLN-001-R15 / 0.3-draft-37-PB", "source_sha256": "20b32c55fffdb89f833bab5369bc052b5e99a552587753d71831260194982aca", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
+  <metadata>{"construction_authority": false, "date": "2026-08-21", "pilot": "GP01", "revision": "GP01", "sheet": "DH-ARQ-PLN-001", "source": "planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg", "source_revision": "PLN-001-R15 / 0.3-draft-37-PB", "source_sha256": "20b32c55fffdb89f833bab5369bc052b5e99a552587753d71831260194982aca", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
   <style>:root {
   --paper: #F4F0E7;
   --panel: #FFFDFA;
@@ -63,170 +63,170 @@ text {
     <rect x="1304" y="116" width="344" height="892" rx="5" fill="#FFFDFA" class="panel-rule" />
   </g>
   <g id="layer-model" data-layer="model-geometry-and-annotations" transform="translate(-86.6 -10.6) scale(1.15)">
-    <rect x="124.0" y="155.0" width="81.0" height="486.0" fill="#dedbd4" stroke="#8e9493" stroke-width="1" data-source-index="3" />
-    <text x="164.5" y="398.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" transform="rotate(-90 164.5 398.0)" data-source-index="4" data-text-role="secondary">FRONT CONCRETE APRON 3.00 m · 1.5–2% fall to drainage</text>
-    <rect x="205.0" y="155.0" width="972.0" height="486.0" fill="url(#concrete)" stroke="#172126" stroke-width="6" data-source-index="5" />
-    <rect x="209.86" y="159.85999999999999" width="962.28" height="476.28000000000003" fill="#FFFDFA" stroke="#7b878a" stroke-width="1.2" data-source-index="6" />
-    <rect x="209.86" y="452.0" width="278.64" height="184.14000000000001" fill="#E9F0F2" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="7" />
-    <text x="466" y="544" font-size="8.8" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="8" class="key-tag" data-text-role="key">Z01</text>
-    <rect x="209.86" y="159.85999999999999" width="278.64" height="184.14000000000001" fill="#E9F0F2" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="9" />
-    <text x="349.18" y="251.93" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="10" class="model-primary" data-text-role="primary">RC / DIY · approx. 70.4 m² net</text>
-    <rect x="488.5" y="159.85999999999999" width="54.0" height="476.28000000000003" fill="#F7F4EC" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="11" />
-    <text x="515.5" y="317.0" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="12" class="model-primary" data-text-role="primary">BREATHING BUFFER</text>
-    <rect x="542.5" y="159.85999999999999" width="229.5" height="476.28000000000003" fill="#F2E8DE" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="13" />
-    <text x="657.25" y="442.55" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="14" class="model-primary" data-text-role="primary">DOUBLE-HEIGHT SOCIAL HALL</text>
-    <rect x="772.0" y="452.0" width="283.5" height="184.14000000000001" fill="#F5E8D4" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="15" />
-    <text x="913.75" y="466.85" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="16" class="model-primary" data-text-role="primary">FULL-SPAN KITCHEN</text>
-    <rect x="772.0" y="159.85999999999999" width="283.5" height="184.14000000000001" fill="#F3E6D5" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="17" />
-    <text x="913.75" y="329.15" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="18" class="model-primary" data-text-role="primary">DINING OPPOSITE KITCHEN</text>
-    <rect x="209.86" y="344.0" width="962.28" height="108.0" fill="none" stroke="#8A5A16" stroke-width="2" stroke-dasharray="10 5" data-source-index="19" />
-    <text x="691.0" y="402.0" font-size="10.4" text-anchor="middle" font-weight="700" fill="#765018" data-source-index="20" class="model-primary" data-text-role="primary">CLEAR PERCEPTUAL PEDESTRIAN AXIS · 4.00 m</text>
-    <rect x="1055.5" y="155.0" width="5.4" height="486.0" fill="url(#wood)" stroke="#6e4b30" stroke-width="1.5" data-source-index="21" />
-    <rect x="1060.9" y="578.225" width="111.24000000000001" height="57.91499999999999" fill="#d9d2bd" stroke="#536166" stroke-width="1" data-source-index="22" />
-    <text x="1116.52" y="586" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="23" class="key-tag" data-text-role="key">R05</text>
-    <text x="1116.52" y="618.6" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="24" display="none" data-relocated-to="service-core-key">10.8 m² gross</text>
-    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="25">
+    <rect x="124.0" y="155.0" width="81.0" height="486.0" fill="#dedbd4" stroke="#8e9493" stroke-width="1" data-source-index="3" data-model-id="PB-SOURCE-003" />
+    <text x="164.5" y="398.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" transform="rotate(-90 164.5 398.0)" data-source-index="4" data-model-id="PB-SOURCE-004" data-text-role="secondary">FRONT CONCRETE APRON 3.00 m · 1.5–2% fall to drainage</text>
+    <rect x="205.0" y="155.0" width="972.0" height="486.0" fill="url(#concrete)" stroke="#172126" stroke-width="6" data-source-index="5" data-model-id="PB-SOURCE-005" />
+    <rect x="209.86" y="159.85999999999999" width="962.28" height="476.28000000000003" fill="#FFFDFA" stroke="#7b878a" stroke-width="1.2" data-source-index="6" data-model-id="PB-SOURCE-006" />
+    <rect x="209.86" y="452.0" width="278.64" height="184.14000000000001" fill="#E9F0F2" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="7" data-model-id="PB-SOURCE-007" />
+    <text x="466" y="544" font-size="8.8" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="8" data-model-id="PB-SOURCE-008" class="key-tag" data-text-role="key">Z01</text>
+    <rect x="209.86" y="159.85999999999999" width="278.64" height="184.14000000000001" fill="#E9F0F2" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="9" data-model-id="PB-SOURCE-009" />
+    <text x="349.18" y="251.93" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="10" data-model-id="PB-SOURCE-010" class="model-primary" data-text-role="primary">RC / DIY · approx. 70.4 m² net</text>
+    <rect x="488.5" y="159.85999999999999" width="54.0" height="476.28000000000003" fill="#F7F4EC" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="11" data-model-id="PB-SOURCE-011" />
+    <text x="515.5" y="317.0" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="12" data-model-id="PB-SOURCE-012" class="model-primary" data-text-role="primary">BREATHING BUFFER</text>
+    <rect x="542.5" y="159.85999999999999" width="229.5" height="476.28000000000003" fill="#F2E8DE" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="13" data-model-id="PB-SOURCE-013" />
+    <text x="657.25" y="442.55" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="14" data-model-id="PB-SOURCE-014" class="model-primary" data-text-role="primary">DOUBLE-HEIGHT SOCIAL HALL</text>
+    <rect x="772.0" y="452.0" width="283.5" height="184.14000000000001" fill="#F5E8D4" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="15" data-model-id="PB-SOURCE-015" />
+    <text x="913.75" y="466.85" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="16" data-model-id="PB-SOURCE-016" class="model-primary" data-text-role="primary">FULL-SPAN KITCHEN</text>
+    <rect x="772.0" y="159.85999999999999" width="283.5" height="184.14000000000001" fill="#F3E6D5" stroke="#9aa2a2" stroke-width=".7" stroke-dasharray="5 4" opacity=".72" data-source-index="17" data-model-id="PB-SOURCE-017" />
+    <text x="913.75" y="329.15" font-size="10.4" text-anchor="middle" font-weight="700" fill="#536168" data-source-index="18" data-model-id="PB-SOURCE-018" class="model-primary" data-text-role="primary">DINING OPPOSITE KITCHEN</text>
+    <rect x="209.86" y="344.0" width="962.28" height="108.0" fill="none" stroke="#8A5A16" stroke-width="2" stroke-dasharray="10 5" data-source-index="19" data-model-id="PB-SOURCE-019" />
+    <text x="691.0" y="402.0" font-size="10.4" text-anchor="middle" font-weight="700" fill="#765018" data-source-index="20" data-model-id="PB-SOURCE-020" class="model-primary" data-text-role="primary">CLEAR PERCEPTUAL PEDESTRIAN AXIS · 4.00 m</text>
+    <rect x="1055.5" y="155.0" width="5.4" height="486.0" fill="url(#wood)" stroke="#6e4b30" stroke-width="1.5" data-source-index="21" data-model-id="PB-SOURCE-021" />
+    <rect x="1060.9" y="578.225" width="111.24000000000001" height="57.91499999999999" fill="#d9d2bd" stroke="#536166" stroke-width="1" data-source-index="22" data-model-id="PB-SOURCE-022" />
+    <text x="1116.52" y="586" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="23" data-model-id="PB-SOURCE-023" class="key-tag" data-text-role="key">R05</text>
+    <text x="1116.52" y="618.6" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="24" data-model-id="PB-SOURCE-024" display="none" data-relocated-to="service-core-key">10.8 m² gross</text>
+    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="25" data-model-id="PB-SOURCE-025">
       <line x1="1055.5" y1="609.95" x2="1079.8" y2="609.95" />
       <path d="M 1055.5 609.95 A 24.3 24.3 0 0 1 1055.5 585.6500000000001" stroke-dasharray="4 3" />
     </g>
-    <rect x="1060.9" y="443.9" width="111.24000000000001" height="130.27500000000003" fill="#cad0c9" stroke="#536166" stroke-width="1" data-source-index="26" />
-    <text x="1116.52" y="505" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="27" class="key-tag" data-text-role="key">R04</text>
-    <text x="1116.52" y="518.7" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="28" display="none" data-relocated-to="service-core-key">22.5 m² gross</text>
-    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="29">
+    <rect x="1060.9" y="443.9" width="111.24000000000001" height="130.27500000000003" fill="#cad0c9" stroke="#536166" stroke-width="1" data-source-index="26" data-model-id="PB-SOURCE-026" />
+    <text x="1116.52" y="505" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="27" data-model-id="PB-SOURCE-027" class="key-tag" data-text-role="key">R04</text>
+    <text x="1116.52" y="518.7" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="28" data-model-id="PB-SOURCE-028" display="none" data-relocated-to="service-core-key">22.5 m² gross</text>
+    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="29" data-model-id="PB-SOURCE-029">
       <line x1="1055.5" y1="526.25" x2="1079.8" y2="526.25" />
       <path d="M 1055.5 526.25 A 24.3 24.3 0 0 1 1055.5 501.95" stroke-dasharray="4 3" />
     </g>
-    <rect x="1060.9" y="346.7" width="111.24000000000001" height="91.80000000000001" fill="#d2c5b9" stroke="#536166" stroke-width="1" data-source-index="30" />
-    <text x="1116.52" y="359" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="31" class="key-tag" data-text-role="key">R03</text>
-    <text x="1116.52" y="402.6" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="32" display="none" data-relocated-to="service-core-key">16.2 m² gross</text>
-    <g stroke="#754522" fill="none" stroke-width="3.0" data-source-index="33">
+    <rect x="1060.9" y="346.7" width="111.24000000000001" height="91.80000000000001" fill="#d2c5b9" stroke="#536166" stroke-width="1" data-source-index="30" data-model-id="PB-SOURCE-030" />
+    <text x="1116.52" y="359" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="31" data-model-id="PB-SOURCE-031" class="key-tag" data-text-role="key">R03</text>
+    <text x="1116.52" y="402.6" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="32" data-model-id="PB-SOURCE-032" display="none" data-relocated-to="service-core-key">16.2 m² gross</text>
+    <g stroke="#754522" fill="none" stroke-width="3.0" data-source-index="33" data-model-id="PB-SOURCE-033">
       <line x1="1055.5" y1="407.45" x2="1082.5" y2="407.45" />
       <path d="M 1055.5 407.45 A 27.0 27.0 0 0 1 1055.5 380.45" stroke-dasharray="4 3" />
     </g>
-    <rect x="1060.9" y="281.22499999999997" width="111.24000000000001" height="60.07500000000004" fill="#bfd6d3" stroke="#536166" stroke-width="1" data-source-index="34" />
-    <text x="1116.52" y="294" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="35" class="key-tag" data-text-role="key">R02</text>
-    <text x="1116.52" y="321.6" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="36" display="none" data-relocated-to="service-core-key">10.8 m² gross</text>
-    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="37">
+    <rect x="1060.9" y="281.22499999999997" width="111.24000000000001" height="60.07500000000004" fill="#bfd6d3" stroke="#536166" stroke-width="1" data-source-index="34" data-model-id="PB-SOURCE-034" />
+    <text x="1116.52" y="294" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="35" data-model-id="PB-SOURCE-035" class="key-tag" data-text-role="key">R02</text>
+    <text x="1116.52" y="321.6" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="36" data-model-id="PB-SOURCE-036" display="none" data-relocated-to="service-core-key">10.8 m² gross</text>
+    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="37" data-model-id="PB-SOURCE-037">
       <line x1="1055.5" y1="323.75" x2="1079.8" y2="323.75" />
       <path d="M 1055.5 323.75 A 24.3 24.3 0 0 1 1055.5 299.45" stroke-dasharray="4 3" />
     </g>
-    <rect x="1060.9" y="159.85999999999999" width="111.24000000000001" height="117.31500000000001" fill="#c4d1cc" stroke="#536166" stroke-width="1" data-source-index="38" />
-    <text x="1116.52" y="194" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="39" class="key-tag" data-text-role="key">R01</text>
-    <text x="1116.52" y="227.10000000000002" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="40" display="none" data-relocated-to="service-core-key">20.7 m² gross</text>
-    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="41">
+    <rect x="1060.9" y="159.85999999999999" width="111.24000000000001" height="117.31500000000001" fill="#c4d1cc" stroke="#536166" stroke-width="1" data-source-index="38" data-model-id="PB-SOURCE-038" />
+    <text x="1116.52" y="194" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="39" data-model-id="PB-SOURCE-039" class="key-tag" data-text-role="key">R01</text>
+    <text x="1116.52" y="227.10000000000002" font-size="7" text-anchor="middle" font-weight="400" fill="#536168" data-source-index="40" data-model-id="PB-SOURCE-040" display="none" data-relocated-to="service-core-key">20.7 m² gross</text>
+    <g stroke="#9d4a2f" fill="none" stroke-width="1.6" data-source-index="41" data-model-id="PB-SOURCE-041">
       <line x1="1055.5" y1="245.45" x2="1079.8" y2="245.45" />
       <path d="M 1055.5 245.45 A 24.3 24.3 0 0 1 1055.5 221.14999999999998" stroke-dasharray="4 3" />
     </g>
-    <rect x="1060.9" y="574.175" width="111.24000000000001" height="4.05" fill="#536168" stroke="none" data-source-index="42" />
-    <rect x="1060.9" y="438.5" width="111.24000000000001" height="5.4" fill="#536168" stroke="none" data-source-index="43" />
-    <rect x="1060.9" y="341.3" width="111.24000000000001" height="5.4" fill="#536168" stroke="none" data-source-index="44" />
-    <rect x="1060.9" y="277.17499999999995" width="111.24000000000001" height="4.05" fill="#536168" stroke="none" data-source-index="45" />
-    <line x1="1177.0" y1="499.25" x2="1177.0" y2="526.25" stroke="#236a45" stroke-width="7" data-source-index="46" />
-    <line x1="1177.0" y1="380.45" x2="1177.0" y2="407.45" stroke="#a63f31" stroke-width="5" stroke-dasharray="5 3" class="rear-discharge-level-conflict" data-source-index="47" />
-    <rect x="776.05" y="614.0" width="271.35" height="20.25" fill="#b69066" stroke="#60492f" stroke-width="1.2" data-source-index="48" />
-    <rect x="776.05" y="614.0" width="40.5" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="49" />
-    <text x="796.3" y="627.125" font-size="5.5" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="50">COFFEE / STORE</text>
-    <rect x="816.55" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="51" />
-    <text x="828.6999999999999" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="52" data-text-role="micro">FR</text>
-    <rect x="840.85" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="53" />
-    <text x="853.0" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="54" data-text-role="micro">FZ</text>
-    <rect x="865.15" y="614.0" width="16.2" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="55" />
-    <text x="873.25" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="56" data-text-role="micro">OV</text>
-    <rect x="881.35" y="614.0" width="32.4" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="57" />
-    <text x="897.5500000000001" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="58" data-text-role="micro">LAND</text>
-    <rect x="913.75" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="59" />
-    <text x="925.9" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="60" data-text-role="micro">HOB</text>
-    <rect x="938.05" y="614.0" width="32.4" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="61" />
-    <text x="954.25" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="62" data-text-role="micro">PREP</text>
-    <rect x="970.45" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="63" />
-    <text x="982.6" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="64" data-text-role="micro">SINK</text>
-    <rect x="994.75" y="614.0" width="16.2" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="65" />
-    <text x="1002.85" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="66" data-text-role="micro">DW</text>
-    <rect x="1010.95" y="614.0" width="16.2" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="67" />
-    <text x="1019.0500000000001" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="68" data-text-role="micro">BIN</text>
-    <rect x="1027.15" y="614.0" width="20.25" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="69" />
-    <text x="1037.275" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="70" data-text-role="micro">LAND</text>
-    <rect x="809.8" y="543.8" width="194.4" height="33.75" fill="#d1b187" stroke="#60492f" stroke-width="1.3" rx="3" data-source-index="71" />
-    <text x="907.0" y="563.675" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="72" class="key-tag" data-text-role="key">P11</text>
-    <circle cx="833.7624999999999" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="73" />
-    <circle cx="854.6875" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="74" />
-    <circle cx="875.6125" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="75" />
-    <circle cx="896.5374999999999" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="76" />
-    <circle cx="917.4625" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="77" />
-    <circle cx="938.3874999999999" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="78" />
-    <circle cx="959.3125" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="79" />
-    <circle cx="980.2375" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="80" />
-    <text x="907.0" y="595.775" font-size="8.8" text-anchor="middle" font-weight="700" fill="#7b552b" data-source-index="81" class="model-secondary" data-text-role="secondary">1.35 m WORKING AISLE</text>
-    <text x="907.0" y="524.36" font-size="8.8" text-anchor="middle" font-weight="700" fill="#7b552b" data-source-index="82" class="model-secondary" data-text-role="secondary">≥1.50 m SOCIAL SIDE</text>
-    <rect x="642.4" y="172.54999999999995" width="124.19999999999999" height="162.0" fill="#d8c5ae" stroke="#927a61" stroke-width="1" stroke-dasharray="5 3" rx="14" opacity=".82" data-source-index="83" />
-    <rect x="651.85" y="288.65" width="108.0" height="28.35" fill="#aa9077" stroke="#685748" stroke-width="1.3" rx="9" data-source-index="84" />
-    <text x="705.85" y="302.825" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" transform="rotate(0 705.85 302.825)" data-source-index="85" class="key-tag" data-text-role="key">P08</text>
-    <rect x="651.85" y="244.10000000000002" width="29.700000000000003" height="72.9" fill="#aa9077" stroke="#685748" stroke-width="1.3" rx="9" data-source-index="86" />
-    <rect x="692.35" y="234.64999999999998" width="43.2" height="27.0" fill="#d9c8ae" stroke="#695947" stroke-width="1.1" rx="5" data-source-index="87" />
-    <text x="713.95" y="250.14999999999998" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="88" data-text-role="micro">COFFEE</text>
-    <circle cx="666.7" cy="206.29999999999995" r="11" fill="#f4f1ea" stroke="#667378" data-source-index="89" />
-    <circle cx="746.35" cy="214.39999999999998" r="11" fill="#f4f1ea" stroke="#667378" data-source-index="90" />
-    <text x="707.2" y="329.15" font-size="10.4" text-anchor="middle" font-weight="700" fill="#60472e" data-source-index="91" class="model-primary" data-text-role="primary">LIVING / 100-IN TV LOUNGE</text>
-    <rect x="647.8" y="159.85999999999999" width="118.80000000000005" height="3.2399999999999998" fill="#4b3b31" stroke="#241e1a" stroke-width="1.5" data-source-index="92" />
-    <line x1="677.311" y1="162.85999999999999" x2="737.089" y2="162.85999999999999" stroke="#111719" stroke-width="6" data-source-index="93" />
-    <rect x="661.3" y="159.85999999999999" width="91.8" height="12.15" fill="#75583f" stroke="#3f3025" stroke-width="1" data-source-index="94" />
-    <text x="707.2" y="175.79" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="95" class="key-tag" data-text-role="key">P09</text>
-    <line x1="707.2" y1="270.56" x2="707.2" y2="159.85999999999999" stroke="#a46d20" stroke-width="1" stroke-dasharray="5 3" data-source-index="96" />
-    <text x="714.2" y="215.20999999999998" font-size="8.8" text-anchor="start" font-weight="700" fill="#8a5b1c" transform="rotate(-90 714.2 215.20999999999998)" data-source-index="97" class="model-secondary" data-text-role="secondary">4.10 m VIEW</text>
-    <rect x="840.8499999999999" y="207.38000000000005" width="145.8" height="89.10000000000001" fill="none" stroke="#aa7b31" stroke-width="1" stroke-dasharray="5 4" data-source-index="98" />
-    <text x="913.75" y="292.15999999999997" font-size="8.8" text-anchor="middle" font-weight="700" fill="#765018" data-source-index="99" class="key-tag" data-text-role="key">P10</text>
-    <rect x="870.55" y="237.08000000000004" width="86.4" height="29.700000000000003" fill="#eee6d7" stroke="#59676c" stroke-width="1.2" rx="3" data-source-index="100" />
-    <text x="913.75" y="254.93000000000004" font-size="8.8" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="101" class="model-secondary" data-text-role="secondary">12P · 3.20 × 1.10</text>
-    <circle cx="879.1899999999999" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="102" />
-    <circle cx="879.1899999999999" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="103" />
-    <circle cx="896.47" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="104" />
-    <circle cx="896.47" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="105" />
-    <circle cx="913.75" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="106" />
-    <circle cx="913.75" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="107" />
-    <circle cx="931.03" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="108" />
-    <circle cx="931.03" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="109" />
-    <circle cx="948.31" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="110" />
-    <circle cx="948.31" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="111" />
-    <circle cx="863.8" cy="251.93" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="112" />
-    <circle cx="963.6999999999999" cy="251.93" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="113" />
-    <rect x="533.05" y="555.14" width="194.40000000000003" height="81.0" fill="#e8f0ed" stroke="#5d6d69" stroke-width="1.2" stroke-dasharray="7 4" opacity=".62" data-source-index="114" />
-    <rect x="557.35" y="611.84" width="145.8" height="24.3" fill="#d7c29b" stroke="#3d4c51" stroke-width="1.4" rx="2" data-source-index="115" />
-    <rect x="557.35" y="615.89" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="116" />
-    <text x="566.8" y="627.515" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="117" data-text-role="micro">3D</text>
-    <rect x="620.8" y="615.89" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="118" />
-    <text x="630.25" y="627.515" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="119" data-text-role="micro">3D</text>
-    <rect x="684.25" y="615.89" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="120" />
-    <text x="693.7" y="627.515" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="121" data-text-role="micro">3D</text>
-    <text x="630.25" y="625.99" font-size="6.8" text-anchor="middle" font-weight="700" fill="#4f3925" data-source-index="122" data-text-role="micro">FIXED WORKTOP</text>
-    <line x1="557.35" y1="636.14" x2="703.1500000000001" y2="636.14" stroke="#172A32" stroke-width="4" data-source-index="123" />
-    <line x1="562.75" y1="636.14" x2="562.75" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="124" />
-    <line x1="596.5" y1="636.14" x2="596.5" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="125" />
-    <line x1="630.25" y1="636.14" x2="630.25" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="126" />
-    <line x1="664.0" y1="636.14" x2="664.0" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="127" />
-    <line x1="697.75" y1="636.14" x2="697.75" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="128" />
-    <rect x="589.615" y="584.5699999999999" width="17.82" height="17.82" fill="#f5f1e8" stroke="#667378" stroke-width="1" rx="8" data-source-index="129" />
-    <rect x="653.065" y="584.5699999999999" width="17.82" height="17.82" fill="#f5f1e8" stroke="#667378" stroke-width="1" rx="8" data-source-index="130" />
-    <text x="630.25" y="563.78" font-size="8.8" text-anchor="middle" font-weight="700" fill="#294b52" data-source-index="131" class="key-tag" data-text-role="key">P06</text>
-    <line x1="533.05" y1="641.0" x2="727.45" y2="641.0" stroke="#1D7480" stroke-width="8" data-source-index="132" />
-    <text x="630.25" y="609.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="133" data-text-role="opening">UNIFIED SIDE A WORK / HALL WINDOW · 7.20 m</text>
-    <rect x="556.0" y="159.85999999999999" width="81.0" height="81.0" fill="#e8f0ed" stroke="#5d6d69" stroke-width="1.2" stroke-dasharray="7 4" opacity=".62" data-source-index="134" />
-    <rect x="556.0" y="159.85999999999999" width="81.0" height="24.3" fill="#d7c29b" stroke="#3d4c51" stroke-width="1.4" rx="2" data-source-index="135" />
-    <rect x="556.0" y="159.85999999999999" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="136" />
-    <text x="565.45" y="171.48499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="137" data-text-role="micro">3D</text>
-    <rect x="618.1" y="159.85999999999999" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="138" />
-    <text x="627.55" y="171.48499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="139" data-text-role="micro">3D</text>
-    <text x="596.5" y="174.00999999999996" font-size="6.8" text-anchor="middle" font-weight="700" fill="#4f3925" data-source-index="140" data-text-role="micro">FIXED WORKTOP</text>
-    <line x1="556.0" y1="159.85999999999999" x2="637.0" y2="159.85999999999999" stroke="#172A32" stroke-width="4" data-source-index="141" />
-    <line x1="561.4" y1="159.85999999999999" x2="561.4" y2="184.15999999999997" stroke="#3d4c51" stroke-width="1.5" data-source-index="142" />
-    <line x1="588.4" y1="159.85999999999999" x2="588.4" y2="184.15999999999997" stroke="#3d4c51" stroke-width="1.5" data-source-index="143" />
-    <line x1="615.4" y1="159.85999999999999" x2="615.4" y2="184.15999999999997" stroke="#3d4c51" stroke-width="1.5" data-source-index="144" />
-    <rect x="587.5899999999999" y="193.33999999999995" width="17.82" height="17.82" fill="#f5f1e8" stroke="#667378" stroke-width="1" rx="8" data-source-index="145" />
-    <text x="596.5" y="232.21999999999997" font-size="8.8" text-anchor="middle" font-weight="700" fill="#294b52" data-source-index="146" class="key-tag" data-text-role="key">P07</text>
-    <line x1="556.0" y1="155.0" x2="637.0" y2="155.0" stroke="#1D7480" stroke-width="8" data-source-index="147" />
-    <text x="596.5" y="145.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="148" data-text-role="opening">WORKSTATION 2 WINDOW · 3.00 m</text>
-    <rect x="262.78" y="454.7" width="172.8" height="158.49" fill="none" stroke="#A33F31" stroke-width="1.8" stroke-dasharray="9 5" data-source-index="149" />
-    <text x="349.18" y="468.2" font-size="8.8" text-anchor="middle" font-weight="700" fill="#92382D" data-source-index="150" class="key-tag" data-text-role="key">P05</text>
-    <g stroke="#4e5d63" fill="#edf0ef" stroke-width="1.2" data-source-index="151">
+    <rect x="1060.9" y="574.175" width="111.24000000000001" height="4.05" fill="#536168" stroke="none" data-source-index="42" data-model-id="PB-SOURCE-042" />
+    <rect x="1060.9" y="438.5" width="111.24000000000001" height="5.4" fill="#536168" stroke="none" data-source-index="43" data-model-id="PB-SOURCE-043" />
+    <rect x="1060.9" y="341.3" width="111.24000000000001" height="5.4" fill="#536168" stroke="none" data-source-index="44" data-model-id="PB-SOURCE-044" />
+    <rect x="1060.9" y="277.17499999999995" width="111.24000000000001" height="4.05" fill="#536168" stroke="none" data-source-index="45" data-model-id="PB-SOURCE-045" />
+    <line x1="1177.0" y1="499.25" x2="1177.0" y2="526.25" stroke="#236a45" stroke-width="7" data-source-index="46" data-model-id="PB-SOURCE-046" />
+    <line x1="1177.0" y1="380.45" x2="1177.0" y2="407.45" stroke="#a63f31" stroke-width="5" stroke-dasharray="5 3" class="rear-discharge-level-conflict" data-source-index="47" data-model-id="PB-SOURCE-047" />
+    <rect x="776.05" y="614.0" width="271.35" height="20.25" fill="#b69066" stroke="#60492f" stroke-width="1.2" data-source-index="48" data-model-id="PB-SOURCE-048" />
+    <rect x="776.05" y="614.0" width="40.5" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="49" data-model-id="PB-SOURCE-049" />
+    <text x="796.3" y="627.125" font-size="5.5" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="50" data-model-id="PB-SOURCE-050">COFFEE / STORE</text>
+    <rect x="816.55" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="51" data-model-id="PB-SOURCE-051" />
+    <text x="828.6999999999999" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="52" data-model-id="PB-SOURCE-052" data-text-role="micro">FR</text>
+    <rect x="840.85" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="53" data-model-id="PB-SOURCE-053" />
+    <text x="853.0" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="54" data-model-id="PB-SOURCE-054" data-text-role="micro">FZ</text>
+    <rect x="865.15" y="614.0" width="16.2" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="55" data-model-id="PB-SOURCE-055" />
+    <text x="873.25" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="56" data-model-id="PB-SOURCE-056" data-text-role="micro">OV</text>
+    <rect x="881.35" y="614.0" width="32.4" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="57" data-model-id="PB-SOURCE-057" />
+    <text x="897.5500000000001" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="58" data-model-id="PB-SOURCE-058" data-text-role="micro">LAND</text>
+    <rect x="913.75" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="59" data-model-id="PB-SOURCE-059" />
+    <text x="925.9" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="60" data-model-id="PB-SOURCE-060" data-text-role="micro">HOB</text>
+    <rect x="938.05" y="614.0" width="32.4" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="61" data-model-id="PB-SOURCE-061" />
+    <text x="954.25" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="62" data-model-id="PB-SOURCE-062" data-text-role="micro">PREP</text>
+    <rect x="970.45" y="614.0" width="24.3" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="63" data-model-id="PB-SOURCE-063" />
+    <text x="982.6" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="64" data-model-id="PB-SOURCE-064" data-text-role="micro">SINK</text>
+    <rect x="994.75" y="614.0" width="16.2" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="65" data-model-id="PB-SOURCE-065" />
+    <text x="1002.85" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="66" data-model-id="PB-SOURCE-066" data-text-role="micro">DW</text>
+    <rect x="1010.95" y="614.0" width="16.2" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="67" data-model-id="PB-SOURCE-067" />
+    <text x="1019.0500000000001" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="68" data-model-id="PB-SOURCE-068" data-text-role="micro">BIN</text>
+    <rect x="1027.15" y="614.0" width="20.25" height="20.25" fill="none" stroke="#72583c" stroke-width=".7" data-source-index="69" data-model-id="PB-SOURCE-069" />
+    <text x="1037.275" y="627.125" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="70" data-model-id="PB-SOURCE-070" data-text-role="micro">LAND</text>
+    <rect x="809.8" y="543.8" width="194.4" height="33.75" fill="#d1b187" stroke="#60492f" stroke-width="1.3" rx="3" data-source-index="71" data-model-id="PB-SOURCE-071" />
+    <text x="907.0" y="563.675" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="72" data-model-id="PB-SOURCE-072" class="key-tag" data-text-role="key">P11</text>
+    <circle cx="833.7624999999999" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="73" data-model-id="PB-SOURCE-073" />
+    <circle cx="854.6875" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="74" data-model-id="PB-SOURCE-074" />
+    <circle cx="875.6125" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="75" data-model-id="PB-SOURCE-075" />
+    <circle cx="896.5374999999999" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="76" data-model-id="PB-SOURCE-076" />
+    <circle cx="917.4625" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="77" data-model-id="PB-SOURCE-077" />
+    <circle cx="938.3874999999999" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="78" data-model-id="PB-SOURCE-078" />
+    <circle cx="959.3125" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="79" data-model-id="PB-SOURCE-079" />
+    <circle cx="980.2375" cy="537.05" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="80" data-model-id="PB-SOURCE-080" />
+    <text x="907.0" y="595.775" font-size="8.8" text-anchor="middle" font-weight="700" fill="#7b552b" data-source-index="81" data-model-id="PB-SOURCE-081" class="model-secondary" data-text-role="secondary">1.35 m WORKING AISLE</text>
+    <text x="907.0" y="524.36" font-size="8.8" text-anchor="middle" font-weight="700" fill="#7b552b" data-source-index="82" data-model-id="PB-SOURCE-082" class="model-secondary" data-text-role="secondary">≥1.50 m SOCIAL SIDE</text>
+    <rect x="642.4" y="172.54999999999995" width="124.19999999999999" height="162.0" fill="#d8c5ae" stroke="#927a61" stroke-width="1" stroke-dasharray="5 3" rx="14" opacity=".82" data-source-index="83" data-model-id="PB-SOURCE-083" />
+    <rect x="651.85" y="288.65" width="108.0" height="28.35" fill="#aa9077" stroke="#685748" stroke-width="1.3" rx="9" data-source-index="84" data-model-id="PB-SOURCE-084" />
+    <text x="705.85" y="302.825" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" transform="rotate(0 705.85 302.825)" data-source-index="85" data-model-id="PB-SOURCE-085" class="key-tag" data-text-role="key">P08</text>
+    <rect x="651.85" y="244.10000000000002" width="29.700000000000003" height="72.9" fill="#aa9077" stroke="#685748" stroke-width="1.3" rx="9" data-source-index="86" data-model-id="PB-SOURCE-086" />
+    <rect x="692.35" y="234.64999999999998" width="43.2" height="27.0" fill="#d9c8ae" stroke="#695947" stroke-width="1.1" rx="5" data-source-index="87" data-model-id="PB-SOURCE-087" />
+    <text x="713.95" y="250.14999999999998" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="88" data-model-id="PB-SOURCE-088" data-text-role="micro">COFFEE</text>
+    <circle cx="666.7" cy="206.29999999999995" r="11" fill="#f4f1ea" stroke="#667378" data-source-index="89" data-model-id="PB-SOURCE-089" />
+    <circle cx="746.35" cy="214.39999999999998" r="11" fill="#f4f1ea" stroke="#667378" data-source-index="90" data-model-id="PB-SOURCE-090" />
+    <text x="707.2" y="329.15" font-size="10.4" text-anchor="middle" font-weight="700" fill="#60472e" data-source-index="91" data-model-id="PB-SOURCE-091" class="model-primary" data-text-role="primary">LIVING / 100-IN TV LOUNGE</text>
+    <rect x="647.8" y="159.85999999999999" width="118.80000000000005" height="3.2399999999999998" fill="#4b3b31" stroke="#241e1a" stroke-width="1.5" data-source-index="92" data-model-id="PB-SOURCE-092" />
+    <line x1="677.311" y1="162.85999999999999" x2="737.089" y2="162.85999999999999" stroke="#111719" stroke-width="6" data-source-index="93" data-model-id="PB-SOURCE-093" />
+    <rect x="661.3" y="159.85999999999999" width="91.8" height="12.15" fill="#75583f" stroke="#3f3025" stroke-width="1" data-source-index="94" data-model-id="PB-SOURCE-094" />
+    <text x="707.2" y="175.79" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="95" data-model-id="PB-SOURCE-095" class="key-tag" data-text-role="key">P09</text>
+    <line x1="707.2" y1="270.56" x2="707.2" y2="159.85999999999999" stroke="#a46d20" stroke-width="1" stroke-dasharray="5 3" data-source-index="96" data-model-id="PB-SOURCE-096" />
+    <text x="714.2" y="215.20999999999998" font-size="8.8" text-anchor="start" font-weight="700" fill="#8a5b1c" transform="rotate(-90 714.2 215.20999999999998)" data-source-index="97" data-model-id="PB-SOURCE-097" class="model-secondary" data-text-role="secondary">4.10 m VIEW</text>
+    <rect x="840.8499999999999" y="207.38000000000005" width="145.8" height="89.10000000000001" fill="none" stroke="#aa7b31" stroke-width="1" stroke-dasharray="5 4" data-source-index="98" data-model-id="PB-SOURCE-098" />
+    <text x="913.75" y="292.15999999999997" font-size="8.8" text-anchor="middle" font-weight="700" fill="#765018" data-source-index="99" data-model-id="PB-SOURCE-099" class="key-tag" data-text-role="key">P10</text>
+    <rect x="870.55" y="237.08000000000004" width="86.4" height="29.700000000000003" fill="#eee6d7" stroke="#59676c" stroke-width="1.2" rx="3" data-source-index="100" data-model-id="PB-SOURCE-100" />
+    <text x="913.75" y="254.93000000000004" font-size="8.8" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="101" data-model-id="PB-SOURCE-101" class="model-secondary" data-text-role="secondary">12P · 3.20 × 1.10</text>
+    <circle cx="879.1899999999999" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="102" data-model-id="PB-SOURCE-102" />
+    <circle cx="879.1899999999999" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="103" data-model-id="PB-SOURCE-103" />
+    <circle cx="896.47" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="104" data-model-id="PB-SOURCE-104" />
+    <circle cx="896.47" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="105" data-model-id="PB-SOURCE-105" />
+    <circle cx="913.75" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="106" data-model-id="PB-SOURCE-106" />
+    <circle cx="913.75" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="107" data-model-id="PB-SOURCE-107" />
+    <circle cx="931.03" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="108" data-model-id="PB-SOURCE-108" />
+    <circle cx="931.03" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="109" data-model-id="PB-SOURCE-109" />
+    <circle cx="948.31" cy="273.53000000000003" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="110" data-model-id="PB-SOURCE-110" />
+    <circle cx="948.31" cy="230.33000000000004" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="111" data-model-id="PB-SOURCE-111" />
+    <circle cx="863.8" cy="251.93" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="112" data-model-id="PB-SOURCE-112" />
+    <circle cx="963.6999999999999" cy="251.93" r="7" fill="#f4f1ea" stroke="#667378" data-source-index="113" data-model-id="PB-SOURCE-113" />
+    <rect x="533.05" y="555.14" width="194.40000000000003" height="81.0" fill="#e8f0ed" stroke="#5d6d69" stroke-width="1.2" stroke-dasharray="7 4" opacity=".62" data-source-index="114" data-model-id="PB-SOURCE-114" />
+    <rect x="557.35" y="611.84" width="145.8" height="24.3" fill="#d7c29b" stroke="#3d4c51" stroke-width="1.4" rx="2" data-source-index="115" data-model-id="PB-SOURCE-115" />
+    <rect x="557.35" y="615.89" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="116" data-model-id="PB-SOURCE-116" />
+    <text x="566.8" y="627.515" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="117" data-model-id="PB-SOURCE-117" data-text-role="micro">3D</text>
+    <rect x="620.8" y="615.89" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="118" data-model-id="PB-SOURCE-118" />
+    <text x="630.25" y="627.515" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="119" data-model-id="PB-SOURCE-119" data-text-role="micro">3D</text>
+    <rect x="684.25" y="615.89" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="120" data-model-id="PB-SOURCE-120" />
+    <text x="693.7" y="627.515" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="121" data-model-id="PB-SOURCE-121" data-text-role="micro">3D</text>
+    <text x="630.25" y="625.99" font-size="6.8" text-anchor="middle" font-weight="700" fill="#4f3925" data-source-index="122" data-model-id="PB-SOURCE-122" data-text-role="micro">FIXED WORKTOP</text>
+    <line x1="557.35" y1="636.14" x2="703.1500000000001" y2="636.14" stroke="#172A32" stroke-width="4" data-source-index="123" data-model-id="PB-SOURCE-123" />
+    <line x1="562.75" y1="636.14" x2="562.75" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="124" data-model-id="PB-SOURCE-124" />
+    <line x1="596.5" y1="636.14" x2="596.5" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="125" data-model-id="PB-SOURCE-125" />
+    <line x1="630.25" y1="636.14" x2="630.25" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="126" data-model-id="PB-SOURCE-126" />
+    <line x1="664.0" y1="636.14" x2="664.0" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="127" data-model-id="PB-SOURCE-127" />
+    <line x1="697.75" y1="636.14" x2="697.75" y2="611.84" stroke="#3d4c51" stroke-width="1.5" data-source-index="128" data-model-id="PB-SOURCE-128" />
+    <rect x="589.615" y="584.5699999999999" width="17.82" height="17.82" fill="#f5f1e8" stroke="#667378" stroke-width="1" rx="8" data-source-index="129" data-model-id="PB-SOURCE-129" />
+    <rect x="653.065" y="584.5699999999999" width="17.82" height="17.82" fill="#f5f1e8" stroke="#667378" stroke-width="1" rx="8" data-source-index="130" data-model-id="PB-SOURCE-130" />
+    <text x="630.25" y="563.78" font-size="8.8" text-anchor="middle" font-weight="700" fill="#294b52" data-source-index="131" data-model-id="PB-SOURCE-131" class="key-tag" data-text-role="key">P06</text>
+    <line x1="533.05" y1="641.0" x2="727.45" y2="641.0" stroke="#1D7480" stroke-width="8" data-source-index="132" data-model-id="PB-SOURCE-132" />
+    <text x="630.25" y="609.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="133" data-model-id="PB-SOURCE-133" data-text-role="opening">UNIFIED SIDE A WORK / HALL WINDOW · 7.20 m</text>
+    <rect x="556.0" y="159.85999999999999" width="81.0" height="81.0" fill="#e8f0ed" stroke="#5d6d69" stroke-width="1.2" stroke-dasharray="7 4" opacity=".62" data-source-index="134" data-model-id="PB-SOURCE-134" />
+    <rect x="556.0" y="159.85999999999999" width="81.0" height="24.3" fill="#d7c29b" stroke="#3d4c51" stroke-width="1.4" rx="2" data-source-index="135" data-model-id="PB-SOURCE-135" />
+    <rect x="556.0" y="159.85999999999999" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="136" data-model-id="PB-SOURCE-136" />
+    <text x="565.45" y="171.48499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="137" data-model-id="PB-SOURCE-137" data-text-role="micro">3D</text>
+    <rect x="618.1" y="159.85999999999999" width="18.9" height="20.25" fill="#9e7650" stroke="#3d4c51" stroke-width="1.1" rx="1" data-source-index="138" data-model-id="PB-SOURCE-138" />
+    <text x="627.55" y="171.48499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#fff8ed" data-source-index="139" data-model-id="PB-SOURCE-139" data-text-role="micro">3D</text>
+    <text x="596.5" y="174.00999999999996" font-size="6.8" text-anchor="middle" font-weight="700" fill="#4f3925" data-source-index="140" data-model-id="PB-SOURCE-140" data-text-role="micro">FIXED WORKTOP</text>
+    <line x1="556.0" y1="159.85999999999999" x2="637.0" y2="159.85999999999999" stroke="#172A32" stroke-width="4" data-source-index="141" data-model-id="PB-SOURCE-141" />
+    <line x1="561.4" y1="159.85999999999999" x2="561.4" y2="184.15999999999997" stroke="#3d4c51" stroke-width="1.5" data-source-index="142" data-model-id="PB-SOURCE-142" />
+    <line x1="588.4" y1="159.85999999999999" x2="588.4" y2="184.15999999999997" stroke="#3d4c51" stroke-width="1.5" data-source-index="143" data-model-id="PB-SOURCE-143" />
+    <line x1="615.4" y1="159.85999999999999" x2="615.4" y2="184.15999999999997" stroke="#3d4c51" stroke-width="1.5" data-source-index="144" data-model-id="PB-SOURCE-144" />
+    <rect x="587.5899999999999" y="193.33999999999995" width="17.82" height="17.82" fill="#f5f1e8" stroke="#667378" stroke-width="1" rx="8" data-source-index="145" data-model-id="PB-SOURCE-145" />
+    <text x="596.5" y="232.21999999999997" font-size="8.8" text-anchor="middle" font-weight="700" fill="#294b52" data-source-index="146" data-model-id="PB-SOURCE-146" class="key-tag" data-text-role="key">P07</text>
+    <line x1="556.0" y1="155.0" x2="637.0" y2="155.0" stroke="#1D7480" stroke-width="8" data-source-index="147" data-model-id="PB-SOURCE-147" />
+    <text x="596.5" y="145.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="148" data-model-id="PB-SOURCE-148" data-text-role="opening">WORKSTATION 2 WINDOW · 3.00 m</text>
+    <rect x="262.78" y="454.7" width="172.8" height="158.49" fill="none" stroke="#A33F31" stroke-width="1.8" stroke-dasharray="9 5" data-source-index="149" data-model-id="PB-SOURCE-149" />
+    <text x="349.18" y="468.2" font-size="8.8" text-anchor="middle" font-weight="700" fill="#92382D" data-source-index="150" data-model-id="PB-SOURCE-150" class="key-tag" data-text-role="key">P05</text>
+    <g stroke="#4e5d63" fill="#edf0ef" stroke-width="1.2" data-source-index="151" data-model-id="PB-SOURCE-151">
       <rect x="284.38" y="506.945" width="129.6" height="54.0" rx="18" />
       <rect x="315.484" y="513.425" width="67.392" height="41.04" rx="10" fill="#c9d6d8" />
       <circle cx="307.70799999999997" cy="506.945" r="5" fill="#30393d" />
@@ -234,59 +234,59 @@ text {
       <circle cx="307.70799999999997" cy="560.9449999999999" r="5" fill="#30393d" />
       <circle cx="390.652" cy="560.9449999999999" r="5" fill="#30393d" />
     </g>
-    <rect x="278.98" y="479.945" width="9.45" height="108.0" fill="#48555b" stroke="#263238" stroke-width="1" data-source-index="152" />
-    <rect x="409.93" y="479.945" width="9.45" height="108.0" fill="#48555b" stroke="#263238" stroke-width="1" data-source-index="153" />
-    <rect x="209.86" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="154" />
-    <text x="230.11" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="155" data-text-role="micro">C1</text>
-    <rect x="250.36" y="615.89" width="40.5" height="20.25" fill="#9b8772" stroke="#314247" stroke-width="1.1" data-source-index="156" />
-    <text x="270.61" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="157" data-text-role="micro">C2</text>
-    <rect x="290.86" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="158" />
-    <text x="311.11" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="159" data-text-role="micro">C3</text>
-    <rect x="331.36" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="160" />
-    <text x="351.61" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="161" data-text-role="micro">C4</text>
-    <rect x="371.86" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="162" />
-    <text x="392.11" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="163" data-text-role="micro">C5</text>
-    <rect x="412.36" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="164" />
-    <text x="432.61" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="165" data-text-role="micro">C6</text>
-    <rect x="209.86" y="583.49" width="243.0" height="32.4" fill="none" stroke="#b56c31" stroke-width="1.0" stroke-dasharray="5 4" data-source-index="166" />
-    <text x="331.36" y="611.03" font-size="5.5" text-anchor="middle" font-weight="700" fill="#9a4a2b" data-source-index="167" display="none" data-relocated-to="P04">1.20 m BENCH OPERATING STRIP · LIFT OVERLAP OPEN</text>
-    <text x="466" y="600" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="168" class="key-tag" data-text-role="key">P04</text>
-    <rect x="209.86" y="159.85999999999999" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="169" />
-    <text x="230.11" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="170" data-text-role="micro">R1</text>
-    <rect x="250.36" y="159.85999999999999" width="40.5" height="20.25" fill="#9fc4c4" stroke="#314247" stroke-width="1.1" data-source-index="171" />
-    <text x="270.61" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="172" data-text-role="micro">R2</text>
-    <rect x="290.86" y="159.85999999999999" width="40.5" height="20.25" fill="#9fc4c4" stroke="#314247" stroke-width="1.1" data-source-index="173" />
-    <text x="311.11" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="174" data-text-role="micro">R3</text>
-    <rect x="331.36" y="159.85999999999999" width="40.5" height="20.25" fill="#9fc4c4" stroke="#314247" stroke-width="1.1" data-source-index="175" />
-    <text x="351.61" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="176" data-text-role="micro">R4</text>
-    <rect x="371.86" y="159.85999999999999" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="177" />
-    <text x="392.11" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="178" data-text-role="micro">R5</text>
-    <rect x="412.36" y="159.85999999999999" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="179" />
-    <text x="432.61" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="180" data-text-role="micro">R6</text>
-    <rect x="209.86" y="180.10999999999999" width="243.0" height="32.4" fill="none" stroke="#1D7480" stroke-width="1.0" stroke-dasharray="5 4" data-source-index="181" />
-    <text x="331.36" y="184.15999999999997" font-size="5.5" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="182" display="none" data-relocated-to="P01">1.20 m CLEAR BENCH OPERATING STRIP</text>
-    <text x="331.36" y="190.10999999999999" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="183" class="key-tag" data-text-role="key">P01</text>
-    <rect x="280.6" y="254.90000000000003" width="121.5" height="43.2" fill="#eee6d7" stroke="#59676c" stroke-width="1.2" rx="3" data-source-index="184" />
-    <text x="341.35" y="279.50000000000006" font-size="8.8" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="185" class="key-tag" data-text-role="key">P02</text>
-    <line x1="321.1" y1="298.1" x2="321.1" y2="254.90000000000003" stroke="#667579" stroke-width="1.1" stroke-dasharray="4 3" data-source-index="186" />
-    <line x1="361.6" y1="298.1" x2="361.6" y2="254.90000000000003" stroke="#667579" stroke-width="1.1" stroke-dasharray="4 3" data-source-index="187" />
-    <rect x="222.55" y="214.39999999999998" width="32.4" height="48.6" fill="#c8d2d4" stroke="#54636a" stroke-width="1" data-source-index="188" />
-    <text x="238.75" y="241.7" font-size="7" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="189">3D ×3</text>
-    <rect x="425.05" y="214.39999999999998" width="33.75" height="48.6" fill="#d9c3b5" stroke="#8f4e38" stroke-width="1.2" data-source-index="190" />
-    <text x="441.925" y="234.7" font-size="8.8" text-anchor="middle" font-weight="700" fill="#8f3c28" data-source-index="191" class="key-tag" data-text-role="key">P03</text>
-    <path d="M 441.925 214.39999999999998 L 441.925 164.45000000000005" stroke="#1D7480" stroke-width="2" stroke-dasharray="5 3" data-source-index="192" />
-    <rect x="1070.35" y="304.85" width="32.4" height="29.700000000000003" fill="none" stroke="#1D7480" stroke-width="1.2" data-source-index="193" />
-    <ellipse cx="1154.05" cy="323.75" rx="9" ry="13" fill="#f8faf9" stroke="#59686d" data-source-index="194" />
-    <rect x="1108.15" y="285.40999999999997" width="27.0" height="12.15" fill="#f8faf9" stroke="#59686d" stroke-width="1" data-source-index="195" />
-    <rect x="1070.35" y="241.39999999999998" width="28.35" height="21.6" fill="#434f54" stroke="#1f292d" stroke-width="1" data-source-index="196" />
-    <text x="1084.525" y="255.2" font-size="6.8" text-anchor="middle" font-weight="700" fill="#f6f4ed" data-source-index="197" data-text-role="micro">RACK</text>
-    <rect x="1128.4" y="217.10000000000002" width="33.75" height="45.9" fill="url(#service)" stroke="#59686d" stroke-width="1" data-source-index="198" />
-    <text x="1145.275" y="243.05" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="199" data-text-role="micro">UPS / TAB</text>
-    <rect x="1070.35" y="591.05" width="27.0" height="37.8" fill="#d9d1bd" stroke="#6d6657" stroke-width="1" data-source-index="200" />
-    <text x="1083.85" y="612.95" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="201" data-text-role="micro">COLD</text>
-    <rect x="1123.0" y="591.05" width="39.15" height="37.8" fill="#d9d1bd" stroke="#6d6657" stroke-width="1" data-source-index="202" />
-    <text x="1142.575" y="612.95" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="203" data-text-role="micro">CLEAN</text>
-    <g class="canonical-stair-core" data-stair-model-revision="SC-01" data-source-index="204">
+    <rect x="278.98" y="479.945" width="9.45" height="108.0" fill="#48555b" stroke="#263238" stroke-width="1" data-source-index="152" data-model-id="PB-SOURCE-152" />
+    <rect x="409.93" y="479.945" width="9.45" height="108.0" fill="#48555b" stroke="#263238" stroke-width="1" data-source-index="153" data-model-id="PB-SOURCE-153" />
+    <rect x="209.86" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="154" data-model-id="PB-SOURCE-154" />
+    <text x="230.11" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="155" data-model-id="PB-SOURCE-155" data-text-role="micro">C1</text>
+    <rect x="250.36" y="615.89" width="40.5" height="20.25" fill="#9b8772" stroke="#314247" stroke-width="1.1" data-source-index="156" data-model-id="PB-SOURCE-156" />
+    <text x="270.61" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="157" data-model-id="PB-SOURCE-157" data-text-role="micro">C2</text>
+    <rect x="290.86" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="158" data-model-id="PB-SOURCE-158" />
+    <text x="311.11" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="159" data-model-id="PB-SOURCE-159" data-text-role="micro">C3</text>
+    <rect x="331.36" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="160" data-model-id="PB-SOURCE-160" />
+    <text x="351.61" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="161" data-model-id="PB-SOURCE-161" data-text-role="micro">C4</text>
+    <rect x="371.86" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="162" data-model-id="PB-SOURCE-162" />
+    <text x="392.11" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="163" data-model-id="PB-SOURCE-163" data-text-role="micro">C5</text>
+    <rect x="412.36" y="615.89" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="164" data-model-id="PB-SOURCE-164" />
+    <text x="432.61" y="628.015" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="165" data-model-id="PB-SOURCE-165" data-text-role="micro">C6</text>
+    <rect x="209.86" y="583.49" width="243.0" height="32.4" fill="none" stroke="#b56c31" stroke-width="1.0" stroke-dasharray="5 4" data-source-index="166" data-model-id="PB-SOURCE-166" />
+    <text x="331.36" y="611.03" font-size="5.5" text-anchor="middle" font-weight="700" fill="#9a4a2b" data-source-index="167" data-model-id="PB-SOURCE-167" display="none" data-relocated-to="P04">1.20 m BENCH OPERATING STRIP · LIFT OVERLAP OPEN</text>
+    <text x="466" y="600" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="168" data-model-id="PB-SOURCE-168" class="key-tag" data-text-role="key">P04</text>
+    <rect x="209.86" y="159.85999999999999" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="169" data-model-id="PB-SOURCE-169" />
+    <text x="230.11" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="170" data-model-id="PB-SOURCE-170" data-text-role="micro">R1</text>
+    <rect x="250.36" y="159.85999999999999" width="40.5" height="20.25" fill="#9fc4c4" stroke="#314247" stroke-width="1.1" data-source-index="171" data-model-id="PB-SOURCE-171" />
+    <text x="270.61" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="172" data-model-id="PB-SOURCE-172" data-text-role="micro">R2</text>
+    <rect x="290.86" y="159.85999999999999" width="40.5" height="20.25" fill="#9fc4c4" stroke="#314247" stroke-width="1.1" data-source-index="173" data-model-id="PB-SOURCE-173" />
+    <text x="311.11" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="174" data-model-id="PB-SOURCE-174" data-text-role="micro">R3</text>
+    <rect x="331.36" y="159.85999999999999" width="40.5" height="20.25" fill="#9fc4c4" stroke="#314247" stroke-width="1.1" data-source-index="175" data-model-id="PB-SOURCE-175" />
+    <text x="351.61" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="176" data-model-id="PB-SOURCE-176" data-text-role="micro">R4</text>
+    <rect x="371.86" y="159.85999999999999" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="177" data-model-id="PB-SOURCE-177" />
+    <text x="392.11" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="178" data-model-id="PB-SOURCE-178" data-text-role="micro">R5</text>
+    <rect x="412.36" y="159.85999999999999" width="40.5" height="20.25" fill="#aeb9bc" stroke="#314247" stroke-width="1.1" data-source-index="179" data-model-id="PB-SOURCE-179" />
+    <text x="432.61" y="171.98499999999999" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="180" data-model-id="PB-SOURCE-180" data-text-role="micro">R6</text>
+    <rect x="209.86" y="180.10999999999999" width="243.0" height="32.4" fill="none" stroke="#1D7480" stroke-width="1.0" stroke-dasharray="5 4" data-source-index="181" data-model-id="PB-SOURCE-181" />
+    <text x="331.36" y="184.15999999999997" font-size="5.5" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="182" data-model-id="PB-SOURCE-182" display="none" data-relocated-to="P01">1.20 m CLEAR BENCH OPERATING STRIP</text>
+    <text x="331.36" y="190.10999999999999" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="183" data-model-id="PB-SOURCE-183" class="key-tag" data-text-role="key">P01</text>
+    <rect x="280.6" y="254.90000000000003" width="121.5" height="43.2" fill="#eee6d7" stroke="#59676c" stroke-width="1.2" rx="3" data-source-index="184" data-model-id="PB-SOURCE-184" />
+    <text x="341.35" y="279.50000000000006" font-size="8.8" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="185" data-model-id="PB-SOURCE-185" class="key-tag" data-text-role="key">P02</text>
+    <line x1="321.1" y1="298.1" x2="321.1" y2="254.90000000000003" stroke="#667579" stroke-width="1.1" stroke-dasharray="4 3" data-source-index="186" data-model-id="PB-SOURCE-186" />
+    <line x1="361.6" y1="298.1" x2="361.6" y2="254.90000000000003" stroke="#667579" stroke-width="1.1" stroke-dasharray="4 3" data-source-index="187" data-model-id="PB-SOURCE-187" />
+    <rect x="222.55" y="214.39999999999998" width="32.4" height="48.6" fill="#c8d2d4" stroke="#54636a" stroke-width="1" data-source-index="188" data-model-id="PB-SOURCE-188" />
+    <text x="238.75" y="241.7" font-size="7" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="189" data-model-id="PB-SOURCE-189">3D ×3</text>
+    <rect x="425.05" y="214.39999999999998" width="33.75" height="48.6" fill="#d9c3b5" stroke="#8f4e38" stroke-width="1.2" data-source-index="190" data-model-id="PB-SOURCE-190" />
+    <text x="441.925" y="234.7" font-size="8.8" text-anchor="middle" font-weight="700" fill="#8f3c28" data-source-index="191" data-model-id="PB-SOURCE-191" class="key-tag" data-text-role="key">P03</text>
+    <path d="M 441.925 214.39999999999998 L 441.925 164.45000000000005" stroke="#1D7480" stroke-width="2" stroke-dasharray="5 3" data-source-index="192" data-model-id="PB-SOURCE-192" />
+    <rect x="1070.35" y="304.85" width="32.4" height="29.700000000000003" fill="none" stroke="#1D7480" stroke-width="1.2" data-source-index="193" data-model-id="PB-SOURCE-193" />
+    <ellipse cx="1154.05" cy="323.75" rx="9" ry="13" fill="#f8faf9" stroke="#59686d" data-source-index="194" data-model-id="PB-SOURCE-194" />
+    <rect x="1108.15" y="285.40999999999997" width="27.0" height="12.15" fill="#f8faf9" stroke="#59686d" stroke-width="1" data-source-index="195" data-model-id="PB-SOURCE-195" />
+    <rect x="1070.35" y="241.39999999999998" width="28.35" height="21.6" fill="#434f54" stroke="#1f292d" stroke-width="1" data-source-index="196" data-model-id="PB-SOURCE-196" />
+    <text x="1084.525" y="255.2" font-size="6.8" text-anchor="middle" font-weight="700" fill="#f6f4ed" data-source-index="197" data-model-id="PB-SOURCE-197" data-text-role="micro">RACK</text>
+    <rect x="1128.4" y="217.10000000000002" width="33.75" height="45.9" fill="url(#service)" stroke="#59686d" stroke-width="1" data-source-index="198" data-model-id="PB-SOURCE-198" />
+    <text x="1145.275" y="243.05" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="199" data-model-id="PB-SOURCE-199" data-text-role="micro">UPS / TAB</text>
+    <rect x="1070.35" y="591.05" width="27.0" height="37.8" fill="#d9d1bd" stroke="#6d6657" stroke-width="1" data-source-index="200" data-model-id="PB-SOURCE-200" />
+    <text x="1083.85" y="612.95" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="201" data-model-id="PB-SOURCE-201" data-text-role="micro">COLD</text>
+    <rect x="1123.0" y="591.05" width="39.15" height="37.8" fill="#d9d1bd" stroke="#6d6657" stroke-width="1" data-source-index="202" data-model-id="PB-SOURCE-202" />
+    <text x="1142.575" y="612.95" font-size="6.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="203" data-model-id="PB-SOURCE-203" data-text-role="micro">CLEAN</text>
+    <g class="canonical-stair-core" data-stair-model-revision="SC-01" data-source-index="204" data-model-id="PB-SOURCE-204">
       <rect x="1060.9" y="395.3" width="72.89999999999998" height="37.79999999999998" fill="#eee9e1" stroke="#536168" stroke-width="1.1" class="stair-flight lower-flight" />
       <rect x="1060.9" y="352.1" width="72.89999999999998" height="37.79999999999996" fill="#f6f2eb" stroke="#76558f" stroke-width="1.0" stroke-dasharray="5 3" class="stair-flight upper-flight overhead" />
       <rect x="1133.8" y="352.1" width="37.79999999999996" height="80.99999999999997" fill="#e3ddd3" stroke="#536168" stroke-width="1.1" class="stair-landing intermediate-landing" />
@@ -324,48 +324,48 @@ text {
       <path d="M 1170.52 404.21000000000004 L 1177.0 410.69000000000005 M 1170.52 410.69000000000005 L 1177.0 404.21000000000004" stroke="#a63f31" stroke-width="1.4" class="rear-discharge-level-conflict" />
       <metadata class="stair-conflict-metadata">CF-011: rear grade discharge versus dogleg intermediate-landing level</metadata>
     </g>
-    <line x1="205.0" y1="479.0" x2="205.0" y2="608.6" stroke="#A33F31" stroke-width="8" data-source-index="205" />
-    <text x="198.25" y="543.8" font-size="6" text-anchor="middle" font-weight="400" fill="#92382D" transform="rotate(-90 198.25 543.8)" data-source-index="206">Project-car door</text>
-    <line x1="205.0" y1="376.40000000000003" x2="205.0" y2="419.6" stroke="#A33F31" stroke-width="8" data-source-index="207" />
-    <text x="198.25" y="398.0" font-size="6" text-anchor="middle" font-weight="400" fill="#92382D" transform="rotate(-90 198.25 398.0)" data-source-index="208">Pedestrian entrance</text>
-    <line x1="205.0" y1="187.39999999999998" x2="205.0" y2="317.0" stroke="#A33F31" stroke-width="8" data-source-index="209" />
-    <text x="198.25" y="252.2" font-size="6" text-anchor="middle" font-weight="400" fill="#92382D" transform="rotate(-90 198.25 252.2)" data-source-index="210">RC workshop door</text>
-    <line x1="245.5" y1="641.0" x2="439.9" y2="641.0" stroke="#1D7480" stroke-width="8" data-source-index="211" />
-    <text x="342.7" y="656.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="212" data-text-role="opening">PROJECT-CAR WORKSHOP WINDOW · 7,20 m</text>
-    <line x1="245.5" y1="155.0" x2="439.9" y2="155.0" stroke="#1D7480" stroke-width="8" data-source-index="213" />
-    <text x="342.7" y="145.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="214" data-text-role="opening">RC / AIRCRAFT WORKSHOP WINDOW · 7,20 m</text>
-    <line x1="205.0" y1="137.0" x2="205.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="215" />
-    <circle cx="205.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="216" />
-    <text x="205.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="217" data-text-role="secondary">A</text>
-    <line x1="367.0" y1="137.0" x2="367.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="218" />
-    <circle cx="367.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="219" />
-    <text x="367.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="220" data-text-role="secondary">B</text>
-    <line x1="529.0" y1="137.0" x2="529.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="221" />
-    <circle cx="529.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="222" />
-    <text x="529.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="223" data-text-role="secondary">C</text>
-    <line x1="691.0" y1="137.0" x2="691.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="224" />
-    <circle cx="691.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="225" />
-    <text x="691.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="226" data-text-role="secondary">D</text>
-    <line x1="853.0" y1="137.0" x2="853.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="227" />
-    <circle cx="853.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="228" />
-    <text x="853.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="229" data-text-role="secondary">E</text>
-    <line x1="1015.0" y1="137.0" x2="1015.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="230" />
-    <circle cx="1015.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="231" />
-    <text x="1015.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="232" data-text-role="secondary">F</text>
-    <line x1="1177.0" y1="137.0" x2="1177.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="233" />
-    <circle cx="1177.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="234" />
-    <text x="1177.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="235" data-text-role="secondary">G</text>
-    <line x1="205.0" y1="683.0" x2="1177.0" y2="683.0" stroke="#536166" data-source-index="236" />
-    <line x1="205.0" y1="677.0" x2="205.0" y2="689.0" stroke="#536166" data-source-index="237" />
-    <line x1="488.5" y1="677.0" x2="488.5" y2="689.0" stroke="#536166" data-source-index="238" />
-    <line x1="772.0" y1="677.0" x2="772.0" y2="689.0" stroke="#536166" data-source-index="239" />
-    <line x1="1055.5" y1="677.0" x2="1055.5" y2="689.0" stroke="#536166" data-source-index="240" />
-    <line x1="1177.0" y1="677.0" x2="1177.0" y2="689.0" stroke="#536166" data-source-index="241" />
-    <text x="346.75" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="242" data-text-role="secondary">10.50</text>
-    <text x="630.25" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="243" data-text-role="secondary">10.50</text>
-    <text x="913.75" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="244" data-text-role="secondary">10.50</text>
-    <text x="1116.25" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="245" data-text-role="secondary">4,50</text>
-    <text x="691.0" y="708.0" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="246" class="model-secondary" data-text-role="secondary">36.00 m nominal external length</text>
+    <line x1="205.0" y1="479.0" x2="205.0" y2="608.6" stroke="#A33F31" stroke-width="8" data-source-index="205" data-model-id="PB-SOURCE-205" />
+    <text x="198.25" y="543.8" font-size="6" text-anchor="middle" font-weight="400" fill="#92382D" transform="rotate(-90 198.25 543.8)" data-source-index="206" data-model-id="PB-SOURCE-206">Project-car door</text>
+    <line x1="205.0" y1="376.40000000000003" x2="205.0" y2="419.6" stroke="#A33F31" stroke-width="8" data-source-index="207" data-model-id="PB-SOURCE-207" />
+    <text x="198.25" y="398.0" font-size="6" text-anchor="middle" font-weight="400" fill="#92382D" transform="rotate(-90 198.25 398.0)" data-source-index="208" data-model-id="PB-SOURCE-208">Pedestrian entrance</text>
+    <line x1="205.0" y1="187.39999999999998" x2="205.0" y2="317.0" stroke="#A33F31" stroke-width="8" data-source-index="209" data-model-id="PB-SOURCE-209" />
+    <text x="198.25" y="252.2" font-size="6" text-anchor="middle" font-weight="400" fill="#92382D" transform="rotate(-90 198.25 252.2)" data-source-index="210" data-model-id="PB-SOURCE-210">RC workshop door</text>
+    <line x1="245.5" y1="641.0" x2="439.9" y2="641.0" stroke="#1D7480" stroke-width="8" data-source-index="211" data-model-id="PB-SOURCE-211" />
+    <text x="342.7" y="656.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="212" data-model-id="PB-SOURCE-212" data-text-role="opening">PROJECT-CAR WORKSHOP WINDOW · 7,20 m</text>
+    <line x1="245.5" y1="155.0" x2="439.9" y2="155.0" stroke="#1D7480" stroke-width="8" data-source-index="213" data-model-id="PB-SOURCE-213" />
+    <text x="342.7" y="145.0" font-size="8.4" text-anchor="middle" font-weight="700" fill="#1D6873" data-source-index="214" data-model-id="PB-SOURCE-214" data-text-role="opening">RC / AIRCRAFT WORKSHOP WINDOW · 7,20 m</text>
+    <line x1="205.0" y1="137.0" x2="205.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="215" data-model-id="PB-SOURCE-215" />
+    <circle cx="205.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="216" data-model-id="PB-SOURCE-216" />
+    <text x="205.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="217" data-model-id="PB-SOURCE-217" data-text-role="secondary">A</text>
+    <line x1="367.0" y1="137.0" x2="367.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="218" data-model-id="PB-SOURCE-218" />
+    <circle cx="367.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="219" data-model-id="PB-SOURCE-219" />
+    <text x="367.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="220" data-model-id="PB-SOURCE-220" data-text-role="secondary">B</text>
+    <line x1="529.0" y1="137.0" x2="529.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="221" data-model-id="PB-SOURCE-221" />
+    <circle cx="529.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="222" data-model-id="PB-SOURCE-222" />
+    <text x="529.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="223" data-model-id="PB-SOURCE-223" data-text-role="secondary">C</text>
+    <line x1="691.0" y1="137.0" x2="691.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="224" data-model-id="PB-SOURCE-224" />
+    <circle cx="691.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="225" data-model-id="PB-SOURCE-225" />
+    <text x="691.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="226" data-model-id="PB-SOURCE-226" data-text-role="secondary">D</text>
+    <line x1="853.0" y1="137.0" x2="853.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="227" data-model-id="PB-SOURCE-227" />
+    <circle cx="853.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="228" data-model-id="PB-SOURCE-228" />
+    <text x="853.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="229" data-model-id="PB-SOURCE-229" data-text-role="secondary">E</text>
+    <line x1="1015.0" y1="137.0" x2="1015.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="230" data-model-id="PB-SOURCE-230" />
+    <circle cx="1015.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="231" data-model-id="PB-SOURCE-231" />
+    <text x="1015.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="232" data-model-id="PB-SOURCE-232" data-text-role="secondary">F</text>
+    <line x1="1177.0" y1="137.0" x2="1177.0" y2="659.0" stroke="#9ea5a5" stroke-width=".6" stroke-dasharray="4 5" data-source-index="233" data-model-id="PB-SOURCE-233" />
+    <circle cx="1177.0" cy="124.0" r="10" fill="#FFFDFA" stroke="#5a666a" data-source-index="234" data-model-id="PB-SOURCE-234" />
+    <text x="1177.0" y="128.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="235" data-model-id="PB-SOURCE-235" data-text-role="secondary">G</text>
+    <line x1="205.0" y1="683.0" x2="1177.0" y2="683.0" stroke="#536166" data-source-index="236" data-model-id="PB-SOURCE-236" />
+    <line x1="205.0" y1="677.0" x2="205.0" y2="689.0" stroke="#536166" data-source-index="237" data-model-id="PB-SOURCE-237" />
+    <line x1="488.5" y1="677.0" x2="488.5" y2="689.0" stroke="#536166" data-source-index="238" data-model-id="PB-SOURCE-238" />
+    <line x1="772.0" y1="677.0" x2="772.0" y2="689.0" stroke="#536166" data-source-index="239" data-model-id="PB-SOURCE-239" />
+    <line x1="1055.5" y1="677.0" x2="1055.5" y2="689.0" stroke="#536166" data-source-index="240" data-model-id="PB-SOURCE-240" />
+    <line x1="1177.0" y1="677.0" x2="1177.0" y2="689.0" stroke="#536166" data-source-index="241" data-model-id="PB-SOURCE-241" />
+    <text x="346.75" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="242" data-model-id="PB-SOURCE-242" data-text-role="secondary">10.50</text>
+    <text x="630.25" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="243" data-model-id="PB-SOURCE-243" data-text-role="secondary">10.50</text>
+    <text x="913.75" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="244" data-model-id="PB-SOURCE-244" data-text-role="secondary">10.50</text>
+    <text x="1116.25" y="676.0" font-size="9.2" text-anchor="middle" font-weight="400" fill="#172A32" data-source-index="245" data-model-id="PB-SOURCE-245" data-text-role="secondary">4,50</text>
+    <text x="691.0" y="708.0" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="246" data-model-id="PB-SOURCE-246" class="model-secondary" data-text-role="secondary">36.00 m nominal external length</text>
   </g>
   <g id="layer-annotations" data-layer="legend-and-keynotes">
     <text x="58" y="886" font-size="11.5" class="new-eyebrow">READING HIERARCHY</text>
@@ -374,30 +374,30 @@ text {
     <text x="58" y="954" font-size="10" class="new-open">Amber dashed = clearance or open coordination envelope</text>
     <text x="58" y="976" font-size="10" class="new-conflict">Red dashed = exclusion / unresolved safety interface</text>
     <rect x="560" y="901" width="18" height="18" rx="2" fill="#E9F0F2" stroke="#536168" />
-    <text x="586" y="912" font-size="9.6" class="new-body">
+    <text x="586" y="912" font-size="9.7" class="new-body">
       <tspan x="586" dy="0">Technical /</tspan>
       <tspan x="586" dy="12">workshop</tspan>
     </text>
     <rect x="755" y="901" width="18" height="18" rx="2" fill="#F7F4EC" stroke="#536168" />
-    <text x="781" y="912" font-size="9.6" class="new-body">
+    <text x="781" y="912" font-size="9.7" class="new-body">
       <tspan x="781" dy="0">Breathing buffer</tspan>
     </text>
     <rect x="925" y="901" width="18" height="18" rx="2" fill="#F2E8DE" stroke="#536168" />
-    <text x="951" y="912" font-size="9.6" class="new-body">
+    <text x="951" y="912" font-size="9.7" class="new-body">
       <tspan x="951" dy="0">Living / hall</tspan>
     </text>
     <rect x="1085" y="901" width="18" height="18" rx="2" fill="#F5E8D4" stroke="#536168" />
-    <text x="1111" y="912" font-size="9.6" class="new-body">
+    <text x="1111" y="912" font-size="9.7" class="new-body">
       <tspan x="1111" dy="0">Kitchen / dining</tspan>
     </text>
-    <text x="560" y="966" font-size="9.6" class="new-muted">
+    <text x="560" y="966" font-size="9.7" class="new-muted">
       <tspan x="560" dy="0">Colour is an entry aid only. Linework, labels and status wording remain the technical reading</tspan>
       <tspan x="560" dy="12">authority.</tspan>
     </text>
   </g>
   <g id="layer-status" data-layer="status-and-keyed-notes">
     <text x="1324" y="146" font-size="12.5" class="new-title">KEYED COORDINATION ITEMS</text>
-    <text x="1324" y="168" font-size="9.6" class="new-muted">
+    <text x="1324" y="168" font-size="9.7" class="new-muted">
       <tspan x="1324" dy="0">Codes replace long labels inside the plan;</tspan>
       <tspan x="1324" dy="12.2">the source wording is retained here.</tspan>
     </text>

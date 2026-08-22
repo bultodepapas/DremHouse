@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1684" height="1191" viewBox="0 0 1684 1191" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="gp03-title gp03-desc" data-sheet-id="DH-ARQ-SEC-002" data-revision="GP03" data-status="graphic-pilot-not-current" data-construction-authority="false">
   <title id="gp03-title">Transverse mono-pitch roof-section readability pilot GP03</title>
   <desc id="gp03-desc">Presentation-only pilot of the transverse section below P2. The R06 baseline, single roof plane, side walls, P2 floor datum, hall width and approximate levels are copied without coordinate changes. D-039 remains a provisional design-control value and final direction, drainage, structure and roof system remain open.</desc>
-  <metadata>{"construction_authority": false, "date": "2026-08-21", "decision_ids": ["D-039", "D-044"], "pilot": "GP03", "sheet": "DH-ARQ-SEC-002", "source": "planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg", "source_revision": "SEC-002-R06 / 0.3-borrador-07-CUBIERTA", "source_sha256": "5dc117bc1f3892f625cccab79a60bcd7b61845f5698a2a9d13ced90d518a1177", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
+  <metadata>{"construction_authority": false, "date": "2026-08-21", "decision_ids": ["D-039", "D-044"], "pilot": "GP03", "revision": "GP03", "sheet": "DH-ARQ-SEC-002", "source": "planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg", "source_revision": "SEC-002-R06 / 0.3-borrador-07-CUBIERTA", "source_sha256": "5dc117bc1f3892f625cccab79a60bcd7b61845f5698a2a9d13ced90d518a1177", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
   <style>:root {
   --paper: #F4F0E7;
   --panel: #FFFDFA;

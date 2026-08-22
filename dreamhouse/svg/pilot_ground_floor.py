@@ -379,6 +379,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
             "construction_authority": False,
             "date": "2026-08-21",
             "pilot": "GP01",
+            "revision": "GP01",
             "sheet": "DH-ARQ-PLN-001",
             "source": source.relative_to(ROOT).as_posix(),
             "source_revision": "PLN-001-R15 / 0.3-draft-37-PB",
@@ -425,6 +426,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     for source_index, source_node in enumerate(children[3:247], start=3):
         node = copy.deepcopy(source_node)
         node.set("data-source-index", str(source_index))
+        node.set("data-model-id", f"PB-SOURCE-{source_index:03d}")
         _restyle_source_node(node)
         model.append(node)
 
@@ -491,7 +493,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
             912,
             label,
             width_chars=17,
-            size=9.6,
+            size=9.7,
             line_height=12,
         )
     _add_wrapped_text(
@@ -501,7 +503,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         "Colour is an entry aid only. Linework, labels and status wording remain the "
         "technical reading authority.",
         width_chars=95,
-        size=9.6,
+        size=9.7,
         line_height=12,
         css_class="new-muted",
     )
@@ -518,7 +520,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         168,
         "Codes replace long labels inside the plan; the source wording is retained here.",
         width_chars=43,
-        size=9.6,
+        size=9.7,
         line_height=12.2,
         css_class="new-muted",
     )

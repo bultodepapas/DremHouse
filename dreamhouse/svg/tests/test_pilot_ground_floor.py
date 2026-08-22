@@ -107,6 +107,12 @@ class TestGroundFloorGraphicPilot(unittest.TestCase):
         for text in self.output_root.iter(Q("text")):
             self.assertNotIn(text.get("fill", "").lower(), {"#f9f3e8", "#332923"})
 
+    def test_each_copied_node_has_a_stable_model_reference(self) -> None:
+        model = self.output_root.find(f"{Q('g')}[@id='layer-model']")
+        self.assertIsNotNone(model)
+        assert model is not None
+        self.assertTrue(all(node.get("data-model-id") for node in model))
+
 
 if __name__ == "__main__":
     unittest.main()

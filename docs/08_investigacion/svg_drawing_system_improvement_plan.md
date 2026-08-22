@@ -490,6 +490,13 @@ For every promoted source it must verify:
 - no unresolved collisions except typed relationships; and
 - no critical or required text below the configured effective preview sizes.
 
+**Implementation note — 2026-08-22:** the staged v0.1 gate now covers document identity,
+accessibility, metadata/authority, unsafe content, IDs, shared layers, stable direct model
+references, numeric safety, embedded font/lineweight presence and the 8 px required-text
+floor for GP01–GP05. Palette/contrast, bounds, typed collisions and the separate critical
+role threshold remain explicit follow-on gates. See
+[`svg_static_lint_v0.1.md`](svg_static_lint_v0.1.md); no current drawing has been promoted.
+
 ### 9.2 Geometry preservation tests
 
 Before changing a sheet family, record a structured geometry baseline from the active

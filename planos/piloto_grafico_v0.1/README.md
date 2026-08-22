@@ -110,3 +110,20 @@ python3 -m dreamhouse.svg.audit \
 GP05 copies all six calculation-linked technical geometry groups, retains the nine-row
 evidence matrix and keeps every system-design result blocked. It selects no structural
 system, section, quantity, product or construction release.
+
+## Shared static lint
+
+Run the staged fail-closed profile across all five pilots:
+
+```bash
+python3 -m dreamhouse.svg.lint planos/piloto_grafico_v0.1 \
+  --format markdown \
+  --json-output .build/svg-lint/pilots.json \
+  --markdown-output .build/svg-lint/pilots.md
+```
+
+The v0.1 gate fails on identity, accessibility, authority, unsafe content, semantic-layer,
+model-reference, non-finite-number and required-text errors. It reports inherited
+precision, scaled-lineweight and source-microtext debt as warnings. See
+`../../docs/08_investigacion/svg_static_lint_v0.1.md` for the complete implemented boundary
+and follow-on checks.

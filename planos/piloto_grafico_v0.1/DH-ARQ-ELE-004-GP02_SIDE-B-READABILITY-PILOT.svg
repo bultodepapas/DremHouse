@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1684" height="1191" viewBox="0 0 1684 1191" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="gp02-title gp02-desc" data-sheet-id="DH-ARQ-ELE-004" data-revision="GP02" data-status="graphic-pilot-not-current" data-construction-authority="false">
   <title id="gp02-title">Side B elevation readability pilot GP02</title>
   <desc id="gp02-desc">Presentation-only pilot of the Side B facade elevation. The current R10 envelope, openings, levels and dimensions are copied without coordinate changes. Adopted D-083 openings, the excluded dining-window study and open professional gates are identified in separate evidence panels.</desc>
-  <metadata>{"construction_authority": false, "date": "2026-08-21", "decision_ids": ["D-083"], "pilot": "GP02", "sheet": "DH-ARQ-ELE-004", "source": "planos/actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg", "source_revision": "ELE-004-R10 / 0.3-draft-37-PB", "source_sha256": "b0bd4a7e7df00981d45dff749c45c59849e7ef431b660b994929f90c7d444e1f", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
+  <metadata>{"construction_authority": false, "date": "2026-08-21", "decision_ids": ["D-083"], "pilot": "GP02", "revision": "GP02", "sheet": "DH-ARQ-ELE-004", "source": "planos/actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg", "source_revision": "ELE-004-R10 / 0.3-draft-37-PB", "source_sha256": "b0bd4a7e7df00981d45dff749c45c59849e7ef431b660b994929f90c7d444e1f", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
   <style>:root {
   --paper: #F4F0E7;
   --panel: #FFFDFA;

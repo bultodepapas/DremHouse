@@ -113,6 +113,23 @@ class TestSharedPilotDocument(unittest.TestCase):
                 metadata={"construction_authority": True},
             )
 
+    def test_document_control_metadata_defaults_to_root_values(self) -> None:
+        root = create_document(
+            title_id="title",
+            desc_id="desc",
+            accessible_title="Pilot",
+            description="Presentation-only pilot",
+            sheet_id="DH-TEST",
+            revision="GP00",
+            status="not-current",
+            metadata={"construction_authority": False, "source": "test"},
+        )
+
+        metadata = json.loads(root.findtext(q("metadata"), default="{}"))
+        self.assertEqual(metadata["sheet"], "DH-TEST")
+        self.assertEqual(metadata["revision"], "GP00")
+        self.assertEqual(metadata["status"], "not-current")
+
 
 if __name__ == "__main__":
     unittest.main()

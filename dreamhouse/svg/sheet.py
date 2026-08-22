@@ -125,8 +125,12 @@ def create_document(
     title.text = accessible_title
     desc = ET.SubElement(root, q("desc"), {"id": desc_id})
     desc.text = description
+    document_metadata = dict(metadata)
+    document_metadata.setdefault("sheet", sheet_id)
+    document_metadata.setdefault("revision", revision)
+    document_metadata.setdefault("status", status)
     metadata_element = ET.SubElement(root, q("metadata"))
-    metadata_element.text = json.dumps(dict(metadata), sort_keys=True)
+    metadata_element.text = json.dumps(document_metadata, sort_keys=True)
     style = ET.SubElement(root, q("style"))
     style.text = CSS
     return root

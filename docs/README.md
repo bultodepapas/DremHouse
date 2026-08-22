@@ -1,8 +1,8 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.12
-**Date:** 2026-08-21
+**Version:** 0.13
+**Date:** 2026-08-22
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -277,6 +277,10 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [SVG graphic pilot 05 visual review](08_investigacion/svg_graphic_pilot_05_visual_review.md):
   fail-closed E1 structural synthesis retaining 183 calculation-linked shapes and every
   evidence value while enlarging matrix, status, detail and authority text.
+- [SVG static lint v0.1](08_investigacion/svg_static_lint_v0.1.md): deterministic
+  Markdown/JSON pilot gate for accessibility, authority, unsafe content, IDs, semantic
+  layers, model references, numeric safety and required-text preview size, with remaining
+  contrast/bounds/collision work explicit.
 
 ## How to use the project record
 
