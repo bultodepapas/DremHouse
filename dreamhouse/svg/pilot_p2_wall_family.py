@@ -13,6 +13,13 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.layout import (
+    Bounds,
+    LayoutRegion,
+    SHEET_FOOTER_REGION,
+    SHEET_HEADER_REGION,
+    register_text_regions,
+)
 from dreamhouse.svg.sheet import (
     add_footer,
     add_header,
@@ -29,6 +36,16 @@ SOURCE = ROOT / "planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg"
 OUTPUT_DIR = ROOT / "planos/piloto_grafico_v0.1"
 OUTPUT = OUTPUT_DIR / "DH-ARQ-DET-003-GP04_P2-WALL-FAMILY-READABILITY-PILOT.svg"
 MANIFEST = OUTPUT_DIR / "DH-ARQ-DET-003-GP04.manifest.json"
+
+LAYOUT_REGIONS = (
+    SHEET_HEADER_REGION,
+    LayoutRegion.with_inset("build-ups", Bounds(36, 116, 930, 594), 8),
+    LayoutRegion.with_inset("schedule", Bounds(982, 116, 666, 594), 8),
+    LayoutRegion.with_inset("keys", Bounds(36, 726, 500, 282), 8),
+    LayoutRegion.with_inset("control", Bounds(552, 726, 500, 282), 8),
+    LayoutRegion.with_inset("open", Bounds(1068, 726, 580, 282), 8),
+    SHEET_FOOTER_REGION,
+)
 
 W01A_SOURCE_RANGE = range(18, 39)
 W01B_SOURCE_RANGE = range(41, 81)
@@ -493,11 +510,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
 
     _panel_heading(annotations, 56, 757, "REDUNDANT LAYER KEYS", 460)
     _add_key_rows(annotations, x=56, y=790, wall_id="P2-W01A", spacing=36)
-    _add_key_rows(annotations, x=258, y=790, wall_id="P2-W01B", spacing=26)
+    _add_key_rows(annotations, x=258, y=790, wall_id="P2-W01B", spacing=25.6)
     add_text(
         annotations,
         56,
-        988,
+        989,
         "Numbering follows room-side → room-side model order.",
         size=9.8,
         css_class="new-muted",
@@ -599,6 +616,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         ),
         date="2026-08-21",
     )
+    register_text_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

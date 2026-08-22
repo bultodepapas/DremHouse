@@ -13,6 +13,13 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.layout import (
+    Bounds,
+    LayoutRegion,
+    SHEET_FOOTER_REGION,
+    SHEET_HEADER_REGION,
+    register_text_regions,
+)
 from dreamhouse.svg.sheet import (
     add_footer,
     add_header,
@@ -29,6 +36,14 @@ SOURCE = ROOT / "planos/actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg"
 OUTPUT_DIR = ROOT / "planos/piloto_grafico_v0.1"
 OUTPUT = OUTPUT_DIR / "DH-ARQ-ELE-004-GP02_SIDE-B-READABILITY-PILOT.svg"
 MANIFEST = OUTPUT_DIR / "DH-ARQ-ELE-004-GP02.manifest.json"
+
+LAYOUT_REGIONS = (
+    SHEET_HEADER_REGION,
+    LayoutRegion.with_inset("annotations", Bounds(36, 806, 760, 202), 8),
+    LayoutRegion.with_inset("excluded", Bounds(812, 806, 390, 202), 8),
+    LayoutRegion.with_inset("open", Bounds(1218, 806, 430, 202), 8),
+    SHEET_FOOTER_REGION,
+)
 
 SOURCE_CONTENT_START = 3
 SOURCE_CONTENT_END = 63
@@ -362,6 +377,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         ),
         date="2026-08-21",
     )
+    register_text_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

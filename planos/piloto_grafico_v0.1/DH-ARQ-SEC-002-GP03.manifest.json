@@ -7,7 +7,7 @@
   ],
   "generator": "dreamhouse/svg/pilot_transverse_section.py",
   "output": "DH-ARQ-SEC-002-GP03_TRANSVERSE-SECTION-READABILITY-PILOT.svg",
-  "output_sha256": "5e1937d96494bbc086338ea0ff617db5ee37f0ff6c4e88984ffb3f4a5b9a22b1",
+  "output_sha256": "bf5d99465ece56e6f8ba78aa1eaab322fba23af5570a2def9a1a6124d6de3fac",
   "pilot": "GP03",
   "sheet": "DH-ARQ-SEC-002",
   "source": "planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg",

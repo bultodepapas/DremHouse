@@ -136,6 +136,6 @@ cost.
 ## 7. Next controlled batch
 
 The planned palette/contrast increment was subsequently implemented as
-[`svg_palette_contrast_lint_v0.2.md`](svg_palette_contrast_lint_v0.2.md). Bounds and typed-
-collision checks remain the next separate geometric batch so their tolerances and
-exceptions remain reviewable.
+[`svg_palette_contrast_lint_v0.2.md`](svg_palette_contrast_lint_v0.2.md). The first
+axis-aligned safe-bounds and typed text-collision profile was subsequently implemented as
+[`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md).

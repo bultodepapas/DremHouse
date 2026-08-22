@@ -174,186 +174,186 @@ text {
     </g>
   </g>
   <g id="layer-annotations" data-layer="schedule-and-layer-keys" data-contrast-bg="#FFFDFA">
-    <text x="56" y="145" font-size="12.5" class="new-title">01 · CONTROLLED REFERENCE BUILD-UPS</text>
+    <text x="56" y="145" font-size="12.5" class="new-title" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">01 · CONTROLLED REFERENCE BUILD-UPS</text>
     <line x1="56" y1="157" x2="946" y2="157" class="panel-rule" />
-    <text x="56" y="184" font-size="12" class="new-eyebrow">P2-W01A · 90 mm · SAME-SUITE DRY WALL</text>
-    <text x="56" y="205" font-size="9.8" class="new-muted">12.5 + 64 + 12.5 = 89 mm illustrative sum · no rating claimed</text>
-    <text x="500" y="235" font-size="11" class="new-open">LOW-RISK DUTY ONLY</text>
-    <text x="500" y="268" font-size="17" class="new-title">90 mm nominal</text>
-    <text x="500" y="296" font-size="9.8" class="new-body">
+    <text x="56" y="184" font-size="12" class="new-eyebrow" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">P2-W01A · 90 mm · SAME-SUITE DRY WALL</text>
+    <text x="56" y="205" font-size="9.8" class="new-muted" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">12.5 + 64 + 12.5 = 89 mm illustrative sum · no rating claimed</text>
+    <text x="500" y="235" font-size="11" class="new-open" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">LOW-RISK DUTY ONLY</text>
+    <text x="500" y="268" font-size="17" class="new-title" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">90 mm nominal</text>
+    <text x="500" y="296" font-size="9.8" class="new-body" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">
       <tspan x="500" dy="0">Use only for dry boundaries within one suite. Do not</tspan>
       <tspan x="500" dy="12.5">use at suite-to-suite or suite-to-common privacy</tspan>
       <tspan x="500" dy="12.5">boundaries.</tspan>
     </text>
-    <text x="56" y="462" font-size="12" class="new-eyebrow">P2-W01B · 200 mm · SUITE / COMMON SEPARATION</text>
-    <text x="56" y="483" font-size="9.8" class="new-muted">12.5 + 12.5 + 64 + 20 clear + 64 + 12.5 + 12.5 = 198 mm illustrative sum</text>
-    <text x="800" y="542" font-size="10.5" class="new-eyebrow">PRIVACY DUTY</text>
-    <text x="800" y="574" font-size="17" class="new-title">200 mm</text>
-    <text x="800" y="603" font-size="9.8" class="new-body">
+    <text x="56" y="462" font-size="12" class="new-eyebrow" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">P2-W01B · 200 mm · SUITE / COMMON SEPARATION</text>
+    <text x="56" y="483" font-size="9.8" class="new-muted" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">12.5 + 12.5 + 64 + 20 clear + 64 + 12.5 + 12.5 = 198 mm illustrative sum</text>
+    <text x="800" y="542" font-size="10.5" class="new-eyebrow" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">PRIVACY DUTY</text>
+    <text x="800" y="574" font-size="17" class="new-title" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">200 mm</text>
+    <text x="800" y="603" font-size="9.8" class="new-body" data-layout-region="build-ups" data-layout-kind="panel" data-panel-bounds="36 116 930 594" data-safe-bounds="44 124 914 578">
       <tspan x="800" dy="0">Twin independent</tspan>
       <tspan x="800" dy="12">insulated frames. No</tspan>
       <tspan x="800" dy="12">STC/Rw or fire rating</tspan>
       <tspan x="800" dy="12">claimed.</tspan>
     </text>
-    <text x="1002" y="145" font-size="12.5" class="new-title">COORDINATION SCHEDULE</text>
+    <text x="1002" y="145" font-size="12.5" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">COORDINATION SCHEDULE</text>
     <line x1="1002" y1="157" x2="1628" y2="157" class="panel-rule" />
-    <text x="1002" y="186" font-size="9.8" class="new-muted" font-weight="700">TYPE</text>
-    <text x="1118" y="186" font-size="9.8" class="new-muted" font-weight="700">NOMINAL</text>
-    <text x="1225" y="186" font-size="9.8" class="new-muted" font-weight="700">DUTY / LIMIT</text>
+    <text x="1002" y="186" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">TYPE</text>
+    <text x="1118" y="186" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">NOMINAL</text>
+    <text x="1225" y="186" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">DUTY / LIMIT</text>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1002" y="199" width="626" height="48" fill="#EEF2F0" />
-      <text x="1014" y="221" font-size="10" class="new-eyebrow">P2-W01A</text>
-      <text x="1128" y="221" font-size="10" class="new-title">90 mm</text>
-      <text x="1225" y="221" font-size="9.8" class="new-body">
+      <text x="1014" y="221" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W01A</text>
+      <text x="1128" y="221" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">90 mm</text>
+      <text x="1225" y="221" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">dry wall inside one suite</tspan>
       </text>
     </g>
     <g data-contrast-bg="#F8F6F0">
       <rect x="1002" y="255" width="626" height="48" fill="#F8F6F0" />
-      <text x="1014" y="277" font-size="10" class="new-eyebrow">P2-W01B</text>
-      <text x="1128" y="277" font-size="10" class="new-title">200 mm</text>
-      <text x="1225" y="277" font-size="9.8" class="new-body">
+      <text x="1014" y="277" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W01B</text>
+      <text x="1128" y="277" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">200 mm</text>
+      <text x="1225" y="277" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">suite-to-suite / suite-to-common</tspan>
       </text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1002" y="311" width="626" height="48" fill="#EEF2F0" />
-      <text x="1014" y="333" font-size="10" class="new-eyebrow">P2-W02</text>
-      <text x="1128" y="333" font-size="10" class="new-title">150 mm</text>
-      <text x="1225" y="333" font-size="9.8" class="new-body">
+      <text x="1014" y="333" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W02</text>
+      <text x="1128" y="333" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">150 mm</text>
+      <text x="1225" y="333" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">wet / service wall; shafts thicken locally</tspan>
       </text>
     </g>
     <g data-contrast-bg="#F8F6F0">
       <rect x="1002" y="367" width="626" height="48" fill="#F8F6F0" />
-      <text x="1014" y="389" font-size="10" class="new-eyebrow">P2-W02S</text>
-      <text x="1128" y="389" font-size="10" class="new-title">200 mm</text>
-      <text x="1225" y="389" font-size="9.8" class="new-body">
+      <text x="1014" y="389" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W02S</text>
+      <text x="1128" y="389" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">200 mm</text>
+      <text x="1225" y="389" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">sauna / hot-side reserve; separate detail</tspan>
       </text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1002" y="423" width="626" height="48" fill="#EEF2F0" />
-      <text x="1014" y="445" font-size="10" class="new-eyebrow">P2-W03</text>
-      <text x="1128" y="445" font-size="10" class="new-title">200 mm</text>
-      <text x="1225" y="445" font-size="9.8" class="new-body">
+      <text x="1014" y="445" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W03</text>
+      <text x="1128" y="445" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">200 mm</text>
+      <text x="1225" y="445" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">stair / protected-core reserve only</tspan>
       </text>
     </g>
     <g data-contrast-bg="#F8F6F0">
       <rect x="1002" y="479" width="626" height="48" fill="#F8F6F0" />
-      <text x="1014" y="501" font-size="10" class="new-eyebrow">P2-W04R</text>
-      <text x="1128" y="501" font-size="10" class="new-title">200 mm</text>
-      <text x="1225" y="501" font-size="9.8" class="new-body">
+      <text x="1014" y="501" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W04R</text>
+      <text x="1128" y="501" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">200 mm</text>
+      <text x="1225" y="501" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">retained bedroom ends at hall edge</tspan>
       </text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1002" y="535" width="626" height="48" fill="#EEF2F0" />
-      <text x="1014" y="557" font-size="10" class="new-eyebrow">P2-W05</text>
-      <text x="1128" y="557" font-size="10" class="new-title">230 mm</text>
-      <text x="1225" y="557" font-size="9.8" class="new-body">
+      <text x="1014" y="557" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W05</text>
+      <text x="1128" y="557" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">230 mm</text>
+      <text x="1225" y="557" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">insulated shell + independent inner lining</tspan>
       </text>
     </g>
     <g data-contrast-bg="#F8F6F0">
       <rect x="1002" y="591" width="626" height="48" fill="#F8F6F0" />
-      <text x="1014" y="613" font-size="10" class="new-eyebrow">P2-W06</text>
-      <text x="1128" y="613" font-size="10" class="new-title">90 mm</text>
-      <text x="1225" y="613" font-size="9.8" class="new-body">
+      <text x="1014" y="613" font-size="10" class="new-eyebrow" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">P2-W06</text>
+      <text x="1128" y="613" font-size="10" class="new-title" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">90 mm</text>
+      <text x="1225" y="613" font-size="9.8" class="new-body" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">
         <tspan x="1225" dy="0">reversible phase closure; upgrade if required</tspan>
       </text>
     </g>
-    <text x="1002" y="681" font-size="9.8" class="new-muted">Nominal schematic coordination zones · local increases and selected systems remain open.</text>
-    <text x="56" y="757" font-size="12.5" class="new-title">REDUNDANT LAYER KEYS</text>
+    <text x="1002" y="681" font-size="9.8" class="new-muted" data-layout-region="schedule" data-layout-kind="panel" data-panel-bounds="982 116 666 594" data-safe-bounds="990 124 650 578">Nominal schematic coordination zones · local increases and selected systems remain open.</text>
+    <text x="56" y="757" font-size="12.5" class="new-title" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">REDUNDANT LAYER KEYS</text>
     <line x1="56" y1="769" x2="516" y2="769" class="panel-rule" />
-    <text x="56" y="790" font-size="10.5" class="new-eyebrow">P2-W01A</text>
+    <text x="56" y="790" font-size="10.5" class="new-eyebrow" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">P2-W01A</text>
     <rect x="56" y="805" width="16" height="16" fill="url(#gp04-new-board)" stroke="#172A32" stroke-width="1" />
-    <text x="80" y="817" font-size="9.8" class="key-tag">1</text>
-    <text x="99" y="817" font-size="9.8" class="new-body">new visible board · 12.5 mm</text>
+    <text x="80" y="817" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">1</text>
+    <text x="99" y="817" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">new visible board · 12.5 mm</text>
     <rect x="56" y="841" width="16" height="16" fill="url(#gp04-insulated-frame)" stroke="#172A32" stroke-width="1" />
-    <text x="80" y="853" font-size="9.8" class="key-tag">2</text>
-    <text x="99" y="853" font-size="9.8" class="new-body">insulated frame · 64 mm</text>
+    <text x="80" y="853" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">2</text>
+    <text x="99" y="853" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">insulated frame · 64 mm</text>
     <rect x="56" y="877" width="16" height="16" fill="url(#gp04-new-board)" stroke="#172A32" stroke-width="1" />
-    <text x="80" y="889" font-size="9.8" class="key-tag">3</text>
-    <text x="99" y="889" font-size="9.8" class="new-body">new visible board · 12.5 mm</text>
-    <text x="258" y="790" font-size="10.5" class="new-eyebrow">P2-W01B</text>
+    <text x="80" y="889" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">3</text>
+    <text x="99" y="889" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">new visible board · 12.5 mm</text>
+    <text x="258" y="790" font-size="10.5" class="new-eyebrow" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">P2-W01B</text>
     <rect x="258" y="805" width="16" height="16" fill="url(#gp04-new-board)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="817" font-size="9.8" class="key-tag">1</text>
-    <text x="301" y="817" font-size="9.8" class="new-body">new visible board · 12.5 mm</text>
-    <rect x="258" y="831" width="16" height="16" fill="url(#gp04-reclaimed-board)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="843" font-size="9.8" class="key-tag">2</text>
-    <text x="301" y="843" font-size="9.8" class="new-body">reclaimed concealed board · 12.5 mm</text>
-    <rect x="258" y="857" width="16" height="16" fill="url(#gp04-insulated-frame)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="869" font-size="9.8" class="key-tag">3</text>
-    <text x="301" y="869" font-size="9.8" class="new-body">insulated frame · 64 mm</text>
-    <rect x="258" y="883" width="16" height="16" fill="url(#gp04-air-cavity)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="895" font-size="9.8" class="key-tag">4</text>
-    <text x="301" y="895" font-size="9.8" class="new-body">clear decoupling cavity · 20 mm</text>
-    <rect x="258" y="909" width="16" height="16" fill="url(#gp04-insulated-frame)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="921" font-size="9.8" class="key-tag">5</text>
-    <text x="301" y="921" font-size="9.8" class="new-body">insulated frame · 64 mm</text>
-    <rect x="258" y="935" width="16" height="16" fill="url(#gp04-reclaimed-board)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="947" font-size="9.8" class="key-tag">6</text>
-    <text x="301" y="947" font-size="9.8" class="new-body">reclaimed concealed board · 12.5 mm</text>
-    <rect x="258" y="961" width="16" height="16" fill="url(#gp04-new-board)" stroke="#172A32" stroke-width="1" />
-    <text x="282" y="973" font-size="9.8" class="key-tag">7</text>
-    <text x="301" y="973" font-size="9.8" class="new-body">new visible board · 12.5 mm</text>
-    <text x="56" y="988" font-size="9.8" class="new-muted">Numbering follows room-side → room-side model order.</text>
+    <text x="282" y="817" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">1</text>
+    <text x="301" y="817" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">new visible board · 12.5 mm</text>
+    <rect x="258" y="830.6" width="16" height="16" fill="url(#gp04-reclaimed-board)" stroke="#172A32" stroke-width="1" />
+    <text x="282" y="842.6" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">2</text>
+    <text x="301" y="842.6" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">reclaimed concealed board · 12.5 mm</text>
+    <rect x="258" y="856.2" width="16" height="16" fill="url(#gp04-insulated-frame)" stroke="#172A32" stroke-width="1" />
+    <text x="282" y="868.2" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">3</text>
+    <text x="301" y="868.2" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">insulated frame · 64 mm</text>
+    <rect x="258" y="881.8" width="16" height="16" fill="url(#gp04-air-cavity)" stroke="#172A32" stroke-width="1" />
+    <text x="282" y="893.8" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">4</text>
+    <text x="301" y="893.8" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">clear decoupling cavity · 20 mm</text>
+    <rect x="258" y="907.4" width="16" height="16" fill="url(#gp04-insulated-frame)" stroke="#172A32" stroke-width="1" />
+    <text x="282" y="919.4" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">5</text>
+    <text x="301" y="919.4" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">insulated frame · 64 mm</text>
+    <rect x="258" y="933" width="16" height="16" fill="url(#gp04-reclaimed-board)" stroke="#172A32" stroke-width="1" />
+    <text x="282" y="945" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">6</text>
+    <text x="301" y="945" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">reclaimed concealed board · 12.5 mm</text>
+    <rect x="258" y="958.6" width="16" height="16" fill="url(#gp04-new-board)" stroke="#172A32" stroke-width="1" />
+    <text x="282" y="970.6" font-size="9.8" class="key-tag" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">7</text>
+    <text x="301" y="970.6" font-size="9.8" class="new-body" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">new visible board · 12.5 mm</text>
+    <text x="56" y="989" font-size="9.8" class="new-muted" data-layout-region="keys" data-layout-kind="panel" data-panel-bounds="36 726 500 282" data-safe-bounds="44 734 484 266">Numbering follows room-side → room-side model order.</text>
   </g>
   <g id="layer-status" data-layer="authority-and-open-gates">
     <g data-contrast-bg="#FFFDFA">
-      <text x="572" y="757" font-size="12.5" class="new-title">D-080 · CONTROL / ECONOMY</text>
+      <text x="572" y="757" font-size="12.5" class="new-title" data-layout-region="control" data-layout-kind="panel" data-panel-bounds="552 726 500 282" data-safe-bounds="560 734 484 266">D-080 · CONTROL / ECONOMY</text>
       <line x1="572" y1="769" x2="1032" y2="769" class="panel-rule" />
-      <text x="572" y="799" font-size="11" class="new-eyebrow">ACTIVE SCHEMATIC COORDINATION</text>
-      <text x="572" y="829" font-size="9.7" class="new-body">
+      <text x="572" y="799" font-size="11" class="new-eyebrow" data-layout-region="control" data-layout-kind="panel" data-panel-bounds="552 726 500 282" data-safe-bounds="560 734 484 266">ACTIVE SCHEMATIC COORDINATION</text>
+      <text x="572" y="829" font-size="9.7" class="new-body" data-layout-region="control" data-layout-kind="panel" data-panel-bounds="552 726 500 282" data-safe-bounds="560 734 484 266">
         <tspan x="572" dy="0">The 90 mm wall is restricted to low-risk same-suite boundaries;</tspan>
         <tspan x="572" dy="12.3">privacy boundaries keep twin independent frames.</tspan>
       </text>
-      <text x="572" y="868.6" font-size="9.7" class="new-body">
+      <text x="572" y="868.6" font-size="9.7" class="new-body" data-layout-region="control" data-layout-kind="panel" data-panel-bounds="552 726 500 282" data-safe-bounds="560 734 484 266">
         <tspan x="572" dy="0">Nominal thickness is a design-control value, not a product order</tspan>
         <tspan x="572" dy="12.3">or construction dimension.</tspan>
       </text>
-      <text x="572" y="908.2" font-size="9.7" class="new-body">
+      <text x="572" y="908.2" font-size="9.7" class="new-body" data-layout-region="control" data-layout-kind="panel" data-panel-bounds="552 726 500 282" data-safe-bounds="560 734 484 266">
         <tspan x="572" dy="0">Wet, hot-side, protected-core and exterior types remain subject to</tspan>
         <tspan x="572" dy="12.3">professional assembly selection.</tspan>
       </text>
-      <text x="572" y="986" font-size="9.7" class="new-conflict">No product selected · no saving booked · no target change</text>
+      <text x="572" y="986" font-size="9.7" class="new-conflict" data-layout-region="control" data-layout-kind="panel" data-panel-bounds="552 726 500 282" data-safe-bounds="560 734 484 266">No product selected · no saving booked · no target change</text>
     </g>
     <g data-contrast-bg="#FBF0D9">
-      <text x="1088" y="757" font-size="12.5" class="new-title">OPEN · DO NOT FREEZE</text>
+      <text x="1088" y="757" font-size="12.5" class="new-title" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">OPEN · DO NOT FREEZE</text>
       <line x1="1088" y1="769" x2="1628" y2="769" class="panel-rule" />
-      <text x="1088" y="799" font-size="10" class="new-open">•</text>
-      <text x="1106" y="799" font-size="9.7" class="new-body">STC/Rw, fire, thermal and moisture performance</text>
-      <text x="1088" y="825" font-size="10" class="new-open">•</text>
-      <text x="1106" y="825" font-size="9.7" class="new-body">tested local assemblies, acoustic doors and seals</text>
-      <text x="1088" y="851" font-size="10" class="new-open">•</text>
-      <text x="1106" y="851" font-size="9.7" class="new-body">head tracks, anchors, bracing and steel interfaces</text>
-      <text x="1088" y="877" font-size="10" class="new-open">•</text>
-      <text x="1106" y="877" font-size="9.7" class="new-body">plumbing stacks, local W02 depth and shaft access</text>
-      <text x="1088" y="903" font-size="10" class="new-open">•</text>
-      <text x="1106" y="903" font-size="9.7" class="new-body">wet, sauna/hot-side and protected-core details</text>
-      <text x="1088" y="929" font-size="10" class="new-open">•</text>
-      <text x="1106" y="929" font-size="9.7" class="new-body">facade core, wind, drainage and hygrothermal design</text>
-      <text x="1088" y="955" font-size="10" class="new-open">•</text>
-      <text x="1106" y="955" font-size="9.7" class="new-body">mock-ups, products, measured quantities and quotations</text>
-      <text x="1088" y="986" font-size="9.7" class="new-conflict">Thickness alone proves no performance rating.</text>
+      <text x="1088" y="799" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="799" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">STC/Rw, fire, thermal and moisture performance</text>
+      <text x="1088" y="825" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="825" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">tested local assemblies, acoustic doors and seals</text>
+      <text x="1088" y="851" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="851" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">head tracks, anchors, bracing and steel interfaces</text>
+      <text x="1088" y="877" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="877" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">plumbing stacks, local W02 depth and shaft access</text>
+      <text x="1088" y="903" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="903" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">wet, sauna/hot-side and protected-core details</text>
+      <text x="1088" y="929" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="929" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">facade core, wind, drainage and hygrothermal design</text>
+      <text x="1088" y="955" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">•</text>
+      <text x="1106" y="955" font-size="9.7" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">mock-ups, products, measured quantities and quotations</text>
+      <text x="1088" y="986" font-size="9.7" class="new-conflict" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 726 580 282" data-safe-bounds="1076 734 564 266">Thickness alone proves no performance rating.</text>
     </g>
   </g>
   <g id="layer-sheet-header" data-layer="titleblock" data-contrast-bg="#F4F0E7">
-    <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 04 · PRESENTATION ONLY</text>
-    <text x="36" y="70" font-size="24" class="new-title">P2 WALL FAMILY · THICKNESS BY DUTY</text>
-    <text x="36" y="96" font-size="11" class="new-muted">Same R22 values · enlarged controlled build-ups and schedule · numbered layer keys · pattern + text coding</text>
-    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end">DH-ARQ-DET-003</text>
-    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP04 · NOT CURRENT</text>
+    <text x="36" y="34" font-size="10.5" class="new-eyebrow" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GRAPHIC PILOT 04 · PRESENTATION ONLY</text>
+    <text x="36" y="70" font-size="24" class="new-title" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">P2 WALL FAMILY · THICKNESS BY DUTY</text>
+    <text x="36" y="96" font-size="11" class="new-muted" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">Same R22 values · enlarged controlled build-ups and schedule · numbered layer keys · pattern + text coding</text>
+    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">DH-ARQ-DET-003</text>
+    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GP04 · NOT CURRENT</text>
     <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
   </g>
   <g id="layer-sheet" data-layer="titleblock" data-contrast-bg="#172A32">
     <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
-    <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
-    <text x="56" y="1082" font-size="10.2" class="new-on-dark">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
-    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted">Source: DET-003-R22 / 0.3-draft-25-P2 · Decision basis: D-080 · Controlled build-up source-space geometry preserved.</text>
-    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted">Open gates: tested systems · fire/acoustics · wet/sauna · structure/wind · building physics · products/mock-ups · measured cost</text>
-    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end">2026-08-21</text>
+    <text x="56" y="1056" font-size="13" class="new-on-dark-alert" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">NOT FOR CONSTRUCTION</text>
+    <text x="56" y="1082" font-size="10.2" class="new-on-dark" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
+    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Source: DET-003-R22 / 0.3-draft-25-P2 · Decision basis: D-080 · Controlled build-up source-space geometry preserved.</text>
+    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Open gates: tested systems · fire/acoustics · wet/sauna · structure/wind · building physics · products/mock-ups · measured cost</text>
+    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">2026-08-21</text>
   </g>
 </svg>

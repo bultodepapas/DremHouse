@@ -151,10 +151,10 @@ Review files remain untracked under `.build/svg-pilot/`.
 No decision-register or cost-control update is required. This batch adopts no graphic
 system, drawing, product, quantity, scope or saving.
 
-## 8. Next controlled batch
+## 8. Subsequent controlled batch
 
-The next increment should implement safe sheet/panel bounds and typed collision detection.
-It should begin with axis-aligned presentation text and panels, preserve explicit
-text-to-marker/leader relationships and fail only on reproducible unresolved intersections.
-Browser-versus-`resvg` font equivalence and the combined contact-sheet CI build remain
-subsequent gates.
+The axis-aligned presentation-text bounds and typed text-collision increment was
+subsequently implemented as
+[`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md).
+Browser-versus-`resvg` font equivalence, text-to-geometry relationships and the combined
+contact-sheet CI build remain subsequent gates.

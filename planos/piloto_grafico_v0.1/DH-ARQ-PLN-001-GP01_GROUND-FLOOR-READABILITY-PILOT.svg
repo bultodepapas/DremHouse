@@ -403,164 +403,164 @@ text {
     <text x="691.0" y="708.0" font-size="8.8" text-anchor="middle" font-weight="700" fill="#172A32" data-source-index="246" data-model-id="PB-SOURCE-246" class="model-secondary" data-text-role="secondary">36.00 m nominal external length</text>
   </g>
   <g id="layer-annotations" data-layer="legend-and-keynotes" data-contrast-bg="#FFFDFA">
-    <text x="58" y="886" font-size="11.5" class="new-eyebrow">READING HIERARCHY</text>
-    <text x="58" y="910" font-size="10" class="new-body">Heavy dark lines = enclosing/cut geometry</text>
-    <text x="58" y="932" font-size="10" class="new-body">Fine grey lines = fixtures, furniture and reference geometry</text>
-    <text x="58" y="954" font-size="10" class="new-open">Amber dashed = clearance or open coordination envelope</text>
-    <text x="58" y="976" font-size="10" class="new-conflict">Red dashed = exclusion / unresolved safety interface</text>
+    <text x="58" y="886" font-size="11.5" class="new-eyebrow" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">READING HIERARCHY</text>
+    <text x="58" y="910" font-size="10" class="new-body" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">Heavy dark lines = enclosing/cut geometry</text>
+    <text x="58" y="932" font-size="10" class="new-body" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">Fine grey lines = fixtures, furniture and reference geometry</text>
+    <text x="58" y="954" font-size="10" class="new-open" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">Amber dashed = clearance or open coordination envelope</text>
+    <text x="58" y="976" font-size="10" class="new-conflict" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">Red dashed = exclusion / unresolved safety interface</text>
     <rect x="560" y="901" width="18" height="18" rx="2" fill="#E9F0F2" stroke="#536168" />
-    <text x="586" y="912" font-size="9.7" class="new-body">
+    <text x="586" y="912" font-size="9.7" class="new-body" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">
       <tspan x="586" dy="0">Technical /</tspan>
       <tspan x="586" dy="12">workshop</tspan>
     </text>
     <rect x="755" y="901" width="18" height="18" rx="2" fill="#F7F4EC" stroke="#536168" />
-    <text x="781" y="912" font-size="9.7" class="new-body">
+    <text x="781" y="912" font-size="9.7" class="new-body" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">
       <tspan x="781" dy="0">Breathing buffer</tspan>
     </text>
     <rect x="925" y="901" width="18" height="18" rx="2" fill="#F2E8DE" stroke="#536168" />
-    <text x="951" y="912" font-size="9.7" class="new-body">
+    <text x="951" y="912" font-size="9.7" class="new-body" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">
       <tspan x="951" dy="0">Living / hall</tspan>
     </text>
     <rect x="1085" y="901" width="18" height="18" rx="2" fill="#F5E8D4" stroke="#536168" />
-    <text x="1111" y="912" font-size="9.7" class="new-body">
+    <text x="1111" y="912" font-size="9.7" class="new-body" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">
       <tspan x="1111" dy="0">Kitchen / dining</tspan>
     </text>
-    <text x="560" y="966" font-size="9.7" class="new-muted">
+    <text x="560" y="966" font-size="9.7" class="new-muted" data-layout-region="legend" data-layout-kind="panel" data-panel-bounds="36 860 1250 148" data-safe-bounds="44 868 1234 132">
       <tspan x="560" dy="0">Colour is an entry aid only. Linework, labels and status wording remain the technical reading</tspan>
       <tspan x="560" dy="12">authority.</tspan>
     </text>
   </g>
   <g id="layer-status" data-layer="status-and-keyed-notes" data-contrast-bg="#FFFDFA">
-    <text x="1324" y="146" font-size="12.5" class="new-title">KEYED COORDINATION ITEMS</text>
-    <text x="1324" y="168" font-size="9.7" class="new-muted">
+    <text x="1324" y="146" font-size="12.5" class="new-title" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">KEYED COORDINATION ITEMS</text>
+    <text x="1324" y="168" font-size="9.7" class="new-muted" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1324" dy="0">Codes replace long labels inside the plan;</tspan>
       <tspan x="1324" dy="12.2">the source wording is retained here.</tspan>
     </text>
-    <text x="1324" y="214" font-size="9.8" class="new-eyebrow">P01</text>
-    <text x="1362" y="214" font-size="10.2" class="new-body">
+    <text x="1324" y="214" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P01</text>
+    <text x="1362" y="214" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">RC / ELECTRONICS MODULAR BENCH · 6</tspan>
       <tspan x="1362" dy="11.8">× 1.50 m · 3 ADJUSTABLE; 1.20 m</tspan>
       <tspan x="1362" dy="11.8">CLEAR BENCH OPERATING STRIP</tspan>
     </text>
-    <text x="1324" y="257.4" font-size="9.8" class="new-eyebrow">P02</text>
-    <text x="1362" y="257.4" font-size="10.2" class="new-body">
+    <text x="1324" y="257.4" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P02</text>
+    <text x="1362" y="257.4" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">CENTRAL RC ASSEMBLY ISLAND · 3 ×</tspan>
       <tspan x="1362" dy="11.8">1.50 m · TOP +0.84</tspan>
     </text>
-    <text x="1324" y="289" font-size="9.8" class="new-eyebrow">P03</text>
-    <text x="1362" y="289" font-size="10.2" class="new-body">
+    <text x="1324" y="289" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P03</text>
+    <text x="1362" y="289" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">LiPo · SEPARATE / VENTILATED</tspan>
     </text>
-    <text x="1324" y="308.8" font-size="9.8" class="new-eyebrow">P04</text>
-    <text x="1362" y="308.8" font-size="10.2" class="new-body">
+    <text x="1324" y="308.8" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P04</text>
+    <text x="1362" y="308.8" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">PROJECT-CAR MODULAR BENCH · 6 ×</tspan>
       <tspan x="1362" dy="11.8">1.50 m · +0.84 / +0.90; 1.20 m</tspan>
       <tspan x="1362" dy="11.8">BENCH OPERATING STRIP · LIFT</tspan>
       <tspan x="1362" dy="11.8">OVERLAP OPEN</tspan>
     </text>
-    <text x="1324" y="364" font-size="9.8" class="new-eyebrow">P05</text>
-    <text x="1362" y="364" font-size="10.2" class="new-body">
+    <text x="1324" y="364" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P05</text>
+    <text x="1362" y="364" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">LIFT / VEHICLE EXCLUSION ENVELOPE</tspan>
     </text>
-    <text x="1324" y="383.8" font-size="9.8" class="new-eyebrow">P06</text>
-    <text x="1362" y="383.8" font-size="10.2" class="new-body">
+    <text x="1324" y="383.8" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P06</text>
+    <text x="1362" y="383.8" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">SIDE A SHARED WORKSTATION · 7.20 ×</tspan>
       <tspan x="1362" dy="11.8">3.00 m CLEAR</tspan>
     </text>
-    <text x="1324" y="415.4" font-size="9.8" class="new-eyebrow">P07</text>
-    <text x="1362" y="415.4" font-size="10.2" class="new-body">
+    <text x="1324" y="415.4" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P07</text>
+    <text x="1362" y="415.4" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">WORKSTATION 2 · 3 × 3 m CLEAR</tspan>
     </text>
-    <text x="1324" y="435.2" font-size="9.8" class="new-eyebrow">P08</text>
-    <text x="1362" y="435.2" font-size="10.2" class="new-body">
+    <text x="1324" y="435.2" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P08</text>
+    <text x="1362" y="435.2" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">4.00 m SOFA</tspan>
     </text>
-    <text x="1324" y="455" font-size="9.8" class="new-eyebrow">P09</text>
-    <text x="1362" y="455" font-size="10.2" class="new-body">
+    <text x="1324" y="455" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P09</text>
+    <text x="1362" y="455" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">100-IN TV · SIDE B WALL</tspan>
     </text>
-    <text x="1324" y="474.8" font-size="9.8" class="new-eyebrow">P10</text>
-    <text x="1362" y="474.8" font-size="10.2" class="new-body">
+    <text x="1324" y="474.8" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P10</text>
+    <text x="1362" y="474.8" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">1.10 m CHAIR / WALK CLEARANCE</tspan>
       <tspan x="1362" dy="11.8">ENVELOPE</tspan>
     </text>
-    <text x="1324" y="506.4" font-size="9.8" class="new-eyebrow">P11</text>
-    <text x="1362" y="506.4" font-size="10.2" class="new-body">
+    <text x="1324" y="506.4" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">P11</text>
+    <text x="1362" y="506.4" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">7.20 m FULL-SPAN ISLAND · DRY PREP</tspan>
       <tspan x="1362" dy="11.8">+ 8 SEATS</tspan>
     </text>
     <line x1="1324" y1="540" x2="1628" y2="540" class="sheet-rule" />
-    <text x="1324" y="566" font-size="12.5" class="new-title">RELOCATED ZONE LABEL</text>
-    <text x="1324" y="590" font-size="9.8" class="new-eyebrow">Z01</text>
-    <text x="1362" y="590" font-size="10.2" class="new-body">
+    <text x="1324" y="566" font-size="12.5" class="new-title" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">RELOCATED ZONE LABEL</text>
+    <text x="1324" y="590" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">Z01</text>
+    <text x="1362" y="590" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">PROJECT CAR · approx. 70.4 m² net</tspan>
     </text>
     <line x1="1324" y1="611.2" x2="1628" y2="611.2" class="sheet-rule" />
-    <text x="1324" y="637.2" font-size="12.5" class="new-title">SERVICE CORE</text>
-    <text x="1324" y="661.2" font-size="9.8" class="new-eyebrow">R01</text>
-    <text x="1362" y="661.2" font-size="10.2" class="new-body">
+    <text x="1324" y="637.2" font-size="12.5" class="new-title" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">SERVICE CORE</text>
+    <text x="1324" y="661.2" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">R01</text>
+    <text x="1362" y="661.2" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">Homelab / technical · 20.7 m² gross</tspan>
     </text>
-    <text x="1324" y="680.4" font-size="9.8" class="new-eyebrow">R02</text>
-    <text x="1362" y="680.4" font-size="10.2" class="new-body">
+    <text x="1324" y="680.4" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">R02</text>
+    <text x="1362" y="680.4" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">Ground-floor bathroom · 10.8 m²</tspan>
       <tspan x="1362" dy="12.2">gross</tspan>
     </text>
-    <text x="1324" y="711.8" font-size="9.8" class="new-eyebrow">R03</text>
-    <text x="1362" y="711.8" font-size="10.2" class="new-body">
+    <text x="1324" y="711.8" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">R03</text>
+    <text x="1362" y="711.8" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">Protected stair · 16.2 m² gross</tspan>
     </text>
-    <text x="1324" y="731" font-size="9.8" class="new-eyebrow">R04</text>
-    <text x="1362" y="731" font-size="10.2" class="new-body">
+    <text x="1324" y="731" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">R04</text>
+    <text x="1362" y="731" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">Storage · 22.5 m² gross</tspan>
     </text>
-    <text x="1324" y="750.2" font-size="9.8" class="new-eyebrow">R05</text>
-    <text x="1362" y="750.2" font-size="10.2" class="new-body">
+    <text x="1324" y="750.2" font-size="9.8" class="new-eyebrow" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">R05</text>
+    <text x="1362" y="750.2" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1362" dy="0">Pantry / clean support · 10.8 m²</tspan>
       <tspan x="1362" dy="12.2">gross</tspan>
     </text>
     <line x1="1324" y1="784.6" x2="1628" y2="784.6" class="sheet-rule" />
-    <text x="1324" y="812.6" font-size="12.5" class="new-title">COORDINATION BASIS</text>
-    <text x="1324" y="836.6" font-size="10" class="new-open">•</text>
-    <text x="1340" y="836.6" font-size="10.2" class="new-body">
+    <text x="1324" y="812.6" font-size="12.5" class="new-title" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">COORDINATION BASIS</text>
+    <text x="1324" y="836.6" font-size="10" class="new-open" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">•</text>
+    <text x="1340" y="836.6" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1340" dy="0">Wall thicknesses remain study values; D-083</tspan>
       <tspan x="1340" dy="12.2">aligns desk-window sills at +0.75 m and</tspan>
       <tspan x="1340" dy="12.2">retains the repeated 1.20 m P2</tspan>
       <tspan x="1340" dy="12.2">bedroom-window family.</tspan>
     </text>
-    <text x="1324" y="893.4" font-size="10" class="new-open">•</text>
-    <text x="1340" y="893.4" font-size="10.2" class="new-body">
+    <text x="1324" y="893.4" font-size="10" class="new-open" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">•</text>
+    <text x="1340" y="893.4" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1340" dy="0">The Great Wall, flush service doors and</tspan>
       <tspan x="1340" dy="12.2">legible stair portal remain unchanged.</tspan>
     </text>
-    <text x="1324" y="925.8" font-size="10" class="new-open">•</text>
-    <text x="1340" y="925.8" font-size="10.2" class="new-body">
+    <text x="1324" y="925.8" font-size="10" class="new-open" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">•</text>
+    <text x="1340" y="925.8" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1340" dy="0">Slab, lift, drainage, structure, fire,</tspan>
       <tspan x="1340" dy="12.2">extraction and MEP remain professional</tspan>
       <tspan x="1340" dy="12.2">design gates.</tspan>
     </text>
-    <text x="1324" y="970.4" font-size="10" class="new-open">•</text>
-    <text x="1340" y="970.4" font-size="10.2" class="new-body">
+    <text x="1324" y="970.4" font-size="10" class="new-open" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">•</text>
+    <text x="1340" y="970.4" font-size="10.2" class="new-body" data-layout-region="status" data-layout-kind="panel" data-panel-bounds="1304 116 344 892" data-safe-bounds="1312 124 328 876">
       <tspan x="1340" dy="0">Worktops and equipment remain coordination</tspan>
       <tspan x="1340" dy="12.2">envelopes pending real product data.</tspan>
     </text>
   </g>
   <g id="layer-sheet" data-layer="titleblock">
     <g data-contrast-bg="#F4F0E7">
-      <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 01 · PRESENTATION ONLY</text>
-      <text x="36" y="70" font-size="24" class="new-title">GROUND FLOOR · COORDINATED READING</text>
-      <text x="36" y="96" font-size="11" class="new-muted">Same R15 geometry and values · reduced annotation competition · professional core + didactic overlay</text>
-      <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end">DH-ARQ-PLN-001</text>
-      <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP01 · NOT CURRENT</text>
+      <text x="36" y="34" font-size="10.5" class="new-eyebrow" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GRAPHIC PILOT 01 · PRESENTATION ONLY</text>
+      <text x="36" y="70" font-size="24" class="new-title" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GROUND FLOOR · COORDINATED READING</text>
+      <text x="36" y="96" font-size="11" class="new-muted" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">Same R15 geometry and values · reduced annotation competition · professional core + didactic overlay</text>
+      <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">DH-ARQ-PLN-001</text>
+      <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GP01 · NOT CURRENT</text>
       <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
     </g>
     <g data-contrast-bg="#172A32">
       <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
-      <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
-      <text x="56" y="1082" font-size="10.2" class="new-on-dark">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
-      <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted">Source: PLN-001-R15 / 0.3-draft-37-PB · Decision basis: D-083 · Model coordinates and displayed values preserved.</text>
-      <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted">Open gates: site · solar/privacy · structure · safe glazing · building physics · operation · drainage · cost</text>
-      <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end">2026-08-21</text>
+      <text x="56" y="1056" font-size="13" class="new-on-dark-alert" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">NOT FOR CONSTRUCTION</text>
+      <text x="56" y="1082" font-size="10.2" class="new-on-dark" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
+      <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Source: PLN-001-R15 / 0.3-draft-37-PB · Decision basis: D-083 · Model coordinates and displayed values preserved.</text>
+      <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Open gates: site · solar/privacy · structure · safe glazing · building physics · operation · drainage · cost</text>
+      <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">2026-08-21</text>
     </g>
   </g>
 </svg>

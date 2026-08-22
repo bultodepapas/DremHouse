@@ -14,6 +14,13 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.layout import (
+    Bounds,
+    LayoutRegion,
+    SHEET_FOOTER_REGION,
+    SHEET_HEADER_REGION,
+    register_text_regions,
+)
 from dreamhouse.svg.sheet import (
     add_footer,
     add_header,
@@ -31,6 +38,18 @@ SOURCE = ROOT / "planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg"
 OUTPUT_DIR = ROOT / "planos/piloto_grafico_v0.1"
 OUTPUT = OUTPUT_DIR / "DH-EST-E1-001-GP05_STRUCTURAL-EVIDENCE-READABILITY-PILOT.svg"
 MANIFEST = OUTPUT_DIR / "DH-EST-E1-001-GP05.manifest.json"
+
+LAYOUT_REGIONS = (
+    SHEET_HEADER_REGION,
+    LayoutRegion.with_inset("plan", Bounds(36, 116, 1010, 494), 8),
+    LayoutRegion.with_inset("evidence", Bounds(1062, 116, 586, 494), 8),
+    LayoutRegion.with_inset("truss", Bounds(36, 626, 1010, 382), 8),
+    LayoutRegion.with_inset("joint", Bounds(1062, 626, 284, 198), 8),
+    LayoutRegion.with_inset("foundation", Bounds(1364, 626, 284, 198), 8),
+    LayoutRegion.with_inset("erection", Bounds(1062, 832, 284, 176), 8),
+    LayoutRegion.with_inset("fire", Bounds(1364, 832, 284, 176), 8),
+    SHEET_FOOTER_REGION,
+)
 
 SOURCE_GROUPS = {
     "integrated-plan": 15,
@@ -342,8 +361,8 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
         anchor="middle",
     )
     for x in (166, 298, 430, 562, 694, 826):
-        add_text(parent, x, 588, "6.00", size=9.8, css_class="new-muted", anchor="middle")
-    add_text(parent, 496, 606, "36.00 m", size=10.5, css_class="new-title", anchor="middle")
+        add_text(parent, x, 581, "6.00", size=9.8, css_class="new-muted", anchor="middle")
+    add_text(parent, 496, 599, "36.00 m", size=10.5, css_class="new-title", anchor="middle")
     _add_rotated_text(parent, 80, 372, "18.00 m", size=10.5, css_class="new-title")
 
     add_text(parent, 910, 184, "GRAPHIC STATUS", size=10.2, css_class="new-title")
@@ -573,7 +592,7 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
     add_text(
         parent,
         1384,
-        798,
+        797.5,
         "qmax 37.3 kPa · plate ratio 0.205",
         size=9.8,
         css_class="new-eyebrow",
@@ -594,7 +613,7 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
     add_text(
         parent,
         1082,
-        982,
+        980,
         "18 m → ≥2 pieces at 12 m transport limit",
         size=9.8,
         css_class="new-title",
@@ -602,7 +621,7 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
     add_text(
         parent,
         1082,
-        1000,
+        997,
         "BLOCKED · crane / lugs / splice / weather / bracing",
         size=9.8,
         css_class="new-conflict",
@@ -626,7 +645,7 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
     add_text(
         fire_annotations,
         1384,
-        1000,
+        997,
         "BLOCKED · 400°C sensitivity only; 550/700°C fail",
         size=9.8,
         css_class="new-conflict",
@@ -731,6 +750,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         ),
         date="2026-08-22",
     )
+    register_text_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

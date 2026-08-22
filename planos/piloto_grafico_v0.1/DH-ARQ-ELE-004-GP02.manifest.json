@@ -6,7 +6,7 @@
   ],
   "generator": "dreamhouse/svg/pilot_side_b.py",
   "output": "DH-ARQ-ELE-004-GP02_SIDE-B-READABILITY-PILOT.svg",
-  "output_sha256": "6c1b58940db62610bd0e05149883152db4c02b577853e09c1abdb1d629b952ea",
+  "output_sha256": "22c20b488e59d05d9de6b700a3d9e7b522e50207364132037e425b73df1619af",
   "pilot": "GP02",
   "sheet": "DH-ARQ-ELE-004",
   "source": "planos/actual/DH-ARQ-ELE-004_CURRENT-SIDE-B.svg",

@@ -284,6 +284,10 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [SVG palette and contrast lint v0.2](08_investigacion/svg_palette_contrast_lint_v0.2.md):
   controlled 30-token presentation palette, typed semantic backgrounds and computed text
   contrast across GP01–GP05, with inherited model colour debt retained as warnings.
+- [SVG safe-bounds and collision lint v0.3](08_investigacion/svg_safe_bounds_collision_lint_v0.3.md):
+  typed sheet/panel regions, conservative axis-aligned text boxes and fail-closed
+  text-to-text gap checks across GP01–GP05, with rotated and geometry checks explicitly
+  staged.
 
 ## How to use the project record
 

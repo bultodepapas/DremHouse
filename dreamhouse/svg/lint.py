@@ -2,8 +2,9 @@
 
 The staged lint profile covers the shared pilot contract: identity, accessibility,
 authority, unsafe content, layers, model references, numeric safety, controlled
-presentation colours, typed text contrast and required-text preview size. Precision
-normalization, measured bounds and collision checks remain explicit follow-on gates.
+presentation colours, typed text contrast, required-text preview size, declared safe
+bounds and conservative text collisions. Precision normalization and measured geometry
+bounds remain explicit follow-on gates.
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.layout import Bounds, estimate_text_bounds
 from dreamhouse.svg.theme import APPROVED_PRESENTATION_COLOURS
 
 
@@ -966,6 +968,225 @@ def _check_text(
     }
 
 
+def _parse_css_number(value: str | None, *, default: float = 0.0) -> float:
+    if value is None:
+        return default
+    normalized = value.strip()
+    if not PLAIN_NUMBER_RE.fullmatch(normalized):
+        raise ValueError(f"Expected a plain numeric CSS value, received {value!r}")
+    number = float(normalized.removesuffix("px"))
+    if not math.isfinite(number):
+        raise ValueError(f"Expected a finite CSS value, received {value!r}")
+    return number
+
+
+def _minimum_inset(panel: Bounds, safe: Bounds) -> float:
+    return min(
+        safe.x - panel.x,
+        safe.y - panel.y,
+        panel.right - safe.right,
+        panel.bottom - safe.bottom,
+    )
+
+
+def _check_layout(
+    root: ET.Element,
+    findings: list[Finding],
+    *,
+    min_panel_inset: float,
+    min_text_gap: float,
+    bounds_tolerance: float,
+) -> dict[str, Any]:
+    """Check typed presentation-text regions with deterministic conservative boxes."""
+
+    parent_map = {child: parent for parent in root.iter() for child in parent}
+    variables, rules = _parse_stylesheets(root)
+    missing: list[str] = []
+    malformed: list[str] = []
+    invalid_regions: list[str] = []
+    region_conflicts: list[str] = []
+    outside: list[str] = []
+    unsupported_transforms: list[str] = []
+    boxes_by_region: dict[str, list[tuple[ET.Element, Bounds]]] = {}
+    region_contracts: dict[str, tuple[str, Bounds, Bounds]] = {}
+    panel_insets: list[float] = []
+    checked = 0
+    rotated_skipped = 0
+    presentation_count = 0
+
+    required_attributes = (
+        "data-layout-region",
+        "data-layout-kind",
+        "data-panel-bounds",
+        "data-safe-bounds",
+    )
+    for text, _transform_scale, inside_model in _walk_text(root):
+        if inside_model or _has_ancestor(text, parent_map=parent_map, tag="defs"):
+            continue
+        presentation_count += 1
+        example = _text_example(text) or _element_ref(text)
+        absent = [name for name in required_attributes if not text.get(name, "").strip()]
+        if absent:
+            missing.append(f"{example!r} ({', '.join(absent)})")
+            continue
+        region_id = text.get("data-layout-region", "")
+        kind = text.get("data-layout-kind", "")
+        try:
+            panel = Bounds.parse(text.get("data-panel-bounds", ""))
+            safe = Bounds.parse(text.get("data-safe-bounds", ""))
+        except ValueError as error:
+            malformed.append(f"{example!r} ({error})")
+            continue
+        if not panel.contains(safe, tolerance=bounds_tolerance):
+            invalid_regions.append(f"{example!r} (safe bounds leave panel {region_id!r})")
+            continue
+
+        contract = (kind, panel, safe)
+        prior_contract = region_contracts.setdefault(region_id, contract)
+        if prior_contract != contract:
+            region_conflicts.append(f"{region_id!r} at {example!r}")
+            continue
+        if kind == "panel":
+            inset = _minimum_inset(panel, safe)
+            panel_insets.append(inset)
+            if inset + bounds_tolerance < min_panel_inset:
+                invalid_regions.append(
+                    f"{example!r} (panel {region_id!r} inset {inset:g} < "
+                    f"{min_panel_inset:g})"
+                )
+                continue
+
+        transform = text.get("transform", "").strip()
+        if transform:
+            if "rotate(" in transform and text.get("data-layout-policy") == "rotated-skip":
+                rotated_skipped += 1
+                continue
+            unsupported_transforms.append(f"{example!r} ({transform})")
+            continue
+
+        try:
+            letter_spacing = _parse_css_number(
+                _computed_property(
+                    text,
+                    "letter-spacing",
+                    parent_map=parent_map,
+                    variables=variables,
+                    rules=rules,
+                )
+            )
+            stroke_width = _parse_css_number(
+                _computed_property(
+                    text,
+                    "stroke-width",
+                    parent_map=parent_map,
+                    variables=variables,
+                    rules=rules,
+                )
+            )
+            weight = _font_weight(
+                _computed_property(
+                    text,
+                    "font-weight",
+                    parent_map=parent_map,
+                    variables=variables,
+                    rules=rules,
+                )
+            )
+            box = estimate_text_bounds(
+                text,
+                letter_spacing=letter_spacing,
+                stroke_width=stroke_width,
+                bold=weight >= 700,
+            )
+        except ValueError as error:
+            malformed.append(f"{example!r} ({error})")
+            continue
+        checked += 1
+        if not safe.contains(box, tolerance=bounds_tolerance):
+            outside.append(
+                f"{example!r} in {region_id!r}: box {box.serialize()} outside "
+                f"{safe.serialize()}"
+            )
+        boxes_by_region.setdefault(region_id, []).append((text, box))
+
+    if missing or malformed or unsupported_transforms:
+        examples = (missing + malformed + unsupported_transforms)[:5]
+        _finding(
+            findings,
+            "SVG-B001",
+            "error",
+            f"{len(missing) + len(malformed) + len(unsupported_transforms)} presentation "
+            f"texts have missing, malformed or unsupported layout contracts; examples: "
+            f"{', '.join(examples)}",
+            root,
+        )
+    if invalid_regions or region_conflicts:
+        examples = (invalid_regions + region_conflicts)[:5]
+        _finding(
+            findings,
+            "SVG-B002",
+            "error",
+            f"{len(invalid_regions) + len(region_conflicts)} layout region declarations are "
+            f"inconsistent or breach the panel inset; examples: {', '.join(examples)}",
+            root,
+        )
+    if outside:
+        _finding(
+            findings,
+            "SVG-B003",
+            "error",
+            f"{len(outside)} axis-aligned presentation text boxes leave their safe bounds; "
+            f"examples: {', '.join(outside[:4])}",
+            root,
+        )
+
+    untyped_collisions: list[str] = []
+    typed_collisions = 0
+    for region_id, entries in boxes_by_region.items():
+        for index, (left_text, left_box) in enumerate(entries):
+            for right_text, right_box in entries[index + 1 :]:
+                if not left_box.expanded(min_text_gap / 2).intersects(
+                    right_box.expanded(min_text_gap / 2)
+                ):
+                    continue
+                left_relation = left_text.get("data-layout-relation", "").strip()
+                right_relation = right_text.get("data-layout-relation", "").strip()
+                if left_relation and left_relation == right_relation:
+                    typed_collisions += 1
+                    continue
+                untyped_collisions.append(
+                    f"{_text_example(left_text)!r} ↔ {_text_example(right_text)!r} "
+                    f"in {region_id!r}"
+                )
+    if untyped_collisions:
+        _finding(
+            findings,
+            "SVG-B004",
+            "error",
+            f"{len(untyped_collisions)} presentation text pairs breach the "
+            f"{min_text_gap:g}-unit gap without a shared typed relation; examples: "
+            f"{', '.join(untyped_collisions[:5])}",
+            root,
+        )
+
+    return {
+        "layout_text_elements": presentation_count,
+        "layout_axis_aligned_checked": checked,
+        "layout_rotated_skipped": rotated_skipped,
+        "layout_contract_failures": (
+            len(missing)
+            + len(malformed)
+            + len(invalid_regions)
+            + len(region_conflicts)
+            + len(unsupported_transforms)
+        ),
+        "safe_bound_failures": len(outside),
+        "untyped_text_collisions": len(untyped_collisions),
+        "typed_text_collisions": typed_collisions,
+        "minimum_declared_panel_inset": min(panel_insets, default=None),
+    }
+
+
 def lint_file(
     path: Path,
     *,
@@ -975,6 +1196,9 @@ def lint_file(
     large_contrast: float = 3.0,
     large_text_px: float = 24.0,
     large_bold_text_px: float = 18.66,
+    min_panel_inset: float = 8.0,
+    min_text_gap: float = 6.0,
+    bounds_tolerance: float = 0.5,
     max_precision: int = 6,
     strict_precision: bool = False,
 ) -> dict[str, Any]:
@@ -1014,7 +1238,14 @@ def lint_file(
         large_text_px=large_text_px,
         large_bold_text_px=large_bold_text_px,
     )
-    metrics = {**text_metrics, **palette_metrics, **contrast_metrics}
+    layout_metrics = _check_layout(
+        root,
+        findings,
+        min_panel_inset=min_panel_inset,
+        min_text_gap=min_text_gap,
+        bounds_tolerance=bounds_tolerance,
+    )
+    metrics = {**text_metrics, **palette_metrics, **contrast_metrics, **layout_metrics}
     return _file_report(path, findings, metrics=metrics)
 
 
@@ -1046,6 +1277,9 @@ def lint_paths(
     large_contrast: float = 3.0,
     large_text_px: float = 24.0,
     large_bold_text_px: float = 18.66,
+    min_panel_inset: float = 8.0,
+    min_text_gap: float = 6.0,
+    bounds_tolerance: float = 0.5,
     max_precision: int = 6,
     strict_precision: bool = False,
 ) -> dict[str, Any]:
@@ -1058,6 +1292,9 @@ def lint_paths(
             large_contrast=large_contrast,
             large_text_px=large_text_px,
             large_bold_text_px=large_bold_text_px,
+            min_panel_inset=min_panel_inset,
+            min_text_gap=min_text_gap,
+            bounds_tolerance=bounds_tolerance,
             max_precision=max_precision,
             strict_precision=strict_precision,
         )
@@ -1066,13 +1303,16 @@ def lint_paths(
     errors = sum(file["errors"] for file in files)
     warnings = sum(file["warnings"] for file in files)
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "profile": {
+            "bounds_tolerance": bounds_tolerance,
             "large_bold_text_px": large_bold_text_px,
             "large_contrast": large_contrast,
             "large_text_px": large_text_px,
             "max_precision": max_precision,
+            "min_panel_inset": min_panel_inset,
             "min_required_text_px": min_required_text_px,
+            "min_text_gap": min_text_gap,
             "normal_contrast": normal_contrast,
             "preview_width_px": preview_width,
             "strict_precision": strict_precision,
@@ -1100,8 +1340,9 @@ def markdown_report(report: dict[str, Any]) -> str:
             f"**Errors:** {summary['errors']} · **Warning findings:** {summary['warnings']}"
         ),
         "",
-        "| File | Status | Errors | Warnings | Minimum text | Minimum contrast |",
-        "| --- | --- | ---: | ---: | ---: | ---: |",
+        "| File | Status | Errors | Warnings | Minimum text | Minimum contrast | "
+        "Bounds / collisions |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
     ]
     for file in report["files"]:
         minimum = file["metrics"].get("minimum_effective_text_px")
@@ -1109,9 +1350,13 @@ def markdown_report(report: dict[str, Any]) -> str:
         contrast = file["metrics"].get("minimum_contrast_ratio")
         contrast_label = "—" if contrast is None else f"{contrast:.2f}:1"
         path = str(file["path"]).replace("|", "\\|")
+        bounds_label = (
+            f"{file['metrics'].get('safe_bound_failures', 0)} / "
+            f"{file['metrics'].get('untyped_text_collisions', 0)}"
+        )
         lines.append(
             f"| `{path}` | {file['status']} | {file['errors']} | {file['warnings']} | "
-            f"{minimum_label} | {contrast_label} |"
+            f"{minimum_label} | {contrast_label} | {bounds_label} |"
         )
 
     for file in report["files"]:
@@ -1168,6 +1413,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--large-contrast", type=float, default=3.0)
     parser.add_argument("--large-text-px", type=float, default=24.0)
     parser.add_argument("--large-bold-text-px", type=float, default=18.66)
+    parser.add_argument("--min-panel-inset", type=float, default=8.0)
+    parser.add_argument("--min-text-gap", type=float, default=6.0)
+    parser.add_argument("--bounds-tolerance", type=float, default=0.5)
     parser.add_argument("--max-precision", type=int, default=6)
     parser.add_argument("--strict-precision", action="store_true")
     parser.add_argument("--warnings-as-errors", action="store_true")
@@ -1184,6 +1432,9 @@ def main(argv: list[str] | None = None) -> int:
         large_contrast=arguments.large_contrast,
         large_text_px=arguments.large_text_px,
         large_bold_text_px=arguments.large_bold_text_px,
+        min_panel_inset=arguments.min_panel_inset,
+        min_text_gap=arguments.min_text_gap,
+        bounds_tolerance=arguments.bounds_tolerance,
         max_precision=arguments.max_precision,
         strict_precision=arguments.strict_precision,
     )

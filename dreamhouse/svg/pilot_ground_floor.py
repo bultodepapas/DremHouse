@@ -16,6 +16,13 @@ import textwrap
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.layout import (
+    Bounds,
+    LayoutRegion,
+    SHEET_FOOTER_REGION,
+    SHEET_HEADER_REGION,
+    register_text_regions,
+)
 from dreamhouse.svg.sheet import CSS
 from dreamhouse.svg.theme import colour
 
@@ -25,6 +32,13 @@ SOURCE = ROOT / "planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg"
 OUTPUT_DIR = ROOT / "planos/piloto_grafico_v0.1"
 OUTPUT = OUTPUT_DIR / "DH-ARQ-PLN-001-GP01_GROUND-FLOOR-READABILITY-PILOT.svg"
 MANIFEST = OUTPUT_DIR / "manifest.json"
+
+LAYOUT_REGIONS = (
+    SHEET_HEADER_REGION,
+    LayoutRegion.with_inset("legend", Bounds(36, 860, 1250, 148), 8),
+    LayoutRegion.with_inset("status", Bounds(1304, 116, 344, 892), 8),
+    SHEET_FOOTER_REGION,
+)
 
 SVG_NS = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG_NS)
@@ -673,6 +687,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         anchor="end",
     )
 
+    register_text_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

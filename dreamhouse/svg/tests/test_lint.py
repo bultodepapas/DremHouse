@@ -13,6 +13,7 @@ from dreamhouse.svg import (
     pilot_side_b,
     pilot_transverse_section,
 )
+from dreamhouse.svg.layout import Bounds, LayoutRegion, register_text_regions
 from dreamhouse.svg.lint import exit_code, lint_file, lint_paths, markdown_report
 from dreamhouse.svg.sheet import create_document, q
 
@@ -111,6 +112,10 @@ def valid_document() -> ET.Element:
         {"x": "100", "y": "1120", "font-size": "10", "class": "new-body"},
     )
     sheet_text.text = "Presentation only"
+    register_text_regions(
+        root,
+        (LayoutRegion.with_inset("fixture", Bounds(0, 0, 1684, 1191), 8),),
+    )
     return root
 
 
@@ -138,6 +143,59 @@ class TestStaticSvgLint(unittest.TestCase):
         self.assertTrue(
             all(file["metrics"]["minimum_contrast_ratio"] >= 4.5 for file in report["files"])
         )
+        self.assertTrue(
+            all(file["metrics"]["safe_bound_failures"] == 0 for file in report["files"])
+        )
+        self.assertTrue(
+            all(file["metrics"]["untyped_text_collisions"] == 0 for file in report["files"])
+        )
+
+    def test_layout_contract_bounds_and_collisions_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            missing_root = valid_document()
+            missing_text = missing_root.find(f"{q('g')}[@id='layer-annotations']/{q('text')}")
+            assert missing_text is not None
+            missing_text.attrib.pop("data-layout-region")
+            missing_path = write_svg(Path(temporary), missing_root, "missing-layout.svg")
+
+            outside_root = valid_document()
+            outside_text = outside_root.find(f"{q('g')}[@id='layer-annotations']/{q('text')}")
+            assert outside_text is not None
+            outside_text.set("x", "7")
+            outside_path = write_svg(Path(temporary), outside_root, "outside-layout.svg")
+
+            collision_root = valid_document()
+            collision_texts = list(collision_root.iter(q("text")))
+            assert len(collision_texts) == 2
+            collision_texts[1].set("x", collision_texts[0].get("x", "100"))
+            collision_texts[1].set("y", collision_texts[0].get("y", "240"))
+            collision_path = write_svg(Path(temporary), collision_root, "collision-layout.svg")
+
+            missing = lint_file(missing_path)
+            outside = lint_file(outside_path)
+            collision = lint_file(collision_path)
+
+        self.assertIn("SVG-B001", finding_codes(missing))
+        self.assertIn("SVG-B003", finding_codes(outside))
+        self.assertIn("SVG-B004", finding_codes(collision))
+        self.assertEqual(outside["metrics"]["safe_bound_failures"], 1)
+        self.assertEqual(collision["metrics"]["untyped_text_collisions"], 1)
+
+    def test_shared_layout_relation_types_an_intentional_collision(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = valid_document()
+            texts = list(root.iter(q("text")))
+            assert len(texts) == 2
+            texts[1].set("x", texts[0].get("x", "100"))
+            texts[1].set("y", texts[0].get("y", "240"))
+            for text in texts:
+                text.set("data-layout-relation", "fixture-composite-label")
+            path = write_svg(Path(temporary), root)
+
+            report = lint_file(path)
+
+        self.assertNotIn("SVG-B004", finding_codes(report))
+        self.assertEqual(report["metrics"]["typed_text_collisions"], 1)
 
     def test_malformed_svg_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

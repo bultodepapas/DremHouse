@@ -305,48 +305,48 @@ text {
     </g>
   </g>
   <g id="layer-annotations" data-layer="technical-labels-and-evidence" data-contrast-bg="#FFFDFA">
-    <text x="56" y="136" font-size="12.5" class="new-title">01 · INTEGRATED ROOF / P2 LOAD-PATH PLAN</text>
+    <text x="56" y="136" font-size="12.5" class="new-title" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">01 · INTEGRATED ROOF / P2 LOAD-PATH PLAN</text>
     <line x1="56" y1="148" x2="1026" y2="148" class="panel-rule" />
-    <text x="100" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">A</text>
-    <text x="232" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">B</text>
-    <text x="364" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">C</text>
-    <text x="496" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">D</text>
-    <text x="628" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">E</text>
-    <text x="760" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">F</text>
-    <text x="892" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">G</text>
-    <text x="727" y="190" font-size="9.8" class="new-eyebrow" text-anchor="middle">P2 18 × 15 m · +3.80</text>
-    <text x="215.5" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 215.5 372)" data-contrast-bg="#9CC6CC">RL-CAR</text>
-    <text x="446.5" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 446.5 372)" data-contrast-bg="#9CC6CC">RL-RC</text>
-    <text x="842.5" y="367.6" font-size="9.8" class="new-hypothesis" text-anchor="middle" transform="rotate(-90 842.5 367.6)">D-048 CORE</text>
-    <text x="496" y="356" font-size="10.2" class="key-tag" text-anchor="middle">DIAPHRAGM DEMAND · 8.77 kN/m</text>
-    <text x="569" y="374.2" font-size="9.8" class="new-eyebrow" text-anchor="middle" transform="rotate(-90 569 374.2)">EDGE · X=21</text>
-    <text x="804" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 804 372)">HIDDEN FRAME · X=31.5</text>
-    <text x="848" y="543.6" font-size="9.8" class="key-tag" text-anchor="middle">4.50 m OVERHANG</text>
-    <text x="166" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
-    <text x="298" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
-    <text x="430" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
-    <text x="562" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
-    <text x="694" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
-    <text x="826" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
-    <text x="496" y="606" font-size="10.5" class="new-title" text-anchor="middle">36.00 m</text>
-    <text x="80" y="372" font-size="10.5" class="new-title" text-anchor="middle" transform="rotate(-90 80 372)">18.00 m</text>
-    <text x="910" y="184" font-size="10.2" class="new-title">GRAPHIC STATUS</text>
+    <text x="100" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">A</text>
+    <text x="232" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">B</text>
+    <text x="364" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">C</text>
+    <text x="496" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">D</text>
+    <text x="628" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">E</text>
+    <text x="760" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">F</text>
+    <text x="892" y="161.5" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">G</text>
+    <text x="727" y="190" font-size="9.8" class="new-eyebrow" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">P2 18 × 15 m · +3.80</text>
+    <text x="215.5" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 215.5 372)" data-contrast-bg="#9CC6CC" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478" data-layout-policy="rotated-skip">RL-CAR</text>
+    <text x="446.5" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 446.5 372)" data-contrast-bg="#9CC6CC" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478" data-layout-policy="rotated-skip">RL-RC</text>
+    <text x="842.5" y="367.6" font-size="9.8" class="new-hypothesis" text-anchor="middle" transform="rotate(-90 842.5 367.6)" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478" data-layout-policy="rotated-skip">D-048 CORE</text>
+    <text x="496" y="356" font-size="10.2" class="key-tag" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">DIAPHRAGM DEMAND · 8.77 kN/m</text>
+    <text x="569" y="374.2" font-size="9.8" class="new-eyebrow" text-anchor="middle" transform="rotate(-90 569 374.2)" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478" data-layout-policy="rotated-skip">EDGE · X=21</text>
+    <text x="804" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 804 372)" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478" data-layout-policy="rotated-skip">HIDDEN FRAME · X=31.5</text>
+    <text x="848" y="543.6" font-size="9.8" class="key-tag" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">4.50 m OVERHANG</text>
+    <text x="166" y="581" font-size="9.8" class="new-muted" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">6.00</text>
+    <text x="298" y="581" font-size="9.8" class="new-muted" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">6.00</text>
+    <text x="430" y="581" font-size="9.8" class="new-muted" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">6.00</text>
+    <text x="562" y="581" font-size="9.8" class="new-muted" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">6.00</text>
+    <text x="694" y="581" font-size="9.8" class="new-muted" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">6.00</text>
+    <text x="826" y="581" font-size="9.8" class="new-muted" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">6.00</text>
+    <text x="496" y="599" font-size="10.5" class="new-title" text-anchor="middle" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">36.00 m</text>
+    <text x="80" y="372" font-size="10.5" class="new-title" text-anchor="middle" transform="rotate(-90 80 372)" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478" data-layout-policy="rotated-skip">18.00 m</text>
+    <text x="910" y="184" font-size="10.2" class="new-title" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">GRAPHIC STATUS</text>
     <line x1="910" y1="207" x2="932" y2="207" stroke="#172A32" stroke-width="5" />
-    <text x="940" y="211" font-size="9.8" class="new-body">7 M60 ROOF</text>
+    <text x="940" y="211" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">7 M60 ROOF</text>
     <line x1="910" y1="238" x2="932" y2="238" stroke="#3D7186" stroke-width="5" />
-    <text x="940" y="242" font-size="9.8" class="new-body">P2 GRAVITY</text>
+    <text x="940" y="242" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">P2 GRAVITY</text>
     <line x1="910" y1="269" x2="932" y2="269" stroke="#1D7480" stroke-width="5" />
-    <text x="940" y="273" font-size="9.8" class="new-body">D-054 RL / q</text>
+    <text x="940" y="273" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">D-054 RL / q</text>
     <line x1="910" y1="300" x2="932" y2="300" stroke="#66538A" stroke-width="5" />
-    <text x="940" y="304" font-size="9.8" class="new-body">D-048 CORE</text>
+    <text x="940" y="304" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">D-048 CORE</text>
     <line x1="910" y1="331" x2="932" y2="331" stroke="#BD7626" stroke-width="5" />
-    <text x="940" y="335" font-size="9.8" class="new-body">TRIAL BAYS</text>
+    <text x="940" y="335" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">TRIAL BAYS</text>
     <line x1="910" y1="362" x2="932" y2="362" stroke="#A33F31" stroke-width="5" />
-    <text x="940" y="366" font-size="9.8" class="new-body">OPEN GATE</text>
+    <text x="940" y="366" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">OPEN GATE</text>
     <g data-contrast-bg="#FBF0D9">
       <rect x="910" y="403" width="116" height="145" rx="4" fill="#FBF0D9" stroke="#A33F31" stroke-dasharray="6 4" />
-      <text x="922" y="425" font-size="10.2" class="new-conflict">TRIAL ONLY</text>
-      <text x="922" y="448" font-size="9.8" class="new-body">
+      <text x="922" y="425" font-size="10.2" class="new-conflict" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">TRIAL ONLY</text>
+      <text x="922" y="448" font-size="9.8" class="new-body" data-layout-region="plan" data-layout-kind="panel" data-panel-bounds="36 116 1010 494" data-safe-bounds="44 124 994 478">
         <tspan x="922" dy="0">Bay locations are</tspan>
         <tspan x="922" dy="12.3">diagrammatic.</tspan>
         <tspan x="922" dy="12.3">Openings,</tspan>
@@ -356,174 +356,174 @@ text {
         <tspan x="922" dy="12.3">unresolved.</tspan>
       </text>
     </g>
-    <text x="1082" y="140" font-size="12.5" class="new-title">02 · CALCULATION ≠ DESIGN</text>
+    <text x="1082" y="140" font-size="12.5" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">02 · CALCULATION ≠ DESIGN</text>
     <line x1="1082" y1="152" x2="1628" y2="152" class="panel-rule" />
-    <text x="1082" y="177" font-size="9.8" class="new-muted" font-weight="700">PHENOMENON</text>
-    <text x="1288" y="177" font-size="9.8" class="new-muted" font-weight="700">CALC</text>
-    <text x="1374" y="177" font-size="9.8" class="new-muted" font-weight="700">EVIDENCE</text>
-    <text x="1574" y="177" font-size="9.8" class="new-muted" font-weight="700">DESIGN</text>
+    <text x="1082" y="177" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PHENOMENON</text>
+    <text x="1288" y="177" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">CALC</text>
+    <text x="1374" y="177" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">EVIDENCE</text>
+    <text x="1574" y="177" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">DESIGN</text>
     <g data-contrast-bg="#FFFDFA">
-      <text x="1082" y="211" font-size="9.8" class="new-title">HSS LOCAL / BIAXIAL</text>
+      <text x="1082" y="211" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">HSS LOCAL / BIAXIAL</text>
       <rect x="1278" y="195" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="211" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-      <text x="1374" y="211" font-size="9.8" class="new-body">interaction 0.653</text>
+      <text x="1319" y="211" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS*</text>
+      <text x="1374" y="211" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">interaction 0.653</text>
       <rect x="1560" y="195" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="211" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="211" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1074" y="230" width="558" height="37" rx="3" fill="#EEF2F0" />
-      <text x="1082" y="253" font-size="9.8" class="new-title">CHORD LOCAL BENDING</text>
+      <text x="1082" y="253" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">CHORD LOCAL BENDING</text>
       <rect x="1278" y="237" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="253" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-      <text x="1374" y="253" font-size="9.8" class="new-body">12.51 kN·m / 0.369</text>
+      <text x="1319" y="253" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS*</text>
+      <text x="1374" y="253" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">12.51 kN·m / 0.369</text>
       <rect x="1560" y="237" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="253" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="253" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#FFFDFA">
-      <text x="1082" y="295" font-size="9.8" class="new-title">MEMBER SECOND ORDER</text>
+      <text x="1082" y="295" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">MEMBER SECOND ORDER</text>
       <rect x="1278" y="279" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="295" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-      <text x="1374" y="295" font-size="9.8" class="new-body">B1 1.255</text>
+      <text x="1319" y="295" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS*</text>
+      <text x="1374" y="295" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">B1 1.255</text>
       <rect x="1560" y="279" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="295" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="295" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1074" y="314" width="558" height="37" rx="3" fill="#EEF2F0" />
-      <text x="1082" y="337" font-size="9.8" class="new-title">GENERIC JOINT PARTS</text>
+      <text x="1082" y="337" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">GENERIC JOINT PARTS</text>
       <rect x="1278" y="321" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="337" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-      <text x="1374" y="337" font-size="9.8" class="new-body">ratio 0.387; HSS wall open</text>
+      <text x="1319" y="337" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS*</text>
+      <text x="1374" y="337" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">ratio 0.387; HSS wall open</text>
       <rect x="1560" y="321" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="337" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="337" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#FFFDFA">
-      <text x="1082" y="379" font-size="9.8" class="new-title">TRIAL LATERAL BAYS</text>
+      <text x="1082" y="379" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">TRIAL LATERAL BAYS</text>
       <rect x="1278" y="363" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="379" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-      <text x="1374" y="379" font-size="9.8" class="new-body">63.2 kN / 0.622</text>
+      <text x="1319" y="379" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS*</text>
+      <text x="1374" y="379" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">63.2 kN / 0.622</text>
       <rect x="1560" y="363" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="379" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="379" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1074" y="398" width="558" height="37" rx="3" fill="#EEF2F0" />
-      <text x="1082" y="421" font-size="9.8" class="new-title">ROOF DIAPHRAGM</text>
+      <text x="1082" y="421" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">ROOF DIAPHRAGM</text>
       <rect x="1278" y="405" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="421" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
-      <text x="1374" y="421" font-size="9.8" class="new-body">8.77 kN/m; deck open</text>
+      <text x="1319" y="421" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">DEMAND</text>
+      <text x="1374" y="421" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">8.77 kN/m; deck open</text>
       <rect x="1560" y="405" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="421" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="421" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#FFFDFA">
-      <text x="1082" y="463" font-size="9.8" class="new-title">FIRE SENSITIVITY</text>
+      <text x="1082" y="463" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">FIRE SENSITIVITY</text>
       <rect x="1278" y="447" width="82" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1319" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">FAIL@550</text>
-      <text x="1374" y="463" font-size="9.8" class="new-body">ratios 0.65 / 1.05 / 2.84</text>
+      <text x="1319" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">FAIL@550</text>
+      <text x="1374" y="463" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">ratios 0.65 / 1.05 / 2.84</text>
       <rect x="1560" y="447" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="1074" y="482" width="558" height="37" rx="3" fill="#EEF2F0" />
-      <text x="1082" y="505" font-size="9.8" class="new-title">ERECTION / TRANSPORT</text>
+      <text x="1082" y="505" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">ERECTION / TRANSPORT</text>
       <rect x="1278" y="489" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="505" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
-      <text x="1374" y="505" font-size="9.8" class="new-body">hook 15.8 kN; ≥2 pieces</text>
+      <text x="1319" y="505" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">DEMAND</text>
+      <text x="1374" y="505" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">hook 15.8 kN; ≥2 pieces</text>
       <rect x="1560" y="489" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="505" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="505" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
     <g data-contrast-bg="#FFFDFA">
-      <text x="1082" y="547" font-size="9.8" class="new-title">BASE + TRIAL FOOTING</text>
+      <text x="1082" y="547" font-size="9.8" class="new-title" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BASE + TRIAL FOOTING</text>
       <rect x="1278" y="531" width="82" height="23" rx="11.5" fill="none" stroke="#1D7480" stroke-width="1" />
-      <text x="1319" y="547" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
-      <text x="1374" y="547" font-size="9.8" class="new-body">qmax 37.3 kPa; plate 0.205</text>
+      <text x="1319" y="547" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS*</text>
+      <text x="1374" y="547" font-size="9.8" class="new-body" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">qmax 37.3 kPa; plate 0.205</text>
       <rect x="1560" y="531" width="72" height="23" rx="11.5" fill="none" stroke="#A33F31" stroke-width="1" />
-      <text x="1596" y="547" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+      <text x="1596" y="547" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">BLOCKED</text>
     </g>
-    <text x="1082" y="592" font-size="9.8" class="new-conflict">PASS* = narrow component screen only · every system-level design gate remains open</text>
-    <text x="56" y="655" font-size="12.5" class="new-title">03 · REFERENCE ROOF TRUSS + EXPLICIT RESTRAINT ASSUMPTIONS</text>
+    <text x="1082" y="592" font-size="9.8" class="new-conflict" data-layout-region="evidence" data-layout-kind="panel" data-panel-bounds="1062 116 586 494" data-safe-bounds="1070 124 570 478">PASS* = narrow component screen only · every system-level design gate remains open</text>
+    <text x="56" y="655" font-size="12.5" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">03 · REFERENCE ROOF TRUSS + EXPLICIT RESTRAINT ASSUMPTIONS</text>
     <line x1="56" y1="667" x2="1026" y2="667" class="panel-rule" />
-    <text x="98" y="682" font-size="9.8" class="new-eyebrow">TOP RESTRAINT @ 1.50 m</text>
-    <text x="98" y="700" font-size="9.8" class="new-open">BOTTOM RESTRAINT @ 6.00 m</text>
-    <text x="447" y="682" font-size="9.8" class="new-conflict">ILLUSTRATIVE TRANSPORT SPLIT</text>
-    <text x="958" y="682" font-size="9.8" class="new-conflict" text-anchor="end">LOADS AT PANEL POINTS</text>
-    <text x="530" y="906" font-size="9.8" class="new-title" text-anchor="middle">18.00 m TRANSVERSE SPAN · 6 PANELS · VARIABLE DEPTH 0.99→1.80 m</text>
+    <text x="98" y="682" font-size="9.8" class="new-eyebrow" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">TOP RESTRAINT @ 1.50 m</text>
+    <text x="98" y="700" font-size="9.8" class="new-open" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">BOTTOM RESTRAINT @ 6.00 m</text>
+    <text x="447" y="682" font-size="9.8" class="new-conflict" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">ILLUSTRATIVE TRANSPORT SPLIT</text>
+    <text x="958" y="682" font-size="9.8" class="new-conflict" text-anchor="end" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">LOADS AT PANEL POINTS</text>
+    <text x="530" y="906" font-size="9.8" class="new-title" text-anchor="middle" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">18.00 m TRANSVERSE SPAN · 6 PANELS · VARIABLE DEPTH 0.99→1.80 m</text>
     <g data-contrast-bg="#EEF2F0">
       <rect x="58" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-      <text x="68" y="938" font-size="9.8" class="new-muted" font-weight="700">TRIAL SECTIONS</text>
-      <text x="68" y="956" font-size="10.2" class="new-title">HSS120×120×6</text>
-      <text x="68" y="973" font-size="9.8" class="new-title">HSS100×100×6</text>
-      <text x="229" y="938" font-size="9.8" class="new-conflict" text-anchor="end">NOT SELECTED</text>
+      <text x="68" y="938" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">TRIAL SECTIONS</text>
+      <text x="68" y="956" font-size="10.2" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">HSS120×120×6</text>
+      <text x="68" y="973" font-size="9.8" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">HSS100×100×6</text>
+      <text x="229" y="938" font-size="9.8" class="new-conflict" text-anchor="end" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">NOT SELECTED</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="251" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-      <text x="261" y="938" font-size="9.8" class="new-muted" font-weight="700">INTERACTION</text>
-      <text x="261" y="956" font-size="10.2" class="new-title">0.653</text>
-      <text x="261" y="973" font-size="9.8" class="new-muted">local M 12.51 kN·m</text>
+      <text x="261" y="938" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">INTERACTION</text>
+      <text x="261" y="956" font-size="10.2" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">0.653</text>
+      <text x="261" y="973" font-size="9.8" class="new-muted" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">local M 12.51 kN·m</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="444" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-      <text x="454" y="938" font-size="9.8" class="new-muted" font-weight="700">SECOND ORDER</text>
-      <text x="454" y="956" font-size="10.2" class="new-title">B1 1.255</text>
-      <text x="454" y="973" font-size="9.8" class="new-muted">Euler ratio 0.203</text>
+      <text x="454" y="938" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">SECOND ORDER</text>
+      <text x="454" y="956" font-size="10.2" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">B1 1.255</text>
+      <text x="454" y="973" font-size="9.8" class="new-muted" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">Euler ratio 0.203</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="637" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-      <text x="647" y="938" font-size="9.8" class="new-muted" font-weight="700">ENVELOPE</text>
-      <text x="647" y="956" font-size="10.2" class="new-title">Nmax 209.8 kN</text>
-      <text x="647" y="973" font-size="9.8" class="new-muted">Rdown 79.7 kN</text>
+      <text x="647" y="938" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">ENVELOPE</text>
+      <text x="647" y="956" font-size="10.2" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">Nmax 209.8 kN</text>
+      <text x="647" y="973" font-size="9.8" class="new-muted" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">Rdown 79.7 kN</text>
     </g>
     <g data-contrast-bg="#EEF2F0">
       <rect x="830" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
-      <text x="840" y="938" font-size="9.8" class="new-muted" font-weight="700">SPECIMEN</text>
-      <text x="840" y="956" font-size="10.2" class="new-title">1241 kg / truss</text>
-      <text x="840" y="973" font-size="9.8" class="new-muted">deflection 16.9 mm</text>
+      <text x="840" y="938" font-size="9.8" class="new-muted" font-weight="700" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">SPECIMEN</text>
+      <text x="840" y="956" font-size="10.2" class="new-title" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">1241 kg / truss</text>
+      <text x="840" y="973" font-size="9.8" class="new-muted" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">deflection 16.9 mm</text>
     </g>
-    <text x="58" y="998" font-size="9.8" class="new-conflict">GRAVITY: roof/openings → purlins → M60 trusses → columns → base/footing → ground · lateral path, collectors, connections and foundations BLOCKED</text>
-    <text x="1082" y="655" font-size="12.5" class="new-title">04 · GENERIC JOINT PARTS</text>
+    <text x="58" y="998" font-size="9.8" class="new-conflict" data-layout-region="truss" data-layout-kind="panel" data-panel-bounds="36 626 1010 382" data-safe-bounds="44 634 994 366">GRAVITY: roof/openings → purlins → M60 trusses → columns → base/footing → ground · lateral path, collectors, connections and foundations BLOCKED</text>
+    <text x="1082" y="655" font-size="12.5" class="new-title" data-layout-region="joint" data-layout-kind="panel" data-panel-bounds="1062 626 284 198" data-safe-bounds="1070 634 268 182">04 · GENERIC JOINT PARTS</text>
     <line x1="1082" y1="667" x2="1326" y2="667" class="panel-rule" />
-    <text x="1082" y="680" font-size="9.8" class="new-title">6-M20 · plate 12 mm · weld 8 mm</text>
-    <text x="1156" y="716" font-size="9.8" class="key-tag" text-anchor="middle">HSS CHORD</text>
-    <text x="1082" y="790" font-size="9.8" class="new-eyebrow">ratio 0.387 · demand 209.8 kN</text>
-    <text x="1082" y="808" font-size="9.8" class="new-conflict">BLOCKED · HSS wall / weld access / eccentricity</text>
-    <text x="1384" y="655" font-size="12.5" class="new-title">05 · TRIAL BASE / FOOTING</text>
+    <text x="1082" y="680" font-size="9.8" class="new-title" data-layout-region="joint" data-layout-kind="panel" data-panel-bounds="1062 626 284 198" data-safe-bounds="1070 634 268 182">6-M20 · plate 12 mm · weld 8 mm</text>
+    <text x="1156" y="716" font-size="9.8" class="key-tag" text-anchor="middle" data-layout-region="joint" data-layout-kind="panel" data-panel-bounds="1062 626 284 198" data-safe-bounds="1070 634 268 182">HSS CHORD</text>
+    <text x="1082" y="790" font-size="9.8" class="new-eyebrow" data-layout-region="joint" data-layout-kind="panel" data-panel-bounds="1062 626 284 198" data-safe-bounds="1070 634 268 182">ratio 0.387 · demand 209.8 kN</text>
+    <text x="1082" y="808" font-size="9.8" class="new-conflict" data-layout-region="joint" data-layout-kind="panel" data-panel-bounds="1062 626 284 198" data-safe-bounds="1070 634 268 182">BLOCKED · HSS wall / weld access / eccentricity</text>
+    <text x="1384" y="655" font-size="12.5" class="new-title" data-layout-region="foundation" data-layout-kind="panel" data-panel-bounds="1364 626 284 198" data-safe-bounds="1372 634 268 182">05 · TRIAL BASE / FOOTING</text>
     <line x1="1384" y1="667" x2="1628" y2="667" class="panel-rule" />
-    <text x="1497" y="680" font-size="9.8" class="key-tag" text-anchor="middle">≈ HEA200</text>
-    <text x="1497" y="746" font-size="9.8" class="key-tag" text-anchor="middle">300×300×20</text>
-    <text x="1497" y="779" font-size="9.8" class="key-tag" text-anchor="middle">2.0×2.0×0.5 m</text>
-    <text x="1384" y="798" font-size="9.8" class="new-eyebrow">qmax 37.3 kPa · plate ratio 0.205</text>
-    <text x="1384" y="814" font-size="9.8" class="new-conflict">BLOCKED · anchors / shear / moment / geotech / RC</text>
-    <text x="1082" y="860" font-size="12.5" class="new-title">06 · ERECTION ENVELOPE</text>
+    <text x="1497" y="680" font-size="9.8" class="key-tag" text-anchor="middle" data-layout-region="foundation" data-layout-kind="panel" data-panel-bounds="1364 626 284 198" data-safe-bounds="1372 634 268 182">≈ HEA200</text>
+    <text x="1497" y="746" font-size="9.8" class="key-tag" text-anchor="middle" data-layout-region="foundation" data-layout-kind="panel" data-panel-bounds="1364 626 284 198" data-safe-bounds="1372 634 268 182">300×300×20</text>
+    <text x="1497" y="779" font-size="9.8" class="key-tag" text-anchor="middle" data-layout-region="foundation" data-layout-kind="panel" data-panel-bounds="1364 626 284 198" data-safe-bounds="1372 634 268 182">2.0×2.0×0.5 m</text>
+    <text x="1384" y="797.5" font-size="9.8" class="new-eyebrow" data-layout-region="foundation" data-layout-kind="panel" data-panel-bounds="1364 626 284 198" data-safe-bounds="1372 634 268 182">qmax 37.3 kPa · plate ratio 0.205</text>
+    <text x="1384" y="814" font-size="9.8" class="new-conflict" data-layout-region="foundation" data-layout-kind="panel" data-panel-bounds="1364 626 284 198" data-safe-bounds="1372 634 268 182">BLOCKED · anchors / shear / moment / geotech / RC</text>
+    <text x="1082" y="860" font-size="12.5" class="new-title" data-layout-region="erection" data-layout-kind="panel" data-panel-bounds="1062 832 284 176" data-safe-bounds="1070 840 268 160">06 · ERECTION ENVELOPE</text>
     <line x1="1082" y1="872" x2="1326" y2="872" class="panel-rule" />
-    <text x="1202" y="885" font-size="9.8" class="key-tag" text-anchor="middle">HOOK 15.8 kN</text>
-    <text x="1140" y="931" font-size="9.8" class="new-open" text-anchor="middle">9.1 kN</text>
-    <text x="1264" y="931" font-size="9.8" class="new-open" text-anchor="middle">9.1 kN</text>
-    <text x="1082" y="982" font-size="9.8" class="new-title">18 m → ≥2 pieces at 12 m transport limit</text>
-    <text x="1082" y="1000" font-size="9.8" class="new-conflict">BLOCKED · crane / lugs / splice / weather / bracing</text>
+    <text x="1202" y="885" font-size="9.8" class="key-tag" text-anchor="middle" data-layout-region="erection" data-layout-kind="panel" data-panel-bounds="1062 832 284 176" data-safe-bounds="1070 840 268 160">HOOK 15.8 kN</text>
+    <text x="1140" y="931" font-size="9.8" class="new-open" text-anchor="middle" data-layout-region="erection" data-layout-kind="panel" data-panel-bounds="1062 832 284 176" data-safe-bounds="1070 840 268 160">9.1 kN</text>
+    <text x="1264" y="931" font-size="9.8" class="new-open" text-anchor="middle" data-layout-region="erection" data-layout-kind="panel" data-panel-bounds="1062 832 284 176" data-safe-bounds="1070 840 268 160">9.1 kN</text>
+    <text x="1082" y="980" font-size="9.8" class="new-title" data-layout-region="erection" data-layout-kind="panel" data-panel-bounds="1062 832 284 176" data-safe-bounds="1070 840 268 160">18 m → ≥2 pieces at 12 m transport limit</text>
+    <text x="1082" y="997" font-size="9.8" class="new-conflict" data-layout-region="erection" data-layout-kind="panel" data-panel-bounds="1062 832 284 176" data-safe-bounds="1070 840 268 160">BLOCKED · crane / lugs / splice / weather / bracing</text>
     <g data-contrast-bg="#FBF0D9">
-      <text x="1384" y="860" font-size="12.5" class="new-title">07 · FIRE SENSITIVITY · NOT A RATING</text>
+      <text x="1384" y="860" font-size="12.5" class="new-title" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">07 · FIRE SENSITIVITY · NOT A RATING</text>
       <line x1="1384" y1="872" x2="1628" y2="872" class="panel-rule" />
-      <text x="1384" y="908" font-size="9.8" class="new-title">400°C</text>
-      <text x="1582" y="908" font-size="9.8" class="new-eyebrow">0.65</text>
-      <text x="1384" y="943" font-size="9.8" class="new-title">550°C</text>
-      <text x="1582" y="943" font-size="9.8" class="new-conflict">1.05</text>
-      <text x="1384" y="978" font-size="9.8" class="new-title">700°C</text>
-      <text x="1582" y="978" font-size="9.8" class="new-conflict">2.84</text>
-      <text x="1384" y="1000" font-size="9.8" class="new-conflict">BLOCKED · 400°C sensitivity only; 550/700°C fail</text>
+      <text x="1384" y="908" font-size="9.8" class="new-title" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">400°C</text>
+      <text x="1582" y="908" font-size="9.8" class="new-eyebrow" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">0.65</text>
+      <text x="1384" y="943" font-size="9.8" class="new-title" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">550°C</text>
+      <text x="1582" y="943" font-size="9.8" class="new-conflict" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">1.05</text>
+      <text x="1384" y="978" font-size="9.8" class="new-title" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">700°C</text>
+      <text x="1582" y="978" font-size="9.8" class="new-conflict" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">2.84</text>
+      <text x="1384" y="997" font-size="9.8" class="new-conflict" data-layout-region="fire" data-layout-kind="panel" data-panel-bounds="1364 832 284 176" data-safe-bounds="1372 840 268 160">BLOCKED · 400°C sensitivity only; 550/700°C fail</text>
     </g>
   </g>
   <g id="layer-sheet-header" data-layer="titleblock" data-contrast-bg="#F4F0E7">
-    <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 05 · PRESENTATION ONLY</text>
-    <text x="36" y="70" font-size="24" class="new-title">INTEGRATED STRUCTURAL E1 · FAIL-CLOSED EVIDENCE</text>
-    <text x="36" y="96" font-size="11" class="new-muted">Same R01 calculation-linked geometry and values · seven technical panels + authority block · narrow calculation ≠ system design</text>
-    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end">DH-EST-E1-001</text>
-    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP05 · NOT CURRENT</text>
+    <text x="36" y="34" font-size="10.5" class="new-eyebrow" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GRAPHIC PILOT 05 · PRESENTATION ONLY</text>
+    <text x="36" y="70" font-size="24" class="new-title" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">INTEGRATED STRUCTURAL E1 · FAIL-CLOSED EVIDENCE</text>
+    <text x="36" y="96" font-size="11" class="new-muted" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">Same R01 calculation-linked geometry and values · seven technical panels + authority block · narrow calculation ≠ system design</text>
+    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">DH-EST-E1-001</text>
+    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GP05 · NOT CURRENT</text>
     <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
   </g>
   <g id="layer-sheet" data-layer="titleblock" data-contrast-bg="#172A32">
     <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
-    <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
-    <text x="56" y="1082" font-size="10.2" class="new-on-dark">Research screening complete; design blocked. No system, profile, PE-1 quantity, procurement, fabrication or construction release.</text>
-    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted">Source: E1-001-R01 / 0.3 + E1 0.2 · D-043 / D-045 / D-047 / D-048 / D-054 · calculation-linked technical geometry preserved.</text>
-    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted">Open gates: lateral system/collectors · roof/deck/restraints · joints · foundation/geotech · erection · fire scenario/protection</text>
-    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end">2026-08-22</text>
+    <text x="56" y="1056" font-size="13" class="new-on-dark-alert" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">NOT FOR CONSTRUCTION</text>
+    <text x="56" y="1082" font-size="10.2" class="new-on-dark" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Research screening complete; design blocked. No system, profile, PE-1 quantity, procurement, fabrication or construction release.</text>
+    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Source: E1-001-R01 / 0.3 + E1 0.2 · D-043 / D-045 / D-047 / D-048 / D-054 · calculation-linked technical geometry preserved.</text>
+    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Open gates: lateral system/collectors · roof/deck/restraints · joints · foundation/geotech · erection · fire scenario/protection</text>
+    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">2026-08-22</text>
   </g>
 </svg>

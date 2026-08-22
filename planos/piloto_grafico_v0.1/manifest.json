@@ -3,7 +3,7 @@
   "date": "2026-08-21",
   "generator": "dreamhouse/svg/pilot_ground_floor.py",
   "output": "DH-ARQ-PLN-001-GP01_GROUND-FLOOR-READABILITY-PILOT.svg",
-  "output_sha256": "1cbbec0ded84b9b250f15bf48a39dc3726eebf1b6fa01c69c60b051643d11514",
+  "output_sha256": "8daa4ba0d942f8339859d71259fa649a8f90f90081d259239439de9224ab6db6",
   "pilot": "GP01",
   "sheet": "DH-ARQ-PLN-001",
   "source": "planos/actual/DH-ARQ-PLN-001_CURRENT-GROUND-FLOOR.svg",

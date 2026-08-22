@@ -13,6 +13,13 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.layout import (
+    Bounds,
+    LayoutRegion,
+    SHEET_FOOTER_REGION,
+    SHEET_HEADER_REGION,
+    register_text_regions,
+)
 from dreamhouse.svg.sheet import (
     add_footer,
     add_header,
@@ -30,6 +37,15 @@ SOURCE = ROOT / "planos/actual/DH-ARQ-SEC-002_CURRENT-TRANSVERSE.svg"
 OUTPUT_DIR = ROOT / "planos/piloto_grafico_v0.1"
 OUTPUT = OUTPUT_DIR / "DH-ARQ-SEC-002-GP03_TRANSVERSE-SECTION-READABILITY-PILOT.svg"
 MANIFEST = OUTPUT_DIR / "DH-ARQ-SEC-002-GP03.manifest.json"
+
+LAYOUT_REGIONS = (
+    SHEET_HEADER_REGION,
+    LayoutRegion.with_inset("main", Bounds(36, 116, 1612, 674), 8),
+    LayoutRegion.with_inset("provisional", Bounds(36, 806, 500, 202), 8),
+    LayoutRegion.with_inset("vertical", Bounds(552, 806, 500, 202), 8),
+    LayoutRegion.with_inset("open", Bounds(1068, 806, 580, 202), 8),
+    SHEET_FOOTER_REGION,
+)
 
 SOURCE_CONTENT_START = 2
 SOURCE_CONTENT_END = 13
@@ -299,7 +315,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     add_wrapped_text(
         vertical_status,
         572,
-        986,
+        985,
         "The section is diagrammatic: no assembly build-up, member size or ceiling detail is "
         "selected.",
         width_chars=62,
@@ -365,6 +381,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         ),
         date="2026-08-21",
     )
+    register_text_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

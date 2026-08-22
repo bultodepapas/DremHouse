@@ -104,84 +104,84 @@ text {
     <g class="level-marker" data-relates-to="PB-REFERENCE-LEVEL">
       <line x1="92" y1="682" x2="262" y2="682" stroke="#1D7480" stroke-width="1.5" />
       <polygon points="272,682 262,677 262,687" fill="#1D7480" />
-      <text x="92" y="674" font-size="10.2" class="new-body">PB reference · +0.00</text>
+      <text x="92" y="674" font-size="10.2" class="new-body" data-layout-region="main" data-layout-kind="panel" data-panel-bounds="36 116 1612 674" data-safe-bounds="44 124 1596 658">PB reference · +0.00</text>
     </g>
     <g class="level-marker" data-relates-to="P2-FLOOR-DATUM">
       <line x1="92" y1="426.6" x2="262" y2="426.6" stroke="#1D7480" stroke-width="1.5" />
       <polygon points="272,426.6 262,421.6 262,431.6" fill="#1D7480" />
-      <text x="92" y="418.6" font-size="10.2" class="new-body">P2 finished floor · approx. +3.80 m</text>
+      <text x="92" y="418.6" font-size="10.2" class="new-body" data-layout-region="main" data-layout-kind="panel" data-panel-bounds="36 116 1612 674" data-safe-bounds="44 124 1596 658">P2 finished floor · approx. +3.80 m</text>
     </g>
   </g>
   <g id="layer-status" data-layer="status-and-open-gates">
     <g data-contrast-bg="#F0ECF6">
-      <text x="56" y="838" font-size="12.5" class="new-hypothesis">ACTIVE PROVISIONAL DCV · D-039</text>
-      <text x="56" y="868" font-size="10" class="new-body">
+      <text x="56" y="838" font-size="12.5" class="new-hypothesis" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">ACTIVE PROVISIONAL DCV · D-039</text>
+      <text x="56" y="868" font-size="10" class="new-body" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">
         <tspan x="56" dy="0">One continuous mono-pitch exterior roof plane; no ridge or</tspan>
         <tspan x="56" dy="13">secondary roof form.</tspan>
       </text>
-      <text x="56" y="912" font-size="10" class="new-eyebrow">Rise</text>
-      <text x="138" y="912" font-size="10" class="new-body">approx. 0.60 m across 18.00 m = 3.33%</text>
-      <text x="56" y="940" font-size="10" class="new-eyebrow">Eaves</text>
-      <text x="138" y="940" font-size="10" class="new-body">low approx. +7.20 m · high approx. +7.80 m</text>
-      <text x="56" y="970" font-size="9.8" class="new-muted">
+      <text x="56" y="912" font-size="10" class="new-eyebrow" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">Rise</text>
+      <text x="138" y="912" font-size="10" class="new-body" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">approx. 0.60 m across 18.00 m = 3.33%</text>
+      <text x="56" y="940" font-size="10" class="new-eyebrow" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">Eaves</text>
+      <text x="138" y="940" font-size="10" class="new-body" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">low approx. +7.20 m · high approx. +7.80 m</text>
+      <text x="56" y="970" font-size="9.8" class="new-muted" data-layout-region="provisional" data-layout-kind="panel" data-panel-bounds="36 806 500 202" data-safe-bounds="44 814 484 186">
         <tspan x="56" dy="0">These values coordinate schematic design; they are not contractual</tspan>
         <tspan x="56" dy="12.5">dimensions or a selected roof system.</tspan>
       </text>
     </g>
     <g data-contrast-bg="#FFFDFA">
-      <text x="572" y="838" font-size="12.5" class="new-title">VERTICAL READING</text>
-      <text x="572" y="872" font-size="10" class="new-eyebrow">PB</text>
-      <text x="690" y="872" font-size="10" class="new-body">reference level +0.00</text>
-      <text x="572" y="903" font-size="10" class="new-eyebrow">P2</text>
-      <text x="690" y="903" font-size="10" class="new-body">finished floor approx. +3.80 m</text>
-      <text x="572" y="934" font-size="10" class="new-eyebrow">PB clear</text>
-      <text x="690" y="934" font-size="10" class="new-body">target 3.05–3.20 m below P2</text>
-      <text x="572" y="965" font-size="10" class="new-eyebrow">P2 ceiling</text>
-      <text x="690" y="965" font-size="10" class="new-body">horizontal 3.00–3.10 m + variable plenum</text>
-      <text x="572" y="986" font-size="9.8" class="new-muted">
+      <text x="572" y="838" font-size="12.5" class="new-title" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">VERTICAL READING</text>
+      <text x="572" y="872" font-size="10" class="new-eyebrow" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">PB</text>
+      <text x="690" y="872" font-size="10" class="new-body" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">reference level +0.00</text>
+      <text x="572" y="903" font-size="10" class="new-eyebrow" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">P2</text>
+      <text x="690" y="903" font-size="10" class="new-body" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">finished floor approx. +3.80 m</text>
+      <text x="572" y="934" font-size="10" class="new-eyebrow" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">PB clear</text>
+      <text x="690" y="934" font-size="10" class="new-body" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">target 3.05–3.20 m below P2</text>
+      <text x="572" y="965" font-size="10" class="new-eyebrow" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">P2 ceiling</text>
+      <text x="690" y="965" font-size="10" class="new-body" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">horizontal 3.00–3.10 m + variable plenum</text>
+      <text x="572" y="985" font-size="9.8" class="new-muted" data-layout-region="vertical" data-layout-kind="panel" data-panel-bounds="552 806 500 202" data-safe-bounds="560 814 484 186">
         <tspan x="572" dy="0">The section is diagrammatic: no assembly build-up, member size</tspan>
         <tspan x="572" dy="12.5">or ceiling detail is selected.</tspan>
       </text>
     </g>
     <g data-contrast-bg="#FBF0D9">
-      <text x="1088" y="838" font-size="12.5" class="new-open">OPEN · DO NOT FREEZE</text>
-      <text x="1088" y="868" font-size="10" class="new-open">•</text>
-      <text x="1106" y="868" font-size="10" class="new-body">
+      <text x="1088" y="838" font-size="12.5" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">OPEN · DO NOT FREEZE</text>
+      <text x="1088" y="868" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">•</text>
+      <text x="1106" y="868" font-size="10" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">
         <tspan x="1106" dy="0">Side A / Side B low-high assignment pending site and orientation</tspan>
       </text>
-      <text x="1088" y="888.5" font-size="10" class="new-open">•</text>
-      <text x="1106" y="888.5" font-size="10" class="new-body">
+      <text x="1088" y="888.5" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">•</text>
+      <text x="1106" y="888.5" font-size="10" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">
         <tspan x="1106" dy="0">Final slope pending selected panel, structure, tolerances and</tspan>
         <tspan x="1106" dy="12.5">warranty</tspan>
       </text>
-      <text x="1088" y="921.5" font-size="10" class="new-open">•</text>
-      <text x="1106" y="921.5" font-size="10" class="new-body">
+      <text x="1088" y="921.5" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">•</text>
+      <text x="1106" y="921.5" font-size="10" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">
         <tspan x="1106" dy="0">Rainfall, gutter, overflow, downpipe and discharge design</tspan>
       </text>
-      <text x="1088" y="942" font-size="10" class="new-open">•</text>
-      <text x="1106" y="942" font-size="10" class="new-body">
+      <text x="1088" y="942" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">•</text>
+      <text x="1106" y="942" font-size="10" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">
         <tspan x="1106" dy="0">Wind, uplift, fasteners, penetrations and maintenance access</tspan>
       </text>
-      <text x="1088" y="962.5" font-size="10" class="new-open">•</text>
-      <text x="1106" y="962.5" font-size="10" class="new-body">
+      <text x="1088" y="962.5" font-size="10" class="new-open" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">•</text>
+      <text x="1106" y="962.5" font-size="10" class="new-body" data-layout-region="open" data-layout-kind="panel" data-panel-bounds="1068 806 580 202" data-safe-bounds="1076 814 564 186">
         <tspan x="1106" dy="0">Insulation, condensation, thermal bridges and ceiling interfaces</tspan>
       </text>
     </g>
   </g>
   <g id="layer-sheet-header" data-layer="titleblock" data-contrast-bg="#F4F0E7">
-    <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 03 · PRESENTATION ONLY</text>
-    <text x="36" y="70" font-size="24" class="new-title">TRANSVERSE SECTION · MONO-PITCH ROOF</text>
-    <text x="36" y="96" font-size="11" class="new-muted">Same R06 geometry and values · repaired scalable viewport · English editorial layer · provisional/open states</text>
-    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end">DH-ARQ-SEC-002</text>
-    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP03 · NOT CURRENT</text>
+    <text x="36" y="34" font-size="10.5" class="new-eyebrow" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GRAPHIC PILOT 03 · PRESENTATION ONLY</text>
+    <text x="36" y="70" font-size="24" class="new-title" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">TRANSVERSE SECTION · MONO-PITCH ROOF</text>
+    <text x="36" y="96" font-size="11" class="new-muted" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">Same R06 geometry and values · repaired scalable viewport · English editorial layer · provisional/open states</text>
+    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">DH-ARQ-SEC-002</text>
+    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end" data-layout-region="sheet-header" data-layout-kind="sheet-header" data-panel-bounds="36 0 1612 105" data-safe-bounds="36 18 1612 82">GP03 · NOT CURRENT</text>
     <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
   </g>
   <g id="layer-sheet" data-layer="titleblock" data-contrast-bg="#172A32">
     <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
-    <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
-    <text x="56" y="1082" font-size="10.2" class="new-on-dark">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
-    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted">Source: SEC-002-R06 / 0.3-borrador-07-CUBIERTA · Decision basis: D-039 / D-044 · Source-space geometry preserved.</text>
-    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted">Open gates: site/orientation · roof direction · structure/system · rainfall/drainage · wind/uplift · building physics · product/cost</text>
-    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end">2026-08-21</text>
+    <text x="56" y="1056" font-size="13" class="new-on-dark-alert" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">NOT FOR CONSTRUCTION</text>
+    <text x="56" y="1082" font-size="10.2" class="new-on-dark" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Graphic review only. This file is not the current drawing and creates no design, procurement or construction authority.</text>
+    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Source: SEC-002-R06 / 0.3-borrador-07-CUBIERTA · Decision basis: D-039 / D-044 · Source-space geometry preserved.</text>
+    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">Open gates: site/orientation · roof direction · structure/system · rainfall/drainage · wind/uplift · building physics · product/cost</text>
+    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end" data-layout-region="sheet-footer" data-layout-kind="sheet-footer" data-panel-bounds="36 1026 1612 129" data-safe-bounds="54 1044 1576 93">2026-08-21</text>
   </g>
 </svg>

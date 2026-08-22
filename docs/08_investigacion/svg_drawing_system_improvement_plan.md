@@ -500,10 +500,18 @@ role threshold remain explicit follow-on gates. See
 **Palette/contrast note — 2026-08-22:** v0.2 adds one 30-token presentation palette,
 strict editorial-layer colour checks, warning-only inherited-model colour debt, typed
 semantic backgrounds and computed 4.5:1 normal / 3:1 large-text contrast. GP01–GP05 have
-zero presentation palette or contrast failures. Bounds and typed collisions remain the
-next gate. See
+zero presentation palette or contrast failures. See
 [`svg_palette_contrast_lint_v0.2.md`](svg_palette_contrast_lint_v0.2.md); no current
 drawing has been promoted.
+
+**Safe-bounds/collision note — 2026-08-22:** v0.3 assigns all 373 pilot presentation
+texts to typed sheet/panel regions and checks 367 axis-aligned text boxes with an 8-unit
+transitional panel inset, 6-unit text gap and explicit deferral for six rotated GP05
+labels. GP01–GP05 have zero safe-bound or untyped text-collision failures. The 18-unit
+new-template target, rotated/measured boxes and text-to-geometry checks remain follow-on
+gates. See
+[`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md); no
+current drawing has been promoted.
 
 ### 9.2 Geometry preservation tests
 
