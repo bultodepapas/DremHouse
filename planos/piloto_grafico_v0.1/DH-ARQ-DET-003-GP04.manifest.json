@@ -1,0 +1,16 @@
+{
+  "construction_authority": false,
+  "date": "2026-08-21",
+  "decision_ids": [
+    "D-080"
+  ],
+  "generator": "dreamhouse/svg/pilot_p2_wall_family.py",
+  "output": "DH-ARQ-DET-003-GP04_P2-WALL-FAMILY-READABILITY-PILOT.svg",
+  "output_sha256": "18201089151a0020d22a26557670430dd0b69f25c8147139e304e4e3445d8374",
+  "pilot": "GP04",
+  "sheet": "DH-ARQ-DET-003",
+  "source": "planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg",
+  "source_revision": "DET-003-R22 / 0.3-draft-25-P2",
+  "source_sha256": "7049f858074ab5cff04eac8abe8e8f30cbe2c339261767be5219c8e82cb39c4d",
+  "status": "presentation-only graphic pilot; not current; not for construction"
+}

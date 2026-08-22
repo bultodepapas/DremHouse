@@ -64,3 +64,26 @@ python3 -m dreamhouse.svg.audit \
 
 GP03 repairs the missing scalable viewport only in the pilot, copies the R06 technical
 geometry without coordinate changes and keeps D-039 explicitly provisional.
+
+## GP04 — P2 wall-family readability
+
+- Source: `../actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg`
+- Generator: `../../dreamhouse/svg/pilot_p2_wall_family.py`
+- Output: `DH-ARQ-DET-003-GP04_P2-WALL-FAMILY-READABILITY-PILOT.svg`
+- Manifest: `DH-ARQ-DET-003-GP04.manifest.json`
+- Review: `../../docs/08_investigacion/svg_graphic_pilot_04_visual_review.md`
+
+Regenerate the pilot and its untracked visual-review build from the repository root:
+
+```bash
+python3 -m dreamhouse.svg.pilot_p2_wall_family
+python3 -m dreamhouse.svg.audit \
+  --before planos/actual/DH-ARQ-DET-003_CURRENT-P2-ACOUSTIC-PARTITION.svg \
+  --after planos/piloto_grafico_v0.1/DH-ARQ-DET-003-GP04_P2-WALL-FAMILY-READABILITY-PILOT.svg \
+  --output-dir .build/svg-pilot/gp04 \
+  --prefix gp04
+```
+
+GP04 copies the R22 W01A/W01B controlled build-up geometry without coordinate changes,
+retains every D-080 wall type and adds pattern-plus-text layer coding. It claims no
+tested performance and books no saving.
