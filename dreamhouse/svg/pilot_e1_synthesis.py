@@ -328,7 +328,7 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
     _add_rotated_text(
         parent,
         446.5,
-        372,
+        382,
         "RL-RC",
         css_class="new-title",
         contrast_bg=theme_colour("rooflight-surface"),
@@ -342,7 +342,7 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
     )
     add_text(
         parent,
-        496,
+        466,
         356,
         "DIAPHRAGM DEMAND · 8.77 kN/m",
         size=10.2,

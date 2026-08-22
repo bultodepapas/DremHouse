@@ -531,6 +531,15 @@ explicit collision deferral. See
 [`svg_browser_resvg_equivalence_v0.5.md`](svg_browser_resvg_equivalence_v0.5.md); no
 current drawing has been promoted.
 
+**Rotated-text bounds note — 2026-08-22:** v0.6 replaces all six GP05
+`rotated-skip` declarations with strict `rotate(angle cx cy)` parsing and transformed
+text boxes. All 373 presentation texts now enter safe-bound and collision checks; static,
+Chrome and `resvg` runs report zero untyped collisions after two limited GP05 annotation
+placements were corrected. Registered geometry transforms and paths remain outside this
+staged claim. See
+[`svg_rotated_text_bounds_v0.6.md`](svg_rotated_text_bounds_v0.6.md); no current drawing
+has been promoted.
+
 ### 9.2 Geometry preservation tests
 
 Before changing a sheet family, record a structured geometry baseline from the active

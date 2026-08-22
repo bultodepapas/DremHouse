@@ -8,6 +8,7 @@ from dreamhouse.svg.layout import (
     LayoutRegion,
     estimate_geometry_bounds,
     estimate_text_bounds,
+    parse_text_rotation,
     q,
     register_geometry_regions,
     register_text_regions,
@@ -39,6 +40,8 @@ class TestSvgLayout(unittest.TestCase):
         )
         middle.text = "WIDE"
         middle_box = estimate_text_bounds(middle, letter_spacing=0.5, bold=True)
+        middle.set("transform", "rotate(-90 50 30)")
+        rotated_box = estimate_text_bounds(middle, letter_spacing=0.5, bold=True)
 
         multiline = ET.Element(q("text"), {"x": "10", "y": "20", "font-size": "10"})
         first = ET.SubElement(multiline, q("tspan"), {"x": "10", "dy": "0"})
@@ -49,7 +52,21 @@ class TestSvgLayout(unittest.TestCase):
 
         self.assertLess(middle_box.x, 50)
         self.assertGreater(middle_box.right, 50)
+        self.assertAlmostEqual(rotated_box.width, middle_box.height)
+        self.assertAlmostEqual(rotated_box.height, middle_box.width)
         self.assertGreater(multiline_box.height, 20)
+
+    def test_text_rotation_parser_fails_closed_on_other_transforms(self) -> None:
+        rotation = parse_text_rotation("rotate(-90 50 30)")
+
+        assert rotation is not None
+        self.assertEqual((rotation.angle, rotation.center_x, rotation.center_y), (-90, 50, 30))
+        self.assertEqual(parse_text_rotation("rotate(-90,50,30)"), rotation)
+        self.assertIsNone(parse_text_rotation(""))
+        with self.assertRaises(ValueError):
+            parse_text_rotation("translate(5 5) rotate(-90 50 30)")
+        with self.assertRaises(ValueError):
+            parse_text_rotation("rotate(-90)")
 
     def test_geometry_estimator_supports_registered_primitives(self) -> None:
         line = ET.Element(q("line"), {"x1": "10", "y1": "20", "x2": "40", "y2": "20"})
@@ -63,7 +80,7 @@ class TestSvgLayout(unittest.TestCase):
         with self.assertRaises(ValueError):
             estimate_geometry_bounds(ET.Element(q("path"), {"d": "M0 0 L10 10"}))
 
-    def test_registration_skips_model_and_types_rotated_text(self) -> None:
+    def test_registration_skips_model_and_measures_rotated_text(self) -> None:
         root = ET.Element(q("svg"))
         model = ET.SubElement(root, q("g"), {"id": "layer-model"})
         model_text = ET.SubElement(model, q("text"), {"x": "20", "y": "20"})
@@ -82,7 +99,7 @@ class TestSvgLayout(unittest.TestCase):
 
         self.assertNotIn("data-layout-region", model_text.attrib)
         self.assertEqual(rotated.get("data-layout-region"), "panel")
-        self.assertEqual(rotated.get("data-layout-policy"), "rotated-skip")
+        self.assertEqual(rotated.get("data-layout-policy"), "rotated-measured")
 
     def test_geometry_registration_requires_typed_editorial_relationships(self) -> None:
         root = ET.Element(q("svg"))

@@ -4,8 +4,8 @@ The staged lint profile covers the shared pilot contract: identity, accessibilit
 authority, unsafe content, layers, model references, numeric safety, controlled
 presentation colours, typed text contrast, required-text preview size, declared safe
 bounds, conservative text collisions and registered editorial text-to-geometry
-relationships. Precision normalization and measured/transformed geometry bounds remain
-explicit follow-on gates.
+relationships, including one explicit rotation per presentation text. Precision
+normalization and transformed/path geometry bounds remain explicit follow-on gates.
 """
 
 from __future__ import annotations
@@ -1019,7 +1019,8 @@ def _check_layout(
     region_contracts: dict[str, tuple[str, Bounds, Bounds]] = {}
     panel_insets: list[float] = []
     checked = 0
-    rotated_skipped = 0
+    axis_aligned_checked = 0
+    rotated_measured = 0
     presentation_count = 0
 
     required_attributes = (
@@ -1070,10 +1071,13 @@ def _check_layout(
 
         transform = text.get("transform", "").strip()
         if transform:
-            if "rotate(" in transform and text.get("data-layout-policy") == "rotated-skip":
-                rotated_skipped += 1
+            if text.get("data-layout-policy") != "rotated-measured":
+                unsupported_transforms.append(f"{example!r} ({transform})")
                 continue
-            unsupported_transforms.append(f"{example!r} ({transform})")
+        elif text.get("data-layout-policy"):
+            malformed.append(
+                f"{example!r} (data-layout-policy requires a supported transform)"
+            )
             continue
 
         try:
@@ -1114,6 +1118,10 @@ def _check_layout(
             malformed.append(f"{example!r} ({error})")
             continue
         checked += 1
+        if transform:
+            rotated_measured += 1
+        else:
+            axis_aligned_checked += 1
         if not safe.contains(box, tolerance=bounds_tolerance):
             outside.append(
                 f"{example!r} in {region_id!r}: box {box.serialize()} outside "
@@ -1147,7 +1155,7 @@ def _check_layout(
             findings,
             "SVG-B003",
             "error",
-            f"{len(outside)} axis-aligned presentation text boxes leave their safe bounds; "
+            f"{len(outside)} measured presentation text boxes leave their safe bounds; "
             f"examples: {', '.join(outside[:4])}",
             root,
         )
@@ -1301,8 +1309,10 @@ def _check_layout(
 
     return {
         "layout_text_elements": presentation_count,
-        "layout_axis_aligned_checked": checked,
-        "layout_rotated_skipped": rotated_skipped,
+        "layout_text_bounds_checked": checked,
+        "layout_axis_aligned_checked": axis_aligned_checked,
+        "layout_rotated_measured": rotated_measured,
+        "layout_rotated_skipped": 0,
         "layout_contract_failures": (
             len(missing)
             + len(malformed)
@@ -1444,7 +1454,7 @@ def lint_paths(
     errors = sum(file["errors"] for file in files)
     warnings = sum(file["warnings"] for file in files)
     return {
-        "schema_version": 4,
+        "schema_version": 5,
         "profile": {
             "bounds_tolerance": bounds_tolerance,
             "large_bold_text_px": large_bold_text_px,

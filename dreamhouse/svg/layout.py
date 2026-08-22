@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import re
 from dataclasses import dataclass
 from xml.etree import ElementTree as ET
 
@@ -10,6 +11,11 @@ from xml.etree import ElementTree as ET
 SVG_NS = "http://www.w3.org/2000/svg"
 LAYOUT_GEOMETRY_ROLES = frozenset({"keepout", "leader", "marker"})
 SUPPORTED_GEOMETRY_TAGS = frozenset({"circle", "ellipse", "line", "polygon", "polyline", "rect"})
+NUMBER_PATTERN = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)"
+ROTATE_RE = re.compile(
+    rf"^rotate\(\s*({NUMBER_PATTERN})[ ,]+({NUMBER_PATTERN})[ ,]+"
+    rf"({NUMBER_PATTERN})\s*\)$"
+)
 
 
 def q(tag: str) -> str:
@@ -99,6 +105,17 @@ class Bounds:
 
 
 @dataclass(frozen=True)
+class Rotation:
+    angle: float
+    center_x: float
+    center_y: float
+
+    def __post_init__(self) -> None:
+        if not all(math.isfinite(value) for value in (self.angle, self.center_x, self.center_y)):
+            raise ValueError("Text rotation values must be finite")
+
+
+@dataclass(frozen=True)
 class LayoutRegion:
     id: str
     panel: Bounds
@@ -171,6 +188,20 @@ def _coordinate(text: ET.Element, name: str) -> float:
     return coordinate
 
 
+def parse_text_rotation(transform: str) -> Rotation | None:
+    """Parse one explicit SVG rotation or fail closed on every other transform."""
+
+    normalized = transform.strip()
+    if not normalized:
+        return None
+    match = ROTATE_RE.fullmatch(normalized)
+    if match is None:
+        raise ValueError(
+            "Presentation text transform must be one explicit rotate(angle cx cy)"
+        )
+    return Rotation(*(float(value) for value in match.groups()))
+
+
 def register_text_regions(root: ET.Element, regions: tuple[LayoutRegion, ...]) -> None:
     """Assign every presentation text to one explicit panel/safe region."""
 
@@ -195,8 +226,11 @@ def register_text_regions(root: ET.Element, regions: tuple[LayoutRegion, ...]) -
         text.set("data-layout-kind", region.kind)
         text.set("data-panel-bounds", region.panel.serialize())
         text.set("data-safe-bounds", region.safe.serialize())
-        if "rotate(" in text.get("transform", ""):
-            text.set("data-layout-policy", "rotated-skip")
+        rotation = parse_text_rotation(text.get("transform", ""))
+        if rotation is not None:
+            text.set("data-layout-policy", "rotated-measured")
+        else:
+            text.attrib.pop("data-layout-policy", None)
 
 
 def _geometry_coordinate(element: ET.Element, name: str) -> float:
@@ -360,7 +394,7 @@ def estimate_text_bounds(
     stroke_width: float = 0.0,
     bold: bool = False,
 ) -> Bounds:
-    """Estimate the axis-aligned ink/halo box for one unrotated SVG text element."""
+    """Estimate the axis-aligned ink/halo box for plain or explicitly rotated text."""
 
     font_size = _coordinate(text, "font-size")
     anchor = text.get("text-anchor", "start")
@@ -395,6 +429,37 @@ def estimate_text_bounds(
                 1.04 * font_size + 2 * halo,
             )
         )
+
+    rotation = parse_text_rotation(text.get("transform", ""))
+    if rotation is not None:
+        radians = math.radians(rotation.angle)
+        cosine = math.cos(radians)
+        sine = math.sin(radians)
+        rotated: list[Bounds] = []
+        for box in boxes:
+            corners = (
+                (box.x, box.y),
+                (box.right, box.y),
+                (box.right, box.bottom),
+                (box.x, box.bottom),
+            )
+            points = [
+                (
+                    rotation.center_x
+                    + cosine * (x - rotation.center_x)
+                    - sine * (y - rotation.center_y),
+                    rotation.center_y
+                    + sine * (x - rotation.center_x)
+                    + cosine * (y - rotation.center_y),
+                )
+                for x, y in corners
+            ]
+            left = min(point[0] for point in points)
+            top = min(point[1] for point in points)
+            right = max(point[0] for point in points)
+            bottom = max(point[1] for point in points)
+            rotated.append(Bounds(left, top, right - left, bottom - top))
+        boxes = rotated
 
     left = min(box.x for box in boxes)
     top = min(box.y for box in boxes)

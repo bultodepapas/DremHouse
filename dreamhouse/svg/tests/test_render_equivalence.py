@@ -141,6 +141,7 @@ class TestSvgRenderEquivalence(unittest.TestCase):
                 "text": "Badge",
                 "layout_region": "panel",
                 "layout_relation": "badge-a",
+                "layout_policy": "rotated-measured",
             },
             {
                 "index": 2,
@@ -168,6 +169,8 @@ class TestSvgRenderEquivalence(unittest.TestCase):
         )
 
         self.assertTrue(result["passed"])
+        self.assertEqual(result["rotated_text_elements_measured"], 1)
+        self.assertEqual(result["rotated_text_elements_skipped"], 0)
         self.assertEqual(result["typed_text_geometry_pairs"], 1)
         self.assertEqual(result["untyped_text_geometry_pairs"], 0)
 

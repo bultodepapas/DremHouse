@@ -436,7 +436,6 @@ def _union_boxes(
             box is None
             or parent_index is None
             or item.get("layout_region") is None
-            or item.get("layout_policy") == "rotated-skip"
         ):
             continue
         entry = parents.setdefault(
@@ -531,6 +530,13 @@ def check_layout_clearance(
                 item["parent_index"]
                 for item in text_items
                 if item.get("layout_policy") == "rotated-skip"
+            }
+        ),
+        "rotated_text_elements_measured": len(
+            {
+                item["parent_index"]
+                for item in text_items
+                if item.get("layout_policy") == "rotated-measured"
             }
         ),
         "typed_text_pairs": text_typed,
@@ -735,6 +741,9 @@ def audit_file(
     registered_parents = {
         item["parent_index"] for item in text_items if item["layout_region"] is not None
     }
+    rotated_skip_lines = sum(
+        item["layout_policy"] == "rotated-skip" for item in text_items
+    )
     result = {
         "path": svg_path.as_posix(),
         "canvas_px": {"width": width, "height": height},
@@ -743,9 +752,10 @@ def audit_file(
             "visible_text_elements": len(parent_line_counts),
             "registered_layout_text_elements": len(registered_parents),
             "multiline_text_elements": sum(count > 1 for count in parent_line_counts.values()),
-            "rotated_skip_lines": sum(
-                item["layout_policy"] == "rotated-skip" for item in text_items
+            "rotated_measured_lines": sum(
+                item["layout_policy"] == "rotated-measured" for item in text_items
             ),
+            "rotated_skip_lines": rotated_skip_lines,
         },
         "geometry": {**geometry_comparison, "roles": dict(sorted(geometry_roles.items()))},
         "layout_clearance": {
@@ -763,6 +773,7 @@ def audit_file(
         and geometry_comparison["passed"]
         and browser_clearance["passed"]
         and resvg_clearance["passed"]
+        and rotated_skip_lines == 0
     )
     return result
 
@@ -796,6 +807,12 @@ def audit_paths(
         "failed": sum(not file["passed"] for file in files),
         "text_lines": sum(file["text"]["items"] for file in files),
         "text_line_mismatches": sum(file["text"]["mismatches"] for file in files),
+        "rotated_text_lines_measured": sum(
+            file["text"]["rotated_measured_lines"] for file in files
+        ),
+        "rotated_text_lines_skipped": sum(
+            file["text"]["rotated_skip_lines"] for file in files
+        ),
         "registered_geometry": sum(file["geometry"]["items"] for file in files),
         "geometry_mismatches": sum(file["geometry"]["mismatches"] for file in files),
         "browser_untyped_layout_collisions": sum(
@@ -817,7 +834,7 @@ def audit_paths(
         "font_requirement_failures": 0 if font_requirement_passed else 1,
     }
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
         "profile": {
             "browser": resolved_browser.as_posix(),
             "browser_version": browser_version(resolved_browser),

@@ -144,3 +144,6 @@ first registered editorial text-to-geometry profile was subsequently implemented
 Measured browser/`resvg` text-line and registered-geometry equivalence was subsequently
 implemented as
 [`svg_browser_resvg_equivalence_v0.5.md`](svg_browser_resvg_equivalence_v0.5.md).
+Strict transform-aware bounds for the six rotated GP05 labels were subsequently
+implemented as
+[`svg_rotated_text_bounds_v0.6.md`](svg_rotated_text_bounds_v0.6.md).

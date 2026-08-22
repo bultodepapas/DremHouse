@@ -295,6 +295,9 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [SVG browser–resvg render equivalence v0.5](08_investigacion/svg_browser_resvg_equivalence_v0.5.md):
   measured per-line and registered-geometry paint boxes across Chrome and `resvg`, with
   primary-font verification, typed clearance replay and five full-render comparisons.
+- [SVG rotated-text bounds v0.6](08_investigacion/svg_rotated_text_bounds_v0.6.md):
+  strict explicit-rotation parsing and transformed safe-bound/collision boxes for all six
+  vertical GP05 labels, verified statically and through Chrome/`resvg` paint boxes.
 
 ## How to use the project record
 

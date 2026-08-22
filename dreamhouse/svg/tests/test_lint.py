@@ -167,6 +167,50 @@ class TestStaticSvgLint(unittest.TestCase):
                 for file in report["files"]
             )
         )
+        self.assertEqual(
+            sum(file["metrics"]["layout_rotated_measured"] for file in report["files"]),
+            6,
+        )
+        self.assertTrue(
+            all(file["metrics"]["layout_rotated_skipped"] == 0 for file in report["files"])
+        )
+        self.assertTrue(
+            all(
+                file["metrics"]["layout_text_bounds_checked"]
+                == file["metrics"]["layout_text_elements"]
+                for file in report["files"]
+            )
+        )
+
+    def test_explicit_text_rotation_is_measured_and_other_transforms_fail(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            rotated_root = valid_document()
+            rotated_text = rotated_root.find(
+                f"{q('g')}[@id='layer-annotations']/{q('text')}"
+            )
+            assert rotated_text is not None
+            rotated_text.set("transform", "rotate(-90 100 240)")
+            register_text_regions(rotated_root, FIXTURE_REGIONS)
+            rotated_path = write_svg(Path(temporary), rotated_root, "rotated.svg")
+
+            unsupported_root = valid_document()
+            unsupported_text = unsupported_root.find(
+                f"{q('g')}[@id='layer-annotations']/{q('text')}"
+            )
+            assert unsupported_text is not None
+            unsupported_text.set("transform", "translate(4 0)")
+            unsupported_text.set("data-layout-policy", "rotated-measured")
+            unsupported_path = write_svg(
+                Path(temporary), unsupported_root, "unsupported-transform.svg"
+            )
+
+            rotated = lint_file(rotated_path)
+            unsupported = lint_file(unsupported_path)
+
+        self.assertNotIn("SVG-B001", finding_codes(rotated))
+        self.assertEqual(rotated["metrics"]["layout_rotated_measured"], 1)
+        self.assertEqual(rotated["metrics"]["layout_rotated_skipped"], 0)
+        self.assertIn("SVG-B001", finding_codes(unsupported))
 
     def test_layout_contract_bounds_and_collisions_fail_closed(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

@@ -169,7 +169,7 @@ system, drawing, product, quantity, scope, saving or cost.
 
 ## 8. Next controlled batch
 
-The next increment should replace the six `rotated-skip` declarations with measured,
-transform-aware text boxes and then extend registered geometry to controlled transforms
-and paths. The 18-unit new-template profile and combined 27-sheet contact-sheet CI build
-remain subsequent gates.
+The rotated-text increment was subsequently implemented as
+[`svg_rotated_text_bounds_v0.6.md`](svg_rotated_text_bounds_v0.6.md). Registered geometry
+transforms and paths remain the next controlled extension. The 18-unit new-template
+profile and combined 27-sheet contact-sheet CI build remain subsequent gates.
