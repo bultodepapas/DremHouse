@@ -274,6 +274,9 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [SVG graphic pilot 04 visual review](08_investigacion/svg_graphic_pilot_04_visual_review.md):
   enlarged P2 wall-family build-ups and eight-type schedule with exact source-geometry
   checks, redundant pattern/text layer keys and explicit D-080/open-performance limits.
+- [SVG graphic pilot 05 visual review](08_investigacion/svg_graphic_pilot_05_visual_review.md):
+  fail-closed E1 structural synthesis retaining 183 calculation-linked shapes and every
+  evidence value while enlarging matrix, status, detail and authority text.
 
 ## How to use the project record
 

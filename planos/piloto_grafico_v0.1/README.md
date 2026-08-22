@@ -87,3 +87,26 @@ python3 -m dreamhouse.svg.audit \
 GP04 copies the R22 W01A/W01B controlled build-up geometry without coordinate changes,
 retains every D-080 wall type and adds pattern-plus-text layer coding. It claims no
 tested performance and books no saving.
+
+## GP05 — integrated E1 structural evidence readability
+
+- Source: `../actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg`
+- Generator: `../../dreamhouse/svg/pilot_e1_synthesis.py`
+- Output: `DH-EST-E1-001-GP05_STRUCTURAL-EVIDENCE-READABILITY-PILOT.svg`
+- Manifest: `DH-EST-E1-001-GP05.manifest.json`
+- Review: `../../docs/08_investigacion/svg_graphic_pilot_05_visual_review.md`
+
+Regenerate the pilot and its untracked visual-review build from the repository root:
+
+```bash
+python3 -m dreamhouse.svg.pilot_e1_synthesis
+python3 -m dreamhouse.svg.audit \
+  --before planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg \
+  --after planos/piloto_grafico_v0.1/DH-EST-E1-001-GP05_STRUCTURAL-EVIDENCE-READABILITY-PILOT.svg \
+  --output-dir .build/svg-pilot/gp05 \
+  --prefix gp05
+```
+
+GP05 copies all six calculation-linked technical geometry groups, retains the nine-row
+evidence matrix and keeps every system-design result blocked. It selects no structural
+system, section, quantity, product or construction release.

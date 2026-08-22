@@ -1,0 +1,475 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1684" height="1191" viewBox="0 0 1684 1191" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="gp05-title gp05-desc" data-sheet-id="DH-EST-E1-001" data-revision="GP05" data-status="graphic-pilot-not-current" data-construction-authority="false">
+  <title id="gp05-title">Integrated structural E1 evidence readability pilot GP05</title>
+  <desc id="gp05-desc">Presentation-only pilot of the fail-closed E1 structural synthesis. The integrated plan, reference truss, generic joint, trial base, erection envelope and fire-sensitivity geometry are copied without coordinate changes. Narrow calculations remain distinct from blocked system design and no structural system, section, quantity, product or construction release is created.</desc>
+  <metadata>{"construction_authority": false, "date": "2026-08-22", "decision_ids": ["D-043", "D-045", "D-047", "D-048", "D-054"], "input_sha256": "9598c4d5d4c9d5b7398f86e79e6a0e3d5d4de1439a94a6db775c9e7090cd6e33", "pilot": "GP05", "selection_authority": false, "sheet": "DH-EST-E1-001", "source": "planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg", "source_revision": "R01 / 0.3 + E1 0.2", "source_sha256": "b0ccaae7a5cf52951b74042e9979c479e75df1cba042de5193d59029297e41fa", "status": "presentation-only graphic pilot; not current; not for construction"}</metadata>
+  <style>:root {
+  --paper: #F4F0E7;
+  --panel: #FFFDFA;
+  --ink: #172A32;
+  --muted: #536168;
+  --info: #1D7480;
+  --open: #8A5A16;
+  --conflict: #A33F31;
+  --hypothesis: #66538A;
+  --material: #74543C;
+}
+text {
+  font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
+  text-rendering: geometricPrecision;
+}
+.new-title { fill: var(--ink); font-weight: 700; letter-spacing: .15px; }
+.new-eyebrow { fill: var(--info); font-weight: 700; letter-spacing: .9px; }
+.new-body { fill: var(--ink); }
+.new-muted { fill: var(--muted); }
+.new-open { fill: var(--open); font-weight: 700; }
+.new-conflict { fill: var(--conflict); font-weight: 700; }
+.new-hypothesis { fill: var(--hypothesis); font-weight: 700; }
+.new-on-dark { fill: #FFFDFA; }
+.new-on-dark-muted { fill: #DDE4E2; }
+.new-on-dark-alert { fill: #FFB4A8; font-weight: 800; }
+.key-tag {
+  fill: var(--ink);
+  stroke: var(--panel);
+  stroke-width: 4px;
+  paint-order: stroke fill;
+  font-weight: 800;
+  letter-spacing: .25px;
+}
+.model-primary {
+  fill: var(--ink);
+  stroke: var(--panel);
+  stroke-width: 2.4px;
+  paint-order: stroke fill;
+  font-weight: 650;
+}
+.model-secondary { font-weight: 550; }
+.sheet-rule { stroke: #B9C0BD; stroke-width: 1; }
+.panel-rule { stroke: #CBD0CC; stroke-width: 1; }
+.status-open-box {
+  fill: #FBF0D9;
+  stroke: var(--open);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+.status-hypothesis-box {
+  fill: #F0ECF6;
+  stroke: var(--hypothesis);
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}</style>
+  <defs id="gp05-source-symbols">
+    <marker id="arrow-teal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#1d7480" />
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#a33f31" />
+    </marker>
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#627078" />
+    </marker>
+    <pattern id="amber-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#bd7626" stroke-width="3" opacity="0.42" />
+    </pattern>
+    <pattern id="red-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#a33f31" stroke-width="2" />
+    </pattern>
+  </defs>
+  <g id="layer-background" data-layer="background">
+    <rect width="1684" height="1191" fill="#F4F0E7" />
+    <rect x="36" y="116" width="1010" height="494" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="1062" y="116" width="586" height="494" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="36" y="626" width="1010" height="382" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="1062" y="626" width="284" height="198" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="1364" y="626" width="284" height="198" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="1062" y="832" width="284" height="176" rx="5" fill="#FFFDFA" class="panel-rule" />
+    <rect x="1364" y="832" width="284" height="176" rx="5" fill="#FFFDFA" class="status-open-box" />
+  </g>
+  <g id="layer-model" data-layer="calculation-linked-technical-geometry">
+    <g id="model-integrated-plan" data-model-id="integrated-plan" data-source-group="integrated-plan">
+      <rect x="562.0" y="174.0" width="330.0" height="396.0" fill="#3d7186" opacity="0.08" data-source-index="0" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="570.0" x2="892.0" y2="570.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="1" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="537.0" x2="892.0" y2="537.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="2" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="504.0" x2="892.0" y2="504.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="3" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="471.0" x2="892.0" y2="471.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="4" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="438.0" x2="892.0" y2="438.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="5" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="405.0" x2="892.0" y2="405.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="6" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="372.0" x2="892.0" y2="372.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="7" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="339.0" x2="892.0" y2="339.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="8" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="306.0" x2="892.0" y2="306.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="9" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="273.0" x2="892.0" y2="273.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="10" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="240.0" x2="892.0" y2="240.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="11" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="207.0" x2="892.0" y2="207.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="12" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="174.0" x2="892.0" y2="174.0" stroke="#cbd1cf" stroke-width="0.75" data-source-index="13" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="570.0" x2="100.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="14" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="100.0" cy="570.0" r="4" fill="#172a32" data-source-index="15" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="100.0" cy="174.0" r="4" fill="#172a32" data-source-index="16" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="232.0" y1="570.0" x2="232.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="17" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="232.0" cy="570.0" r="4" fill="#172a32" data-source-index="18" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="232.0" cy="174.0" r="4" fill="#172a32" data-source-index="19" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="364.0" y1="570.0" x2="364.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="20" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="364.0" cy="570.0" r="4" fill="#172a32" data-source-index="21" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="364.0" cy="174.0" r="4" fill="#172a32" data-source-index="22" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="496.0" y1="570.0" x2="496.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="23" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="496.0" cy="570.0" r="4" fill="#172a32" data-source-index="24" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="496.0" cy="174.0" r="4" fill="#172a32" data-source-index="25" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="628.0" y1="570.0" x2="628.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="26" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="628.0" cy="570.0" r="4" fill="#172a32" data-source-index="27" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="628.0" cy="174.0" r="4" fill="#172a32" data-source-index="28" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="760.0" y1="570.0" x2="760.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="29" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="760.0" cy="570.0" r="4" fill="#172a32" data-source-index="30" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="760.0" cy="174.0" r="4" fill="#172a32" data-source-index="31" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="892.0" y1="570.0" x2="892.0" y2="174.0" stroke="#172a32" stroke-width="3" class="roof-truss-line" data-source-index="32" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="892.0" cy="570.0" r="4" fill="#172a32" data-source-index="33" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="892.0" cy="174.0" r="4" fill="#172a32" data-source-index="34" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="162.7" y="345.6" width="105.6" height="52.8" rx="3" fill="#69a9b5" opacity="0.66" stroke="#1d7480" stroke-width="2" class="rooflight-opening" data-source-index="35" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="393.7" y="345.6" width="105.6" height="52.8" rx="3" fill="#69a9b5" opacity="0.66" stroke="#1d7480" stroke-width="2" class="rooflight-opening" data-source-index="37" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="537.0" x2="892.0" y2="537.0" stroke="#3d7186" stroke-width="2.4" stroke-dasharray="7 4" class="p2-longitudinal-beam" data-source-index="39" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="471.0" x2="892.0" y2="471.0" stroke="#3d7186" stroke-width="2.4" stroke-dasharray="7 4" class="p2-longitudinal-beam" data-source-index="40" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="405.0" x2="892.0" y2="405.0" stroke="#3d7186" stroke-width="2.4" stroke-dasharray="7 4" class="p2-longitudinal-beam" data-source-index="41" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="339.0" x2="892.0" y2="339.0" stroke="#3d7186" stroke-width="2.4" stroke-dasharray="7 4" class="p2-longitudinal-beam" data-source-index="42" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="273.0" x2="892.0" y2="273.0" stroke="#3d7186" stroke-width="2.4" stroke-dasharray="7 4" class="p2-longitudinal-beam" data-source-index="43" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="207.0" x2="892.0" y2="207.0" stroke="#3d7186" stroke-width="2.4" stroke-dasharray="7 4" class="p2-longitudinal-beam" data-source-index="44" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="562.0" y1="570.0" x2="562.0" y2="174.0" stroke="#3d7186" stroke-width="5" class="p2-edge-truss" data-source-index="45" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="793.0" y1="570.0" x2="793.0" y2="174.0" stroke="#74543c" stroke-width="8" class="hybrid-wall-line" data-source-index="46" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="793.0" cy="570.0" r="5.5" fill="#1d7480" stroke="#ffffff" stroke-width="1.3" class="hidden-steel-column" data-source-index="47" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="793.0" cy="517.2" r="5.5" fill="#1d7480" stroke="#ffffff" stroke-width="1.3" class="hidden-steel-column" data-source-index="48" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="793.0" cy="407.2" r="5.5" fill="#1d7480" stroke="#ffffff" stroke-width="1.3" class="hidden-steel-column" data-source-index="49" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="793.0" cy="328.0" r="5.5" fill="#1d7480" stroke="#ffffff" stroke-width="1.3" class="hidden-steel-column" data-source-index="50" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="793.0" cy="275.2" r="5.5" fill="#1d7480" stroke="#ffffff" stroke-width="1.3" class="hidden-steel-column" data-source-index="51" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="793.0" cy="174.0" r="5.5" fill="#1d7480" stroke="#ffffff" stroke-width="1.3" class="hidden-steel-column" data-source-index="52" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="786.0" y="400.2" width="14" height="14" rx="2" fill="#66538a" stroke="#ffffff" stroke-width="1.5" class="full-height-core-column" data-source-index="53" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="786.0" y="321.0" width="14" height="14" rx="2" fill="#66538a" stroke="#ffffff" stroke-width="1.5" class="full-height-core-column" data-source-index="54" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="885.0" y="400.2" width="14" height="14" rx="2" fill="#66538a" stroke="#ffffff" stroke-width="1.5" class="full-height-core-column" data-source-index="55" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="885.0" y="321.0" width="14" height="14" rx="2" fill="#66538a" stroke="#ffffff" stroke-width="1.5" class="full-height-core-column" data-source-index="56" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="793.0" y="328.0" width="99.0" height="79.2" fill="#66538a" opacity="0.08" stroke="#66538a" stroke-width="2" stroke-dasharray="5 3" class="stair-core-study-zone" data-source-index="57" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="100.0" y="161.0" width="132.0" height="13" fill="url(#amber-hatch)" stroke="#bd7626" stroke-width="1.5" class="trial-braced-bay" data-source-index="59" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="161.0" x2="232.0" y2="174.0" stroke="#bd7626" data-source-index="60" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="174.0" x2="232.0" y2="161.0" stroke="#bd7626" data-source-index="61" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="100.0" y="570.0" width="132.0" height="13" fill="url(#amber-hatch)" stroke="#bd7626" stroke-width="1.5" class="trial-braced-bay" data-source-index="62" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="570.0" x2="232.0" y2="583.0" stroke="#bd7626" data-source-index="63" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="583.0" x2="232.0" y2="570.0" stroke="#bd7626" data-source-index="64" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="760.0" y="161.0" width="132.0" height="13" fill="url(#amber-hatch)" stroke="#bd7626" stroke-width="1.5" class="trial-braced-bay" data-source-index="65" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="760.0" y1="161.0" x2="892.0" y2="174.0" stroke="#bd7626" data-source-index="66" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="760.0" y1="174.0" x2="892.0" y2="161.0" stroke="#bd7626" data-source-index="67" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="760.0" y="570.0" width="132.0" height="13" fill="url(#amber-hatch)" stroke="#bd7626" stroke-width="1.5" class="trial-braced-bay" data-source-index="68" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="760.0" y1="570.0" x2="892.0" y2="583.0" stroke="#bd7626" data-source-index="69" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="760.0" y1="583.0" x2="892.0" y2="570.0" stroke="#bd7626" data-source-index="70" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="496.0" y1="364.0" x2="245.2" y2="364.0" stroke="#1d7480" stroke-width="2" marker-end="url(#arrow-teal)" data-source-index="71" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="496.0" y1="380.0" x2="746.8" y2="380.0" stroke="#1d7480" stroke-width="2" marker-end="url(#arrow-teal)" data-source-index="72" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <rect x="100.0" y="174.0" width="792.0" height="396.0" fill="none" stroke="#172a32" stroke-width="2.5" data-source-index="74" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="100.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="75" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="232.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="77" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="364.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="79" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="496.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="81" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="628.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="83" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="760.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="85" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <circle cx="892.0" cy="158.0" r="9" fill="#fffdfa" stroke="#627078" data-source-index="87" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="594.0" x2="892.0" y2="594.0" stroke="#627078" data-source-index="94" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="100.0" y1="589.0" x2="100.0" y2="599.0" stroke="#627078" data-source-index="95" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="232.0" y1="589.0" x2="232.0" y2="599.0" stroke="#627078" data-source-index="96" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="364.0" y1="589.0" x2="364.0" y2="599.0" stroke="#627078" data-source-index="97" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="496.0" y1="589.0" x2="496.0" y2="599.0" stroke="#627078" data-source-index="98" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="628.0" y1="589.0" x2="628.0" y2="599.0" stroke="#627078" data-source-index="99" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="760.0" y1="589.0" x2="760.0" y2="599.0" stroke="#627078" data-source-index="100" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+      <line x1="892.0" y1="589.0" x2="892.0" y2="599.0" stroke="#627078" data-source-index="101" data-model-id="integrated-plan" vector-effect="non-scaling-stroke" />
+    </g>
+    <g id="model-reference-truss" data-model-id="reference-truss" data-source-group="reference-truss">
+      <line x1="98.0" y1="737.5" x2="98.0" y2="886" stroke="#172a32" stroke-width="7" data-source-index="0" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <polygon points="87.00,886.00 109.00,886.00 98.00,871.00" fill="#f4f0e7" stroke="#172a32" data-source-index="1" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="962.0" y1="692.5" x2="962.0" y2="886" stroke="#172a32" stroke-width="7" data-source-index="2" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <polygon points="951.00,886.00 973.00,886.00 962.00,871.00" fill="#f4f0e7" stroke="#172a32" data-source-index="3" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="98.0" y1="737.5" x2="242.0" y2="730.0" stroke="#172a32" stroke-width="4" class="truss-member chord top_chord" data-source-index="4" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="98.0" y1="811.75" x2="242.0" y2="824.5" stroke="#172a32" stroke-width="4" class="truss-member chord bottom_chord" data-source-index="5" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="242.0" y1="730.0" x2="386.0" y2="722.5" stroke="#172a32" stroke-width="4" class="truss-member chord top_chord" data-source-index="6" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="242.0" y1="824.5" x2="386.0" y2="837.25" stroke="#172a32" stroke-width="4" class="truss-member chord bottom_chord" data-source-index="7" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="386.0" y1="722.5" x2="530.0" y2="715.0" stroke="#172a32" stroke-width="4" class="truss-member chord top_chord" data-source-index="8" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="386.0" y1="837.25" x2="530.0" y2="850.0" stroke="#172a32" stroke-width="4" class="truss-member chord bottom_chord" data-source-index="9" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="530.0" y1="715.0" x2="674.0" y2="707.5" stroke="#172a32" stroke-width="4" class="truss-member chord top_chord" data-source-index="10" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="530.0" y1="850.0" x2="674.0" y2="822.25" stroke="#172a32" stroke-width="4" class="truss-member chord bottom_chord" data-source-index="11" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="674.0" y1="707.5" x2="818.0" y2="700.0" stroke="#172a32" stroke-width="4" class="truss-member chord top_chord" data-source-index="12" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="674.0" y1="822.25" x2="818.0" y2="794.5" stroke="#172a32" stroke-width="4" class="truss-member chord bottom_chord" data-source-index="13" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="818.0" y1="700.0" x2="962.0" y2="692.5" stroke="#172a32" stroke-width="4" class="truss-member chord top_chord" data-source-index="14" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="818.0" y1="794.5" x2="962.0" y2="766.75" stroke="#172a32" stroke-width="4" class="truss-member chord bottom_chord" data-source-index="15" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="98.0" y1="737.5" x2="98.0" y2="811.75" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="16" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="242.0" y1="730.0" x2="242.0" y2="824.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="17" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="386.0" y1="722.5" x2="386.0" y2="837.25" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="18" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="530.0" y1="715.0" x2="530.0" y2="850.0" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="19" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="674.0" y1="707.5" x2="674.0" y2="822.25" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="20" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="818.0" y1="700.0" x2="818.0" y2="794.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="21" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="962.0" y1="692.5" x2="962.0" y2="766.75" stroke="#1d7480" stroke-width="2.2" class="truss-member web vertical" data-source-index="22" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="98.0" y1="737.5" x2="242.0" y2="824.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web diagonal" data-source-index="23" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="242.0" y1="824.5" x2="386.0" y2="722.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web diagonal" data-source-index="24" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="386.0" y1="722.5" x2="530.0" y2="850.0" stroke="#1d7480" stroke-width="2.2" class="truss-member web diagonal" data-source-index="25" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="530.0" y1="850.0" x2="674.0" y2="707.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web diagonal" data-source-index="26" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="674.0" y1="707.5" x2="818.0" y2="794.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web diagonal" data-source-index="27" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="818.0" y1="794.5" x2="962.0" y2="692.5" stroke="#1d7480" stroke-width="2.2" class="truss-member web diagonal" data-source-index="28" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="98.0" cy="737.5" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="29" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="98.0" cy="811.75" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="30" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="242.0" cy="730.0" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="31" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="242.0" cy="824.5" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="32" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="386.0" cy="722.5" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="33" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="386.0" cy="837.25" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="34" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="530.0" cy="715.0" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="35" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="530.0" cy="850.0" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="36" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="674.0" cy="707.5" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="37" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="674.0" cy="822.25" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="38" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="818.0" cy="700.0" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="39" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="818.0" cy="794.5" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="40" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="962.0" cy="692.5" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="41" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <circle cx="962.0" cy="766.75" r="3.1" fill="#fffdfa" stroke="#172a32" stroke-width="1.2" class="truss-node" data-source-index="42" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="98.0" y1="710.5" x2="98.0" y2="730.5" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="43" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="242.0" y1="703.0" x2="242.0" y2="723.0" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="44" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="386.0" y1="695.5" x2="386.0" y2="715.5" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="45" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="530.0" y1="688.0" x2="530.0" y2="708.0" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="46" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="674.0" y1="680.5" x2="674.0" y2="700.5" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="47" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="818.0" y1="673.0" x2="818.0" y2="693.0" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="48" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="962.0" y1="665.5" x2="962.0" y2="685.5" stroke="#a33f31" stroke-width="1.3" marker-end="url(#arrow-red)" data-source-index="49" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="95.5" y="735.0" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="50" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="167.5" y="731.25" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="51" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="239.5" y="727.5" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="52" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="311.5" y="723.75" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="53" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="383.5" y="720.0" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="54" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="455.5" y="716.25" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="55" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="527.5" y="712.5" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="56" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="599.5" y="708.75" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="57" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="671.5" y="705.0" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="58" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="743.5" y="701.25" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="59" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="815.5" y="697.5" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="60" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="887.5" y="693.75" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="61" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <rect x="959.5" y="690.0" width="5" height="5" fill="#2f7859" class="top-restraint" data-source-index="62" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <polygon points="98.00,806.75 103.00,811.75 98.00,816.75 93.00,811.75" fill="#bd7626" class="bottom-restraint" data-source-index="63" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <polygon points="386.00,832.25 391.00,837.25 386.00,842.25 381.00,837.25" fill="#bd7626" class="bottom-restraint" data-source-index="64" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <polygon points="674.00,817.25 679.00,822.25 674.00,827.25 669.00,822.25" fill="#bd7626" class="bottom-restraint" data-source-index="65" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <polygon points="962.00,761.75 967.00,766.75 962.00,771.75 957.00,766.75" fill="#bd7626" class="bottom-restraint" data-source-index="66" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+      <line x1="530.0" y1="674" x2="530.0" y2="888" stroke="#a33f31" stroke-dasharray="5 5" data-source-index="67" data-model-id="reference-truss" vector-effect="non-scaling-stroke" />
+    </g>
+    <g id="model-connection-detail" data-model-id="connection-detail" data-source-group="connection-detail">
+      <rect x="1080" y="689" width="152" height="40" fill="#e8eceb" stroke="#172a32" stroke-width="2" data-source-index="0" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <polygon points="1140.00,729.00 1255.00,729.00 1314.00,788.00 1250.00,788.00" fill="#d9e5e4" stroke="#1d7480" stroke-width="2" data-source-index="2" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1180" cy="747" r="3.8" fill="#fffdfa" stroke="#172a32" data-source-index="3" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1197" cy="747" r="3.8" fill="#fffdfa" stroke="#172a32" data-source-index="4" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1214" cy="747" r="3.8" fill="#fffdfa" stroke="#172a32" data-source-index="5" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1231" cy="747" r="3.8" fill="#fffdfa" stroke="#172a32" data-source-index="6" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1248" cy="747" r="3.8" fill="#fffdfa" stroke="#172a32" data-source-index="7" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1265" cy="747" r="3.8" fill="#fffdfa" stroke="#172a32" data-source-index="8" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1254" y1="778" x2="1317" y2="715" stroke="#172a32" stroke-width="12" data-source-index="9" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1076" y="684" width="160" height="50" fill="url(#red-hatch)" opacity="0.28" class="unresolved-hss-wall" data-source-index="10" data-model-id="connection-detail" vector-effect="non-scaling-stroke" />
+    </g>
+    <g id="model-foundation-detail" data-model-id="foundation-detail" data-source-group="foundation-detail">
+      <rect x="1470" y="670" width="54" height="58" fill="#d9e0df" stroke="#172a32" stroke-width="2" data-source-index="0" data-model-id="foundation-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1445" y="725" width="104" height="9" fill="#1d7480" stroke="#172a32" data-source-index="1" data-model-id="foundation-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1402" y="749" width="190" height="48" fill="#d9d2c0" stroke="#74543c" stroke-width="2" data-source-index="2" data-model-id="foundation-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1455" y1="732" x2="1445" y2="767" stroke="#a33f31" stroke-width="1.5" stroke-dasharray="4 3" data-source-index="3" data-model-id="foundation-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1539" y1="732" x2="1549" y2="767" stroke="#a33f31" stroke-width="1.5" stroke-dasharray="4 3" data-source-index="4" data-model-id="foundation-detail" vector-effect="non-scaling-stroke" />
+    </g>
+    <g id="model-erection-detail" data-model-id="erection-detail" data-source-group="erection-detail" transform="translate(0 -10)">
+      <path d="M1084 965 L1202 914 L1320 965 M1084 965 L1202 984 L1320 965" fill="none" stroke="#172a32" stroke-width="2" data-source-index="0" data-model-id="erection-detail" vector-effect="non-scaling-stroke" />
+      <circle cx="1202" cy="895" r="5" fill="#a33f31" data-source-index="1" data-model-id="erection-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1202" y1="900" x2="1145" y2="944" stroke="#bd7626" stroke-width="2" data-source-index="2" data-model-id="erection-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1202" y1="900" x2="1259" y2="944" stroke="#bd7626" stroke-width="2" data-source-index="3" data-model-id="erection-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1202" y1="906" x2="1202" y2="991" stroke="#a33f31" stroke-dasharray="5 4" data-source-index="4" data-model-id="erection-detail" vector-effect="non-scaling-stroke" />
+    </g>
+    <g id="model-fire-detail" data-model-id="fire-detail" data-source-group="fire-detail">
+      <rect x="1424" y="895" width="150" height="18" rx="3" fill="#e3e6e2" data-source-index="1" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1424" y="895" width="32.67465" height="18" rx="3" fill="#2f7859" opacity="0.75" data-source-index="2" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1474" y1="893" x2="1474" y2="915" stroke="#172a32" stroke-width="0.8" stroke-dasharray="2 2" data-source-index="4" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1424" y="930" width="150" height="18" rx="3" fill="#e3e6e2" data-source-index="6" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1424" y="930" width="52.279450000000004" height="18" rx="3" fill="#a33f31" opacity="0.75" data-source-index="7" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1474" y1="928" x2="1474" y2="950" stroke="#172a32" stroke-width="0.8" stroke-dasharray="2 2" data-source-index="9" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1424" y="965" width="150" height="18" rx="3" fill="#e3e6e2" data-source-index="11" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <rect x="1424" y="965" width="142.06369999999998" height="18" rx="3" fill="#a33f31" opacity="0.75" data-source-index="12" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+      <line x1="1474" y1="963" x2="1474" y2="985" stroke="#172a32" stroke-width="0.8" stroke-dasharray="2 2" data-source-index="14" data-model-id="fire-detail" vector-effect="non-scaling-stroke" />
+    </g>
+  </g>
+  <g id="layer-annotations" data-layer="technical-labels-and-evidence">
+    <text x="56" y="136" font-size="12.5" class="new-title">01 · INTEGRATED ROOF / P2 LOAD-PATH PLAN</text>
+    <line x1="56" y1="148" x2="1026" y2="148" class="panel-rule" />
+    <text x="100" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">A</text>
+    <text x="232" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">B</text>
+    <text x="364" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">C</text>
+    <text x="496" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">D</text>
+    <text x="628" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">E</text>
+    <text x="760" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">F</text>
+    <text x="892" y="161.5" font-size="9.8" class="new-title" text-anchor="middle">G</text>
+    <text x="727" y="190" font-size="9.8" class="new-eyebrow" text-anchor="middle">P2 18 × 15 m · +3.80</text>
+    <text x="215.5" y="372" font-size="9.8" class="new-on-dark" text-anchor="middle" transform="rotate(-90 215.5 372)">RL-CAR</text>
+    <text x="446.5" y="372" font-size="9.8" class="new-on-dark" text-anchor="middle" transform="rotate(-90 446.5 372)">RL-RC</text>
+    <text x="842.5" y="367.6" font-size="9.8" class="new-hypothesis" text-anchor="middle" transform="rotate(-90 842.5 367.6)">D-048 CORE</text>
+    <text x="496" y="356" font-size="10.2" class="key-tag" text-anchor="middle">DIAPHRAGM DEMAND · 8.77 kN/m</text>
+    <text x="569" y="374.2" font-size="9.8" class="new-eyebrow" text-anchor="middle" transform="rotate(-90 569 374.2)">EDGE · X=21</text>
+    <text x="804" y="372" font-size="9.8" class="new-title" text-anchor="middle" transform="rotate(-90 804 372)">HIDDEN FRAME · X=31.5</text>
+    <text x="848" y="543.6" font-size="9.8" class="key-tag" text-anchor="middle">4.50 m OVERHANG</text>
+    <text x="166" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
+    <text x="298" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
+    <text x="430" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
+    <text x="562" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
+    <text x="694" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
+    <text x="826" y="588" font-size="9.8" class="new-muted" text-anchor="middle">6.00</text>
+    <text x="496" y="606" font-size="10.5" class="new-title" text-anchor="middle">36.00 m</text>
+    <text x="80" y="372" font-size="10.5" class="new-title" text-anchor="middle" transform="rotate(-90 80 372)">18.00 m</text>
+    <text x="910" y="184" font-size="10.2" class="new-title">GRAPHIC STATUS</text>
+    <line x1="910" y1="207" x2="932" y2="207" stroke="#172A32" stroke-width="5" />
+    <text x="940" y="211" font-size="9.8" class="new-body">7 M60 ROOF</text>
+    <line x1="910" y1="238" x2="932" y2="238" stroke="#3D7186" stroke-width="5" />
+    <text x="940" y="242" font-size="9.8" class="new-body">P2 GRAVITY</text>
+    <line x1="910" y1="269" x2="932" y2="269" stroke="#1D7480" stroke-width="5" />
+    <text x="940" y="273" font-size="9.8" class="new-body">D-054 RL / q</text>
+    <line x1="910" y1="300" x2="932" y2="300" stroke="#66538A" stroke-width="5" />
+    <text x="940" y="304" font-size="9.8" class="new-body">D-048 CORE</text>
+    <line x1="910" y1="331" x2="932" y2="331" stroke="#BD7626" stroke-width="5" />
+    <text x="940" y="335" font-size="9.8" class="new-body">TRIAL BAYS</text>
+    <line x1="910" y1="362" x2="932" y2="362" stroke="#A33F31" stroke-width="5" />
+    <text x="940" y="366" font-size="9.8" class="new-body">OPEN GATE</text>
+    <rect x="910" y="403" width="116" height="145" rx="4" fill="#FBF0D9" stroke="#A33F31" stroke-dasharray="6 4" />
+    <text x="922" y="425" font-size="10.2" class="new-conflict">TRIAL ONLY</text>
+    <text x="922" y="448" font-size="9.8" class="new-body">
+      <tspan x="922" dy="0">Bay locations are</tspan>
+      <tspan x="922" dy="12.3">diagrammatic.</tspan>
+      <tspan x="922" dy="12.3">Openings,</tspan>
+      <tspan x="922" dy="12.3">collectors,</tspan>
+      <tspan x="922" dy="12.3">reversal and</tspan>
+      <tspan x="922" dy="12.3">joints remain</tspan>
+      <tspan x="922" dy="12.3">unresolved.</tspan>
+    </text>
+    <text x="1082" y="140" font-size="12.5" class="new-title">02 · CALCULATION ≠ DESIGN</text>
+    <line x1="1082" y1="152" x2="1628" y2="152" class="panel-rule" />
+    <text x="1082" y="177" font-size="9.8" class="new-muted" font-weight="700">PHENOMENON</text>
+    <text x="1288" y="177" font-size="9.8" class="new-muted" font-weight="700">CALC</text>
+    <text x="1374" y="177" font-size="9.8" class="new-muted" font-weight="700">EVIDENCE</text>
+    <text x="1574" y="177" font-size="9.8" class="new-muted" font-weight="700">DESIGN</text>
+    <text x="1082" y="211" font-size="9.8" class="new-title">HSS LOCAL / BIAXIAL</text>
+    <rect x="1278" y="195" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="211" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+    <text x="1374" y="211" font-size="9.8" class="new-body">interaction 0.653</text>
+    <rect x="1560" y="195" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="211" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <rect x="1074" y="230" width="558" height="37" rx="3" fill="#EEF2F0" />
+    <text x="1082" y="253" font-size="9.8" class="new-title">CHORD LOCAL BENDING</text>
+    <rect x="1278" y="237" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="253" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+    <text x="1374" y="253" font-size="9.8" class="new-body">12.51 kN·m / 0.369</text>
+    <rect x="1560" y="237" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="253" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <text x="1082" y="295" font-size="9.8" class="new-title">MEMBER SECOND ORDER</text>
+    <rect x="1278" y="279" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="295" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+    <text x="1374" y="295" font-size="9.8" class="new-body">B1 1.255</text>
+    <rect x="1560" y="279" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="295" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <rect x="1074" y="314" width="558" height="37" rx="3" fill="#EEF2F0" />
+    <text x="1082" y="337" font-size="9.8" class="new-title">GENERIC JOINT PARTS</text>
+    <rect x="1278" y="321" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="337" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+    <text x="1374" y="337" font-size="9.8" class="new-body">ratio 0.387; HSS wall open</text>
+    <rect x="1560" y="321" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="337" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <text x="1082" y="379" font-size="9.8" class="new-title">TRIAL LATERAL BAYS</text>
+    <rect x="1278" y="363" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="379" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+    <text x="1374" y="379" font-size="9.8" class="new-body">63.2 kN / 0.622</text>
+    <rect x="1560" y="363" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="379" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <rect x="1074" y="398" width="558" height="37" rx="3" fill="#EEF2F0" />
+    <text x="1082" y="421" font-size="9.8" class="new-title">ROOF DIAPHRAGM</text>
+    <rect x="1278" y="405" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="421" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
+    <text x="1374" y="421" font-size="9.8" class="new-body">8.77 kN/m; deck open</text>
+    <rect x="1560" y="405" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="421" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <text x="1082" y="463" font-size="9.8" class="new-title">FIRE SENSITIVITY</text>
+    <rect x="1278" y="447" width="82" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1319" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">FAIL@550</text>
+    <text x="1374" y="463" font-size="9.8" class="new-body">ratios 0.65 / 1.05 / 2.84</text>
+    <rect x="1560" y="447" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="463" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <rect x="1074" y="482" width="558" height="37" rx="3" fill="#EEF2F0" />
+    <text x="1082" y="505" font-size="9.8" class="new-title">ERECTION / TRANSPORT</text>
+    <rect x="1278" y="489" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="505" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">DEMAND</text>
+    <text x="1374" y="505" font-size="9.8" class="new-body">hook 15.8 kN; ≥2 pieces</text>
+    <rect x="1560" y="489" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="505" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <text x="1082" y="547" font-size="9.8" class="new-title">BASE + TRIAL FOOTING</text>
+    <rect x="1278" y="531" width="82" height="23" rx="11.5" fill="#1D7480" fill-opacity=".1" stroke="#1D7480" stroke-width="1" />
+    <text x="1319" y="547" font-size="9.8" class="new-eyebrow" text-anchor="middle" fill="#1D7480">PASS*</text>
+    <text x="1374" y="547" font-size="9.8" class="new-body">qmax 37.3 kPa; plate 0.205</text>
+    <rect x="1560" y="531" width="72" height="23" rx="11.5" fill="#A33F31" fill-opacity=".1" stroke="#A33F31" stroke-width="1" />
+    <text x="1596" y="547" font-size="9.8" class="new-conflict" text-anchor="middle" fill="#A33F31">BLOCKED</text>
+    <text x="1082" y="592" font-size="9.8" class="new-conflict">PASS* = narrow component screen only · every system-level design gate remains open</text>
+    <text x="56" y="655" font-size="12.5" class="new-title">03 · REFERENCE ROOF TRUSS + EXPLICIT RESTRAINT ASSUMPTIONS</text>
+    <line x1="56" y1="667" x2="1026" y2="667" class="panel-rule" />
+    <text x="98" y="682" font-size="9.8" class="new-eyebrow">TOP RESTRAINT @ 1.50 m</text>
+    <text x="98" y="700" font-size="9.8" class="new-open">BOTTOM RESTRAINT @ 6.00 m</text>
+    <text x="447" y="682" font-size="9.8" class="new-conflict">ILLUSTRATIVE TRANSPORT SPLIT</text>
+    <text x="958" y="682" font-size="9.8" class="new-conflict" text-anchor="end">LOADS AT PANEL POINTS</text>
+    <text x="530" y="906" font-size="9.8" class="new-title" text-anchor="middle">18.00 m TRANSVERSE SPAN · 6 PANELS · VARIABLE DEPTH 0.99→1.80 m</text>
+    <rect x="58" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+    <text x="68" y="938" font-size="9.8" class="new-muted" font-weight="700">TRIAL SECTIONS</text>
+    <text x="68" y="956" font-size="10.2" class="new-title">HSS120×120×6</text>
+    <text x="68" y="973" font-size="9.8" class="new-title">HSS100×100×6</text>
+    <text x="229" y="938" font-size="9.8" class="new-conflict" text-anchor="end">NOT SELECTED</text>
+    <rect x="251" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+    <text x="261" y="938" font-size="9.8" class="new-muted" font-weight="700">INTERACTION</text>
+    <text x="261" y="956" font-size="10.2" class="new-title">0.653</text>
+    <text x="261" y="973" font-size="9.8" class="new-muted">local M 12.51 kN·m</text>
+    <rect x="444" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+    <text x="454" y="938" font-size="9.8" class="new-muted" font-weight="700">SECOND ORDER</text>
+    <text x="454" y="956" font-size="10.2" class="new-title">B1 1.255</text>
+    <text x="454" y="973" font-size="9.8" class="new-muted">Euler ratio 0.203</text>
+    <rect x="637" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+    <text x="647" y="938" font-size="9.8" class="new-muted" font-weight="700">ENVELOPE</text>
+    <text x="647" y="956" font-size="10.2" class="new-title">Nmax 209.8 kN</text>
+    <text x="647" y="973" font-size="9.8" class="new-muted">Rdown 79.7 kN</text>
+    <rect x="830" y="920" width="181" height="59" rx="5" fill="#EEF2F0" stroke="#CBD0CC" />
+    <text x="840" y="938" font-size="9.8" class="new-muted" font-weight="700">SPECIMEN</text>
+    <text x="840" y="956" font-size="10.2" class="new-title">1241 kg / truss</text>
+    <text x="840" y="973" font-size="9.8" class="new-muted">deflection 16.9 mm</text>
+    <text x="58" y="998" font-size="9.8" class="new-conflict">GRAVITY: roof/openings → purlins → M60 trusses → columns → base/footing → ground · lateral path, collectors, connections and foundations BLOCKED</text>
+    <text x="1082" y="655" font-size="12.5" class="new-title">04 · GENERIC JOINT PARTS</text>
+    <line x1="1082" y1="667" x2="1326" y2="667" class="panel-rule" />
+    <text x="1082" y="680" font-size="9.8" class="new-title">6-M20 · plate 12 mm · weld 8 mm</text>
+    <text x="1156" y="716" font-size="9.8" class="key-tag" text-anchor="middle">HSS CHORD</text>
+    <text x="1082" y="790" font-size="9.8" class="new-eyebrow">ratio 0.387 · demand 209.8 kN</text>
+    <text x="1082" y="808" font-size="9.8" class="new-conflict">BLOCKED · HSS wall / weld access / eccentricity</text>
+    <text x="1384" y="655" font-size="12.5" class="new-title">05 · TRIAL BASE / FOOTING</text>
+    <line x1="1384" y1="667" x2="1628" y2="667" class="panel-rule" />
+    <text x="1497" y="680" font-size="9.8" class="key-tag" text-anchor="middle">≈ HEA200</text>
+    <text x="1497" y="746" font-size="9.8" class="key-tag" text-anchor="middle">300×300×20</text>
+    <text x="1497" y="779" font-size="9.8" class="key-tag" text-anchor="middle">2.0×2.0×0.5 m</text>
+    <text x="1384" y="798" font-size="9.8" class="new-eyebrow">qmax 37.3 kPa · plate ratio 0.205</text>
+    <text x="1384" y="814" font-size="9.8" class="new-conflict">BLOCKED · anchors / shear / moment / geotech / RC</text>
+    <text x="1082" y="860" font-size="12.5" class="new-title">06 · ERECTION ENVELOPE</text>
+    <line x1="1082" y1="872" x2="1326" y2="872" class="panel-rule" />
+    <text x="1202" y="885" font-size="9.8" class="key-tag" text-anchor="middle">HOOK 15.8 kN</text>
+    <text x="1140" y="931" font-size="9.8" class="new-open" text-anchor="middle">9.1 kN</text>
+    <text x="1264" y="931" font-size="9.8" class="new-open" text-anchor="middle">9.1 kN</text>
+    <text x="1082" y="982" font-size="9.8" class="new-title">18 m → ≥2 pieces at 12 m transport limit</text>
+    <text x="1082" y="1000" font-size="9.8" class="new-conflict">BLOCKED · crane / lugs / splice / weather / bracing</text>
+    <text x="1384" y="860" font-size="12.5" class="new-title">07 · FIRE SENSITIVITY · NOT A RATING</text>
+    <line x1="1384" y1="872" x2="1628" y2="872" class="panel-rule" />
+    <text x="1384" y="908" font-size="9.8" class="new-title">400°C</text>
+    <text x="1582" y="908" font-size="9.8" class="new-eyebrow">0.65</text>
+    <text x="1384" y="943" font-size="9.8" class="new-title">550°C</text>
+    <text x="1582" y="943" font-size="9.8" class="new-conflict">1.05</text>
+    <text x="1384" y="978" font-size="9.8" class="new-title">700°C</text>
+    <text x="1582" y="978" font-size="9.8" class="new-conflict">2.84</text>
+    <text x="1384" y="1000" font-size="9.8" class="new-conflict">BLOCKED · 400°C sensitivity only; 550/700°C fail</text>
+  </g>
+  <g id="layer-sheet-header" data-layer="titleblock">
+    <text x="36" y="34" font-size="10.5" class="new-eyebrow">GRAPHIC PILOT 05 · PRESENTATION ONLY</text>
+    <text x="36" y="70" font-size="24" class="new-title">INTEGRATED STRUCTURAL E1 · FAIL-CLOSED EVIDENCE</text>
+    <text x="36" y="96" font-size="11" class="new-muted">Same R01 calculation-linked geometry and values · seven technical panels + authority block · narrow calculation ≠ system design</text>
+    <text x="1648" y="56" font-size="15" class="new-title" text-anchor="end">DH-EST-E1-001</text>
+    <text x="1648" y="80" font-size="10.5" class="new-conflict" text-anchor="end">GP05 · NOT CURRENT</text>
+    <line x1="36" y1="105" x2="1648" y2="105" class="sheet-rule" />
+  </g>
+  <g id="layer-sheet" data-layer="titleblock">
+    <rect x="36" y="1026" width="1612" height="129" rx="5" fill="#172A32" />
+    <text x="56" y="1056" font-size="13" class="new-on-dark-alert">NOT FOR CONSTRUCTION</text>
+    <text x="56" y="1082" font-size="10.2" class="new-on-dark">Research screening complete; design blocked. No system, profile, PE-1 quantity, procurement, fabrication or construction release.</text>
+    <text x="56" y="1107" font-size="9.8" class="new-on-dark-muted">Source: E1-001-R01 / 0.3 + E1 0.2 · D-043 / D-045 / D-047 / D-048 / D-054 · calculation-linked technical geometry preserved.</text>
+    <text x="56" y="1132" font-size="9.8" class="new-on-dark-muted">Open gates: lateral system/collectors · roof/deck/restraints · joints · foundation/geotech · erection · fire scenario/protection</text>
+    <text x="1628" y="1132" font-size="9.8" class="new-on-dark-muted" text-anchor="end">2026-08-22</text>
+  </g>
+</svg>

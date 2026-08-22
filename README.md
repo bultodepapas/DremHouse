@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>87</strong> documents · <strong>74</strong> decisions · <strong>7</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>88</strong> documents · <strong>74</strong> decisions · <strong>7</strong> open conflicts</sub>
 </p>
 
 <table>

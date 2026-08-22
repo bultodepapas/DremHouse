@@ -1,0 +1,21 @@
+{
+  "construction_authority": false,
+  "date": "2026-08-22",
+  "decision_ids": [
+    "D-043",
+    "D-045",
+    "D-047",
+    "D-048",
+    "D-054"
+  ],
+  "generator": "dreamhouse/svg/pilot_e1_synthesis.py",
+  "output": "DH-EST-E1-001-GP05_STRUCTURAL-EVIDENCE-READABILITY-PILOT.svg",
+  "output_sha256": "d02d165adb226b05df9c6e68e784bc8a4be3f0fd8b0d8db5e7fb037da3df58b3",
+  "pilot": "GP05",
+  "selection_authority": false,
+  "sheet": "DH-EST-E1-001",
+  "source": "planos/actual/DH-EST-E1-001_CURRENT-SYNTHESIS.svg",
+  "source_revision": "R01 / 0.3 + E1 0.2",
+  "source_sha256": "b0ccaae7a5cf52951b74042e9979c479e75df1cba042de5193d59029297e41fa",
+  "status": "presentation-only graphic pilot; not current; not for construction"
+}
