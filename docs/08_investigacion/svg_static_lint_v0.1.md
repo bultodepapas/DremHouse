@@ -141,3 +141,6 @@ axis-aligned safe-bounds and typed text-collision profile was subsequently imple
 [`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md). The
 first registered editorial text-to-geometry profile was subsequently implemented as
 [`svg_text_geometry_collision_lint_v0.4.md`](svg_text_geometry_collision_lint_v0.4.md).
+Measured browser/`resvg` text-line and registered-geometry equivalence was subsequently
+implemented as
+[`svg_browser_resvg_equivalence_v0.5.md`](svg_browser_resvg_equivalence_v0.5.md).

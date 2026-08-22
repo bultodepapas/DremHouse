@@ -522,6 +522,15 @@ staged claim. See
 [`svg_text_geometry_collision_lint_v0.4.md`](svg_text_geometry_collision_lint_v0.4.md);
 no current drawing has been promoted.
 
+**Browser/`resvg` equivalence note — 2026-08-22:** v0.5 measures 533 explicit text-line
+runs and all 62 registered editorial primitives in Chrome and `resvg` at 2×. All five
+pilots pass with zero missing lines, zero edge-delta failures and zero untyped measured
+layout collisions in either engine; `Inter` is a fail-closed primary-font requirement.
+The six rotated GP05 labels pass cross-engine paint-box equivalence but retain their
+explicit collision deferral. See
+[`svg_browser_resvg_equivalence_v0.5.md`](svg_browser_resvg_equivalence_v0.5.md); no
+current drawing has been promoted.
+
 ### 9.2 Geometry preservation tests
 
 Before changing a sheet family, record a structured geometry baseline from the active

@@ -144,7 +144,8 @@ system, drawing, product, quantity, scope, saving or cost.
 
 ## 8. Next controlled batch
 
-The next increment should measure browser-versus-`resvg` text and line-break equivalence,
-then use that evidence to address rotated text and transformed/path geometry without
-weakening the fail-closed contract. The 18-unit new-template profile and combined
+Browser-versus-`resvg` text, line and registered-geometry equivalence was subsequently
+measured in
+[`svg_browser_resvg_equivalence_v0.5.md`](svg_browser_resvg_equivalence_v0.5.md). Rotated
+text, transformed/path geometry, the 18-unit new-template profile and the combined
 27-sheet contact-sheet CI build remain subsequent gates.

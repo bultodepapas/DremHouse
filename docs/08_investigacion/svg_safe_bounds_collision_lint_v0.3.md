@@ -158,6 +158,7 @@ system, drawing, product, quantity, scope, saving or cost.
 The first registered text-to-marker, leader and geometry profile was subsequently
 implemented as
 [`svg_text_geometry_collision_lint_v0.4.md`](svg_text_geometry_collision_lint_v0.4.md).
-Measured browser/`resvg` font equivalence, rotated/transformed geometry, the 18-unit
-new-template profile and the combined 27-sheet contact-sheet CI build remain subsequent
-gates.
+Measured browser/`resvg` equivalence was subsequently implemented as
+[`svg_browser_resvg_equivalence_v0.5.md`](svg_browser_resvg_equivalence_v0.5.md).
+Rotated/transformed geometry, the 18-unit new-template profile and the combined 27-sheet
+contact-sheet CI build remain subsequent gates.

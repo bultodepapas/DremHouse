@@ -292,6 +292,9 @@ they stay stable while their explicitly promoted versioned source can advance.
   registered editorial keepouts, leaders and markers with typed same-region text
   relationships across GP01–GP05; copied model geometry remains explicitly outside this
   staged gate.
+- [SVG browser–resvg render equivalence v0.5](08_investigacion/svg_browser_resvg_equivalence_v0.5.md):
+  measured per-line and registered-geometry paint boxes across Chrome and `resvg`, with
+  primary-font verification, typed clearance replay and five full-render comparisons.
 
 ## How to use the project record
 
