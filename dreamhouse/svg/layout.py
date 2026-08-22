@@ -8,6 +8,8 @@ from xml.etree import ElementTree as ET
 
 
 SVG_NS = "http://www.w3.org/2000/svg"
+LAYOUT_GEOMETRY_ROLES = frozenset({"keepout", "leader", "marker"})
+SUPPORTED_GEOMETRY_TAGS = frozenset({"circle", "ellipse", "line", "polygon", "polyline", "rect"})
 
 
 def q(tag: str) -> str:
@@ -195,6 +197,135 @@ def register_text_regions(root: ET.Element, regions: tuple[LayoutRegion, ...]) -
         text.set("data-safe-bounds", region.safe.serialize())
         if "rotate(" in text.get("transform", ""):
             text.set("data-layout-policy", "rotated-skip")
+
+
+def _geometry_coordinate(element: ET.Element, name: str) -> float:
+    value = element.get(name)
+    if value is None:
+        raise ValueError(f"Registered geometry requires explicit {name}")
+    try:
+        coordinate = float(value)
+    except ValueError as error:
+        raise ValueError(f"Registered geometry has invalid {name}: {value!r}") from error
+    if not math.isfinite(coordinate):
+        raise ValueError(f"Registered geometry has non-finite {name}")
+    return coordinate
+
+
+def _bounds_from_extents(
+    left: float,
+    top: float,
+    right: float,
+    bottom: float,
+    *,
+    stroke_width: float,
+) -> Bounds:
+    if not math.isfinite(stroke_width) or stroke_width < 0:
+        raise ValueError("Geometry stroke width must be finite and non-negative")
+    halo = stroke_width / 2
+    left -= halo
+    top -= halo
+    right += halo
+    bottom += halo
+    epsilon = 1e-9
+    if right <= left:
+        left -= epsilon / 2
+        right += epsilon / 2
+    if bottom <= top:
+        top -= epsilon / 2
+        bottom += epsilon / 2
+    return Bounds(left, top, right - left, bottom - top)
+
+
+def _points(element: ET.Element) -> list[tuple[float, float]]:
+    raw = element.get("points", "").replace(",", " ").split()
+    if len(raw) < 4 or len(raw) % 2:
+        raise ValueError("Registered polyline/polygon requires coordinate pairs")
+    try:
+        values = [float(value) for value in raw]
+    except ValueError as error:
+        raise ValueError("Registered polyline/polygon has invalid points") from error
+    if not all(math.isfinite(value) for value in values):
+        raise ValueError("Registered polyline/polygon has non-finite points")
+    return list(zip(values[::2], values[1::2], strict=True))
+
+
+def estimate_geometry_bounds(element: ET.Element, *, stroke_width: float = 0.0) -> Bounds:
+    """Return a conservative paint box for one untransformed registered primitive."""
+
+    tag = element.tag.rsplit("}", 1)[-1]
+    if tag not in SUPPORTED_GEOMETRY_TAGS:
+        raise ValueError(f"Unsupported registered geometry element: {tag!r}")
+    if element.get("transform", "").strip():
+        raise ValueError("Transformed registered geometry is not supported by this profile")
+
+    if tag == "rect":
+        x = _geometry_coordinate(element, "x")
+        y = _geometry_coordinate(element, "y")
+        width = _geometry_coordinate(element, "width")
+        height = _geometry_coordinate(element, "height")
+        if width <= 0 or height <= 0:
+            raise ValueError("Registered rectangle width and height must be positive")
+        extents = (x, y, x + width, y + height)
+    elif tag == "circle":
+        cx = _geometry_coordinate(element, "cx")
+        cy = _geometry_coordinate(element, "cy")
+        radius = _geometry_coordinate(element, "r")
+        if radius <= 0:
+            raise ValueError("Registered circle radius must be positive")
+        extents = (cx - radius, cy - radius, cx + radius, cy + radius)
+    elif tag == "ellipse":
+        cx = _geometry_coordinate(element, "cx")
+        cy = _geometry_coordinate(element, "cy")
+        radius_x = _geometry_coordinate(element, "rx")
+        radius_y = _geometry_coordinate(element, "ry")
+        if radius_x <= 0 or radius_y <= 0:
+            raise ValueError("Registered ellipse radii must be positive")
+        extents = (cx - radius_x, cy - radius_y, cx + radius_x, cy + radius_y)
+    elif tag == "line":
+        x1 = _geometry_coordinate(element, "x1")
+        y1 = _geometry_coordinate(element, "y1")
+        x2 = _geometry_coordinate(element, "x2")
+        y2 = _geometry_coordinate(element, "y2")
+        extents = (min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2))
+    else:
+        points = _points(element)
+        xs = [point[0] for point in points]
+        ys = [point[1] for point in points]
+        extents = (min(xs), min(ys), max(xs), max(ys))
+    return _bounds_from_extents(*extents, stroke_width=stroke_width)
+
+
+def register_geometry_regions(root: ET.Element, regions: tuple[LayoutRegion, ...]) -> None:
+    """Assign explicitly registered editorial primitives to their smallest panel region."""
+
+    if len({region.id for region in regions}) != len(regions):
+        raise ValueError("Layout region IDs must be unique")
+    parent_map = _parent_map(root)
+    for element in root.iter():
+        role = element.get("data-layout-geometry", "").strip()
+        if not role:
+            continue
+        if role not in LAYOUT_GEOMETRY_ROLES:
+            raise ValueError(f"Unsupported layout geometry role: {role!r}")
+        if _has_ancestor(element, parent_map, element_id="layer-model") or _has_ancestor(
+            element,
+            parent_map,
+            tag="defs",
+        ):
+            raise ValueError("Model/definition geometry cannot enter the editorial layout gate")
+        if role in {"leader", "marker"} and not element.get(
+            "data-layout-relation", ""
+        ).strip():
+            raise ValueError(f"Registered {role} geometry requires data-layout-relation")
+        bounds = estimate_geometry_bounds(element)
+        x = bounds.x + bounds.width / 2
+        y = bounds.y + bounds.height / 2
+        matches = [region for region in regions if region.panel.contains_point(x, y)]
+        if not matches:
+            raise ValueError(f"Registered {role} geometry is outside every layout region")
+        region = min(matches, key=lambda candidate: candidate.panel.area)
+        element.set("data-layout-region", region.id)
 
 
 _NARROW_GLYPHS = frozenset("ilI.,;:!|'`")

@@ -13,7 +13,12 @@ from dreamhouse.svg import (
     pilot_side_b,
     pilot_transverse_section,
 )
-from dreamhouse.svg.layout import Bounds, LayoutRegion, register_text_regions
+from dreamhouse.svg.layout import (
+    Bounds,
+    LayoutRegion,
+    register_geometry_regions,
+    register_text_regions,
+)
 from dreamhouse.svg.lint import exit_code, lint_file, lint_paths, markdown_report
 from dreamhouse.svg.sheet import create_document, q
 
@@ -25,6 +30,7 @@ PILOTS = (
     pilot_p2_wall_family.OUTPUT,
     pilot_e1_synthesis.OUTPUT,
 )
+FIXTURE_REGIONS = (LayoutRegion.with_inset("fixture", Bounds(0, 0, 1684, 1191), 8),)
 
 
 def finding_codes(report: dict) -> set[str]:
@@ -114,7 +120,7 @@ def valid_document() -> ET.Element:
     sheet_text.text = "Presentation only"
     register_text_regions(
         root,
-        (LayoutRegion.with_inset("fixture", Bounds(0, 0, 1684, 1191), 8),),
+        FIXTURE_REGIONS,
     )
     return root
 
@@ -148,6 +154,18 @@ class TestStaticSvgLint(unittest.TestCase):
         )
         self.assertTrue(
             all(file["metrics"]["untyped_text_collisions"] == 0 for file in report["files"])
+        )
+        self.assertTrue(
+            all(
+                file["metrics"]["untyped_text_geometry_collisions"] == 0
+                for file in report["files"]
+            )
+        )
+        self.assertTrue(
+            all(
+                file["metrics"]["layout_geometry_contract_failures"] == 0
+                for file in report["files"]
+            )
         )
 
     def test_layout_contract_bounds_and_collisions_fail_closed(self) -> None:
@@ -196,6 +214,102 @@ class TestStaticSvgLint(unittest.TestCase):
 
         self.assertNotIn("SVG-B004", finding_codes(report))
         self.assertEqual(report["metrics"]["typed_text_collisions"], 1)
+
+    def test_registered_geometry_contracts_and_relationships_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            missing_root = valid_document()
+            annotations = missing_root.find(f"{q('g')}[@id='layer-annotations']")
+            assert annotations is not None
+            ET.SubElement(
+                annotations,
+                q("line"),
+                {
+                    "x1": "90",
+                    "y1": "230",
+                    "x2": "220",
+                    "y2": "230",
+                    "stroke": "#172A32",
+                    "data-layout-geometry": "keepout",
+                },
+            )
+            missing_path = write_svg(Path(temporary), missing_root, "geometry-missing.svg")
+
+            dangling_root = valid_document()
+            dangling_annotations = dangling_root.find(f"{q('g')}[@id='layer-annotations']")
+            assert dangling_annotations is not None
+            ET.SubElement(
+                dangling_annotations,
+                q("rect"),
+                {
+                    "x": "500",
+                    "y": "500",
+                    "width": "20",
+                    "height": "20",
+                    "fill": "none",
+                    "stroke": "#172A32",
+                    "data-layout-geometry": "marker",
+                    "data-layout-relation": "missing-target",
+                },
+            )
+            register_geometry_regions(dangling_root, FIXTURE_REGIONS)
+            dangling_path = write_svg(Path(temporary), dangling_root, "geometry-dangling.svg")
+
+            collision_root = valid_document()
+            collision_annotations = collision_root.find(f"{q('g')}[@id='layer-annotations']")
+            assert collision_annotations is not None
+            ET.SubElement(
+                collision_annotations,
+                q("line"),
+                {
+                    "x1": "90",
+                    "y1": "234",
+                    "x2": "220",
+                    "y2": "234",
+                    "stroke": "#172A32",
+                    "data-layout-geometry": "keepout",
+                },
+            )
+            register_geometry_regions(collision_root, FIXTURE_REGIONS)
+            collision_path = write_svg(Path(temporary), collision_root, "geometry-collision.svg")
+
+            missing = lint_file(missing_path)
+            dangling = lint_file(dangling_path)
+            collision = lint_file(collision_path)
+
+        self.assertIn("SVG-B005", finding_codes(missing))
+        self.assertIn("SVG-B006", finding_codes(dangling))
+        self.assertIn("SVG-B007", finding_codes(collision))
+        self.assertEqual(collision["metrics"]["untyped_text_geometry_collisions"], 1)
+
+    def test_shared_relation_types_an_intentional_text_geometry_overlap(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = valid_document()
+            annotations = root.find(f"{q('g')}[@id='layer-annotations']")
+            text = annotations.find(q("text")) if annotations is not None else None
+            assert annotations is not None and text is not None
+            relation = "fixture-marker"
+            text.set("data-layout-relation", relation)
+            ET.SubElement(
+                annotations,
+                q("rect"),
+                {
+                    "x": "90",
+                    "y": "226",
+                    "width": "100",
+                    "height": "20",
+                    "fill": "none",
+                    "stroke": "#172A32",
+                    "data-layout-geometry": "marker",
+                    "data-layout-relation": relation,
+                },
+            )
+            register_geometry_regions(root, FIXTURE_REGIONS)
+            path = write_svg(Path(temporary), root)
+
+            report = lint_file(path)
+
+        self.assertNotIn("SVG-B007", finding_codes(report))
+        self.assertEqual(report["metrics"]["typed_text_geometry_collisions"], 1)
 
     def test_malformed_svg_fails_closed(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

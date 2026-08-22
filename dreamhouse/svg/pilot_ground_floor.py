@@ -21,6 +21,7 @@ from dreamhouse.svg.layout import (
     LayoutRegion,
     SHEET_FOOTER_REGION,
     SHEET_HEADER_REGION,
+    register_geometry_regions,
     register_text_regions,
 )
 from dreamhouse.svg.sheet import CSS
@@ -312,6 +313,7 @@ def _add_rule(parent: ET.Element, y: float) -> None:
             "x2": "1628",
             "y2": f"{y:g}",
             "class": "sheet-rule",
+            "data-layout-geometry": "keepout",
         },
     )
 
@@ -450,7 +452,8 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         (925, "#F2E8DE", "Living / hall"),
         (1085, "#F5E8D4", "Kitchen / dining"),
     ]
-    for x, fill, label in swatches:
+    for index, (x, fill, label) in enumerate(swatches, start=1):
+        relation = f"reading-hierarchy-swatch-{index}"
         ET.SubElement(
             annotations,
             q("rect"),
@@ -462,9 +465,11 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
                 "rx": "2",
                 "fill": fill,
                 "stroke": "#536168",
+                "data-layout-geometry": "marker",
+                "data-layout-relation": relation,
             },
         )
-        _add_wrapped_text(
+        swatch_text, _bottom = _add_wrapped_text(
             annotations,
             x + 26,
             912,
@@ -473,6 +478,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
             size=9.7,
             line_height=12,
         )
+        swatch_text.set("data-layout-relation", relation)
     _add_wrapped_text(
         annotations,
         560,
@@ -626,7 +632,14 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     ET.SubElement(
         header,
         q("line"),
-        {"x1": "36", "y1": "105", "x2": "1648", "y2": "105", "class": "sheet-rule"},
+        {
+            "x1": "36",
+            "y1": "105",
+            "x2": "1648",
+            "y2": "105",
+            "class": "sheet-rule",
+            "data-layout-geometry": "keepout",
+        },
     )
 
     footer = ET.SubElement(sheet, q("g"), {"data-contrast-bg": colour("ink")})
@@ -688,6 +701,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
     )
 
     register_text_regions(root, LAYOUT_REGIONS)
+    register_geometry_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

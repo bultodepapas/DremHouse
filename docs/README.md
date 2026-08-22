@@ -288,6 +288,10 @@ they stay stable while their explicitly promoted versioned source can advance.
   typed sheet/panel regions, conservative axis-aligned text boxes and fail-closed
   text-to-text gap checks across GP01–GP05, with rotated and geometry checks explicitly
   staged.
+- [SVG text-to-geometry collision lint v0.4](08_investigacion/svg_text_geometry_collision_lint_v0.4.md):
+  registered editorial keepouts, leaders and markers with typed same-region text
+  relationships across GP01–GP05; copied model geometry remains explicitly outside this
+  staged gate.
 
 ## How to use the project record
 

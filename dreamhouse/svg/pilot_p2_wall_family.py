@@ -18,6 +18,7 @@ from dreamhouse.svg.layout import (
     LayoutRegion,
     SHEET_FOOTER_REGION,
     SHEET_HEADER_REGION,
+    register_geometry_regions,
     register_text_regions,
 )
 from dreamhouse.svg.sheet import (
@@ -291,11 +292,19 @@ def _panel_heading(parent: ET.Element, x: float, y: float, value: str, width: fl
             "x2": f"{x + width:g}",
             "y2": f"{y + 12:g}",
             "class": "panel-rule",
+            "data-layout-geometry": "keepout",
         },
     )
 
 
-def _add_swatch(parent: ET.Element, x: float, y: float, pattern: str) -> None:
+def _add_swatch(
+    parent: ET.Element,
+    x: float,
+    y: float,
+    pattern: str,
+    *,
+    relation: str,
+) -> None:
     ET.SubElement(
         parent,
         q("rect"),
@@ -307,6 +316,8 @@ def _add_swatch(parent: ET.Element, x: float, y: float, pattern: str) -> None:
             "fill": f"url(#gp04-{pattern})",
             "stroke": "#172A32",
             "stroke-width": "1",
+            "data-layout-geometry": "marker",
+            "data-layout-relation": relation,
         },
     )
 
@@ -322,9 +333,12 @@ def _add_key_rows(
     add_text(parent, x, y, wall_id, size=10.5, css_class="new-eyebrow")
     for index, (key, label, pattern) in enumerate(LAYER_KEYS[wall_id]):
         row_y = y + 27 + index * spacing
-        _add_swatch(parent, x, row_y, pattern)
-        add_text(parent, x + 24, row_y, key, size=9.8, css_class="key-tag")
-        add_text(parent, x + 43, row_y, label, size=9.8, css_class="new-body")
+        relation = f"{wall_id}-layer-{key}"
+        _add_swatch(parent, x, row_y, pattern, relation=relation)
+        key_text = add_text(parent, x + 24, row_y, key, size=9.8, css_class="key-tag")
+        label_text = add_text(parent, x + 43, row_y, label, size=9.8, css_class="new-body")
+        key_text.set("data-layout-relation", relation)
+        label_text.set("data-layout-relation", relation)
 
 
 def build_svg(source: Path = SOURCE) -> ET.ElementTree:
@@ -617,6 +631,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         date="2026-08-21",
     )
     register_text_regions(root, LAYOUT_REGIONS)
+    register_geometry_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

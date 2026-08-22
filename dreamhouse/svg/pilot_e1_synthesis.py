@@ -19,6 +19,7 @@ from dreamhouse.svg.layout import (
     LayoutRegion,
     SHEET_FOOTER_REGION,
     SHEET_HEADER_REGION,
+    register_geometry_regions,
     register_text_regions,
 )
 from dreamhouse.svg.sheet import (
@@ -238,6 +239,7 @@ def _panel_heading(parent: ET.Element, x: float, y: float, value: str, width: fl
             "x2": f"{x + width:g}",
             "y2": f"{y + 12:g}",
             "class": "panel-rule",
+            "data-layout-geometry": "keepout",
         },
     )
 
@@ -269,6 +271,7 @@ def _badge(
     width: float,
     label: str,
     colour: str,
+    relation: str,
 ) -> None:
     ET.SubElement(
         parent,
@@ -282,6 +285,8 @@ def _badge(
             "fill": "none",
             "stroke": colour,
             "stroke-width": "1",
+            "data-layout-geometry": "marker",
+            "data-layout-relation": relation,
         },
     )
     css_class = "new-conflict" if colour == "#A33F31" else "new-eyebrow"
@@ -295,6 +300,7 @@ def _badge(
         anchor="middle",
     )
     text.set("fill", colour)
+    text.set("data-layout-relation", relation)
 
 
 def _draw_plan_annotations(parent: ET.Element) -> None:
@@ -376,6 +382,7 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
     )
     for index, (colour, label) in enumerate(legend):
         y = 207 + index * 31
+        relation = f"graphic-status-{index + 1}"
         ET.SubElement(
             parent,
             q("line"),
@@ -386,9 +393,12 @@ def _draw_plan_annotations(parent: ET.Element) -> None:
                 "y2": f"{y:g}",
                 "stroke": colour,
                 "stroke-width": "5",
+                "data-layout-geometry": "marker",
+                "data-layout-relation": relation,
             },
         )
-        add_text(parent, 940, y + 4, label, size=9.8, css_class="new-body")
+        legend_text = add_text(parent, 940, y + 4, label, size=9.8, css_class="new-body")
+        legend_text.set("data-layout-relation", relation)
 
     trial_note = ET.SubElement(parent, q("g"), {"data-contrast-bg": "#FBF0D9"})
     ET.SubElement(
@@ -445,9 +455,25 @@ def _draw_evidence_matrix(parent: ET.Element) -> None:
         baseline = top + 23
         add_text(row, 1082, baseline, phenomenon, size=9.8, css_class="new-title")
         calc_colour = "#A33F31" if calc.startswith("FAIL") else "#1D7480"
-        _badge(row, x=1278, y=top + 7, width=82, label=calc, colour=calc_colour)
+        _badge(
+            row,
+            x=1278,
+            y=top + 7,
+            width=82,
+            label=calc,
+            colour=calc_colour,
+            relation=f"evidence-{index + 1}-calculation",
+        )
         add_text(row, 1374, baseline, evidence, size=9.8, css_class="new-body")
-        _badge(row, x=1560, y=top + 7, width=72, label=design, colour="#A33F31")
+        _badge(
+            row,
+            x=1560,
+            y=top + 7,
+            width=72,
+            label=design,
+            colour="#A33F31",
+            relation=f"evidence-{index + 1}-design",
+        )
 
     add_text(
         parent,
@@ -586,7 +612,7 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
     )
 
     _panel_heading(parent, 1384, 655, "05 · TRIAL BASE / FOOTING", 244)
-    add_text(parent, 1497, 680, "≈ HEA200", size=9.8, css_class="key-tag", anchor="middle")
+    add_text(parent, 1497, 681, "≈ HEA200", size=9.8, css_class="key-tag", anchor="middle")
     add_text(parent, 1497, 746, "300×300×20", size=9.8, css_class="key-tag", anchor="middle")
     add_text(parent, 1497, 779, "2.0×2.0×0.5 m", size=9.8, css_class="key-tag", anchor="middle")
     add_text(
@@ -607,7 +633,7 @@ def _draw_detail_annotations(parent: ET.Element) -> None:
     )
 
     _panel_heading(parent, 1082, 860, "06 · ERECTION ENVELOPE", 244)
-    add_text(parent, 1202, 885, "HOOK 15.8 kN", size=9.8, css_class="key-tag", anchor="middle")
+    add_text(parent, 1202, 886, "HOOK 15.8 kN", size=9.8, css_class="key-tag", anchor="middle")
     add_text(parent, 1140, 931, "9.1 kN", size=9.8, css_class="new-open", anchor="middle")
     add_text(parent, 1264, 931, "9.1 kN", size=9.8, css_class="new-open", anchor="middle")
     add_text(
@@ -751,6 +777,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         date="2026-08-22",
     )
     register_text_regions(root, LAYOUT_REGIONS)
+    register_geometry_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

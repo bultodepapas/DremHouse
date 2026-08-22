@@ -153,9 +153,11 @@ remain untracked under `.build/svg-pilot/v03/`.
 No decision-register or cost-control update is required. This batch adopts no graphic
 system, drawing, product, quantity, scope, saving or cost.
 
-## 8. Next controlled batch
+## 8. Subsequent controlled batch
 
-The next increment should extend collision QA from presentation text-to-text pairs to
-typed text-to-marker, leader and geometry relationships, beginning with the five pilots.
-Measured browser/`resvg` font equivalence, the 18-unit new-template profile and the
-combined 27-sheet contact-sheet CI build remain subsequent gates.
+The first registered text-to-marker, leader and geometry profile was subsequently
+implemented as
+[`svg_text_geometry_collision_lint_v0.4.md`](svg_text_geometry_collision_lint_v0.4.md).
+Measured browser/`resvg` font equivalence, rotated/transformed geometry, the 18-unit
+new-template profile and the combined 27-sheet contact-sheet CI build remain subsequent
+gates.

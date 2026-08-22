@@ -513,6 +513,15 @@ gates. See
 [`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md); no
 current drawing has been promoted.
 
+**Text/geometry collision note — 2026-08-22:** v0.4 registers 62 editorial primitives
+across GP01–GP05: 20 keepouts and 42 typed leaders/markers. The profile resolves simple
+axis-aligned primitive bounds with a 3-unit gap, accepts 18 intentional GP05 badge
+overlaps by exact relationship and reports zero untyped text-to-geometry collisions.
+Copied model geometry, registered paths/transforms and rotated text remain outside this
+staged claim. See
+[`svg_text_geometry_collision_lint_v0.4.md`](svg_text_geometry_collision_lint_v0.4.md);
+no current drawing has been promoted.
+
 ### 9.2 Geometry preservation tests
 
 Before changing a sheet family, record a structured geometry baseline from the active

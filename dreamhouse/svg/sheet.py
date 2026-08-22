@@ -216,6 +216,8 @@ def add_level_marker(
             "y2": f"{y:g}",
             "stroke": "#1D7480",
             "stroke-width": "1.5",
+            "data-layout-geometry": "leader",
+            "data-layout-relation": relates_to,
         },
     )
     ET.SubElement(
@@ -225,9 +227,12 @@ def add_level_marker(
             "points": f"{target_x:g},{y:g} {target_x - 10:g},{y - 5:g} "
             f"{target_x - 10:g},{y + 5:g}",
             "fill": "#1D7480",
+            "data-layout-geometry": "marker",
+            "data-layout-relation": relates_to,
         },
     )
-    add_text(group, label_x, y - 8, label, size=10.2, css_class="new-body")
+    text = add_text(group, label_x, y - 8, label, size=10.2, css_class="new-body")
+    text.set("data-layout-relation", relates_to)
     return group
 
 
@@ -257,7 +262,14 @@ def add_header(
     ET.SubElement(
         group,
         q("line"),
-        {"x1": "36", "y1": "105", "x2": "1648", "y2": "105", "class": "sheet-rule"},
+        {
+            "x1": "36",
+            "y1": "105",
+            "x2": "1648",
+            "y2": "105",
+            "class": "sheet-rule",
+            "data-layout-geometry": "keepout",
+        },
     )
     return group
 

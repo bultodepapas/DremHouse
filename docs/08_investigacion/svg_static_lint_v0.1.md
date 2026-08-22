@@ -138,4 +138,6 @@ cost.
 The planned palette/contrast increment was subsequently implemented as
 [`svg_palette_contrast_lint_v0.2.md`](svg_palette_contrast_lint_v0.2.md). The first
 axis-aligned safe-bounds and typed text-collision profile was subsequently implemented as
-[`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md).
+[`svg_safe_bounds_collision_lint_v0.3.md`](svg_safe_bounds_collision_lint_v0.3.md). The
+first registered editorial text-to-geometry profile was subsequently implemented as
+[`svg_text_geometry_collision_lint_v0.4.md`](svg_text_geometry_collision_lint_v0.4.md).

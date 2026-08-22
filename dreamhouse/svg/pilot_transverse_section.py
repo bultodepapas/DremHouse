@@ -18,6 +18,7 @@ from dreamhouse.svg.layout import (
     LayoutRegion,
     SHEET_FOOTER_REGION,
     SHEET_HEADER_REGION,
+    register_geometry_regions,
     register_text_regions,
 )
 from dreamhouse.svg.sheet import (
@@ -382,6 +383,7 @@ def build_svg(source: Path = SOURCE) -> ET.ElementTree:
         date="2026-08-21",
     )
     register_text_regions(root, LAYOUT_REGIONS)
+    register_geometry_regions(root, LAYOUT_REGIONS)
     return ET.ElementTree(root)
 
 

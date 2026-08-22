@@ -3,8 +3,9 @@
 The staged lint profile covers the shared pilot contract: identity, accessibility,
 authority, unsafe content, layers, model references, numeric safety, controlled
 presentation colours, typed text contrast, required-text preview size, declared safe
-bounds and conservative text collisions. Precision normalization and measured geometry
-bounds remain explicit follow-on gates.
+bounds, conservative text collisions and registered editorial text-to-geometry
+relationships. Precision normalization and measured/transformed geometry bounds remain
+explicit follow-on gates.
 """
 
 from __future__ import annotations
@@ -19,7 +20,12 @@ from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
 
-from dreamhouse.svg.layout import Bounds, estimate_text_bounds
+from dreamhouse.svg.layout import (
+    LAYOUT_GEOMETRY_ROLES,
+    Bounds,
+    estimate_geometry_bounds,
+    estimate_text_bounds,
+)
 from dreamhouse.svg.theme import APPROVED_PRESENTATION_COLOURS
 
 
@@ -995,9 +1001,10 @@ def _check_layout(
     *,
     min_panel_inset: float,
     min_text_gap: float,
+    min_geometry_gap: float,
     bounds_tolerance: float,
 ) -> dict[str, Any]:
-    """Check typed presentation-text regions with deterministic conservative boxes."""
+    """Check typed editorial text and registered geometry with conservative boxes."""
 
     parent_map = {child: parent for parent in root.iter() for child in parent}
     variables, rules = _parse_stylesheets(root)
@@ -1008,6 +1015,7 @@ def _check_layout(
     outside: list[str] = []
     unsupported_transforms: list[str] = []
     boxes_by_region: dict[str, list[tuple[ET.Element, Bounds]]] = {}
+    text_relations_by_region: dict[str, set[str]] = {}
     region_contracts: dict[str, tuple[str, Bounds, Bounds]] = {}
     panel_insets: list[float] = []
     checked = 0
@@ -1055,6 +1063,10 @@ def _check_layout(
                     f"{min_panel_inset:g})"
                 )
                 continue
+
+        relation = text.get("data-layout-relation", "").strip()
+        if relation:
+            text_relations_by_region.setdefault(region_id, set()).add(relation)
 
         transform = text.get("transform", "").strip()
         if transform:
@@ -1169,6 +1181,124 @@ def _check_layout(
             root,
         )
 
+    geometry_missing: list[str] = []
+    geometry_malformed: list[str] = []
+    dangling_relationships: list[str] = []
+    geometry_entries: list[tuple[ET.Element, str, str, Bounds]] = []
+    geometry_keepouts = 0
+    geometry_relationships = 0
+    for element in root.iter():
+        role = element.get("data-layout-geometry", "").strip()
+        if not role:
+            continue
+        reference = _element_ref(element)
+        if _has_ancestor(element, parent_map=parent_map, element_id="layer-model") or _has_ancestor(
+            element,
+            parent_map=parent_map,
+            tag="defs",
+        ):
+            geometry_malformed.append(f"{reference} (model/definition geometry is excluded)")
+            continue
+        region_id = element.get("data-layout-region", "").strip()
+        relation = element.get("data-layout-relation", "").strip()
+        if role not in LAYOUT_GEOMETRY_ROLES:
+            geometry_malformed.append(f"{reference} (unsupported role {role!r})")
+            continue
+        if not region_id:
+            geometry_missing.append(f"{reference} (data-layout-region)")
+            continue
+        if region_id not in region_contracts:
+            geometry_malformed.append(f"{reference} (unknown region {region_id!r})")
+            continue
+        if role in {"leader", "marker"} and not relation:
+            geometry_missing.append(f"{reference} ({role} requires data-layout-relation)")
+            continue
+        try:
+            stroke = _computed_property(
+                element,
+                "stroke",
+                parent_map=parent_map,
+                variables=variables,
+                rules=rules,
+            )
+            stroke_width = (
+                0.0
+                if stroke is None or stroke == "none"
+                else _parse_css_number(
+                    _computed_property(
+                        element,
+                        "stroke-width",
+                        parent_map=parent_map,
+                        variables=variables,
+                        rules=rules,
+                    ),
+                    default=1.0,
+                )
+            )
+            box = estimate_geometry_bounds(element, stroke_width=stroke_width)
+        except ValueError as error:
+            geometry_malformed.append(f"{reference} ({error})")
+            continue
+        if role == "keepout":
+            geometry_keepouts += 1
+        else:
+            geometry_relationships += 1
+            if relation not in text_relations_by_region.get(region_id, set()):
+                dangling_relationships.append(
+                    f"{reference} relation {relation!r} has no text in {region_id!r}"
+                )
+        geometry_entries.append((element, role, region_id, box))
+
+    if geometry_missing or geometry_malformed:
+        examples = (geometry_missing + geometry_malformed)[:5]
+        _finding(
+            findings,
+            "SVG-B005",
+            "error",
+            f"{len(geometry_missing) + len(geometry_malformed)} registered editorial "
+            f"primitives have missing, malformed or unsupported layout contracts; examples: "
+            f"{', '.join(examples)}",
+            root,
+        )
+    if dangling_relationships:
+        _finding(
+            findings,
+            "SVG-B006",
+            "error",
+            f"{len(dangling_relationships)} leader/marker relationships have no typed "
+            f"same-region text target; examples: {', '.join(dangling_relationships[:5])}",
+            root,
+        )
+
+    untyped_geometry_collisions: list[str] = []
+    typed_geometry_collisions = 0
+    for geometry, role, region_id, geometry_box in geometry_entries:
+        geometry_relation = geometry.get("data-layout-relation", "").strip()
+        for text, text_box in boxes_by_region.get(region_id, []):
+            if not text_box.expanded(min_geometry_gap).intersects(geometry_box):
+                continue
+            text_relation = text.get("data-layout-relation", "").strip()
+            if (
+                role in {"leader", "marker"}
+                and geometry_relation
+                and geometry_relation == text_relation
+            ):
+                typed_geometry_collisions += 1
+                continue
+            untyped_geometry_collisions.append(
+                f"{_text_example(text)!r} ↔ {_element_ref(geometry)} ({role}) in {region_id!r}"
+            )
+    if untyped_geometry_collisions:
+        _finding(
+            findings,
+            "SVG-B007",
+            "error",
+            f"{len(untyped_geometry_collisions)} text/geometry pairs breach the "
+            f"{min_geometry_gap:g}-unit gap without a matching typed relationship; examples: "
+            f"{', '.join(untyped_geometry_collisions[:5])}",
+            root,
+        )
+
     return {
         "layout_text_elements": presentation_count,
         "layout_axis_aligned_checked": checked,
@@ -1183,6 +1313,13 @@ def _check_layout(
         "safe_bound_failures": len(outside),
         "untyped_text_collisions": len(untyped_collisions),
         "typed_text_collisions": typed_collisions,
+        "layout_geometry_elements": len(geometry_entries),
+        "layout_geometry_keepouts": geometry_keepouts,
+        "layout_geometry_relationships": geometry_relationships,
+        "layout_geometry_contract_failures": len(geometry_missing) + len(geometry_malformed),
+        "layout_geometry_relationship_failures": len(dangling_relationships),
+        "untyped_text_geometry_collisions": len(untyped_geometry_collisions),
+        "typed_text_geometry_collisions": typed_geometry_collisions,
         "minimum_declared_panel_inset": min(panel_insets, default=None),
     }
 
@@ -1198,6 +1335,7 @@ def lint_file(
     large_bold_text_px: float = 18.66,
     min_panel_inset: float = 8.0,
     min_text_gap: float = 6.0,
+    min_geometry_gap: float = 3.0,
     bounds_tolerance: float = 0.5,
     max_precision: int = 6,
     strict_precision: bool = False,
@@ -1243,6 +1381,7 @@ def lint_file(
         findings,
         min_panel_inset=min_panel_inset,
         min_text_gap=min_text_gap,
+        min_geometry_gap=min_geometry_gap,
         bounds_tolerance=bounds_tolerance,
     )
     metrics = {**text_metrics, **palette_metrics, **contrast_metrics, **layout_metrics}
@@ -1279,6 +1418,7 @@ def lint_paths(
     large_bold_text_px: float = 18.66,
     min_panel_inset: float = 8.0,
     min_text_gap: float = 6.0,
+    min_geometry_gap: float = 3.0,
     bounds_tolerance: float = 0.5,
     max_precision: int = 6,
     strict_precision: bool = False,
@@ -1294,6 +1434,7 @@ def lint_paths(
             large_bold_text_px=large_bold_text_px,
             min_panel_inset=min_panel_inset,
             min_text_gap=min_text_gap,
+            min_geometry_gap=min_geometry_gap,
             bounds_tolerance=bounds_tolerance,
             max_precision=max_precision,
             strict_precision=strict_precision,
@@ -1303,7 +1444,7 @@ def lint_paths(
     errors = sum(file["errors"] for file in files)
     warnings = sum(file["warnings"] for file in files)
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "profile": {
             "bounds_tolerance": bounds_tolerance,
             "large_bold_text_px": large_bold_text_px,
@@ -1311,6 +1452,7 @@ def lint_paths(
             "large_text_px": large_text_px,
             "max_precision": max_precision,
             "min_panel_inset": min_panel_inset,
+            "min_geometry_gap": min_geometry_gap,
             "min_required_text_px": min_required_text_px,
             "min_text_gap": min_text_gap,
             "normal_contrast": normal_contrast,
@@ -1341,7 +1483,7 @@ def markdown_report(report: dict[str, Any]) -> str:
         ),
         "",
         "| File | Status | Errors | Warnings | Minimum text | Minimum contrast | "
-        "Bounds / collisions |",
+        "Bounds / text / geometry |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
     ]
     for file in report["files"]:
@@ -1352,7 +1494,8 @@ def markdown_report(report: dict[str, Any]) -> str:
         path = str(file["path"]).replace("|", "\\|")
         bounds_label = (
             f"{file['metrics'].get('safe_bound_failures', 0)} / "
-            f"{file['metrics'].get('untyped_text_collisions', 0)}"
+            f"{file['metrics'].get('untyped_text_collisions', 0)} / "
+            f"{file['metrics'].get('untyped_text_geometry_collisions', 0)}"
         )
         lines.append(
             f"| `{path}` | {file['status']} | {file['errors']} | {file['warnings']} | "
@@ -1415,6 +1558,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--large-bold-text-px", type=float, default=18.66)
     parser.add_argument("--min-panel-inset", type=float, default=8.0)
     parser.add_argument("--min-text-gap", type=float, default=6.0)
+    parser.add_argument("--min-geometry-gap", type=float, default=3.0)
     parser.add_argument("--bounds-tolerance", type=float, default=0.5)
     parser.add_argument("--max-precision", type=int, default=6)
     parser.add_argument("--strict-precision", action="store_true")
@@ -1434,6 +1578,7 @@ def main(argv: list[str] | None = None) -> int:
         large_bold_text_px=arguments.large_bold_text_px,
         min_panel_inset=arguments.min_panel_inset,
         min_text_gap=arguments.min_text_gap,
+        min_geometry_gap=arguments.min_geometry_gap,
         bounds_tolerance=arguments.bounds_tolerance,
         max_precision=arguments.max_precision,
         strict_precision=arguments.strict_precision,
