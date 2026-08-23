@@ -1,8 +1,8 @@
 # SVG drawing-system audit and improvement plan
 
 **Status:** proposed implementation plan; no drawing or construction authority
-**Version:** 0.2
-**Date:** 2026-08-21
+**Version:** 0.3
+**Date:** 2026-08-23
 **Source:** owner request of 2026-08-21; code and rendered-output audit of the 27
 current sheets in `planos/actual/`; statistical audit of the 217 SVG files under
 `planos/`; current drawing catalog v1.25; sixteen-topic comparative research in
@@ -538,6 +538,15 @@ Chrome and `resvg` runs report zero untyped collisions after two limited GP05 an
 placements were corrected. Registered geometry transforms and paths remain outside this
 staged claim. See
 [`svg_rotated_text_bounds_v0.6.md`](svg_rotated_text_bounds_v0.6.md); no current drawing
+has been promoted.
+
+**Reduced contact-audit note — 2026-08-23:** v0.7 renders GP01–GP05 at 480, 800 and
+1,400 px, creates ordered colour/grayscale contact sheets and records deterministic
+per-file metrics plus source hashes. Visual review preserves hierarchy and exposes the
+known 42 inherited GP01 microtexts. The preceding inventory found no transformed/path
+editorial geometry in the pilots, so unsupported cases remain fail-closed rather than
+receiving speculative logic. See
+[`svg_pilot_contact_audit_v0.7.md`](svg_pilot_contact_audit_v0.7.md); no current drawing
 has been promoted.
 
 ### 9.2 Geometry preservation tests

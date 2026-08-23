@@ -1,8 +1,8 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.14
-**Date:** 2026-08-22
+**Version:** 0.15
+**Date:** 2026-08-23
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -298,6 +298,9 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [SVG rotated-text bounds v0.6](08_investigacion/svg_rotated_text_bounds_v0.6.md):
   strict explicit-rotation parsing and transformed safe-bound/collision boxes for all six
   vertical GP05 labels, verified statically and through Chrome/`resvg` paint boxes.
+- [SVG pilot contact audit v0.7](08_investigacion/svg_pilot_contact_audit_v0.7.md):
+  deterministic 480/800/1,400 px pilot renders, ordered colour/grayscale contact sheets
+  and hash-bearing consolidated metrics for reduced-set visual review.
 
 ## How to use the project record
 

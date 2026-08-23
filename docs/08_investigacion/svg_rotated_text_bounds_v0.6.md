@@ -137,7 +137,9 @@ system, drawing, product, quantity, scope, saving or cost.
 
 ## 7. Next controlled batch
 
-The next increment should add measured, fixture-backed support for the controlled
-transforms and paths actually needed by registered editorial geometry. The 18-unit
+The subsequent pilot inventory found no transformed or path-based registered editorial
+geometry, so speculative support remains deferred and fail-closed. Reduced multi-scale
+and grayscale contact review was implemented instead as
+[`svg_pilot_contact_audit_v0.7.md`](svg_pilot_contact_audit_v0.7.md). The 18-unit
 new-template profile and combined 27-sheet contact-sheet CI build remain subsequent
 gates.
