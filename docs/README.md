@@ -1,8 +1,8 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.15
-**Date:** 2026-08-23
+**Version:** 0.17
+**Date:** 2026-10-02
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -210,6 +210,10 @@ they stay stable while their explicitly promoted versioned source can advance.
 ## 06 — Management, procurement, and construction
 
 - [Master plan](06_gestion_y_obra/plan_maestro.md)
+- [Connected project coordination — recommended next step](06_gestion_y_obra/connected_project_coordination_next_step.md):
+  research-reinforced v0.2 proposal connecting model identities, SVG views, named quantities,
+  dependency checks and pending decisions, with twelve acceptance fixtures; recommendation
+  only, with no design, scope, cost or drawing-promotion change.
 - [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
   detailed D-054/D-055 roadmap and implemented 0.4-I01 vertical slice for the canonical scenario model,
   real-equipment spatial validation, Great Wall/column alternatives, opening-aware
@@ -232,6 +236,10 @@ they stay stable while their explicitly promoted versioned source can advance.
 
 ## 08 — Research and tools
 
+- [Connected coordination research — twelve investigations](08_investigacion/connected_coordination_research_2026_10.md):
+  primary-source findings on IFC identity/relationships/quantities, IDS, BCF, schema validation,
+  reproducible builds, provenance, interactive SVG, accessibility and change/visual testing;
+  each investigation distinguishes evidence, proposed application, acceptance and limits.
 - [Digital tools for drawings, BIM, and structures](08_investigacion/herramientas_planos_bim_y_estructuras.md):
   proposed model architecture, formats, validation, and prototype roadmap.
 - [Structural research: ten topics, 2026-08](08_investigacion/investigacion_estructura_10_temas_2026_08.md)
