@@ -1,21 +1,25 @@
 # Connected project coordination — recommended next step
 
-**Status:** repository assessment and proposed next increment; not adopted for implementation  
-**Version:** 0.2  
-**Date:** 2026-10-02  
+**Status:** repository assessment and proposed next increment; not adopted for implementation<br>
+**Version:** 0.3<br>
+**Date:** 2026-10-02<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
 code inspection, numerical probes and validation performed in the same conversation;
 subsequent owner-requested internet research against primary sources, recorded in
-[twelve research investigations](../08_investigacion/connected_coordination_research_2026_10.md).  
-**Reviewed baseline:** Git commit `24479a9`, with a clean working tree before this document.  
+[twelve foundation investigations](../08_investigacion/connected_coordination_research_2026_10.md)
+and [ten additional delivery investigations](../08_investigacion/connected_coordination_delivery_research_2026_10.md).<br>
+**Reviewed baseline:** Git commit `24479a9`, with a clean working tree before this document.<br>
+**Delivery review baseline:** Git commit `d5ea6ca`, containing v0.2 and the first research round.<br>
 **Authority:** recommendation only. Recording this assessment does not adopt a design,
 change scope or cost, promote a drawing, or close a professional design gate.
 
-**Revision note:** v0.2 strengthens the proposed data contracts, graphical interaction,
-dependency tracking, quantity semantics and acceptance evidence. The baseline findings
-and 306-test result below belong to the original assessment; this documentation revision
-does not claim to have implemented or tested the proposed system.
+**Revision note:** v0.3 adds an incremental delivery sequence, controlled scenario edits,
+fingerprint and tolerance policies, associative dimensions, connected window details,
+purpose-specific information requirements and complete-package publication controls.
+It draws on 22 investigations across two rounds. The baseline findings and 306-test result
+below belong to the original assessment; this documentation revision does not claim to
+have implemented or tested the proposed system.
 
 ## 1. Recommendation and project intent
 
@@ -38,6 +42,11 @@ continues to govern every value and unresolved interface.
 
 Progress can therefore mean reducing uncertainty, exposing a dependency or making a
 proposal easier to evaluate before any new architectural decision is made.
+
+The immediate work package is **C01: reconcile the current window state and its
+measurements**. Its output should be a small comparison report that a person can inspect.
+The connected viewer follows once that report establishes what its drawings and numbers
+mean. Section 8.1 defines the sequence and the evidence needed to advance each package.
 
 ## 2. Review scope and verified starting point
 
@@ -174,7 +183,57 @@ the coverage report. A current, geometrically consistent window can still have o
 structural and cost gates. These are proposed project distinctions, not a claim of
 standards certification.
 
-## 5. Three implementation increments
+### 4.3 Views and dimensions must declare what they represent
+
+Each proposed view record should carry a view ID, scenario, purpose, projection basis,
+scale and crop, plus a cut plane and depth range where applicable. Drawing layers should
+distinguish cut elements, projected elements and schematic annotations. A plan symbol
+above the cut plane can remain useful if identified as such; it should not imply that
+the plane cuts that window. Follow [R18](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r18).
+
+Dimensions should reference the element and named geometric anchors, such as opening
+left/right limits or sill/head, with a declared measurement direction and datum. Generate
+their numbers from those anchors, retaining unrounded values for calculation and applying
+rounding only for display. Record label positions separately. A deleted or ambiguous
+anchor should produce an unresolved dimension rather than preserve an apparently valid
+old number. These are proposed association rules from
+[R19](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r19), not an
+instruction to replace the SVG generators with a CAD application.
+
+Information requirements should depend on **element + intended use + delivery milestone**.
+A coordination view needs location, dimensions, source and open interfaces; a procurement
+package additionally needs reviewed performance requirements and comparable product
+evidence. Later installation and maintenance uses need different records. Show coverage
+against the selected purpose, including what is unknown, without assigning one global
+completion percentage to the house. [R20](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r20)
+provides the information-delivery basis; project milestones remain governed locally.
+
+### 4.4 First connected detail plate
+
+Use `GLZ-WS-A` to demonstrate one readable review plate. The following proposed views
+share the same selected identity and link back to the same source and issue records:
+
+| View or panel | Automatically derived content | Evidence that remains to be developed |
+| --- | --- | --- |
+| Location plan | Opening position, host reference and affected workstation | An unresolved host identity is visible until mapped. |
+| Elevation | Opening width, sill, head and dimensional anchors | Frame subdivisions and net glass require supported assembly data. |
+| Vertical interface section | Opening extents and references to head and sill | Header, support, drainage and thermal interfaces need professional detail development. |
+| Head / sill / jamb schematics | Parameter links and callouts to the selected opening | Materials, layer thicknesses, fixings and tolerances remain unresolved where no source exists. |
+| Quantity and change panel | Named opening measurement, formula and study delta | Glass area, rates and quotation comparability remain separately pending. |
+| Interface evidence panel | Open items, responsible roles, source and required evidence | Approval is recorded through existing project governance. |
+
+For each head, sill and jamb, trace the intended water-management, air-control and thermal
+continuity across the window-to-wall interface. Use explicit unresolved segments where
+the assembly has not been designed. A visually continuous line is evidence of a drawing
+relationship only; it is not proof of watertightness, condensation resistance or structural
+adequacy. Research [R21](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r21)
+supports these questions without selecting an assembly for Boyacá.
+
+This plate should help the owner see which detail matters next: for example, the opening
+size may be consistent while the path by which sill water reaches the exterior is still
+undefined. That uncertainty is a useful project output in its own right.
+
+## 5. Three implementation increments and study controls
 
 ### 5.1 Establish an unambiguous current state
 
@@ -200,6 +259,31 @@ opening area as measured glass.
 Use schema validation for required fields, supported kinds and units, followed by
 separate checks for reference integrity, finite numbers, geometric relationships and
 quantity mappings. A schema-valid document is only the first validation layer.
+
+Introduce a narrow adapter around the current loaders and compare old and new outputs
+for the **same source scenario** before moving a consumer to the new entry point. Record
+intended differences separately from parity failures: correcting the workstation cost
+mapping must not require reproducing its known error. Retain historical scenario access
+and source files. This incremental approach follows
+[R13](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r13) and
+requires no Git branch or broad rewrite.
+
+Define three distinct fingerprints: original source bytes, a normalized model under a
+named serialization policy, and the complete build dependencies. Keep current historical
+hashes verifiable under their original policy. The present `canonical_json_hash()` uses
+Python's sorted-key JSON serialization; it should not be described as RFC 8785 compliant.
+Specify handling of duplicate keys, non-finite values and numeric representation before
+using a new fingerprint for caching or scenario preconditions.
+[R15](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r15)
+explains the distinction; cross-language canonicalization can wait for an actual need.
+
+Keep numerical comparison tolerance, drawing precision, required physical clearance and
+construction tolerance separate. Every geometric rule should declare units, comparison
+method and boundary behaviour, including whether touching counts as overlap. Use explicit
+absolute/relative numerical tolerances where relevant; do not round geometry to make a
+clash disappear. Start with the existing rectangle operations and documented limits.
+[R16](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r16)
+does not justify introducing a polygon engine before the first family needs one.
 
 ### 5.2 Connect one element family to multiple views
 
@@ -267,6 +351,32 @@ fonts and viewport for a given visual baseline, and keep model checks independen
 pixel comparison. Test meaningful change sequences as well as unchanged reference
 models, as proposed in [R12](../08_investigacion/connected_coordination_research_2026_10.md#r12).
 
+The reviewed publisher writes SVG/PNG aliases and indexes sequentially. For the new
+review package, first generate into an isolated directory, validate the complete expected
+output inventory and hashes, then retain a versioned candidate package. A render failure
+must leave the previous current publication intact. Never overwrite a released package
+in place. Before extending this mechanism to promotion, define how every consumer resolves
+one release consistently: replacing individual files atomically does not make a multi-file
+publication atomic. A release pointer is useful only when consumers actually resolve
+through it; the existing stable aliases need an explicit compatibility strategy.
+See [R17](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r17).
+
+### 5.4 Controlled study edits
+
+Represent a trial as a named base scenario/fingerprint plus explicit element changes and
+expected prior values. Apply it to a copy, validate the whole result and produce a review
+package without modifying adopted inputs. A mismatched base, missing target or failed
+precondition should reject the candidate with a useful diagnostic.
+
+RFC 6902's ordered operations and `test` preconditions are a useful reference, but adopting
+JSON Patch is optional. If used, target a normalized entity map by stable ID rather than
+array position, and keep scenario metadata outside the patch-operation list. Application
+code must ensure failed edits cannot partially persist. Preserve existing historical delta
+loaders; this is a proposed boundary for new trials. Record changes as before/after values,
+affected elements, invalidated outputs and still-open evidence needs.
+[R14](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r14)
+supports the change mechanism; it provides no design-adoption authority.
+
 ## 6. Acceptance evidence
 
 The main acceptance demonstration is a deliberate dimensional change in an unadopted
@@ -312,6 +422,30 @@ independent arithmetic expectation: `area_delta = height * width_delta`. Add a m
 case because it changes location and affected interfaces while preserving area. These
 fixtures test different dependencies and should not be replaced by screenshot equality.
 
+### 6.2 Additional delivery acceptance evidence
+
+These ten further fixtures turn the second research round into observable behaviour.
+They are proposed tests for implementation, not checks claimed to have passed today.
+
+| Research | Concrete acceptance evidence |
+| --- | --- |
+| [R13 — Migration](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r13) | Current loaders and adapter agree on geometry and source identity for PB b37/P2 b28; the report separately identifies the intended quantity-classification correction. |
+| [R14 — Study edits](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r14) | A patch prepared against an older base fails without changing inputs or current output; reordered records cannot redirect the edit to another opening. |
+| [R15 — Fingerprints](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r15) | Formatting-only JSON edits change the byte hash but preserve the normalized fingerprint under its declared policy; duplicate keys and non-finite numbers are rejected. |
+| [R16 — Numerical boundaries](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r16) | Tests distinguish touching, a small gap and actual overlap; changing printed decimal places changes no geometry or clearance verdict. |
+| [R17 — Complete releases](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r17) | An injected late render failure leaves all previously published files unchanged; the failed candidate is not a promotable issue. |
+| [R18 — View intent](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r18) | Moving a plan cut plane changes cut/projected membership where supported, while preserving element identity and model quantities. |
+| [R19 — Dimensions](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r19) | A width edit updates its associated dimension and area; deleting a referenced anchor creates an unresolved annotation rather than a stale value. |
+| [R20 — Information need](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r20) | The same window can satisfy coordination fields while remaining incomplete for procurement; missing product evidence remains visible. |
+| [R21 — Envelope interfaces](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r21) | Head, sill and jamb records link to the selected window and show unresolved continuity; dimensional consistency does not close the envelope review. |
+| [R22 — Handover](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r22) | A Phase 2 provision is distinguishable from installed equipment; maintenance links survive renaming, and absent manufacturer data stays unknown. |
+
+Advance by demonstrated connections, not by the total number of rendered sheets. For the
+pilot, report represented elements versus expected elements, resolved dimension anchors,
+valid quantity mappings, current versus stale outputs, and evidence completeness for the
+declared purpose. Keep these counts separate so an improved drawing count cannot conceal
+missing checks or unresolved engineering.
+
 ## 7. Subsequent applications with practical decision value
 
 ### 7.1 Shared stair core and section relationships
@@ -339,6 +473,14 @@ Then connect service routes, access for maintenance and the provisions needed be
 construction Phases 1 and 2. This would make future equipment replacement, reserved
 capacity and completion work easier to understand before those details are frozen.
 
+Begin with location, system, phase, access/removal envelope and evidence links for a few
+maintainable components and service reservations. Distinguish planned, reserved, installed,
+tested and commissioned states. Add manufacturer, serial number, warranty and maintenance
+interval only when supported. A protected Phase 1 reservation should retain its location,
+test and reactivation obligations without masquerading as installed Phase 2 equipment.
+[R22](../08_investigacion/connected_coordination_delivery_research_2026_10.md#r22)
+supports progressive handover information within the existing repository.
+
 ## 8. Delivery approach and authority
 
 Use the existing Python, JSON, SVG and static-site foundation. Prioritize one complete,
@@ -346,8 +488,9 @@ verifiable element family and expand only after that connection works. This keep
 software effort proportionate to the project's needs and reuses the drawing, validation
 and publication work already completed.
 
-The [research dossier](../08_investigacion/connected_coordination_research_2026_10.md)
-supports adopting useful information patterns before taking on additional platforms.
+The [foundation research](../08_investigacion/connected_coordination_research_2026_10.md)
+and [delivery research](../08_investigacion/connected_coordination_delivery_research_2026_10.md)
+support adopting useful information patterns before taking on additional platforms.
 Full IFC/IDS/BCF exchange, an RDF database, a general solid-model engine and a new build
 framework remain deferred until a real exchange or engineering task requires them. The
 immediate proposed deliverables are the current-state manifest, a validated window
@@ -366,3 +509,47 @@ Saving this recommendation is documentation work only. It does not adopt its pro
 implementation, change the construction scope or cost baseline, or promote a drawing.
 Consequently, it creates no new entry in the decision register or cost-control record.
 Any later adopted change remains subject to the existing governance and recording rules.
+
+### 8.1 Proposed delivery sequence
+
+These packages subdivide the three increments above. They are a recommended order of
+work, with completion evidence rather than unsupported effort or cost estimates. Existing
+paths identify likely integration points; they do not imply every listed file needs edits.
+
+```mermaid
+flowchart LR
+    C01[Reconcile current data] --> C02[Define element contracts]
+    C02 --> C03[Generate linked views]
+    C03 --> C04[Connect evidence and selection]
+    C04 --> C05[Exercise study changes]
+    C05 --> C06[Verify complete delivery]
+```
+
+| Package | Concrete review output | Existing integration points | Exit evidence |
+| --- | --- | --- | --- |
+| C01 — Current sources and measurements | Current-state manifest and window comparison report | [Model loader](../../dreamhouse/model/io.py), [scenario manifest](../../dreamhouse/model/project_v04.json), [PB b37 generator/loader](../../dreamhouse/generate_pb_b37.py), [P2 b28 generator/loader](../../dreamhouse/generate_p2_b28.py), [ledger](../../dreamhouse/quantities/ledger.py) | Same-scenario geometry parity; each opening counted once; workstation and rooflight families distinct; unsupported engineering inputs explicit. |
+| C02 — Small element contract | Window registry, identity/alias map, relationships and validation report | [Model schema](../../dreamhouse/model/schema.py), [rectangle geometry](../../dreamhouse/geometry/rectangles.py), [D-083 source](../../dreamhouse/window_daylight_d083.json) | Stable identities, finite dimensions, explicit units/datums, no hidden dangling references; tolerance and fingerprint policies named. |
+| C03 — Linked view geometry | One review plate with plan, elevation, associated dimensions and schematic interface references | [SVG sheet](../../dreamhouse/svg/sheet.py), [layout](../../dreamhouse/svg/layout.py), existing PB/P2 generators | Common anchors agree between views; a broken anchor is visible; cut/projected/schematic content distinguished. |
+| C04 — Evidence navigation | Selectable inline SVG, equivalent element list and interface evidence panel | [Presentation builder](../../.github/scripts/build_showcase.py), existing SVG QA and conflict-register links | Keyboard and pointer selection reach the same entity; purpose-specific gaps and head/sill/jamb references remain readable. |
+| C05 — Controlled change demonstration | Baseline and unadopted trial packages with a generated change report | [Integration pipeline](../../dreamhouse/pipeline.py), existing model and quantity modules | Width and move fixtures behave correctly; stale-base edits are rejected; affected evidence invalidates; adopted totals remain unchanged. |
+| C06 — Delivery reliability | Repeatable candidate build, CI artifacts and a reviewed publication compatibility design | [Drawing synchronizer](../../.github/scripts/sync_current_drawings.py), [workflows](../../.github/workflows/), existing graphic checks | Late failure preserves current publication; inventory/hashes agree; relevant inputs trigger checks; no automatic promotion. |
+
+The recommended first implementation should stop at a completed **C01** report, which is
+already useful even if no viewer follows immediately:
+
+1. Inventory the actual PB b37/P2 b28/D-083 loader dependencies and compare them with the
+   integration manifest; identify retained structure/rooflight inputs and their limits.
+2. Adapt those loaders through one explicit entry point without editing historical models.
+3. Report each opening's source tag, floor/family, geometry, named measurement and assembly
+   disposition; distinguish nominal opening area from unmeasured product quantities.
+4. Verify parity against the current source loaders, the intended workstation mapping
+   correction, exclusion of the unadopted dining study, and rejection of an unknown family.
+
+The reviewer should be able to explain every difference. Unexpected geometry differences
+block advance to C02 until explained; an open professional gate remains visible without
+preventing a correctly labelled schematic comparison. Keep the report and fixtures small
+enough to understand without learning a new platform.
+
+After C06, select the next element family by the decision it will clarify: the stair
+landing and rear discharge, P2 wall/load interfaces, or a phased service provision. Do
+not expand the software simply to increase model coverage.
