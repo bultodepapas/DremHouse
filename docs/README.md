@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.18
+**Version:** 0.19
 **Date:** 2026-10-02
 
 > [!NOTE]
@@ -211,10 +211,10 @@ they stay stable while their explicitly promoted versioned source can advance.
 
 - [Master plan](06_gestion_y_obra/plan_maestro.md)
 - [Connected project coordination — recommended next step](06_gestion_y_obra/connected_project_coordination_next_step.md):
-  research-reinforced v0.3 proposal with 22 acceptance fixtures and six delivery packages:
-  current-source reconciliation, linked SVG views and dimensions, interface evidence,
-  controlled studies and complete review packages; recommendation only, with no design,
-  scope, cost or drawing-promotion change.
+  v0.4 living-system plan with seven phases, 22 subphases and 25 research-linked acceptance
+  fixtures: source ownership, one resolved model, Python change/rule evaluation, connected
+  views, reliable builds and graphical authoring. Each stage defines dependencies, scope
+  and completion evidence; recommendation only, with no design or publication change.
 - [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
   detailed D-054/D-055 roadmap and implemented 0.4-I01 vertical slice for the canonical scenario model,
   real-equipment spatial validation, Great Wall/column alternatives, opening-aware
@@ -237,10 +237,13 @@ they stay stable while their explicitly promoted versioned source can advance.
 
 ## 08 — Research and tools
 
+- [Connected editing and validation — three focused investigations](08_investigacion/connected_editing_and_validation_research_2026_10.md):
+  six primary sources on semantic SVG edits, coordinate transforms, geometric-check
+  coverage and revision-safe candidate persistence; supports the living-system phases.
 - [Connected coordination delivery research — ten additional investigations](08_investigacion/connected_coordination_delivery_research_2026_10.md):
   19 primary sources on incremental migration, controlled edits, fingerprints, numerical
   tolerances, complete releases, view/dimension contracts, information milestones, window
-  interfaces and phased maintenance records; feeds the connected coordination plan v0.3.
+  interfaces and phased maintenance records; supports the connected coordination plan.
 - [Connected coordination research — twelve investigations](08_investigacion/connected_coordination_research_2026_10.md):
   primary-source findings on IFC identity/relationships/quantities, IDS, BCF, schema validation,
   reproducible builds, provenance, interactive SVG, accessibility and change/visual testing;
