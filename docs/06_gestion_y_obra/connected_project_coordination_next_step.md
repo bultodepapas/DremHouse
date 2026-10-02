@@ -1,7 +1,7 @@
 # Connected project coordination — recommended next step
 
 **Status:** repository assessment and proposed next increment; not adopted for implementation<br>
-**Version:** 0.4<br>
+**Version:** 0.5<br>
 **Date:** 2026-10-02<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -9,27 +9,28 @@ code inspection, numerical probes and validation performed in the same conversat
 subsequent owner-requested internet research against primary sources, recorded in
 [twelve foundation investigations](../08_investigacion/connected_coordination_research_2026_10.md)
 and [ten additional delivery investigations](../08_investigacion/connected_coordination_delivery_research_2026_10.md);
-the owner's subsequent request for a living system with coherent graphical edits,
-propagation and warnings, supported by [three focused investigations](../08_investigacion/connected_editing_and_validation_research_2026_10.md).<br>
+the owner's request for a living system with coherent source changes, propagation and
+warnings, and explicit clarification that SVGs are generated outputs, supported by [three focused investigations](../08_investigacion/connected_editing_and_validation_research_2026_10.md).<br>
 **Reviewed baseline:** Git commit `24479a9`, with a clean working tree before this document.<br>
 **Delivery review baseline:** Git commit `d5ea6ca`, containing v0.2 and the first research round.<br>
 **Authority:** recommendation only. Recording this assessment does not adopt a design,
 change scope or cost, promote a drawing, or close a professional design gate.
 
-**Revision note:** v0.4 turns the preceding contracts into seven phases and 22 subphases,
-with entry dependencies, scope, outputs and completion criteria. It defines how graphical
-edits become model changes, how rules and calculations respond, and how partial coverage
-is exposed. It draws on 25 investigations. The owner's window/door/column examples explain
-desired behaviour; they are not findings of actual clashes or instructions to implement
-those examples literally. All proposed capabilities remain unimplemented by this update.
+**Revision note:** v0.5 corrects the scope: changes originate in repository data, scenario
+parameters and Python code. SVGs display generated results and findings; there is no
+graphical editing capability in this plan. The implementation has six phases and 19
+subphases, each with dependencies, scope, outputs and completion criteria. The 25 research
+investigations support source-driven propagation and validation; R23 is revised for
+read-only representations. The owner's examples are illustrations, not diagnosed clashes.
+All proposed capabilities remain unimplemented by this documentation update.
 
 ## 1. Recommendation and project intent
 
 The target is a living project system: one resolved model per scenario supplies the
-drawings, calculations, quantities and coordination findings. A supported edit made from
-a drawing changes that model through an explicit command; Python evaluates the resulting
-state and regenerates its dependent representations. Start with one element family and
-complete that connection, then extend the same mechanism to the rest of the house.
+drawings, calculations, quantities and coordination findings. Changes are made in the
+repository sources and model parameters. Python resolves the resulting state, evaluates
+its consequences and regenerates the dependent drawings and reports. Start with one
+element family and complete that connection, then extend the same mechanism to the house.
 
 Dream House's purpose is a simple industrial hall that accommodates a rich domestic and
 technical life: family, making, work and landscape together. Precision should concentrate
@@ -47,14 +48,14 @@ continues to govern every value and unresolved interface.
 Progress can therefore mean reducing uncertainty, exposing a dependency or making a
 proposal easier to evaluate before any new architectural decision is made.
 
-Start with **Phase 0: establish the current baseline and its edit ownership**. The first
+Start with **Phase 0: establish the current baseline and its source ownership**. The first
 useful output is a comparison report for current sources and window measurements. The
-core change/evaluation mechanism precedes graphical editing. [Section 5](#5-phases-and-subphases)
+core change/evaluation mechanism drives all generated outputs. [Section 5](#5-phases-and-subphases)
 is the implementation sequence; section 8.1 maps the earlier C01–C06 packages into it.
 
 "Automatic" initially means that one Python command evaluates a complete candidate and
-updates all supported dependent outputs. Later phases add automatic refresh after an
-editor action or source-file change. No supported output may silently retain the old
+updates all supported dependent outputs. An optional later watcher can rerun that same
+command after source-file changes. No supported output may silently retain the old
 state; an unsupported affected output must explicitly become stale or unevaluated.
 
 ## 2. Review scope and verified starting point
@@ -94,7 +95,7 @@ python3 -m dreamhouse.svg.lint planos/piloto_grafico_v0.1 --format markdown
 For v0.4, code inspection additionally covered current loader/generator call chains,
 `vertical_continuity.py`, equipment checks, check aggregation, the static viewer and both
 CI workflows. The following existing targeted suite was rerun: **18 tests passed**.
-It verifies the existing implementation, not the proposed editing system:
+It verifies the existing implementation, not the proposed propagation system:
 
 ```bash
 python3 -m unittest dreamhouse.structure.tests.test_integrated_pipeline dreamhouse.structure.tests.test_pb_b37 dreamhouse.structure.tests.test_p2_b28 dreamhouse.structure.tests.test_stair_core_coordination
@@ -127,7 +128,7 @@ The next improvement should make the connections between disciplines verifiable.
 | [P2 b28 validation](../../dreamhouse/generate_p2_b28.py) checks exact D-083 values; [vertical continuity](../../dreamhouse/structure/vertical_continuity.py) raises if the expected compatible-column list changes. | Keep historical fidelity checks intact; extract reusable scenario checks that return findings for changed geometry instead of treating every intentional study as a broken historic revision. |
 | The continuity audit checks candidate column lines against façade/window and door intervals; [equipment checks](../../dreamhouse/equipment/validators.py) use bodies and operating rectangles. | Useful rule implementations exist, but they do not form a complete collision model for all elements and elevations. Register their applicability, geometry assumptions and coverage. |
 | [CheckResult](../../dreamhouse/model/schema.py) already carries rule IDs, outcomes and entity IDs. [Pipeline aggregation](../../dreamhouse/pipeline.py) counts selected groups; support/structural results are separate, and some evidence prose contains fixed scenario facts. | Extend the existing result interface with coverage and purpose-specific blocking policy; generate narratives from evaluated facts and register every claimed check group. |
-| [The current viewer](../../showcase/app.js) changes image sources and uses CSS transforms for zoom/pan. | Screen movement currently changes presentation only. A model editor needs semantic selection, inverse view transforms and a repository-connected Python command path. |
+| [The current viewer](../../showcase/app.js) changes image sources and uses CSS transforms for zoom/pan. | Keep zoom/pan as presentation. Add read-only identity/evidence links where useful; Python-generated artifacts remain the source of displayed geometry and warnings. |
 | [Current publication](../../.github/scripts/sync_current_drawings.py) copies explicitly catalogued issues; [showcase CI](../../.github/workflows/showcase.yml) regenerates aliases automatically on main. | Keep source promotion explicit while automating synchronization after promotion; candidate builds must remain separate from that path. |
 
 These are implementation observations, not new architectural conflicts. No actual
@@ -183,7 +184,7 @@ require IFC export to start.
 | Relationships | Host wall, void/opening, proposed filling/window assembly and relevant space references | Keep opening, frame and glass semantics distinct; leave unidentified assemblies explicitly unresolved. |
 | Measurement | Source entity, named quantity kind, unit, formula/version, deductions and inclusion status | Prevent gross opening area being silently treated as net glass or as a priced assembly. |
 | Evidence | Source reference/hash, decision/conflict references and applicable rule IDs | Explain both the value and its unresolved obligations. |
-| Edit ownership | Owning source/field, writable scenario layer, inherited versus derived fields and permitted commands | Ensure one edit updates a governed input rather than a copied view value. |
+| Source ownership | Owning repository file/field, scenario layer and inherited versus derived fields | Ensure a source change reaches every dependent view and calculation. |
 | Geometry capability | Supported representation, extents/elevation interval, approximation and missing data | Distinguish an evaluated physical relationship from a diagram or unsupported check. |
 
 Keep existing project tags unchanged and map known aliases explicitly. A content hash
@@ -268,95 +269,69 @@ This plate should help the owner see which detail matters next: for example, the
 size may be consistent while the path by which sill water reaches the exterior is still
 undefined. That uncertainty is a useful project output in its own right.
 
-### 4.5 One model, several editing and reading surfaces
+### 4.5 One model, generated representations
 
-The proposed flow is deliberately asymmetric: a drawing may initiate a model edit, while
-its rendered geometry remains a projection of the resulting model. Plan, elevation and
-section files do not update each other by copying SVG coordinates.
+The information flow is **repository sources → resolved model → Python calculations and
+checks → drawings, SVGs, quantities and reports**. SVGs are generated output. They neither
+originate model edits nor update other SVG files directly.
 
 ```mermaid
 flowchart TD
-    S[Versioned sources and explicit scenario] --> M[Resolved model snapshot]
-    UI[Semantic SVG controls or property form] --> C[Typed change command]
-    CLI[Repository JSON change or Python command] --> C
-    M --> C
-    C --> T[Check base revision and apply to a copy]
-    T --> N[Candidate model snapshot]
-    N --> V[Domain rules and coverage]
-    N --> Q[Quantities and dependent calculations]
-    N --> D[Plans, elevations, sections and details]
-    V --> R[Complete review package with findings]
+    S[Changes to repository data or Python code] --> M[Resolve one model snapshot]
+    M --> V[Evaluate domain rules and coverage]
+    M --> Q[Recompute quantities and dependent calculations]
+    M --> D[Regenerate plans, elevations, sections and details]
+    V --> R[Review package with warnings and evidence]
     Q --> R
     D --> R
-    R --> UI
+    R --> UI[Read-only SVG views and reports]
     R --> G[Explicit adoption and publication process]
 ```
 
-Keep three concerns explicit:
-
 | Concern | Proposed ownership and behaviour |
 | --- | --- |
-| Authoring information | Each parameter has one declared source/owner. Existing historical JSON/delta chains remain readable and hash-verifiable. New studies record edits against a named base; accepting a study creates a governed new baseline rather than modifying a released issue in place. |
-| Resolved scenario | Load/normalize sources once into one snapshot with units, placements, identity, relationships and provenance. Calculations and renderers receive that snapshot. Persisted resolved snapshots are derived artifacts, not competing writable masters. |
-| Presentation | View records, annotation positions, sheet layout and styling are stored separately from building geometry. Moving a label changes the sheet; moving an element changes its model parameters and all affected projections. |
+| Authoring information | Each parameter has one repository source/owner. Current work changes JSON, scenario inputs or Python as appropriate. Preserve historical hash-locked sources; new studies identify their base and changed inputs. |
+| Resolved scenario | Load and normalize sources once into a snapshot with units, placement, identity, relationships and provenance. Pass it to every calculation and renderer. Saved snapshots are derived evidence, not another manually edited master. |
+| Presentation | Store projection, annotation layout and styling in generator code or declared presentation configuration. Python generates dimension labels from model values. Browser selection, zoom and overlays only help inspect results. |
 
 During migration, record field ownership and switch each consuming family to the resolved
-model as a unit. Compatibility adapters can supply old dictionary shapes, but may not
-silently reread a different source or maintain their own authoritative copy. Preserve
-historical generators as reproducible historical entry points.
+model as a unit. Compatibility adapters can supply existing dictionary shapes, but may
+not silently reread different sources. Preserve historical generators as reproducible
+historical entry points.
 
-Provide a small Python coordination interface, provisionally three operations:
-`resolve_project(scenario)`, `evaluate_change(snapshot, command)` and
-`build_review(snapshot, evaluation, output_dir)`. These are proposed interface names,
-not existing commands. The result exposes input fingerprint, changes, findings, affected
-outputs and coverage. Extend model loading and the pipeline at these seams; use a small
-`dreamhouse/coordination/` module for change/evaluation orchestration only where it brings
-shared behaviour together. Keep calculations testable without a browser or file writes.
+Provide a small Python coordination interface, provisionally `resolve_project(scenario)`,
+`evaluate(snapshot, baseline)` and `build_review(snapshot, evaluation, output_dir)`.
+These are proposed interface names, not existing commands. Evaluation compares changed
+inputs with the preceding complete snapshot and returns findings, affected outputs and
+coverage. Extend model loading and the pipeline at these seams; a small
+`dreamhouse/coordination/` module is appropriate only for shared change/evaluation logic.
+Keep calculations testable without rendering or writing files.
 
-### 4.6 What editing a connected SVG means
+### 4.6 SVGs show the model state and its consequences
 
-**Supported model editing:** select an element in an inline SVG and edit its properties
-or use a constrained handle. Selection resolves `entity_id`, scenario and model revision.
-The editor converts the gesture into a typed command specifying allowed parameters,
-units, expected prior values and the base fingerprint. For example, a host-relative
-position edit has a direction and datum; a resize declares the fixed anchor. This is a
-generic mechanism, not a request to change any current opening.
+Every generated occurrence carries an element identity, view ID, scenario, source/build
+fingerprint and representation role. Plans, elevations and sections project the same
+model through explicit transforms and datums. Dimensions reference named model anchors.
+Updating a source therefore changes all affected views through regeneration, rather than
+through manual drawing edits.
 
-Convert screen coordinates through the inverse SVG transform and the declared view-to-
-model transform. Zoom, pan, mirrored views and sheet scaling must not alter the resulting
-model edit. A 2D view does not determine hidden depth: use an explicit host plane and
-permitted degrees of freedom, otherwise require a property entry or another view. Apply
-existing modular/dimensional constraints as identified rules; preview violations without
-silently snapping, changing related parameters or moving another element.
+Generate warning overlays and a textual issue list from the same Python findings. Link
+an issue to affected elements, its rule/evidence and useful views. Optional selection can
+highlight matching occurrences across SVGs, open an evidence panel or navigate to a
+related section/detail. Provide keyboard/list access and readable status without relying
+only on colour. These are read-only inspection actions.
+
+Display the evaluated scenario/revision and freshness of each view. A skipped or failed
+calculation remains visible as unevaluated; a previous successful image cannot be shown
+as the latest result. Retain standalone SVG/PNG publication and the static showcase.
+Saved issue viewpoints retain their original snapshot and view definitions.
+
+A manually modified generated SVG is a divergent artifact: provenance checks identify it,
+and the next controlled build regenerates it from its sources. It does not alter model
+geometry. This scope needs no drag handles, property-edit forms, SVG import/write-back,
+browser repository writer or graphical editing server.
 [R23](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r23)
-provides the transform and interaction basis.
-
-**Presentation editing:** label movement, line styling and view placement update only
-the applicable view/annotation record. Distinguish these controls visibly from geometry
-controls and preserve such edits when regenerating the view.
-
-**Externally edited SVG:** arbitrary paths, flattened groups or manually changed dimension
-text do not provide a reliable inverse building model. Detect changed generated artifacts
-through provenance checks and present them as divergent. A future import adapter may
-accept a documented subset of semantic edits, with identity, base revision and transform
-validation, but must reject ambiguous imports. Full arbitrary-SVG reconstruction is not
-a prerequisite for the connected editor.
-
-The current static presentation has no repository-writing path. Deliver the complete
-automatic loop through a local Python process that serves the editor and accepts the
-same validated commands used by the CLI. Keep it on the local interface, accept declared
-command fields rather than arbitrary file paths, validate origin/request intent, and
-serialize writes with base-revision rechecks. This is a local working tool; public Pages
-remains a viewer and can export a proposal for CLI import. Export alone is a useful early
-fallback but does not satisfy completion of the automatic graphical-editing phase.
-
-After each completed edit, the Python response identifies the evaluated revision and its
-output package. Refresh every dependent view from that revision. Distinguish transient
-drag previews from Python-verified results, and discard responses for superseded requests.
-No browser geometry preview may impersonate a completed coordination calculation.
-Saved issue viewpoints retain their original snapshot and view definitions; reopening
-one must not silently substitute the latest model. Undoing a saved edit creates a new
-reversal command against the current revision, preserving intervening work and history.
+supports semantic, read-only representations.
 
 ### 4.7 Rules, findings and useful warnings
 
@@ -372,7 +347,7 @@ the declared rule and purpose, not merely on the colour of a viewer badge.
 
 | Situation | Required response |
 | --- | --- |
-| Invalid command, stale base, duplicate identity, impossible units or broken mandatory references | Reject the mutation; return the diagnostic; retain the prior snapshot. |
+| Malformed input, stale study base, duplicate identity, impossible units or broken mandatory references | Reject the candidate build; return the diagnostic; retain the prior complete package. |
 | Supported rule establishes an interference or requirement violation | Retain an explicitly problematic study for inspection, report `FAIL` and its evidence, and apply the issue-purpose release gate. Never auto-resolve by moving another element. |
 | Candidate overlap with approximate geometry, missing elevations, unsupported shape or unavailable analysis | Report `OPEN` with unevaluated/approximate coverage and the missing inputs; a potential conflict remains distinguishable from a confirmed modeled conflict. |
 | Supported applicable rule passes | Report `PASS` together with its actual scope and evidence. This does not close a professional review. |
@@ -405,7 +380,7 @@ Link it to the existing register and retain the evidence revision and responsibl
 Maintain the semantic relationship graph separately from the acyclic calculation/build
 graph. Reciprocal building relationships are normal; circular calculated dependencies
 must be detected or handled by an explicitly defined solver, never by endless regeneration.
-Start by rebuilding the complete pilot package on each accepted study edit. Add selective
+Start by rebuilding the complete pilot package on each Python run over changed inputs. Add selective
 recomputation only after it agrees with full rebuilds on the same scenario.
 
 | Change class | Required propagation within declared coverage |
@@ -415,25 +390,26 @@ recomputation only after it agrees with full rebuilds on the same scenario.
 | Type, material or assembly property | Re-evaluate applicable details, mass/load inputs, quantities, rate mapping and performance evidence. Missing engineering/product data stays pending. |
 | Rule, generator, transform, schema or font input | Invalidate the affected checks or outputs even when building geometry is unchanged. |
 | Annotation or sheet layout only | Regenerate affected views/graphic QA; preserve physical geometry and calculated quantities. |
-| Source changed outside the editor | Compare source hashes, re-resolve the declared scenario and invalidate dependent outputs; retained baseline guards may require a new version rather than an in-place rewrite. |
+| Repository input changed | Compare source hashes, re-resolve the declared scenario and invalidate dependent outputs; retained historical baseline guards may require a new version rather than an in-place rewrite. |
 
 A move may leave area unchanged while altering interference and access checks. A material
 edit may leave geometry unchanged while invalidating a mass calculation. Unknown dependency
 scope requires conservative invalidation. Record why each output was recomputed, unchanged
 or left unevaluated; never label a skipped structural calculation current by default.
 
-Before accepting a mutation, recheck its expected base inside the serialized writer
-operation. Applying edits to a copy and validating them is insufficient if another edit
-can replace the base between checking and saving. Preserve the command and resulting
-snapshot as study evidence, with no partial persistence on failure.
+Resolve a consistent input snapshot before evaluating it. If source files change during
+a build, preserve the build's original fingerprint and mark it outdated, or reject/restart
+it; never label mixed-source results current. New delta scenarios retain expected-base
+checks. Concurrent Python runs must not overwrite one another's candidate directories or
+replace the current package using an obsolete source revision.
 [R25](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r25)
-supports the concurrency principle; no hosted multiuser application is required.
+provides the expected-revision principle, applied here to repository builds.
 
-Stage the snapshot and all outputs required at the current capability level before
-advancing the working-scenario pointer. Recheck the base during that final serialized
-operation. A failed render may retain a diagnostic candidate, but cannot replace the last
-complete working package or the current publication. A valid package may contain modeled
-coordination failures; completeness and design acceptability are different conditions.
+Stage the snapshot and required outputs before exposing a complete review package.
+Recheck the source fingerprint before updating any pointer to the latest complete build.
+A failed render may retain diagnostic artifacts, but cannot replace the previous complete
+package or publication. A complete review package may contain coordination failures:
+completeness and design acceptability are separate conditions.
 
 ## 5. Phases and subphases
 
@@ -448,14 +424,13 @@ flowchart LR
     P1 --> P2[2. Changes and rules]
     P2 --> P3[3. Derived views]
     P3 --> P4[4. Reliable automation]
-    P4 --> P5[5. Graphical authoring]
-    P5 --> P6[6. Whole-project rollout]
+    P4 --> P5[5. Whole-project rollout]
 ```
 
 Start with windows, their host references, affected spaces and the available structural
 context. This is the first complete path through the system, not a permanent window-only
-architecture. All formulas, rules and edit permissions remain explicit about the model
-families they support. Use the existing Python/JSON/SVG stack and a local editor with a static frontend;
+architecture. All formulas, rules and supported source fields remain explicit about the
+model families they support. Use the existing Python/JSON/SVG stack and static presentation;
 introduce additional geometry or infrastructure only for a demonstrated capability gap.
 
 <a id="phase-0"></a>
@@ -482,7 +457,7 @@ than silently reinterpreting `D059_P2_REFINED_ENVELOPE`.
 
 **Exit gate:** a reviewer can trace each pilot measurement to its source and explain its
 scenario. Open engineering gates are visible and do not prevent a labelled schematic
-comparison. This is the first useful deliverable even before a graphical editor exists.
+comparison. This is the first useful deliverable before extending automatic generation.
 
 <a id="phase-1"></a>
 
@@ -495,8 +470,8 @@ with sufficient identity, relationships and geometry for pilot calculations and 
 | Subphase | Depends on | Scope and objective | Output and completion criterion |
 | --- | --- | --- | --- |
 | <a id="phase-1-1"></a>1.1 — Identity and geometry | Phase 0 | Normalize pilot elements and their actual host/space/structural context; retain `W-*`/`GLZ-*` aliases. Define units, axes, datums, placement, geometry capability and immutable snapshot revision. | Versioned contract and normalized registry. IDs survive ordering/label changes; source-derived dimensions agree with the baseline; missing host/depth/height information is explicit, never invented. |
-| <a id="phase-1-2"></a>1.2 — Relationships and dependency inventory | 1.1 | Describe host/opening/filling, located-in-space, type and view occurrences; separately declare data-to-rule/calculation/output dependencies. Identify inherited/derived fields and input edit ownership. | Reference validation and dependency report. No dangling mandatory relationships; calculation cycles are diagnosed; affected consumers are enumerable and geometry changes explicitly require a fresh neighbour search. |
-| <a id="phase-1-3"></a>1.3 — Validation and adapter interface | 1.1, 1.2 | Put schema checks before domain checks. Expose one resolver that supplies the same snapshot to all consumers. Define byte/model/build fingerprints and numerical policies. | Reordered JSON formatting preserves the declared normalized meaning; duplicate keys/non-finite values fail; historical hashes still verify. Adapters reproduce baseline semantics without independent hidden file reads or writable copies. |
+| <a id="phase-1-2"></a>1.2 — Relationships and dependency inventory | 1.1 | Describe host/opening/filling, located-in-space, type and view occurrences; separately declare data-to-rule/calculation/output dependencies. Identify inherited/derived fields and input source ownership. | Reference validation and dependency report. No dangling mandatory relationships; calculation cycles are diagnosed; affected consumers are enumerable and geometry changes explicitly require a fresh neighbour search. |
+| <a id="phase-1-3"></a>1.3 — Validation and adapter interface | 1.1, 1.2 | Put input-shape checks before domain checks. Expose one resolver that supplies the same snapshot to all consumers. Define byte/model/build fingerprints and numerical policies. | Reordered JSON formatting preserves the declared normalized meaning; duplicate keys/non-finite values fail; historical hashes still verify. Adapters reproduce baseline semantics without independent hidden file reads or writable copies. |
 
 **Repository work:** extend [model types](../../dreamhouse/model/schema.py) and model I/O;
 reuse [rectangle operations](../../dreamhouse/geometry/rectangles.py). Keep the new contract
@@ -519,7 +494,7 @@ Support declared pilot parameters and rules; expose gaps in the remaining model.
 
 | Subphase | Depends on | Scope and objective | Output and completion criterion |
 | --- | --- | --- | --- |
-| <a id="phase-2-1"></a>2.1 — Typed change transaction | 1.3 | Define supported operations, parameter ownership, units, fixed anchors, base fingerprint and expected values. Apply changes to a copied snapshot and serialize candidate persistence. | Shared command interface for CLI and future editor. Stale-base, unsupported edits and invalid references leave the prior state unchanged; multi-operation failures never partly persist. An intentionally problematic but structurally valid study remains inspectable. |
+| <a id="phase-2-1"></a>2.1 — Resolve changed inputs safely | 1.3 | Accept source changes through repository JSON, declared scenario deltas and Python inputs. Resolve a consistent candidate snapshot, compare with the base and validate units/references before calculation. | A Python entry point detects the changed fields and their owners. Malformed inputs, stale delta bases and incomplete reads produce diagnostics without replacing the previous complete package. A study with valid input structure and coordination problems remains inspectable. |
 | <a id="phase-2-2"></a>2.2 — Rule registry and geometric coverage | 1.3 | Adapt existing equipment, opening, continuity and programme checks; separate historical fixed-value assertions from generic rules. Register applicable pair types, bounds, height requirements, tolerances and purpose-specific severity. | Unified findings and coverage report. Positive, negative, boundary and missing-data fixtures behave correctly; a plan-only overlap cannot become an unsupported 3D claim. Domain findings remain available even when a legacy evaluator needs an adapter. |
 | <a id="phase-2-3"></a>2.3 — Change impact and finding lifecycle | 2.1, 2.2 | Evaluate candidate relationships, measurements and affected calculations. Recompute possible neighbours from the new geometry. Compare findings with the base; link evidence and manual gates. | Before/after report with changed inputs, affected entities/outputs and new/persistent/resolved/unevaluated findings. Move-only cases preserve area while still reevaluating neighbours; changed data invalidates linked professional evidence without auto-closing a conflict. |
 
@@ -544,7 +519,7 @@ approval is part of this gate.
 <a id="phase-3"></a>
 <a id="52-connect-one-element-family-to-multiple-views"></a>
 
-### Phase 3 — Derive connected drawings, dimensions and detail evidence
+### Phase 3 — Derive connected drawings, dimensions and visual evidence
 
 **Objective and scope:** make the pilot's every supported representation consume the
 same evaluated snapshot. **Entry:** Phase 2 can evaluate changes and report consequences.
@@ -553,7 +528,7 @@ same evaluated snapshot. **Entry:** Phase 2 can evaluate changes and report cons
 | --- | --- | --- | --- |
 | <a id="phase-3-1"></a>3.1 — Inject the snapshot into outputs | Phase 2 | Adapt pilot renderers/schedules to accept model inputs explicitly; extract geometry/measurement logic from file loading and presentation. Replace copied numeric prose in the new path with evaluated values. | A candidate passed to the builder reaches all pilot consumers. No migrated output reloads adopted P2/rooflights behind the caller's back; unchanged baseline views remain equivalent within documented graphic changes. |
 | <a id="phase-3-2"></a>3.2 — Semantic views and associated annotations | 3.1 | Add persistent view IDs, occurrence IDs and `data-entity-id`; define projection/cut intent and model-to-view transforms. Bind dimensions to named anchors; bind callouts to view/detail IDs. | Same element resolves across plan/elevation/section. Coordinate/datum fixtures agree; deleted anchors flag unresolved dimensions; renaming a sheet preserves callout targets; duplicated DOM IDs fail validation. |
-| <a id="phase-3-3"></a>3.3 — Complete pilot review plate | 3.1, 3.2 | Build the section 4.4 plate plus schedule and findings. Separate projected geometry, assembly schematics, operational envelopes and graphical QA. Link head/sill/jamb evidence by scenario. | Every inventoried pilot occurrence is refreshed or explicitly unavailable; no stale drawing is presented as current. A dimensional change reaches all represented views and the named quantity; schematic layer continuity remains an open design matter where appropriate. |
+| <a id="phase-3-3"></a>3.3 — Complete pilot review plate | 3.1, 3.2 | Build the section 4.4 plate, schedule and findings. Show warning overlays and readable issue lists; connect read-only element selection, evidence and related views. Separate projected geometry, schematics and graphical QA. | Every inventoried pilot occurrence is refreshed or explicitly unavailable; no stale drawing is presented as current. A dimensional change reaches all represented views and the named quantity; schematic layer continuity remains an open design matter where appropriate. |
 
 **Repository work:** reuse [SVG sheet](../../dreamhouse/svg/sheet.py),
 [SVG layout](../../dreamhouse/svg/layout.py), [theme](../../dreamhouse/svg/theme.py) and
@@ -591,50 +566,24 @@ the catalog's sources is the explicit publication action. If using a release poi
 first make readers resolve through it and address the stable aliases; separate atomic
 file replacements do not constitute a complete-publication transaction.
 
-**Exit gate:** the repository already behaves as a connected system when Python runs,
-without a graphical editor. Every pilot consumer belongs to the same build or visibly
+**Exit gate:** running Python over changed repository inputs updates the connected
+model, checks, calculations and generated outputs. Every pilot consumer belongs to the same build or visibly
 reports its limitation; automated checks cannot silently promote a design.
 
 <a id="phase-5"></a>
 
-### Phase 5 — Edit model parameters from the graphical views
-
-**Objective and scope:** provide the owner with a visual entry point to the tested Python
-workflow. **Entry:** Phase 4 is reliable; rendering, units and command semantics already
-work headlessly. Begin with the pilot's declared edit capabilities.
-
-| Subphase | Depends on | Scope and objective | Output and completion criterion |
-| --- | --- | --- | --- |
-| <a id="phase-5-1"></a>5.1 — Connected selection and evidence | Phase 4 | Mount validated semantic SVG inline; link selected identities across views, searchable list, quantity panel and findings. Provide scenario/revision/freshness labels and keyboard access. | Pointer/list/keyboard selection resolves the same entity and evidence. Warnings focus all affected objects in available views; status remains understandable without colour. Public static viewing still works. |
-| <a id="phase-5-2"></a>5.2 — Forms and constrained graphical commands | 5.1, 2.1, 3.2 | Implement property edits first, then handles that produce the same commands through screen/SVG/model transforms. Separate annotation controls, declare fixed anchors and show proposed changes before saving. | Equivalent form and drag edits generate equivalent model commands despite zoom/pan/mirroring. Missing projection depth or unsupported handles cannot invent coordinates. Undo of an unsaved edit restores its base; changing text alone cannot change a physical dimension. |
-| <a id="phase-5-3"></a>5.3 — Local Python round trip and refresh | 5.2, 4.1 | Connect the local editor to the serialized Python writer/evaluator. Save explicit study edits, rebuild the candidate and refresh all dependent views/findings from the returned revision. Provide command export/import for the static site. | A supported graphical edit, Python evaluation and all affected view/calculation updates complete without manual SVG copying. Stale concurrent proposals are rejected; stale asynchronous responses are discarded; a failed command leaves the preceding candidate intact. |
-
-**Repository work:** use the [existing showcase](../../showcase/) for presentation assets,
-but keep editing logic in a small dedicated module/page rather than enlarging the current
-gallery's zoom handler. The local Python adapter calls the same evaluation interface as
-the CLI. Use validated repository-generated SVG, a fixed command schema, local binding,
-request-origin checks and explicit permitted write locations. No repository credentials
-belong in public JavaScript. A hosted multiuser editor is outside this first rollout.
-
-**Exit gate:** one declared model edit from a supported SVG view propagates automatically
-and shows new findings or explicit coverage gaps. Public static command export alone does
-not meet this gate. Arbitrary external SVG import remains separately scoped; provenance
-checks detect such edits instead of pretending they are synchronized model changes.
-
-<a id="phase-6"></a>
-
-### Phase 6 — Extend the mechanism across the house and keep it maintainable
+### Phase 5 — Extend the mechanism across the house and keep it maintainable
 
 **Objective and scope:** move from one working family to the current project's elements,
 engineering interfaces and outputs without introducing new independent data masters.
-**Entry:** Phase 5 demonstrates the complete edit/evaluate/render cycle.
+**Entry:** Phase 4 demonstrates complete source-change, evaluation and regeneration.
 
 | Subphase | Depends on | Scope and objective | Output and completion criterion |
 | --- | --- | --- | --- |
-| <a id="phase-6-1"></a>6.1 — All opening, wall and structural-context families | Phase 5 | Extend identity, source ownership, geometry capability and rule applicability to remaining windows, doors, hosts and available column/support context. Add capabilities according to actual source data, not the owner's illustrative clashes. | Family/operation/view/rule coverage matrix includes every inventoried element. Supported changes propagate across relevant views and schedules; unsupported engineering geometry remains explicitly unevaluated. Alias and deletion/reference tests apply to each enrolled family. |
-| <a id="phase-6-2"></a>6.2 — Stair, wall/load and cost dependencies | 6.1 | Connect SC-01 across levels, landing/discharge views and support studies; connect wall/opening measurements to available mass/load and cost inputs. Preserve CF-009/010/011/012 and professional review roles. | Changes invalidate/recompute actual consumers, including relevant sections and calculation evidence. Missing product masses, rates or design rules remain unknown. A reviewer can trace a model parameter through a quantity/calculation to the affected decision gate. |
-| <a id="phase-6-3"></a>6.3 — Services, interfaces and phased handover | 6.1 | Enrol supported service routes, operating/removal envelopes and Phase 1/2 reservations. Use purpose-specific required information and progressive maintenance records. | Plans, access checks and interface records share IDs; planned/reserved/installed/tested/commissioned states remain distinct. A changed reservation invalidates affected closure/testing evidence; no unselected product or unknown route becomes fabricated geometry. |
-| <a id="phase-6-4"></a>6.4 — Current-set rollout and extension protocol | 6.2, 6.3 | Reconcile all catalogued current views and calculations with the capability matrix; finish affected renderer migrations. Document adding a family/rule/view/source and routine rebuild/recovery. Add optional debounced source watching using the same pipeline. | Every active output that consumes enrolled data regenerates coherently; stale or incompatible outputs block a complete current issue until resolved. All exclusions/unknowns are explicit. A fresh checkout reproduces the review package; adding a fixture family proves the extension path without a parallel source of truth. |
+| <a id="phase-5-1"></a>5.1 — All opening, wall and structural-context families | Phase 4 | Extend identity, source ownership, geometry capability and rule applicability to remaining windows, doors, hosts and available column/support context. Add capabilities according to actual source data, not the owner's illustrative clashes. | Family/operation/view/rule coverage matrix includes every inventoried element. Supported changes propagate across relevant views and schedules; unsupported engineering geometry remains explicitly unevaluated. Alias and deletion/reference tests apply to each enrolled family. |
+| <a id="phase-5-2"></a>5.2 — Stair, wall/load and cost dependencies | 5.1 | Connect SC-01 across levels, landing/discharge views and support studies; connect wall/opening measurements to available mass/load and cost inputs. Preserve CF-009/010/011/012 and professional review roles. | Changes invalidate/recompute actual consumers, including relevant sections and calculation evidence. Missing product masses, rates or design rules remain unknown. A reviewer can trace a model parameter through a quantity/calculation to the affected decision gate. |
+| <a id="phase-5-3"></a>5.3 — Services, interfaces and phased handover | 5.1 | Enrol supported service routes, operating/removal envelopes and Phase 1/2 reservations. Use purpose-specific required information and progressive maintenance records. | Plans, access checks and interface records share IDs; planned/reserved/installed/tested/commissioned states remain distinct. A changed reservation invalidates affected closure/testing evidence; no unselected product or unknown route becomes fabricated geometry. |
+| <a id="phase-5-4"></a>5.4 — Current-set rollout and extension protocol | 5.2, 5.3 | Reconcile all catalogued current views and calculations with the capability matrix; finish affected renderer migrations. Document adding a family/rule/view/source and routine rebuild/recovery. Add optional debounced source watching using the same pipeline. | Every active output that consumes enrolled data regenerates coherently; stale or incompatible outputs block a complete current issue until resolved. All exclusions/unknowns are explicit. A fresh checkout reproduces the review package; adding a fixture family proves the extension path without a parallel source of truth. |
 
 **Repository work:** expand existing discipline modules and register their inputs/results
 with the shared model and evaluator. Keep family-specific engineering in those modules;
@@ -642,25 +591,27 @@ do not collect unrelated physics into one universal clash function. New rule thr
 need a source and responsible role. Existing semantic relationships may support later
 IFC/BCF/IDS exchange, but exchange tooling is not required for the internal rollout.
 
-**Exit gate:** the current set has an auditable coverage matrix linking elements, edit
-capabilities, views, calculations and evidence. Missing professional inputs remain visible;
+**Exit gate:** the current set has an auditable coverage matrix linking elements,
+supported source changes, views, calculations and evidence. Missing professional inputs
+remain visible;
 there are no silent, obsolete copies for enrolled data. A future change follows the same
-recorded command/dependency path rather than requiring manual edits across sheets.
+recorded source/dependency path rather than requiring manual edits across sheets.
 
 ### Sequencing and cost controls
 
-Phases 0–4 deliver the core value through Python before investment in editing controls.
-Phase 5 adds the graphical input surface; Phase 6 repeats the proven mechanism. View
-design and read-only inventories for later families can be prepared earlier, but cannot
-claim a completed phase before their dependencies pass. Within Phase 2, rule fixtures
-and command parsing can proceed independently once Phase 1's contract is stable.
+Phases 0–2 establish source ownership, the shared model and evaluation. Phase 3 makes the
+results visible in connected, read-only outputs. Phase 4 automates complete builds and
+publication checks. Phase 5 repeats the proven mechanism across the project. Inventories
+for later families can be prepared earlier, but each phase must satisfy its dependencies.
+Within Phase 2, rule fixtures and changed-input validation can proceed independently
+once Phase 1's contract is stable.
 
-Use full pilot rebuilds, existing generators and small local JSON records first. Add
-incremental caches, more general geometry, a database or an always-running watcher only
-when measured work requires them. Preserve baseline regression tests while adding
-behavioural tests for changes; avoid tests that merely reproduce implementation formulas.
-No calendar commitment or software-cost allowance is established by this plan.
-
+Use full pilot rebuilds, existing generators and small repository JSON records first.
+Add incremental caches, more general geometry or source watching only when measured work
+requires them. The standard workflow is editing repository sources and running Python.
+Preserve baseline tests and add behavioural change tests with independent expectations.
+No graphical editor, database or hosted write service is needed for this plan. No calendar
+commitment or software-cost allowance is established here.
 
 ## 6. Acceptance evidence
 
@@ -731,16 +682,16 @@ valid quantity mappings, current versus stale outputs, and evidence completeness
 declared purpose. Keep these counts separate so an improved drawing count cannot conceal
 missing checks or unresolved engineering.
 
-### 6.3 Editing and validation acceptance evidence
+### 6.3 Source propagation and validation acceptance evidence
 
 | Research | Concrete acceptance evidence | Completion gate |
 | --- | --- | --- |
-| [R23 — Graphical edits](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r23) | The same supported edit entered numerically or through a transformed view produces the same candidate geometry, quantities and findings; Python's returned revision appears in every affected view. | Phase 5 |
-| [R24 — Meaning of a conflict](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r24) | Synthetic fixtures distinguish true overlap, containment, contact, separate heights and unsupported shapes; expected results are independently specified. Missing geometry never counts as a successful check. | Phase 2, then each family in Phase 6 |
-| [R25 — Concurrent edits](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r25) | Two commands use the same base; after one completes, the other is rejected without partial persistence. A failed build retains the previous complete working package, and saved warnings survive reload. | Phases 2, 4 and 5 |
+| [R23 — Generated representations](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r23) | Change a supported repository parameter and run Python: all affected SVG occurrences, dimensions, quantities and warning overlays use the resulting snapshot. Read-only selection or zoom changes no source. | Phases 3–4 |
+| [R24 — Meaning of a conflict](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r24) | Synthetic fixtures distinguish true overlap, containment, contact, separate heights and unsupported shapes; expected results are independently specified. Missing geometry never counts as a successful check. | Phase 2, then each family in Phase 5 |
+| [R25 — Input revision and complete builds](../08_investigacion/connected_editing_and_validation_research_2026_10.md#r25) | Change an input while a build is in progress: its results cannot appear current against the newer sources. An incomplete build retains the previous complete package, and saved warnings survive reload. | Phases 2 and 4 |
 
-The integrated demonstration should cover both a parameter edit and an annotation-only
-edit. For the former, inspect the model delta, dependent calculations, represented
+The integrated demonstration should cover both a model-parameter change in repository
+data and a presentation-only change in generator code or layout configuration. For the former, inspect the model delta, dependent calculations, represented
 occurrences, findings and output fingerprints. For the latter, confirm that physical
 geometry, quantities and engineering results remain unchanged. Introduce a synthetic
 candidate that gains a new neighbour after movement, so invalidation cannot pass merely
@@ -795,14 +746,14 @@ and publication work already completed.
 
 The [foundation research](../08_investigacion/connected_coordination_research_2026_10.md),
 [delivery research](../08_investigacion/connected_coordination_delivery_research_2026_10.md)
-and [editing/validation research](../08_investigacion/connected_editing_and_validation_research_2026_10.md)
+and [propagation/validation research](../08_investigacion/connected_editing_and_validation_research_2026_10.md)
 support adopting useful information patterns before taking on additional platforms.
 Full IFC/IDS/BCF exchange, an RDF database, a general solid-model engine and a new build
 framework remain deferred until a real exchange or engineering task requires them. The
 immediate proposed deliverables are the current-state manifest, a validated window
 registry, connected SVG views, named quantity records, linked issue evidence and a
-repeatable review package. The phased target adds tested change commands, reusable
-coordination rules and a local graphical authoring path using that same Python workflow.
+repeatable review package. The phased target connects source changes to reusable rules,
+dependent calculations and regenerated SVGs through the same Python workflow.
 
 Measure progress by how easily the project team can determine:
 
@@ -820,17 +771,17 @@ Any later adopted change remains subject to the existing governance and recordin
 ### 8.1 Continuity with the preceding plan
 
 The v0.3 work packages remain traceable below, but section 5 is now the delivery order.
-Change evaluation and reliable builds move ahead of graphical authoring so the editor
-uses an already tested model workflow.
+Source evaluation, output generation and reliable builds form one Python workflow.
+SVGs and the static showcase display its results.
 
 | Earlier package | Current phase ownership |
 | --- | --- |
 | C01 — Current sources and measurements | Phase 0 establishes the baseline; Phase 1 supplies the lasting resolver. |
 | C02 — Small element contract | Phase 1, including geometry capability, source ownership and dependencies. |
 | C03 — Linked view geometry | Phase 3, after Phase 2 establishes change evaluation. |
-| C04 — Evidence navigation | Phase 5.1; Phases 5.2–5.3 add actual graphical model editing. |
-| C05 — Controlled change demonstration | Phase 2 implements the headless mechanism; Phases 3–5 demonstrate propagation. |
-| C06 — Delivery reliability | Phase 4, before the automatic graphical editing loop. |
+| C04 — Evidence navigation | Phase 3.3 provides read-only views, warning overlays and linked evidence. |
+| C05 — Controlled change demonstration | Phase 2 evaluates changed repository inputs; Phases 3–4 demonstrate propagation. |
+| C06 — Delivery reliability | Phase 4 verifies complete, repeatable builds and controlled publication. |
 
 The first implementation should deliver Phase 0's source/consumer inventory, baseline
 fixtures and current-window comparison. Its review questions are concrete: which source

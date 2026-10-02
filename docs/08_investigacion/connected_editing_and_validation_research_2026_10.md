@@ -1,78 +1,75 @@
-# Connected editing and validation research — October 2026
+# Connected model propagation and validation research — October 2026
 
 **Status:** research and proposed plan improvements; not adopted for implementation<br>
-**Version:** 0.1<br>
+**Version:** 0.2<br>
 **Date:** 2026-10-02<br>
-**Source:** owner's request for precise delivery phases for a living model, connected
-drawings/calculations and edits originating in graphical views; the
-[coordination plan](../06_gestion_y_obra/connected_project_coordination_next_step.md)
-and repository evidence described below.<br>
-**Access date:** all linked external sources were opened and checked on 2026-10-02.<br>
-**Authority:** research only. No geometry, implementation dependency, construction scope,
-cost, drawing promotion or professional approval is adopted here.
+**Source:** owner's request for a living repository model with connected calculations,
+SVG outputs and warnings; explicit clarification that changes occur in repository sources
+and that there is no graphical editing.<br>
+**Access date:** linked external sources were opened and checked on 2026-10-02.<br>
+**Authority:** planning evidence only; no geometry, scope, cost or publication change.
 
 ## Method and contribution
 
-Three focused investigations, **R23–R25**, examine six primary technical sources: W3C,
-MDN, IfcOpenShell and IETF documentation. They extend
-[R01–R12](connected_coordination_research_2026_10.md) and
-[R13–R22](connected_coordination_delivery_research_2026_10.md). Findings attributed to
-external sources are separated from inspected repository evidence and proposed
-application. Local observations describe the inspected implementation, not a completed
-editor. Proposed door, window and column cases are **synthetic acceptance fixtures**,
-not diagnosed conflicts in the actual project.
+Three focused investigations, **R23–R25**, use five primary sources from W3C,
+IfcOpenShell and IETF. They extend [R01–R12](connected_coordination_research_2026_10.md)
+and [R13–R22](connected_coordination_delivery_research_2026_10.md). Findings from sources,
+inspected repository behaviour and proposed applications remain separate.
+
+This revision corrects R23 and its application: SVGs are generated representations for
+reading geometry and findings. Source changes happen in repository JSON, scenario inputs
+and Python. The file path is retained for existing links; its subject is source-driven
+propagation, not a graphical editor. Illustrative door/window/column cases are synthetic
+acceptance examples, not diagnosed project conflicts.
 
 The [Project Constitution](../00_gobernanza/constitucion_del_proyecto.md) and
 [source precedence/conflict register](../00_gobernanza/fuentes_precedencia_y_conflictos.md)
-remain authoritative. Technical feasibility does not promote a study into an adopted
-design. The recommended progression is a resolved model snapshot, tested commands,
-validated local persistence, then graphical controls using those same commands.
+remain authoritative. The [plan](../06_gestion_y_obra/connected_project_coordination_next_step.md)
+now organizes delivery around sources, model resolution, evaluation, generated outputs,
+automation and wider project coverage.
 
-| Investigation | Distinct question | Proposed delivery consequence |
+| Investigation | Question | Contribution |
 | --- | --- | --- |
-| [R23](#r23) | How can a drawing originate a meaningful model edit? | Explicit coordinate mapping and semantic commands shared by drag and form controls |
-| [R24](#r24) | What can a geometric conflict check actually establish? | Classified rules, supported geometry and visible coverage rather than unexplained pass/fail |
-| [R25](#r25) | How can an edit avoid overwriting newer work or saving half a change? | Revision preconditions and one serialized, complete candidate write |
+| [R23](#r23) | How do SVGs represent the same evaluated model coherently? | Shared element references, declared projection transforms and read-only evidence links |
+| [R24](#r24) | What can a geometric conflict check establish? | Classified rules, supported geometry and visible coverage |
+| [R25](#r25) | How do builds retain consistent inputs and complete outputs? | Source-revision checks, isolated candidate packages and controlled publication |
 
 <a id="r23"></a>
 
-## R23 — Edit model meaning through the graphical view
+## R23 — Generate traceable SVG representations from model data
 
-**Question.** How can selecting and dragging an SVG object change a model property
-reliably under pan, zoom and different drawing projections?
+**Question.** How can every relevant drawing show the same source change and the warnings
+produced by Python, without turning the SVG into an editing surface?
 
-**Source-backed finding.** SVG `getScreenCTM()` maps an element's coordinates to the
-document viewport, including ancestor, viewBox and layout transforms.
-[W3C SVG 2 interfaces](https://www.w3.org/TR/SVG2/types.html#__svg__SVGGraphicsElement__getScreenCTM).
-`matrixTransform()` transforms a point without changing its input; `inverse()` returns
-the inverse matrix, with non-finite components when inversion fails.
-[MDN point transformation](https://developer.mozilla.org/en-US/docs/Web/API/DOMPointReadOnly/matrixTransform),
-[MDN matrix inversion](https://developer.mozilla.org/en-US/docs/Web/API/DOMMatrixReadOnly/inverse).
-These are coordinate operations; building-element semantics require an application model.
+**Source-backed finding.** SVG supports grouped graphics, document IDs and custom `data-*`
+attributes. Its coordinate model defines viewports, user coordinate systems and transforms.
+These mechanisms support identified representations and explicit drawing transforms;
+the application supplies the relationship to a building model.
+[W3C SVG document structure](https://www.w3.org/TR/SVG2/struct.html),
+[W3C SVG coordinate systems](https://www.w3.org/TR/SVG2/coords.html).
 
-**Repository connection.** The current
-[showcase builder](../../.github/scripts/build_showcase.py) publishes static output.
-The plan already proposes stable entity references and controlled study edits; these need
-an explicit bridge from graphical interaction to a model command and repository writer.
+**Repository connection.** The current [showcase](../../showcase/app.js) displays generated
+images and provides zoom/pan. The [SVG modules](../../dreamhouse/svg/) supply drawing and
+QA tools. Current generators need common model identities and injected scenario inputs
+so their views do not diverge after changes to repository data.
 
-**Dream House inference / proposed improvement.** Resolve selection through
-`data-entity-id`, distinct from the DOM ID. Convert pointer client coordinates through the
-editing layer's inverse screen matrix, then through its declared view-to-model mapping.
-Constrain movement to a known host plane or axis: a plan projection cannot recover an
-unknown height. Translate the gesture into an allowed command, such as changing a
-host-relative opening position; numeric controls produce the same command. Arbitrary
-path manipulation cannot infer that command safely. Label placement remains an annotation
-operation. Both routes preview an isolated resolved snapshot and invalidate dependent
-outputs. An explicit local writer validates and persists commands; the static showcase
-can export a proposal for that writer. Browser state is not repository persistence.
+**Dream House inference / proposed improvement.** Python resolves the sources once and
+passes that snapshot to each view generator. Use a unique occurrence ID plus a shared
+`data-entity-id`; declare each view's projection, datums, scale and representation role.
+Generate geometry and dimensions from model values, and warning overlays from the same
+rule results. The manifest binds drawings, quantities and findings to one source/build
+fingerprint. Optional selection links occurrences and evidence for inspection only.
+The browser does not change source parameters or write to the repository.
 
-**Acceptance evidence.** Equivalent gestures under pan, zoom, CSS scaling and mirrored
-views produce the same model change. Unknown depth is never guessed; missing or singular
-transforms disable the operation. Drag and numeric entry yield equivalent commands;
-export/import preserves identity, base revision and values.
+**Acceptance evidence.** Change a supported source parameter and run Python. Relevant
+plans, elevations, sections, dimensions and reports all reflect the resulting snapshot.
+A warning identifies the affected entities in available views. Zoom, selection and
+navigation preserve model data. A skipped output is marked stale; manual changes to a
+generated SVG are detected as divergent rather than treated as authoritative inputs.
 
-**Applicability / limits.** Start with a small editable property set. This does not require
-a full CAD editor, network service or credentials in the published page.
+**Applicability / limits.** Begin with the existing generators and static site. Semantic
+SVG metadata does not itself provide model synchronization; the shared Python pipeline
+and dependency declarations implement that behaviour. No graphical editor is proposed.
 
 <a id="r24"></a>
 
@@ -117,42 +114,41 @@ or professional approval; each requires its own evidence and review scope.
 
 <a id="r25"></a>
 
-## R25 — Save a complete candidate against its expected revision
+## R25 — Build against a consistent input revision
 
-**Question.** How can competing edits preserve changes, warnings and adopted inputs?
+**Question.** How can a run avoid combining different input revisions or replacing a
+complete package with an incomplete one?
 
-**Source-backed finding.** HTTP `If-Match` uses strong entity-tag comparison to prevent
-lost updates; a false precondition prevents the requested change from being performed.
-[RFC 9110, section 13.1.1](https://www.rfc-editor.org/rfc/rfc9110.html#name-if-match).
-HTTP PATCH requires the complete patch to be applied atomically, with no partial modified
-representation exposed when application fails.
+**Source-backed finding.** HTTP `If-Match` uses strong entity-tag comparison to avoid lost
+updates; a failed precondition prevents the requested change. HTTP PATCH requires a
+complete atomic application rather than a partly modified representation. These are HTTP
+contracts, not implementations of local filesystem transactions.
+[RFC 9110, section 13.1.1](https://www.rfc-editor.org/rfc/rfc9110.html#name-if-match),
 [RFC 5789, section 2](https://www.rfc-editor.org/rfc/rfc5789.html#section-2).
-These specify HTTP behaviour; they do not supply a local filesystem transaction.
 
-**Repository connection.** The [model loader](../../dreamhouse/model/io.py) already
-provides source hashes, an input hash and validation results. These identify expected
-input but do not constitute an editing transaction. The plan's
-study-edit proposal already calls for base fingerprints and expected prior values.
+**Repository connection.** [Model I/O](../../dreamhouse/model/io.py) records source/input
+hashes and validates historical source locks. The [pipeline](../../dreamhouse/pipeline.py)
+writes a package and manifest, but source loading, result generation and publication need
+an explicit complete-build contract for the new current-state workflow.
 
-**Dream House inference / proposed improvement.** Carry a base snapshot revision,
-element ID, expected values, operation and schema version in each command. Apply it
-to an isolated snapshot, validate structure and semantics, then
-evaluate coordination rules. A serialized local writer rechecks the base and persists
-the complete candidate within the same protected operation; an earlier check alone
-leaves a race. Use staged immutable snapshots and a controlled current-state pointer,
-or another documented complete-write mechanism. Replacing individual files independently
-does not make a multi-file change atomic. Historical hash-locked inputs remain intact.
+**Dream House inference / proposed improvement.** Borrow the expected-revision principle
+for repository processing. Resolve a consistent source snapshot, record all consumed
+hashes and evaluate/render only from that snapshot. If inputs change during the run,
+mark its output outdated or reject/restart it. Before advancing a latest-complete pointer,
+recheck source identity and serialize the update. Independent concurrent builds use
+separate candidate directories. Historical locked sources remain preserved; a study delta
+names its expected base instead of silently targeting a different revision.
 
-Invalid input, missing identities and broken required relationships block candidate
-acceptance. Coordination warnings and unresolved professional questions can remain
-attached to a saved, unadopted study; promotion applies its own evidence requirements.
-Regression guards for historical scenarios need separate applicability from reusable
-candidate checks.
+Stage the required model, drawings, findings and quantities together and verify inventory
+and output hashes. A failed build retains the previous complete package. Coordination
+warnings remain visible in a complete study package; publication and engineering adoption
+retain their separate gates.
 
-**Acceptance evidence.** Two commands share a revision: saving A makes B stale,
-and B changes nothing. A failure midway through a compound edit leaves prior state
-complete. Refreshing the base requires renewed comparison. Warnings survive saving,
-reloading and regeneration, without silently becoming approvals.
+**Acceptance evidence.** Modify a fixture input during generation: no mixed-revision
+package is labelled current. A render failure leaves the previous complete package intact.
+A late obsolete run cannot replace a newer complete run. Warnings survive reloading and
+regeneration, without becoming approvals.
 
-**Applicability / limits.** Local optimistic concurrency needs no HTTP backend. Revision
-matching does not replace authorization, validation or design adoption.
+**Applicability / limits.** This is an inference for local Python execution, not a
+requirement for HTTP endpoints, a browser writer or a multiuser editor. Atomic file
+replacement alone does not make a multi-file publication atomic.
