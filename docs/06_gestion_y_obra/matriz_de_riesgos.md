@@ -1,8 +1,10 @@
 # Matriz inicial de riesgos
 
 **Estatus:** activa; revisar en cada puerta de fase  
-**Versión:** 0.4
-**Fecha:** 2026-08-21
+**Versión:** 0.5
+**Fecha:** 2026-10-02
+**Documentation update source:** D-084 workflow, CF-013 and current source/consumer audit;
+existing qualitative ratings remain unchanged.
 
 Escala cualitativa: probabilidad (P) e impacto (I): baja, media, alta, crítica.
 
@@ -37,6 +39,24 @@ Escala cualitativa: probabilidad (P) e impacto (I): baja, media, alta, crítica.
 R-01, R-02, R-03, R-05, R-07, R-10 y R-20. R-21/R-23 deben incluirse en la decisión de
 financiación y calendario. Cada uno necesita responsable profesional,
 fecha objetivo, evidencia de cierre y riesgo residual antes de la puerta correspondiente.
+
+## Connected coordination controls — D-084
+
+The implemented [workflow](connected_coordination_workflow.md) supplies evidence for
+existing risks; software checks do not close the risks themselves.
+
+| Existing risk | Current control/evidence | Remaining action and responsible role |
+| --- | --- | --- |
+| R-04 / R-11 — Structural and spatial interfaces | Known extents are checked; plan reservations and missing heights remain OPEN; affected entity pairs retain source references | Architect/structural/MEP designers must supply supported member/route geometry and actual engineering checks; the broader discipline adapters remain pending |
+| R-10 — Egress and access | CF-011/CF-012 remain visible; CF-013 documents inconsistent PB door anchors | Architect and fire/egress reviewer must reconcile door endpoints/heights, stair discharge and rescue roles before relying on route clearance |
+| R-17 — Late changes | Pinned study deltas, explicit source ownership, full candidate regeneration and stale-artifact checks | Review the proposed change and its affected discipline evidence; the 27 published consumers still require controlled migration |
+| R-20 — Schematic evidence used for construction | Read-only generated views, authority labels and separate candidate/publication states | Publication coordinator must prevent candidate or historical results from being described as a construction-approved current issue |
+| R-02 — Unsupported cost certainty | Workstation glazing mapped separately; nominal quantities and unpriced/ineligible rates explicit | Cost planner must reconcile scope, measurement basis, products and comparable quotations before budget adoption |
+
+The [source inventory](connected_source_inventory.md) records which current views remain
+outside the shared model. The implementation has no installed/commissioned asset record
+yet; R-21–R-23 retain their original construction-phase controls. No risk rating or closure
+is changed by this documentation reconciliation.
 
 ## Regla de actualización
 

@@ -1,13 +1,30 @@
 # Connected model propagation and validation research — October 2026
 
-**Status:** research and proposed plan improvements; not adopted for implementation<br>
-**Version:** 0.2<br>
+**Status:** research basis; first bounded application implemented under D-084; remaining recommendations open<br>
+**Version:** 0.3<br>
 **Date:** 2026-10-02<br>
 **Source:** owner's request for a living repository model with connected calculations,
 SVG outputs and warnings; explicit clarification that changes occur in repository sources
 and that there is no graphical editing.<br>
 **Access date:** linked external sources were opened and checked on 2026-10-02.<br>
 **Authority:** planning evidence only; no geometry, scope, cost or publication change.
+
+## Implementation reconciliation — D-084
+
+Implementation commit `0e69ddf` delivers a bounded application of these investigations.
+This update changes documentation status, not the external-source findings or access
+record. SVG remains generated output; all source edits occur in repository JSON/Python.
+
+| Research | Implemented application | Remaining acceptance scope |
+| --- | --- | --- |
+| R23 | One snapshot supplies seven SVGs, quantities, dimensions and findings; HTML selection is read-only | Remaining published views, section/interface details and further calculation consumers |
+| R24 | Synthetic overlap/contact/height fixtures, room/host/rooflight checks and explicit unknowns; actual plan reservations produce OPEN candidate pairs | Solid geometry from responsible sources and adapted engineering/equipment checks |
+| R25 | Study preconditions, before/after input hashes, complete artifact verification, serialized output writers and atomic candidate pointer | Current-catalog publication transaction and broader release consumers |
+
+The two observed reservation/opening plan candidates are not confirmed solid collisions.
+CF-013 separately records audited PB door-anchor inconsistencies. Neither finding was
+assumed from the owner's illustrative examples. See the [source inventory](../06_gestion_y_obra/connected_source_inventory.md)
+and [workflow](../06_gestion_y_obra/connected_coordination_workflow.md) for evidence and limits.
 
 ## Method and contribution
 

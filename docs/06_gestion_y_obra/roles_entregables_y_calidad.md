@@ -1,9 +1,9 @@
 # Roles, deliverables, and quality control
 
 **Status:** organizational basis<br>
-**Version:** 0.2<br>
-**Date:** 2026-08-13<br>
-**Sources:** prior organizational basis, D-044, and D-056<br>
+**Version:** 0.3<br>
+**Date:** 2026-10-02<br>
+**Sources:** prior organizational basis, D-044, D-056 and D-084<br>
 **Language note:** controlled English translation; no change to responsibilities.
 
 ## Responsibility principle
@@ -51,6 +51,31 @@ revision sorting is not an approval method. The aliases inherit the source issue
 status and never create additional authority.
 
 ## Review by stage
+
+### Generated coordination evidence
+
+The [connected workflow](connected_coordination_workflow.md) creates a review candidate,
+not a signed discipline issue. Its model/manifest identifies the scenario, input/code
+fingerprints, artifacts and check coverage. The first increment covers openings and
+associated context; it does not enroll every engineering calculation or the 27 published
+drawing consumers.
+
+| Review responsibility | Required evidence |
+| --- | --- |
+| Implementation reviewer | Source/alias ownership, supported geometry, reproducible propagation, artifact inventory, stale-input detection and regression results |
+| Coordinating architect | Intent and interfaces of proposed geometry, plan/detail interpretation and resolution of CF-013 door anchors |
+| Responsible discipline professional | Applicable engineering data, calculations, products, performance and signed acceptance within their appointed scope |
+| Cost planner / quantity surveyor | Nominal versus product quantity meaning, deductions, mapping completeness, rates and eligibility; unknown costs remain unknown |
+| Owner and publication coordinator | Recorded adoption/promotion decision, affected-document update and explicit catalog selection |
+
+These are responsibilities within the existing team, not new approvals or new appointments.
+An OPEN reservation/opening plan candidate is an investigation prompt, not a confirmed
+structural collision. Candidate completion, numerical findings, design adoption and
+publication are separate states. CF-009–CF-013 remain open until their evidence and
+responsible decisions close them. Check the phase checkpoint before claiming that a
+software subphase or discipline integration is complete.
+
+### Discipline review stages
 
 - **Schematic design:** programme, dimensions, areas, furniture, sections, and hard rules.
 - **Coordination:** interfaces, clashes, loads, shafts, tolerances, and maintenance.

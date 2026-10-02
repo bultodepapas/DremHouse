@@ -1,123 +1,143 @@
-# Plan maestro
+# Master plan
 
-**Estatus:** activo  
-**Versión:** 0.2
-**Fecha:** 2026-08-11
+**Status:** active project delivery roadmap; stage gates remain evidence-based<br>
+**Version:** 0.3<br>
+**Date:** 2026-10-02<br>
+**Source:** master plan v0.2, active governance/discipline records and D-084.<br>
+**Language note:** controlled English translation under D-044; existing project and
+construction stage gates retained. Current-state and software-workstream notes updated.
 
-El proyecto avanza por evidencia y puertas de decisión, no por entusiasmo gráfico.
+The project advances through evidence and decisions. A successful model build or an
+attractive drawing does not close a site, engineering, cost or construction gate.
 
-## Fase 0 — Gobierno y definición
+## Current coordination position
 
-**Objetivo:** convertir deseos y documentos dispersos en una línea base trazable.
+The current published architectural basis includes PB b37/P2 b28 under D-083. D-084
+adds an executable source-driven coordination review: repository JSON, a shared model,
+supported checks and quantities, and seven generated read-only SVG views. It preserves
+historical scenarios and the 27 separately published drawing aliases. This work has
+not selected the site, closed professional gates or established a construction budget.
 
-Entregables: constitución, brief, programa, precedencia, registro de conflictos, riesgos,
-base económica y plan maestro.
+Use the [connected implementation plan](connected_project_coordination_next_step.md)
+for its 19 software subphases, the [workflow](connected_coordination_workflow.md) for
+commands and coverage, and the [source inventory](connected_source_inventory.md) for
+current consumers. The first increment is implemented; discipline adapters, complete
+section/interface details and current-set migration remain outstanding.
 
-**Puerta G0:** propietario confirma hard rules, sentido del techo económico y prioridades.
-No se considera cerrada hasta resolver CF-002/CF-007.
+| Numbering system | Meaning |
+| --- | --- |
+| Project phases 0–7 / gates G0–G5, construction hold points and G7 below | Delivery and professional decision stages |
+| Connected-system phases 0–5 | Software/data implementation; progress does not close a project gate |
+| Construction F1/F2 | Initial habitable house and later completion; financial/physical scope governed by the construction-phase strategy |
 
-## Fase 1 — Predio y factibilidad
+## Phase 0 — Governance and definition
 
-**Objetivo:** seleccionar un lote capaz de soportar el proyecto sin distorsionarlo.
+**Objective:** convert intent and dispersed records into a traceable baseline.
 
-Entregables: debida diligencia jurídica/urbanística, topografía preliminar, evaluación
-geotécnica de riesgo, servicios, accesos, clima/orientación, implantación comparada y costo
-externo inducido.
+Deliverables: Constitution, brief, programme, precedence, decisions/conflicts, risks,
+cost basis and master plan.
 
-**Puerta G1:** predio jurídicamente/normativamente viable, caja implantable, servicios y
-presupuesto externo entendidos. No comprar solo por vista o planitud aparente.
+**Gate G0:** owner confirms hard rules, the meaning of the cost ceiling and priorities.
+It remains open until CF-002/CF-007 are resolved.
 
-## Fase 2 — Anteproyecto v0.3
+## Phase 1 — Site and feasibility
 
-**Objetivo:** demostrar el programa a escala real.
+**Objective:** select a site that supports the project without distorting it.
 
-Entregables:
+Deliverables: legal/planning due diligence, preliminary topography and geotechnical risk,
+services, access, climate/orientation, comparative site layouts and induced external cost.
 
-- implantación con norte, retiros, accesos, plataforma, parking y campo RC;
-- PB/P2 con espesores, ejes, muebles, equipos y áreas netas;
-- cortes longitudinal/transversal;
-- fachadas y eventos de vidrio;
-- layout de lift/vehículo y taller RC;
-- cocina, núcleo, escalera, baños y wellness a escala;
-- estrategia preliminar de egreso/incendio, estructura, MEP, acústica y envolvente;
-- estimación económica actualizada y matriz de decisiones.
+**Gate G1:** legally/planning-viable site, feasible hall placement, services and external
+budget understood. Views or apparent level ground alone are not acceptance evidence.
 
-**Puerta G2:** todas las hard rules caben sin trucos, no hay conflicto fatal con predio o
-seguridad y el costo tiene una ruta plausible.
+## Phase 2 — Schematic design
 
-## Fase 3 — Ingeniería conceptual y validación económica
+**Objective:** demonstrate the programme at real scale.
 
-**Objetivo:** reemplazar placeholders por sistemas medibles.
+Deliverables: site plan with north/setbacks/access/platform/parking/RC field; PB/P2 with
+thicknesses, axes, furniture, equipment and net areas; longitudinal/transverse sections;
+facades and glazing events; real vehicle/lift/RC layouts; kitchen, core, stair, bathroom
+and wellness coordination; preliminary egress/fire, structure, MEP, acoustic and envelope
+strategies; updated cost evidence and decision matrix.
 
-Entregables: predimensionamiento estructural, geotecnia, cargas MEP, ventilación/extracción,
-envolvente/higrotermia, incendio/egreso, acústica, cantidades y cotizaciones de paquetes
-críticos.
+**Gate G2:** hard rules fit without hidden compromises, no fatal site/safety conflict,
+and a plausible route to cost feasibility. Existing drawings and connected opening
+reviews are evidence toward this gate, not evidence that it has closed.
 
-**Puerta G3:** sistema estructural y de envolvente seleccionados; presupuesto reconciliado
-con mercado; riesgos críticos tienen responsable y mitigación. Si $1,0 B no es defendible,
-el propietario decide alcance, presupuesto o pausa antes de desarrollar.
+## Phase 3 — Concept engineering and economic validation
 
-## Fase 4 — Diseño desarrollado y coordinación
+**Objective:** replace placeholders with measurable systems.
 
-**Objetivo:** cerrar geometría, especificaciones e interfaces.
+Deliverables: preliminary structural sizing, geotechnics, MEP loads, ventilation/extraction,
+envelope/hygrothermal design, fire/egress, acoustics, quantities and critical-package quotes.
 
-Entregables: arquitectura coordinada, cálculos y modelos disciplinares, detalles de
-envolvente, matrices de equipos, acabados, commissioning, especificaciones, cantidades y
-presupuesto de control.
+**Gate G3:** structural/envelope systems selected, budget reconciled with the market,
+and critical risks assigned with mitigation. If COP 1.0 billion is not defensible, the
+owner decides scope, budget or pause before further development.
 
-**Puerta G4:** revisión interdisciplinaria sin conflictos mayores; cambios de alcance
-cerrados; tolerancias y mantenimiento resueltos.
+## Phase 4 — Developed design and coordination
 
-## Fase 5 — Licencia y contratación
+**Objective:** resolve geometry, specifications and interfaces.
 
-**Objetivo:** obtener autorizaciones y contratar un alcance comparable.
+Deliverables: coordinated architecture, discipline models/calculations, envelope details,
+equipment/finish schedules, commissioning requirements, specifications, quantities and
+control estimate.
 
-Entregables: paquete firmado para licencia, respuestas a observaciones, documentos IFC,
-pliego/alcance, cronograma, ofertas normalizadas, matriz de exclusiones, seguros, garantías
-y contrato.
+**Gate G4:** interdisciplinary review without major unresolved conflicts, controlled
+scope changes, and resolved tolerances and maintenance. Software findings supplement
+the responsible professionals' review; they do not replace it.
 
-**Puerta G5:** licencia y condiciones previas vigentes; documentos IFC coordinados;
-presupuesto financiado; contratista/equipo idóneos. No iniciar con planos conceptuales.
+## Phase 5 — Permit and procurement
 
-## Fase 6 — Construcción en dos fases
+**Objective:** obtain authorizations and contract comparable scope.
 
-**Objetivo:** ejecutar con seguridad, calidad, costo y trazabilidad.
+Deliverables: signed permit package and responses, issued-for-construction documents,
+scope/specifications, schedule, normalized bids, exclusions, insurance, warranties and contract.
 
-### Fase constructiva 1 — casa habitable y preparada
+**Gate G5:** valid permit and preconditions, coordinated construction documents,
+financed budget and competent contractor/team. Schematic plans do not authorize work.
 
-Movilización → tierra/drenaje → cimentación/losa → estructura y P2 completos →
-cubierta/envolvente → cierre estanco → MEP principal y reservas → PB/núcleo → suite
-principal + suite hijo 1 + comunes → pruebas y ocupación.
+## Phase 6 — Construction in two phases
 
-### Fase constructiva 2 — completamiento
+**Objective:** execute with safety, quality, cost control and traceability.
 
-Nueva movilización/protecciones → hijo 2 + huéspedes + sauna/wellness → lift → integración
-MEP → reparaciones → nuevas pruebas y actualización as-built.
+### Construction F1 — Habitable and prepared house
 
-El alcance y reparto económico están en
-[Estrategia de construcción en dos fases](../04_costos/estrategia_de_construccion_en_dos_fases.md).
+Mobilization → earthworks/drainage → foundations/slab → complete structure/P2 →
+roof/envelope → weathertight enclosure → main MEP and reservations → PB/core →
+primary suite + Child 1 suite + common areas → testing and occupancy.
 
-Controles: submittals, planos de taller, RFI, muestras/prototipos, inspecciones, ensayos,
-no conformidades, cambios, costo comprometido, avance real, seguridad y registro diario.
+### Construction F2 — Completion
 
-**Puertas de obra:** no cubrir ni continuar trabajos críticos sin inspección documentada.
-La ocupación después de Fase 1 exige que la zona diferida quede segura, cerrada, protegida
-y separada; “obra gris abierta” no es un estado de entrega aceptable dentro de la vivienda.
+Remobilization/protection → Child 2 + guest suite + sauna/wellness → lift → MEP
+integration → repairs → repeat testing and as-built update.
 
-## Fase 7 — Commissioning, cierre y operación
+Scope and economic allocation remain governed by the
+[two-phase construction strategy](../04_costos/estrategia_de_construccion_en_dos_fases.md).
+Controls include submittals, shop drawings, RFIs, samples/mock-ups, inspections, tests,
+nonconformities, changes, committed costs, actual progress, safety and daily records.
 
-Entregables: pruebas integradas, balanceo/extracción, certificaciones, capacitación,
-manuales, garantías, inventario, repuestos, as-built, lista de pendientes cerrada y plan de
-mantenimiento.
+**Construction hold points:** inspect and document critical work before covering or
+continuing it. F1 occupancy requires deferred areas to be safe, closed, protected and
+separated; open unfinished work inside the dwelling is not an acceptable handover state.
 
-**Puerta G7:** sistemas seguros y funcionales bajo escenarios reales, no solo “encendidos”.
+## Phase 7 — Commissioning, closeout and operation
 
-## Camino crítico actual
+Deliverables: integrated testing, balancing/extraction, certificates, training, manuals,
+warranties, inventory, spares, as-builts, closed punch list and maintenance plan.
 
-1. Confirmar significado del presupuesto.
-2. Definir criterios y seleccionar predio.
-3. Recopilar inventario real de vehículo/lift/taller/RC/equipos.
-4. Dibujar v0.3 a escala.
-5. Predimensionar estructura y validar costos.
+**Gate G7:** safe, functional systems in actual operating scenarios, beyond merely
+switching them on.
 
-Renders fotorrealistas no están en el camino crítico antes de esos cinco pasos.
+## Current critical path and supporting information work
+
+1. Confirm the meaning and coverage of the cost ceiling.
+2. Apply the site criteria and select the site with its required evidence.
+3. Complete the actual vehicle/lift/workshop/RC/equipment inventory.
+4. Reconcile current schematic PB/P2 geometry, details and conflicts with site and
+   discipline evidence; retain CF-009–CF-013 until resolved by their responsible roles.
+5. Develop structural sizing and market-based cost validation.
+
+In parallel, use D-084's implemented review to expose source relationships and changes,
+then complete its remaining adapters/detail coverage before migrating the current set.
+Photorealistic renders are not on the critical path ahead of these evidence steps.

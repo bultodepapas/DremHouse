@@ -4,10 +4,33 @@
 or construction  
 **Version:** 0.3-b37-PB / 0.3-b28-P2  
 **Date:** 2026-08-21  
+**Document revision:** 0.2 — reconciled on 2026-10-02 with D-084; original design issue retained<br>
 **Decision:** D-083  
 **Canonical geometry source:** `dreamhouse/window_daylight_d083.json`  
 **Drawing sources:** `planos/conceptual_v0.3_b37_pb/` and
 `planos/conceptual_v0.3_b28_p2/`
+
+## Connected review and source ownership
+
+D-084 now resolves this adopted opening geometry through the PB b37 and P2 b28 loaders
+into one candidate review. The [connected workflow](../06_gestion_y_obra/connected_coordination_workflow.md)
+explains how validated repository JSON changes regenerate the applicable plans,
+elevations, window details, quantities and findings. SVG is generated evidence; it is
+not an editing interface. A candidate does not overwrite this adopted source issue or
+promote a new drawing to `planos/actual/`.
+
+The five P2 bedroom `W-*` identities and their PB-elevation `GLZ-*` aliases describe the
+same five openings. The connected quantity ledger counts each once and reproduces
+the 123.84 m² vertical-glazing and 23.04 m² rooflight baseline below. The dining study
+remains excluded from adopted totals; it may appear with a distinct study status in the
+read-only candidate review. Review quantities are measured schematic geometry, without
+approved prices, procurement quantities or glass/frame specifications.
+
+All sill/head values in the tables below are relative to the corresponding finished
+floor. PB uses project Z=0 and P2 uses Z=+3.80 m: the bedroom-window sill/head therefore
+resolve to project Z=+3.85/+6.75 m. The source inventory documents this conversion.
+The current connected rules do not calculate daylight, glare, thermal performance or
+engineered window interfaces; the professional gates below remain open.
 
 ## Adopted schematic outcome
 

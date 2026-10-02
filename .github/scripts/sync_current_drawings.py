@@ -213,7 +213,8 @@ def render_drawings_readme(manifest: dict[str, Any]) -> str:
 **Status:** {manifest["status"]}<br>
 **Version:** {manifest["version"]}<br>
 **Date:** {manifest["date"]}<br>
-**Source:** [`actual/catalog.json`](actual/catalog.json)
+**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
+**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084
 
 > [!IMPORTANT]
 > `actual/` is the stable publication layer for the current project state. Its SVG files
@@ -224,11 +225,21 @@ def render_drawings_readme(manifest: dict[str, Any]) -> str:
 
 {featured_gallery(drawings, from_docs=False)}
 
-The current state is a **coordinated set**, not a claim that one sheet contains every
-active decision. In particular, read the D-083 floor plans, elevations and window
+This is the **published coordination set**. Each sheet retains its own source version,
+coverage and open gates. In particular, read the D-083 floor plans, elevations and window
 schedule together; read the D-082 access/owner-priorities sheets for the supplementary
 rescue system; and read all architectural sheets with the structural studies and their
 open gates.
+
+## Connected candidate review
+
+D-084 provides a separate [source-driven review workflow](../docs/06_gestion_y_obra/connected_coordination_workflow.md).
+Repository JSON changes generate seven connected SVG review views, quantities and
+findings in `.build/coordination/`. SVGs display results; there is no graphical editing.
+A complete candidate package does not update this catalog or certify all 27 published
+drawings against the candidate. The [source inventory](../docs/06_gestion_y_obra/connected_source_inventory.md)
+records their distinct consumers and remaining migration work. CF-013 records seven PB
+doors with unresolved anchors; generated views do not invent their positions.
 
 ## Complete current set
 
@@ -275,6 +286,8 @@ def render_current_readme(manifest: dict[str, Any]) -> str:
 **Status:** {manifest["status"]}<br>
 **Version:** {manifest["version"]}<br>
 **Date:** {manifest["date"]}<br>
+**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
+**Source:** [catalog](catalog.json), D-056 and D-084<br>
 **Construction authority:** none
 
 This generated directory contains **{len(manifest["drawings"])} stable SVG/PNG pairs**
@@ -289,6 +302,11 @@ catalog entry, and run `python3 .github/scripts/sync_current_drawings.py --write
 
 “Current” does not mean frozen, approved, or suitable for construction. Every alias
 inherits the status and limitations of its versioned source.
+
+The [D-084 connected review](../../docs/06_gestion_y_obra/connected_coordination_workflow.md)
+generates a separate candidate under `.build/coordination/`. Its seven SVG views and
+findings do not replace these aliases. The [source inventory](../../docs/06_gestion_y_obra/connected_source_inventory.md)
+records the remaining consumer migration and known geometry gaps.
 """
 
 
@@ -301,9 +319,10 @@ def render_docs_current(manifest: dict[str, Any]) -> str:
 **Status:** active publication guide; source-sheet limitations remain in force<br>
 **Version:** {manifest["version"]}<br>
 **Date:** {manifest["date"]}<br>
-**Source:** [current-drawing catalog](../../planos/actual/catalog.json) and D-056
+**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
+**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056 and D-084
 
-This page is the visual entry point to the current coordinated state of Dream House. It
+This page is the visual entry point to Dream House's published coordination set. It
 uses stable files under [`planos/actual/`](../../planos/actual/) so links in the project
 record, repository README, and presentation do not change when a new issue is promoted.
 
@@ -311,6 +330,17 @@ record, repository README, and presentation do not change when a new issue is pr
 > These are schematic coordination drawings, not construction documents. A current alias
 > means “the issue presently used for coordination”; it does not freeze a hypothesis or
 > override the [source precedence](../00_gobernanza/fuentes_precedencia_y_conflictos.md).
+
+## Connected review versus published drawings
+
+The [D-084 workflow](../06_gestion_y_obra/connected_coordination_workflow.md) resolves
+current PB b37/P2 b28 sources into seven new SVG review views, quantities and findings.
+Changes originate in repository JSON; the drawings display the generated result.
+These isolated `.build/coordination/` candidates do not promote or regenerate the full
+published set below. The [source inventory](../06_gestion_y_obra/connected_source_inventory.md)
+identifies each consumer and its remaining migration scope. E0/E1 retain their declared
+historical screening inputs. Seven unresolved PB door anchors are tracked under CF-013;
+neither a missing projection nor an `OPEN` result is a geometric clearance.
 
 ## Current visual set
 

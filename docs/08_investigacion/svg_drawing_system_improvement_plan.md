@@ -1,8 +1,10 @@
 # SVG drawing-system audit and improvement plan
 
-**Status:** proposed implementation plan; no drawing or construction authority
-**Version:** 0.3
-**Date:** 2026-08-23
+**Status:** retained graphic-improvement roadmap; bounded D-084 review implementation;
+publication migration pending; no construction authority
+**Version:** 0.4
+**Date:** 2026-10-02
+**Original audit date:** 2026-08-23
 **Source:** owner request of 2026-08-21; code and rendered-output audit of the 27
 current sheets in `planos/actual/`; statistical audit of the 217 SVG files under
 `planos/`; current drawing catalog v1.25; sixteen-topic comparative research in
@@ -12,6 +14,23 @@ control only. It does not change architectural geometry, programme, structure, c
 scope, status, open conflicts or professional design gates.
 
 ## 1. Outcome
+
+### Reconciliation with connected coordination
+
+D-084 adds seven generated SVG review views with shared styling, entity identities,
+status cues and a read-only HTML index. It uses a resolved current-source snapshot and
+keeps source edits in validated repository files. See the
+[connected implementation checkpoint](../06_gestion_y_obra/connected_project_coordination_next_step.md#implementation-checkpoint--2026-10-02)
+for accepted behaviour and the remaining phase gates.
+
+This is a bounded application of the graphic direction below. It does not migrate the
+27 published drawing identities or close this roadmap's full section/detail, label
+layout, raster-preview, contact-sheet and publication-quality requirements. The original
+audit statistics and observations below retain their 2026-08-23 scope; this documentation
+reconciliation is not a new census of every historical SVG. D-084 candidate checks and
+existing publication checks cover different outputs and must remain distinguishable.
+
+### Original audit outcome and remaining target
 
 The current drawing set is technically traceable and all 27 current SVG files are valid
 XML, but it is not yet one coherent drawing system. At least four visual grammars, three

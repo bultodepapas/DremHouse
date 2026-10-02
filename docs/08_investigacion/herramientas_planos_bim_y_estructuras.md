@@ -1,11 +1,33 @@
 # Herramientas digitales para planos, BIM y estructuras
 
-**Estatus:** borrador de investigación; no constituye decisión de software ni diseño técnico  
-**Versión:** 0.1  
+**Status:** retained research roadmap; partial application under D-084; no design authority<br>
+**Version:** 0.2<br>
+**Documentation date:** 2026-10-02<br>
 **Fecha de corte:** 2026-08-11  
 **Fuentes internas:** `08_investigacion/pythonTools.md`, constitución, programa v0.2,
 bases de arquitectura y estructura, plan maestro y ruta normativa.  
 **Aprobación pendiente:** propietario, arquitecto coordinador e ingeniero estructural.
+
+## Current application and retained research scope
+
+The original 2026-08-11 assessment below is retained as research history. The repository
+now has versioned architectural generators, historical E0/E1/integration studies and the
+D-084 [connected coordination workflow](../06_gestion_y_obra/connected_coordination_workflow.md).
+That current-source workflow uses repository JSON studies, a resolved model, rule and
+quantity evidence, seven generated SVG views and read-only HTML. It does not provide a
+graphical editor. Its implemented schema, operations and dependencies are defined by the
+code and operating guide, not by the illustrative prototype contract below.
+
+The stack table is a set of original options, not an installed or selected dependency
+list. D-084 does not implement IFC/IDS/BCF/DXF interchange, a remote model service or
+professional structural design. The [current phased plan](../06_gestion_y_obra/connected_project_coordination_next_step.md)
+owns implementation order and records remaining discipline and drawing-consumer
+adapters. The [25 connected-system investigations](connected_coordination_research_2026_10.md)
+and their linked delivery/propagation rounds provide the newer research basis.
+
+This documentation update records implementation already authorized under D-084. The
+pending technical approvals above concern discipline design and unadopted options;
+they do not rescind authorization for the existing software workflow.
 
 ## Resultado ejecutivo
 

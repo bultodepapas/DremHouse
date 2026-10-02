@@ -2,10 +2,10 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.12
-**Date:** 2026-08-21
+**Version:** 0.13
+**Date:** 2026-10-02
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
-D-053–D-059, D-074, D-080, D-082; architectural drafts PB b05–b36 and P2 b09–b27 and implementation issues 0.4-I01–I04;
+D-053–D-059, D-074, D-080, D-082–D-084; architectural drafts PB b05–b37 and P2 b09–b28 and implementation issues 0.4-I01–I04;
 `pb_b05.json`; `p2_b10.json`; `p2_b13.json`; `p2_b14.json`; `p2_b15.json`;
 `rooflight_b12.json`; `structure_system.json`;
 `roof_truss_space.json`; `e1_screening_space.json`; generated E0 and E1 structural
@@ -19,6 +19,28 @@ life-safety professional, geotechnical engineer, fabricator/erector, and owner
 > erection, foundations, or construction.
 
 ## 1. Purpose
+
+### Current-source boundary after D-084
+
+The [connected coordination workflow](../06_gestion_y_obra/connected_coordination_workflow.md)
+now resolves current PB b37 / P2 b28 geometry, SC-01 and opening quantities. It does not
+rerun or migrate the E0/E1 structural calculations onto that snapshot. Results in this
+study remain tied to the archived screening inputs named above; publication as a
+current alias does not make them a current-source structural clearance.
+
+The four column reservations are known in plan, with no justified vertical solid in the
+normalized model. The candidate reports two plan-overlap pairs as `OPEN`
+(`D-FAM-N` / `GW-STAIR-N`, `D-M` / `GW-STAIR-S`), not confirmed physical collisions.
+CF-013 separately records unresolved anchors for seven PB doors; the system does not
+invent coordinates to draw or clear them. Structural/wall mass, truss/envelope,
+supplementary rescue and door-anchor gates CF-009–CF-013 remain unresolved.
+
+A future structural adapter must consume the current resolved geometry, identify its
+own calculation inputs and coverage, and retain unknown results when required geometry
+or professional assumptions are missing. D-084 does not select profiles, infer capacity
+from a reservation or confer engineering or construction approval.
+
+### Retained screening purpose
 
 This study reconciles the architectural drafts, the adopted P2 gravity intent, the
 neutral roof-truss test specimen, and the E1 multi-phenomenon screens in one controlled
@@ -46,7 +68,8 @@ stair/four-column geometry. It replaces the predecessor universal 250 mm dry wal
 Under CF-009, the issued E0/E1 sheets remain pre-D-080 screening evidence: their global
 partition dead-load allowance has not been checked against measured wall lengths and
 selected-product masses, and P2-W05 panel/girt wind reactions and attachments remain
-undesigned. The next structural issue must consume b25, perform those comparisons,
+undesigned. The next structural issue must consume the D-080 schedule through current
+P2 b28, perform those comparisons,
 resolve the CF-010 truss/wall interface and retain a fail-closed result when an allowance
 is exceeded.
 
@@ -79,8 +102,8 @@ does not overwrite them or imply that their trial sections have become selected.
 
 The focused companion sheet is
 [DH-EST-E1-002 — Vertical Continuity and Stair-Enclosure Frame](../../planos/actual/DH-EST-E1-002_CURRENT-VERTICAL-CONTINUITY.svg).
-It audits every current Great Wall candidate against P2 rooms and glazing, identifies the
-four compatible stair-corner lines, separates enclosure-frame resistance from stair
+It audits the Great Wall candidates against rooms and glazing in its archived P2 source,
+identifies four compatible stair-corner lines for that scenario, separates enclosure-frame resistance from stair
 flights, and shows why the protected portal and rear discharge control the transverse
 lateral-system topology.
 

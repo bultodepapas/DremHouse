@@ -216,6 +216,31 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 [View the complete index →](docs/README.md)
 
+## Connected coordination review
+
+**Workflow guide:** v0.2 · 2026-10-02 · D-084 · first increment implemented.
+Repository JSON studies now feed one resolved model, supported checks, opening quantities,
+cost reconciliation and seven generated SVG review views. SVGs display the resulting
+state; they are not graphical editing inputs.
+
+```bash
+python3 -m pip install -e .
+python3 -m dreamhouse.coordination
+python3 -m dreamhouse.coordination --check
+```
+
+The command prints a local `index.html` path under `.build/coordination/issues/`.
+`latest.json` identifies the latest complete candidate. A complete package can contain
+OPEN or FAIL findings; it is not engineering approval or a promoted drawing issue.
+The 27 published SVG/PNG pairs remain separately versioned, and structural, equipment,
+wall/load and MEP calculations still require further integration.
+
+Use the [workflow guide](docs/06_gestion_y_obra/connected_coordination_workflow.md) for
+study authoring, commands and limits; the [source inventory](docs/06_gestion_y_obra/connected_source_inventory.md)
+for ownership and migration coverage; and the [phased implementation plan](docs/06_gestion_y_obra/connected_project_coordination_next_step.md)
+for completed work and remaining acceptance gates. The older `dreamhouse.pipeline`
+command retains its D059 historical scenario.
+
 ## From data to drawing
 
 ```mermaid
@@ -252,7 +277,8 @@ python -m http.server 8000 --directory .build/showcase
 ## Status and limitations
 
 - **Phase:** consolidated definition and dimensional schematic design.
-- **Document cutoff:** 13 August 2026.
+- **Documentation review:** 2 October 2026; D-084 workflow implemented, with remaining
+  phase gates recorded. Published drawing dates retain their individual issue history.
 - **Primary blocker:** exact site, topographic survey, geotechnical investigation, and planning assessment.
 - **Cost alert:** the active control target for physical construction is
   **≈COP 988.05 million**, with a critical gap against the historical estimate;

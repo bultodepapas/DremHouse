@@ -1,7 +1,7 @@
 # Connected coordination research — October 2026
 
-**Status:** research and proposed plan improvements; not adopted for implementation  
-**Version:** 0.1  
+**Status:** research basis; first bounded application implemented under D-084; remaining recommendations open<br>
+**Version:** 0.2<br>
 **Date:** 2026-10-02  
 **Source:** owner's request for at least ten internet investigations to strengthen the
 [connected coordination plan](../06_gestion_y_obra/connected_project_coordination_next_step.md);
@@ -9,6 +9,27 @@ primary specifications and first-party technical documentation linked in each in
 **Access date:** all external sources below were opened and checked on 2026-10-02.  
 **Authority:** evidence for planning only. This document does not adopt a design, select
 products, change scope or cost, promote drawings, or close professional gates.
+
+## Implementation reconciliation — D-084
+
+The research questions and external-source access record below are retained from the
+original investigation. This revision reconciles their application with implementation
+commit `0e69ddf`; it does not claim a fresh external-source verification or standards
+certification. The [implementation plan](../06_gestion_y_obra/connected_project_coordination_next_step.md)
+and [workflow](../06_gestion_y_obra/connected_coordination_workflow.md) govern current delivery status.
+
+| Research | Implemented application | Remaining acceptance scope |
+| --- | --- | --- |
+| R01, R03 | Persistent IDs, explicit W/GLZ aliases and metre-based PB/P2 coordinates/datums | General placements, unit conversion and more entity families |
+| R02, R04, R07 | Host/space references, input preconditions, strict JSON parsing and explicit unsupported geometry | Distinct void/filling/type records, broader schemas and purpose-specific information requirements |
+| R05, R09 | Findings retain entity IDs, source/build hashes and baseline lifecycle evidence | Saved viewpoints and engineering evidence invalidation across future consumers |
+| R06 | Nominal opening areas and rooflight curbs, explicit workstation assembly mapping and unknown net glass/costs | Wall deductions, product quantities and wider takeoff coverage |
+| R08 | Conservative full rebuild, source/code fingerprints, stale-artifact checks and CI configuration | Minimal dependency graph, incremental builds and slower discipline analysis |
+| R10, R11 | Linked read-only SVG/HTML selection, entity list and textual findings | Full accessibility review; no graphical editing is introduced |
+| R12 | Source-to-view/quantity regression tests and manual rendered-view review | Fixed-font screenshot baselines and broader change-sequence coverage |
+
+Software coverage does not adopt a house change or close a professional gate. Repository
+observations in the research body describe the state inspected before the first increment.
 
 ## Method and interpretation
 
@@ -433,13 +454,13 @@ for architectural judgement or responsible-professional design.
 ## Synthesis and changes carried into the plan
 
 The research reinforces the window-family demonstration while making its contracts and
-acceptance evidence more precise. The updated
-[plan v0.2](../06_gestion_y_obra/connected_project_coordination_next_step.md) now includes:
+acceptance evidence more precise. The original research update to
+[plan v0.2](../06_gestion_y_obra/connected_project_coordination_next_step.md) introduced:
 
 - a minimum element/relationship/measurement contract;
 - separate adoption, freshness, automated-check, professional-evidence, cost and
   publication dimensions;
-- explicit geometry projections and a feasible interactive SVG route;
+- explicit geometry projections and a feasible read-only interactive SVG route;
 - preserved issue context and traceable derived evidence;
 - dependency-aware regeneration and CI coverage; and
 - twelve corresponding acceptance fixtures.

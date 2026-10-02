@@ -1,12 +1,13 @@
 # Parametric Architecture–Structure–Cost Integration Plan
 
-**Status:** implementation issue 0.4-I04 active; coordination basis; not for construction
-**Version:** 0.7
-**Date:** 2026-08-21
+**Status:** retained discipline-integration roadmap; historical I01–I04 evidence and
+D-084 current-source coordination increment; not for construction
+**Version:** 0.8
+**Date:** 2026-10-02
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
 **Primary authority:** Project Constitution, source-precedence register, D-043,
-D-045–D-048, D-050–D-059, D-074, D-080, and the active discipline records listed below
+D-045–D-048, D-050–D-059, D-074, D-080, D-083, D-084, and the discipline records below
 **Prepared from:** complete repository review, active drawings and JSON models, Python
 call-path and test audit, cost-control records, and protected legacy source review  
 **Required reviewers:** owner, architect, structural engineer, cost planner/quantity
@@ -18,26 +19,50 @@ applicable manufacturers/fabricators
 > Every numerical value is classified below as a requirement, active coordination
 > hypothesis, benchmark, or measured current-model condition.
 
-## Implementation issue 0.4-I01
+## Current workflow and historical evidence
+
+D-084 implements a bounded current-source increment through
+`python3 -m dreamhouse.coordination`: PB b37, P2 b28, D-083 openings, SC-01 reservations
+and rooflight b12 feed one resolved snapshot, rule results, opening/quantity/cost evidence,
+seven generated SVG views and a read-only review. Follow the
+[operating workflow](connected_coordination_workflow.md),
+[source inventory](connected_source_inventory.md) and
+[phased implementation plan](connected_project_coordination_next_step.md) for current
+commands, supported changes, dependencies and remaining acceptance gates. The phased plan
+owns implementation order; this document retains the broader discipline contracts.
+
+The older `dreamhouse.pipeline` and `model.io.load_project()` still default to
+`D059_P2_REFINED_ENVELOPE` (PB b05 / P2 b15). Its default output is the preserved
+`planos/integracion_v0.4_i04/` directory; do not run it there to refresh the current model.
+I01–I04 results below remain evidence for their own archived inputs. They do not test the
+current PB b37 / P2 b28 geometry. Equipment, programme, measured wall mass and structural
+screen adapters remain pending, as does migration of the full 27-sheet publication set.
+D-084 has not selected a structure, closed CF-009–CF-013 or approved a budget.
+
+Sections 4–20 retain the original broader roadmap and historical scenario studies.
+Their model versions, test counts and work-package estimates describe that planning
+baseline unless explicitly updated. They are not a second current execution sequence.
+
+## Historical implementation issue 0.4-I01
 
 The first executable vertical slice was issued on 2026-08-13. The command
-`python -m dreamhouse.pipeline` now loads a hash-locked scenario, checks cross-model
-geometry, validates the current P2 programme and real-equipment envelopes, enforces the
-D-054 rooflight rule, injects roof openings into the E1 screen, compares four declared
-Great Wall/stair support concepts, derives opening and quantity schedules, and reconciles
-those quantities to cost-control codes. It writes a deterministic evidence package at
+`python -m dreamhouse.pipeline` loaded a hash-locked scenario, checked cross-model
+geometry, validated its P2 programme and real-equipment envelopes, enforced the
+D-054 rooflight rule, injected roof openings into the E1 screen, compared four declared
+Great Wall/stair support concepts, derived opening and quantity schedules, and reconciled
+those quantities to cost-control codes. Its deterministic evidence package is retained at
 [`planos/integracion_v0.4_i01/`](../../planos/integracion_v0.4_i01/).
 
-The issue closes no professional design gate. Its current result is **47 PASS, 6 OPEN,
+The issue closes no professional design gate. Its recorded result is **47 PASS, 6 OPEN,
 0 FAIL**. The open items include rooflight trimmers/diaphragm detailing, a 0.101 m
 refrigerator-to-cabinet-depth mismatch, the primary-suite gross/net target, structural
 system selection, and cost-code/rate eligibility. The package therefore reports
 `COORDINATION_OPEN`, `issue_ready=false`, and no approved budget total.
 
-## Implementation issue 0.4-I02
+## Historical implementation issue 0.4-I02
 
-D-057 adds `D057_P2_W01` as the active hash-locked scenario and retains the D-054/P2-b10
-scenario for comparison. The active P2 source is now `dreamhouse/p2_b13.json`; its R10
+D-057 added `D057_P2_W01` as that issue's hash-locked scenario and retained the D-054/P2-b10
+scenario for comparison. Its P2 source was `dreamhouse/p2_b13.json`; its R10
 plan and P2-W01 detail derive from the same model. The new 250 mm nominal dry-partition
 control is validated together with room tessellation, child equivalence, circulation,
 access, windows, stair reservations, and the existing rooflight/structure interfaces.
@@ -50,10 +75,10 @@ The deterministic package is written to
 the D-057 structural dead-load comparison is tracked separately in CF-009 and must be
 added to the next structural issue rather than inferred from this pipeline result.
 
-## Implementation issue 0.4-I03
+## Historical implementation issue 0.4-I03
 
-D-058 adds `D058_P2_HALL_EDGE` as the active hash-locked scenario and retains
-`D057_P2_W01` for comparison. The active P2 source is now `dreamhouse/p2_b14.json`; its
+D-058 added `D058_P2_HALL_EDGE` as that issue's hash-locked scenario and retained
+`D057_P2_W01` for comparison. Its P2 source was `dreamhouse/p2_b14.json`; its
 R11 plan, P2-W01 build-up detail and new P2-W04 hall-edge detail derive from the same
 model. Validation requires a continuous 18.00 m full-height enclosure at X=21, assigns
 the correct 250 mm net-dimension deduction to rooms on that edge, and permits GLZ-DECK
@@ -66,10 +91,10 @@ CF-009 now includes P2-W04 mass and CF-010 keeps the exposed-truss/wall interfac
 the pipeline does not claim acoustic, fire, structural, guarding or construction
 performance.
 
-## Implementation issue 0.4-I04
+## Historical implementation issue 0.4-I04
 
-D-059 adds `D059_P2_REFINED_ENVELOPE` as the active hash-locked scenario and retains
-`D058_P2_HALL_EDGE` for comparison. The active P2 source is now
+D-059 added `D059_P2_REFINED_ENVELOPE` as that issue's hash-locked scenario and retained
+`D058_P2_HALL_EDGE` for comparison. Its P2 source was
 `dreamhouse/p2_b15.json`; its R12 plan and five coordinated details derive from the same
 model. Validation requires 300 mm nominal P2-W05 on the north, south and rear/east
 exterior edges, keeps P2-W04 at the hall edge, cuts only scheduled windows and the
@@ -84,27 +109,28 @@ authority is inferred.
 
 ## D-080 current-model gap after implementation issue 0.4-I04
 
-D-080/P2 b25/R22 is now the active architectural wall-thickness source. It replaces the
+D-080/P2 b25/R22 defines the architectural wall-thickness schedule retained by current
+P2 b28/R25. It replaces the
 universal 250 mm dry-wall assumption and 300 mm illustrative exterior build-up with the
 90/150/200/230 mm duty-based schedule. The P2 b25 drawing generator validates that
 schedule with **41 PASS, 9 OPEN and 0 FAIL**, but the cross-discipline 0.4-I04 pipeline
 has not yet consumed b25. I04 remains valid historical screening evidence for its stated
 D-059 scenario; it is not the current wall authority and may not be used to close CF-009.
 
-The next pipeline issue must import the b25 wall schedule, measure wall heights/areas and
+The next structural adapter must consume the D-080 schedule through current P2 b28,
+measure wall heights/areas and
 openings, attach selected-product masses, compare them with `partitions_p2_kpa`, map the
 P2-W05 panel/lining scope once across cost chapters 09/10/14/23 and fail closed when any
 structural, performance or budget allowance is exceeded.
 
 ## 1. Executive recommendation
 
-The next stage should not begin by independently redrawing P2 or selecting steel
-profiles. It should establish one versioned computational model from which architecture,
+The original roadmap called for one versioned computational model from which architecture,
 structural coordination, quantity schedules, cost scenarios, and drawings are derived.
-The present repository already contains capable but separate parametric subsystems. They
-need a shared domain model, explicit provenance, and fail-closed interfaces.
+D-084 now connects current openings, reservations, quantities and review views. The
+remaining discipline subsystems need explicit adapters, provenance and fail-closed interfaces.
 
-The recommended implementation sequence is:
+The broader discipline objectives remain:
 
 1. preserve the Constitution and the project's spatial idea as immutable acceptance
    tests;
@@ -123,10 +149,11 @@ The recommended implementation sequence is:
 7. issue one coordinated architecture–structure–cost evidence package with hashes,
    assumptions, rejected alternatives, and professional approval gates.
 
-The first design study inside that workflow should compare Great Wall/stair-column
-continuity alternatives and redistribute the two rooflights, because those decisions
-simultaneously affect architecture, lateral stability, roof framing, drainage, glass,
-MEP, and cost.
+The original first study concerned Great Wall/stair-column continuity and rooflight
+placement. D-054 subsequently established the retained two-rooflight arrangement. This
+paragraph is historical rationale, not an instruction to redistribute the current
+rooflights. Structural continuity and its architecture, drainage, MEP and cost interfaces
+still require discipline evidence.
 
 ## 2. The project idea that the integration must protect
 
@@ -183,11 +210,11 @@ These rules belong in automated scenario acceptance tests as well as in drawings
 | Governance | `docs/00_gobernanza/constitucion_del_proyecto.md` | project rules and stage gates |
 | Precedence | `docs/00_gobernanza/fuentes_precedencia_y_conflictos.md` | conflict resolution and open conflicts |
 | Decisions | `docs/00_gobernanza/registro_decisiones.md` | owner/project decisions |
-| Program | `docs/01_programa/programa_arquitectonico.md` | program and performance basis |
-| PB | `dreamhouse/pb_b05.json` and PB R04 sheet | active schematic hypothesis |
-| P2 | `dreamhouse/p2_b25_delta.json` and P2 b25/R22 sheets | active D-080 wall-thickness coordination; tested performance and construction design pending |
+| Program | `docs/01_brief/programa_arquitectonico.md` | program and performance basis |
+| PB | `load_b37_model()` and PB b37/R15 | current D-083 schematic geometry; b05 remains an inherited source |
+| P2 | `load_b28_model()` and P2 b28/R25 | current D-083 openings retaining the D-080 wall schedule; tested performance and construction design pending |
 | Roof | roof b07 record/model | active schematic hypothesis |
-| Rooflights | `dreamhouse/rooflight_b11.json` superseded in position by D-054 | geometry to revise |
+| Rooflights | `dreamhouse/rooflight_b12.json` | retained D-054 schematic geometry; framing and performance gates open |
 | Structure | `dreamhouse/structure/structure_system.json`, E0/E1 records and sheets | research/screening only |
 | Cost | cost basis, detailed control estimate, and 2026-08 audit | target and control hypotheses |
 | Legacy | protected files under `docs/BORN_Legacy/` | source intent at their precedence level |
@@ -208,9 +235,9 @@ Every model value and derived record shall carry one of these statuses:
 
 No unlabeled scalar should enter drawings, structural calculations, quantities, or costs.
 
-## 4. Current computational state
+## 4. Original computational assessment
 
-### 4.1 What already works
+### 4.1 Existing foundations at the original assessment
 
 The repository is more advanced than a drawing-only project:
 
@@ -222,7 +249,7 @@ The repository is more advanced than a drawing-only project:
 - the structural package compares portal/truss concepts, generates roof-truss grammars,
   enumerates profiles, retains Pareto alternatives, runs member/system screens, maps
   ground-structure load paths, and produces E1 evidence sheets;
-- the current 107-test structural/coordination suite passes;
+- the original assessment recorded 107 passing structural/coordination tests;
 - structural quantities can be generated for defined hypotheses;
 - the cost record has atomic cost codes, confidence, phase allocation, measurement
   corrections, and economic gates.
@@ -230,7 +257,7 @@ The repository is more advanced than a drawing-only project:
 This is a strong foundation. The main deficiency is not lack of algorithms; it is the
 absence of a single authoritative dependency graph connecting them.
 
-### 4.2 Present data flow
+### 4.2 Original data flow before the connected increment
 
 ```mermaid
 flowchart LR
@@ -370,8 +397,9 @@ during migration.
 
 ### 6.4 Scenario model, not premature freeze
 
-The base scenario should reproduce active b05/b10/b11 geometry exactly before any design
-change. Branches then contain only deltas:
+The original comparison baseline was b05/b10/b11. These retained scenario examples
+are design alternatives, not Git branches or the current source baseline. Current D-084
+studies use validated JSON changes over PB b37/P2 b28. The original examples were:
 
 - `BASELINE_B10_D053_REPRODUCTION`—audit-only reproduction;
 - `RL_D054_HALF_CENTRES`—one rooflight near each longitudinal half centre;
@@ -589,7 +617,7 @@ coordination hypotheses until this comparison and manufacturer input are complet
 
 ### 10.1 Current measured condition
 
-The active b10 model produces these explicitly tagged suite components:
+The historical b10 comparison model produced these explicitly tagged suite components:
 
 | Suite | Current component area | Planning interpretation |
 | --- | ---: | --- |
@@ -625,7 +653,7 @@ test:
 - a coherent arrival/threshold that makes the suite feel dominant before expensive
   finishes are added.
 
-### 10.3 P2 design branches
+### 10.3 P2 study alternatives
 
 Develop at least three comparable layouts within the same approximately 270 m² envelope:
 
@@ -1114,4 +1142,11 @@ D-080 subsequently supersedes D-057's universal 250 mm dry-wall thickness and D-
 illustrative 300 mm double-frame exterior build-up while retaining their privacy and
 refined-interior intent. Its 90/150/200/230 mm wall family is the active architectural
 coordination input. Tested systems, mass/wind reconciliation, building physics, products,
-quantities and costs remain open, and the I04 integration scenario remains to be upgraded.
+quantities and costs remain open. I04 remains a preserved historical scenario; current
+discipline consumers require separate adapters rather than overwriting that evidence.
+
+D-083 establishes the current PB b37/P2 b28 opening basis. D-084 authorizes and implements
+the bounded connected review described at the start of this document. It adds current
+source resolution, supported rule/quantity evaluation and generated candidate views,
+while preserving historical issues and keeping broader engineering, publication and
+professional acceptance gates open. No new decision is created by this reconciliation.

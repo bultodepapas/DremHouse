@@ -1,13 +1,19 @@
 # Connected Source Inventory
 
 **Status:** audited baseline; coordination evidence only  
-**Version:** 0.1  
+**Version:** 0.2<br>
 **Date:** 2026-10-02  
 **Source:** Read-only inspection of the PB b37 and P2 b28 loaders, their JSON inputs and
 transitive loader lineage, current drawing catalog and adjacent issue manifests.  
 **Authority:** This inventory records existing source ownership and known limits. It does
 not adopt geometry, resolve a conflict, select an assembly, change cost or promote a
 drawing.
+
+**Implementation reference:** D-084, commit `0e69ddf`; this documentation revision
+reconciles the inventory with the implemented resolver and preserves the audited source
+baseline. See the [workflow](connected_coordination_workflow.md) for execution and the
+[phase checkpoint](connected_project_coordination_next_step.md#implementation-checkpoint--2026-10-02)
+for completed capabilities and remaining rollout gates.
 
 ## Scope and publication boundary
 
@@ -40,10 +46,11 @@ P2 b28 loader verifies its immediate base-delta hash but does not compare the D0
 the source hash declared in `p2_b28_delta.json`; its generated manifest records that
 source hash. The nested delta loaders check their declared predecessor chain. The b37 and
 b28 issue manifests record direct source references and the named generator, but do not
-fingerprint every transitive Python dependency. The new pilot manifest should therefore
-state its actual full input and code dependency set rather than treating an adjacent issue
-manifest as a complete build fingerprint. The implemented resolver records that
-conservative dependency set in `model.json` and verifies it before exposing a package.
+fingerprint every transitive Python dependency. The implemented resolver therefore
+records a conservative input and code dependency set in `model.json` and verifies it
+before exposing a package. An adjacent historical issue manifest is not treated as a
+complete build fingerprint. This deliberately broad dependency set is not yet a minimal
+graph for selective rebuilding of individual consumers.
 
 The active drawing aliases are synchronized only from the explicit [`catalog.json`](../../planos/actual/catalog.json)
 by [`sync_current_drawings.py`](../../.github/scripts/sync_current_drawings.py). Its
@@ -174,7 +181,7 @@ run or a change in authority:
 | PB workstation glazing | 2 | 27.36 m² | 21.96 m² + 5.40 m², D083 source. |
 
 The per-family subtotals reconcile to the existing combined 123.84 m² schedule figure.
-The pilot should also retain per-entity values from its resolved snapshot. Do not treat this
+The pilot retains per-entity values from its resolved snapshot. Do not treat this
 inventory as a priced quantity or substitute it for that schedule.
 
 ## Current drawing catalog and pilot disposition
@@ -191,14 +198,14 @@ refer to the isolated window-coordination pilot; current SVG/PNG aliases remain 
 | `architecture-roof-daylight-section` | `planos/integracion_v0.4_i01/rooflights/DH-ARQ-SEC-CUB-003-R11_D054-DAYLIGHT.svg` (I01) | `dreamhouse/generate_rooflight_b11.py` | Rooflight quantity context; separate alias retained. |
 | `architecture-roof-longitudinal-section` | `planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-001-R06_LONGITUDINAL-CUBIERTA.svg` (b07) | `dreamhouse/generate_roof_b07.py` | Outside pilot; current alias retained. |
 | `architecture-roof-transverse-section` | `planos/conceptual_v0.3_b07_cubierta/DH-ARQ-SEC-002-R06_TRANSVERSAL-CUBIERTA.svg` (b07) | `dreamhouse/generate_roof_b07.py` | Outside pilot; current alias retained. |
-| `architecture-front-elevation` | `planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg` (b07) | `dreamhouse/generate_roof_b07.py` | Outside pilot; current alias retained. |
+| `architecture-front-elevation` | `planos/conceptual_v0.3_b07_cubierta/DH-ARQ-ELE-001-R06_FACHADA-FRONTAL-CUBIERTA.svg` (b07) | `dreamhouse/generate_roof_b07.py` | New candidate front projection; published alias retained. |
 | `architecture-rear-elevation` | `planos/conceptual_v0.3_b37_pb/DH-ARQ-ELE-002-R07_REAR-WINDOW-DAYLIGHT.svg` (b37) | `dreamhouse/generate_pb_b37.py` | Pilot baseline view; alias retained. |
 | `architecture-side-a-elevation` | `planos/conceptual_v0.3_b37_pb/DH-ARQ-ELE-003-R10_SIDE-A-WINDOW-DAYLIGHT.svg` (b37) | `dreamhouse/generate_pb_b37.py` | Pilot baseline view; alias retained. |
 | `architecture-side-b-elevation` | `planos/conceptual_v0.3_b37_pb/DH-ARQ-ELE-004-R10_SIDE-B-WINDOW-DAYLIGHT.svg` (b37) | `dreamhouse/generate_pb_b37.py` | Pilot baseline view; alias retained. |
 | `architecture-great-wall-elevation` | `planos/conceptual_v0.3_b05_pb/DH-ARQ-ELE-INT-001-R04_GRAN-MURO.svg` (b05) | `dreamhouse/generate_pb_b05.py` | Outside pilot; current alias retained. |
 | `architecture-ground-floor-core` | `planos/conceptual_v0.3_b33_pb/DH-ARQ-DET-001-R05_PB-STAIR-CORE.svg` (b33) | `dreamhouse/generate_pb_b33.py` | Stair context only; current alias retained. |
 | `architecture-pb-media-wall` | `planos/conceptual_v0.3_b27_pb/DH-ARQ-ELE-INT-002-R01_PB-100IN-SIDE-B-WALL.svg` (b27) | `dreamhouse/generate_pb_b27.py` | Outside pilot; current alias retained. |
-| `architecture-pb-integrated-workstations` | `planos/conceptual_v0.3_b37_pb/DH-ARQ-DET-006-R03_PB-DESK-WINDOW-INTERFACE.svg` (b37) | `dreamhouse/generate_pb_b37.py` | Pilot baseline view; alias retained. |
+| `architecture-pb-integrated-workstations` | `planos/conceptual_v0.3_b37_pb/DH-ARQ-DET-006-R03_PB-DESK-WINDOW-INTERFACE.svg` (b37) | `dreamhouse/generate_pb_b37.py` | Opening represented in candidate; full workstation/interface detail pending; alias retained. |
 | `architecture-pb-technical-workbenches` | `planos/conceptual_v0.3_b36_pb/DH-ARQ-DET-007-R01_PB-TECHNICAL-WORKBENCH-SYSTEM.svg` (b36) | `dreamhouse/generate_pb_b36.py` | Outside pilot; current alias retained. |
 | `architecture-p2-bedroom-windows` | `planos/conceptual_v0.3_b28_p2/DH-ARQ-DET-008-R00_P2-BEDROOM-WINDOW-FAMILY.svg` (b28) | `dreamhouse/generate_p2_b28.py` | Pilot baseline view; alias retained. |
 | `architecture-window-schedule` | `planos/conceptual_v0.3_b37_pb/DH-ARQ-SCH-001-R00_D083-WINDOW-SCHEDULE.svg` (b37) | `dreamhouse/generate_pb_b37.py` | Pilot baseline schedule; alias retained. |

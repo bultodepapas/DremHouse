@@ -3,7 +3,8 @@
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
 **Version:** 1.25<br>
 **Date:** 2026-08-21<br>
-**Source:** [`actual/catalog.json`](actual/catalog.json)
+**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
+**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084
 
 > [!IMPORTANT]
 > `actual/` is the stable publication layer for the current project state. Its SVG files
@@ -111,11 +112,21 @@
 </tr>
 </table>
 
-The current state is a **coordinated set**, not a claim that one sheet contains every
-active decision. In particular, read the D-083 floor plans, elevations and window
+This is the **published coordination set**. Each sheet retains its own source version,
+coverage and open gates. In particular, read the D-083 floor plans, elevations and window
 schedule together; read the D-082 access/owner-priorities sheets for the supplementary
 rescue system; and read all architectural sheets with the structural studies and their
 open gates.
+
+## Connected candidate review
+
+D-084 provides a separate [source-driven review workflow](../docs/06_gestion_y_obra/connected_coordination_workflow.md).
+Repository JSON changes generate seven connected SVG review views, quantities and
+findings in `.build/coordination/`. SVGs display results; there is no graphical editing.
+A complete candidate package does not update this catalog or certify all 27 published
+drawings against the candidate. The [source inventory](../docs/06_gestion_y_obra/connected_source_inventory.md)
+records their distinct consumers and remaining migration work. CF-013 records seven PB
+doors with unresolved anchors; generated views do not invent their positions.
 
 ## Complete current set
 

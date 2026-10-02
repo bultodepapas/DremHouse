@@ -1,8 +1,10 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.21
+**Version:** 0.22
 **Date:** 2026-10-02
+**Source:** active project registers, current drawing catalog and D-084 implementation
+at `0e69ddf`; documentation reconciliation without a new design or scope decision.
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -17,7 +19,8 @@
 - [Connected source and consumer inventory](06_gestion_y_obra/connected_source_inventory.md):
   current loader lineage, element ownership, known geometry gaps and all 27 published drawings.
 - [Current drawings and visual index](02_arquitectura/planos_actuales.md): the fastest
-  visual reading of the active coordinated state.
+  visual reading of the published set, with per-source limitations and explicit
+  separation from generated D-084 candidate reviews.
 - [Complete current drawing set](../planos/README.md): all stable SVG/PNG pairs, their
   versioned sources, revisions, statuses, and update rule.
 - [Current publication manifest](../planos/actual/manifest.json): machine-readable
@@ -34,8 +37,10 @@ they stay stable while their explicitly promoted versioned source can advance.
   which document governs and which contradictions remain open.
 - [Decision Register](00_gobernanza/registro_decisiones.md): design and project decisions,
   including status and history.
+- [D-084 — connected coordination workflow](00_gobernanza/decision_d084_connected_coordination.md):
+  implemented software scope, candidate/publication boundary and retained professional gates.
 - [Glossary and document statuses](00_gobernanza/glosario_y_estados.md): definitions of
-  hard rule, Design Control Value, hypothesis, and freezing.
+  hard rule, Design Control Value, hypothesis, freezing, candidate freshness and rule coverage.
 - [Language and translation policy](00_gobernanza/language_and_translation_policy.md):
   working language, protected Spanish sources, terminology, and migration order.
 
@@ -61,7 +66,7 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Concept plan v0.3 — draft 03](02_arquitectura/plano_conceptual_v0.3_borrador_03.md)
 - [Concept plan v0.3 — draft 04](02_arquitectura/plano_conceptual_v0.3_borrador_04.md):
   predecessor whose preferred upper-floor spatial centre is carried through D-049 into
-  active D-050/D-059 R12.
+  the later P2 coordination lineage; R12 is a historical integration scenario.
 - [Detailed ground floor v0.3 — draft 05](02_arquitectura/plano_pb_detallado_v0.3_borrador_05.md):
   predecessor retaining study wall thicknesses, Great Wall, reorganized core, kitchen,
   and equipped workshop; its workstation geometry is superseded by D-068/D-069 and PB b25.
@@ -110,7 +115,7 @@ they stay stable while their explicitly promoted versioned source can advance.
   island and leaving real-equipment, ergonomic, MEP, safety and cost gates explicit.
 - [Detailed upper floor v0.3 — draft 06](02_arquitectura/plano_p2_detallado_v0.3_borrador_06.md):
   superseded R05 predecessor; its verified dimensional, phasing, and programme controls
-  are retained through active b25/R22.
+  continue through the current b28/R25 lineage and retained D-080 wall schedule.
 - [Coordinated upper floor v0.3 — draft 09](02_arquitectura/plano_p2_coordinado_v0.3_borrador_09.md):
   superseded D-049/R08 predecessor combining b04's spatial centre with b06 controls,
   explicit door topology, and D-048 stair-column reservations.
@@ -214,20 +219,20 @@ they stay stable while their explicitly promoted versioned source can advance.
 
 ## 06 — Management, procurement, and construction
 
-- [Master plan](06_gestion_y_obra/plan_maestro.md)
-- [Connected project coordination — recommended next step](06_gestion_y_obra/connected_project_coordination_next_step.md):
-  v0.6 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
+- [Master plan](06_gestion_y_obra/plan_maestro.md): project delivery gates, connected-system
+  workstream and construction F1/F2, with separate completion criteria.
+- [Connected project coordination — phased implementation plan](06_gestion_y_obra/connected_project_coordination_next_step.md):
+  v0.7 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
   fixtures: repository source changes feed one resolved model, Python calculations/checks
   and regenerated SVGs and reports. SVGs are read-only outputs. Each stage defines
   dependencies, scope and completion evidence; records the implemented first increment
   under D-084 and the remaining acceptance gates.
 - [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
-  detailed D-054/D-055 roadmap and implemented 0.4-I01 vertical slice for the canonical scenario model,
-  real-equipment spatial validation, Great Wall/column alternatives, opening-aware
-  structural screening, derived quantities, and cost traceability; it does not freeze a
-  design or authorize construction.
+  retained discipline contracts and historical I01–I04 results, reconciled with D-084.
+  Current equipment/programme, structural and wall-mass adapters remain pending;
+  the connected plan owns implementation order.
 - [Integrated coordination evidence package](../planos/integracion_v0.4_i01/evidence.md):
-  deterministic 0.4-I01 result, schedules, cost reconciliation, support alternatives,
+  historical 0.4-I01 result for its archived inputs, schedules, cost reconciliation, support alternatives,
   structural screen, rooflight drawings, source hashes, and artifact hashes; all open
   gates remain explicit.
 - [Initial risk register](06_gestion_y_obra/matriz_de_riesgos.md)
@@ -245,17 +250,20 @@ they stay stable while their explicitly promoted versioned source can advance.
 
 - [Connected model propagation and validation — three focused investigations](08_investigacion/connected_editing_and_validation_research_2026_10.md):
   five primary sources on generated SVG representations, geometric-check coverage and
-  consistent source revisions for complete Python builds; no graphical editing.
+  consistent source revisions for complete Python builds; reconciles D-084 application
+  with remaining tests and limits. SVGs remain generated outputs.
 - [Connected coordination delivery research — ten additional investigations](08_investigacion/connected_coordination_delivery_research_2026_10.md):
   19 primary sources on incremental migration, controlled edits, fingerprints, numerical
   tolerances, complete releases, view/dimension contracts, information milestones, window
-  interfaces and phased maintenance records; supports the connected coordination plan.
+  interfaces and phased maintenance records; records bounded implementation and
+  remaining acceptance work by investigation.
 - [Connected coordination research — twelve investigations](08_investigacion/connected_coordination_research_2026_10.md):
   primary-source findings on IFC identity/relationships/quantities, IDS, BCF, schema validation,
-  reproducible builds, provenance, interactive SVG, accessibility and change/visual testing;
-  each investigation distinguishes evidence, proposed application, acceptance and limits.
+  reproducible builds, provenance, read-only SVG interaction, accessibility and change/visual
+  testing; each investigation distinguishes source evidence, D-084 application and pending scope.
 - [Digital tools for drawings, BIM, and structures](08_investigacion/herramientas_planos_bim_y_estructuras.md):
-  proposed model architecture, formats, validation, and prototype roadmap.
+  retained original tool/prototype roadmap with its D-084 application boundary;
+  proposed interchange formats are not claimed as implemented.
 - [Structural research: ten topics, 2026-08](08_investigacion/investigacion_estructura_10_temas_2026_08.md)
 - [Parametric structural optimization workflow, 2026-08](08_investigacion/parametric_structural_optimization_2026_08.md):
   traceable candidate grammar, deterministic enumeration, Pareto screening, optional

@@ -1,11 +1,17 @@
 # Connected coordination workflow
 
-**Version:** 0.1  
+**Version:** 0.2
 **Date:** 2026-10-02  
 **Status:** implemented first source-to-review increment; schematic coordination only  
 **Source:** owner authorization to implement the [phased plan](connected_project_coordination_next_step.md),
 the [current-source audit](connected_source_inventory.md), PB b37/P2 b28/D-083, SC-01 and rooflight b12.  
 **Decision:** D-084. Software workflow authority does not adopt a changed house design.
+
+**Implementation reference:** commit `0e69ddf`. This documentation revision reconciles
+entry points, research, publication guides and remaining phase gates; it adds no software
+capability or design authority. Software phases 0–5 in the connected plan are distinct
+from the project stage gates and the two construction phases in the
+[master plan](plan_maestro.md).
 
 ## What now works
 
@@ -120,6 +126,13 @@ decimal authoring does not require binary-float display artifacts. Rule geometry
 its separately declared numerical tolerance; neither tolerance specifies a construction
 allowance.
 
+Every study is applied to the archived PB b37/P2 b28 baseline. The build's lifecycle
+comparison also uses that baseline, not the previous candidate selected by `latest.json`.
+Keep the full intended study delta in its JSON file; a new empty template does not
+inherit previous study changes. Review stale expected values against their actual source
+before rebasing a study. The API can evaluate an explicitly supplied alternate baseline,
+but the CLI does not currently offer that selection.
+
 Supported changes are `start_m`, `width_m`, `height_m`, `sill_m` and `modules` for located
 active windows/doors; rooflights support `x_m`, `y_m`, `length_m` and `width_m`. These
 fields resolve through the existing host and level. Host reassignment, element addition,
@@ -186,6 +199,11 @@ promotion of all current catalog aliases is a separate rollout task. For recover
 open the desired retained issue's `index.html` and manifest; do not relabel it fresh
 without comparing it to its original inputs.
 
+Governance files are among the declared dependencies, so a documentation-only change to
+those files can legitimately make an existing candidate stale. Rebuild it through the
+same command if a fresh local review is needed; do not alter its stored manifest. The
+model fingerprint can remain identical while the input fingerprint changes.
+
 The first artifacts are SVG/HTML/JSON/Markdown. Text uses viewer font fallbacks; pixel
 equivalence across machines is not certified. PNG exports, fixed-font rendering,
 contact sheets, full sectioned construction details and visual-diff CI remain acceptance
@@ -236,3 +254,26 @@ python3 -m dreamhouse.coordination --check --require-no-fail
 The GitHub workflow is configured in `.github/workflows/coordination.yml`; remote CI
 execution is not claimed by this local verification record. These checks establish
 the implemented candidate workflow, not completion of the remaining plan phases.
+
+The test counts above are the retained implementation verification record, not a claim
+that each subsequent documentation edit reruns every engineering calculation. For a
+documentation reconciliation, validate local paths, generated indexes, current-publication
+provenance and any affected build fingerprints. Keep the dated software test evidence
+and the documentation checks distinguishable.
+
+### Documentation reconciliation verification — 2026-10-02
+
+The v0.2 documentation update was checked against implementation commit `0e69ddf`:
+
+| Check | Result for this documentation revision |
+| --- | --- |
+| Local Markdown references in 22 updated documents | 437 paths/anchors checked; no missing targets or anchors |
+| Generated publication guides and current provenance | All three guides match their maintained templates; 27 SVG/PNG pairs validated |
+| Generated root README block | Consistent with the catalog and project registers |
+| Existing candidate freshness | Verified with `--check --require-no-fail`; status remains OPEN, engineering/construction authority false |
+| Change scope | Markdown and Markdown template text only; no model, calculation, catalog or drawing-source change |
+| Whitespace and template lint | `git diff --check` passed; Ruff passed with pre-existing EXE001 excluded for the Python-invoked, non-executable publication script |
+
+The full software suite was not rerun for these editorial changes. Its implementation
+results remain the dated record above. No additional phase gate is marked complete by
+this reconciliation.

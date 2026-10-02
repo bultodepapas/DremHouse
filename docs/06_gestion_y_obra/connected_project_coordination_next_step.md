@@ -1,7 +1,7 @@
-# Connected project coordination — recommended next step
+# Connected project coordination — phased implementation plan
 
 **Status:** implementation authorized; first connected review increment implemented; remaining gates open<br>
-**Version:** 0.6<br>
+**Version:** 0.7<br>
 **Date:** 2026-10-02<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -17,7 +17,10 @@ warnings, and explicit clarification that SVGs are generated outputs, supported 
 **Authority:** software coordination workflow authorized. No changed house design,
 construction scope or cost, drawing promotion or professional gate closure is adopted by this plan.
 
-**Revision note:** v0.6 records the implemented first increment and its remaining acceptance
+**Documentation reconciliation:** implementation committed at `0e69ddf`; this revision
+updates related working documents without extending software or design scope.<br>
+**Revision note:** v0.7 reconciles the full document, research records and repository
+entry points with the implemented APIs, artifacts and D-084 authority. v0.6 records the implemented first increment and its remaining acceptance
 gates. v0.5 corrected the scope: changes originate in repository data, scenario
 parameters and Python code. SVGs display generated results and findings; there is no
 graphical editing capability in this plan. The implementation has six phases and 19
@@ -147,6 +150,11 @@ python3 -m unittest dreamhouse.structure.tests.test_integrated_pipeline dreamhou
 
 ## 3. Verified gaps and their consequences
 
+The following assessment findings concern the pre-D-084 architecture and its retained
+historical consumers. The new current-source path is `dreamhouse.coordination`; its
+completed and partial capabilities are listed in the checkpoint above. Preserving the
+D059 loader is deliberate historical compatibility, not a claim that it models D-083.
+
 | Finding | Evidence | Consequence |
 | --- | --- | --- |
 | Current drawings use PB b37 and P2 b28, while the default integration scenario still loads PB b05 and P2 b15. | [Current catalog](../../planos/actual/catalog.json), [scenario manifest](../../dreamhouse/model/project_v04.json), [model loader](../../dreamhouse/model/io.py). | A reproducible integrated calculation can still represent an earlier house state. |
@@ -161,7 +169,8 @@ its D-080 current-model gap. This assessment extends that observation to the cur
 PB/P2 window state and its quantity mapping. It does not invalidate historical evidence
 for the scenario that evidence actually describes.
 
-The next improvement should make the connections between disciplines verifiable.
+The first increment makes the enrolled connections verifiable. Remaining discipline
+adapters and publication consumers must meet the same source and coverage contract.
 
 ### 3.1 Implementation seams verified for the living-system plan
 
@@ -184,6 +193,10 @@ Build a first connected coordination viewer around windows and their interfaces.
 is a manageable family with an existing
 [shared D-083 source](../../dreamhouse/window_daylight_d083.json). It connects daylight,
 plans, elevations, details, secondary structure, envelope performance and quantities.
+
+This section defines the complete target demonstration. The implemented seven-view
+review covers projections, parameter-derived dimensions, opening quantities and findings;
+sectioned sill/head/jamb interfaces and their engineering calculations remain outstanding.
 
 ```mermaid
 flowchart TD
@@ -343,13 +356,19 @@ model as a unit. Compatibility adapters can supply existing dictionary shapes, b
 not silently reread different sources. Preserve historical generators as reproducible
 historical entry points.
 
-Provide a small Python coordination interface, provisionally `resolve_project(scenario)`,
-`evaluate(snapshot, baseline)` and `build_review(snapshot, evaluation, output_dir)`.
-These are proposed interface names, not existing commands. Evaluation compares changed
-inputs with the preceding complete snapshot and returns findings, affected outputs and
-coverage. Extend model loading and the pipeline at these seams; a small
-`dreamhouse/coordination/` module is appropriate only for shared change/evaluation logic.
-Keep calculations testable without rendering or writing files.
+The implemented interfaces in `dreamhouse/coordination/` are
+`model.resolve_project(project_path)`, `rules.evaluate(snapshot, baseline=None)`,
+`render.render_views(snapshot, evaluation)` and
+`pipeline.build_candidate(project_path, out)` / `check_candidate(project_path, out)`.
+Evaluation and rendering consume injected dictionaries without source reloads. The CLI
+is `python3 -m dreamhouse.coordination`, or the installed `dreamhouse-coordinate` entry
+point in an editable repository checkout.
+
+The candidate builder compares a study with the preserved PB b37/P2 b28 baseline;
+it does not automatically use the preceding `latest.json` package as the baseline.
+Model resolution, rules, rendering and complete-package persistence remain separate
+responsibilities. The resolved dictionary is independently constructed; it is not a
+runtime-enforced immutable object. Consumers must preserve it, as regression tests verify.
 
 ### 4.6 SVGs show the model state and its consequences
 
@@ -435,6 +454,12 @@ recomputation only after it agrees with full rebuilds on the same scenario.
 | Rule, generator, transform, schema or font input | Invalidate the affected checks or outputs even when building geometry is unchanged. |
 | Annotation or sheet layout only | Regenerate affected views/graphic QA; preserve physical geometry and calculated quantities. |
 | Repository input changed | Compare source hashes, re-resolve the declared scenario and invalidate dependent outputs; retained historical baseline guards may require a new version rather than an in-place rewrite. |
+
+This table is the rollout contract, not a list of currently supported authoring commands.
+The first increment accepts only the opening/door and rooflight parameters documented
+in the workflow. Creation, deletion, host reassignment, material changes and room editing
+are not enabled. It fully rebuilds its registered outputs; a minimal dependency graph,
+selective cache and whole-project impact report remain future work.
 
 A move may leave area unchanged while altering interference and access checks. A material
 edit may leave geometry unchanged while invalidating a mass calculation. Unknown dependency
@@ -795,9 +820,9 @@ and [propagation/validation research](../08_investigacion/connected_editing_and_
 support adopting useful information patterns before taking on additional platforms.
 Full IFC/IDS/BCF exchange, an RDF database, a general solid-model engine and a new build
 framework remain deferred until a real exchange or engineering task requires them. The
-immediate proposed deliverables are the current-state manifest, a validated window
-registry, connected SVG views, named quantity records, linked issue evidence and a
-repeatable review package. The phased target connects source changes to reusable rules,
+first implemented deliverables are the current-source snapshot, element registry,
+connected SVG views, named opening quantities, linked findings and a complete
+repeatable candidate package. The phased target connects source changes to reusable rules,
 dependent calculations and regenerated SVGs through the same Python workflow.
 
 Measure progress by how easily the project team can determine:
@@ -808,10 +833,11 @@ Measure progress by how easily the project team can determine:
 - what a proposed change would affect;
 - what evidence is still needed for a decision.
 
-Saving this recommendation is documentation work only. It does not adopt its proposed
-implementation, change the construction scope or cost baseline, or promote a drawing.
-Consequently, it creates no new entry in the decision register or cost-control record.
-Any later adopted change remains subject to the existing governance and recording rules.
+Implementation is authorized by [D-084](../00_gobernanza/decision_d084_connected_coordination.md).
+The [cost-control record](../04_costos/base_y_control_de_costos.md) records the corrected
+workstation quantity classification without a price, quantity adoption or target change.
+CF-013 records the observed PB door-anchor discrepancy. The present documentation
+reconciliation adds no new design decision, publication promotion or scope/cost change.
 
 ### 8.1 Continuity with the preceding plan
 
@@ -828,8 +854,9 @@ SVGs and the static showcase display its results.
 | C05 — Controlled change demonstration | Phase 2 evaluates changed repository inputs; Phases 3–4 demonstrate propagation. |
 | C06 — Delivery reliability | Phase 4 verifies complete, repeatable builds and controlled publication. |
 
-The first implementation should deliver Phase 0's source/consumer inventory, baseline
-fixtures and current-window comparison. Its review questions are concrete: which source
+The first implementation delivered Phase 0's source/consumer inventory, baseline
+fixtures and current-window comparison, plus the connected review path. Its continuing
+review questions are concrete: which source
 owns each input, which current views and calculations consume it, which historical checks
 must remain unchanged, and which outputs still require migration. Then advance through
 the phase gates; an attractive viewer is not a substitute for resolving those questions.
@@ -843,10 +870,12 @@ implementation reviewer verifies software/data behaviour; responsible project di
 continue to review their engineering evidence under existing governance. These are distinct
 responsibilities, not a new approval board.
 
-For the first candidate, proposed artifact names are `model.json`, `changes.json`,
-`findings.json`, `coverage.json`, `opening_schedule.json`, `quantity_ledger.json`,
-`views/`, `review.md` and `manifest.json` in an isolated review directory. These names are
-an implementation proposal, not files created by this planning update. Keep volatile run
-logs separate from deterministic technical content. List each expected artifact and its
-hash; a complete candidate contains every required result or an explicit unevaluated
-result allowed for its stated review purpose.
+The implemented candidate contains `model.json`, `changes.json`, `findings.json`,
+`coverage.json`, `finding_lifecycle.json`, `openings.json`, `quantities.json`, `cost.json`,
+`drawing_inventory.json`, `view_inventory.json`, seven SVG files, `index.html` and
+`review.md`, plus `manifest.json` with hashes for those 19 artifacts. Views are at the
+package root, not a `views/` subdirectory. The output layout is
+`.build/coordination/issues/<input_hash>/`; `latest.json` identifies the latest complete
+candidate. Files are generated locally or retained as CI artifacts, not committed as
+current drawing issues. The [workflow](connected_coordination_workflow.md) is the command
+and artifact reference. Keep volatile logs separate from deterministic technical content.
