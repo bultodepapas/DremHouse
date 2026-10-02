@@ -1,7 +1,7 @@
 # Connected project coordination — recommended next step
 
-**Status:** repository assessment and proposed next increment; not adopted for implementation<br>
-**Version:** 0.5<br>
+**Status:** implementation authorized; first connected review increment implemented; remaining gates open<br>
+**Version:** 0.6<br>
 **Date:** 2026-10-02<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -13,16 +13,60 @@ the owner's request for a living system with coherent source changes, propagatio
 warnings, and explicit clarification that SVGs are generated outputs, supported by [three focused investigations](../08_investigacion/connected_editing_and_validation_research_2026_10.md).<br>
 **Reviewed baseline:** Git commit `24479a9`, with a clean working tree before this document.<br>
 **Delivery review baseline:** Git commit `d5ea6ca`, containing v0.2 and the first research round.<br>
-**Authority:** recommendation only. Recording this assessment does not adopt a design,
-change scope or cost, promote a drawing, or close a professional design gate.
+**Implementation baseline:** Git commit `6808378`; owner authorization recorded in D-084.<br>
+**Authority:** software coordination workflow authorized. No changed house design,
+construction scope or cost, drawing promotion or professional gate closure is adopted by this plan.
 
-**Revision note:** v0.5 corrects the scope: changes originate in repository data, scenario
+**Revision note:** v0.6 records the implemented first increment and its remaining acceptance
+gates. v0.5 corrected the scope: changes originate in repository data, scenario
 parameters and Python code. SVGs display generated results and findings; there is no
 graphical editing capability in this plan. The implementation has six phases and 19
 subphases, each with dependencies, scope, outputs and completion criteria. The 25 research
 investigations support source-driven propagation and validation; R23 is revised for
 read-only representations. The owner's examples are illustrations, not diagnosed clashes.
-All proposed capabilities remain unimplemented by this documentation update.
+Implementation evidence and commands are in the [working workflow](connected_coordination_workflow.md)
+and [source inventory](connected_source_inventory.md). The phase specifications below
+remain the completion contract; an implemented subset does not close the entire roadmap.
+
+### Implementation checkpoint — 2026-10-02
+
+Run `python3 -m dreamhouse.coordination` to build an isolated review, and append `--check`
+to verify its source and artifact freshness. Repository JSON changes feed one resolver,
+one evaluator, seven SVG projections and a read-only HTML index. Current aliases remain
+separately published. The baseline introduces no hypothetical clash or geometric change.
+
+| Subphase | Implemented evidence | Remaining exit-gate work |
+| --- | --- | --- |
+| 0.1 | Audited transitive source chain, field ownership, native aliases and all 27 current drawings; machine-readable inventory with source hashes | Complete for the first increment; refresh when consumers change |
+| 0.2 | Historical tests retained; current geometry/quantity and source-to-view regression fixtures | Complete for the first increment |
+| 0.3 | Current PB b37/P2 b28 adapter; explicit quantity-family mapping; 123.84 m² vertical and 23.04 m² rooflight parity | Complete for enrolled measurements; unknowns remain declared |
+| 1.1 | 105 identified entities, shared axes/datums, aliases, host/space relationships and geometry capabilities | Extend beyond enrolled families only from actual sources |
+| 1.2 | Reference validation and conservative complete dependency inventory | Finer type/filling relationships and explicit extensible calculation graph; no minimal impact graph claimed |
+| 1.3 | Strict JSON/study validation, one resolver, separate input/model hashes, duplicate/non-finite rejection | Broader family schema/migration contract as authoring expands |
+| 2.1 | Pinned study JSON, expected-value preconditions, supported parameter updates and atomic failed-build behaviour | Additional operations remain unsupported rather than implicitly accepted |
+| 2.2 | Generic opening/host/overlap/known-column rules, module consistency, capability report and professional gates | Adapt existing equipment, programme, structural and engineering evaluators to the current snapshot |
+| 2.3 | Full pair reevaluation, before/after entity changes and evidence-preserving finding lifecycle | Automatic evidence invalidation for future discipline consumers |
+| 3.1 | New plans/elevations/details/schedule consume the same injected snapshot without hidden source reloads | Migrate relevant existing publication consumers after equivalence review |
+| 3.2 | Stable view/occurrence/entity IDs and parameter-derived dimensions | Named anchor lifecycle, section occurrences and callout-target migration fixtures |
+| 3.3 | Seven review SVGs, linked entity/issue review, a machine-readable occurrence denominator and explicit unknowns | Complete the section/layer/interface plate specified in §4.4; fixed-font PNG export and dimension-anchor coverage |
+| 4.1 | One command, complete manifest, content-addressed packages, deterministic rebuilds, source recheck and atomic candidate pointer | Implemented for the seven-view package |
+| 4.2 | Broad source/code CI triggers, full regression run and review artifact upload | Fixed renderer/font environment, contact sheets and visual comparison evidence; slower discipline analysis not yet enrolled |
+| 4.3 | Candidate completion, check status and construction authority separated; failed build preserves prior review | Current-catalog promotion transaction and stable-alias reader migration |
+| 5.1 | Located doors, space/host context, stair envelopes and plan reservations already identified | Remaining wall/structural families and authoring/view coverage |
+| 5.2 | Opening-to-cost mapping uses the same resolved quantities and retains unknown costs | Stair sections, wall mass/load and engineering dependencies |
+| 5.3 | No route/product geometry fabricated | Services, operation/removal envelopes and phased handover remain planned |
+| 5.4 | All 27 current outputs explicitly labelled pending migration | Full current-set rollout and extension acceptance remain planned |
+
+The next implementation gate is to finish Phase 2's discipline adapters and Phase 3's
+section/detail and occurrence coverage, then qualify the broader publication workflow.
+The complete gate sequence remains below; later context enrollment is not evidence that
+an earlier engineering or visual acceptance gate has passed.
+
+Verification of this increment: **353 repository tests passed**, lint passed, the 27
+current SVG/PNG pairs retained valid provenance, and the candidate reproduced and passed
+its source/artifact freshness check. The baseline has 53 PASS / 138 OPEN / zero FAIL
+findings; seven unresolved PB door spans are recorded under CF-013. See the workflow's
+verification table for scope and commands.
 
 ## 1. Recommendation and project intent
 
@@ -48,8 +92,8 @@ continues to govern every value and unresolved interface.
 Progress can therefore mean reducing uncertainty, exposing a dependency or making a
 proposal easier to evaluate before any new architectural decision is made.
 
-Start with **Phase 0: establish the current baseline and its source ownership**. The first
-useful output is a comparison report for current sources and window measurements. The
+The implemented increment starts with **Phase 0: establish the current baseline and its source ownership**.
+Its first output is the source inventory and current-window measurement comparison. The
 core change/evaluation mechanism drives all generated outputs. [Section 5](#5-phases-and-subphases)
 is the implementation sequence; section 8.1 maps the earlier C01–C06 packages into it.
 
@@ -107,7 +151,7 @@ python3 -m unittest dreamhouse.structure.tests.test_integrated_pipeline dreamhou
 | --- | --- | --- |
 | Current drawings use PB b37 and P2 b28, while the default integration scenario still loads PB b05 and P2 b15. | [Current catalog](../../planos/actual/catalog.json), [scenario manifest](../../dreamhouse/model/project_v04.json), [model loader](../../dreamhouse/model/io.py). | A reproducible integrated calculation can still represent an earlier house state. |
 | The earlier integrated opening schedule gives 96.78 m² of vertical glazing; the current inputs give 123.84 m². | Read-only calls to [the opening schedule builder](../../dreamhouse/envelope/openings.py), using the default scenario and then the PB b37/P2 b28 loaders with the same rooflight input. | File provenance alone does not establish that disciplines consume the same state. These are different scenario totals, not an approved scope or cost delta. |
-| Supplying current inputs to the quantity ledger classifies the two workstation windows as rooflight glazing. | [Quantity ledger](../../dreamhouse/quantities/ledger.py): the fallback assembly assignment includes `PB.workstation_glazing`. The probe assigned 21.96 m² for `GLZ-WS-A` and 5.40 m² for `GLZ-WS-B` to `ROOFLIGHT-GLAZING`. | Updating sources also requires checking semantic mappings; a correct area can enter the wrong assembly. |
+| The reviewed quantity ledger classified current workstation windows as rooflight glazing. **Corrected in the first increment.** | [Quantity ledger](../../dreamhouse/quantities/ledger.py) now explicitly maps `PB.workstation_glazing` to `PB-WORKSTATION-GLAZING`; regression fixtures retain 21.96 m² for `GLZ-WS-A` and 5.40 m² for `GLZ-WS-B`. | Unknown families fail with a diagnostic. The corrected classification supplies no missing price or budget authority. |
 | Graphic QA is advanced in five pilots but has not become acceptance coverage for the current drawing set. | [Pilot contact audit v0.7](../08_investigacion/svg_pilot_contact_audit_v0.7.md). | Existing work can support a controlled rollout to current drawings. |
 | GP01 assigns model-reference identifiers from positions in the copied source SVG. | [Ground-floor pilot generator](../../dreamhouse/svg/pilot_ground_floor.py), including `PB-SOURCE-{source_index:03d}`. | These identify copied drawing nodes, rather than a persistent building element shared by plan, elevation and quantities. |
 
@@ -416,7 +460,8 @@ completeness and design acceptability are separate conditions.
 The phases below replace the earlier C01–C06 delivery order. Every phase has an observable
 exit gate; each subphase states its dependencies, scope and completion evidence. Phase
 completion means that its software/data contract works for the stated scope, not that
-the house is approved for construction. All phases are currently **planned**.
+the house is approved for construction. The implementation checkpoint above records
+completed subsets and outstanding gates; whole-project rollout is not complete.
 
 ```mermaid
 flowchart LR

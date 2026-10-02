@@ -1,8 +1,8 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 1.5
-**Date:** 2026-08-21
+**Version:** 1.6
+**Date:** 2026-10-02
 **Language note:** controlled English translation under D-044; D-063 incorporated into
 CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
 CF-006 without freezing products, MEP, joinery, or cost; D-078 changes Side A workstation
@@ -13,7 +13,8 @@ D-080 replaces the undifferentiated P2 wall thicknesses without closing acoustic
 structural, wind, hygrothermal, product or cost gates; D-082/CF-012 corrects the rear
 foldout-ladder typology without treating it as a required second exit; D-083 coordinates
 bedroom and desk-window geometry without closing site, solar, privacy, safe-glazing,
-fall-protection, structural, building-physics, drainage or cost gates.
+fall-protection, structural, building-physics, drainage or cost gates. D-084's source audit
+records CF-013 for inconsistent PB door anchors without selecting replacement geometry.
 
 ## Precedence
 
@@ -244,6 +245,29 @@ but it does not resolve the project's required number or type of exits.
   emergency-drill plan; comparable delivered-and-installed quotations.
 - **Status:** critical, open. D-082 resolves the requested device typology and drawing
   error only. D-021 remains the governing fire/life-safety decision gate.
+
+### CF-013 — PB door anchors differ between plan, detail and elevation generators
+
+- **Evidence:** `pb_b05.json` defines core `door_y`/`door_width` and rear
+  `exterior_doors[].y`/`width` without an explicit anchor convention. In
+  [`generate_pb_b05.py`](../../dreamhouse/generate_pb_b05.py), the plan passes raw
+  `door_y` to the swing helper; the enlarged core detail begins its opening line at
+  `door_y - 0.45`. Rear plan openings use `y..y+width`, whereas the enlarged core
+  detail and [`generate_pb_b37.py`](../../dreamhouse/generate_pb_b37.py)'s rear
+  elevation begin at `y - 0.50`. These representations therefore do not establish a
+  single shared opening span. Heights are also absent for the core/rear door records.
+- **Affected entities:** PB core doors PAN/BOD/ESC/BAN/HOM and rear EXT-BOD/EXT-ESC.
+  New coordination IDs `PB-DOOR-*` distinguish the core instances from P2 space IDs.
+- **Interim rule:** preserve published sources and their authority. The connected
+  candidate retains the original scalar anchors and widths but marks the opening
+  geometry unresolved. Do not choose an endpoint/centre interpretation silently or
+  present those doors as having passed interference checks. EXT-ESC additionally
+  retains CF-011's independent vertical-discharge conflict.
+- **Required evidence:** architecture coordination must declare the intended host,
+  opening endpoints, leaf/swing convention and height per door, reconcile all affected
+  projections and record the resulting decision before current drawing promotion.
+- **Status:** open source/representation conflict, identified during D-084 implementation
+  on 2026-10-02. No changed door location or construction detail is adopted.
 
 ## Resolution rule
 

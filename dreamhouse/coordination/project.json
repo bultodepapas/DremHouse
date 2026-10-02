@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "scenario_id": "CURRENT_COORDINATION",
+  "base": "PB_B37_P2_B28",
+  "status": "coordination candidate; not construction or publication authority",
+  "base_model_hash": null,
+  "changes": {}
+}

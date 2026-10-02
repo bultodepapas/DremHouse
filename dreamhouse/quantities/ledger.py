@@ -8,6 +8,13 @@ from typing import Any
 from dreamhouse.architecture import evaluate_room_program
 from dreamhouse.envelope import build_opening_schedule
 
+_ASSEMBLY_BY_SOURCE_AND_KIND = {
+    ("PB.technical_glazing", "vertical_glazing"): "PB-TECHNICAL-GLAZING",
+    ("PB.workstation_glazing", "vertical_glazing"): "PB-WORKSTATION-GLAZING",
+    ("P2.windows", "vertical_glazing"): "P2-WINDOWS",
+    ("ROOFLIGHTS.rooflights", "rooflight"): "ROOFLIGHT-GLAZING",
+}
+
 
 @dataclass(frozen=True)
 class QuantityRecord:
@@ -27,12 +34,15 @@ def build_quantity_ledger(
     openings = build_opening_schedule(pb, p2, rooflights)
     records: list[QuantityRecord] = []
     for item in openings["items"]:
-        if item["source"] == "PB.technical_glazing":
-            assembly = "PB-TECHNICAL-GLAZING"
-        elif item["source"] == "P2.windows":
-            assembly = "P2-WINDOWS"
-        else:
-            assembly = "ROOFLIGHT-GLAZING"
+        source = item.get("source", "<missing>")
+        kind = item.get("kind", "<missing>")
+        assembly = _ASSEMBLY_BY_SOURCE_AND_KIND.get((source, kind))
+        if assembly is None:
+            raise ValueError(
+                "Unsupported opening quantity family: "
+                f"id={item.get('id', '<missing>')!r}, "
+                f"source={source!r}, kind={kind!r}"
+            )
         records.append(
             QuantityRecord(
                 id=f"Q-{item['id']}-AREA",

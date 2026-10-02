@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.20
+**Version:** 0.21
 **Date:** 2026-10-02
 
 > [!NOTE]
@@ -11,6 +11,11 @@
 
 ## Start with the current project state
 
+- [Connected coordination workflow](06_gestion_y_obra/connected_coordination_workflow.md):
+  run Python over repository sources to generate an isolated model, checks, quantities,
+  seven connected SVG views and a read-only review; includes the remaining rollout limits.
+- [Connected source and consumer inventory](06_gestion_y_obra/connected_source_inventory.md):
+  current loader lineage, element ownership, known geometry gaps and all 27 published drawings.
 - [Current drawings and visual index](02_arquitectura/planos_actuales.md): the fastest
   visual reading of the active coordinated state.
 - [Complete current drawing set](../planos/README.md): all stable SVG/PNG pairs, their
@@ -211,10 +216,11 @@ they stay stable while their explicitly promoted versioned source can advance.
 
 - [Master plan](06_gestion_y_obra/plan_maestro.md)
 - [Connected project coordination — recommended next step](06_gestion_y_obra/connected_project_coordination_next_step.md):
-  v0.5 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
+  v0.6 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
   fixtures: repository source changes feed one resolved model, Python calculations/checks
   and regenerated SVGs and reports. SVGs are read-only outputs. Each stage defines
-  dependencies, scope and completion evidence; recommendation only.
+  dependencies, scope and completion evidence; records the implemented first increment
+  under D-084 and the remaining acceptance gates.
 - [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
   detailed D-054/D-055 roadmap and implemented 0.4-I01 vertical slice for the canonical scenario model,
   real-equipment spatial validation, Great Wall/column alternatives, opening-aware

@@ -1,9 +1,9 @@
 # Base y control de costos
 
 **Estatus:** activo como target; no es presupuesto contractual  
-**Versión:** 0.3.25
+**Versión:** 0.3.26
 **Fecha de precios declarada por la fuente:** 2026-08-11  
-**Document update:** 2026-08-21
+**Document update:** 2026-10-02
 **Fuente activa:** `BORN/Dream House — Presupuesto Técnico y Control de Costos v0.2.docx`  
 **Desglose atómico:** [Presupuesto desglosado de control](presupuesto_desglosado_de_control.md)
 — APU de hipótesis por partida (cantidades, precios unitarios, fases F1/F2 y
@@ -630,6 +630,7 @@ recognized before developed details and comparable local quotations.**
 
 | Versión | Fecha      | Cambio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.3-AI | 2026-10-02 | D-084 corrects the software quantity-family mapping: the existing 27.36 m² of PB workstation glazing belongs to `PB-WORKSTATION-GLAZING`, not rooflight glazing. The current-source candidate retains 123.84 m² vertical glazing and 23.04 m² rooflight area. Missing workstation rates/mappings remain OPEN and the approved candidate budget total remains null. This corrects classification only; **no construction scope, quantity adoption, price, saving, phase-total or target change is recognized.** |
 | 0.3-AH  | 2026-08-21 | D-083 adds 4.035 m² to the five bedroom openings and 1.530 m² to the two desk openings, for 5.565 m² additional vertical glazing and 123.84 m² active PB + P2 vertical glazing. Reconcile chapters 12/13 and facade, structure, safety, curtain and desk interfaces; add unpriced alert `13.08`. The 8.64 m² dining-window study is excluded. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AG  | 2026-08-21 | D-082 replaces the generic inclined retractable-stair reserve with one operable rescue window and one proprietary wall-mounted vertical foldout-ladder package. Add TBC alerts `13.07` and `22.06`; price window, complete ladder, anchors, facade reinforcement, flashing, transfer aids, freight, installation and inspection without duplication. **No price, saving, increase, contingency, phase-total or target change is recognized.** |
 | 0.3-AF  | 2026-08-21 | D-080 differentiates P2 walls at 90/150/200/230 mm by duty and screens about 8.15 m² less wall footprint than predecessor nominal thicknesses. Chapters 09/10/14/23 require one-to-one remeasurement; add TBC alerts `09.04` and `14.08` to prevent facade/lining double counting. **No price, saving, increase, contingency, phase-total or target change is recognized.** |

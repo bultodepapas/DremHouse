@@ -14,6 +14,7 @@ dreamhouse-optimize-roof = "dreamhouse.structure.optimize_roof:main"
 dreamhouse-ground-structure = "dreamhouse.structure.ground_structure:main"
 dreamhouse-e1-screening = "dreamhouse.structure.e1_screening:main"
 dreamhouse-integrate = "dreamhouse.pipeline:main"
+dreamhouse-coordinate = "dreamhouse.coordination.pipeline:main"
 
 [project.optional-dependencies]
 optimization = ["scipy>=1.17,<1.18", "pymoo>=0.6.2,<0.7", "SALib>=1.5,<2"]
@@ -38,6 +39,10 @@ include = ["dreamhouse*"]
   "pb_b32_delta.json",
   "pb_b33_delta.json",
   "pb_b34_delta.json",
+  "pb_b35_delta.json",
+  "pb_b36_delta.json",
+  "pb_b37_delta.json",
+  "window_daylight_d083.json",
   "stair_core.json",
   "p2_b06.json",
   "p2_b09.json",
@@ -57,6 +62,7 @@ include = ["dreamhouse*"]
   "p2_b25_delta.json",
   "p2_b26_delta.json",
   "p2_b27_delta.json",
+  "p2_b28_delta.json",
   "rooflight_b08.json",
   "rooflight_b11.json",
   "rooflight_b12.json",
@@ -65,6 +71,7 @@ include = ["dreamhouse*"]
 "dreamhouse.model" = ["*.json"]
 "dreamhouse.equipment" = ["*.json"]
 "dreamhouse.cost" = ["*.json"]
+"dreamhouse.coordination" = ["*.json"]
 
 [tool.ruff]
 line-length = 100
