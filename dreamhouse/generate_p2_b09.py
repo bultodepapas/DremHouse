@@ -713,6 +713,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
 
     egress = model.get("egress_reserve")
     if egress:
+        pb_screen_supported = True
         access_space = by_id.get(egress.get("access_space"))
         start = float(egress["from"])
         width = float(egress["width"])
@@ -738,7 +739,28 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             )
             ladder_axis = float(egress["ladder_axis_y"])
             zone = egress["clear_deployment_zone_m"]
-            pb_screen = egress["pb_opening_screen"]
+            pb_screen = egress.get("pb_opening_screen", {})
+            pb_screen_supported = all(
+                isinstance(pb_screen.get(key), (int, float))
+                and math.isfinite(float(pb_screen[key]))
+                for key in (
+                    "nearest_opening_to_y",
+                    "clear_zone_from_y",
+                    "minimum_clearance_m",
+                )
+            )
+            pb_clearance_ok = (
+                math.isclose(
+                    ladder_axis - float(zone["along_wall"]) / 2.0,
+                    float(pb_screen["clear_zone_from_y"]),
+                    abs_tol=tolerance,
+                )
+                and float(pb_screen["clear_zone_from_y"])
+                - float(pb_screen["nearest_opening_to_y"])
+                >= float(pb_screen["minimum_clearance_m"]) - tolerance
+                if pb_screen_supported
+                else True
+            )
             egress_ok = (
                 common_egress_ok
                 and escape_window is not None
@@ -765,14 +787,7 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
                 and 0.55 - tolerance <= float(egress["rung_width_m"]) <= 0.65 + tolerance
                 and float(egress["usable_rung_width_m"]) <= float(egress["rung_width_m"])
                 and float(egress["served_level_m"]) <= float(egress["maximum_climb_m"])
-                and math.isclose(
-                    ladder_axis - float(zone["along_wall"]) / 2.0,
-                    float(pb_screen["clear_zone_from_y"]),
-                    abs_tol=tolerance,
-                )
-                and float(pb_screen["clear_zone_from_y"])
-                - float(pb_screen["nearest_opening_to_y"])
-                >= float(pb_screen["minimum_clearance_m"]) - tolerance
+                and pb_clearance_ok
                 and egress.get("code_role") == "supplementary_escape_rescue_device"
             )
         else:
@@ -1027,6 +1042,16 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
         {"rule_id": rule_id, "status": "PASS" if passed else "FAIL", "message": message}
         for rule_id, passed, message in checks
     ]
+    if egress and _is_foldout_escape_ladder(egress) and not pb_screen_supported:
+        for result in results:
+            if result["rule_id"] == "P2-RETRACTABLE-STAIR-RESERVE":
+                result["status"] = "OPEN"
+                result["message"] = (
+                    "P2 rescue-window and ladder geometry are screened; comparison with PB "
+                    "openings is OPEN because CF-013 leaves the PB opening locations unresolved "
+                    "(and CF-011 leaves rear discharge level open)."
+                )
+                break
     primary_rebalance = model.get("primary_suite_rebalance")
     primary_bath = sum(
         space["w"] * space["d"]
@@ -1164,18 +1189,71 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
     return results
 
 
-def _report(model: dict[str, Any]) -> dict[str, Any]:
+def _assert_reviewable_snapshot(model: dict[str, Any]) -> None:
+    """Reject malformed/non-finite source data before drawing a review candidate."""
+
+    try:
+        envelope = model["envelope"]
+        spaces = model["spaces"]
+        windows = model["windows"]
+        if not isinstance(spaces, list) or not isinstance(windows, list):
+            raise TypeError("spaces/windows must be arrays")
+        identifiers = [space["id"] for space in spaces]
+        if len(identifiers) != len(set(identifiers)):
+            raise ValueError("space identifiers are not unique")
+        numeric_values = [envelope[key] for key in ("x", "length", "width")]
+        numeric_values.extend(
+            space[key] for space in spaces for key in ("x", "y", "w", "d")
+        )
+        for window in windows:
+            for key in ("id", "from", "to", "sill", "height"):
+                if key not in window:
+                    raise KeyError(f"window {window.get('id', '<unknown>')} lacks {key}")
+            numeric_values.extend(window[key] for key in ("from", "to", "sill", "height"))
+            if "modules" in window:
+                numeric_values.append(window["modules"])
+                if not isinstance(window["modules"], int) or window["modules"] < 1:
+                    raise ValueError(f"invalid module count for {window['id']}")
+        if not all(math.isfinite(float(value)) for value in numeric_values):
+            raise ValueError("snapshot contains a non-finite dimension")
+        if float(envelope["length"]) <= 0 or float(envelope["width"]) <= 0:
+            raise ValueError("envelope dimensions must be positive")
+        if any(float(space[key]) <= 0 for space in spaces for key in ("w", "d")):
+            raise ValueError("space dimensions must be positive")
+        if any(
+            float(window["to"]) <= float(window["from"])
+            or float(window["height"]) <= 0
+            or float(window["sill"]) < 0
+            for window in windows
+        ):
+            raise ValueError("window dimensions or sill are invalid")
+    except (KeyError, TypeError, ValueError, OverflowError) as error:
+        raise P2ModelError(f"Malformed connected P2 snapshot: {error}") from error
+
+
+def _report(
+    model: dict[str, Any], *, review_only: bool | None = None
+) -> dict[str, Any]:
+    if review_only is None:
+        review_only = bool(model.get("_review_only_snapshot", False))
+    if review_only:
+        _assert_reviewable_snapshot(model)
     checks = validate_model(model)
-    return {
+    report = {
         "revision": model["revision"],
         "passed": sum(item["status"] == "PASS" for item in checks),
         "open": sum(item["status"] == "OPEN" for item in checks),
         "failed": sum(item["status"] == "FAIL" for item in checks),
         "checks": checks,
     }
+    if review_only:
+        report["review_only"] = True
+    return report
 
 
 def _assert_renderable(report: dict[str, Any]) -> None:
+    if report.get("review_only") is True:
+        return
     failures = [item for item in report["checks"] if item["status"] == "FAIL"]
     if failures:
         detail = "; ".join(f"{item['rule_id']}: {item['message']}" for item in failures)
@@ -3466,7 +3544,7 @@ def build_differentiated_wall_family_detail(model: dict[str, Any]) -> str:
                 _text(cursor + width / 2, y + height + 20, str(index), 6.6, anchor="middle", weight=700)
             )
             cursor += width
-        nominal = int(round(float(assembly["nominal_total_m"]) * 1000.0))
+        nominal = round(float(assembly["nominal_total_m"]) * 1000.0)
         layer_sum = sum(float(layer["nominal_mm"]) for layer in assembly["room_side_to_room_side_layers"])
         parts.extend(
             [

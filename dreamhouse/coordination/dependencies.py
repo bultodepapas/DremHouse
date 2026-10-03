@@ -2,7 +2,33 @@
 
 from __future__ import annotations
 
-from dreamhouse.coordination.model import digest
+from dreamhouse.coordination.model import CoordinationError, digest
+
+
+def validate_consumers(consumers: list[dict]) -> list[str]:
+    """Validate consumer references and return a deterministic dependency-first order."""
+    by_id = {item["id"]: item for item in consumers}
+    if len(by_id) != len(consumers):
+        raise CoordinationError("Duplicate calculation/view consumer identity")
+    visiting, complete, order = set(), set(), []
+
+    def visit(identifier: str) -> None:
+        if identifier not in by_id:
+            raise CoordinationError(f"Unknown consumer dependency: {identifier}")
+        if identifier in visiting:
+            raise CoordinationError(f"Cyclic calculation/view dependency at {identifier}")
+        if identifier in complete:
+            return
+        visiting.add(identifier)
+        for dependency in sorted(by_id[identifier]["depends_on"]):
+            visit(dependency)
+        visiting.remove(identifier)
+        complete.add(identifier)
+        order.append(identifier)
+
+    for identifier in sorted(by_id):
+        visit(identifier)
+    return order
 
 
 def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict:
@@ -20,7 +46,9 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
                 "artifact": view["file"],
                 "entity_ids": sorted({v["entity_id"] for v in view["occurrences"]}),
                 "context_inputs": ["geometry", "discipline_inputs"],
-                "depends_on": ["evaluation"],
+                "depends_on": ["structural_screening"]
+                if view["view_id"].startswith("structure-")
+                else ["evaluation"],
                 "state": "recomputed",
             }
         )
@@ -40,6 +68,26 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
                 "state": "recomputed",
             }
         )
+    consumers.append(
+        {
+            "id": "house_extensions",
+            "artifact": "extensions.json",
+            "entity_ids": sorted(entities),
+            "context_inputs": ["geometry", "discipline_inputs"],
+            "depends_on": ["evaluation"],
+            "state": "recomputed; missing engineering data remains unknown",
+        }
+    )
+    consumers.append(
+        {
+            "id": "structural_screening",
+            "artifact": "structural_screening.json",
+            "entity_ids": sorted(entities),
+            "context_inputs": ["geometry", "discipline_inputs.structure"],
+            "depends_on": ["evaluation"],
+            "state": "recomputed from source hypotheses; no engineering approval",
+        }
+    )
     consumers.extend(
         [
             {
@@ -61,6 +109,7 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
         ]
     )
     changes = evaluation["changes"]
+    dependency_order = validate_consumers(consumers)
     changed = (
         set(changes["added"])
         | set(changes["removed"])
@@ -122,6 +171,7 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
             for key, entity in sorted(entities.items())
         },
         "consumers": consumers,
+        "dependency_order": dependency_order,
         "change_impact": {
             "changed_entity_ids": sorted(changed),
             "changed_context_paths": sorted(context_changes),
@@ -130,5 +180,5 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
             "recomputed_consumer_ids": sorted(row["id"] for row in consumers),
         },
         "professional_evidence": evidence,
-        "publication": "Current catalog consumers remain unmigrated; this report does not certify their freshness against a study.",
+        "publication": "Catalog consumer coverage is recorded in drawing_inventory.json; review release and adopted historical aliases retain separate authority.",
     }

@@ -1,8 +1,8 @@
 # Connected coordination workflow
 
-**Version:** 0.3<br>
-**Date:** 2026-10-02  
-**Status:** two implemented source-to-review increments; schematic coordination only<br>
+**Version:** 0.4<br>
+**Date:** 2026-10-03<br>
+**Status:** connected consumer migration and review publication; schematic coordination only<br>
 **Source:** owner authorization to implement the [phased plan](connected_project_coordination_next_step.md),
 the [current-source audit](connected_source_inventory.md), PB b37/P2 b28/D-083, SC-01 and rooflight b12.  
 **Decision:** D-084. Software workflow authority does not adopt a changed house design.
@@ -16,10 +16,16 @@ from the project stage gates and the two construction phases in the
 
 ## What now works
 
+The [migration and extension guide](connected_coordination_migration_and_extension_guide.md)
+extends the increment-02 workflow below with catalog drawing consumers, wall/stair/service
+records, capability coverage, complete review releases, rollback and optional watching.
+All operations use the same source snapshot. The previous verification counts remain
+dated evidence; the migration guide records the current integrated checks.
+
 One Python command resolves the current architectural sources into a shared model,
 evaluates supported rules, measures openings, reconciles the available cost mappings and
-generates eight connected review SVGs plus a read-only HTML index. Changes originate in a
-JSON study in the repository. Generated SVGs are outputs; no graphical editor or SVG
+generates eight annotated review SVGs and 27 native catalog-consumer SVGs, with read-only
+HTML indexes. Changes originate in repository sources or an explicit JSON study. Generated SVGs are outputs; no graphical editor or SVG
 write-back exists.
 
 The first registry contains 105 entities: 14 openings including the excluded dining
@@ -31,6 +37,18 @@ The host lines do not select wall assemblies; the reservations do not select col
 The five `GLZ-*` bedroom elevation references are aliases of the corresponding `W-*`
 entities. Their dimensions are calculated once. The new views and opening measurements
 use those same objects, avoiding duplicate window quantities.
+
+A complete baseline review can also be released and embedded in the showcase:
+
+```bash
+python3 -m dreamhouse.coordination --visuals --require-no-fail --release
+python3 -m dreamhouse.coordination --check-release
+python3 .github/scripts/build_showcase.py --site-dir .build/showcase --coordination-out .build/coordination
+```
+
+Use `--watch` for optional debounced candidate rebuilds, and `--rollback <release-id>` to
+select an intact retained review. Read the migration guide for freshness and authority
+limits. No command edits SVGs or adopts a changed study.
 
 ```mermaid
 flowchart LR
@@ -92,7 +110,9 @@ The package includes:
 | `disciplines.json` | Bounded programme/equipment/workstation checks and source-referenced support-line plan comparisons |
 | `dependencies.json` | Full-rebuild consumer relationships, entity/context change impact and outstanding professional evidence |
 | `cost.json` | Existing cost-code reconciliation; unmapped or ineligible costs stay unknown; no approved total |
-| `drawing_inventory.json` | All 27 published aliases, source hashes and pending migration status |
+| `drawing_inventory.json`, `drawings/index.html` | All 27 catalog consumers, source hashes, generated review sheets and explicit migration/engineering limits |
+| `structural_screening.json` | Recomputed E0/E1 source hypotheses and raw checks; unknown current loads/member choices remain explicit and supply no design approval |
+| `extensions.json`, `capabilities.json` | Wall/stair/phase/service/maintenance records and entity/family/operation/view/rule coverage |
 | `view_inventory.json`, `anchor_lifecycle.json` | Occurrence/annotation coverage, anchor coordinates, dimension/callout checks and before/after anchor changes |
 | Eight SVGs and `index.html` | PB/P2 plans, four elevations, opening details and the GLZ-WS-A section/interface review |
 | Optional PNGs, `contact_sheet.png`, `visual_manifest.json`, `visual_comparison.json`, `visual-diff/` | Pinned-font previews and exact pixel-change evidence; no automatic visual-approval threshold |
@@ -156,6 +176,8 @@ active windows/doors; rooflights support `x_m`, `y_m`, `length_m` and `width_m`.
 fields resolve through the existing host and level. Host reassignment, element addition,
 deletion, room restructuring, product adoption and unresolved PB door placement are not
 implemented authoring operations. An unsupported operation fails with a diagnostic.
+Module-count edits apply to window openings only; door panel assemblies are not modelled.
+
 Supplying a missing door height in a study creates an explicit assumption for that study;
 it does not resolve the source design or approve the product.
 
@@ -197,15 +219,17 @@ clearance failures require product/layout review and remain OPEN applicability f
 Four SC-01 reservations and six historical E0 positions receive plan comparisons against
 current spaces/openings; all ten remain OPEN, without selected solids or verified heights.
 
-Every generated view declares stable identities and named anchors. The builder checks
-anchor references, supported linear measurements, callout destinations and per-view
-coverage before publication. `window-sections.svg` compares GLZ-WS-A opening/worktop
+Every generated view declares a stable view identity. Named anchors and entity occurrences
+are checked where enrolled; the inventory discloses each sheet's annotation coverage.
+The builder checks those references, supported linear measurements and callout destinations
+before publication. `window-sections.svg` compares GLZ-WS-A opening/worktop
 levels and exposes unresolved control-layer interfaces; it supplies no invented assembly.
 
 CF-009, CF-010, CF-011 and CF-012 remain open. The command does not calculate a new
 structural design, fire approval, daylight simulation, MEP route, wall mass, thermal
-performance or installed budget. Those consumers must be adapted and supplied with
-their actual required data before their results can become part of the connected issue.
+performance or installed budget. Those analyses require their actual inputs and qualified
+adapters before their results can become part of the connected issue. The 27 graphical
+catalog consumers already regenerate from the shared snapshot within their declared scope.
 
 The source audit also records **CF-013**: PB core/rear door anchors differ between
 archived plan, detail and elevation renderers. Their scalar source values remain in the
@@ -225,7 +249,7 @@ closure, including geometry and discipline-context changes. All consumers are re
 this is not a selective cache. Professional evidence remains outstanding and tied to the
 model fingerprint, without manufacturing an approval.
 
-Schema-2 packages distinguish `input_hash` from `issue_id`. The latter includes rendering
+Schema-3 packages distinguish `input_hash` from `issue_id`. The latter includes rendering
 configuration and package schema, so visual and nonvisual exports can coexist for the
 same source model. Font bytes and resvg/Pillow/FreeType versions participate in visual
 identity; `--check` verifies them against the current environment.
@@ -240,8 +264,9 @@ manual SVG change back into the model.
 
 A source edit after publication can make any previously built package stale; rerun
 `--check` or rebuild before relying on it. Candidate locking uses `fcntl` and currently
-targets Linux/macOS repository workflows. This is candidate publication only; atomic
-promotion of all current catalog aliases is a separate rollout task. For recovery,
+targets Linux/macOS repository workflows. `--release` publishes a complete baseline review
+through a single pointer; `--rollback` selects a retained release without claiming freshness.
+These review releases retain separate authority from adopted historical aliases. For recovery,
 open the desired retained issue's `index.html` and manifest; do not relabel it fresh
 without comparing it to its original inputs.
 
@@ -256,8 +281,8 @@ changed-pixel counts/bounds and flags size/configuration incompatibility without
 or imposing a pass threshold. Scenario labels and findings can also cause pixel changes;
 interpret them with entity/anchor changes. Its baseline is the archived current source
 state, not the last candidate. Cross-platform equivalence is not certified.
-Full engineered construction details and migration of the existing publication set remain
-acceptance work.
+Full engineered construction details require their actual design inputs. Catalog consumer
+migration and the showcase's review reader are described in the current migration record.
 
 ## Extension points and next acceptance gates
 
@@ -280,11 +305,10 @@ acceptance work.
   pixel evidence; rendering failure must preserve the previous complete package.
 
 Before extending authoring beyond openings, finish the phase gates recorded in the
-plan: qualify existing publication consumers against the shared snapshot and their
-annotation/occurrence contract; resolve missing source data before extending discipline
-claims. The bounded adapters, GLZ-WS-A plate and optional visual evidence do not complete
-the broader engineering or publication migration. The 27-row audit makes that remaining
-work explicit. No missing engineering geometry is filled in merely to advance a phase.
+plan: verify the coverage recorded for catalog consumers and resolve missing source data
+before extending discipline claims or study authoring. The migration guide specifies how
+to add a source, family, rule or drawing and reproduce the release. No missing engineering
+geometry is filled in merely to advance a phase.
 
 ## Retained increment 01 evidence — 2026-10-02
 
@@ -338,6 +362,6 @@ this reconciliation.
 
 ### Increment 02 verification — 2026-10-02
 
-The [increment 02 record](connected_coordination_increment_02.md) contains current test,
+The [increment 02 record](connected_coordination_increment_02.md) contains retained increment-02 test,
 artifact, annotation and visual-review evidence. The tables above preserve the earlier
 software and documentation checkpoints; their counts do not describe the extended package.

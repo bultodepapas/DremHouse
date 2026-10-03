@@ -1,8 +1,8 @@
 # Glossary and document statuses
 
 **Status:** active  
-**Version:** 0.4
-**Date:** 2026-10-02
+**Version:** 0.5
+**Date:** 2026-10-03
 **Language note:** controlled English translation under D-044; no change in meaning.
 **Source of coordination vocabulary:** D-084 and the implemented candidate workflow,
 including [increment 02](../06_gestion_y_obra/connected_coordination_increment_02.md).
@@ -52,6 +52,9 @@ their actual JSON fields and commands.
 | --- | --- |
 | Resolved snapshot | Independently constructed model for a named scenario; shared by checks and renderers; generated evidence, not a second editable master |
 | Active / study / context entity | Inclusion/role in the selected baseline: active input, excluded proposal, or contextual geometry; not approval or engineering readiness |
+| Review release | Verified immutable baseline candidate selected by a separate current pointer; may retain OPEN findings; does not adopt a study or replace the historical drawing catalog |
+| Rollback selection | Re-selection of an intact retained review; freshness is explicitly not revalidated until checked against current sources |
+| Capability report | Actual entity operations, occurrences and rule coverage; context records and unsupported geometry remain explicit |
 | Complete candidate | Required artifacts were generated and verified together; OPEN or FAIL findings may remain |
 | Fresh / stale | Current input and artifact hashes match / differ from the recorded build; freshness alone proves no design adequacy |
 | PASS / OPEN / FAIL finding | A named rule passed within its supported scope / remains unresolved / found a supported violation |

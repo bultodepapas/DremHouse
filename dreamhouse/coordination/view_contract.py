@@ -7,6 +7,8 @@ prevents publication instead of leaving a dimension or callout attached to old g
 from __future__ import annotations
 
 import math
+import posixpath
+from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree as ET
 
 from dreamhouse.coordination.model import CoordinationError
@@ -144,8 +146,21 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
             if callout is None:
                 raise CoordinationError(f"Orphan callout navigation in {view['view_id']}")
             target = views[callout["target_view_id"]]
-            destinations = {f"{target['file']}#{node}" for node in callout["anchor_targets"]}
-            if link["href"] not in destinations:
+            address = urlsplit(link["href"] or "")
+            linked_file = (
+                posixpath.normpath(
+                    posixpath.join(posixpath.dirname(view["file"]), unquote(address.path))
+                )
+                if address.path
+                else view["file"]
+            )
+            if (
+                address.scheme
+                or address.netloc
+                or address.query
+                or linked_file != target["file"]
+                or unquote(address.fragment) not in callout["anchor_targets"]
+            ):
                 raise CoordinationError(f"Incorrect callout navigation in {view['view_id']}")
     missing = [key for key, occurrences in by_entity.items() if not occurrences]
     return {

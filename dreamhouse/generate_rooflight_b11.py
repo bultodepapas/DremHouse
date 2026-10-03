@@ -53,7 +53,7 @@ def group_center(model):
     return ((min_x + max_x) / 2, (min_y + max_y) / 2)
 
 
-def validate(model, pb):
+def validate(model, pb, *, parameterize=False):
     rooflights = model["rooflights"]
     zone = model["double_height"]
     tolerance = model["center_tolerance_m"]
@@ -91,7 +91,12 @@ def validate(model, pb):
             f"Group centre Y={actual[1]:.2f} m versus double-height centre Y={target[1]:.2f} m",
         ),
         ("RL-NO-OVERLAP", not (overlap_x > 0 and overlap_y > 0), "Central rooflights remain separated"),
-        ("RL-AREA", math.isclose(sum(item["area"] for item in rooflights), 23.04, abs_tol=0.01), "Total rooflight area remains 23.04 m2"),
+        ("RL-AREA", (
+            all(math.isclose(item["area"], item["length"] * item["width"], abs_tol=0.000001)
+                for item in rooflights) if parameterize
+            else math.isclose(sum(item["area"] for item in rooflights), 23.04, abs_tol=0.01)
+        ), (f"Current nominal area {sum(item['length'] * item['width'] for item in rooflights):.2f} m2; source dimensions and areas agree"
+            if parameterize else "Total rooflight area remains 23.04 m2")),
         ("RL-ROOF-DIRECTION", model["roof"]["low_side"] == pb["roof"]["low_side"], "Roof direction matches pb_b05.json"),
     ]
     checks = [
@@ -117,12 +122,13 @@ def validate(model, pb):
     return checks
 
 
-def plan(model, report):
+def plan(model, report, *, parameterize=False):
     drawing_revision = model.get("drawing_revision", "R10")
     parts = header(
         "CENTRAL ROOFLIGHTS · DOUBLE-HEIGHT HALL",
         f"DH-ARQ-PLN-CUB-001-{drawing_revision}",
-        "group centre = X10.50 / Y9.00 m · tolerance ±0.10 m",
+        (f"reference centre X{center(model)[0]:.2f} / Y{center(model)[1]:.2f} m · tolerance ±{model['center_tolerance_m']:.2f} m"
+         if parameterize else "group centre = X10.50 / Y9.00 m · tolerance ±0.10 m"),
     )
     x0, y0, scale = 95.0, 185.0, 36.0
     parts.extend(
@@ -141,12 +147,14 @@ def plan(model, report):
         y = y0 + item["y"] * scale
         width = item["length"] * scale
         height = item["width"] * scale
+        occurrence = (f' id="roof-plan-{html.escape(item["id"], quote=True)}" data-entity-id="{html.escape(item["id"], quote=True)}"'
+                      if parameterize else "")
         parts.extend(
             [
-                f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="5" fill="#5f9eae" stroke="#173c46" stroke-width="3" class="central-rooflight"/>',
+                f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="5" fill="#5f9eae" stroke="#173c46" stroke-width="3" class="central-rooflight"{occurrence}/>',
                 f'<path d="M{x + 7} {y + height - 9} L{x + width - 7} {y + 9}" stroke="#d7eef2" stroke-width="3"/>',
                 text(x + width / 2, y + height / 2 - 3, item["id"], 8, 700, "middle"),
-                text(x + width / 2, y + height / 2 + 15, "4.80 x 2.40 m", 7, 700, "middle"),
+                text(x + width / 2, y + height / 2 + 15, f"{item['length']:.2f} x {item['width']:.2f} m" if parameterize else "4.80 x 2.40 m", 7, 700, "middle"),
             ]
         )
     target = center(model)
@@ -164,7 +172,7 @@ def plan(model, report):
             text(930, 938, f"OFFSET: {abs(actual[0] - target[0]):.2f} m X / {abs(actual[1] - target[1]):.2f} m Y", 10, 700, fill="#2e7252"),
             text(930, 978, f"RESULT: {report['passed']} PASS · {report['failed']} FAIL · {report['open']} OPEN", 11, 700),
             text(930, 1018, "The prior pair was centred in Y but 6.90 m forward of the hall centre in X.", 8.5),
-            text(930, 1042, "The new pair is symmetric as a group, not one continuous strip.", 8.5),
+            text(930, 1042, "Read current centre offsets and checks above; symmetry is not assumed." if parameterize else "The new pair is symmetric as a group, not one continuous strip.", 8.5),
             text(930, 1066, "NOT FOR CONSTRUCTION · structural and drainage coordination remain open.", 8.5, 700, fill="#a63f31"),
         ]
     )
@@ -174,12 +182,12 @@ def plan(model, report):
     return output
 
 
-def section(model):
+def section(model, *, parameterize=False):
     drawing_revision = model.get("drawing_revision", "R10")
     parts = header(
-        "CENTRAL DAYLIGHT · TRANSVERSE SECTION",
+        "DAYLIGHT · TRANSVERSE PROJECTION" if parameterize else "CENTRAL DAYLIGHT · TRANSVERSE SECTION",
         f"DH-ARQ-SEC-CUB-003-{drawing_revision}",
-        "two separated events centred around Y=9.00 m",
+        "all rooflights projected across Y; not a common X cut" if parameterize else "two separated events centred around Y=9.00 m",
     )
     x0, base, scale = 180.0, 850.0, 62.0
     roof = model["roof"]
@@ -202,11 +210,16 @@ def section(model):
             f'<line x1="{x0 + 18 * scale}" y1="{base}" x2="{x0 + 18 * scale}" y2="{y_b}" stroke="#172a33" stroke-width="4"/>',
         ]
     )
-    for item in model["rooflights"]:
+    for index, item in enumerate(model["rooflights"]):
         start, end = item["y"], item["y"] + item["width"]
+        occurrence = (f' id="roof-projection-{html.escape(item["id"], quote=True)}" data-entity-id="{html.escape(item["id"], quote=True)}"'
+                      if parameterize else "")
+        if parameterize:
+            parts.append(text(180, 966 + index * 26,
+                f"{item['id']} · X={item['x']:.2f}–{item['x']+item['length']:.2f} m · Y={start:.2f}–{end:.2f} m · {item['length']*item['width']:.2f} m2", 10))
         parts.extend(
             [
-                f'<line x1="{x0 + start * scale}" y1="{roof_y(start)}" x2="{x0 + end * scale}" y2="{roof_y(end)}" stroke="#5f9eae" stroke-width="14" class="central-rooflight-section"/>',
+                f'<line x1="{x0 + start * scale}" y1="{roof_y(start)}" x2="{x0 + end * scale}" y2="{roof_y(end)}" stroke="#5f9eae" stroke-width="14" class="central-rooflight-section"{occurrence}/>',
                 f'<polygon points="{x0 + (start + .15) * scale},{roof_y(start) + 14} {x0 + (end - .15) * scale},{roof_y(end) + 14} {x0 + (end - .45) * scale},{base - 30} {x0 + (start + .45) * scale},{base - 30}" fill="#cce8ee" opacity=".34"/>',
             ]
         )
@@ -218,8 +231,8 @@ def section(model):
             text(180, 915, "LATERAL A", 10, 700),
             text(1296, 915, "LATERAL B", 10, 700, "end"),
             text(1360, 270, "DESIGN INTENT", 11, 700),
-            text(1360, 305, "Two equal separated rooflights", 8.5),
-            text(1360, 332, "Centred as a group over the great void", 8.5),
+            text(1360, 305, "Projected envelopes; see dimensions" if parameterize else "Two equal separated rooflights", 8.5),
+            text(1360, 332, f"Current group Y={group_center(model)[1]:.2f} m" if parameterize else "Centred as a group over the great void", 8.5),
             text(1360, 359, "Diffused light; fixed glazing by default", 8.5),
             text(1360, 404, "OPEN", 10, 700, fill="#a63f31"),
             text(1360, 433, "purlin trimmers / diaphragm", 8.5),

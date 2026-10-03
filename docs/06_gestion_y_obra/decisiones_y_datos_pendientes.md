@@ -1,10 +1,20 @@
 # Decisiones y datos pendientes
 
 **Status:** active
-**Version:** 0.6
-**Date:** 2026-10-02
+**Version:** 0.7
+**Date:** 2026-10-03
 **Update source:** D-084, CF-013 and the connected implementation checkpoint; existing
 owner and professional inputs below remain open.
+
+## Migration status — 2026-10-03
+
+The [migration and extension guide](connected_coordination_migration_and_extension_guide.md) records implemented consumer migration and review release/recovery.
+Wall-line quantities, SC-01 level arithmetic, construction-phase reservations, service
+interfaces and maintenance requirements now have source-connected records. Missing wall
+heights/products, structural extents, service routes and installed/commissioned evidence
+remain OPEN. Geometry authoring remains in repository sources; the study interface lists
+its permitted operations in `capabilities.json`. Add/delete/rehost and general wall,
+room, stair or service-geometry editing are not supported study operations.
 
 ## Connected-system inputs and remaining work
 
@@ -15,6 +25,7 @@ separates that work from the missing project evidence below.
 
 | Pending item | Responsible evidence | Effect on connected coordination |
 | --- | --- | --- |
+| Inherited P2-W05 thickness note under CF-014 | Source owner: traceable revision reconciling inherited 297/300 mm prose with current 229 mm structured layers and 230 mm nominal schedule | Surface, mass, product and structural-load inference remains unsupported; bounded plan-line takeoffs remain independent |
 | Seven PB door anchors under CF-013 | Architect/source owner: supported hosts, spans and opening directions for the existing IDs | Until resolved, the doors remain identified but unprojected; topology is not treated as measured placement |
 | Current equipment and programme inputs | Architect, owner and equipment suppliers: actual envelopes, operating/service clearances and documented requirements | Bounded adapters now evaluate current programme and captured equipment benchmark data. D-065 supersedes the historic 15 m² closet criterion with the current 13.44 m² P2 rebalance record; the old comparison remains OPEN/inapplicable. Equipment benchmark fit/clearance outcomes retain raw evidence but all remain OPEN pending current layout/product applicability. |
 | Stair-column solids and wall/structure interfaces | Structural engineer with architect: justified member geometry, support assumptions and D-080 measured wall mass | Ten current plan-line candidates are compared with room/opening geometry and remain OPEN; plan findings cannot establish vertical interference, capacity, wall mass or dead-load adequacy. CF-009/CF-010 remain open |

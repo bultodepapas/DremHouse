@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """Build the Dream House README gallery and its static GitHub Pages showcase.
 
-The script intentionally uses only the Python standard library so the repository can
-regenerate its presentation in GitHub Actions without installing dependencies.
+The standalone gallery uses the Python standard library. Connected-review export also
+loads the local coordination verifier and its declared project dependencies.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
+import os
 import re
 import shutil
 import sys
@@ -21,6 +23,8 @@ REPO_URL = "https://github.com/bultodepapas/DremHouse"
 BEGIN = "<!-- showcase:begin -->"
 END = "<!-- showcase:end -->"
 CURRENT_MANIFEST = ROOT / "planos" / "actual" / "manifest.json"
+BUILD_ROOT = ROOT / ".build"
+COORDINATION_ROOT = BUILD_ROOT / "coordination"
 
 
 def load_json(path: Path) -> dict:
@@ -145,6 +149,40 @@ def project_data(gallery: list[dict]) -> dict:
     }
 
 
+def _is_coordination_package(path: Path) -> bool:
+    if (path / "latest.json").is_file() and (path / "issues").is_dir():
+        return True
+    if (path / "current.json").is_file() and (path / "releases").is_dir():
+        return True
+    if (path / "release.json").is_file() and (path / "source_candidate_manifest.json").is_file():
+        return True
+    manifest_path = path / "manifest.json"
+    if manifest_path.is_file():
+        if all((path / name).is_file() for name in ("model.json", "changes.json", "index.html")):
+            return True
+        try:
+            manifest = load_json(manifest_path)
+        except (OSError, json.JSONDecodeError):
+            return False
+        if not isinstance(manifest, dict):
+            return False
+        return (
+            manifest.get("purpose") == "coordination review"
+            and manifest.get("build_status") == "complete"
+        )
+    return False
+
+
+def _contains_coordination_package(path: Path) -> bool:
+    """Find coordination package roots without following symlink directories."""
+    for directory, subdirectories, _filenames in os.walk(path, followlinks=False):
+        current = Path(directory)
+        subdirectories[:] = [name for name in subdirectories if not (current / name).is_symlink()]
+        if _is_coordination_package(current):
+            return True
+    return False
+
+
 def render_readme_block(data: dict) -> str:
     counts = data["counts"]
     rows: list[str] = []
@@ -215,10 +253,55 @@ def write_or_check_readme(data: dict, write: bool, check: bool) -> None:
         raise SystemExit(1)
 
 
-def build_site(data: dict, destination: Path) -> None:
+def build_site(data: dict, destination: Path, *, coordination_out: Path | None = None) -> None:
+    destination = Path(destination)
+    if destination.is_symlink():
+        raise RuntimeError("Site destination cannot be a symlink")
     destination = destination.resolve()
     if destination == ROOT or ROOT not in destination.parents:
         raise RuntimeError("The site destination must be a directory inside the repository")
+    if (
+        destination == BUILD_ROOT
+        or destination == COORDINATION_ROOT
+        or destination.is_relative_to(COORDINATION_ROOT)
+        or COORDINATION_ROOT.is_relative_to(destination)
+    ):
+        raise RuntimeError("Site output must not contain or replace .build/coordination")
+    if any(
+        destination == ROOT / name or destination.is_relative_to(ROOT / name)
+        for name in (".git", ".github", "docs", "dreamhouse", "planos", "showcase")
+    ):
+        raise RuntimeError("Site output must not overwrite repository source directories")
+
+    # A previously generated static site contains a copied review package under
+    # coordination/. It is safe to replace that export after the new site is verified;
+    # standalone candidate/release roots anywhere else must remain untouched.
+    if destination.exists() and _is_coordination_package(destination):
+        raise RuntimeError("Site output cannot replace a coordination package root")
+    generated_site = (destination / ".nojekyll").is_file() and (
+        destination / "index.html"
+    ).is_file()
+    if destination.exists() and not generated_site and _contains_coordination_package(destination):
+        raise RuntimeError("Site output contains a coordination package and cannot be replaced")
+    for parent in destination.parents:
+        if parent == BUILD_ROOT.parent:
+            break
+        if _is_coordination_package(parent):
+            raise RuntimeError("Site output cannot be inside a coordination package root")
+
+    release = None
+    if coordination_out is not None:
+        # Direct script execution exposes .github/scripts, not the repository root.
+        # Resolve the checked-out verifier even without an editable package install.
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from dreamhouse.coordination.publication import read_current_release
+
+        coordination_out = coordination_out.resolve()
+        if (coordination_out == destination or coordination_out.is_relative_to(destination)
+                or destination.is_relative_to(coordination_out)):
+            raise RuntimeError("Site output must not contain the coordination source package")
+        release = read_current_release(coordination_out / "published", require_fresh=True)
 
     if destination.exists():
         shutil.rmtree(destination)
@@ -258,6 +341,30 @@ def build_site(data: dict, destination: Path) -> None:
         marker,
         f'<script id="showcase-data" type="application/json">{payload}</script>',
     )
+    connected_link = ""
+    if release is not None:
+        release_id = release["release_id"]
+        public_root = destination / "coordination"
+        public_release = public_root / "releases" / release_id
+        shutil.copytree(release["path"], public_release)
+        for name, expected in release["release"]["artifacts"].items():
+            if hashlib.sha256((public_release / name).read_bytes()).hexdigest() != expected:
+                raise RuntimeError(f"Connected review changed during site export: {name}")
+        shutil.copy2(release["bootstrap_path"], public_root / "index.html")
+        (public_root / "current.json").write_text(
+            json.dumps(release["pointer"], sort_keys=True, indent=2) + "\n", encoding="utf-8"
+        )
+        # A source edit during the export must fail the whole site build.
+        latest = read_current_release(coordination_out / "published", require_fresh=True)
+        if latest["release_id"] != release_id:
+            raise RuntimeError("Selected review changed during site export")
+        connected_link = (
+            '<p class="gallery__intro"><a class="button button--line" '
+            'href="coordination/index.html">Open the connected coordination review</a>'
+            '<br><small>Generated plans, calculations and unresolved interfaces from one '
+            'source revision. Schematic review; not for construction.</small></p>'
+        )
+    built_html = built_html.replace("<!-- showcase:coordination -->", connected_link)
     (destination / "index.html").write_text(built_html, encoding="utf-8", newline="\n")
     shutil.copy2(source / "styles.css", destination / "styles.css")
     shutil.copy2(source / "app.js", destination / "app.js")
@@ -272,11 +379,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--write-readme", action="store_true", help="update the automatic README block")
     parser.add_argument("--check-readme", action="store_true", help="fail if the automatic README block is outdated")
     parser.add_argument("--site-dir", type=Path, help="build the static site in this directory")
+    parser.add_argument("--coordination-out", type=Path, help="include the verified current review release from this coordination output root")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    if args.coordination_out and not args.site_dir:
+        raise SystemExit("--coordination-out requires --site-dir")
     if not (args.write_readme or args.check_readme or args.site_dir):
         raise SystemExit("Specify --write-readme, --check-readme, or --site-dir")
     gallery = select_gallery()
@@ -284,7 +394,7 @@ def main() -> None:
     write_or_check_readme(data, args.write_readme, args.check_readme)
     if args.site_dir:
         destination = args.site_dir if args.site_dir.is_absolute() else ROOT / args.site_dir
-        build_site(data, destination)
+        build_site(data, destination, coordination_out=args.coordination_out)
 
 
 if __name__ == "__main__":

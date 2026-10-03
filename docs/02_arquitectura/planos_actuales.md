@@ -3,8 +3,8 @@
 **Status:** active publication guide; source-sheet limitations remain in force<br>
 **Version:** 1.25<br>
 **Date:** 2026-08-21<br>
-**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
-**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056 and D-084 increment 02
+**Guide revision:** 0.4 — 2026-10-03; catalog version/date retained<br>
+**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056, D-084, and the [coordination migration guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
 
 This page is the visual entry point to Dream House's published coordination set. It
 uses stable files under [`planos/actual/`](../../planos/actual/) so links in the project
@@ -23,14 +23,19 @@ current PB b37/P2 b28 sources into eight new SVG review views, quantities and fi
 unadopted equipment-benchmark geometry and ten structural plan-line comparisons remain
 bounded evidence. Optional `--visuals` uses pinned fonts for PNG previews, contact sheets
 and pixel comparisons; these are review artifacts, not approvals. Consumer-impact metadata
-is reported, while each build still rebuilds the complete candidate. Changes originate in
-repository JSON; the drawings display generated results. These isolated
-`.build/coordination/` candidates do not promote or regenerate the full published set
-below. The [increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md)
-and [source inventory](../06_gestion_y_obra/connected_source_inventory.md) identify
-coverage, current consumers and remaining migration scope. E0/E1 retain their declared
-historical screening inputs. Seven unresolved PB door anchors are tracked under CF-013;
-neither a missing projection nor an `OPEN` result is a geometric clearance.
+is reported, while each build still rebuilds the complete candidate. `drawing_inventory.json`
+records registered consumer coverage and limits; it does not establish full equivalence for
+all 27 published sheets. Changes originate in repository JSON; the drawings display
+generated results. These isolated `.build/coordination/` candidates do not promote or
+regenerate the full published set below. `planos/actual/catalog.json` remains the explicit
+adopted-alias promotion record. `--release` selects a separate immutable review package;
+`--check-release` verifies freshness, `--rollback <release-id>` selects a retained package
+with freshness marked not revalidated, and `--watch` rebuilds candidates only. The
+[increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md) and
+[source inventory](../06_gestion_y_obra/connected_source_inventory.md) identify coverage,
+current consumers and remaining migration scope. E0/E1 retain their declared historical
+screening inputs. Seven unresolved PB door anchors are tracked under CF-013; neither a
+missing projection nor an `OPEN` result is a geometric clearance.
 
 ## Current visual set
 

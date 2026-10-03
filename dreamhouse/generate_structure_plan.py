@@ -25,7 +25,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
+if __package__ in {None, ""} and str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from dreamhouse.structure.e1_screening import run_screening
@@ -382,12 +382,13 @@ def draw_hybrid_wall_elevation(parts, pb, gw):
         parts.append(poly([(px - 8, floor_y - 2), (px + 8, floor_y - 2), (px, floor_y + 10)], color="#b05a38", width=1.5, fill="#b05a38"))
     parts.append(text(left + 9 * sx, floor_y - 54, f"{len(gw['beam_y_m'])} REACCIONES DE VIGAS P2 · ≈{gw['wall_point_reaction_kn']:.0f} kN C/U EN CRIBADO", 10, weight=700, fill="#8e3825"))
 
-    # Puertas y portal se conservan; ninguna columna atraviesa un acceso.
+    # Resolved PB door anchors may be drawn. CF-013 anchors stay omitted.
     for room in pb["core"]:
-        door_w = room["door_width"] * sx
-        door_x = left + (room["door_y"] - 0.1) * sx
-        door_h = (2.45 if room["id"] == "ESC" else 2.30) * sz
-        parts.append(rect(door_x, base - door_h, door_w, door_h, fill="#fbfaf7", stroke="#6b4a2e", stroke_width=3 if room["id"] == "ESC" else 1.5, opacity="0.93"))
+        if room.get("door_y") is not None:
+            door_w = room["door_width"] * sx
+            door_x = left + (room["door_y"] - 0.1) * sx
+            door_h = (2.45 if room["id"] == "ESC" else 2.30) * sz
+            parts.append(rect(door_x, base - door_h, door_w, door_h, fill="#fbfaf7", stroke="#6b4a2e", stroke_width=3 if room["id"] == "ESC" else 1.5, opacity="0.93"))
         center = (room["y0"] + room["y1"]) / 2.0
         parts.append(text(left + center * sx, base + 28, room["name"].upper(), 7.5, weight=700))
 
@@ -411,16 +412,33 @@ def draw_hybrid_wall_elevation(parts, pb, gw):
 
 # ---------------------------------------------------------------- MAIN
 
-def build_sheets():
-    cfg = json.loads(SYSTEM.read_text(encoding="utf-8"))
-    pb = json.loads(PB.read_text(encoding="utf-8"))
-    p2 = json.loads(P2.read_text(encoding="utf-8"))
-    rooflights = json.loads(ROOFLIGHTS.read_text(encoding="utf-8"))
-    roof_space = json.loads(ROOF_SPACE.read_text(encoding="utf-8"))
-    e1_space = json.loads(E1_SPACE.read_text(encoding="utf-8"))
+def build_sheets_from_sources(
+    cfg,
+    pb,
+    p2,
+    rooflights,
+    roof_space,
+    e1_space,
+    *,
+    enforce_expected_compatible_ids: bool = True,
+    allow_open_continuity_geometry: bool = False,
+    screening_result=None,
+):
+    """Build current E0/E1 sheets from explicit source models without file I/O."""
+
     q, st = live_results(cfg)
     gw = q["great_wall"]
-    e1_results = run_screening(cfg, roof_space, e1_space, pb, p2, rooflights)
+    e1_results = screening_result
+    if e1_results is None:
+        e1_results = run_screening(
+            cfg,
+            roof_space,
+            e1_space,
+            pb,
+            p2,
+            rooflights,
+            enforce_expected_compatible_ids=enforce_expected_compatible_ids,
+        )
 
     # Lámina 1: planta + corte B-B.
     parts = ['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">']
@@ -456,8 +474,25 @@ def build_sheets():
         "DH-EST-E0-003_ESTRUCTURA-LATERAL-A.svg": "".join(parts2),
         "DH-EST-E0-004_PARED-HIBRIDA.svg": "".join(parts3),
         E1_SHEET_NAME: build_e1_sheet(cfg, roof_space, e1_space, rooflights, e1_results),
-        CONTINUITY_SHEET_NAME: build_vertical_continuity_sheet(cfg, pb, p2, e1_results),
+        CONTINUITY_SHEET_NAME: build_vertical_continuity_sheet(
+            cfg,
+            pb,
+            p2,
+            e1_results,
+            allow_open_geometry=allow_open_continuity_geometry,
+        ),
     }
+
+
+def build_sheets():
+    """Historical command-line wrapper using its original file-backed inputs."""
+    cfg = json.loads(SYSTEM.read_text(encoding="utf-8"))
+    pb = json.loads(PB.read_text(encoding="utf-8"))
+    p2 = json.loads(P2.read_text(encoding="utf-8"))
+    rooflights = json.loads(ROOFLIGHTS.read_text(encoding="utf-8"))
+    roof_space = json.loads(ROOF_SPACE.read_text(encoding="utf-8"))
+    e1_space = json.loads(E1_SPACE.read_text(encoding="utf-8"))
+    return build_sheets_from_sources(cfg, pb, p2, rooflights, roof_space, e1_space)
 
 
 def main():

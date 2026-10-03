@@ -11,12 +11,13 @@ import tempfile
 from contextlib import contextmanager
 from pathlib import Path
 
+from dreamhouse.coordination.capabilities import capability_report
 from dreamhouse.coordination.dependencies import dependency_report
+from dreamhouse.coordination.drawings import render_drawings
 from dreamhouse.coordination.model import (
     DEFAULT_PROJECT,
     ROOT,
     CoordinationError,
-    current_drawing_inventory,
     dependency_hashes,
     digest,
     file_hash,
@@ -69,8 +70,10 @@ def _safe_relative(name: str) -> Path:
 
 
 def _verify_package(issue: Path) -> dict:
+    if issue.is_symlink() or any(path.is_symlink() for path in issue.rglob("*")):
+        raise CoordinationError("Review package contains substituted symbolic links")
     manifest = read_json(issue / "manifest.json")
-    if manifest.get("build_status") != "complete":
+    if not isinstance(manifest, dict) or manifest.get("build_status") != "complete":
         raise CoordinationError("Review package is incomplete")
     files = manifest.get("artifacts", {})
     if not files or not isinstance(files, dict):
@@ -116,7 +119,35 @@ def _font_paths() -> tuple[Path, ...]:
 
 
 def _issue_identity(input_hash: str, rendering: dict | None) -> str:
-    return digest({"source_input_hash": input_hash, "rendering": rendering, "package_schema": 2})
+    return digest({"source_input_hash": input_hash, "rendering": rendering, "package_schema": 3})
+
+
+def _render_outputs(snapshot: dict, result: dict) -> tuple[dict, dict]:
+    files = render_views(snapshot, result)
+    missing_views = REQUIRED_VIEW_FILES - set(files)
+    if missing_views:
+        raise CoordinationError(f"Renderer omitted required review views: {sorted(missing_views)}")
+    migrated = render_drawings(snapshot, result)
+    expected_drawings = {
+        f"drawings/{item['id']}.svg" for item in snapshot["drawing_catalog"]["drawings"]
+    } | {"drawings/index.html"}
+    if set(migrated["files"]) != expected_drawings:
+        raise CoordinationError("Renderer omitted or substituted required catalog drawings")
+    duplicates = set(files).intersection(migrated["files"])
+    if duplicates:
+        raise CoordinationError(f"Drawing artifacts collide: {sorted(duplicates)}")
+    files.update(migrated["files"])
+    files["structural_screening.json"] = json_text(migrated["structural_screening"])
+    files["index.html"] = files["index.html"].replace(
+        "</body>",
+        '<section aria-label="Connected drawing catalog"><h2>Connected drawing catalog</h2>'
+        '<p><a href="drawings/index.html">Open all catalog drawing consumers</a> · '
+        '<a href="drawing_inventory.json">Migration coverage and limitations</a> · '
+        '<a href="extensions.json">Wall, stair, service and maintenance evidence</a> · '
+        '<a href="structural_screening.json">Structural screening hypotheses and results</a></p>'
+        "</section></body>",
+    )
+    return files, migrated["inventory"]
 
 
 def _review_text(snapshot: dict, result: dict, cost: dict, files: dict) -> str:
@@ -127,8 +158,8 @@ def _review_text(snapshot: dict, result: dict, cost: dict, files: dict) -> str:
     lines = [
         "# Connected coordination review",
         "",
-        "**Version:** 0.2  ",
-        "**Format date:** 2026-10-02  ",
+        "**Version:** 0.3  ",
+        "**Format date:** 2026-10-03  ",
         "**Status:** complete coordination candidate; not construction authority  ",
         "**Source:** PB b37, P2 b28, SC-01, rooflight b12 and explicit repository study changes  ",
         f"**Scenario:** {snapshot['scenario_id']}  ",
@@ -144,11 +175,13 @@ def _review_text(snapshot: dict, result: dict, cost: dict, files: dict) -> str:
         "",
         "Facade windows, rooflight plan extents, located doors, P2 spaces, PB core spaces, shared stair and column reservations have persistent identities. Host planes and inferred room boundaries do not establish wall assemblies. Door heights, several PB door anchors, column vertical extents, engineering design and professional approvals remain unresolved.",
         "",
-        "The 27 published drawing aliases remain separately versioned. These candidate review views do not silently update or promote that set. See [drawing inventory](drawing_inventory.json) and [rule coverage](coverage.json).",
+        "The [connected drawing catalog](drawings/index.html) regenerates registered consumers from this snapshot and records their scope in [drawing inventory](drawing_inventory.json). Historical adopted aliases retain their original authority. A review release is not a new architectural adoption; see [rule coverage](coverage.json).",
         "",
         "All affected opening/host and opening/column candidates are recomputed; no incremental result reuse is claimed. Unresolved geometry yields pending coverage, never an assertion of clearance.",
         "",
         "Current programme and equipment benchmark checks are connected to the captured source context. Read [discipline evidence](disciplines.json) for applicability and unknown engineering inputs. Historical placement hypotheses are not selected equipment layouts.",
+        "",
+        "The [house extension evidence](extensions.json) connects supported wall-line measurements, stair levels, phase/service reservations and maintenance requirements. Unknown surface areas, masses, products, routes and commissioning evidence remain explicitly unevaluated.",
         "",
         "Named dimensions and cross-view callouts are audited in [view inventory](view_inventory.json); [anchor changes](anchor_lifecycle.json) and [consumer dependencies](dependencies.json) expose propagation and outstanding professional review obligations.",
         "",
@@ -199,14 +232,12 @@ def build_candidate(
             mapping=read_json(ROOT / "dreamhouse/cost/cost_mapping.json"),
             rate_book=read_json(ROOT / "dreamhouse/cost/rate_book.json"),
         )
-        files = render_views(snapshot, result)
-        missing_views = REQUIRED_VIEW_FILES - set(files)
-        if missing_views:
-            raise CoordinationError(
-                f"Renderer omitted required review views: {sorted(missing_views)}"
-            )
+        files, drawing_inventory = _render_outputs(snapshot, result)
         inventory = view_inventory(snapshot, files)
-        baseline_views = render_views(baseline, evaluate(baseline))
+        files["capabilities.json"] = json_text(
+            capability_report(snapshot, result, inventory, drawing_inventory)
+        )
+        baseline_views, _ = _render_outputs(baseline, evaluate(baseline))
         baseline_inventory = view_inventory(baseline, baseline_views)
         files["view_inventory.json"] = json_text(inventory)
         files["anchor_lifecycle.json"] = json_text(compare_anchors(inventory, baseline_inventory))
@@ -216,12 +247,13 @@ def build_candidate(
             "findings.json": result["findings"],
             "coverage.json": result["coverage"],
             "disciplines.json": result["disciplines"],
+            "extensions.json": result["extensions"],
             "changes.json": result["changes"],
             "finding_lifecycle.json": result["finding_lifecycle"],
             "openings.json": result["opening_schedule"],
             "quantities.json": result["quantity_ledger"],
             "cost.json": cost,
-            "drawing_inventory.json": current_drawing_inventory(),
+            "drawing_inventory.json": drawing_inventory,
         }.items():
             files[name] = json_text(value)
         if visuals:
@@ -291,7 +323,7 @@ def build_candidate(
                 else:
                     path.write_text(contents, encoding="utf-8")
             manifest = {
-                "schema_version": 2,
+                "schema_version": 3,
                 "build_status": "complete",
                 "purpose": "coordination review",
                 "scenario_id": snapshot["scenario_id"],
@@ -354,6 +386,8 @@ def check_candidate(
         raise CoordinationError("No complete review pointer exists in this output directory")
     with _build_lock(out):
         pointer = read_json(out / "latest.json")
+        if not isinstance(pointer, dict):
+            raise CoordinationError("Invalid latest review pointer")
         issue_id = pointer.get("issue_id", "")
         if not isinstance(issue_id, str) or not re.fullmatch(r"[0-9a-f]{64}", issue_id):
             raise CoordinationError("Invalid latest review pointer")
@@ -392,13 +426,34 @@ def main(argv=None) -> int:
     parser.add_argument(
         "--out", type=Path, default=DEFAULT_OUTPUT, help="isolated generated review directory"
     )
-    parser.add_argument(
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
         "--check", action="store_true", help="verify current inputs and all generated artifacts"
     )
-    parser.add_argument(
+    mode.add_argument(
         "--study-template",
         type=Path,
         help="write a new empty source study pinned to the current baseline",
+    )
+    mode.add_argument(
+        "--release",
+        action="store_true",
+        help="build and select a complete current-baseline review release",
+    )
+    mode.add_argument(
+        "--check-release",
+        action="store_true",
+        help="verify selected review release and current source freshness",
+    )
+    mode.add_argument(
+        "--rollback",
+        metavar="RELEASE_ID",
+        help="select a verified retained review release without claiming freshness",
+    )
+    mode.add_argument(
+        "--watch",
+        action="store_true",
+        help="rebuild isolated candidates after debounced source edits; Ctrl-C to stop",
     )
     parser.add_argument("--scenario-id", default="UNADOPTED_STUDY")
     parser.add_argument(
@@ -413,6 +468,32 @@ def main(argv=None) -> int:
     )
     args = parser.parse_args(argv)
     try:
+        if args.watch:
+            from dreamhouse.coordination.watch import build_fresh_process, watch_sources
+
+            watch_sources(
+                args.project,
+                lambda: build_fresh_process(args.project, args.out, visuals=args.visuals),
+            )
+            return 0
+        if args.rollback or args.check_release:
+            from dreamhouse.coordination.publication import read_current_release, rollback_release
+
+            release_root = _output_directory(args.out) / "published"
+            result = (
+                rollback_release(args.rollback, release_root=release_root)
+                if args.rollback
+                else read_current_release(
+                    release_root, require_fresh=True, project_path=args.project
+                )
+            )
+            print(
+                f"{'Selected retained' if args.rollback else 'Verified'} release: {result['index_path']}"
+            )
+            print(
+                f"Release ID: {result['release_id']}; source freshness: {'not revalidated' if args.rollback else 'verified now'}; construction authority: false"
+            )
+            return 0
         if args.study_template:
             snapshot = resolve_project(args.project)
             template = study_template(snapshot, args.scenario_id)
@@ -430,7 +511,20 @@ def main(argv=None) -> int:
         print(
             f"Check status: {result['manifest']['check_status']}; engineering and construction authority: false"
         )
+        if args.release:
+            from dreamhouse.coordination.publication import publish_candidate
+
+            release = publish_candidate(
+                args.project,
+                candidate_out=args.out,
+                release_root=_output_directory(args.out) / "published",
+            )
+            print(f"Released review: {release['index_path']}")
+            print(f"Release ID: {release['release_id']}; construction authority: false")
         return 2 if args.require_no_fail and result["manifest"]["check_status"] == "FAIL" else 0
+    except KeyboardInterrupt:
+        print("Source watch stopped; previous complete review retained.")
+        return 0
     except (CoordinationError, ValueError, KeyError, TypeError, OSError, RuntimeError) as error:
         print(f"Coordination failed: {error}")
         return 1

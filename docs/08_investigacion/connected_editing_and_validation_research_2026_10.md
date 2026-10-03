@@ -1,13 +1,24 @@
 # Connected model propagation and validation research — October 2026
 
-**Status:** research basis; two bounded applications implemented under D-084; remaining recommendations open<br>
+**Status:** research basis; bounded applications and consumer migration under D-084; remaining recommendations open<br>
 **Version:** 0.4<br>
-**Date:** 2026-10-02<br>
+**Date:** 2026-10-03<br>
 **Source:** owner's request for a living repository model with connected calculations,
 SVG outputs and warnings; explicit clarification that changes occur in repository sources
 and that there is no graphical editing.<br>
 **Access date:** linked external sources were opened and checked on 2026-10-02.<br>
 **Authority:** planning evidence only; no geometry, scope, cost or publication change.
+
+## Migration application — 2026-10-03
+
+The [migration and extension guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+records the later implementation of native drawing consumers, complete review releases,
+recovery and source-connected extension records. The tables below retain the incremental
+research-to-code audit; their earlier migration gaps must be read with that current guide.
+Source watching still performs a full rebuild. Named review annotations and inherited
+catalog annotations have separate coverage; neither visual equivalence nor engineering
+approval is inferred. This update records local implementation evidence only; original
+external access dates and research conclusions are unchanged.
 
 ## Implementation reconciliation — D-084
 

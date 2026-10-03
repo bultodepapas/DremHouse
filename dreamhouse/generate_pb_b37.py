@@ -11,9 +11,9 @@ from typing import Any
 from dreamhouse import generate_pb_b05 as base
 from dreamhouse import generate_pb_b24 as b24
 from dreamhouse import generate_pb_b35 as b35
-from dreamhouse.generate_pb_b36 import load_b36_model, validate_b36
-from dreamhouse.generate_p2_b28 import load_b28_model
 from dreamhouse.envelope.openings import build_opening_schedule
+from dreamhouse.generate_p2_b28 import load_b28_model
+from dreamhouse.generate_pb_b36 import load_b36_model, validate_b36
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_DELTA = Path(__file__).with_name("pb_b36_delta.json")
@@ -144,7 +144,9 @@ def validate_b37(model: dict[str, Any]) -> list[dict[str, str]]:
     return checks
 
 
-def rear_elevation_sheet(model: dict[str, Any], p2: dict[str, Any]) -> str:
+def rear_elevation_sheet(
+    model: dict[str, Any], p2: dict[str, Any], *, parameterize: bool = False
+) -> str:
     meta_code = "ELE-002-R07"
     parts = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',
@@ -152,11 +154,18 @@ def rear_elevation_sheet(model: dict[str, Any], p2: dict[str, Any]) -> str:
     ]
     left, floor_pb, scale = 140.0, 665.0, 62.0
     width = 18.0 * scale
-    p2_floor = floor_pb - 3.8 * scale
+    p2_level = (
+        float(p2.get("stair_core", {}).get("levels", {}).get("p2_finished_floor", 3.8))
+        if parameterize
+        else 3.8
+    )
+    p2_floor = floor_pb - p2_level * scale
     top_a, top_b, _, _ = base.roof_profile(model, scale, floor_pb)
     parts.append(f'<polygon points="{left},{floor_pb} {left},{top_a} {left+width},{top_b} {left+width},{floor_pb}" fill="#aeb5b6" stroke="#172126" stroke-width="4"/>')
     parts.append(f'<line x1="{left}" y1="{p2_floor}" x2="{left+width}" y2="{p2_floor}" stroke="#657378" stroke-width="1.2" stroke-dasharray="7 5"/>')
     for door in model["exterior_doors"]:
+        if door.get("y") is None:
+            continue
         x = left + (door["y"] - .5) * scale
         w = door["width"] * scale
         h = (2.4 if door["id"] == "EXT-ESC" else 2.3) * scale
@@ -175,7 +184,15 @@ def rear_elevation_sheet(model: dict[str, Any], p2: dict[str, Any]) -> str:
         for module in range(1, modules):
             xx = x + w * module / modules
             parts.append(f'<line x1="{xx}" y1="{y}" x2="{xx}" y2="{y+h}" stroke="#9bb3b8"/>')
-        label = "PRIMARY · 2 x 1.20" if item["id"] == "W-M-REAR" else "WELLNESS" if item["id"] == "W-WELL" else "RESCUE · D-082"
+        label = (
+            f"PRIMARY · {w / modules:.2f} MODULE"
+            if parameterize and item["id"] == "W-M-REAR"
+            else "PRIMARY · 2 x 1.20"
+            if item["id"] == "W-M-REAR"
+            else "WELLNESS"
+            if item["id"] == "W-WELL"
+            else "RESCUE · D-082"
+        )
         parts.append(base.text(x + w / 2, y + h / 2 + 3, label, 7, weight=700, fill="#eff5f5"))
     reserve = p2["egress_reserve"]
     ladder_x = left + reserve["ladder_axis_y"] * scale
@@ -186,12 +203,24 @@ def rear_elevation_sheet(model: dict[str, Any], p2: dict[str, Any]) -> str:
     parts.append(base.text(ladder_x - 18, (p2_floor + floor_pb) / 2, "VERTICAL FOLDOUT LADDER", 6.5, weight=700, fill="#8e3825", rotate=-90))
     parts.append(base.rect(left - 40, floor_pb, width + 80, 42, fill="#d6d2ca", stroke="#858b89"))
     parts.append(base.text(left + width / 2, floor_pb + 27, "REAR GRADE, DRAINAGE, TRANSFER SAFETY AND SITE RELATIONSHIP REMAIN OPEN", 8, weight=700))
-    parts.append(base.note_box("D-083 coordinates one 2.40 m primary window; wellness and D-082 rescue geometry are retained. Site orientation, privacy, solar control, safe glass, fall protection, structure, flashings and cost remain open."))
+    if parameterize:
+        primary_rear = next(item for item in p2["windows"] if item["id"] == "W-M-REAR")
+        primary_width = float(primary_rear["to"]) - float(primary_rear["from"])
+        note = (
+            f"Current primary rear window: {primary_width:.2f} × {float(primary_rear['height']):.2f} m; "
+            "wellness and D-082 rescue geometry are retained. Site orientation, privacy, solar control, "
+            "safe glass, fall protection, structure, flashings and cost remain open."
+        )
+    else:
+        note = "D-083 coordinates one 2.40 m primary window; wellness and D-082 rescue geometry are retained. Site orientation, privacy, solar control, safe glass, fall protection, structure, flashings and cost remain open."
+    parts.append(base.note_box(note))
     parts.append("</svg>")
     return "".join(parts).replace("NOTA DE COORDINACIÓN", "COORDINATION NOTE")
 
 
-def opening_schedule_sheet(model: dict[str, Any], p2: dict[str, Any], schedule: dict[str, Any]) -> str:
+def opening_schedule_sheet(
+    model: dict[str, Any], p2: dict[str, Any], schedule: dict[str, Any], *, parameterize: bool = False
+) -> str:
     parts = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',
         base.title_block("SCH-001-R00", "WINDOW / DAYLIGHT SCHEDULE", "D-083 adopted vertical openings + retained rooflights · study geometry, not procurement authority"),
@@ -229,12 +258,26 @@ def opening_schedule_sheet(model: dict[str, Any], p2: dict[str, Any], schedule: 
     parts.append(base.rect(62, 800, 1270, 62, fill="#f1eee7", stroke="#c0bbb0", stroke_width=.8))
     parts.append(base.text(82, 825, "AUTHORITY", 8, "start", 700, "#8e3825"))
     parts.append(base.text(180, 825, "Schematic coordination quantities only. Final clear openings, glass make-up, frames, operability, structure, performance and installation require professional design and quotation.", 7.2, "start", 700))
-    parts.append(base.text(82, 849, "D-083 deliberately retains the two +0.90 m technical-window sills while desk sills use +0.75 m and bedroom windows use +0.05 m.", 7.2, "start"))
+    if parameterize:
+        technical_sills = sorted({item["sill_m"] for item in adopted if item["source"] == "PB.technical_glazing"})
+        workstation_sills = sorted({item["sill_m"] for item in adopted if item["source"] == "PB.workstation_glazing"})
+        bedroom_sills = sorted({item["sill_m"] for item in adopted if item["source"] == "P2.windows" and item["id"].startswith(("W-H", "W-G", "W-M"))})
+        def sill_text(values: list[float]) -> str:
+            return "/".join(f"+{value:.2f}" for value in values) if values else "not represented"
+        sill_note = (
+            f"Current source sill datums · technical {sill_text(technical_sills)} m · "
+            f"workstations {sill_text(workstation_sills)} m · bedroom windows {sill_text(bedroom_sills)} m."
+        )
+    else:
+        sill_note = "D-083 deliberately retains the two +0.90 m technical-window sills while desk sills use +0.75 m and bedroom windows use +0.05 m."
+    parts.append(base.text(82, 849, sill_note, 7.2, "start"))
     parts.append("</svg>")
     return "".join(parts)
 
 
-def workstation_detail(model: dict[str, Any]) -> str:
+def workstation_detail(model: dict[str, Any], *, parameterize: bool = False) -> str:
+    if parameterize:
+        return b35.shared_workstation_detail_sheet(model, parameterize=True)
     return (
         b35.shared_workstation_detail_sheet(model)
         .replace("0.90 m REPLACEABLE WORKTOP", "0.75 m REPLACEABLE WORKTOP")

@@ -1,14 +1,25 @@
 # Connected coordination research — October 2026
 
-**Status:** research basis; two bounded applications implemented under D-084; remaining recommendations open<br>
-**Version:** 0.3<br>
-**Date:** 2026-10-02  
+**Status:** research basis; bounded applications and consumer migration under D-084; remaining recommendations open<br>
+**Version:** 0.4<br>
+**Date:** 2026-10-03<br>
 **Source:** owner's request for at least ten internet investigations to strengthen the
 [connected coordination plan](../06_gestion_y_obra/connected_project_coordination_next_step.md);
 primary specifications and first-party technical documentation linked in each investigation.  
 **Access date:** all external sources below were opened and checked on 2026-10-02.  
 **Authority:** evidence for planning only. This document does not adopt a design, select
 products, change scope or cost, promote drawings, or close professional gates.
+
+## Migration application — 2026-10-03
+
+The [migration and extension guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+records the later implementation of native drawing consumers, complete review releases,
+recovery and source-connected extension records. The tables below retain the incremental
+research-to-code audit; their earlier migration gaps must be read with that current guide.
+Source watching still performs a full rebuild. Named review annotations and inherited
+catalog annotations have separate coverage; neither visual equivalence nor engineering
+approval is inferred. This update records local implementation evidence only; original
+external access dates and research conclusions are unchanged.
 
 ## Implementation reconciliation — D-084
 

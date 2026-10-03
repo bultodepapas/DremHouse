@@ -8,6 +8,7 @@ from pathlib import Path
 from dreamhouse.coordination.model import (
     CoordinationError,
     current_drawing_inventory,
+    editable_fields,
     json_text,
     model_digest,
     read_json,
@@ -46,6 +47,30 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(s["PB-DOOR-ESC"]["geometry"]["shape"], "unresolved")
         self.assertEqual(s["EXT-ESC"]["geometry"]["shape"], "unresolved")
         self.assertEqual(s["GLZ-DINING-STUDY-B"]["status"], "study")
+
+    def test_unmodelled_door_panel_counts_are_not_advertised_or_accepted(self):
+        self.assertNotIn("modules", editable_fields(self.baseline["entities"]["PED"]))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "study.json"
+            self.write_study(path, {"PED": {"expected": {"modules": None}, "set": {"modules": 2}}})
+            with self.assertRaisesRegex(CoordinationError, "unsupported authoring field"):
+                resolve_project(path)
+
+    def test_publication_provenance_is_captured_with_current_inputs(self):
+        snapshot = self.baseline
+        entries = snapshot["drawing_catalog"]["drawings"]
+        evidence = snapshot["drawing_source_evidence"]
+        self.assertEqual({e["id"] for e in entries}, set(evidence))
+        for entry in entries:
+            record = evidence[entry["id"]]
+            self.assertEqual(record["source"], entry["source"])
+            self.assertEqual(record["source_revision"], entry["source_revision"])
+            self.assertEqual(
+                record["source_sha256"], snapshot["build_dependencies"][record["source"]]
+            )
+        context = snapshot["discipline_inputs"]["structure"]
+        self.assertIn("roof_space", context)
+        self.assertIn("e1_space", context)
 
     def test_discipline_context_is_pinned_and_independent_of_archived_baseline(self):
         snapshot = deepcopy(self.baseline)

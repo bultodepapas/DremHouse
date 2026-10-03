@@ -1,8 +1,8 @@
 # Sources, precedence, and conflicts
 
 **Status:** active  
-**Version:** 1.6
-**Date:** 2026-10-02
+**Version:** 1.7
+**Date:** 2026-10-03
 **Language note:** controlled English translation under D-044; D-063 incorporated into
 CF-009/CF-010 and D-074/CF-011 added without closing the fire/egress gate; D-077 updates
 CF-006 without freezing products, MEP, joinery, or cost; D-078 changes Side A workstation
@@ -236,8 +236,10 @@ but it does not resolve the project's required number or type of exits.
 - **Interim architectural rule:** retain `W-EGRESS-P2` at Y=11.25–12.25 m and the ladder
   axis at Y=10.65 m as schematic coordination only. Keep the 0.80 × 0.80 m deployment
   zone clear and do not pass in front of any lower opening. The current PB b37 screen
-  shows 0.60 m between that clear zone and `EXT-ESC`; recheck after every rear-facade,
-  grade, utility or landscape change.
+  contains a historical 0.60 m screen between that clear zone and `EXT-ESC`. CF-013
+  invalidates using that figure as a current measured clearance: the connected consumers
+  withhold it until the door anchor is reconciled. Recheck after every rear-facade, grade,
+  utility or landscape change.
 - **Required evidence:** occupancy and exit analysis; authority acceptance; selected
   product evaluation and installation manual; verified rescue-opening clear size, sill,
   hardware and transfer; structural design of brackets/anchors and facade reinforcement;
@@ -268,6 +270,27 @@ but it does not resolve the project's required number or type of exits.
   projections and record the resulting decision before current drawing promotion.
 - **Status:** open source/representation conflict, identified during D-084 implementation
   on 2026-10-02. No changed door location or construction detail is adopted.
+
+### CF-014 — Inherited P2-W05 layer note contradicts the current wall schedule
+
+- **Evidence:** the current P2 b28 loader retains `exterior_wall_assembly.layer_sum_note`
+  from `p2_b15.json`: approximately 297 mm / draw 300 mm. D-080 and the b25 delta instead
+  specify a 230 mm nominal P2-W05; the current structured layers sum to 229 mm. The
+  inherited prose was not updated with that revision.
+- **Interim rule:** expose both the current structured values and the inherited note as
+  conflicting source evidence. Do not infer a new wall thickness, area, mass, product or
+  structural load from the old note. D-080 retains its explicit authority; recording this
+  stale label is not a new physical design choice. Independent plan-line measurements
+  may proceed with their declared scope.
+- **Affected consumers:** wall assembly details, wall schedule, future surface/mass/cost
+  calculations and current-source migration. `extensions.json` exposes the inconsistency
+  in `WALL-EXTERIOR-LINE-SCHEDULE` evidence.
+- **Required evidence:** source owner reconciles the inherited descriptive note with the
+  current layer list and declared nominal coordination thickness through a traceable source
+  revision, preserving the original b15 scenario. Product selection and engineering checks
+  remain independent gates.
+- **Status:** open source-description conflict, identified during D-084 migration on
+  2026-10-03. No new wall build-up, engineering approval or cost change is adopted.
 
 ## Resolution rule
 

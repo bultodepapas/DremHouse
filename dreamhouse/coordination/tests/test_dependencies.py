@@ -3,12 +3,26 @@
 import unittest
 from copy import deepcopy
 
-from dreamhouse.coordination.dependencies import dependency_report
-from dreamhouse.coordination.model import resolve_project
+from dreamhouse.coordination.dependencies import dependency_report, validate_consumers
+from dreamhouse.coordination.model import CoordinationError, resolve_project
 from dreamhouse.coordination.rules import evaluate
 
 
 class DependencyTests(unittest.TestCase):
+    def test_extension_dependency_orders_after_its_inputs_and_rejects_bad_graphs(self):
+        consumers = [
+            {"id": "measurement", "depends_on": []},
+            {"id": "fixture-view", "depends_on": ["measurement"]},
+        ]
+        self.assertEqual(validate_consumers(consumers), ["measurement", "fixture-view"])
+        for broken in (
+            consumers + [{"id": "measurement", "depends_on": []}],
+            [{"id": "fixture-view", "depends_on": ["missing"]}],
+            [{"id": "measurement", "depends_on": ["fixture-view"]}, consumers[1]],
+        ):
+            with self.subTest(graph=broken), self.assertRaises(CoordinationError):
+                validate_consumers(broken)
+
     def test_move_only_recomputes_and_invalidates_linked_review_evidence(self):
         baseline = resolve_project()
         moved = deepcopy(baseline)

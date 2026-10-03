@@ -1,14 +1,25 @@
 # D-084 — Implement source-driven connected coordination
 
 **Status:** active software workflow authorization; no architectural change adopted  
-**Version:** 0.2<br>
-**Date:** 2026-10-02  
+**Version:** 0.3<br>
+**Date:** 2026-10-03<br>
 **Requested and decided by:** owner  
 **Source:** owner instruction to proceed with implementation of the phased plan, with
 explicit clarification that SVGs display source/model changes and are not graphical editors.  
 **Affected records:** [implementation plan](../06_gestion_y_obra/connected_project_coordination_next_step.md),
 [workflow](../06_gestion_y_obra/connected_coordination_workflow.md), current-source adapter,
 coordination rules/renderers/pipeline, quantity mapping and candidate CI.
+
+## Implementation continuation — 2026-10-03
+
+The owner's instruction to finish migrations continues this existing software authority.
+The [migration and extension guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+records catalog consumers, source-connected wall/stair/phase/service/maintenance evidence,
+capability reporting, verified review release and rollback, optional watching and showcase
+export. These are implementation choices within D-084. Review publication selects a
+complete baseline package without adopting changed studies or rewriting historical aliases.
+CF-009–CF-013 and professional gates remain open. No construction scope, cost target or
+new house design decision is created.
 
 ## Context and problem
 

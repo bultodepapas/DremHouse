@@ -7,7 +7,7 @@ on:
       - 'README.md'
       - 'showcase/**'
       - 'planos/**'
-      - 'dreamhouse/project.json'
+      - 'dreamhouse/**'
       - 'docs/**'
       - '.github/assets/**'
       - '.github/scripts/build_showcase.py'
@@ -19,7 +19,7 @@ on:
       - 'README.md'
       - 'showcase/**'
       - 'planos/**'
-      - 'dreamhouse/project.json'
+      - 'dreamhouse/**'
       - 'docs/**'
       - '.github/assets/**'
       - '.github/scripts/build_showcase.py'
@@ -49,12 +49,13 @@ jobs:
           python-version: '3.13'
 
       - name: Install presentation dependencies
-        run: python -m pip install -e ".[presentation]"
+        run: python -m pip install -e ".[presentation]" "resvg-py==0.4.0" "pillow==11.3.0"
 
       - name: Validate generated presentation
         run: |
           python .github/scripts/sync_current_drawings.py --check
-          python .github/scripts/build_showcase.py --check-readme --site-dir .build/showcase
+          python -m dreamhouse.coordination --visuals --require-no-fail --release
+          python .github/scripts/build_showcase.py --check-readme --site-dir .build/showcase --coordination-out .build/coordination
 
   sync-readme:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -73,7 +74,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install presentation dependencies
-        run: python -m pip install -e ".[presentation]"
+        run: python -m pip install -e ".[presentation]" "resvg-py==0.4.0" "pillow==11.3.0"
 
       - name: Synchronize current drawings and README gallery
         run: |
@@ -109,7 +110,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install presentation dependencies
-        run: python -m pip install -e ".[presentation]"
+        run: python -m pip install -e ".[presentation]" "resvg-py==0.4.0" "pillow==11.3.0"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
@@ -117,7 +118,8 @@ jobs:
       - name: Build static showcase
         run: |
           python .github/scripts/sync_current_drawings.py --write
-          python .github/scripts/build_showcase.py --site-dir _site
+          python -m dreamhouse.coordination --visuals --require-no-fail --release
+          python .github/scripts/build_showcase.py --site-dir _site --coordination-out .build/coordination
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

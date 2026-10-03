@@ -201,6 +201,8 @@ def run_screening(
     pb: dict | None = None,
     p2: dict | None = None,
     rooflights: dict | None = None,
+    *,
+    enforce_expected_compatible_ids: bool = True,
 ) -> dict:
     pb = _read_json(DEFAULT_PB) if pb is None else pb
     p2 = _read_json(DEFAULT_P2) if p2 is None else p2
@@ -313,6 +315,7 @@ def run_screening(
         pb,
         p2,
         e1_space["vertical_continuity"],
+        enforce_expected_compatible_ids=enforce_expected_compatible_ids,
     )
     roof_openings = analyze_structural_grid(
         rooflights,

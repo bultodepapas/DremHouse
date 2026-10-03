@@ -4,11 +4,19 @@
 or construction  
 **Version:** 0.3-b37-PB / 0.3-b28-P2  
 **Date:** 2026-08-21  
-**Document revision:** 0.3 — implementation note added on 2026-10-02; original design issue retained<br>
+**Document revision:** 0.4 — migration note updated on 2026-10-03; original design issue retained<br>
 **Decision:** D-083  
 **Canonical geometry source:** `dreamhouse/window_daylight_d083.json`  
 **Drawing sources:** `planos/conceptual_v0.3_b37_pb/` and
 `planos/conceptual_v0.3_b28_p2/`
+
+## Connected consumer migration — 2026-10-03
+
+The [migration and extension guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+connects native plans, elevations, workstation/bedroom details and the schedule to one
+resolved source snapshot. Review drawing identities remain distinct from this adopted
+D-083 issue. The generated inventory declares annotation coverage and unresolved interfaces;
+CF-013 doors cannot acquire a measured placement from the earlier sketches.
 
 ## Connected review and source ownership
 

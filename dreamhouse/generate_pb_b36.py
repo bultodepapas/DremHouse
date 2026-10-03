@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -167,17 +168,57 @@ def _bench_elevation(
     scale: float,
     prefix: str,
     window_x0_relative: float,
+    window: dict[str, Any] | None = None,
+    parameterize: bool = False,
 ) -> list[str]:
     parts: list[str] = []
     width = bench["length"] * scale
-    sill_y = floor_y - .90 * scale
-    head_y = floor_y - 3.80 * scale
-    window_x = x + window_x0_relative * scale
-    window_w = 7.20 * scale
-    parts.append(base.rect(window_x, head_y, window_w, sill_y - head_y, fill="#426671", stroke="#172126", stroke_width="2"))
-    for index in range(1, 6):
-        xx = window_x + index * 1.20 * scale
-        parts.append(f'<line x1="{xx}" y1="{head_y}" x2="{xx}" y2="{sill_y}" stroke="#9bb3b8" stroke-width="1"/>')
+    if parameterize:
+        geometry = _technical_window_geometry(bench, window)
+        if geometry is None:
+            parts.append(
+                base.text(
+                    x,
+                    floor_y - 3.0 * scale,
+                    f"{prefix} WINDOW · OPEN · CURRENT SOURCE DATUM UNAVAILABLE",
+                    6.2,
+                    "start",
+                    700,
+                    "#8e3825",
+                )
+            )
+        else:
+            sill_y = floor_y - geometry["sill_m"] * scale
+            head_y = floor_y - (geometry["sill_m"] + geometry["height_m"]) * scale
+            window_x = x + geometry["x0_relative_m"] * scale
+            window_w = geometry["width_m"] * scale
+            parts.append(
+                base.rect(
+                    window_x,
+                    head_y,
+                    window_w,
+                    sill_y - head_y,
+                    fill="#426671",
+                    stroke="#172126",
+                    stroke_width="2",
+                    id=f"bench-window-{geometry['id']}",
+                    data_entity_id=geometry["id"],
+                )
+            )
+            for index in range(1, geometry["modules"]):
+                xx = window_x + index * window_w / geometry["modules"]
+                parts.append(
+                    f'<line x1="{xx}" y1="{head_y}" x2="{xx}" y2="{sill_y}" stroke="#9bb3b8" stroke-width="1"/>'
+                )
+    else:
+        sill_y = floor_y - .90 * scale
+        head_y = floor_y - 3.80 * scale
+        window_x = x + window_x0_relative * scale
+        window_w = 7.20 * scale
+        parts.append(base.rect(window_x, head_y, window_w, sill_y - head_y, fill="#426671", stroke="#172126", stroke_width="2"))
+        for index in range(1, 6):
+            xx = window_x + index * 1.20 * scale
+            parts.append(f'<line x1="{xx}" y1="{head_y}" x2="{xx}" y2="{sill_y}" stroke="#9bb3b8" stroke-width="1"/>')
     adjustable = set(bench.get("adjustable_module_indices", []))
     storage = set(bench.get("storage_module_indices_test", []))
     for index in range(bench["module_count"]):
@@ -194,7 +235,50 @@ def _bench_elevation(
     return parts
 
 
-def technical_workbench_detail_sheet(model: dict[str, Any]) -> str:
+def _technical_window_geometry(
+    bench: dict[str, Any], window: dict[str, Any] | None
+) -> dict[str, Any] | None:
+    """Return a complete, bounded current opening datum or no drawing geometry."""
+    if not isinstance(window, dict) or not isinstance(window.get("id"), str):
+        return None
+    fields = ("x0", "x1", "sill", "height", "modules")
+    values = {field: window.get(field) for field in fields}
+    if any(
+        isinstance(value, bool)
+        or not isinstance(value, (int, float))
+        or not math.isfinite(float(value))
+        for value in values.values()
+    ):
+        return None
+    bench_x0 = bench.get("x0")
+    if (
+        isinstance(bench_x0, bool)
+        or not isinstance(bench_x0, (int, float))
+        or not math.isfinite(float(bench_x0))
+    ):
+        return None
+    x0, x1, sill, height, modules = (float(values[field]) for field in fields)
+    if (
+        x1 <= x0
+        or sill < 0
+        or height <= 0
+        or not modules.is_integer()
+        or modules < 1
+    ):
+        return None
+    return {
+        "id": window["id"],
+        "x0_relative_m": x0 - float(bench_x0),
+        "width_m": x1 - x0,
+        "sill_m": sill,
+        "height_m": height,
+        "modules": int(modules),
+    }
+
+
+def technical_workbench_detail_sheet(
+    model: dict[str, Any], *, parameterize: bool = False
+) -> str:
     benches = {item["id"]: item for item in model["built_in_benches"]}
     car = benches["PB-BENCH-CAR"]
     rc = benches["PB-BENCH-RC"]
@@ -204,38 +288,91 @@ def technical_workbench_detail_sheet(model: dict[str, Any]) -> str:
         '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',
         base.title_block(meta["code"], meta["title"], meta["subtitle"]),
     ]
+    window_rows = model.get("technical_glazing")
+    windows = (
+        {str(item.get("id")): item for item in window_rows if isinstance(item, dict)}
+        if isinstance(window_rows, list)
+        else {}
+    )
 
     parts.append(base.text(70, 120, "A · PROJECT CAR WALL BENCH · SIX DUTY MODULES", 13, "start", 700))
-    parts.extend(_bench_elevation(car, x=75, floor_y=315, scale=50, prefix="C", window_x0_relative=1.32))
+    parts.extend(
+        _bench_elevation(
+            car,
+            x=75,
+            floor_y=315,
+            scale=50,
+            prefix="C",
+            window_x0_relative=1.32,
+            window=windows.get("GLZ-CAR"),
+            parameterize=parameterize,
+        )
+    )
     car_roles = "C1 door/service · C2 heavy force +0.84 · C3-C4 mechanical · C5 diagnostics · C6 landing/storage"
     parts.append(base.text(75, 342, car_roles, 7.2, "start", 700, "#5b432b"))
     parts.append(base.text(75, 362, "0.75 m total depth = 0.63 m active + 0.12 m removable rear service zone · 1.20 m operating strip OPEN against real lift", 7.0, "start"))
 
     parts.append(base.text(70, 405, "B · RC / ELECTRONICS WALL BENCH · CLEAN AND DIRTY TASKS SEPARATED", 13, "start", 700))
-    parts.extend(_bench_elevation(rc, x=75, floor_y=600, scale=50, prefix="R", window_x0_relative=1.32))
+    parts.extend(
+        _bench_elevation(
+            rc,
+            x=75,
+            floor_y=600,
+            scale=50,
+            prefix="R",
+            window_x0_relative=1.32,
+            window=windows.get("GLZ-RC"),
+            parameterize=parameterize,
+        )
+    )
     rc_roles = "R1 model mechanics · R2 electronics ESD · R3 solder ESD + source extraction · R4 instruments ESD · R5 tools · R6 landing"
     parts.append(base.text(75, 627, rc_roles, 6.8, "start", 700, "#294f58"))
     parts.append(base.text(75, 647, "R2-R4: 0.80 m tops and manual +0.70-1.10 m adjustment · ESD common point bonds to protective earth · LiPo stays separate", 7.0, "start"))
 
     parts.append(base.text(770, 120, "C · WALL / SILL / SERVICE PRINCIPLE", 13, "start", 700))
     floor_y = 380
-    wall_x = 830
     parts.append(base.rect(760, 155, 70, 225, fill="#a2abad", stroke="#26363b", stroke_width="1.3"))
     parts.append(base.rect(830, 155, 60, 225, fill="#d8ded9", stroke="#536166", stroke_width="1"))
-    sill_y = floor_y - .90 * 150
+    sill_y = floor_y - .90 * 150 if not parameterize else 255.0
     parts.append(base.rect(890, 165, 30, sill_y - 165, fill="#416771", stroke="#172126", stroke_width="2"))
     parts.append(base.rect(882, sill_y, 46, 12, fill="#29383d", stroke="#172126"))
     parts.append(f'<line x1="{940}" y1="{sill_y}" x2="{1240}" y2="{sill_y}" stroke="#c99f6b" stroke-width="12"/>')
     parts.append(base.rect(920, sill_y + 16, 50, 24, fill="#fff4df", stroke="#b56c31", stroke_width="1"))
-    parts.append(base.text(945, sill_y + 32, "30-50", 6.2, weight=700, fill="#8e3825"))
-    parts.append(base.text(990, sill_y - 12, "TOP / SILL ALIGN VISUALLY; DO NOT JOIN STRUCTURALLY", 7.2, "start", 700, "#8e3825"))
-    parts.append(base.text(990, sill_y + 22, "removable shadow gap + service trough", 7.0, "start"))
-    parts.append(base.text(990, sill_y + 44, "window drains and seals independently", 7.0, "start"))
-    parts.append(base.text(990, sill_y + 66, "no furniture load to frame or facade girt", 7.0, "start"))
-    parts.append(base.text(760, 405, "HEIGHT DATUM", 7.5, "start", 700, "#8e3825"))
-    parts.append(base.text(855, 405, "+0.90 general · +0.84 heavy / large-object test · +0.70-1.10 adjustable electronics", 7.0, "start"))
-    parts.append(base.text(760, 428, "AUTHORITY", 7.5, "start", 700, "#8e3825"))
-    parts.append(base.text(855, 428, "Owner anthropometry, tasks and full-scale mock-ups govern final heights.", 7.0, "start"))
+    if parameterize:
+        parts.append(base.text(945, sill_y + 32, "SILL", 6.2, weight=700, fill="#8e3825"))
+        parts.append(base.text(990, sill_y - 12, "SCHEMATIC INTERFACE · NOT TO SCALE", 7.2, "start", 700, "#8e3825"))
+        parts.append(base.text(990, sill_y + 22, "GLZ-CAR and GLZ-RC use separate source datums below.", 7.0, "start"))
+        parts.append(base.text(990, sill_y + 44, "Window drains and seals independently.", 7.0, "start"))
+        parts.append(base.text(990, sill_y + 66, "No furniture load to frame or facade girt.", 7.0, "start"))
+        parts.append(base.text(760, 405, "CURRENT WINDOWS", 7.5, "start", 700, "#8e3825"))
+        for index, identifier in enumerate(("GLZ-CAR", "GLZ-RC")):
+            window = windows.get(identifier)
+            bench = car if identifier == "GLZ-CAR" else rc
+            geometry = _technical_window_geometry(bench, window)
+            if geometry is None:
+                datum = f"{identifier} · OPEN · current source datum unavailable"
+            else:
+                width = geometry["width_m"]
+                sill = geometry["sill_m"]
+                height = geometry["height_m"]
+                modules = geometry["modules"]
+                datum = (
+                    f"{identifier} · {width:.2f} × {height:.2f} m · sill +{sill:.2f} m · "
+                    f"head +{sill + height:.2f} m · {modules} modules"
+                )
+            parts.append(base.text(855, 422 + index * 18, datum, 6.0, "start"))
+        parts.append(base.text(760, 462, "AUTHORITY", 7.5, "start", 700, "#8e3825"))
+        parts.append(base.text(855, 462, "Separate source dimensions; no common sill or connection is implied.", 6.8, "start"))
+    else:
+        parts.append(base.text(945, sill_y + 32, "30-50", 6.2, weight=700, fill="#8e3825"))
+        parts.append(base.text(990, sill_y - 12, "TOP / SILL ALIGN VISUALLY; DO NOT JOIN STRUCTURALLY", 7.2, "start", 700, "#8e3825"))
+        parts.append(base.text(990, sill_y + 22, "removable shadow gap + service trough", 7.0, "start"))
+        parts.append(base.text(990, sill_y + 44, "window drains and seals independently", 7.0, "start"))
+        parts.append(base.text(990, sill_y + 66, "no furniture load to frame or facade girt", 7.0, "start"))
+        parts.append(base.text(760, 405, "HEIGHT DATUM", 7.5, "start", 700, "#8e3825"))
+        parts.append(base.text(855, 405, "+0.90 general · +0.84 heavy / large-object test · +0.70-1.10 adjustable electronics", 7.0, "start"))
+        parts.append(base.text(760, 428, "AUTHORITY", 7.5, "start", 700, "#8e3825"))
+        parts.append(base.text(855, 428, "Owner anthropometry, tasks and full-scale mock-ups govern final heights.", 7.0, "start"))
 
     parts.append(base.text(70, 700, "D · CENTRAL RC TWO-SIDED ASSEMBLY ISLAND", 13, "start", 700))
     plan_x, plan_y, scale = 75.0, 725.0, 92.0
@@ -249,8 +386,16 @@ def technical_workbench_detail_sheet(model: dict[str, Any]) -> str:
     parts.append(base.text(75, 890, "Flat replaceable light surface · central line is two 0.80 m reach halves · fixed versus lockable-mobile support remains open", 7.0, "start"))
 
     parts.append(base.text(770, 485, "E · OPEN PROFESSIONAL GATES", 13, "start", 700))
+    lift_gate = (
+        (
+            "1  HISTORICAL D-079 1.10 m overlap; not a current check.",
+            "   Recalculate/review after real lift/vehicle selection; see EQUIPMENT-LIFT-SELECTION-COVERAGE + PB-SERVICE-OPERATING-RESERVATIONS.",
+        )
+        if parameterize
+        else "1  Select real lift + vehicle; current 1.20 m car-bench strip overlaps the test envelope by 1.10 m."
+    )
     gates = [
-        "1  Select real lift + vehicle; current 1.20 m car-bench strip overlaps the test envelope by 1.10 m.",
+        lift_gate,
         "2  Mock up one 1.50 m car module and one adjustable RC module with the owner's real work objects.",
         "3  Engineer bench frames, local vice/impact loads, drawer loads and bolted backing independently of the facade.",
         "4  Coordinate RETIE circuits/protective earth, ESD point, solder extraction, printer emissions and LiPo fire strategy.",
@@ -258,8 +403,15 @@ def technical_workbench_detail_sheet(model: dict[str, Any]) -> str:
     ]
     for index, gate in enumerate(gates):
         y = 515 + index * 44
-        parts.append(base.rect(770, y, 555, 34, fill="#f1eee7", stroke="#c0bbb0", stroke_width=".8"))
-        parts.append(base.text(784, y + 21, gate, 6.6, "start", 700 if index == 0 else 400, "#8e3825" if index == 0 else "#26363b"))
+        if isinstance(gate, tuple):
+            parts.append(
+                base.rect(770, y, 555, 44, fill="#f1eee7", stroke="#c0bbb0", stroke_width=".8")
+            )
+            parts.append(base.text(784, y + 17, gate[0], 6.4, "start", 700, "#8e3825"))
+            parts.append(base.text(784, y + 34, gate[1], 6.0, "start", 400, "#8e3825"))
+        else:
+            parts.append(base.rect(770, y, 555, 34, fill="#f1eee7", stroke="#c0bbb0", stroke_width=".8"))
+            parts.append(base.text(784, y + 21, gate, 6.6, "start", 700 if index == 0 else 400, "#8e3825" if index == 0 else "#26363b"))
 
     parts.append(base.rect(770, 754, 555, 126, fill="#fff4df", stroke="#bd5c3c", stroke_width="1"))
     parts.append(base.text(787, 779, "D-079 CONTROL", 9, "start", 700, "#8e3825"))

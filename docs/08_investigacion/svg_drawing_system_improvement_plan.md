@@ -1,9 +1,9 @@
 # SVG drawing-system audit and improvement plan
 
 **Status:** retained graphic-improvement roadmap; bounded D-084 review implementation;
-publication migration pending; no construction authority
-**Version:** 0.5
-**Date:** 2026-10-02
+connected review publication implemented; adopted aliases retained; no construction authority
+**Version:** 0.6
+**Date:** 2026-10-03
 **Original audit date:** 2026-08-23
 **Source:** owner request of 2026-08-21; code and rendered-output audit of the 27
 current sheets in `planos/actual/`; statistical audit of the 217 SVG files under
@@ -12,6 +12,16 @@ current sheets in `planos/actual/`; statistical audit of the 217 SVG files under
 **Authority boundary:** this plan changes presentation, SVG engineering and quality
 control only. It does not change architectural geometry, programme, structure, cost,
 scope, status, open conflicts or professional design gates.
+
+## Connected catalog migration — 2026-10-03
+
+The [migration and extension guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+records the native consumers registered by catalog ID, generated from captured source
+inputs in the same review package as the eight annotated projections. These review
+consumers preserve adopted aliases and disclose inherited annotation limits. Release
+verification and showcase export now provide a coherent reader. The earlier graphic
+audit remains a separate acceptance reference; successful generation does not prove
+all-sheet annotation completeness, aesthetic acceptance or engineering approval.
 
 ## 1. Outcome
 

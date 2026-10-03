@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from xml.etree import ElementTree as ET
 
 from dreamhouse.coordination.model import (
     CoordinationError,
@@ -68,6 +69,27 @@ class VisualPipelineTests(unittest.TestCase):
                 check_candidate(self.study, self.visual_out)
         finally:
             artifact.write_bytes(original)
+
+    def test_native_sheet_review_banner_text_is_actually_rasterized(self):
+        from PIL import Image
+
+        issue = Path(self.visual["path"])
+        for name in ("architecture-p2-bedroom-windows", "structure-vertical-continuity"):
+            svg = ET.parse(issue / "drawings" / f"{name}.svg").getroot()
+            _, _, width, _ = map(float, svg.get("viewBox").split())
+            banner = next(node for node in svg.iter() if node.get("id") == "review-status-banner")
+            background = banner.find("{http://www.w3.org/2000/svg}rect")
+            with Image.open(issue / "drawings" / f"{name}.png") as preview:
+                # At thumbnail scale white glyphs are antialiased into the dark
+                # red background. Test visible contrast, not fully white pixels,
+                # and derive the crop from the actual banner geometry.
+                first_row = int(float(background.get("y")) * preview.width / width) + 1
+                pixels = preview.convert("RGB").crop(
+                    (1, first_row, preview.width - 1, preview.height - 1)
+                )
+                self.assertGreater(
+                    sum(r > 170 and g > 100 and b > 90 for r, g, b in pixels.getdata()), 10, name
+                )
 
     def test_visual_render_failure_preserves_the_published_pointer(self):
         pointer = self.visual_out / "latest.json"

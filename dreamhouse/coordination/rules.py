@@ -1576,7 +1576,19 @@ def _lifecycle_absence_state(
             and isinstance(entities[0].get("geometry"), dict)
             and entities[0]["geometry"].get("shape") == "unresolved"
         )
-    elif rule_id.startswith(("PROGRAM-", "EQUIP", "STRUCTURE-", "WORKSTATION-")):
+    elif rule_id.startswith(
+        (
+            "PROGRAM-",
+            "EQUIP",
+            "STRUCTURE-",
+            "WORKSTATION-",
+            "WALL-",
+            "SC01-",
+            "P2-PHASE-",
+            "PB-SERVICE-",
+            "ASSET-",
+        )
+    ):
         # A missing context/adapter result never closes an earlier discipline finding.
         # Explicit current inapplicability can be reported by the adapter itself.
         applicable = True
@@ -1676,10 +1688,17 @@ def evaluate(snapshot: dict[str, Any], baseline: dict[str, Any] | None = None) -
 
 def _evaluate_with_disciplines(snapshot: dict[str, Any]) -> dict[str, Any]:
     from dreamhouse.coordination.disciplines import evaluate_disciplines
+    from dreamhouse.coordination.extensions import evaluate_extensions
 
     result = _evaluate_snapshot(snapshot)
     discipline = evaluate_disciplines(snapshot)
-    result["findings"].extend(discipline["findings"])
+    extension = evaluate_extensions(snapshot)
+    for adapter in (discipline, extension):
+        result["findings"].extend(adapter["findings"])
+        result["coverage"]["rules"].extend(adapter["coverage"]["rules"])
+        for key, value in adapter["coverage"]["totals"].items():
+            result["coverage"]["totals"][key] += value
+        result["rule_registry"].extend(adapter["rule_registry"])
     result["findings"].sort(key=lambda item: (item["rule_id"], item["finding_id"]))
     identifiers = [item["finding_id"] for item in result["findings"]]
     if len(identifiers) != len(set(identifiers)):
@@ -1688,11 +1707,8 @@ def _evaluate_with_disciplines(snapshot: dict[str, Any]) -> dict[str, Any]:
         item["status"] == "PASS" and item["coverage"] != "evaluated" for item in result["findings"]
     ):
         raise ValueError("A PASS requires evaluated rule coverage")
-    result["coverage"]["rules"].extend(discipline["coverage"]["rules"])
-    for key, value in discipline["coverage"]["totals"].items():
-        result["coverage"]["totals"][key] += value
-    result["rule_registry"].extend(discipline["rule_registry"])
     result["disciplines"] = discipline["disciplines"]
+    result["extensions"] = extension["extensions"]
     return result
 
 

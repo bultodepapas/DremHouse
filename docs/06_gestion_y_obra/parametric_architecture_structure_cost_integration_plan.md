@@ -2,8 +2,8 @@
 
 **Status:** retained discipline-integration roadmap; historical I01–I04 evidence and
 D-084 current-source coordination increment; not for construction
-**Version:** 0.9
-**Date:** 2026-10-02
+**Version:** 0.10
+**Date:** 2026-10-03
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
 **Primary authority:** Project Constitution, source-precedence register, D-043,
@@ -18,6 +18,15 @@ applicable manufacturers/fabricators
 > establish a construction quantity, set a contractual price, or freeze PB/P2 geometry.
 > Every numerical value is classified below as a requirement, active coordination
 > hypothesis, benchmark, or measured current-model condition.
+
+## Current consumer migration — 2026-10-03
+
+The [migration and extension guide](connected_coordination_migration_and_extension_guide.md) extends D-084 with native drawing consumers and captured structural
+search spaces. E1 screening remains explicitly tied to its declared loading/member
+hypotheses and CF-009; recomputation does not constitute an adopted structural model.
+Wall-line measurements never supply an assumed surface area, mass or price. Review
+publication selects a verified immutable package; it preserves the older I01–I04 and
+D059 scenarios and the separately adopted drawing catalog.
 
 ## Current workflow and historical evidence
 

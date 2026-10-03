@@ -91,7 +91,12 @@ def validate_b28(model: dict[str, Any]) -> list[dict[str, str]]:
     return checks
 
 
-def bedroom_window_detail_sheet(model: dict[str, Any]) -> str:
+def bedroom_window_detail_sheet(
+    model: dict[str, Any],
+    source_hash: str | None = None,
+    *,
+    parameterize: bool = False,
+) -> str:
     source = model["window_daylight_coordination"]
     windows = {item["id"]: item for item in source["upper_floor_bedroom_windows"]}
     parts = base._svg_start(
@@ -99,53 +104,140 @@ def bedroom_window_detail_sheet(model: dict[str, Any]) -> str:
         "D-083 modular near-floor-to-ceiling bedroom-window coordination. Not for construction.",
         {"drawing": "DH-ARQ-DET-008-R00", "revision": model["revision"], "construction_authority": False},
     )
-    base._header(parts, model, "DH-ARQ-DET-008-R00", "P2 BEDROOM WINDOW FAMILY", "D-083 · repeated 1.20 m modules · near-floor-to-ceiling visual datum")
-    base._panel_title(parts, 72, 166, "01", "STANDARD THREE-MODULE BEDROOM OPENING", width=690)
+    subtitle = (
+        "Current P2 window parameters · source module counts · not an adopted product"
+        if parameterize
+        else "D-083 · repeated 1.20 m modules · near-floor-to-ceiling visual datum"
+    )
+    base._header(parts, model, "DH-ARQ-DET-008-R00", "P2 BEDROOM WINDOW FAMILY", subtitle)
+    base._panel_title(
+        parts, 72, 166, "01",
+        "W-H1 · REPRESENTATIVE OPENING" if parameterize else "STANDARD THREE-MODULE BEDROOM OPENING",
+        width=690,
+    )
     floor_y, scale, x = 615.0, 132.0, 145.0
     standard = windows["W-H1"]
-    head_y = floor_y - (standard["sill"] + standard["height"]) * scale
+    standard_width = standard["to"] - standard["from"]
+    standard_head = standard["sill"] + standard["height"]
+    head_y = floor_y - standard_head * scale
     sill_y = floor_y - standard["sill"] * scale
-    width = (standard["to"] - standard["from"]) * scale
+    width = standard_width * scale
     parts.append(base._rect(x, head_y, width, sill_y - head_y, fill="#426671", stroke=base.INK, stroke_width=3))
     for module in range(1, standard["modules"]):
         xx = x + width * module / standard["modules"]
         parts.append(base._line(xx, head_y, xx, sill_y, stroke="#a9c0c5", stroke_width=1.4))
-    guard_y = floor_y - 1.05 * scale
-    parts.append(base._line(x, guard_y, x + width, guard_y, stroke="#e7d19a", stroke_width=2, stroke_dasharray="8 4"))
+    if not parameterize:
+        guard_y = floor_y - 1.05 * scale
+        parts.append(base._line(x, guard_y, x + width, guard_y, stroke="#e7d19a", stroke_width=2, stroke_dasharray="8 4"))
     parts.append(base._line(x - 35, floor_y, x + width + 35, floor_y, stroke=base.INK, stroke_width=2))
-    parts.append(base._text(x + width / 2, head_y - 18, "3.60 x 2.90 m · 3 x 1.20 m", 12, anchor="middle", weight=700))
+    standard_label = (
+        f"{standard_width:.2f} x {standard['height']:.2f} m · {standard['modules']} modules"
+        if parameterize
+        else "3.60 x 2.90 m · 3 x 1.20 m"
+    )
+    parts.append(base._text(
+        x + width / 2,
+        head_y - 18,
+        standard_label,
+        12,
+        anchor="middle",
+        weight=700,
+    ))
     parts.append(base._text(x + width / 2, (head_y + sill_y) / 2, "FIXED + OPERABLE PANEL MIX\nPENDING SITE / VENTILATION", 10, anchor="middle", weight=700, fill="#eff5f5"))
-    parts.append(base._text(x - 22, sill_y + 4, "+0.05", 8, anchor="end", weight=700, fill=base.RED))
-    parts.append(base._text(x - 22, head_y + 4, "+2.95", 8, anchor="end", weight=700, fill=base.RED))
-    parts.append(base._text(x + width / 2, guard_y - 8, "FALL-PROTECTION / RESTRICTOR DESIGN GATE", 7.5, anchor="middle", weight=700, fill="#f7e8b7"))
+    if parameterize:
+        parts.append(base._text(x - 22, sill_y + 4, f"+{standard['sill']:.2f}", 8, anchor="end", weight=700, fill=base.RED))
+        parts.append(base._text(x - 22, head_y + 4, f"+{standard_head:.2f}", 8, anchor="end", weight=700, fill=base.RED))
+        parts.append(base._text(
+            x + width / 2,
+            floor_y + 26,
+            "FALL-PROTECTION / RESTRICTOR DESIGN GATE · HEIGHT AND SYSTEM UNRESOLVED",
+            7.5,
+            anchor="middle",
+            weight=700,
+            fill=base.RED,
+        ))
+    else:
+        parts.append(base._text(x - 22, sill_y + 4, "+0.05", 8, anchor="end", weight=700, fill=base.RED))
+        parts.append(base._text(x - 22, head_y + 4, "+2.95", 8, anchor="end", weight=700, fill=base.RED))
+        parts.append(base._text(x + width / 2, guard_y - 8, "FALL-PROTECTION / RESTRICTOR DESIGN GATE", 7.5, anchor="middle", weight=700, fill="#f7e8b7"))
 
     base._panel_title(parts, 785, 166, "02", "PRIMARY SUITE CORNER FAMILY", width=780)
     schedule = [
-        ("SIDE A", "W-M-LAT-A", "3.60 x 2.90 m · 3 modules", 815.0),
-        ("REAR", "W-M-REAR", "2.40 x 2.90 m · 2 modules", 1190.0),
+        ("SIDE A", "W-M-LAT-A", 815.0),
+        ("REAR", "W-M-REAR", 1190.0),
     ]
-    for tag, window_id, label, xx0 in schedule:
+    for tag, window_id, xx0 in schedule:
         yy = 235.0
         item = windows[window_id]
-        panel_w = (item["to"] - item["from"]) * 90
+        item_width = item["to"] - item["from"]
+        item_label = (
+            f"{item_width:.2f} x {item['height']:.2f} m · {item['modules']} modules"
+            if parameterize
+            else "3.60 x 2.90 m · 3 modules"
+            if window_id == "W-M-LAT-A"
+            else "2.40 x 2.90 m · 2 modules"
+        )
+        panel_w = item_width * 90
         panel_h = item["height"] * 90
         parts.append(base._text(xx0, yy - 28, tag, 8, weight=700, fill=base.TEAL))
-        parts.append(base._text(xx0, yy - 10, label, 8, weight=700))
+        parts.append(base._text(xx0, yy - 10, item_label, 8, weight=700))
         parts.append(base._rect(xx0, yy, panel_w, panel_h, fill="#426671", stroke=base.INK, stroke_width=2.5))
         for module in range(1, item["modules"]):
             xx = xx0 + panel_w * module / item["modules"]
             parts.append(base._line(xx, yy, xx, yy + panel_h, stroke="#a9c0c5", stroke_width=1.2))
-        parts.append(base._text(xx0 + panel_w / 2, yy + panel_h + 23, "sill +0.05 · head +2.95", 7.5, anchor="middle", fill=base.MUTED))
+        head = item["sill"] + item["height"]
+        sill_head = (
+            f"sill +{item['sill']:.2f} · head +{head:.2f}"
+            if parameterize
+            else "sill +0.05 · head +2.95"
+        )
+        parts.append(base._text(
+            xx0 + panel_w / 2,
+            yy + panel_h + 23,
+            sill_head,
+            7.5,
+            anchor="middle",
+            fill=base.MUTED,
+        ))
 
-    base._panel_title(parts, 72, 700, "03", "REPEATED CONTROL SCHEDULE", width=690)
-    rows = [
-        ("W-H1 / W-H2 / W-G", "3.60 x 2.90 m", "3 x 1.20 m"),
-        ("W-M-LAT-A", "3.60 x 2.90 m", "3 x 1.20 m"),
-        ("W-M-REAR", "2.40 x 2.90 m", "2 x 1.20 m"),
-        ("ALL FIVE", "sill +0.05 m", "head +2.95 m"),
-    ]
+    base._panel_title(
+        parts, 72, 700, "03",
+        "CURRENT OPENING CONTROL SCHEDULE" if parameterize else "REPEATED CONTROL SCHEDULE",
+        width=690,
+    )
+    if parameterize:
+        rows = []
+        for window_id, item in windows.items():
+            width_m = item["to"] - item["from"]
+            head_m = item["sill"] + item["height"]
+            rows.append(
+                (
+                    window_id,
+                    f"{width_m:.2f} × {item['height']:.2f} m · {item['modules']} modules",
+                    f"sill +{item['sill']:.2f} · head +{head_m:.2f}",
+                )
+            )
+    else:
+        rows = [
+            (
+                "W-H1 / W-H2 / W-G",
+                "3.60 x 2.90 m",
+                "3 x 1.20 m",
+            ),
+            (
+                "W-M-LAT-A",
+                "3.60 x 2.90 m",
+                "3 x 1.20 m",
+            ),
+            (
+                "W-M-REAR",
+                "2.40 x 2.90 m",
+                "2 x 1.20 m",
+            ),
+            ("ALL FIVE", "sill +0.05 m", "head +2.95 m"),
+        ]
     for index, row in enumerate(rows):
-        yy = 742 + index * 42
+        yy = 742 + index * (34 if parameterize else 42)
         parts.append(base._rect(72, yy, 690, 31, fill="#ece8df", stroke="#c3ccce", stroke_width=.8))
         parts.append(base._text(88, yy + 21, row[0], 7.5, weight=700, fill=base.TEAL))
         parts.append(base._text(330, yy + 21, row[1], 7.5, weight=700))
@@ -158,7 +250,9 @@ def bedroom_window_detail_sheet(model: dict[str, Any]) -> str:
         parts.append(base._rect(785, yy, 780, 30, fill="#fff4df" if index < 3 else "#ece8df", stroke="#d2c5ae", stroke_width=.8, rx=3))
         parts.append(base._text(800, yy + 20, f"{index + 1:02d}", 7, weight=700, fill=base.RED))
         parts.append(base._text(832, yy + 20, note, 7.1, weight=700 if index < 3 else 400))
-    base._footer(parts, model, hashlib.sha256(WINDOW_SOURCE.read_bytes()).hexdigest(), "DH-ARQ-DET-008-R00")
+    if source_hash is None:
+        source_hash = hashlib.sha256(WINDOW_SOURCE.read_bytes()).hexdigest()
+    base._footer(parts, model, source_hash, "DH-ARQ-DET-008-R00")
     parts.append("</svg>")
     return "".join(parts)
 

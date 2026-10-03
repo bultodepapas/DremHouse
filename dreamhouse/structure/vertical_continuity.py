@@ -94,17 +94,42 @@ def _door_conflicts(
     conflicts: list[str] = []
     if math.isclose(x, wall_x, abs_tol=tolerance):
         for room in pb["core"]:
+            if room.get("door_y") is None:
+                continue
             start = _finite(room["door_y"], f"{room['id']} door y") - 0.10
             end = start + _finite(room["door_width"], f"{room['id']} door width")
             if _interval_contains(y, start, end, tolerance):
                 conflicts.append(f"GW-{room['id']}")
     if math.isclose(x, rear_x, abs_tol=tolerance):
         for door in pb.get("exterior_doors", []):
+            if door.get("y") is None:
+                continue
             start = _finite(door["y"], f"{door['id']} y") - 0.50
             end = start + _finite(door["width"], f"{door['id']} width")
             if _interval_contains(y, start, end, tolerance):
                 conflicts.append(door["id"])
     return conflicts
+
+
+def _unresolved_door_locations(
+    x: float,
+    pb: dict[str, Any],
+    wall_x: float,
+    rear_x: float,
+    tolerance: float,
+) -> list[str]:
+    unresolved: list[str] = []
+    if math.isclose(x, wall_x, abs_tol=tolerance):
+        unresolved.extend(
+            f"GW-{room['id']}"
+            for room in pb["core"]
+            if room.get("door_y") is None
+        )
+    if math.isclose(x, rear_x, abs_tol=tolerance):
+        unresolved.extend(
+            door["id"] for door in pb.get("exterior_doors", []) if door.get("y") is None
+        )
+    return unresolved
 
 
 def _audit_candidate(
@@ -130,6 +155,7 @@ def _audit_candidate(
     ]
     windows = _window_conflicts(x, y, p2, tolerance)
     doors = _door_conflicts(x, y, pb, wall_x, rear_x, tolerance)
+    unresolved_doors = _unresolved_door_locations(x, pb, wall_x, rear_x, tolerance)
     stair_x0 = _finite(stair["x"], "stair x")
     stair_x1 = stair_x0 + _finite(stair["w"], "stair width")
     stair_y0 = _finite(stair["y"], "stair y")
@@ -140,7 +166,13 @@ def _audit_candidate(
         for corner_x in (stair_x0, stair_x1)
         for corner_y in (stair_y0, stair_y1)
     )
-    compatible = stair_corner and not interior_nonstair and not windows and not doors
+    compatible = (
+        stair_corner
+        and not interior_nonstair
+        and not windows
+        and not doors
+        and not unresolved_doors
+    )
     reasons: list[str] = []
     if not stair_corner:
         reasons.append("not_on_stair_enclosure_corner")
@@ -150,7 +182,9 @@ def _audit_candidate(
         reasons.append("interrupts_glazing:" + ",".join(windows))
     if doors:
         reasons.append("interrupts_door:" + ",".join(doors))
-    return {
+    if unresolved_doors:
+        reasons.append("door_location_unresolved:" + ",".join(unresolved_doors))
+    result = {
         "id": candidate["id"],
         "source": candidate["source"],
         "x_m": x,
@@ -164,6 +198,9 @@ def _audit_candidate(
         "geometry_compatible_for_full_height_study": compatible,
         "rejection_reasons": reasons,
     }
+    if unresolved_doors:
+        result["unresolved_door_locations"] = unresolved_doors
+    return result
 
 
 def evaluate_current_support_line_plan(
@@ -295,6 +332,8 @@ def evaluate_vertical_continuity(
     pb: dict[str, Any],
     p2: dict[str, Any],
     continuity: dict[str, Any],
+    *,
+    enforce_expected_compatible_ids: bool = True,
 ) -> dict[str, Any]:
     """Audit the proposed foundation-to-roof column and stair-frame geometry."""
 
@@ -355,7 +394,7 @@ def evaluate_vertical_continuity(
     ]
     compatible_ids = [candidate["id"] for candidate in compatible]
     expected_ids = list(continuity["expected_compatible_column_ids"])
-    if compatible_ids != expected_ids:
+    if enforce_expected_compatible_ids and compatible_ids != expected_ids:
         raise VerticalContinuityError(
             f"Compatible full-height columns changed: {compatible_ids!r} != {expected_ids!r}"
         )

@@ -1,14 +1,24 @@
 # Master plan
 
 **Status:** active project delivery roadmap; stage gates remain evidence-based<br>
-**Version:** 0.4<br>
-**Date:** 2026-10-02<br>
+**Version:** 0.5<br>
+**Date:** 2026-10-03<br>
 **Source:** master plan v0.2, active governance/discipline records and D-084.<br>
 **Language note:** controlled English translation under D-044; existing project and
 construction stage gates retained. Current-state and software-workstream notes updated.
 
 The project advances through evidence and decisions. A successful model build or an
 attractive drawing does not close a site, engineering, cost or construction gate.
+
+## Software migration checkpoint — 2026-10-03
+
+The [migration and extension guide](connected_coordination_migration_and_extension_guide.md) records the current D-084 implementation: source-driven catalog consumers,
+wall/stair/phase/service/maintenance evidence, capability coverage, verified review
+releases, rollback, optional source watching and a connected showcase reader. The
+historical summary below records the earlier increments. This software checkpoint leaves
+site selection, adopted structural design, products, cost and professional stage gates
+under their existing authority. Complete source propagation is a prerequisite for those
+decisions; it does not supply their missing evidence.
 
 ## Current coordination position
 

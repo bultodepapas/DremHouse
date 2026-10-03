@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import math
 from itertools import pairwise
 from pathlib import Path
 
@@ -186,7 +187,7 @@ def title_block(sheet, title_value, subtitle):
     )
 
 
-def plan_sheet(p):
+def plan_sheet(p, *, parameterize=False):
     L, W = p["envelope"]["length"], p["envelope"]["width"]
     ext = p["envelope"]["exterior_wall"]
     wall = p["great_wall"]
@@ -255,12 +256,15 @@ def plan_sheet(p):
         parts.append(plan_rect(31.7,ny0,4.12,max(0.01,ny1-ny0),fill=core_colors[room["type"]],stroke="#536166",stroke_width="1"))
         parts.append(text(sx(33.76),sy((y0+y1)/2)-4,room["name"],9,weight=700))
         parts.append(text(sx(33.76),sy((y0+y1)/2)+10,f'{room["gross_area"]:.1f} m² brutos',7,fill="#526168"))
-        parts.append(door_on_wall(31.5,room["door_y"],room["door_width"],room["id"]=="ESC"))
+        if room.get("door_y") is not None:
+            parts.append(door_on_wall(31.5,room["door_y"],room["door_width"],room["id"]=="ESC"))
     for boundary in (2.4,7.4,11.0,13.4):
         thick = p["design_values"]["partition_stair"] if boundary in (7.4,11.0) else partition
         parts.append(plan_rect(31.7,boundary-thick/2,4.12,thick,fill="#526168",stroke="none"))
     unresolved_rear_discharge = bool(p.get("stair_core", {}).get("open_conflicts"))
     for d in p["exterior_doors"]:
+        if d.get("y") is None:
+            continue
         parts.append(
             rear_door(
                 d["y"], d["width"],
@@ -942,7 +946,12 @@ def plan_sheet(p):
             offset = 15 if g["side"] == "A" else -10
         else:
             offset=-13 if g["side"]=="A" else 18
-        parts.append(text((sx(g["x0"])+sx(g["x1"]))/2,yy+offset,g["name"].upper()+" · 7,20 m",7,weight=700,fill="#246b7a"))
+        opening_label = (
+            f'{g["x1"] - g["x0"]:.2f} m'.replace(".", ",")
+            if parameterize
+            else "7,20 m"
+        )
+        parts.append(text((sx(g["x0"])+sx(g["x1"]))/2,yy+offset,g["name"].upper()+" · "+opening_label,7,weight=700,fill="#246b7a"))
 
     # Grid and dimensions.
     for i,x in enumerate((0,6,12,18,24,30,36)):
@@ -986,16 +995,17 @@ def wall_elevation_sheet(p):
         parts.append(f'<line x1="{x}" y1="{top}" x2="{x}" y2="{base}" stroke="#725238" stroke-width=".7" opacity=".45"/>')
     for room in p["core"]:
         center=(room["y0"]+room["y1"])/2
-        dw=room["door_width"]*scale
-        dx=left+(room["door_y"]-.1)*scale
-        dh=(2.45 if room["id"]=="ESC" else 2.30)*scale
-        if room["id"]=="ESC":
-            parts.append(rect(dx,base-dh,dw,dh,fill="#806044",stroke="#30251e",stroke_width="3"))
-            parts.append(rect(dx-9,base-dh-9,dw+18,dh+9,fill="none",stroke="#513929",stroke_width="2"))
-            parts.append(text(dx+dw/2,base-dh-16,"PORTAL ESCALERA",9,weight=700,fill="#513929"))
-        else:
-            parts.append(rect(dx,base-dh,dw,dh,fill="none",stroke="#6f513a",stroke_width="1.1"))
-            parts.append(f'<circle cx="{dx+dw-10}" cy="{base-dh*.48}" r="2.5" fill="#3b3028"/>')
+        if room.get("door_y") is not None:
+            dw=room["door_width"]*scale
+            dx=left+(room["door_y"]-.1)*scale
+            dh=(2.45 if room["id"]=="ESC" else 2.30)*scale
+            if room["id"]=="ESC":
+                parts.append(rect(dx,base-dh,dw,dh,fill="#806044",stroke="#30251e",stroke_width="3"))
+                parts.append(rect(dx-9,base-dh-9,dw+18,dh+9,fill="none",stroke="#513929",stroke_width="2"))
+                parts.append(text(dx+dw/2,base-dh-16,"PORTAL ESCALERA",9,weight=700,fill="#513929"))
+            else:
+                parts.append(rect(dx,base-dh,dw,dh,fill="none",stroke="#6f513a",stroke_width="1.1"))
+                parts.append(f'<circle cx="{dx+dw-10}" cy="{base-dh*.48}" r="2.5" fill="#3b3028"/>')
         parts.append(text(left+center*scale,base+25,room["name"].upper(),8,weight=700))
     parts.append(rect(left,base+48,18*scale,14,fill="#bbb8b0",stroke="#6c7271",stroke_width="1"))
     parts.append(text(left+9*scale,base+74,"ZÓCALO TÉCNICO CONTINUO / RETORNO DE SOMBRA · registrable por módulos",9,weight=700))
@@ -1037,10 +1047,16 @@ def roof_profile(p, sc, base):
     return a_top, b_top, a_label, b_label
 
 
-def front_elevation_sheet(p):
-    parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("ELE-001-R04","FACHADA FRONTAL DETALLADA · TRES ACCESOS","Portón carro + acceso peatonal central + portón RC/aviones · composición nominal 18,00 m")]
+def front_elevation_sheet(p, *, parameterize=False):
+    frontage_m = float(p["envelope"]["width"]) if parameterize else 18.0
+    subtitle = (
+        f"Current source frontage · {frontage_m:.2f} m · opening datums from resolved model"
+        if parameterize
+        else "Portón carro + acceso peatonal central + portón RC/aviones · composición nominal 18,00 m"
+    )
+    parts=['<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',title_block("ELE-001-R04","FACHADA FRONTAL DETALLADA · TRES ACCESOS",subtitle)]
     left, base, sc = 140, 645, 62
-    width = 18*sc
+    width = frontage_m*sc if parameterize else 18*sc
     a_top, b_top, a_txt, b_txt = roof_profile(p, sc, base)
     top = min(a_top, b_top)
     parts.append('<defs><pattern id="metal" width="16" height="16" patternUnits="userSpaceOnUse"><line x1="3" y1="0" x2="3" y2="16" stroke="#8e9799" stroke-width=".8"/></pattern><pattern id="doorpanel" width="18" height="18" patternUnits="userSpaceOnUse"><line x1="0" y1="5" x2="18" y2="5" stroke="#65747a" stroke-width="1"/></pattern></defs>')
@@ -1053,26 +1069,50 @@ def front_elevation_sheet(p):
         x=left+op["y0"]*sc
         w=op["width"]*sc
         h=op["height"]*sc
-        y=base-h
+        sill = float(op.get("sill", 0.0)) if parameterize else 0.0
+        y=base-(sill+op["height"])*sc if parameterize else base-h
+        occurrence = (
+            {"id": f"pb-front-{op['id']}-opening", "data_entity_id": op["id"]}
+            if parameterize
+            else {}
+        )
         if op["id"]=="PED":
-            parts.append(rect(x,y,w,h,fill="#303c41",stroke="#182126",stroke_width="3"))
+            parts.append(rect(x,y,w,h,fill="#303c41",stroke="#182126",stroke_width="3",**occurrence))
             parts.append(rect(x+12,y+18,w-24,h-36,fill="#4b5a60",stroke="#9fa9aa",stroke_width="1"))
             parts.append(f'<circle cx="{x+w-17}" cy="{y+h*.52}" r="4" fill="#d9b56e"/>')
             parts.append(f'<line x1="{x-10}" y1="{y-18}" x2="{x+w+10}" y2="{y-18}" stroke="#d5a65c" stroke-width="4"/>')
         else:
-            parts.append(rect(x,y,w,h,fill="#39484e",stroke="#172126",stroke_width="3"))
+            parts.append(rect(x,y,w,h,fill="#39484e",stroke="#172126",stroke_width="3",**occurrence))
             parts.append(rect(x+6,y+6,w-12,h-12,fill="url(#doorpanel)",stroke="#718086",stroke_width="1"))
-            parts.append(f'<line x1="{x+w/2}" y1="{y+6}" x2="{x+w/2}" y2="{base-6}" stroke="#718086" stroke-width="1"/>')
+            split_base = base-sill*sc if parameterize else base
+            parts.append(f'<line x1="{x+w/2}" y1="{y+6}" x2="{x+w/2}" y2="{split_base-6}" stroke="#718086" stroke-width="1"/>')
         parts.append(text(x+w/2,y+h/2-4,labels[op["id"]],11,weight=700,fill="#f7f4ec"))
-        parts.append(text(x+w/2,y+h/2+16,f'{op["width"]:.2f} × {op["height"]:.2f} m',9,fill="#f7f4ec"))
+        dimension = f'{op["width"]:.2f} × {op["height"]:.2f} m'
+        if parameterize:
+            dimension += f' · sill +{sill:.2f} m'
+        parts.append(text(x+w/2,y+h/2+16,dimension,9,fill="#f7f4ec"))
     # Exterior platform, slot drain and lighting.
     parts.append(rect(left-45,base,width+90,42,fill="#d6d2ca",stroke="#858b89",stroke_width="1"))
     parts.append(f'<line x1="{left-25}" y1="{base+9}" x2="{left+width+25}" y2="{base+9}" stroke="#4d5b60" stroke-width="4" stroke-dasharray="7 4"/>')
     parts.append(text(left+width/2,base+32,"PLATAFORMA CONTINUA DE CONCRETO · canal lineal / pendiente alejándose de portones",9,weight=700))
-    for x in (left+1.0*sc,left+8.0*sc,left+10.0*sc,left+17.0*sc):
-        parts.append(f'<circle cx="{x}" cy="{top+58}" r="7" fill="#e5bd73" stroke="#594a32"/><path d="M {x-18} {top+85} L {x} {top+64} L {x+18} {top+85}" fill="#e7c985" opacity=".18"/>')
+    if not parameterize:
+        for x in (left+1.0*sc,left+8.0*sc,left+10.0*sc,left+17.0*sc):
+            parts.append(f'<circle cx="{x}" cy="{top+58}" r="7" fill="#e5bd73" stroke="#594a32"/><path d="M {x-18} {top+85} L {x} {top+64} L {x+18} {top+85}" fill="#e7c985" opacity=".18"/>')
     # Horizontal dimensions, preserving the exact canonical composition.
-    segments=[(0,1.2,"1,20"),(1.2,6.0,"4,80"),(6.0,8.2,"2,20"),(8.2,9.8,"1,60"),(9.8,12.0,"2,20"),(12.0,16.8,"4,80"),(16.8,18.0,"1,20")]
+    if parameterize:
+        dimension_points = [0.0, frontage_m]
+        for op in p["front_openings"]:
+            dimension_points.extend((float(op["y0"]), float(op["y0"]) + float(op["width"])))
+        ordered_points = []
+        for point in sorted(dimension_points):
+            if not ordered_points or not math.isclose(point, ordered_points[-1], abs_tol=1e-9):
+                ordered_points.append(point)
+        segments = [
+            (a, b, f"{b - a:.2f}".replace(".", ","))
+            for a, b in pairwise(ordered_points)
+        ]
+    else:
+        segments=[(0,1.2,"1,20"),(1.2,6.0,"4,80"),(6.0,8.2,"2,20"),(8.2,9.8,"1,60"),(9.8,12.0,"2,20"),(12.0,16.8,"4,80"),(16.8,18.0,"1,20")]
     dimy=base+100
     parts.append(f'<line x1="{left}" y1="{dimy}" x2="{left+width}" y2="{dimy}" stroke="#536166"/>')
     for a,b,label in segments:
@@ -1080,10 +1120,17 @@ def front_elevation_sheet(p):
         parts.append(f'<line x1="{x1}" y1="{dimy-7}" x2="{x1}" y2="{dimy+7}" stroke="#536166"/>')
         parts.append(text((x1+x2)/2,dimy-9,label,8))
     parts.append(f'<line x1="{left+width}" y1="{dimy-7}" x2="{left+width}" y2="{dimy+7}" stroke="#536166"/>')
-    parts.append(text(left+width/2,dimy+27,"18,00 m",11,weight=700))
+    total_label = f"{frontage_m:.2f} m".replace(".", ",") if parameterize else "18,00 m"
+    parts.append(text(left+width/2,dimy+27,total_label,11,weight=700))
     parts.append(rect(140,790,1116,62,fill="#fff4df",stroke="#bd5c3c"))
     parts.append(text(160,814,"LECTURA OBLIGATORIA",11,"start",700,"#8e3825"))
-    parts.append(text(160,835,"Dos portones industriales iguales flanquean la puerta principal central. Dinteles, estructura, drenaje, sellos, motorización y panelización siguen pendientes de fabricante e ingeniería.",8,"start"))
+    note = (
+        "Opening positions, widths, sills and heads follow the current resolved model. "
+        "Lintels, structure, drainage, seals, operators and panelization remain open."
+        if parameterize
+        else "Dos portones industriales iguales flanquean la puerta principal central. Dinteles, estructura, drenaje, sellos, motorización y panelización siguen pendientes de fabricante e ingeniería."
+    )
+    parts.append(text(160,835,note,8,"start"))
     parts.append('</svg>')
     return ''.join(parts)
 
@@ -1102,6 +1149,8 @@ def rear_elevation_sheet(p):
     parts.append(text(left+width-10,b_top-12,b_txt,9,"end",700))
     # Doors correspond to bodega and protected stair discharge.
     for d in p["exterior_doors"]:
+        if d.get("y") is None:
+            continue
         x=left+(d["y"]-.5)*sc
         w=d["width"]*sc
         h=(2.40 if d["id"]=="EXT-ESC" else 2.30)*sc
@@ -1135,7 +1184,7 @@ def rear_elevation_sheet(p):
     return ''.join(parts)
 
 
-def side_elevation_sheet(p,side):
+def side_elevation_sheet(p,side, *, parameterize=False):
     is_a=side=="A"
     meta = p.get("drawing_meta", {})
     code = meta.get("side_a_code" if is_a else "side_b_code", "ELE-003-R04" if is_a else "ELE-004-R04")
@@ -1162,7 +1211,8 @@ def side_elevation_sheet(p,side):
     parts.append(f'<line x1="{left}" y1="{top}" x2="{left+length}" y2="{top}" stroke="#e6e9e7" stroke-width="4"/>')
     parts.append(text(left+length-10,top-12,f'ALERO {"BAJO" if is_low else "ALTO"} ≈ {eave:.2f} m'+(" · TODA EL AGUA DE CUBIERTA DESCARGA AQUÍ" if is_low else ""),9,"end",700))
     p2x=left+21*sc
-    p2y=base-3.8*sc
+    p2_level = p["stair_core"]["levels"]["p2_finished_floor"] if parameterize else 3.8
+    p2y=base-p2_level*sc
     parts.append(f'<line x1="{p2x}" y1="{top}" x2="{p2x}" y2="{base}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
     parts.append(f'<line x1="{p2x}" y1="{p2y}" x2="{left+length}" y2="{p2y}" stroke="#687579" stroke-width="1.2" stroke-dasharray="7 5"/>')
     parts.append(text(p2x+7.5*sc,p2y-9,"P2 POSTERIOR · 15,00 m",9,weight=700,fill="#59666a"))
@@ -1171,13 +1221,14 @@ def side_elevation_sheet(p,side):
     tw=(tech["x1"]-tech["x0"])*sc
     th=tech["height"]*sc
     ty=base-(tech["sill"]+tech["height"])*sc
-    parts.append(rect(tx,ty,tw,th,fill="#345e69",stroke="#172126",stroke_width="2.8"))
+    parts.append(rect(tx,ty,tw,th,fill="#345e69",stroke="#172126",stroke_width="2.8",
+        **({"id": f"side-{side}-{tech['id']}", "data-entity-id": tech["id"]} if parameterize else {})))
     for i in range(1,tech["modules"]):
         xx=tx+tw*i/tech["modules"]
         parts.append(f'<line x1="{xx}" y1="{ty}" x2="{xx}" y2="{ty+th}" stroke="#8eabb1" stroke-width="1.2"/>')
     transom=ty+th*.72
     parts.append(f'<line x1="{tx}" y1="{transom}" x2="{tx+tw}" y2="{transom}" stroke="#8eabb1" stroke-width="1.2"/>')
-    for i in (1,4):
+    for i in (() if parameterize else (1,4)):
         ax=tx+tw*(i+.15)/tech["modules"]
         aw=tw*.7/tech["modules"]
         ah=th*.20
@@ -1206,7 +1257,8 @@ def side_elevation_sheet(p,side):
         ww = (workstation_window["x1"] - workstation_window["x0"]) * sc
         wh = workstation_window["height"] * sc
         wy = base - (workstation_window["sill"] + workstation_window["height"]) * sc
-        parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2.4"))
+        parts.append(rect(wx,wy,ww,wh,fill="#4f7078",stroke="#172126",stroke_width="2.4",
+            **({"id": f"side-{side}-{workstation_window['id']}", "data-entity-id": workstation_window["id"]} if parameterize else {})))
         for i in range(1, workstation_window.get("modules", 1)):
             xx = wx + ww * i / workstation_window["modules"]
             parts.append(
@@ -1327,12 +1379,24 @@ def side_elevation_sheet(p,side):
     for g in wins:
         a,b,label=g["from"],g["to"],g["name"].upper()
         x=left+a*sc; w=(b-a)*sc; h=g["height"]*sc
-        floor_y=base-3.8*sc
+        floor_y=base-p2_level*sc
         y=floor_y-(g["sill"]+g["height"])*sc
-        parts.append(rect(x,y,w,h,fill="#426671",stroke="#172126",stroke_width="2"))
-        guard_y=floor_y-(g["sill"]+1.0)*sc
-        parts.append(f'<line x1="{x}" y1="{guard_y}" x2="{x+w}" y2="{guard_y}" stroke="#d2e0e2" stroke-width="1.4"/>')
-        parts.append(text(x+w/2,y+h/2+3,label+" · PISO A TECHO",7,weight=700,fill="#eff5f5"))
+        identifier = g.get("p2_id", g["id"])
+        parts.append(rect(x,y,w,h,fill="#426671",stroke="#172126",stroke_width="2",
+            **({"id": f"side-{side}-{identifier}", "data-entity-id": identifier} if parameterize else {})))
+        if parameterize:
+            for module in range(1, g.get("modules", 1)):
+                xx = x + w * module / g["modules"]
+                parts.append(f'<line x1="{xx}" y1="{y}" x2="{xx}" y2="{y+h}" stroke="#9bb3b8" class="bedroom-module"/>')
+        if not parameterize:
+            guard_y=floor_y-(g["sill"]+1.0)*sc
+            parts.append(f'<line x1="{x}" y1="{guard_y}" x2="{x+w}" y2="{guard_y}" stroke="#d2e0e2" stroke-width="1.4"/>')
+        if parameterize:
+            parts.append(text(x+w/2,y+h/2-5,label,7,weight=700,fill="#eff5f5"))
+            parts.append(text(x+w/2,y+h/2+10,
+                f"{b-a:.2f} x {g['height']:.2f} m · sill {g['sill']:.2f}",6,fill="#eff5f5"))
+        else:
+            parts.append(text(x+w/2,y+h/2+3,label+" · PISO A TECHO",7,weight=700,fill="#eff5f5"))
     # Downpipes as coordinated vertical elements, not final positions.
     for mx in (10.5,21.0,31.5):
         x=left+mx*sc
@@ -1352,7 +1416,9 @@ def side_elevation_sheet(p,side):
             parts.append(text(left+(b+bounds[i+1])/2*sc,dimy-9,labels[i],8))
     parts.append(text(left+length/2,dimy+27,"36,00 m",11,weight=700))
     default_note = "La posición de vidrio, ventanas, bajantes y panelización es una hipótesis coordinable. No adoptar orientación cardinal, protección solar ni huecos definitivos antes de seleccionar el predio."
-    parts.append(note_box(p.get("side_a_facade_note", default_note) if is_a else default_note))
+    parts.append(note_box(
+        "Current opening dimensions are shown above; module lines are schematic. Site orientation, glazing, drainage, structure and safety remain unresolved."
+        if parameterize else p.get("side_a_facade_note", default_note) if is_a else default_note))
     parts.append('</svg>')
     return ''.join(parts)
 
@@ -1420,10 +1486,14 @@ def core_sheet(p):
     parts.append(text(x0+3.125*sc,y0+14.7*sc,"UPS / panels" if p.get("stair_core") else "UPS / tableros",6,weight=700))
     # Doors and rear exits.
     for room in p["core"]:
+        if room.get("door_y") is None:
+            continue
         yy=y0+(room["door_y"]-.45)*sc
         parts.append(f'<line x1="{x0}" y1="{yy}" x2="{x0}" y2="{yy+room["door_width"]*sc}" stroke="#9d4a2f" stroke-width="5"/>')
     unresolved_rear_discharge = bool(p.get("stair_core", {}).get("open_conflicts"))
     for d in p["exterior_doors"]:
+        if d.get("y") is None:
+            continue
         yy=y0+(d["y"]-.5)*sc
         if unresolved_rear_discharge and d["id"] == "EXT-ESC":
             parts.append(f'<line x1="{x0+depth*sc}" y1="{yy}" x2="{x0+depth*sc}" y2="{yy+d["width"]*sc}" stroke="#a63f31" stroke-width="5" stroke-dasharray="5 3" class="rear-discharge-level-conflict"/>')

@@ -1,9 +1,9 @@
 # Contributing to Dream House
 
 **Status:** active contributor guide<br>
-**Version:** 0.3<br>
-**Date:** 2026-10-02<br>
-**Source:** repository instructions, D-044, D-056 and D-084 increment 02.
+**Version:** 0.4<br>
+**Date:** 2026-10-03<br>
+**Source:** repository instructions, D-044, D-056 and D-084 connected coordination migration.
 
 This repository is a living technical project record, not a collection of
 unconnected ideas. Every contribution must preserve traceability across source,
@@ -35,6 +35,9 @@ decision, assumption, drawing, and cost.
 - When that issue becomes current, update its entry in
   [`planos/actual/catalog.json`](planos/actual/catalog.json). Promotion is explicit: never
   infer authority from the highest revision number.
+- A connected coordination review release is a separate immutable evidence package. It
+  does not promote an adopted drawing, change stable aliases, or close an engineering gate.
+  See the [migration and extension guide](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md).
 - Keep the versioned issue in place. The stable SVG/PNG aliases are additional
   publication copies, not replacements for history.
 - Validate existing publication before submitting changes:
@@ -61,6 +64,8 @@ python3 -m unittest discover -s dreamhouse -p 'test_*.py'
 python3 -m ruff check dreamhouse/coordination dreamhouse/quantities
 python3 -m dreamhouse.coordination --require-no-fail
 python3 -m dreamhouse.coordination --check --require-no-fail
+python3 -m dreamhouse.coordination --visuals --require-no-fail --release
+python3 -m dreamhouse.coordination --check-release
 ```
 
 For optional visual review, use the pinned-font renderer with system font discovery
@@ -79,9 +84,20 @@ equipment geometry remains an unadopted benchmark with OPEN applicability, and t
 structural line comparisons establish plan relationships only. Unsupported geometry,
 capacity and professional engineering remain OPEN.
 
+The `drawing_inventory.json` file is a connected-consumer migration ledger; its registered
+coverage and limitations are separate from adopted issues in `planos/actual/catalog.json`.
+Do not infer complete equivalence across all 27 published sheets from a connected release.
 The full regression suite uses the existing optimization dependencies; the coordination
 builder itself does not require them. OPEN findings remain unresolved even if the command
-exits successfully. CI builds review evidence but does not promote the current catalog.
+exits successfully. `--release` selects only a complete no-change current-baseline review;
+`--check-release` compares the selected package with current inputs. `--rollback <id>`
+selects a verified retained package and marks freshness as not revalidated. Neither action
+promotes the current drawing catalog.
+
+For iterative studies, `--watch` debounces source edits and rebuilds candidates while
+preserving the last complete package after an invalid or failed build. It never selects a
+release. The [migration and extension guide](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+records the review commands and extension requirements.
 When changing source ownership, rules, outputs or supported authoring operations, update
 the increment record, workflow, source inventory, phase checkpoint and affected discipline
 documents.

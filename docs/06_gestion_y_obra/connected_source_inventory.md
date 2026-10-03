@@ -1,8 +1,8 @@
 # Connected Source Inventory
 
 **Status:** audited baseline; coordination evidence only  
-**Version:** 0.3<br>
-**Date:** 2026-10-02  
+**Version:** 0.4<br>
+**Date:** 2026-10-03<br>
 **Source:** Read-only inspection of the PB b37 and P2 b28 loaders, their JSON inputs and
 transitive loader lineage, current drawing catalog and adjacent issue manifests.  
 **Authority:** This inventory records existing source ownership and known limits. It does
@@ -14,6 +14,25 @@ reconciles the inventory with the implemented resolver and preserves the audited
 baseline. See the [workflow](connected_coordination_workflow.md) for execution and the
 [phase checkpoint](connected_project_coordination_next_step.md#implementation-checkpoint--2026-10-02)
 for completed capabilities and remaining rollout gates.
+
+## Current migration — 2026-10-03
+
+The [migration and extension guide](connected_coordination_migration_and_extension_guide.md) supersedes the pilot migration statuses in the retained table below.
+The resolver captures all 27 catalog identities and adjacent source-manifest hashes in
+`drawing_catalog` and `drawing_source_evidence`. The connected drawing dispatcher uses
+captured native PB/P2, roof and structure inputs; it does not reload a historical scenario
+while rendering. It writes a separate review sheet per catalog identity alongside the
+eight annotated review projections. `drawing_inventory.json` is the executable coverage
+record, including limitations of inherited annotations and engineering hypotheses.
+`capabilities.json` relates entities, permitted operations, rule coverage and occurrences.
+
+Structural search spaces are now captured in `discipline_inputs.structure`; wall,
+stair, phase, service and maintenance adapters use the same snapshot. Existing pinned
+studies need a reviewed rebase because this expands the model fingerprint. Full rebuilds
+remain deliberate; dependency ordering rejects missing consumers and cycles.
+
+Historical source hashes, revisions and publication aliases below remain unchanged.
+Review releases and their rollback pointer do not rewrite the adopted catalog.
 
 ## Scope and publication boundary
 
@@ -184,7 +203,7 @@ The per-family subtotals reconcile to the existing combined 123.84 m² schedule 
 The pilot retains per-entity values from its resolved snapshot. Do not treat this
 inventory as a priced quantity or substitute it for that schedule.
 
-## Current drawing catalog and pilot disposition
+## Retained catalog provenance and pilot disposition — 2026-10-02
 
 The table enumerates the 27 records in [`planos/actual/catalog.json`](../../planos/actual/catalog.json).
 “Current consumer” is the generator named in the source issue manifest. Pilot statuses
@@ -227,7 +246,7 @@ promotion step.
 
 ## Increment 02 implementation reconciliation
 
-The [increment 02 record](connected_coordination_increment_02.md) documents the current
+The [increment 02 record](connected_coordination_increment_02.md) documents the retained increment-02
 software scope. The eight-view package adds `window-sections.svg`, a projected section of
 GLZ-WS-A only; it does not add details for every opening or change the adopted opening
 geometry. The package audits named anchors, dimensions and cross-view callouts. Optional

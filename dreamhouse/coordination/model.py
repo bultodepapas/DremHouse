@@ -543,11 +543,28 @@ def _baseline() -> tuple[dict, dict, dict]:
         "programme": {"p2": p2},
         "structure": {
             "system": read_json(ROOT / "dreamhouse/structure/structure_system.json"),
+            "roof_space": read_json(ROOT / "dreamhouse/structure/roof_truss_space.json"),
+            "e1_space": read_json(ROOT / "dreamhouse/structure/e1_screening_space.json"),
             "stair": stair,
             "rooflights": roof,
         },
     }
     return geometry, entities, discipline_inputs
+
+
+def editable_fields(entity: dict) -> tuple[str, ...]:
+    """Expose the exact authoring contract used by both validation and coverage."""
+    if (
+        entity["kind"] not in {"opening", "door"}
+        or entity["geometry"]["shape"] == "unresolved"
+        or entity["status"] != "active"
+    ):
+        return ()
+    if entity["parameters"].get("facade") == "ROOF":
+        return ("length_m", "width_m", "x_m", "y_m")
+    if entity["kind"] == "door":
+        return ("height_m", "sill_m", "start_m", "width_m")
+    return ("height_m", "modules", "sill_m", "start_m", "width_m")
 
 
 def _validate_changes(document: dict, entities: dict, base_hash: str, geometry: dict) -> None:
@@ -580,11 +597,7 @@ def _validate_changes(document: dict, entities: dict, base_hash: str, geometry: 
             or set(expected) != set(setters)
         ):
             raise CoordinationError(f"{entity_id}: expected must cover exactly the changed fields")
-        allowed = (
-            {"x_m", "y_m", "length_m", "width_m"}
-            if entity["parameters"].get("facade") == "ROOF"
-            else {"start_m", "width_m", "height_m", "sill_m", "modules"}
-        )
+        allowed = editable_fields(entity)
         for field, value in setters.items():
             if field not in allowed:
                 raise CoordinationError(f"{entity_id}.{field}: unsupported authoring field")
@@ -657,6 +670,7 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
     if not isinstance(document.get("scenario_id"), str) or not document["scenario_id"].strip():
         raise CoordinationError("scenario_id must be nonempty")
     geometry, entities, discipline_inputs = _baseline()
+    drawing_catalog, drawing_source_evidence = _drawing_sources()
     _validate_entities(entities)
     baseline = {
         "geometry": deepcopy(geometry),
@@ -685,6 +699,8 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
         "geometry": geometry,
         "entities": entities,
         "discipline_inputs": discipline_inputs,
+        "drawing_catalog": drawing_catalog,
+        "drawing_source_evidence": drawing_source_evidence,
         "baseline": baseline,
         "build_dependencies": before,
         "project_path": path.relative_to(ROOT).as_posix()
@@ -705,6 +721,39 @@ def study_template(snapshot: dict, scenario_id: str) -> dict:
         "base_model_hash": snapshot["base_model_hash"],
         "changes": {},
     }
+
+
+def _drawing_sources() -> tuple[dict, dict]:
+    """Capture publication provenance once, without making it dimensional authority."""
+    catalog = read_json(ROOT / "planos/actual/catalog.json")
+    evidence = {}
+    canonical_names = set()
+    for entry in catalog["drawings"]:
+        identifier = entry["id"]
+        if identifier in evidence or entry["canonical"] in canonical_names:
+            raise CoordinationError("Duplicate publication drawing identity")
+        canonical_names.add(entry["canonical"])
+        source = (ROOT / entry["source"]).resolve()
+        if not source.is_relative_to(ROOT / "planos") or source.suffix != ".svg":
+            raise CoordinationError(f"Invalid drawing source: {entry['source']}")
+        manifest_path = source.parent / "manifest.json"
+        manifest = read_json(manifest_path)
+        names = {
+            value.get("path") if isinstance(value, dict) else value
+            for value in manifest.get("outputs", [])
+        }
+        if source.name not in names or manifest.get("revision") != entry["source_revision"]:
+            raise CoordinationError(f"Drawing provenance disagrees with catalog: {identifier}")
+        evidence[identifier] = {
+            "source": entry["source"],
+            "source_revision": entry["source_revision"],
+            "source_status": entry["status"],
+            "source_sha256": file_hash(source),
+            "source_manifest": manifest_path.relative_to(ROOT).as_posix(),
+            "manifest_sha256": file_hash(manifest_path),
+            "generator": manifest.get("generator", "undeclared"),
+        }
+    return catalog, evidence
 
 
 def current_drawing_inventory() -> dict:

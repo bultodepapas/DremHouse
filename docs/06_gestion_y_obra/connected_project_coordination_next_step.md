@@ -1,8 +1,8 @@
 # Connected project coordination — phased implementation plan
 
-**Status:** implementation authorized; two connected review increments implemented; remaining gates open<br>
-**Version:** 0.8<br>
-**Date:** 2026-10-02<br>
+**Status:** software consumer migration verified within declared coverage; professional design gates remain open<br>
+**Version:** 0.9<br>
+**Date:** 2026-10-03<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
 code inspection, numerical probes and validation performed in the same conversation;
@@ -19,7 +19,11 @@ construction scope or cost, drawing promotion or professional gate closure is ad
 
 **Continuation baseline:** documentation reconciliation committed at `e58aba5`, following
 the first implementation at `0e69ddf`; increment 02 continues the existing D-084 authority.<br>
-**Revision note:** v0.8 records bounded discipline adapters, the annotated section,
+**Revision note:** v0.9 continues from `f0448ef` with current catalog consumer migration,
+house interface records, complete review releases, recovery, source watching and a
+connected showcase reader. The [migration and extension guide](connected_coordination_migration_and_extension_guide.md)
+records current execution, acceptance evidence and remaining source-data limits.
+v0.8 records bounded discipline adapters, the annotated section,
 dependency evidence and optional reproducible visual exports. See the
 [increment 02 evidence](connected_coordination_increment_02.md).
 v0.7 reconciles the full document, research records and repository
@@ -34,7 +38,45 @@ Implementation evidence and commands are in the [working workflow](connected_coo
 and [source inventory](connected_source_inventory.md). The phase specifications below
 remain the completion contract; an implemented subset does not close the entire roadmap.
 
-### Implementation checkpoint — 2026-10-02
+## Current migration checkpoint — 2026-10-03
+
+This checkpoint supersedes the retained increment-02 table below for software delivery.
+The [migration and extension guide](connected_coordination_migration_and_extension_guide.md)
+contains executable commands and final verification evidence. All completions are scoped
+by actual source data and reported capabilities; the construction and professional gates
+in the master plan remain independent.
+
+Integrated acceptance: **468 tests passed**, static checks passed, **35 current SVGs**
+and their visual artifacts reproduced deterministically, and the complete baseline review
+passed freshness, release, recovery and showcase-export checks. Its evaluation is
+**57 PASS / 186 OPEN / 0 FAIL**. The guide records exact package identities, propagation
+fixtures, visual inspection and the limits of these results.
+
+| Subphases | Delivered connection | Acceptance boundary |
+| --- | --- | --- |
+| 0.1–0.2 | Existing source/ownership audit plus captured provenance for all 27 catalog identities; preserved historical regression scenarios | Historical aliases remain the adopted issue record; changed source definitions require traceable precedence |
+| 0.3 | Current-source quantity parity and same-snapshot schedules retained through the migration | Measured opening and wall-line quantities remain distinct from unspecified assemblies, mass and price |
+| 1.1–1.3 | Shared entity IDs, exact supported parameter contract, baseline preconditions, captured native/structural context and dependency ordering | `capabilities.json` exposes all entities and unsupported operations; no arbitrary add/delete/rehost or general geometry editor |
+| 2.1–2.3 | Unified findings/coverage/lifecycle plus programme, equipment, wall-line, stair, phase/service and maintenance adapters | Missing data stays OPEN; current data is not replaced with plausible defaults or interpreted as professional approval |
+| 3.1–3.3 | Eight annotated review projections plus a native consumer per catalog identity; same-snapshot schedule/details and review indexes | Inventory distinguishes actual entity/annotation coverage; catalog-wide named dimensions and construction-detail design are not claimed |
+| 4.1–4.2 | Schema-3 complete packages, full source/code invalidation, deterministic visual exports, CI and optional debounced watching | Each watched build starts a new interpreter; no selective-cache correctness or skipped-analysis freshness claim |
+| 4.3 | Verified immutable baseline review release, atomic reader pointer, rollback and showcase export | Studies remain candidates; historic current aliases are preserved. Selecting a review is not design adoption |
+| 5.1 | Per-family/operation/view/rule capability report, regenerated window/door consumers and structural context | Seven PB doors remain unlocated under CF-013; structural solids/heights await source evidence |
+| 5.2 | W05/W04R bounded line quantities, W01A adjacency candidates, SC-01 levels and current structural screening inputs | No inferred wall area/mass/price; CF-009/010/011 remain open. CF-014 exposes inherited wall-note disagreement |
+| 5.3 | Actual source-backed phase reservations, bench/service interfaces and maintenance requirements | Routes and product/installed/tested/commissioned evidence remain explicitly absent; no fabricated service network |
+| 5.4 | Catalog dispatcher, complete-package checks, reader/export/recovery commands and extension protocol | Consumer migration is review-purpose software delivery. Per-sheet annotation limitations and professional inputs are separately recorded |
+
+The initial pilot has therefore become a source-driven review system with explicit
+coverage and recovery. Its next design-enabling input is reconciled source evidence for
+CF-013/CF-014 and the unresolved engineering interfaces. New entity families and broader
+authoring operations follow the documented extension protocol when their source contracts
+exist; they must not bypass the same preconditions, propagation checks or authority gates.
+
+## Implementation checkpoint — 2026-10-02
+
+**Retained increment-02 checkpoint.** The following table records the scope before the
+2026-10-03 migration. Use the [current migration record](connected_coordination_migration_and_extension_guide.md)
+for delivery status; the phase specifications below remain the acceptance contract.
 
 Run `python3 -m dreamhouse.coordination` to build an isolated review, and append `--check`
 to verify its source and artifact freshness. Repository JSON changes feed one resolver,
@@ -107,9 +149,9 @@ Its first output is the source inventory and current-window measurement comparis
 core change/evaluation mechanism drives all generated outputs. [Section 5](#5-phases-and-subphases)
 is the implementation sequence; section 8.1 maps the earlier C01–C06 packages into it.
 
-"Automatic" initially means that one Python command evaluates a complete candidate and
-updates all supported dependent outputs. An optional later watcher can rerun that same
-command after source-file changes. No supported output may silently retain the old
+"Automatic" means that one Python command evaluates a complete candidate and
+updates all supported dependent outputs. The optional `--watch` mode reruns that same
+builder after source-file changes. No supported output may silently retain the old
 state; an unsupported affected output must explicitly become stale or unevaluated.
 
 ## 2. Review scope and verified starting point

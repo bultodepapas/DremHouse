@@ -1,5 +1,6 @@
 """Real source-to-review propagation, stale artifact detection and publication safety."""
 
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -41,6 +42,12 @@ class PipelineTests(unittest.TestCase):
                 ):
                     operation(self.study, path)
 
+    def test_invalid_pointer_shape_is_reported_before_reading_artifacts(self):
+        self.out.mkdir()
+        (self.out / "latest.json").write_text("[]")
+        with self.assertRaisesRegex(CoordinationError, "Invalid latest review pointer"):
+            check_candidate(self.study, self.out)
+
     def test_current_baseline_is_complete_reproducible_and_unknowns_are_open(self):
         first = self.build()
         result = check_candidate(self.study, self.out)
@@ -63,6 +70,23 @@ class PipelineTests(unittest.TestCase):
         self.assertTrue((first / "window-sections.svg").is_file())
         self.assertTrue((first / "disciplines.json").is_file())
         self.assertTrue((first / "dependencies.json").is_file())
+        self.assertTrue((first / "structural_screening.json").is_file())
+        self.assertEqual(result["manifest"]["schema_version"], 3)
+        expected = {entry["id"] for entry in self.base["drawing_catalog"]["drawings"]}
+        drawings = read_json(first / "drawing_inventory.json")
+        self.assertEqual({entry["id"] for entry in drawings["drawings"]}, expected)
+        self.assertEqual({p.stem for p in (first / "drawings").glob("*.svg")}, expected)
+        capabilities = read_json(first / "capabilities.json")
+        entities = {e["id"]: e for f in capabilities["families"] for e in f["entities"]}
+        self.assertEqual(len(entities), len(self.base["entities"]))
+        self.assertEqual(entities["PB-DOOR-ESC"]["editable_fields"], [])
+        self.assertIn("width_m", entities["W-H1"]["editable_fields"])
+        self.assertAlmostEqual(
+            read_json(first / "extensions.json")["wall_schedule"]["exterior"][
+                "plan_line_without_aperture_span_m"
+            ],
+            26.2,
+        )
         self.assertGreater(
             read_json(first / "view_inventory.json")["annotation_coverage"]["anchors"], 0
         )
@@ -86,6 +110,32 @@ class PipelineTests(unittest.TestCase):
             self.assertNotEqual(a, b, filename)
         ledger = read_json(second / "quantities.json")
         self.assertAlmostEqual(ledger["totals_by_assembly"]["P2-WINDOWS"]["m2"], 52.98)
+        for name in (
+            "architecture-upper-floor",
+            "architecture-side-a-elevation",
+            "architecture-p2-bedroom-windows",
+            "architecture-window-schedule",
+        ):
+            # Compare visible content, not just model fingerprints in metadata.
+            def visible(path):
+                root = ET.parse(path).getroot()
+                for node in root:
+                    if node.tag.rsplit("}", 1)[-1] in {"metadata", "desc", "title"}:
+                        root.remove(node)
+                root.attrib.clear()
+                return ET.tostring(root)
+
+            self.assertNotEqual(
+                visible(first / "drawings" / f"{name}.svg"),
+                visible(second / "drawings" / f"{name}.svg"),
+                name,
+            )
+        self.assertAlmostEqual(
+            read_json(second / "extensions.json")["wall_schedule"]["exterior"][
+                "plan_line_without_aperture_span_m"
+            ],
+            26.8,
+        )
         changes = read_json(second / "changes.json")
         self.assertEqual([c["entity_id"] for c in changes["modified"]], ["W-H1"])
         self.assertTrue(
@@ -103,6 +153,32 @@ class PipelineTests(unittest.TestCase):
             stream.write("<!-- manual change -->")
         with self.assertRaisesRegex(CoordinationError, "artifact"):
             check_candidate(self.study, self.out)
+
+    def test_catalog_directory_substitution_is_detected(self):
+        issue = self.build()
+        moved = self.root / "substituted-drawings"
+        shutil.move(issue / "drawings", moved)
+        (issue / "drawings").symlink_to(moved, target_is_directory=True)
+        with self.assertRaisesRegex(CoordinationError, "symbolic links"):
+            check_candidate(self.study, self.out)
+
+    def test_missing_catalog_consumer_preserves_previous_complete_package(self):
+        from dreamhouse.coordination.drawings import render_drawings
+
+        self.build()
+        previous = (self.out / "latest.json").read_bytes()
+
+        def omit(snapshot, result):
+            rendered = render_drawings(snapshot, result)
+            rendered["files"].pop("drawings/architecture-window-schedule.svg")
+            return rendered
+
+        with (
+            patch("dreamhouse.coordination.pipeline.render_drawings", side_effect=omit),
+            self.assertRaisesRegex(CoordinationError, "required catalog drawings"),
+        ):
+            self.build()
+        self.assertEqual(previous, (self.out / "latest.json").read_bytes())
 
     def test_sill_change_reaches_section_anchors_and_workstation_warning(self):
         first = self.build()

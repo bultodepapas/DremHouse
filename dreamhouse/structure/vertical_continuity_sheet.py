@@ -134,35 +134,54 @@ def _draw_plan_audit(
         )
 
     # PB openings are projected onto the two enclosure faces to prevent a false
-    # assumption that the four-column box can simply receive full X-bracing.
+    # assumption that the four-column box can simply receive full X-bracing. The
+    # source locations are currently unresolved under CF-013, so no old position
+    # is plotted as if it were current.
     stair_room = next(room for room in pb["core"] if room["id"] == "ESC")
-    front_start = float(stair_room["door_y"]) - 0.10
-    front_end = front_start + float(stair_room["door_width"])
-    parts.append(
-        svg._line(
-            sx(float(p2["envelope"]["x"]) + length - 4.5),
-            sy(front_start),
-            sx(float(p2["envelope"]["x"]) + length - 4.5),
-            sy(front_end),
-            stroke=svg.AMBER,
-            stroke_width=8,
-            class_="stair-opening",
-        )
-    )
     rear_door = next(door for door in pb["exterior_doors"] if door["id"] == "EXT-ESC")
-    rear_start = float(rear_door["y"]) - float(rear_door["width"]) / 2
-    rear_end = rear_start + float(rear_door["width"])
-    parts.append(
-        svg._line(
-            sx(x_min + length),
-            sy(rear_start),
-            sx(x_min + length),
-            sy(rear_end),
-            stroke=svg.AMBER,
-            stroke_width=8,
-            class_="stair-opening",
+    if stair_room.get("door_y") is not None:
+        front_start = float(stair_room["door_y"]) - 0.10
+        front_end = front_start + float(stair_room["door_width"])
+        parts.append(
+            svg._line(
+                sx(float(p2["envelope"]["x"]) + length - 4.5),
+                sy(front_start),
+                sx(float(p2["envelope"]["x"]) + length - 4.5),
+                sy(front_end),
+                stroke=svg.AMBER,
+                stroke_width=8,
+                class_="stair-opening",
+            )
         )
-    )
+    if rear_door.get("y") is not None:
+        rear_start = float(rear_door["y"]) - float(rear_door["width"]) / 2
+        rear_end = rear_start + float(rear_door["width"])
+        parts.append(
+            svg._line(
+                sx(x_min + length),
+                sy(rear_start),
+                sx(x_min + length),
+                sy(rear_end),
+                stroke=svg.AMBER,
+                stroke_width=8,
+                class_="stair-opening",
+            )
+        )
+    if stair_room.get("door_y") is None or rear_door.get("y") is None:
+        parts.append(
+            svg._multiline(
+                78,
+                646,
+                [
+                    "PB door coordinates omitted: CF-013 is unresolved.",
+                    "Rear discharge level also remains open under CF-011.",
+                ],
+                7,
+                leading=1.35,
+                weight=700,
+                fill=svg.AMBER,
+            )
+        )
 
     parts.append(
         svg._rect(
@@ -192,6 +211,22 @@ def _draw_plan_audit(
                     class_="full-height-core-column",
                 )
             )
+        elif candidate.get("unresolved_door_locations") and not any(
+            not reason.startswith("door_location_unresolved:")
+            for reason in candidate["rejection_reasons"]
+        ):
+            parts.append(
+                svg._circle(
+                    x,
+                    y,
+                    7,
+                    fill="#fff4df",
+                    stroke=svg.AMBER,
+                    stroke_width=2,
+                    class_="open-column-line",
+                )
+            )
+            parts.append(svg._text(x, y + 3.5, "?", 9, anchor="middle", weight=700, fill=svg.AMBER))
         else:
             parts.append(
                 svg._circle(
@@ -214,17 +249,35 @@ def _draw_plan_audit(
 
     matrix_x = 493.0
     parts.append(svg._text(matrix_x, 187, "DETERMINISTIC CANDIDATE MATRIX", 9, weight=700))
-    parts.append(svg._text(matrix_x, 205, "■ compatible  × rejected", 7.5, fill=svg.MUTED))
+    has_unresolved_locations = any(
+        candidate.get("unresolved_door_locations")
+        for candidate in continuity["candidates"]
+    )
+    legend = (
+        "■ compatible  × confirmed conflict  ? OPEN under CF-013"
+        if has_unresolved_locations
+        else "■ compatible  × rejected"
+    )
+    parts.append(svg._text(matrix_x, 205, legend, 7.5, fill=svg.MUTED))
     row_y = 224.0
     for index, candidate in enumerate(continuity["candidates"]):
         y = row_y + index * 43
         compatible = candidate["id"] in compatible_ids
-        color = svg.PURPLE if compatible else svg.RED
+        definite_reasons = [
+            reason
+            for reason in candidate["rejection_reasons"]
+            if not reason.startswith("door_location_unresolved:")
+        ]
+        open_only = bool(candidate.get("unresolved_door_locations")) and not definite_reasons
+        color = svg.PURPLE if compatible else svg.AMBER if open_only else svg.RED
         finding = "clear stair corner"
-        if candidate["rejection_reasons"]:
-            finding = candidate["rejection_reasons"][-1].replace("_", " ").replace(":", ": ")
+        if open_only:
+            finding = "CF-013 · PB door spans unresolved"
+        elif definite_reasons:
+            finding = definite_reasons[-1].replace("_", " ").replace(":", ": ")
         parts.append(svg._rect(matrix_x, y - 14, 438, 33, rx=4, fill=color, opacity=0.06))
-        parts.append(svg._text(matrix_x + 10, y, "■" if compatible else "×", 10, weight=700, fill=color))
+        marker = "■" if compatible else "?" if open_only else "×"
+        parts.append(svg._text(matrix_x + 10, y, marker, 10, weight=700, fill=color))
         parts.append(svg._text(matrix_x + 28, y, candidate["id"], 7.7, weight=700))
         parts.append(
             svg._text(
@@ -243,19 +296,27 @@ def _draw_plan_audit(
         svg._multiline(
             matrix_x,
             592,
-            [
-                "Geometry pass = four enclosure corners only.",
-                "It does not size columns, joints, bases or foundations.",
-            ],
+            (
+                [
+                    "Question-mark locations are OPEN; CF-013 has no confirmed door clash.",
+                    "Full unresolved identifiers and reasons are in structural_screening.json.",
+                ]
+                if has_unresolved_locations
+                else [
+                    "Geometry pass = four enclosure corners only.",
+                    "It does not size columns, joints, bases or foundations.",
+                ]
+            ),
             7.2,
             leading=1.45,
             weight=700,
-            fill=svg.RED,
+            fill=svg.AMBER if has_unresolved_locations else svg.RED,
         )
     )
 
 
-def _draw_tower(parts: list[str]) -> None:
+def _draw_tower(parts: list[str], results: dict[str, Any]) -> None:
+    continuity = results["checks"]["vertical_continuity_and_stair_core"]
     svg._panel(parts, 1010, 120, 634, 535, "02  FOUR-COLUMN ENCLOSURE · STRUCTURAL STUDY")
     base = [(1090, 566), (1314, 566), (1150, 616), (1374, 616)]
     p2 = [(x, y - 150) for x, y in base]
@@ -312,9 +373,12 @@ def _draw_tower(parts: list[str]) -> None:
     parts.append(svg._text(1235, 503, "NOT PRIMARY LATERAL MEMBERS", 6.5, anchor="middle", fill=svg.RED, rotate=-18))
 
     parts.append(svg._text(1068, 570, "+0.00", 7, anchor="end", weight=700, fill=svg.MUTED))
-    parts.append(svg._text(1068, 420, "+3.80 P2", 7, anchor="end", weight=700, fill=svg.PURPLE))
+    p2_level = continuity["stair_enclosure"]["p2_level_m"]
+    parts.append(svg._text(1068, 420, f"+{p2_level:.2f} P2", 7, anchor="end", weight=700, fill=svg.PURPLE))
     parts.append(svg._text(1068, 266, "ROOF COLLECTOR", 7, anchor="end", weight=700, fill=svg.PURPLE))
-    parts.append(svg._badge(1045, 180, "GEOMETRY PASS", svg.GREEN, width=112))
+    geometry_state = "GEOMETRY PASS" if continuity["geometry_screen_pass"] else "GEOMETRY OPEN"
+    geometry_color = svg.GREEN if continuity["geometry_screen_pass"] else svg.AMBER
+    parts.append(svg._badge(1045, 180, geometry_state, geometry_color, width=112))
     parts.append(svg._badge(1168, 180, "SYSTEM BLOCKED", svg.RED, width=114))
     parts.append(svg._badge(1293, 180, "2 REUSE + 2 NEW", svg.PURPLE, width=126))
     parts.append(
@@ -416,6 +480,15 @@ def _draw_stair_interface(parts: list[str]) -> None:
 def _draw_footer(parts: list[str], results: dict[str, Any]) -> None:
     project = results["project"]
     digest = results["input_sha256"]
+    continuity = results["checks"]["vertical_continuity_and_stair_core"]
+    count = continuity["compatible_column_count"]
+    headline = (
+        "FOUR LINES FIT · THE STRUCTURAL SYSTEM IS NOT YET DESIGNED"
+        if count == 4
+        else f"{count} PLAN CANDIDATES CLEAR · THE STRUCTURAL SYSTEM IS NOT YET DESIGNED"
+        if count
+        else "NO FULL-HEIGHT CANDIDATE CLEARED · THE STRUCTURAL SYSTEM IS NOT DESIGNED"
+    )
     parts.extend(
         [
             svg._rect(40, 1058, 1604, 108, fill=svg.INK),
@@ -424,7 +497,7 @@ def _draw_footer(parts: list[str], results: dict[str, Any]) -> None:
             svg._text(
                 60,
                 1115,
-                "FOUR LINES FIT · THE STRUCTURAL SYSTEM IS NOT YET DESIGNED",
+                headline,
                 13,
                 weight=700,
                 fill="#ffffff",
@@ -465,6 +538,8 @@ def build_vertical_continuity_sheet(
     pb: dict[str, Any],
     p2: dict[str, Any],
     results: dict[str, Any],
+    *,
+    allow_open_geometry: bool = False,
 ) -> str:
     """Return a deterministic, fail-closed D-048 SVG study sheet."""
 
@@ -472,7 +547,7 @@ def build_vertical_continuity_sheet(
     if results.get("selection_or_construction_authority") is not False:
         raise ValueError("The continuity sheet may only render a fail-closed screening result")
     continuity = results.get("checks", {}).get("vertical_continuity_and_stair_core", {})
-    if continuity.get("geometry_screen_pass") is not True:
+    if continuity.get("geometry_screen_pass") is not True and not allow_open_geometry:
         raise ValueError("The four-corner continuity geometry has not passed its audit")
     if continuity.get("overall_design_resolved") is not False:
         raise ValueError("Unexpected resolved design status: the sheet fails closed")
@@ -501,6 +576,10 @@ def build_vertical_continuity_sheet(
             '<desc id="sheet-description">Four compatible foundation-to-roof column lines '
             'around the stair enclosure, rejected Great Wall lines, lateral planes, and '
             'drift-compatible stair interface. Not for construction.</desc>'
+            if continuity.get("geometry_screen_pass") is True
+            else '<desc id="sheet-description">Current stair-enclosure column-line screening, '
+            'including rejected or unresolved door-location conflicts, lateral planes, and '
+            'drift-compatible stair interface. Not for construction.</desc>'
         ),
         f"<metadata>{html.escape(metadata)}</metadata>",
         """<defs>
@@ -514,7 +593,7 @@ def build_vertical_continuity_sheet(
     ]
     _draw_header(parts, results)
     _draw_plan_audit(parts, pb, p2, results)
-    _draw_tower(parts)
+    _draw_tower(parts, results)
     _draw_lateral_planes(parts)
     _draw_stair_interface(parts)
     _draw_footer(parts, results)

@@ -55,6 +55,13 @@ class ViewContractTests(unittest.TestCase):
                 with self.assertRaisesRegex(CoordinationError, "callout navigation"):
                     inspect_views(self.snapshot, files)
 
+    def test_nested_drawings_resolve_navigation_relative_to_their_own_file(self):
+        files = {"drawings/detail.svg": self.detail, "drawings/plan.svg": self.plan}
+        self.assertEqual(inspect_views(self.snapshot, files)["annotation_coverage"]["callouts"], 1)
+        files["drawings/plan.svg"] = self.plan.replace("detail.svg#a", "../detail.svg#a")
+        with self.assertRaisesRegex(CoordinationError, "callout navigation"):
+            inspect_views(self.snapshot, files)
+
     def test_orphan_navigation_and_duplicate_callout_ids_are_rejected(self):
         for text in (
             self.plan.replace('data-callout-link="section"', 'data-callout-link="missing"'),

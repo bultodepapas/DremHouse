@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -178,18 +179,92 @@ def validate_b35(model: dict[str, Any]) -> list[dict[str, str]]:
     return checks
 
 
-def shared_workstation_detail_sheet(model: dict[str, Any]) -> str:
+def shared_workstation_detail_sheet(
+    model: dict[str, Any], *, parameterize: bool = False
+) -> str:
     workstation = next(item for item in model["workstations"] if item["side"] == "A")
     window = next(item for item in model["workstation_glazing"] if item["side"] == "A")
     meta = model["drawing_meta"]
+    opening_width = float(window["x1"]) - float(window["x0"])
+    opening_head = float(window["sill"]) + float(window["height"])
+    worktop_x0 = float(workstation["worktop_x0"])
+    worktop_x1 = worktop_x0 + float(workstation["worktop_length"])
+    left_glazing = worktop_x0 - float(window["x0"])
+    right_glazing = float(window["x1"]) - worktop_x1
+    cabinet_width = float(workstation["drawer_cabinet_width"])
+    cabinet_count = int(workstation["drawer_cabinet_count"])
+    seat_count = int(workstation["seat_count"])
+    knee_clear = float(workstation.get("central_knee_clear_width", 0.0)) / max(seat_count, 1)
+    if parameterize:
+        gap_range = (
+            model.get("window_daylight_coordination", {})
+            .get("independent_desk_interface", {})
+            .get("shadow_service_gap_mm")
+        )
+        worktop_label = f"{float(workstation['worktop_height']):.2f} m REPLACEABLE WORKTOP"
+        upstand_label = (
+            f"{gap_range[0]}–{gap_range[1]} mm INDEPENDENT SHADOW / SERVICE GAP"
+            if isinstance(gap_range, list) and len(gap_range) == 2
+            else "SILL / WORKTOP GAP NOT PROVIDED"
+        )
+        window_centre_world = (float(window["x0"]) + float(window["x1"])) / 2.0
+        worktop_centre_world = (worktop_x0 + worktop_x1) / 2.0
+        centres_aligned = math.isclose(
+            window_centre_world, worktop_centre_world, rel_tol=0.0, abs_tol=1e-9
+        )
+        equation_values = [left_glazing]
+        for index in range(cabinet_count):
+            equation_values.append(cabinet_width)
+            if index < seat_count:
+                equation_values.append(knee_clear)
+        equation_values.append(right_glazing)
+        width_equation = " + ".join(f"{value:.2f}" for value in equation_values)
+        width_equation += f" = {sum(equation_values):.2f} m"
+        centre_label = (
+            f"WINDOW / WORKTOP CENTRE X={window_centre_world:.2f} m · ALIGNED"
+            if centres_aligned
+            else f"WINDOW CENTRE X={window_centre_world:.2f} m · WORKTOP CENTRE X={worktop_centre_world:.2f} m"
+        )
+        opening_schedule = (
+            f"{opening_width:.2f} × {float(window['height']):.2f} m · sill +{float(window['sill']):.2f} · "
+            f"head +{opening_head:.2f} · {window['modules']} replaceable test modules"
+        )
+        worktop_schedule = (
+            f"{float(workstation['worktop_length']):.2f} × {float(workstation['worktop_depth']):.2f} m · "
+            f"top +{float(workstation['worktop_height']):.2f} · glazed residual left {left_glazing:+.2f} m / "
+            f"right {right_glazing:+.2f} m"
+        )
+        storage_schedule = (
+            f"{cabinet_count} × {cabinet_width:.2f} × {float(workstation['drawer_cabinet_depth']):.2f} × "
+            f"{float(workstation['drawer_cabinet_height']):.2f} m suspended steel cabinets"
+        )
+        users_schedule = (
+            f"{seat_count} × {knee_clear:.2f} m clear knee/chair bays · independent power/data zones"
+        )
+    else:
+        worktop_label = "0.90 m REPLACEABLE WORKTOP"
+        upstand_label = "0.15 m INSULATED UPSTAND"
+        width_equation = "0.90 + 0.70 + 1.65 + 0.70 + 1.65 + 0.70 + 0.90 = 7.20 m"
+        opening_schedule = "7.20 × 2.90 m · sill +0.90 · head +3.80 · six replaceable test modules"
+        worktop_schedule = "5.40 × 0.90 m · top +0.75 · 0.90 m glazed residual at each end"
+        storage_schedule = "three 0.70 × 0.75 × 0.62 m suspended steel three-drawer units"
+        users_schedule = "two equal 1.65 m clear knee/chair bays · independent power/data zones"
+        centre_label = "COMMON CENTRE X=15.75 m"
     parts = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">',
-        base.title_block(meta["detail_code"], meta["detail_title"], meta["detail_subtitle"]),
+        base.title_block(
+            meta["detail_code"],
+            meta["detail_title"],
+            (
+                f"Current window sill +{float(window['sill']):.2f} m · worktop top +{float(workstation['worktop_height']):.2f} m · independent structure"
+                if parameterize
+                else meta["detail_subtitle"]
+            ),
+        ),
     ]
 
     parts.append(base.text(75, 120, "A · WALL / SILL / WORKTOP PRINCIPLE", 14, "start", 700))
     floor_y = 610
-    wall_x = 180
     parts.append(base.rect(90, 170, 90, 440, fill="#9da7a9", stroke="#26363b", stroke_width="1.5"))
     parts.append(base.rect(180, 170, 75, 440, fill="#d8ded9", stroke="#536166", stroke_width="1"))
     parts.append(base.text(135, 390, "RUGGED CORRUGATED INDUSTRIAL ENVELOPE", 7.5, weight=700, rotate=-90))
@@ -203,13 +278,14 @@ def shared_workstation_detail_sheet(model: dict[str, Any]) -> str:
     parts.append(base.rect(251, worktop_y - 8, 225, 16, fill="#c99f6b", stroke="#5b432b", stroke_width="1.4"))
     parts.append(base.rect(244, floor_y - .68 * 120 - 9, 52, 18, fill="#26363b", stroke="#172126"))
     parts.append(base.text(310, (head_y + sill_y) / 2, "REPLACEABLE MODULAR WINDOW", 8, "start", 700, "#294f58"))
-    parts.append(base.text(315, worktop_y + 4, "0.90 m REPLACEABLE WORKTOP", 7.5, "start", 700, "#4f3925"))
-    parts.append(base.text(315, sill_y - 8, "0.15 m INSULATED UPSTAND", 7.2, "start", 700, "#8e3825"))
+    parts.append(base.text(315, worktop_y + 4, worktop_label, 7.5, "start", 700, "#4f3925"))
+    parts.append(base.text(315, sill_y - 8, upstand_label, 7.2, "start", 700, "#8e3825"))
     parts.append(base.text(315, floor_y - .68 * 120 + 4, "INDEPENDENT BOLTED SERVICE RAIL", 7.2, "start", 700))
     parts.append(base.text(75, 640, "EXTERIOR PERFORMANCE FIRST", 8.5, "start", 700, "#8e3825"))
     parts.append(base.text(75, 660, "No furniture load to glazing or unverified facade rails.", 7.5, "start", 400))
 
-    parts.append(base.text(510, 120, "B · CENTRED INTERIOR ELEVATION", 14, "start", 700))
+    elevation_label = "B · CURRENT INTERIOR ELEVATION" if parameterize else "B · CENTRED INTERIOR ELEVATION"
+    parts.append(base.text(510, 120, elevation_label, 14, "start", 700))
     ex, scale = 510.0, 100.0
     ey = floor_y - (window["sill"] + window["height"]) * scale
     ew = (window["x1"] - window["x0"]) * scale
@@ -238,16 +314,16 @@ def shared_workstation_detail_sheet(model: dict[str, Any]) -> str:
     for chair_x in workstation["chair_centres_x"]:
         px = ex + (chair_x - window["x0"]) * scale
         parts.append(base.text(px, 560, "WORK POSITION", 7, weight=700, fill="#294b52"))
-    parts.append(base.text(centre_x, 155, "COMMON CENTRE X=15.75 m", 8, weight=700, fill="#8e3825"))
-    parts.append(base.text(centre_x, 325, "ONE 7.20 × 2.90 m ARCHITECTURAL OPENING · MODULAR, NOT ONE GLASS SHEET", 8.5, weight=700, fill="#eff5f5"))
-    parts.append(base.text(centre_x, 585, "0.90 + 0.70 + 1.65 + 0.70 + 1.65 + 0.70 + 0.90 = 7.20 m", 8, weight=700, fill="#5b432b"))
+    parts.append(base.text(centre_x, 155, centre_label, 8, weight=700, fill="#8e3825"))
+    parts.append(base.text(centre_x, 325, f"ONE {opening_width:.2f} × {float(window['height']):.2f} m ARCHITECTURAL OPENING · MODULAR, NOT ONE GLASS SHEET", 8.5, weight=700, fill="#eff5f5"))
+    parts.append(base.text(centre_x, 620 if parameterize else 585, width_equation, 8, weight=700, fill="#5b432b"))
 
     parts.append(base.text(510, 640, "C · CONTROL SCHEDULE", 14, "start", 700))
     schedule = [
-        ("OPENING", "7.20 × 2.90 m · sill +0.90 · head +3.80 · six replaceable test modules"),
-        ("WORKTOP", "5.40 × 0.90 m · top +0.75 · 0.90 m glazed residual at each end"),
-        ("STORAGE", "three 0.70 × 0.75 × 0.62 m suspended steel three-drawer units"),
-        ("USERS", "two equal 1.65 m clear knee/chair bays · independent power/data zones"),
+        ("OPENING", opening_schedule),
+        ("WORKTOP", worktop_schedule),
+        ("STORAGE", storage_schedule),
+        ("USERS", users_schedule),
         ("EXTERIOR", "direct industrial panels and trims; resistance, drainage, replacement and cost govern"),
     ]
     for index, (key, value) in enumerate(schedule):

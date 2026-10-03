@@ -3,8 +3,8 @@
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
 **Version:** 1.25<br>
 **Date:** 2026-08-21<br>
-**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
-**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084 increment 02
+**Guide revision:** 0.4 — 2026-10-03; catalog version/date retained<br>
+**Source:** [`actual/catalog.json`](actual/catalog.json), D-056, D-084, and the [coordination migration guide](../docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
 
 > [!IMPORTANT]
 > `actual/` is the stable publication layer for the current project state. Its SVG files
@@ -128,12 +128,17 @@ geometry, and ten structural plan-line comparisons remain bounded evidence; unsu
 geometry and engineering remain OPEN. Optional `--visuals` uses pinned fonts for PNG
 previews, contact sheets and pixel comparisons, not drawing approval. Consumer-impact
 metadata is reported, while builds still rebuild the complete candidate. SVGs display
-results; there is no graphical editing. A complete candidate package does not update this
-catalog or certify all 27 published drawings against the candidate. The [increment 02
-record](../docs/06_gestion_y_obra/connected_coordination_increment_02.md) and [source
-inventory](../docs/06_gestion_y_obra/connected_source_inventory.md) record adapter limits
-and remaining migration work. CF-013 records seven PB doors with unresolved anchors;
-generated views do not invent their positions.
+results; there is no graphical editing. The connected `drawing_inventory.json` is a
+separate migration ledger for registered consumers. It records generated projections and
+per-item limitations; it does not establish full equivalence for all 27 adopted sheets.
+`actual/catalog.json` remains the explicit promotion authority for stable current aliases.
+`--release` selects a complete current-baseline review package without changing that
+catalog; `--check-release` rechecks freshness, and `--rollback <release-id>` selects a
+retained package with freshness marked not revalidated. `--watch` rebuilds isolated
+candidates only. The [increment 02 record](../docs/06_gestion_y_obra/connected_coordination_increment_02.md)
+and [source inventory](../docs/06_gestion_y_obra/connected_source_inventory.md) record
+adapter limits and remaining migration work. CF-013 records seven PB doors with unresolved
+anchors; generated views do not invent their positions.
 
 ## Complete current set
 

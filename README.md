@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>103</strong> documents · <strong>75</strong> decisions · <strong>8</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>104</strong> documents · <strong>75</strong> decisions · <strong>9</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -218,11 +218,10 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 ## Connected coordination review
 
-**D-084 increments 01–02:** source-driven coordination review implemented; professional
-gates and drawing migration remain open. Repository JSON studies feed one resolved model,
-supported checks, opening quantities, cost reconciliation and eight generated SVG review
-views. `window-sections.svg` is a schematic projection of GLZ-WS-A only. SVGs display the
-resulting state; they are not graphical editing inputs.
+**D-084 connected review and publication migration:** repository JSON studies feed one
+resolved model, supported checks, opening quantities, cost reconciliation and generated
+SVG review views. `window-sections.svg` is a schematic projection of GLZ-WS-A only. SVGs
+display the resulting state; they are not graphical editing inputs.
 
 ```bash
 python3 -m pip install -e .
@@ -231,8 +230,8 @@ python3 -m dreamhouse.coordination --check
 ```
 
 The command prints a local `index.html` path under `.build/coordination/issues/`.
-`latest.json` identifies the latest complete candidate. A complete package can contain
-OPEN or FAIL findings; it is not engineering approval or a promoted drawing issue.
+`latest.json` identifies the latest complete candidate. A candidate can contain OPEN or
+FAIL findings; it is not engineering approval or a promoted drawing issue.
 The optional visual-review mode requires the presentation extra:
 
 ```bash
@@ -246,15 +245,28 @@ contact sheets and pixel-comparison evidence. Those artifacts do not approve a d
 Consumer-impact metadata describes affected outputs, while each build still rebuilds the
 complete candidate. Current programme, workstation, unadopted equipment-benchmark and ten
 structural plan-line checks are bounded; unsupported geometry and engineering remain
-OPEN. The 27 published SVG/PNG pairs remain separately versioned and have not been
-migrated or promoted.
+OPEN. The 27 published SVG/PNG pairs remain the separately versioned adopted alias set;
+the connected drawing inventory records consumer migration coverage and limits without
+claiming equivalence or promotion.
+
+Use `--release` to select a complete, verified current-baseline review package under
+`.build/coordination/published/`. OPEN findings remain visible; FAIL findings or requested
+model changes block release. `--check-release` verifies the selected release against
+current sources and renderer configuration. `--rollback <release-id>` selects a retained
+complete package and marks its freshness as not revalidated. These commands never change
+the adopted issue list in `planos/actual/catalog.json` or its stable aliases. The connected
+drawing inventory is a separate migration ledger: it records registered consumers,
+generated review projections and limitations, without claiming full equivalence for all
+27 adopted sheets. `--watch` debounces source edits and rebuilds isolated candidates only;
+it does not publish a release.
 
 Use the [workflow guide](docs/06_gestion_y_obra/connected_coordination_workflow.md) for
 study authoring and commands; the [increment 02 record](docs/06_gestion_y_obra/connected_coordination_increment_02.md)
 for current adapters and limits; the [source inventory](docs/06_gestion_y_obra/connected_source_inventory.md)
 for ownership and migration coverage; and the [phased implementation plan](docs/06_gestion_y_obra/connected_project_coordination_next_step.md)
-for remaining acceptance gates. The older `dreamhouse.pipeline` command retains its D059
-historical scenario.
+for remaining acceptance gates. The [migration and extension guide](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+documents release selection, recovery and extension points. The older
+`dreamhouse.pipeline` command retains its D059 historical scenario.
 
 ## From data to drawing
 
