@@ -1,7 +1,7 @@
 # Connected coordination delivery research — October 2026
 
-**Status:** research basis; first bounded application implemented under D-084; remaining recommendations open<br>
-**Version:** 0.2<br>
+**Status:** research basis; two bounded applications implemented under D-084; remaining recommendations open<br>
+**Version:** 0.3<br>
 **Date:** 2026-10-02<br>
 **Source:** owner's request for a further ten internet investigations to strengthen the
 [connected coordination plan](../06_gestion_y_obra/connected_project_coordination_next_step.md),
@@ -19,17 +19,22 @@ for outstanding delivery gates. Researching a technique does not mean it is full
 
 | Research | Implemented application | Remaining acceptance scope |
 | --- | --- | --- |
-| R13 | Current PB b37/P2 b28 adapter, source/consumer inventory and historical regression retention | Remaining discipline and published-view migration |
+| R13 | Current PB b37/P2 b28 resolver, source/consumer inventory, historical regression retention and bounded programme/equipment/workstation/structure adapters | Wider discipline coverage, product adoption and published-view migration |
 | R14, R15 | Repository study JSON with base/expected-value checks; separate source/model hashes; duplicate/non-finite rejection | Broader authoring operations; neither JSON Patch nor JCS conformance is claimed |
 | R16 | Explicit numerical tolerance and tests for contact, overlap, height separation and missing data | Family-specific engineering clearances and tolerance budgets |
 | R17 | Verified staged candidate packages, serialized writers, atomic candidate pointer and late-failure recovery | Atomic promotion of all current aliases and compatible readers |
-| R18, R19 | Shared plan/elevation/detail projections and parameter-derived dimensions with stable entity references | Section/cut membership, named anchor deletion and callout migration |
+| R18, R19 | Shared plan/elevation/detail projections, one GLZ-WS-A section, parameter-derived dimensions, named anchors and validated cross-view callouts | Broader section/cut coverage and migration of the published drawing set |
 | R20 | Coverage and OPEN findings remain separate from build completion and construction authority | Procurement/construction information contracts and professional evidence records |
 | R21 | Open envelope/interface gates remain visible | Sectioned sill/head/jamb control-layer continuity and assembly-specific evidence |
 | R22 | Existing reservations keep their stated context and unknowns | Installed/commissioned assets, service histories and phased handover integration |
 
-The first package is an isolated coordination review. The existing 27 published aliases
-retain their source revisions; completing the candidate is not current-set promotion.
+The current package remains an isolated coordination review. The existing 27 published
+aliases retain their source revisions; completing the candidate is not current-set
+promotion. Optional `--visuals` output uses explicitly pinned font files for PNG previews,
+a contact sheet and pixel comparisons. Consumer-impact metadata is recorded, but builds
+still rebuild the complete package. See the [increment 02 implementation record](../06_gestion_y_obra/connected_coordination_increment_02.md)
+for the adapter and coverage limits; no equipment selection, structural result or approval
+is implied.
 
 ## Method and contribution
 

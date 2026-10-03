@@ -3,8 +3,8 @@
 **Status:** active publication index; source drawings retain their discipline status and authority<br>
 **Version:** 1.25<br>
 **Date:** 2026-08-21<br>
-**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
-**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084
+**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
+**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084 increment 02
 
 > [!IMPORTANT]
 > `actual/` is the stable publication layer for the current project state. Its SVG files
@@ -121,12 +121,19 @@ open gates.
 ## Connected candidate review
 
 D-084 provides a separate [source-driven review workflow](../docs/06_gestion_y_obra/connected_coordination_workflow.md).
-Repository JSON changes generate seven connected SVG review views, quantities and
-findings in `.build/coordination/`. SVGs display results; there is no graphical editing.
-A complete candidate package does not update this catalog or certify all 27 published
-drawings against the candidate. The [source inventory](../docs/06_gestion_y_obra/connected_source_inventory.md)
-records their distinct consumers and remaining migration work. CF-013 records seven PB
-doors with unresolved anchors; generated views do not invent their positions.
+Repository JSON changes generate eight connected SVG review views, quantities and
+findings in `.build/coordination/`. `window-sections.svg` is a schematic projection of
+GLZ-WS-A only. Current programme/workstation checks, unadopted equipment-benchmark
+geometry, and ten structural plan-line comparisons remain bounded evidence; unsupported
+geometry and engineering remain OPEN. Optional `--visuals` uses pinned fonts for PNG
+previews, contact sheets and pixel comparisons, not drawing approval. Consumer-impact
+metadata is reported, while builds still rebuild the complete candidate. SVGs display
+results; there is no graphical editing. A complete candidate package does not update this
+catalog or certify all 27 published drawings against the candidate. The [increment 02
+record](../docs/06_gestion_y_obra/connected_coordination_increment_02.md) and [source
+inventory](../docs/06_gestion_y_obra/connected_source_inventory.md) record adapter limits
+and remaining migration work. CF-013 records seven PB doors with unresolved anchors;
+generated views do not invent their positions.
 
 ## Complete current set
 

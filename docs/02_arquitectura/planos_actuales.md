@@ -3,8 +3,8 @@
 **Status:** active publication guide; source-sheet limitations remain in force<br>
 **Version:** 1.25<br>
 **Date:** 2026-08-21<br>
-**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
-**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056 and D-084
+**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
+**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056 and D-084 increment 02
 
 This page is the visual entry point to Dream House's published coordination set. It
 uses stable files under [`planos/actual/`](../../planos/actual/) so links in the project
@@ -18,11 +18,17 @@ record, repository README, and presentation do not change when a new issue is pr
 ## Connected review versus published drawings
 
 The [D-084 workflow](../06_gestion_y_obra/connected_coordination_workflow.md) resolves
-current PB b37/P2 b28 sources into seven new SVG review views, quantities and findings.
-Changes originate in repository JSON; the drawings display the generated result.
-These isolated `.build/coordination/` candidates do not promote or regenerate the full
-published set below. The [source inventory](../06_gestion_y_obra/connected_source_inventory.md)
-identifies each consumer and its remaining migration scope. E0/E1 retain their declared
+current PB b37/P2 b28 sources into eight new SVG review views, quantities and findings;
+`window-sections.svg` projects GLZ-WS-A only. Current programme/workstation checks,
+unadopted equipment-benchmark geometry and ten structural plan-line comparisons remain
+bounded evidence. Optional `--visuals` uses pinned fonts for PNG previews, contact sheets
+and pixel comparisons; these are review artifacts, not approvals. Consumer-impact metadata
+is reported, while each build still rebuilds the complete candidate. Changes originate in
+repository JSON; the drawings display generated results. These isolated
+`.build/coordination/` candidates do not promote or regenerate the full published set
+below. The [increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md)
+and [source inventory](../06_gestion_y_obra/connected_source_inventory.md) identify
+coverage, current consumers and remaining migration scope. E0/E1 retain their declared
 historical screening inputs. Seven unresolved PB door anchors are tracked under CF-013;
 neither a missing projection nor an `OPEN` result is a geometric clearance.
 

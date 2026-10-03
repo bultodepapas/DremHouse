@@ -2,7 +2,7 @@
 
 **Status:** active coordination audit; research evidence, not a calculation memorandum or
 professional design
-**Version:** 0.13
+**Version:** 0.14
 **Date:** 2026-10-02
 **Sources:** D-039, D-043, D-045, D-046, D-047, D-048, D-050, D-051, D-052,
 D-053–D-059, D-074, D-080, D-082–D-084; architectural drafts PB b05–b37 and P2 b09–b28 and implementation issues 0.4-I01–I04;
@@ -327,3 +327,15 @@ precision does not convert a hypothesis into a construction value. The SVG is a
 calculation-linked research drawing and must remain visibly marked **NOT FOR
 CONSTRUCTION** until the unresolved gates are closed and a professional issue replaces
 it.
+
+## Current-source plan review — 2026-10-02
+
+The [D-084 increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md)
+adds a separate plan-compatibility adapter for four SC-01 reservation rectangles and six
+source-referenced E0 candidate lines against current P2 rooms, windows and doors. It reports
+ten OPEN plan findings; a line with no detected plan intersection is still OPEN. The check
+does not assign solid members, heights, vertical continuity, 3D clearance, load paths,
+capacity or wall/equipment mass. It does not recalculate or supersede the archived E0/E1
+screens in this study. Those results remain evidence for their declared historical inputs,
+not structural results for a changed current snapshot. CF-009/CF-010 and the professional
+design gates remain open.

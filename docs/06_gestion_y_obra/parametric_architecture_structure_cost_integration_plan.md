@@ -2,7 +2,7 @@
 
 **Status:** retained discipline-integration roadmap; historical I01–I04 evidence and
 D-084 current-source coordination increment; not for construction
-**Version:** 0.8
+**Version:** 0.9
 **Date:** 2026-10-02
 **Planning horizon:** next coordinated design stage, before architectural or structural
 freeze  
@@ -24,20 +24,33 @@ applicable manufacturers/fabricators
 D-084 implements a bounded current-source increment through
 `python3 -m dreamhouse.coordination`: PB b37, P2 b28, D-083 openings, SC-01 reservations
 and rooflight b12 feed one resolved snapshot, rule results, opening/quantity/cost evidence,
-seven generated SVG views and a read-only review. Follow the
+eight generated SVG views (including a GLZ-WS-A section projection only) and a read-only
+review. Increment 02 also adds named anchor/dimension/callout checks, consumer-impact
+metadata and optional pinned-font PNG/contact-sheet/pixel-comparison artifacts. Builds
+still rebuild the complete candidate. Follow the
 [operating workflow](connected_coordination_workflow.md),
 [source inventory](connected_source_inventory.md) and
 [phased implementation plan](connected_project_coordination_next_step.md) for current
-commands, supported changes, dependencies and remaining acceptance gates. The phased plan
-owns implementation order; this document retains the broader discipline contracts.
+commands, supported changes, dependencies and remaining acceptance gates. The
+[increment 02 record](connected_coordination_increment_02.md) summarizes current adapter
+coverage and limits. The phased plan owns implementation order; this document retains the
+broader discipline contracts.
 
 The older `dreamhouse.pipeline` and `model.io.load_project()` still default to
 `D059_P2_REFINED_ENVELOPE` (PB b05 / P2 b15). Its default output is the preserved
 `planos/integracion_v0.4_i04/` directory; do not run it there to refresh the current model.
 I01–I04 results below remain evidence for their own archived inputs. They do not test the
-current PB b37 / P2 b28 geometry. Equipment, programme, measured wall mass and structural
-screen adapters remain pending, as does migration of the full 27-sheet publication set.
-D-084 has not selected a structure, closed CF-009–CF-013 or approved a budget.
+current PB b37 / P2 b28 geometry. Bounded D-084 adapters now evaluate the current P2
+programme, PB workstation data, captured equipment benchmark and ten structural plan-line
+candidates against current room/opening geometry. The dressing measures 13.44 m² and
+matches the D-065 current P2 rebalance record; the historic 15 m² closet benchmark is
+inapplicable and remains OPEN, not a new FAIL or requirement. The captured bed placement
+and clearance retain raw FAIL evidence, and the refrigerator mismatch retains raw OPEN
+evidence; equipment applicability remains OPEN because the layout is unadopted. The ten
+structural comparisons are plan-only and OPEN; member extents, wall/equipment mass,
+capacity and current structural results remain unknown. Migration of the full 27-sheet
+publication set remains pending. D-084 has not selected a structure, changed the house
+design, closed CF-009–CF-013 or approved a budget.
 
 Sections 4–20 retain the original broader roadmap and historical scenario studies.
 Their model versions, test counts and work-package estimates describe that planning
@@ -117,8 +130,8 @@ schedule with **41 PASS, 9 OPEN and 0 FAIL**, but the cross-discipline 0.4-I04 p
 has not yet consumed b25. I04 remains valid historical screening evidence for its stated
 D-059 scenario; it is not the current wall authority and may not be used to close CF-009.
 
-The next structural adapter must consume the D-080 schedule through current P2 b28,
-measure wall heights/areas and
+The current plan adapter does not measure walls or mass. The remaining structural work
+must consume the D-080 schedule through current P2 b28, measure wall heights/areas and
 openings, attach selected-product masses, compare them with `partitions_p2_kpa`, map the
 P2-W05 panel/lining scope once across cost chapters 09/10/14/23 and fail closed when any
 structural, performance or budget allowance is exceeded.
@@ -127,8 +140,10 @@ structural, performance or budget allowance is exceeded.
 
 The original roadmap called for one versioned computational model from which architecture,
 structural coordination, quantity schedules, cost scenarios, and drawings are derived.
-D-084 now connects current openings, reservations, quantities and review views. The
-remaining discipline subsystems need explicit adapters, provenance and fail-closed interfaces.
+D-084 now connects current openings, reservations, quantities and review views, with
+bounded programme, equipment-benchmark, workstation and structural plan-line adapters.
+The broader discipline subsystems still need complete information contracts, current
+products/assemblies and appropriately bounded fail-closed interfaces.
 
 The broader discipline objectives remain:
 

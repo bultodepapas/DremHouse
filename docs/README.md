@@ -1,10 +1,10 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.22
+**Version:** 0.23
 **Date:** 2026-10-02
-**Source:** active project registers, current drawing catalog and D-084 implementation
-at `0e69ddf`; documentation reconciliation without a new design or scope decision.
+**Source:** active project registers, current drawing catalog and D-084 increments 01–02;
+documentation reconciliation without a new design or scope decision.
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -15,7 +15,10 @@ at `0e69ddf`; documentation reconciliation without a new design or scope decisio
 
 - [Connected coordination workflow](06_gestion_y_obra/connected_coordination_workflow.md):
   run Python over repository sources to generate an isolated model, checks, quantities,
-  seven connected SVG views and a read-only review; includes the remaining rollout limits.
+  eight connected SVG views and a read-only review; includes the remaining rollout limits.
+- [D-084 connected coordination — increment 02](06_gestion_y_obra/connected_coordination_increment_02.md):
+  bounded programme, workstation, equipment-benchmark and structural plan-line checks;
+  one GLZ-WS-A section view, optional pinned-font visual artifacts, and coverage limits.
 - [Connected source and consumer inventory](06_gestion_y_obra/connected_source_inventory.md):
   current loader lineage, element ownership, known geometry gaps and all 27 published drawings.
 - [Current drawings and visual index](02_arquitectura/planos_actuales.md): the fastest

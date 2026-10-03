@@ -1,7 +1,7 @@
 # Decisiones y datos pendientes
 
-**Estatus:** activo  
-**Version:** 0.5
+**Status:** active
+**Version:** 0.6
 **Date:** 2026-10-02
 **Update source:** D-084, CF-013 and the connected implementation checkpoint; existing
 owner and professional inputs below remain open.
@@ -16,15 +16,20 @@ separates that work from the missing project evidence below.
 | Pending item | Responsible evidence | Effect on connected coordination |
 | --- | --- | --- |
 | Seven PB door anchors under CF-013 | Architect/source owner: supported hosts, spans and opening directions for the existing IDs | Until resolved, the doors remain identified but unprojected; topology is not treated as measured placement |
-| Current equipment and programme inputs | Architect, owner and equipment suppliers: actual envelopes, operating/service clearances and documented requirements | Existing historical evaluators need adapters and equivalence checks against the current snapshot |
-| Stair-column solids and wall/structure interfaces | Structural engineer with architect: justified geometry, support assumptions and D-080 measured wall mass | Plan reservations cannot establish vertical interference, capacity or dead-load adequacy; CF-009/CF-010 remain open |
+| Current equipment and programme inputs | Architect, owner and equipment suppliers: actual envelopes, operating/service clearances and documented requirements | Bounded adapters now evaluate current programme and captured equipment benchmark data. D-065 supersedes the historic 15 m² closet criterion with the current 13.44 m² P2 rebalance record; the old comparison remains OPEN/inapplicable. Equipment benchmark fit/clearance outcomes retain raw evidence but all remain OPEN pending current layout/product applicability. |
+| Stair-column solids and wall/structure interfaces | Structural engineer with architect: justified member geometry, support assumptions and D-080 measured wall mass | Ten current plan-line candidates are compared with room/opening geometry and remain OPEN; plan findings cannot establish vertical interference, capacity, wall mass or dead-load adequacy. CF-009/CF-010 remain open |
 | Window/envelope and rescue interfaces | Responsible envelope, structural and life-safety professionals: detailed interfaces and performance evidence | Generated opening dimensions and quantities do not close safety, climate or CF-012 gates |
-| Full drawing-consumer migration | Software/drawing maintainer: section/detail coverage, dimensions, provenance and visual acceptance evidence | Seven candidate views do not update the entire 27-sheet publication set |
+| Full drawing-consumer migration | Software/drawing maintainer: section/detail coverage, dimensions, provenance and visual acceptance evidence | Eight candidate views include a GLZ-WS-A section only; they do not update the 27-sheet publication set or establish drawing acceptance |
 | Publication of an accepted design issue | Existing decision/publication workflow and explicit catalog revision | A complete or fresh candidate is not automatic design adoption |
 
 No item in this update adopts a different door/window position, selects a product,
 changes construction scope/cost or resolves an owner question below. CF-011 and the
 other open source conflicts retain their governing register status.
+
+The [D-084 increment 02 record](connected_coordination_increment_02.md) describes the
+implemented checks and their limits. Optional pinned-font visual previews and pixel
+comparisons remain review evidence, not approval; the build records consumer impact but
+still rebuilds the full candidate. No design or current-drawing promotion is recorded.
 
 ## Prioridad inmediata — propietario
 

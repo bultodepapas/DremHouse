@@ -1,7 +1,7 @@
 # Connected project coordination — phased implementation plan
 
-**Status:** implementation authorized; first connected review increment implemented; remaining gates open<br>
-**Version:** 0.7<br>
+**Status:** implementation authorized; two connected review increments implemented; remaining gates open<br>
+**Version:** 0.8<br>
 **Date:** 2026-10-02<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -17,9 +17,12 @@ warnings, and explicit clarification that SVGs are generated outputs, supported 
 **Authority:** software coordination workflow authorized. No changed house design,
 construction scope or cost, drawing promotion or professional gate closure is adopted by this plan.
 
-**Documentation reconciliation:** implementation committed at `0e69ddf`; this revision
-updates related working documents without extending software or design scope.<br>
-**Revision note:** v0.7 reconciles the full document, research records and repository
+**Continuation baseline:** documentation reconciliation committed at `e58aba5`, following
+the first implementation at `0e69ddf`; increment 02 continues the existing D-084 authority.<br>
+**Revision note:** v0.8 records bounded discipline adapters, the annotated section,
+dependency evidence and optional reproducible visual exports. See the
+[increment 02 evidence](connected_coordination_increment_02.md).
+v0.7 reconciles the full document, research records and repository
 entry points with the implemented APIs, artifacts and D-084 authority. v0.6 records the implemented first increment and its remaining acceptance
 gates. v0.5 corrected the scope: changes originate in repository data, scenario
 parameters and Python code. SVGs display generated results and findings; there is no
@@ -35,7 +38,8 @@ remain the completion contract; an implemented subset does not close the entire 
 
 Run `python3 -m dreamhouse.coordination` to build an isolated review, and append `--check`
 to verify its source and artifact freshness. Repository JSON changes feed one resolver,
-one evaluator, seven SVG projections and a read-only HTML index. Current aliases remain
+one evaluator, eight SVG projections and a read-only HTML index. Add `--visuals` for
+pinned-font PNG previews, contact sheets and baseline pixel comparisons. Current aliases remain
 separately published. The baseline introduces no hypothetical clash or geometric change.
 
 | Subphase | Implemented evidence | Remaining exit-gate work |
@@ -44,32 +48,35 @@ separately published. The baseline introduces no hypothetical clash or geometric
 | 0.2 | Historical tests retained; current geometry/quantity and source-to-view regression fixtures | Complete for the first increment |
 | 0.3 | Current PB b37/P2 b28 adapter; explicit quantity-family mapping; 123.84 m² vertical and 23.04 m² rooflight parity | Complete for enrolled measurements; unknowns remain declared |
 | 1.1 | 105 identified entities, shared axes/datums, aliases, host/space relationships and geometry capabilities | Extend beyond enrolled families only from actual sources |
-| 1.2 | Reference validation and conservative complete dependency inventory | Finer type/filling relationships and explicit extensible calculation graph; no minimal impact graph claimed |
+| 1.2 | Reference validation, source inventory and registered consumer graph with entity/context change impact | Finer type/filling relationships and discipline-specific graph coverage; no minimal impact graph or incremental cache claimed |
 | 1.3 | Strict JSON/study validation, one resolver, separate input/model hashes, duplicate/non-finite rejection | Broader family schema/migration contract as authoring expands |
 | 2.1 | Pinned study JSON, expected-value preconditions, supported parameter updates and atomic failed-build behaviour | Additional operations remain unsupported rather than implicitly accepted |
-| 2.2 | Generic opening/host/overlap/known-column rules, module consistency, capability report and professional gates | Adapt existing equipment, programme, structural and engineering evaluators to the current snapshot |
-| 2.3 | Full pair reevaluation, before/after entity changes and evidence-preserving finding lifecycle | Automatic evidence invalidation for future discipline consumers |
+| 2.2 | Opening/host/overlap rules plus current programme, workstation and historical equipment adapters; ten OPEN support-line plan comparisons; shared coverage/lifecycle | Actual product/placement adoption and engineering inputs; wall masses, structural capacity, fire, daylight and MEP calculations remain unevaluated |
+| 2.3 | Full reevaluation, entity/context changes, anchor lifecycle and changed-scenario professional-evidence fingerprints | Future discipline evidence records and their own invalidation contracts; no approval inferred from a fingerprint |
 | 3.1 | New plans/elevations/details/schedule consume the same injected snapshot without hidden source reloads | Migrate relevant existing publication consumers after equivalence review |
-| 3.2 | Stable view/occurrence/entity IDs and parameter-derived dimensions | Named anchor lifecycle, section occurrences and callout-target migration fixtures |
-| 3.3 | Seven review SVGs, linked entity/issue review, a machine-readable occurrence denominator and explicit unknowns | Complete the section/layer/interface plate specified in §4.4; fixed-font PNG export and dimension-anchor coverage |
-| 4.1 | One command, complete manifest, content-addressed packages, deterministic rebuilds, source recheck and atomic candidate pointer | Implemented for the seven-view package |
-| 4.2 | Broad source/code CI triggers, full regression run and review artifact upload | Fixed renderer/font environment, contact sheets and visual comparison evidence; slower discipline analysis not yet enrolled |
+| 3.2 | Stable view/occurrence/entity IDs, named anchors, checked linear dimensions, callout targets and migration/corruption fixtures | Extend annotation and section coverage as additional consumers are enrolled |
+| 3.3 | Eight review SVGs, GLZ-WS-A datum section and unresolved head/sill/jamb control paths, linked evidence and occurrence/annotation inventories | Engineered assemblies and further interfaces require actual data; broader section and publication migration remains open |
+| 4.1 | One command, schema-2 manifest, mode-specific issue identity, source recheck and atomic candidate pointer | Implemented for the eight-view package with optional visual evidence |
+| 4.2 | Broad CI triggers, pinned raster dependencies/fonts, contact sheets, exact baseline pixel comparisons and failure/freshness tests | Slower discipline analysis and cross-platform rendering qualification are not enrolled |
 | 4.3 | Candidate completion, check status and construction authority separated; failed build preserves prior review | Current-catalog promotion transaction and stable-alias reader migration |
 | 5.1 | Located doors, space/host context, stair envelopes and plan reservations already identified | Remaining wall/structural families and authoring/view coverage |
 | 5.2 | Opening-to-cost mapping uses the same resolved quantities and retains unknown costs | Stair sections, wall mass/load and engineering dependencies |
 | 5.3 | No route/product geometry fabricated | Services, operation/removal envelopes and phased handover remain planned |
 | 5.4 | All 27 current outputs explicitly labelled pending migration | Full current-set rollout and extension acceptance remain planned |
 
-The next implementation gate is to finish Phase 2's discipline adapters and Phase 3's
-section/detail and occurrence coverage, then qualify the broader publication workflow.
+The next implementation gate is to qualify migration of existing publication consumers
+against the shared snapshot, extending their occurrence and annotation coverage. Resolve
+the recorded source/data gaps before enabling additional authoring or engineering results.
+The current adapters and GLZ-WS-A plate are bounded deliverables, not full discipline closure.
 The complete gate sequence remains below; later context enrollment is not evidence that
 an earlier engineering or visual acceptance gate has passed.
 
-Verification of this increment: **353 repository tests passed**, lint passed, the 27
+Verification retained for **increment 01**: **353 repository tests passed**, lint passed, the 27
 current SVG/PNG pairs retained valid provenance, and the candidate reproduced and passed
 its source/artifact freshness check. The baseline has 53 PASS / 138 OPEN / zero FAIL
 findings; seven unresolved PB door spans are recorded under CF-013. See the workflow's
-verification table for scope and commands.
+verification table for scope and commands. Current implementation and verification are
+recorded separately in [increment 02](connected_coordination_increment_02.md).
 
 ## 1. Recommendation and project intent
 
@@ -194,9 +201,10 @@ is a manageable family with an existing
 [shared D-083 source](../../dreamhouse/window_daylight_d083.json). It connects daylight,
 plans, elevations, details, secondary structure, envelope performance and quantities.
 
-This section defines the complete target demonstration. The implemented seven-view
-review covers projections, parameter-derived dimensions, opening quantities and findings;
-sectioned sill/head/jamb interfaces and their engineering calculations remain outstanding.
+This section defines the complete target demonstration. The implemented eight-view
+review covers projections, named annotations, quantities and findings. The GLZ-WS-A
+section links opening/worktop datums and shows unresolved head/sill/jamb control paths.
+Assembly selection, engineered interfaces and their performance calculations remain open.
 
 ```mermaid
 flowchart TD
@@ -872,10 +880,13 @@ responsibilities, not a new approval board.
 
 The implemented candidate contains `model.json`, `changes.json`, `findings.json`,
 `coverage.json`, `finding_lifecycle.json`, `openings.json`, `quantities.json`, `cost.json`,
-`drawing_inventory.json`, `view_inventory.json`, seven SVG files, `index.html` and
-`review.md`, plus `manifest.json` with hashes for those 19 artifacts. Views are at the
+`drawing_inventory.json`, `view_inventory.json`, `disciplines.json`, `dependencies.json`,
+`anchor_lifecycle.json`, eight SVG files, `index.html` and `review.md`, plus
+`manifest.json` with hashes for every generated artifact. Optional visual output adds
+PNGs/contact sheets, visual manifests/comparisons and archived baseline SVGs/PNGs. Views are at the
 package root, not a `views/` subdirectory. The output layout is
-`.build/coordination/issues/<input_hash>/`; `latest.json` identifies the latest complete
+`.build/coordination/issues/<issue_id>/`; the issue identity combines source input hash,
+rendering configuration and package schema. `latest.json` identifies the latest complete
 candidate. Files are generated locally or retained as CI artifacts, not committed as
 current drawing issues. The [workflow](connected_coordination_workflow.md) is the command
 and artifact reference. Keep volatile logs separate from deterministic technical content.

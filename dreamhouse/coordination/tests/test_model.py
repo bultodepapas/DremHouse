@@ -9,6 +9,7 @@ from dreamhouse.coordination.model import (
     CoordinationError,
     current_drawing_inventory,
     json_text,
+    model_digest,
     read_json,
     resolve_project,
     study_template,
@@ -45,6 +46,19 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(s["PB-DOOR-ESC"]["geometry"]["shape"], "unresolved")
         self.assertEqual(s["EXT-ESC"]["geometry"]["shape"], "unresolved")
         self.assertEqual(s["GLZ-DINING-STUDY-B"]["status"], "study")
+
+    def test_discipline_context_is_pinned_and_independent_of_archived_baseline(self):
+        snapshot = deepcopy(self.baseline)
+        context = snapshot["discipline_inputs"]
+        pb = context["equipment"]["pb"]
+        self.assertEqual(pb["workstations"][0]["window_id"], "GLZ-WS-A")
+        original = snapshot["baseline"]["discipline_inputs"]["equipment"]["pb"]
+        pb["workstations"][0]["worktop_height"] = 0.80
+        self.assertEqual(original["workstations"][0]["worktop_height"], 0.75)
+        self.assertNotEqual(
+            model_digest(snapshot["geometry"], snapshot["entities"], context),
+            snapshot["base_model_hash"],
+        )
 
     def test_study_updates_geometry_without_mutating_baseline(self):
         previous = deepcopy(self.baseline)

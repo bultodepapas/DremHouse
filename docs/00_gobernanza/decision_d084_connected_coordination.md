@@ -1,7 +1,7 @@
 # D-084 — Implement source-driven connected coordination
 
 **Status:** active software workflow authorization; no architectural change adopted  
-**Version:** 0.1  
+**Version:** 0.2<br>
 **Date:** 2026-10-02  
 **Requested and decided by:** owner  
 **Source:** owner instruction to proceed with implementation of the phased plan, with
@@ -54,3 +54,17 @@ allowance is established. Remaining phase gates stay open in the plan; responsib
 design professionals still supply and validate engineering inputs before those checks
 can pass. Evidence of implementation is the source-to-view regression suite and
 complete-package verification, not an automatic design approval.
+
+## Implementation continuation — 2026-10-02
+
+The owner's renewed instruction to proceed implements the existing authorization through
+[increment 02](../06_gestion_y_obra/connected_coordination_increment_02.md). It adds bounded
+programme/equipment/workstation adapters and support-line plan comparisons, an annotated
+GLZ-WS-A section/interface review, dependency evidence and optional pinned-font visual
+exports. Current normalized geometry governs these consumers; historical assertions and
+unadopted equipment benchmarks remain distinguishable.
+
+This is implementation evidence under the same decision, not a new design decision.
+The 27 published drawing aliases remain unchanged. Unknown assemblies, product choices,
+structural solids and professional gates remain open; D-065 retains precedence over
+the older dressing-area benchmark. No construction scope/cost revision is created.

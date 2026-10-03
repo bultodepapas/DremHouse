@@ -1,7 +1,7 @@
 # Connected Source Inventory
 
 **Status:** audited baseline; coordination evidence only  
-**Version:** 0.2<br>
+**Version:** 0.3<br>
 **Date:** 2026-10-02  
 **Source:** Read-only inspection of the PB b37 and P2 b28 loaders, their JSON inputs and
 transitive loader lineage, current drawing catalog and adjacent issue manifests.  
@@ -9,7 +9,7 @@ transitive loader lineage, current drawing catalog and adjacent issue manifests.
 not adopt geometry, resolve a conflict, select an assembly, change cost or promote a
 drawing.
 
-**Implementation reference:** D-084, commit `0e69ddf`; this documentation revision
+**Implementation reference:** D-084, increments 01–02; this documentation revision
 reconciles the inventory with the implemented resolver and preserves the audited source
 baseline. See the [workflow](connected_coordination_workflow.md) for execution and the
 [phase checkpoint](connected_project_coordination_next_step.md#implementation-checkpoint--2026-10-02)
@@ -20,7 +20,7 @@ for completed capabilities and remaining rollout gates.
 This inventory establishes the Phase 0 source baseline for the connected-coordination
 pilot. The current published plans use `load_b37_model()` and `load_b28_model()`; the
 existing shared-model loader still defaults to the distinct D059 integration scenario.
-The implemented pilot produces seven new review views in an isolated review output directory. Those
+The implemented pilot produces eight new review views in an isolated review output directory. Those
 views remain candidate evidence and are not added to the current drawing catalog. All 27
 existing SVG/PNG aliases remain separately published until an explicit catalog promotion
 is made under the current publication workflow.
@@ -220,10 +220,34 @@ refer to the isolated window-coordination pilot; current SVG/PNG aliases remain 
 | `structure-e1-synthesis` | `planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg` (E0/E1) | `dreamhouse/generate_structure_plan.py` | Structural context only; separate alias retained. |
 | `structure-vertical-continuity` | `planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg` (E0/E1) | `dreamhouse/generate_structure_plan.py` | Column-context evidence; separate alias retained. |
 
-The seven new pilot review views are isolated candidate outputs, not catalog records.
+The eight new pilot review views are isolated candidate outputs, not catalog records.
 Their generated identities, source references and findings must be traceable within the
 review package. Adding or replacing any stable current alias remains a separate explicit
 promotion step.
+
+## Increment 02 implementation reconciliation
+
+The [increment 02 record](connected_coordination_increment_02.md) documents the current
+software scope. The eight-view package adds `window-sections.svg`, a projected section of
+GLZ-WS-A only; it does not add details for every opening or change the adopted opening
+geometry. The package audits named anchors, dimensions and cross-view callouts. Optional
+`--visuals` output supplies pinned-font PNG previews, a contact sheet and pixel comparisons
+for review; those artifacts do not grant approval. Dependency metadata identifies affected
+consumers, while package generation still performs a conservative full rebuild rather than
+selectively rebuilding only those consumers.
+
+Current discipline adapters consume the resolved P2 programme, captured equipment
+catalogue/layout benchmark, PB workstation data and structural source candidates. The
+current primary dressing area is 13.44 m² under the D-065 P2 rebalance record; the historic
+15 m² closet check is superseded, inapplicable and remains OPEN, not a new FAIL or a new
+minimum. Equipment placements remain an unadopted benchmark: the primary-bed host fit and
+0.90 m clearance retain raw FAIL evidence, and the refrigerator depth mismatch remains raw OPEN;
+all equipment findings remain OPEN pending current product/layout applicability. The
+structural adapter compares four SC-01 plan reservations and six E0 source candidate lines
+with current room/opening geometry. All ten findings remain OPEN and establish plan
+relationships only. No vertical member extent, solid 3D clearance, capacity, current
+structural result or installed mass is inferred. These software additions do not promote
+the 27 current drawing identities or change the house design.
 
 ## Open conflicts and limits
 

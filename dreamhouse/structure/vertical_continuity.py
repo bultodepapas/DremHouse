@@ -166,6 +166,130 @@ def _audit_candidate(
     }
 
 
+def evaluate_current_support_line_plan(
+    candidate: dict[str, Any],
+    spaces: list[dict[str, Any]],
+    openings: list[dict[str, Any]],
+    *,
+    stair_space_ids: set[str] | frozenset[str] = frozenset(),
+    tolerance_m: float = 0.01,
+    reservation_bounds: tuple[float, float, float, float] | None = None,
+) -> dict[str, Any]:
+    """Compare a support-line hypothesis with current room/opening plan geometry.
+
+    This is the reusable geometric core for current-snapshot adapters. It has no
+    expected candidate list and makes no vertical-clearance or capacity claim. A
+    reservation bounds box is used only as a plan envelope; it is not interpreted
+    as a selected column section.
+    """
+
+    def finite_number(value: object, label: str) -> float:
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            raise VerticalContinuityError(f"{label} must be a finite number")
+        number = float(value)
+        if not math.isfinite(number):
+            raise VerticalContinuityError(f"{label} must be a finite number")
+        return number
+
+    tolerance_m = finite_number(tolerance_m, "geometry tolerance")
+    if tolerance_m <= 0.0:
+        raise VerticalContinuityError("Geometry tolerance must be positive")
+    x = finite_number(candidate["x_m"], "support line x")
+    y = finite_number(candidate["y_m"], "support line y")
+    if reservation_bounds is not None:
+        if len(reservation_bounds) != 4:
+            raise VerticalContinuityError("Reservation bounds must contain four finite values")
+        rx0, rx1, ry0, ry1 = tuple(
+            finite_number(item, "reservation bound") for item in reservation_bounds
+        )
+        if rx1 < rx0 or ry1 < ry0:
+            raise VerticalContinuityError("Reservation bounds are reversed")
+    else:
+        rx0 = rx1 = x
+        ry0 = ry1 = y
+
+    space_relations = [
+        {"space_id": space["id"], "relation": relation}
+        for space in spaces
+        if (relation := _point_relation_to_space(x, y, space, tolerance_m)) is not None
+    ]
+    interior_nonstair = [
+        item["space_id"]
+        for item in space_relations
+        if item["relation"] == "interior" and item["space_id"] not in stair_space_ids
+    ]
+
+    plan_opening_candidates: list[dict[str, Any]] = []
+    unsupported_openings: list[str] = []
+    for opening in openings:
+        identifier = str(opening.get("id", "unknown"))
+        geometry = opening.get("geometry")
+        if not isinstance(geometry, dict) or geometry.get("shape") not in {"opening", "line"}:
+            unsupported_openings.append(identifier)
+            continue
+        raw_bounds = tuple(geometry.get(key) for key in ("x0", "x1", "y0", "y1"))
+        if any(value is None for value in raw_bounds):
+            unsupported_openings.append(identifier)
+            continue
+        bounds = tuple(finite_number(value, f"{identifier} opening bound") for value in raw_bounds)
+        x0, x1, y0, y1 = bounds
+        if x1 < x0 or y1 < y0:
+            unsupported_openings.append(identifier)
+            continue
+        if reservation_bounds is None:
+            intersects = (
+                x0 - tolerance_m <= x <= x1 + tolerance_m
+                and y0 - tolerance_m <= y <= y1 + tolerance_m
+            )
+        elif abs(x1 - x0) <= tolerance_m and y1 - y0 > tolerance_m:
+            intersects = (
+                rx0 - tolerance_m <= x0 <= rx1 + tolerance_m
+                and max(ry0, y0) < min(ry1, y1) + tolerance_m
+            )
+        elif abs(y1 - y0) <= tolerance_m and x1 - x0 > tolerance_m:
+            intersects = (
+                ry0 - tolerance_m <= y0 <= ry1 + tolerance_m
+                and max(rx0, x0) < min(rx1, x1) + tolerance_m
+            )
+        else:
+            # A broad or non-line shape is not a known opening plane.
+            unsupported_openings.append(identifier)
+            continue
+        if intersects:
+            raw_z0, raw_z1 = geometry.get("z0"), geometry.get("z1")
+            z0 = finite_number(raw_z0, f"{identifier} z0") if raw_z0 is not None else None
+            z1 = finite_number(raw_z1, f"{identifier} z1") if raw_z1 is not None else None
+            plan_opening_candidates.append(
+                {
+                    "opening_id": identifier,
+                    "opening_vertical_bounds_m": [z0, z1],
+                    "opening_vertical_bounds_known": z0 is not None and z1 is not None,
+                    "candidate_vertical_bounds_known": False,
+                    "three_dimensional_conflict": "not evaluated",
+                }
+            )
+
+    return {
+        "candidate_source_ref": candidate.get("source_ref", candidate.get("id")),
+        "candidate_entity_id": candidate.get("id"),
+        "x_m": x,
+        "y_m": y,
+        "plan_reservation_bounds_m": [rx0, rx1, ry0, ry1]
+        if reservation_bounds is not None
+        else None,
+        "space_relations": space_relations,
+        "interior_nonstair_spaces": interior_nonstair,
+        "opening_plan_candidates": plan_opening_candidates,
+        "unsupported_opening_ids": sorted(unsupported_openings),
+        "candidate_vertical_bounds_known": False,
+        "vertical_relation": "unknown: no selected structural member extent",
+        "tolerance_m": tolerance_m,
+        "plan_conflict_status": "candidate"
+        if interior_nonstair or plan_opening_candidates
+        else "no plan candidate observed",
+    }
+
+
 def evaluate_vertical_continuity(
     cfg: dict[str, Any],
     pb: dict[str, Any],

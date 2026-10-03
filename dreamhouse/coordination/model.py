@@ -60,11 +60,12 @@ def digest(value: Any) -> str:
     return hashlib.sha256(json_text(value).encode("utf-8")).hexdigest()
 
 
-def model_digest(geometry: dict, entities: dict) -> str:
+def model_digest(geometry: dict, entities: dict, discipline_inputs: dict | None = None) -> str:
     """Hash resolved meaning separately from source paths and build provenance."""
     return digest(
         {
             "geometry": geometry,
+            "discipline_inputs": discipline_inputs or {},
             "entities": {
                 key: {
                     field: value
@@ -109,6 +110,7 @@ def dependency_hashes(project_path: Path) -> dict[str, str]:
         paths.add(source)
         paths.update(source.parent.glob("*manifest*.json"))
     paths.update((ROOT / "showcase").rglob("*.woff*"))
+    paths.update((ROOT / "dreamhouse/coordination/fonts").glob("*.ttf"))
     paths.add(project_path.resolve())
     result = {}
     for path in sorted(paths):
@@ -189,7 +191,7 @@ def _opening_geometry(p: dict, hall: dict) -> dict:
     return _geometry("opening", x0, x1, y0, y1, z0, z1)
 
 
-def _baseline() -> tuple[dict, dict]:
+def _baseline() -> tuple[dict, dict, dict]:
     pb, p2 = load_b37_model(), load_b28_model()
     roof = read_json(ROOT / "dreamhouse/rooflight_b12.json")
     stair = read_json(ROOT / "dreamhouse/stair_core.json")
@@ -530,7 +532,22 @@ def _baseline() -> tuple[dict, dict]:
                 status="context",
             )
         )
-    return geometry, entities
+    # Context is captured once at the same source boundary as geometry. Adapters must
+    # overlay normalized entity values rather than reread adopted opening definitions.
+    discipline_inputs = {
+        "equipment": {
+            "pb": pb,
+            "catalog": read_json(ROOT / "dreamhouse/equipment/catalog.json"),
+            "layout": read_json(ROOT / "dreamhouse/equipment/layout_v04.json"),
+        },
+        "programme": {"p2": p2},
+        "structure": {
+            "system": read_json(ROOT / "dreamhouse/structure/structure_system.json"),
+            "stair": stair,
+            "rooflights": roof,
+        },
+    }
+    return geometry, entities, discipline_inputs
 
 
 def _validate_changes(document: dict, entities: dict, base_hash: str, geometry: dict) -> None:
@@ -639,10 +656,14 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
         raise CoordinationError(f"Unknown project fields: {sorted(unknown)}")
     if not isinstance(document.get("scenario_id"), str) or not document["scenario_id"].strip():
         raise CoordinationError("scenario_id must be nonempty")
-    geometry, entities = _baseline()
+    geometry, entities, discipline_inputs = _baseline()
     _validate_entities(entities)
-    baseline = {"geometry": geometry, "entities": deepcopy(entities)}
-    base_hash = model_digest(geometry, entities)
+    baseline = {
+        "geometry": deepcopy(geometry),
+        "entities": deepcopy(entities),
+        "discipline_inputs": deepcopy(discipline_inputs),
+    }
+    base_hash = model_digest(geometry, entities, discipline_inputs)
     _validate_changes(document, entities, base_hash, geometry)
     _validate_entities(entities)
     after = dependency_hashes(path)
@@ -659,10 +680,11 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
         "status": "coordination candidate; not construction authority",
         "hash_policy": HASH_POLICY,
         "input_hash": digest({"dependencies": before, "scenario": document}),
-        "model_hash": model_digest(geometry, entities),
+        "model_hash": model_digest(geometry, entities, discipline_inputs),
         "base_model_hash": base_hash,
         "geometry": geometry,
         "entities": entities,
+        "discipline_inputs": discipline_inputs,
         "baseline": baseline,
         "build_dependencies": before,
         "project_path": path.relative_to(ROOT).as_posix()

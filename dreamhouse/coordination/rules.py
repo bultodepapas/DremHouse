@@ -11,6 +11,7 @@ from collections import defaultdict
 from itertools import combinations
 from typing import Any
 
+from dreamhouse.coordination.model import digest
 from dreamhouse.quantities.ledger import _ASSEMBLY_BY_SOURCE_AND_KIND
 
 TOLERANCE_M = 1e-6
@@ -1404,7 +1405,13 @@ def _evaluate_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
 
 def _snapshot_changes(current: dict[str, Any], baseline: dict[str, Any] | None) -> dict[str, Any]:
     if baseline is None:
-        return {"baseline_scenario_id": None, "added": [], "removed": [], "modified": []}
+        return {
+            "baseline_scenario_id": None,
+            "added": [],
+            "removed": [],
+            "modified": [],
+            "context_changes": [],
+        }
 
     current_entities = _entities(current)
     baseline_entities = _entities(baseline)
@@ -1437,11 +1444,25 @@ def _snapshot_changes(current: dict[str, Any], baseline: dict[str, Any] | None) 
         if deltas:
             modified.append({"entity_id": identifier, "deltas": deltas})
 
+    context_changes = []
+    for group in ("geometry", "discipline_inputs"):
+        before_group, after_group = baseline.get(group, {}), current.get(group, {})
+        for key in sorted(before_group.keys() | after_group.keys()):
+            before_value, after_value = before_group.get(key), after_group.get(key)
+            if before_value != after_value:
+                context_changes.append(
+                    {
+                        "path": f"{group}.{key}",
+                        "before_hash": digest(before_value),
+                        "after_hash": digest(after_value),
+                    }
+                )
     return {
         "baseline_scenario_id": baseline.get("scenario_id", current.get("scenario_id")),
         "added": sorted(current_ids - baseline_ids),
         "removed": sorted(baseline_ids - current_ids),
         "modified": modified,
+        "context_changes": context_changes,
     }
 
 
@@ -1555,6 +1576,10 @@ def _lifecycle_absence_state(
             and isinstance(entities[0].get("geometry"), dict)
             and entities[0]["geometry"].get("shape") == "unresolved"
         )
+    elif rule_id.startswith(("PROGRAM-", "EQUIP", "STRUCTURE-", "WORKSTATION-")):
+        # A missing context/adapter result never closes an earlier discipline finding.
+        # Explicit current inapplicability can be reported by the adapter itself.
+        applicable = True
     else:
         applicable = False
     return "unevaluated" if applicable else "inapplicable"
@@ -1591,7 +1616,11 @@ def _finding_lifecycle(
         if previous["status"] == "PASS":
             continue
         current = current_by_id.get(finding_id)
-        if current is not None and current["status"] == "PASS":
+        if (
+            current is not None
+            and current["status"] == "PASS"
+            and current["coverage"] == "evaluated"
+        ):
             lifecycle.append(
                 {
                     "finding_id": finding_id,
@@ -1629,12 +1658,12 @@ def evaluate(snapshot: dict[str, Any], baseline: dict[str, Any] | None = None) -
     recursively invoking this public function.
     """
 
-    result = _evaluate_snapshot(snapshot)
+    result = _evaluate_with_disciplines(snapshot)
     result["changes"] = _snapshot_changes(snapshot, baseline)
     if baseline is None:
         result["finding_lifecycle"] = {"baseline_scenario_id": None, "items": []}
     else:
-        baseline_result = _evaluate_snapshot(baseline)
+        baseline_result = _evaluate_with_disciplines(baseline)
         lifecycle = _finding_lifecycle(
             result["findings"], baseline_result["findings"], _entities(snapshot)
         )
@@ -1642,6 +1671,28 @@ def evaluate(snapshot: dict[str, Any], baseline: dict[str, Any] | None = None) -
             "baseline_scenario_id": baseline.get("scenario_id", snapshot.get("scenario_id")),
             **lifecycle,
         }
+    return result
+
+
+def _evaluate_with_disciplines(snapshot: dict[str, Any]) -> dict[str, Any]:
+    from dreamhouse.coordination.disciplines import evaluate_disciplines
+
+    result = _evaluate_snapshot(snapshot)
+    discipline = evaluate_disciplines(snapshot)
+    result["findings"].extend(discipline["findings"])
+    result["findings"].sort(key=lambda item: (item["rule_id"], item["finding_id"]))
+    identifiers = [item["finding_id"] for item in result["findings"]]
+    if len(identifiers) != len(set(identifiers)):
+        raise ValueError("Discipline adapters emitted duplicate finding identities")
+    if any(
+        item["status"] == "PASS" and item["coverage"] != "evaluated" for item in result["findings"]
+    ):
+        raise ValueError("A PASS requires evaluated rule coverage")
+    result["coverage"]["rules"].extend(discipline["coverage"]["rules"])
+    for key, value in discipline["coverage"]["totals"].items():
+        result["coverage"]["totals"][key] += value
+    result["rule_registry"].extend(discipline["rule_registry"])
+    result["disciplines"] = discipline["disciplines"]
     return result
 
 

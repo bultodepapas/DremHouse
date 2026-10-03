@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>102</strong> documents · <strong>75</strong> decisions · <strong>8</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>103</strong> documents · <strong>75</strong> decisions · <strong>8</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -218,10 +218,11 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 ## Connected coordination review
 
-**Workflow guide:** v0.2 · 2026-10-02 · D-084 · first increment implemented.
-Repository JSON studies now feed one resolved model, supported checks, opening quantities,
-cost reconciliation and seven generated SVG review views. SVGs display the resulting
-state; they are not graphical editing inputs.
+**D-084 increments 01–02:** source-driven coordination review implemented; professional
+gates and drawing migration remain open. Repository JSON studies feed one resolved model,
+supported checks, opening quantities, cost reconciliation and eight generated SVG review
+views. `window-sections.svg` is a schematic projection of GLZ-WS-A only. SVGs display the
+resulting state; they are not graphical editing inputs.
 
 ```bash
 python3 -m pip install -e .
@@ -232,14 +233,28 @@ python3 -m dreamhouse.coordination --check
 The command prints a local `index.html` path under `.build/coordination/issues/`.
 `latest.json` identifies the latest complete candidate. A complete package can contain
 OPEN or FAIL findings; it is not engineering approval or a promoted drawing issue.
-The 27 published SVG/PNG pairs remain separately versioned, and structural, equipment,
-wall/load and MEP calculations still require further integration.
+The optional visual-review mode requires the presentation extra:
+
+```bash
+python3 -m pip install -e '.[presentation]'
+python3 -m dreamhouse.coordination --visuals
+python3 -m dreamhouse.coordination --check --visuals
+```
+
+It uses the checked-in fonts with system font discovery disabled and adds PNG previews,
+contact sheets and pixel-comparison evidence. Those artifacts do not approve a drawing.
+Consumer-impact metadata describes affected outputs, while each build still rebuilds the
+complete candidate. Current programme, workstation, unadopted equipment-benchmark and ten
+structural plan-line checks are bounded; unsupported geometry and engineering remain
+OPEN. The 27 published SVG/PNG pairs remain separately versioned and have not been
+migrated or promoted.
 
 Use the [workflow guide](docs/06_gestion_y_obra/connected_coordination_workflow.md) for
-study authoring, commands and limits; the [source inventory](docs/06_gestion_y_obra/connected_source_inventory.md)
+study authoring and commands; the [increment 02 record](docs/06_gestion_y_obra/connected_coordination_increment_02.md)
+for current adapters and limits; the [source inventory](docs/06_gestion_y_obra/connected_source_inventory.md)
 for ownership and migration coverage; and the [phased implementation plan](docs/06_gestion_y_obra/connected_project_coordination_next_step.md)
-for completed work and remaining acceptance gates. The older `dreamhouse.pipeline`
-command retains its D059 historical scenario.
+for remaining acceptance gates. The older `dreamhouse.pipeline` command retains its D059
+historical scenario.
 
 ## From data to drawing
 
@@ -277,8 +292,8 @@ python -m http.server 8000 --directory .build/showcase
 ## Status and limitations
 
 - **Phase:** consolidated definition and dimensional schematic design.
-- **Documentation review:** 2 October 2026; D-084 workflow implemented, with remaining
-  phase gates recorded. Published drawing dates retain their individual issue history.
+- **Documentation review:** 2 October 2026; D-084 increments 01–02 implemented within
+  their documented limits. Published drawing dates retain their individual issue history.
 - **Primary blocker:** exact site, topographic survey, geotechnical investigation, and planning assessment.
 - **Cost alert:** the active control target for physical construction is
   **≈COP 988.05 million**, with a critical gap against the historical estimate;

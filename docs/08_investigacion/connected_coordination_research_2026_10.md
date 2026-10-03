@@ -1,7 +1,7 @@
 # Connected coordination research — October 2026
 
-**Status:** research basis; first bounded application implemented under D-084; remaining recommendations open<br>
-**Version:** 0.2<br>
+**Status:** research basis; two bounded applications implemented under D-084; remaining recommendations open<br>
+**Version:** 0.3<br>
 **Date:** 2026-10-02  
 **Source:** owner's request for at least ten internet investigations to strengthen the
 [connected coordination plan](../06_gestion_y_obra/connected_project_coordination_next_step.md);
@@ -24,9 +24,19 @@ and [workflow](../06_gestion_y_obra/connected_coordination_workflow.md) govern c
 | R02, R04, R07 | Host/space references, input preconditions, strict JSON parsing and explicit unsupported geometry | Distinct void/filling/type records, broader schemas and purpose-specific information requirements |
 | R05, R09 | Findings retain entity IDs, source/build hashes and baseline lifecycle evidence | Saved viewpoints and engineering evidence invalidation across future consumers |
 | R06 | Nominal opening areas and rooflight curbs, explicit workstation assembly mapping and unknown net glass/costs | Wall deductions, product quantities and wider takeoff coverage |
-| R08 | Conservative full rebuild, source/code fingerprints, stale-artifact checks and CI configuration | Minimal dependency graph, incremental builds and slower discipline analysis |
+| R08 | Conservative full rebuild, source/code fingerprints, consumer-impact metadata, stale-artifact checks and CI configuration | Minimal dependency graph, selective rebuilding and discipline-analysis performance |
 | R10, R11 | Linked read-only SVG/HTML selection, entity list and textual findings | Full accessibility review; no graphical editing is introduced |
-| R12 | Source-to-view/quantity regression tests and manual rendered-view review | Fixed-font screenshot baselines and broader change-sequence coverage |
+| R12 | Source-to-view/quantity regression checks and optional pinned-font PNG/contact-sheet pixel comparison | Human visual acceptance criteria, approved comparison baselines and broader change-sequence coverage |
+
+The [D-084 increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md)
+adds bounded current-programme, workstation, equipment-benchmark and structural-plan
+checks. The primary dressing is 13.44 m² under D-065's current P2 rebalance record; the
+older 15 m² closet target is superseded and remains an inapplicable OPEN comparison, not
+a new failure. Equipment layout checks retain their raw geometric outcomes but stay OPEN
+because the benchmark is not an adopted current layout. Structural coverage compares ten source candidate lines
+with current plan geometry only; member solids, mass, capacity and current engineering
+results remain unknown. The eight generated views include a GLZ-WS-A section only, and
+the existing 27 drawing identities remain unpromoted.
 
 Software coverage does not adopt a house change or close a professional gate. Repository
 observations in the research body describe the state inspected before the first increment.

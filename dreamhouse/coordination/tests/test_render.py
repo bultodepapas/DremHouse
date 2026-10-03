@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 from xml.etree import ElementTree as ET
 
 from dreamhouse.coordination.render import SVG_NS, render_views
+from dreamhouse.coordination.view_contract import compare_anchors, inspect_views
 
 
 def _opening(entity_id: str = "GLZ-A") -> dict:
@@ -138,6 +139,78 @@ def _snapshot() -> dict:
     }
 
 
+def _connected_snapshot() -> dict:
+    snapshot = _snapshot()
+    opening = _opening("GLZ-WS-A")
+    opening.update(
+        {
+            "label": "Side A workstation window",
+            "source": {
+                "path": "dreamhouse/window_daylight_d083.json",
+                "key": "ground_floor_workstation_glazing[id=GLZ-WS-A]",
+            },
+            "geometry": {
+                "shape": "opening",
+                "x0": 5.0,
+                "x1": 12.2,
+                "y0": 0.0,
+                "y1": 0.0,
+                "z0": 0.75,
+                "z1": 3.8,
+            },
+            "parameters": {
+                "facade": "A",
+                "start_m": 5.0,
+                "width_m": 7.2,
+                "height_m": 3.05,
+                "sill_m": 0.75,
+                "level_m": 0.0,
+                "modules": 4,
+            },
+            "relationships": {"host_id": "HOST-PB-A", "space_ids": []},
+        }
+    )
+    host = {
+        "id": "HOST-PB-A",
+        "kind": "wall",
+        "label": "Side A host reference plane",
+        "level": "PB",
+        "aliases": [],
+        "status": "context",
+        "source": {"path": "derived", "key": "facade_planes[PB,A]"},
+        "geometry": {
+            "shape": "line",
+            "x0": 0.0,
+            "x1": 36.0,
+            "y0": 0.0,
+            "y1": 0.0,
+            "z0": None,
+            "z1": None,
+        },
+        "parameters": {"facade": "A", "capability": "reference plane; no wall solid"},
+        "relationships": {"host_id": None, "space_ids": []},
+    }
+    snapshot["entities"]["GLZ-WS-A"] = opening
+    snapshot["entities"]["HOST-PB-A"] = host
+    snapshot["discipline_inputs"] = {
+        "equipment": {
+            "pb": {
+                "workstations": [
+                    {
+                        "id": "PB-WS-A",
+                        "window_id": "GLZ-WS-A",
+                        "worktop_height": 0.75,
+                        "worktop_depth": 0.9,
+                        "worktop_x0": 5.9,
+                        "worktop_length": 5.4,
+                    }
+                ]
+            }
+        }
+    }
+    return snapshot
+
+
 def _evaluation() -> dict:
     return {
         "findings": [
@@ -187,6 +260,7 @@ class TestRenderViews(unittest.TestCase):
                 "elevation-front.svg",
                 "elevation-rear.svg",
                 "window-details.svg",
+                "window-sections.svg",
                 "index.html",
             },
         )
@@ -384,6 +458,131 @@ class TestRenderViews(unittest.TestCase):
         self.assertIn("data-select-entity", index)
         self.assertIn("data-entity-id", index)
         self.assertIn("filterFindings(entityId)", index)
+        self.assertIn('href="view_inventory.json"', index)
+        self.assertIn('href="anchor_lifecycle.json"', index)
+
+    def test_window_section_tracks_opening_sill_worktop_and_quantity_inputs(self) -> None:
+        snapshot = _connected_snapshot()
+        evaluation = _evaluation()
+        evaluation["findings"][0]["entity_ids"] = ["GLZ-WS-A"]
+        evaluation["quantity_ledger"] = {
+            "records": [
+                {
+                    "id": "Q-GLZ-WS-A-AREA",
+                    "quantity": 21.96,
+                    "unit": "m2",
+                    "formula": "width_m * height_m",
+                    "measurement_status": "model-derived nominal opening area; net glass area unknown",
+                }
+            ]
+        }
+        first = render_views(snapshot, evaluation)
+        section = _parse_svg(first["window-sections.svg"])
+        anchors = {
+            node.get("data-anchor-id"): node
+            for node in section.iter()
+            if node.get("data-anchor-id")
+        }
+        self.assertEqual(section.get("data-view-id"), "window-sections")
+        self.assertEqual(section.get("data-cut-plane-value-m"), "8.6")
+        self.assertEqual(section.get("data-section-members"), "GLZ-WS-A")
+        self.assertEqual(anchors["GLZ-WS-A.opening.sill"].get("data-world-z"), "0.75")
+        self.assertEqual(anchors["GLZ-WS-A.opening.head"].get("data-world-z"), "3.8")
+        self.assertEqual(anchors["PB-WS-A.worktop.top"].get("data-world-z"), "0.75")
+        delta = next(
+            node
+            for node in section.iter()
+            if node.get("data-dimension-id")
+            == "window-sections-GLZ-WS-A-worktop-sill-level-difference"
+        )
+        self.assertEqual(delta.get("data-dimension-value"), "0")
+        area = next(
+            node for node in section.iter() if node.get("data-quantity-id") == "Q-GLZ-WS-A-AREA"
+        )
+        self.assertEqual(area.get("data-dimension-value"), "21.96")
+        self.assertIn("continuity path: unresolved", "".join(section.itertext()).lower())
+        self.assertIn("host thickness", "".join(section.itertext()).lower())
+
+        revised = deepcopy(snapshot)
+        revised_opening = revised["entities"]["GLZ-WS-A"]
+        revised_opening["parameters"].update({"width_m": 7.5, "height_m": 2.9, "sill_m": 0.9})
+        revised_opening["geometry"].update({"x1": 12.5, "z0": 0.9, "z1": 3.8})
+        revised_evaluation = deepcopy(evaluation)
+        revised_evaluation["quantity_ledger"]["records"][0]["quantity"] = 21.75
+        after = render_views(revised, revised_evaluation)
+        revised_section = _parse_svg(after["window-sections.svg"])
+        revised_sill = next(
+            node
+            for node in revised_section.iter()
+            if node.get("data-anchor-id") == "GLZ-WS-A.opening.sill"
+        )
+        self.assertEqual(revised_sill.get("data-world-z"), "0.9")
+        revised_delta = next(
+            node
+            for node in revised_section.iter()
+            if node.get("data-dimension-id")
+            == "window-sections-GLZ-WS-A-worktop-sill-level-difference"
+        )
+        self.assertEqual(revised_delta.get("data-dimension-value"), "-0.15")
+        revised_area = next(
+            node
+            for node in revised_section.iter()
+            if node.get("data-quantity-id") == "Q-GLZ-WS-A-AREA"
+        )
+        self.assertEqual(revised_area.get("data-dimension-value"), "21.75")
+        self.assertNotEqual(first["window-sections.svg"], after["window-sections.svg"])
+
+    def test_semantic_dimensions_and_interface_callouts_resolve(self) -> None:
+        snapshot = _connected_snapshot()
+        inventory = inspect_views(snapshot, render_views(snapshot, _evaluation()))
+        window_section = next(
+            view for view in inventory["views"] if view["view_id"] == "window-sections"
+        )
+        self.assertGreaterEqual(len(window_section["dimensions"]), 4)
+        self.assertEqual(len(window_section["callouts"]), 3)
+        self.assertTrue(all(dimension["anchor_refs"] for dimension in window_section["dimensions"]))
+
+    def test_missing_worktop_context_yields_an_explicit_unresolved_dimension(self) -> None:
+        snapshot = _connected_snapshot()
+        snapshot.pop("discipline_inputs")
+        files = render_views(snapshot, _evaluation())
+        inventory = inspect_views(snapshot, files)
+        section = _parse_svg(files["window-sections.svg"])
+        delta = next(
+            node
+            for node in section.iter()
+            if node.get("data-dimension-id")
+            == "window-sections-GLZ-WS-A-worktop-sill-level-difference"
+        )
+        self.assertEqual(delta.get("data-dimension-status"), "unresolved")
+        self.assertIn("no value inferred", "".join(section.itertext()).lower())
+        inventory_view = next(
+            view for view in inventory["views"] if view["view_id"] == "window-sections"
+        )
+        delta_record = next(
+            item
+            for item in inventory_view["dimensions"]
+            if item["dimension_id"] == delta.get("data-dimension-id")
+        )
+        self.assertEqual(delta_record["status"], "unresolved")
+
+    def test_anchor_lifecycle_keeps_submillimetre_geometry_changes(self) -> None:
+        baseline = _connected_snapshot()
+        revised = deepcopy(baseline)
+        revised["entities"]["GLZ-WS-A"]["geometry"]["x0"] = 5.0001
+        revised["entities"]["GLZ-WS-A"]["parameters"]["start_m"] = 5.0001
+        before = inspect_views(baseline, render_views(baseline, _evaluation()))
+        after = inspect_views(revised, render_views(revised, _evaluation()))
+        lifecycle = compare_anchors(after, before)
+        changed = next(
+            item
+            for item in lifecycle["items"]
+            if item["view_id"] == "elevation-side-a"
+            and item["anchor_id"] == "GLZ-WS-A.opening.start"
+        )
+        self.assertEqual(changed["state"], "changed")
+        self.assertEqual(changed["before"]["coordinates"]["data-world-x"], "5")
+        self.assertEqual(changed["after"]["coordinates"]["data-world-x"], "5.0001")
 
     def test_failure_remains_visible_when_open_gates_overflow_the_panel(self) -> None:
         evaluation = {
@@ -419,6 +618,34 @@ class TestRenderViews(unittest.TestCase):
                 if node.tag == f"{{{SVG_NS}}}a"
             )
         )
+
+    def test_unlinked_benchmarks_do_not_hide_view_specific_warnings(self) -> None:
+        evaluation = {
+            "findings": [
+                {
+                    "rule_id": f"BENCHMARK-{i}",
+                    "status": "OPEN",
+                    "message": "Unlocated benchmark",
+                    "entity_ids": [],
+                }
+                for i in range(10)
+            ]
+        }
+        evaluation["findings"].append(
+            {
+                "rule_id": "WINDOW-INTERFACE",
+                "status": "OPEN",
+                "message": "Unknown window interface",
+                "entity_ids": ["GLZ-A"],
+            }
+        )
+        root = _parse_svg(render_views(_snapshot(), evaluation)["elevation-side-a.svg"])
+        cards = [
+            node
+            for node in root.iter()
+            if node.get("data-finding-index") is not None and node.tag == f"{{{SVG_NS}}}rect"
+        ]
+        self.assertEqual(cards[0].get("data-finding-id"), "WINDOW-INTERFACE")
 
     def test_elevations_label_absolute_floor_datums(self) -> None:
         snapshot = _snapshot()

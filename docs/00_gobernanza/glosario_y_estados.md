@@ -1,10 +1,11 @@
 # Glossary and document statuses
 
 **Status:** active  
-**Version:** 0.3
+**Version:** 0.4
 **Date:** 2026-10-02
 **Language note:** controlled English translation under D-044; no change in meaning.
-**Source of coordination vocabulary:** D-084 and the implemented candidate workflow.
+**Source of coordination vocabulary:** D-084 and the implemented candidate workflow,
+including [increment 02](../06_gestion_y_obra/connected_coordination_increment_02.md).
 
 ## Commitment hierarchy
 
@@ -57,7 +58,11 @@ their actual JSON fields and commands.
 | Evaluated / unsupported / inapplicable / not_run coverage | Whether the rule could actually evaluate its inputs; missing geometry never becomes a clearance pass |
 | Plan reservation | Located coordination allowance without a selected structural member; plan overlap can require review while solid interference stays unverified |
 | Published current alias | Copy of an explicitly catalogued issue; the latest candidate is not automatically this issue |
-| Model / input fingerprint | Hash of normalized model meaning / conservative source and code dependencies; both differ from an element's persistent identity |
+| Model / input fingerprint | Hash of normalized model meaning and captured discipline context / conservative source and code dependencies; both differ from an element's persistent identity |
+| Issue identity | Identity of a complete review package, including source inputs and rendering configuration; visual and nonvisual packages may represent the same model |
+| Captured discipline context | Source evidence held with a scenario for its checks; it is not another editable master or adoption of a historical benchmark |
+| Named anchor | Stable reference to a meaningful element or context location used by a dimension or callout; missing evidence cannot be silently replaced by a graphic position |
+| Pixel comparison | Exact difference between declared visual exports; labels and annotations can change too, so it is neither a geometric-only comparison nor automatic design approval |
 
 Finding lifecycle compares named scenarios. A previous non-passing finding is resolved
 only by a supported, evaluated PASS for the same rule/entity pair. Missing elements,

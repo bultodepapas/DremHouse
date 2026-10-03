@@ -1,9 +1,9 @@
 # Contributing to Dream House
 
 **Status:** active contributor guide<br>
-**Version:** 0.2<br>
+**Version:** 0.3<br>
 **Date:** 2026-10-02<br>
-**Source:** repository instructions, D-044, D-056 and D-084.
+**Source:** repository instructions, D-044, D-056 and D-084 increment 02.
 
 This repository is a living technical project record, not a collection of
 unconnected ideas. Every contribution must preserve traceability across source,
@@ -46,11 +46,14 @@ python3 .github/scripts/build_showcase.py --check-readme
 
 ### Source-driven coordination changes
 
-Follow the [coordination workflow](docs/06_gestion_y_obra/connected_coordination_workflow.md).
+Follow the [coordination workflow](docs/06_gestion_y_obra/connected_coordination_workflow.md)
+and [increment 02 record](docs/06_gestion_y_obra/connected_coordination_increment_02.md).
 Create a pinned JSON study, change supported fields by canonical entity ID, then build
-and inspect the complete candidate. Preserve historical hash-locked inputs; do not edit
-SVGs, generated snapshots or current aliases to author geometry. Record the resulting
-design decision separately before adopting any study into the published source basis.
+and inspect the complete candidate. It produces eight SVG views, including a schematic
+GLZ-WS-A section only; named anchors, dimensions and cross-view callouts are audited.
+Preserve historical hash-locked inputs; do not edit SVGs, generated snapshots or current
+aliases to author geometry. Record the resulting design decision separately before
+adopting any study into the published source basis.
 
 ```bash
 python3 -m pip install -e '.[optimization,dev,presentation]'
@@ -60,11 +63,28 @@ python3 -m dreamhouse.coordination --require-no-fail
 python3 -m dreamhouse.coordination --check --require-no-fail
 ```
 
+For optional visual review, use the pinned-font renderer with system font discovery
+disabled:
+
+```bash
+python3 -m pip install -e '.[presentation]'
+python3 -m dreamhouse.coordination --visuals
+python3 -m dreamhouse.coordination --check --visuals
+```
+
+This adds PNG previews, contact sheets and pixel-difference evidence; it does not approve
+a drawing. Consumer-impact metadata identifies affected outputs, but builds still rebuild
+the complete candidate. Programme and workstation checks use current resolved data;
+equipment geometry remains an unadopted benchmark with OPEN applicability, and ten
+structural line comparisons establish plan relationships only. Unsupported geometry,
+capacity and professional engineering remain OPEN.
+
 The full regression suite uses the existing optimization dependencies; the coordination
 builder itself does not require them. OPEN findings remain unresolved even if the command
 exits successfully. CI builds review evidence but does not promote the current catalog.
 When changing source ownership, rules, outputs or supported authoring operations, update
-the workflow, source inventory, phase checkpoint and affected discipline documents.
+the increment record, workflow, source inventory, phase checkpoint and affected discipline
+documents.
 
 ### Synchronize an explicitly promoted issue
 

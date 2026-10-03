@@ -52,8 +52,12 @@ text { font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif
 .finding-heading { font-weight: 700; }
 .warning { fill: #FFFDFA; font-size: 13px; font-weight: 800; letter-spacing: .6px; }
 .dimension { fill: var(--ink); font-size: 11px; font-weight: 700; }
+.semantic-anchor { fill: var(--paper); stroke: var(--info); stroke-width: 1; }
+.semantic-anchor-label { fill: var(--info); font-size: 8px; font-weight: 700; }
 .entity-shape { vector-effect: non-scaling-stroke; }
 .entity-occurrence.is-selected .entity-shape { stroke: #BD7626 !important; stroke-width: 4px !important; }
+.semantic-anchor.is-selected { fill: #F5DBA7; stroke: #BD7626; stroke-width: 2.5px; }
+.dimension.is-selected { fill: #8A5A16; font-weight: 800; }
 .entity-occurrence.is-selected .entity-label { fill: #8A5A16; font-weight: 800; }
 .finding-marker { font-size: 11px; font-weight: 800; }
 """.strip()
@@ -72,6 +76,11 @@ def _number(value: Any) -> float | None:
 
 def _n(value: float) -> str:
     return f"{value:.3f}".rstrip("0").rstrip(".") if value else "0"
+
+
+def _raw_n(value: float) -> str:
+    """Keep model precision in semantic metadata; visual labels use ``_n``/``_dim``."""
+    return format(value, ".12g") if value else "0"
 
 
 def _dim(value: float) -> str:
@@ -178,6 +187,80 @@ def _circle(
     }
     values.update(attrs)
     return ET.SubElement(parent, _q("circle"), values)
+
+
+def _semantic_anchor(
+    parent: ET.Element,
+    view_id: str,
+    entity_id: str,
+    name: str,
+    x: float,
+    y: float,
+    *,
+    world: Mapping[str, float | None] | None = None,
+    source: str = "geometry",
+    radius: float = 2.6,
+    context_id: str | None = None,
+) -> tuple[str, str]:
+    """Add a stable semantic anchor with a unique target in this SVG view."""
+    semantic_id = f"{entity_id}.{name}"
+    target_id = f"{view_id}-anchor-{_token(entity_id)}-{_token(name)}"
+    attrs = {
+        "id": target_id,
+        "class": "semantic-anchor",
+        "data-anchor-id": semantic_id,
+        "data-anchor-name": name,
+        "data-anchor-status": "resolved",
+        "data-anchor-source": source,
+    }
+    attrs["data-anchor-context-id" if context_id else "data-anchor-entity-id"] = (
+        context_id if context_id else entity_id
+    )
+    for axis in ("x", "y", "z"):
+        value = _number((world or {}).get(axis))
+        if value is not None:
+            attrs[f"data-world-{axis}"] = _raw_n(value)
+    _circle(
+        parent,
+        x,
+        y,
+        radius,
+        fill=COLOURS["paper"],
+        stroke=COLOURS["info"],
+        stroke_width=1,
+        **attrs,
+    )
+    return semantic_id, target_id
+
+
+def _unresolved_anchor(
+    parent: ET.Element,
+    view_id: str,
+    entity_id: str,
+    name: str,
+    reason: str,
+    *,
+    context_id: str | None = None,
+    unowned: bool = False,
+) -> tuple[str, str]:
+    semantic_id = f"{entity_id}.{name}"
+    target_id = f"{view_id}-anchor-{_token(entity_id)}-{_token(name)}"
+    node = ET.SubElement(
+        parent,
+        _q("g"),
+        {
+            "id": target_id,
+            "data-anchor-id": semantic_id,
+            "data-anchor-name": name,
+            "data-anchor-status": "unresolved",
+            "data-anchor-reason": reason,
+        },
+    )
+    if context_id:
+        node.set("data-anchor-context-id", context_id)
+    elif not unowned:
+        node.set("data-anchor-entity-id", entity_id)
+    return semantic_id, target_id
 
 
 def _serialized(root: ET.Element) -> str:
@@ -295,7 +378,7 @@ def _bounds_attrs(geometry: Mapping[str, Any]) -> dict[str, str]:
     attrs: dict[str, str] = {}
     for axis in ("x0", "x1", "y0", "y1", "z0", "z1"):
         value = _number(geometry.get(axis))
-        attrs[f"data-world-{axis}"] = "" if value is None else _n(value)
+        attrs[f"data-world-{axis}"] = "" if value is None else _raw_n(value)
     attrs["data-geometry-shape"] = str(geometry.get("shape", "unknown"))
     return attrs
 
@@ -540,7 +623,12 @@ def _finding_marker(
 
 
 def _draw_finding_panel(
-    root: ET.Element, view_id: str, evaluation: Mapping[str, Any], visible_ids: set[str]
+    root: ET.Element,
+    view_id: str,
+    evaluation: Mapping[str, Any],
+    visible_ids: set[str],
+    *,
+    include_unlinked: bool = True,
 ) -> dict[int, tuple[int, int]]:
     x, y, width, height = 1010, 152, 390, 720
     _rect(root, x, y, width, height, fill=COLOURS["panel"], stroke=COLOURS["rule"], rx=5)
@@ -550,7 +638,9 @@ def _draw_finding_panel(
     for finding_index, record in enumerate(_finding_records(evaluation)):
         status = str(record.get("status", "")).upper()
         ids = {str(value) for value in record.get("entity_ids", [])}
-        if status in {"OPEN", "FAIL"} and (not ids or ids.intersection(visible_ids)):
+        if status in {"OPEN", "FAIL"} and (
+            ids.intersection(visible_ids) or (include_unlinked and not ids)
+        ):
             rule_id = str(record.get("rule_id", "finding"))
             message = str(record.get("message", ""))
             key = (status, rule_id, message)
@@ -587,8 +677,14 @@ def _draw_finding_panel(
         return {}
     visible_indices: dict[int, tuple[int, int]] = {}
     records = _finding_records(evaluation)
-    # Definite failures take priority over standing professional/unknown-data gates.
-    active.sort(key=lambda item: str(item["record"].get("status", "")).upper() != "FAIL")
+    # Show definite failures first, then the evidence linked to this view before
+    # unlocated discipline benchmarks can fill the limited panel.
+    active.sort(
+        key=lambda item: (
+            str(item["record"].get("status", "")).upper() != "FAIL",
+            not bool(item["entity_ids"].intersection(visible_ids)),
+        )
+    )
     for slot, summary in enumerate(active[:8]):
         finding_index = summary["representative"]
         finding = summary["record"]
@@ -747,10 +843,10 @@ def _render_plan(
         extent_attrs = {
             "data-context": "p2-envelope" if envelope_source.endswith(".p2") else "hall-envelope",
             "data-source": envelope_source,
-            "data-world-x0": _n(origin_x),
+            "data-world-x0": _raw_n(origin_x),
             "data-world-y0": "0",
-            "data-world-x1": _n(origin_x + length),
-            "data-world-y1": _n(width),
+            "data-world-x1": _raw_n(origin_x + length),
+            "data-world-y1": _raw_n(width),
         }
         _rect(
             root,
@@ -765,10 +861,91 @@ def _render_plan(
             **extent_attrs,
         )
         _text(root, x0 + 2, y0 - 10, envelope_label, size=9, css="small")
-        _horizontal_dimension(
-            root, x0, x1, y1, y1 + 35, length, f"{view_id}-hall-plan-length", None
+        envelope_id = "PROJECT.P2" if envelope_source.endswith(".p2") else "PROJECT.PB"
+        length_anchor_refs = (f"{envelope_id}.extent.x0", f"{envelope_id}.extent.x1")
+        width_anchor_refs = (f"{envelope_id}.extent.y0", f"{envelope_id}.extent.y1")
+        length_anchor_targets = (
+            _semantic_anchor(
+                root,
+                view_id,
+                envelope_id,
+                "extent.x0",
+                x0,
+                y1,
+                world={"x": origin_x, "y": 0},
+                source="snapshot.geometry.p2"
+                if envelope_id == "PROJECT.P2"
+                else "snapshot.geometry.hall",
+                context_id=envelope_id,
+            )[1],
+            _semantic_anchor(
+                root,
+                view_id,
+                envelope_id,
+                "extent.x1",
+                x1,
+                y1,
+                world={"x": origin_x + length, "y": 0},
+                source="snapshot.geometry.p2"
+                if envelope_id == "PROJECT.P2"
+                else "snapshot.geometry.hall",
+                context_id=envelope_id,
+            )[1],
         )
-        _vertical_dimension(root, x0, y0, y1, x0 - 35, width, f"{view_id}-hall-plan-width", None)
+        width_anchor_targets = (
+            _semantic_anchor(
+                root,
+                view_id,
+                envelope_id,
+                "extent.y0",
+                x0,
+                y1,
+                world={"x": origin_x, "y": 0},
+                source="snapshot.geometry.p2"
+                if envelope_id == "PROJECT.P2"
+                else "snapshot.geometry.hall",
+                context_id=envelope_id,
+            )[1],
+            _semantic_anchor(
+                root,
+                view_id,
+                envelope_id,
+                "extent.y1",
+                x0,
+                y0,
+                world={"x": origin_x, "y": width},
+                source="snapshot.geometry.p2"
+                if envelope_id == "PROJECT.P2"
+                else "snapshot.geometry.hall",
+                context_id=envelope_id,
+            )[1],
+        )
+        _horizontal_dimension(
+            root,
+            x0,
+            x1,
+            y1,
+            y1 + 35,
+            length,
+            f"{view_id}-{envelope_id}-plan-length",
+            envelope_id,
+            anchor_refs=length_anchor_refs,
+            anchor_targets=length_anchor_targets,
+            datum=f"{envelope_source}.x",
+        )
+        _vertical_dimension(
+            root,
+            x0,
+            y0,
+            y1,
+            x0 - 35,
+            width,
+            f"{view_id}-{envelope_id}-plan-width",
+            envelope_id,
+            anchor_refs=width_anchor_refs,
+            anchor_targets=width_anchor_targets,
+            datum=f"{envelope_source}.y",
+        )
 
     _rect(root, px, py, pw, ph, fill="none", stroke=COLOURS["rule"], rx=3)
     _text(root, px + 12, py + 22, f"{level} · plan coordinates X/Y (m)", size=11, css="panel-title")
@@ -798,6 +975,28 @@ def _render_plan(
             root.remove(group)
             continue
         entity_id = _display_id(key, entity)
+        if str(entity.get("kind", "")).lower() == "opening":
+            bounds = _rect_geometry(_geom(entity))
+            facade = str(_params(entity).get("facade", "")).upper()
+            z_anchor = _number(_geom(entity).get("z0"))
+            if bounds is not None and facade != "ROOF":
+                x_start, x_end, y_start, y_end = bounds
+                if facade in {"FRONT", "REAR"}:
+                    start_xy, end_xy = (x_start, y_start), (x_start, y_end)
+                else:
+                    start_xy, end_xy = (x_start, y_start), (x_end, y_start)
+                for name, world_point in (("opening.start", start_xy), ("opening.end", end_xy)):
+                    point_x, point_y = transform(*world_point)
+                    _semantic_anchor(
+                        group,
+                        view_id,
+                        entity_id,
+                        name,
+                        point_x,
+                        point_y,
+                        world={"x": world_point[0], "y": world_point[1], "z": z_anchor},
+                        source="snapshot.entities.geometry",
+                    )
         visible_ids.add(entity_id)
         occurrences += 1
         rect_bounds = _rect_geometry(_geom(entity))
@@ -879,6 +1078,9 @@ def _horizontal_dimension(
     dimension_id: str,
     entity_id: str | None,
     dimension_source: str = "geometry",
+    anchor_refs: tuple[str, str] | None = None,
+    anchor_targets: tuple[str, str] | None = None,
+    datum: str | None = None,
 ) -> None:
     _line(
         parent,
@@ -905,10 +1107,19 @@ def _horizontal_dimension(
         )
     attrs = {
         "id": f"dimension-{_token(dimension_id)}",
+        "data-dimension-id": dimension_id,
         "data-dimension-for": entity_id or dimension_id,
-        "data-dimension-value": _n(value),
+        "data-dimension-value": _raw_n(value),
         "data-dimension-source": dimension_source,
+        "data-dimension-direction": "horizontal",
+        "data-dimension-status": "resolved" if anchor_refs and anchor_targets else "unanchored",
     }
+    if anchor_refs:
+        attrs["data-anchor-refs"] = " ".join(anchor_refs)
+    if anchor_targets:
+        attrs["data-anchor-targets"] = " ".join(anchor_targets)
+    if datum:
+        attrs["data-datum"] = datum
     _text(
         parent,
         (x0 + x1) / 2,
@@ -931,6 +1142,9 @@ def _vertical_dimension(
     dimension_id: str,
     entity_id: str | None,
     dimension_source: str = "geometry",
+    anchor_refs: tuple[str, str] | None = None,
+    anchor_targets: tuple[str, str] | None = None,
+    datum: str | None = None,
 ) -> None:
     _line(
         parent,
@@ -957,10 +1171,19 @@ def _vertical_dimension(
         )
     attrs = {
         "id": f"dimension-{_token(dimension_id)}",
+        "data-dimension-id": dimension_id,
         "data-dimension-for": entity_id or dimension_id,
-        "data-dimension-value": _n(value),
+        "data-dimension-value": _raw_n(value),
         "data-dimension-source": dimension_source,
+        "data-dimension-direction": "vertical",
+        "data-dimension-status": "resolved" if anchor_refs and anchor_targets else "unanchored",
     }
+    if anchor_refs:
+        attrs["data-anchor-refs"] = " ".join(anchor_refs)
+    if anchor_targets:
+        attrs["data-anchor-targets"] = " ".join(anchor_targets)
+    if datum:
+        attrs["data-datum"] = datum
     _text(
         parent,
         x_dimension + (8 if x_dimension > x_object else -8),
@@ -1134,6 +1357,50 @@ def _render_elevation(
                 stroke_width=1.7,
                 **common,
             )
+            opening_anchors: dict[str, tuple[str, str]] = {}
+            dimensionable_kind = str(entity.get("kind", "")).lower()
+            if dimensionable_kind in {"opening", "door"}:
+                geometry = _geom(entity)
+                params = _params(entity)
+                fixed_a = _number(geometry.get("y0" if axis == "x" else "x0"))
+                fixed_b = _number(geometry.get("y1" if axis == "x" else "x1"))
+                fixed = (
+                    (fixed_a + fixed_b) / 2 if fixed_a is not None and fixed_b is not None else None
+                )
+                sill_level = vertical[0]
+                head_level = vertical[1]
+                anchor_specs = (
+                    (
+                        ("opening.start", horizontal[0], sill_level),
+                        ("opening.end", horizontal[1], sill_level),
+                        ("opening.sill", (horizontal[0] + horizontal[1]) / 2, sill_level),
+                        ("opening.head", (horizontal[0] + horizontal[1]) / 2, head_level),
+                    )
+                    if dimensionable_kind == "opening"
+                    else (
+                        ("extent.start", horizontal[0], sill_level),
+                        ("extent.end", horizontal[1], sill_level),
+                        ("extent.bottom", (horizontal[0] + horizontal[1]) / 2, sill_level),
+                        ("extent.top", (horizontal[0] + horizontal[1]) / 2, head_level),
+                    )
+                )
+                for name, along, elevation in anchor_specs:
+                    screen_x, screen_y = to_screen(along, elevation)
+                    world = (
+                        {"x": along, "y": fixed, "z": elevation}
+                        if axis == "x"
+                        else {"x": fixed, "y": along, "z": elevation}
+                    )
+                    opening_anchors[name] = _semantic_anchor(
+                        group,
+                        view_id,
+                        entity_id,
+                        name,
+                        screen_x,
+                        screen_y,
+                        world=world,
+                        source=vertical[2],
+                    )
             label = entity_id
             if entity.get("label") and str(entity.get("label")) != entity_id:
                 label = f"{entity_id} · {entity.get('label')}"
@@ -1159,6 +1426,23 @@ def _render_elevation(
                     measured_width,
                     f"{view_id}-{entity_id}-width",
                     entity_id,
+                    anchor_refs=(
+                        f"{entity_id}.{('opening' if dimensionable_kind == 'opening' else 'extent')}.start",
+                        f"{entity_id}.{('opening' if dimensionable_kind == 'opening' else 'extent')}.end",
+                    )
+                    if opening_anchors
+                    else None,
+                    anchor_targets=(
+                        opening_anchors[
+                            "opening.start" if dimensionable_kind == "opening" else "extent.start"
+                        ][1],
+                        opening_anchors[
+                            "opening.end" if dimensionable_kind == "opening" else "extent.end"
+                        ][1],
+                    )
+                    if opening_anchors
+                    else None,
+                    datum=f"facade {plane_label} · model {axis.upper()}",
                 )
                 measured_height = vertical[1] - vertical[0]
                 _vertical_dimension(
@@ -1171,6 +1455,23 @@ def _render_elevation(
                     f"{view_id}-{entity_id}-height",
                     entity_id,
                     dimension_source=vertical[2],
+                    anchor_refs=(
+                        f"{entity_id}.{('opening' if dimensionable_kind == 'opening' else 'extent')}.{('sill' if dimensionable_kind == 'opening' else 'bottom')}",
+                        f"{entity_id}.{('opening' if dimensionable_kind == 'opening' else 'extent')}.{('head' if dimensionable_kind == 'opening' else 'top')}",
+                    )
+                    if opening_anchors
+                    else None,
+                    anchor_targets=(
+                        opening_anchors[
+                            "opening.sill" if dimensionable_kind == "opening" else "extent.bottom"
+                        ][1],
+                        opening_anchors[
+                            "opening.head" if dimensionable_kind == "opening" else "extent.top"
+                        ][1],
+                    )
+                    if opening_anchors
+                    else None,
+                    datum="project elevation above PB ±0.00 m",
                 )
                 params = _params(entity)
                 sill = _number(params.get("sill_m"))
@@ -1186,6 +1487,19 @@ def _render_elevation(
                         css="small",
                         **{"data-note-for": entity_id},
                     )
+                    if dimensionable_kind == "opening" and opening_anchors:
+                        _text(
+                            group,
+                            x0,
+                            y1 - 21,
+                            "SILL DATUM",
+                            size=7.5,
+                            css="semantic-anchor-label",
+                            **{
+                                "data-anchor-ref": f"{entity_id}.opening.sill",
+                                "data-anchor-target": opening_anchors["opening.sill"][1],
+                            },
+                        )
         datums = [("PB", 0.0)]
         if p2_level is not None:
             datums.append(("P2", p2_level))
@@ -1370,6 +1684,91 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 stroke_width=2,
                 **attrs,
             )
+            opening_anchors: dict[str, tuple[str, str]] = {}
+            if is_roof and plan_bounds:
+                px0, px1, py0, py1 = plan_bounds
+                for name, screen_x, screen_y, world_x, world_y in (
+                    ("plan.x0", shape_x, shape_y + shape_height, px0, py0),
+                    ("plan.x1", shape_x + shape_width, shape_y + shape_height, px1, py0),
+                    ("plan.y0", shape_x, shape_y + shape_height, px0, py0),
+                    ("plan.y1", shape_x, shape_y, px0, py1),
+                ):
+                    opening_anchors[name] = _semantic_anchor(
+                        group,
+                        view_id,
+                        entity_id,
+                        name,
+                        screen_x,
+                        screen_y,
+                        world={"x": world_x, "y": world_y},
+                        source="snapshot.entities.geometry",
+                    )
+            elif not is_roof:
+                geometry_z = _number(geometry.get("z0"))
+                geometry_head = _number(geometry.get("z1"))
+                along = _horizontal_extent(entity, horizontal_axis)
+                plan_extent = _rect_geometry(geometry)
+                fixed_world = (
+                    (plan_extent[2] + plan_extent[3]) / 2
+                    if plan_extent and horizontal_axis == "x"
+                    else (plan_extent[0] + plan_extent[1]) / 2
+                    if plan_extent
+                    else None
+                )
+
+                def detail_world(
+                    along_value: float | None,
+                    elevation: float | None,
+                    horizontal_axis: str = horizontal_axis,
+                    fixed_world: float | None = fixed_world,
+                ) -> dict[str, float | None]:
+                    if horizontal_axis == "x":
+                        return {"x": along_value, "y": fixed_world, "z": elevation}
+                    return {"x": fixed_world, "y": along_value, "z": elevation}
+
+                opening_anchors["opening.start"] = _semantic_anchor(
+                    group,
+                    view_id,
+                    entity_id,
+                    "opening.start",
+                    shape_x,
+                    shape_y + shape_height,
+                    world=detail_world(along[0] if along else None, geometry_z),
+                    source=vertical[2] if vertical else "opening-parameters",
+                )
+                opening_anchors["opening.end"] = _semantic_anchor(
+                    group,
+                    view_id,
+                    entity_id,
+                    "opening.end",
+                    shape_x + shape_width,
+                    shape_y + shape_height,
+                    world=detail_world(along[1] if along else None, geometry_z),
+                    source=vertical[2] if vertical else "opening-parameters",
+                )
+                if display_height is not None:
+                    sill_z = vertical[0] if vertical else geometry_z
+                    head_z = vertical[1] if vertical else geometry_head
+                    opening_anchors["opening.sill"] = _semantic_anchor(
+                        group,
+                        view_id,
+                        entity_id,
+                        "opening.sill",
+                        shape_x + shape_width / 2,
+                        shape_y + shape_height,
+                        world=detail_world((along[0] + along[1]) / 2 if along else None, sill_z),
+                        source=vertical[2] if vertical else "opening-parameters",
+                    )
+                    opening_anchors["opening.head"] = _semantic_anchor(
+                        group,
+                        view_id,
+                        entity_id,
+                        "opening.head",
+                        shape_x + shape_width / 2,
+                        shape_y,
+                        world=detail_world((along[0] + along[1]) / 2 if along else None, head_z),
+                        source=vertical[2] if vertical else "opening-parameters",
+                    )
             width_source = (
                 "geometry"
                 if plan_bounds or (geom_width is not None and geom_width > 0)
@@ -1385,8 +1784,26 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 f"{view_id}-{entity_id}-detail-width",
                 entity_id,
                 dimension_source="geometry" if width_source == "geometry" else "opening-parameters",
+                anchor_refs=(
+                    (f"{entity_id}.plan.x0", f"{entity_id}.plan.x1")
+                    if is_roof
+                    else (f"{entity_id}.opening.start", f"{entity_id}.opening.end")
+                )
+                if opening_anchors
+                else None,
+                anchor_targets=(
+                    (opening_anchors["plan.x0"][1], opening_anchors["plan.x1"][1])
+                    if is_roof
+                    else (
+                        opening_anchors["opening.start"][1],
+                        opening_anchors["opening.end"][1],
+                    )
+                )
+                if opening_anchors
+                else None,
+                datum=f"facade {facade} · opening width axis",
             )
-            if vertical or is_roof:
+            if vertical or is_roof or display_height is not None:
                 _vertical_dimension(
                     group,
                     shape_x + shape_width,
@@ -1396,7 +1813,29 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                     display_height,
                     f"{view_id}-{entity_id}-detail-span",
                     entity_id,
-                    dimension_source="geometry" if is_roof else vertical[2],
+                    dimension_source="geometry"
+                    if is_roof
+                    else vertical[2]
+                    if vertical
+                    else "opening-parameters",
+                    anchor_refs=(
+                        (f"{entity_id}.plan.y0", f"{entity_id}.plan.y1")
+                        if is_roof
+                        else (f"{entity_id}.opening.sill", f"{entity_id}.opening.head")
+                    )
+                    if opening_anchors and (is_roof or "opening.sill" in opening_anchors)
+                    else None,
+                    anchor_targets=(
+                        (opening_anchors["plan.y0"][1], opening_anchors["plan.y1"][1])
+                        if is_roof
+                        else (
+                            opening_anchors["opening.sill"][1],
+                            opening_anchors["opening.head"][1],
+                        )
+                    )
+                    if opening_anchors and (is_roof or "opening.sill" in opening_anchors)
+                    else None,
+                    datum="project elevation above PB ±0.00 m",
                 )
             vertical_label = (
                 f"Plan span {_dim(display_height)}" if is_roof else f"Height {_dim(display_height)}"
@@ -1409,13 +1848,36 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 size=9,
                 css="dimension",
                 **{
+                    "data-dimension-id": f"{view_id}-{entity_id}-height",
                     "data-dimension-for": entity_id,
-                    "data-dimension-value": _n(display_height),
+                    "data-dimension-value": _raw_n(display_height),
                     "data-dimension-source": "geometry"
                     if is_roof
                     else vertical[2]
                     if vertical
                     else "opening-parameters",
+                    "data-dimension-direction": "vertical",
+                    "data-dimension-status": "resolved"
+                    if opening_anchors and (is_roof or "opening.sill" in opening_anchors)
+                    else "unanchored",
+                    "data-anchor-refs": (
+                        f"{entity_id}.plan.y0 {entity_id}.plan.y1"
+                        if is_roof
+                        else f"{entity_id}.opening.sill {entity_id}.opening.head"
+                    )
+                    if opening_anchors and (is_roof or "opening.sill" in opening_anchors)
+                    else "",
+                    "data-anchor-targets": " ".join(
+                        (opening_anchors["plan.y0"][1], opening_anchors["plan.y1"][1])
+                        if is_roof
+                        else (
+                            opening_anchors["opening.sill"][1],
+                            opening_anchors["opening.head"][1],
+                        )
+                    )
+                    if opening_anchors and (is_roof or "opening.sill" in opening_anchors)
+                    else "",
+                    "data-datum": "project elevation above PB ±0.00 m",
                 },
             )
             height_text.set("data-dimension-kind", "plan-span" if is_roof else "height")
@@ -1447,6 +1909,19 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 css="small",
                 **{"data-sill-for": entity_id, "data-sill-value": _n(sill)},
             )
+            if opening_anchors and "opening.sill" in opening_anchors:
+                _text(
+                    group,
+                    x + 286,
+                    y + 154,
+                    "SILL DATUM",
+                    size=7.5,
+                    css="semantic-anchor-label",
+                    **{
+                        "data-anchor-ref": f"{entity_id}.opening.sill",
+                        "data-anchor-target": opening_anchors["opening.sill"][1],
+                    },
+                )
         source = entity.get("source", {})
         source = source if isinstance(source, Mapping) else {}
         source_text = f"Source: {source.get('path', 'not supplied')} · {source.get('key', 'key not supplied')}"
@@ -1482,6 +1957,711 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
             entity_id,
             marker_offset=offset,
         )
+    return _serialized(root)
+
+
+def _quantity_record(evaluation: Mapping[str, Any], record_id: str) -> Mapping[str, Any] | None:
+    ledger = evaluation.get("quantity_ledger", {})
+    records = ledger.get("records", []) if isinstance(ledger, Mapping) else []
+    if not isinstance(records, list):
+        return None
+    return next(
+        (
+            record
+            for record in records
+            if isinstance(record, Mapping) and str(record.get("id", "")) == record_id
+        ),
+        None,
+    )
+
+
+def _workstation_for_opening(
+    snapshot: Mapping[str, Any], opening_id: str
+) -> Mapping[str, Any] | None:
+    discipline_inputs = snapshot.get("discipline_inputs", {})
+    discipline_inputs = discipline_inputs if isinstance(discipline_inputs, Mapping) else {}
+    equipment = discipline_inputs.get("equipment", {})
+    equipment = equipment if isinstance(equipment, Mapping) else {}
+    pb = equipment.get("pb", {})
+    pb = pb if isinstance(pb, Mapping) else {}
+    workstations = pb.get("workstations", [])
+    if isinstance(workstations, Mapping):
+        workstations = list(workstations.values())
+    if not isinstance(workstations, list):
+        return None
+    return next(
+        (
+            record
+            for record in workstations
+            if isinstance(record, Mapping) and str(record.get("window_id", "")) == opening_id
+        ),
+        None,
+    )
+
+
+def _render_window_sections(snapshot: Mapping[str, Any], evaluation: Mapping[str, Any]) -> str:
+    """Render a bounded, source-derived opening section and unresolved interface plate."""
+    view_id = "window-sections"
+    opening_id = "GLZ-WS-A"
+    entities = dict(_entity_pairs(snapshot))
+    opening = entities.get(opening_id)
+    if not isinstance(opening, Mapping) or str(opening.get("kind", "")).lower() != "opening":
+        opening = None
+    source = opening.get("source", {}) if opening else {}
+    source = source if isinstance(source, Mapping) else {}
+    params = _params(opening) if opening else {}
+    geometry = _geom(opening) if opening else {}
+    vertical = _vertical_extent(opening) if opening else None
+    horizontal = _horizontal_extent(opening, "x") if opening else None
+    level = _number(params.get("level_m"))
+    sill_relative = _number(params.get("sill_m"))
+    sill_absolute = vertical[0] if vertical else None
+    head_absolute = vertical[1] if vertical else None
+    opening_height = (
+        head_absolute - sill_absolute
+        if head_absolute is not None and sill_absolute is not None
+        else None
+    )
+    opening_width = horizontal[1] - horizontal[0] if horizontal else None
+    midspan = (horizontal[0] + horizontal[1]) / 2 if horizontal else None
+    facade = str(params.get("facade", "A")).upper()
+    elevation_view = {
+        "A": "elevation-side-a",
+        "B": "elevation-side-b",
+        "FRONT": "elevation-front",
+        "REAR": "elevation-rear",
+    }.get(facade, "elevation-side-a")
+    relationships = opening.get("relationships", {}) if opening else {}
+    relationships = relationships if isinstance(relationships, Mapping) else {}
+    host_id = str(relationships.get("host_id") or "")
+    host = entities.get(host_id) if host_id else None
+    host_geometry = _geom(host) if isinstance(host, Mapping) else {}
+    host_shape = str(host_geometry.get("shape", "unknown"))
+    host_vertical_known = (
+        _number(host_geometry.get("z0")) is not None
+        and _number(host_geometry.get("z1")) is not None
+    )
+    worktop = _workstation_for_opening(snapshot, opening_id) if opening else None
+    worktop_id = str(worktop.get("id", "PB-WS-A")) if worktop else "WORKTOP-UNRESOLVED"
+    worktop_height = _number(worktop.get("worktop_height")) if worktop else None
+    worktop_depth = _number(worktop.get("worktop_depth")) if worktop else None
+    worktop_absolute = (
+        level + worktop_height if level is not None and worktop_height is not None else None
+    )
+    worktop_delta = (
+        worktop_height - sill_relative
+        if worktop_height is not None and sill_relative is not None
+        else None
+    )
+    quantity = _quantity_record(evaluation, f"Q-{opening_id}-AREA")
+
+    root = _root(
+        snapshot,
+        view_id,
+        "Window section and interface review",
+        "Source-derived opening sill and head datums with an explicit worktop level comparison. "
+        "Host thickness, glazing assembly, support, drainage and control-layer paths remain unresolved.",
+    )
+    root.set("data-view-purpose", "coordination section and interface evidence")
+    root.set("data-projection-basis", "section datum comparison in project elevation")
+    root.set("data-section-id", "WS-A-01")
+    root.set("data-cut-plane-axis", "X")
+    if midspan is not None:
+        root.set("data-cut-plane-value-m", _raw_n(midspan))
+        root.set("data-cut-plane", f"X={_n(midspan)} m · GLZ-WS-A source midspan")
+    else:
+        root.set("data-cut-plane", "X unavailable · opening bounds unresolved")
+    root.set("data-cut-depth-range", "unknown · host solid thickness is not supplied")
+    root.set("data-section-members", opening_id if opening else "")
+    _frame(
+        root,
+        snapshot,
+        view_id,
+        "Window section and interface review",
+        "GLZ-WS-A · source datums, linked worktop context and unresolved envelope interfaces",
+    )
+
+    _rect(
+        root,
+        60,
+        145,
+        890,
+        345,
+        fill=COLOURS["panel"],
+        stroke=COLOURS["rule"],
+        rx=4,
+        id=f"{view_id}-section-panel",
+        **{
+            "data-panel-id": "section-datum-comparison",
+            "data-cut-intent": "vertical level section through opening source midspan",
+            "data-cut-depth-range": "unknown",
+        },
+    )
+    _text(root, 78, 174, "A–A · OPENING / WORKTOP ELEVATION DATUMS", size=13, css="panel-title")
+    _text(
+        root,
+        78,
+        193,
+        "Section intent: compare source elevations only. Horizontal spacing is schematic; no wall profile or glazing is represented.",
+        size=9,
+        css="small",
+    )
+
+    opening_anchor_nodes: dict[str, tuple[str, str]] = {}
+    worktop_anchor: tuple[str, str] | None = None
+    unresolved_opening_reason = "opening sill/head geometry or parameters are unavailable"
+    if opening and vertical and horizontal and opening_height is not None and opening_height > 0:
+        panel_top, panel_bottom = 222.0, 446.0
+        candidate_levels = [vertical[0], vertical[1]]
+        if level is not None:
+            candidate_levels.append(level)
+        if worktop_absolute is not None:
+            candidate_levels.append(worktop_absolute)
+        z_min, z_max = min(candidate_levels), max(candidate_levels)
+        z_margin = max((z_max - z_min) * 0.14, 0.18)
+        z_min -= z_margin
+        z_max += z_margin
+
+        def to_level_y(elevation: float) -> float:
+            return panel_bottom - (elevation - z_min) * (panel_bottom - panel_top) / (z_max - z_min)
+
+        opening_x = 325.0
+        sill_y, head_y = to_level_y(sill_absolute), to_level_y(head_absolute)
+        section_group = _entity_group(root, view_id, opening_id, opening, 0)
+        section_group.set("data-section-membership", "cut-envelope")
+        _text(root, 103, 221, "PROJECT Z (m)", size=8, css="eyebrow")
+        _line(
+            section_group,
+            opening_x,
+            head_y,
+            opening_x,
+            sill_y,
+            stroke=COLOURS["info"],
+            width=2,
+            dash="7 4",
+            **{
+                "id": f"{view_id}-entity-{_token(opening_id)}-section-extent",
+                "data-section-membership": "opening vertical extent only",
+                "data-section-geometry": "source-derived datum line; no filling or host profile",
+            },
+        )
+        opening_anchor_nodes["opening.sill"] = _semantic_anchor(
+            section_group,
+            view_id,
+            opening_id,
+            "opening.sill",
+            opening_x,
+            sill_y,
+            world={"x": midspan, "y": _number(geometry.get("y0")), "z": sill_absolute},
+            source=vertical[2],
+        )
+        opening_anchor_nodes["opening.head"] = _semantic_anchor(
+            section_group,
+            view_id,
+            opening_id,
+            "opening.head",
+            opening_x,
+            head_y,
+            world={"x": midspan, "y": _number(geometry.get("y0")), "z": head_absolute},
+            source=vertical[2],
+        )
+        datum_label = f"PB level {level:+.2f} m" if level is not None else "PB level unavailable"
+        if level is not None:
+            datum_y = to_level_y(level)
+            _line(root, 110, datum_y, 868, datum_y, stroke=COLOURS["muted"], width=0.8, dash="4 4")
+            datum_ref, _datum_target = _semantic_anchor(
+                root,
+                view_id,
+                "PROJECT.PB",
+                "finished-floor",
+                110,
+                datum_y,
+                world={"z": level},
+                source="snapshot PB datum",
+                context_id="PROJECT.PB",
+            )
+            _text(root, 115, datum_y - 5, datum_label, size=8, css="small")
+            if sill_relative is not None:
+                floor_target = f"{view_id}-anchor-{_token('PROJECT.PB')}-{_token('finished-floor')}"
+                _vertical_dimension(
+                    root,
+                    opening_x,
+                    datum_y,
+                    sill_y,
+                    opening_x - 54,
+                    sill_relative,
+                    f"{view_id}-{opening_id}-sill-above-level",
+                    opening_id,
+                    dimension_source="opening-parameters",
+                    anchor_refs=(datum_ref, f"{opening_id}.opening.sill"),
+                    anchor_targets=(floor_target, opening_anchor_nodes["opening.sill"][1]),
+                    datum="PB finished-floor level",
+                )
+        _vertical_dimension(
+            root,
+            opening_x,
+            head_y,
+            sill_y,
+            opening_x + 62,
+            opening_height,
+            f"{view_id}-{opening_id}-opening-height",
+            opening_id,
+            dimension_source=vertical[2],
+            anchor_refs=(f"{opening_id}.opening.sill", f"{opening_id}.opening.head"),
+            anchor_targets=(
+                opening_anchor_nodes["opening.sill"][1],
+                opening_anchor_nodes["opening.head"][1],
+            ),
+            datum="opening sill to head",
+        )
+        _text(
+            root,
+            opening_x,
+            head_y - 11,
+            f"HEAD +{head_absolute:.2f} m",
+            size=8,
+            css="small",
+            anchor="middle",
+        )
+        _text(
+            root,
+            opening_x,
+            sill_y + 15,
+            f"SILL +{sill_absolute:.2f} m",
+            size=8,
+            css="small",
+            anchor="middle",
+        )
+        _text(root, 225, 460, "OPENING PLANE · extent only", size=8, css="small", anchor="middle")
+
+        if worktop_height is not None and worktop_absolute is not None:
+            worktop_y = to_level_y(worktop_absolute)
+            _line(
+                root,
+                540,
+                worktop_y,
+                855,
+                worktop_y,
+                stroke=COLOURS["study"],
+                width=1.8,
+                dash="6 4",
+                **{
+                    "data-context-entity-id": worktop_id,
+                    "data-section-membership": "worktop datum context only",
+                    "data-source-context": f"discipline_inputs.equipment.pb.workstations[{worktop_id}].worktop_height",
+                },
+            )
+            worktop_anchor = _semantic_anchor(
+                root,
+                view_id,
+                worktop_id,
+                "worktop.top",
+                540,
+                worktop_y,
+                world={"z": worktop_absolute},
+                source=f"discipline_inputs.equipment.pb.workstations[{worktop_id}].worktop_height",
+                context_id=worktop_id,
+            )
+            _text(
+                root,
+                548,
+                worktop_y - 8,
+                f"{worktop_id} worktop top · +{worktop_height:.2f} m from PB floor",
+                size=8,
+                css="small",
+            )
+            if worktop_depth is not None:
+                _text(
+                    root,
+                    548,
+                    worktop_y + 14,
+                    f"Source depth {_dim(worktop_depth)}; position relative to glazing unresolved.",
+                    size=8,
+                    css="small",
+                )
+            if worktop_delta is not None:
+                delta_text = _text(
+                    root,
+                    555,
+                    455,
+                    f"Δz worktop − sill = {worktop_delta:+.2f} m",
+                    size=9,
+                    css="dimension",
+                    **{
+                        "data-dimension-id": f"{view_id}-{opening_id}-worktop-sill-level-difference",
+                        "data-dimension-for": opening_id,
+                        "data-dimension-value": _raw_n(worktop_delta),
+                        "data-dimension-unit": "m",
+                        "data-dimension-source": "opening parameters + discipline equipment context",
+                        "data-dimension-direction": "vertical level comparison",
+                        "data-dimension-status": "resolved",
+                        "data-anchor-refs": f"{opening_id}.opening.sill {worktop_id}.worktop.top",
+                        "data-anchor-targets": " ".join(
+                            (opening_anchor_nodes["opening.sill"][1], worktop_anchor[1])
+                        ),
+                        "data-datum": "PB finished-floor level",
+                    },
+                )
+                ET.SubElement(delta_text, _q("title")).text = (
+                    "Level comparison only; it does not establish physical contact, clearance, "
+                    "support or interface continuity."
+                )
+        else:
+            missing_worktop_anchor = _unresolved_anchor(
+                root,
+                view_id,
+                worktop_id,
+                "worktop.top",
+                "worktop height or PB floor datum is unavailable in the current snapshot",
+                context_id=worktop_id if worktop else None,
+                unowned=worktop is None,
+            )
+            worktop_unavailable_text = (
+                "Worktop datum unavailable in snapshot; no value inferred."
+                if worktop_height is None
+                else "PB floor datum unavailable; worktop elevation cannot be placed."
+            )
+            _text(
+                root,
+                540,
+                310,
+                worktop_unavailable_text,
+                size=9,
+                css="small",
+            )
+            unresolved = _text(
+                root,
+                540,
+                332,
+                "Δz worktop − sill · unresolved",
+                size=9,
+                css="dimension",
+                **{
+                    "data-dimension-id": f"{view_id}-{opening_id}-worktop-sill-level-difference",
+                    "data-dimension-for": opening_id,
+                    "data-dimension-source": "missing discipline equipment context",
+                    "data-dimension-direction": "vertical level comparison",
+                    "data-dimension-status": "unresolved",
+                    "data-anchor-refs": f"{opening_id}.opening.sill {worktop_id}.worktop.top",
+                    "data-anchor-targets": " ".join(
+                        (opening_anchor_nodes["opening.sill"][1], missing_worktop_anchor[1])
+                    ),
+                    "data-datum": "PB finished-floor level",
+                },
+            )
+            ET.SubElement(
+                unresolved, _q("title")
+            ).text = "The sill anchor is resolved; the source worktop-height anchor is unavailable."
+        full_source_note = (
+            f"Source opening bounds: {source.get('path', 'path not supplied')} · "
+            f"{source.get('key', 'key not supplied')}. Host reference {host_id or 'unresolved'}; "
+            f"host shape {host_shape}; vertical solid extent "
+            f"{'known' if host_vertical_known else 'unknown'}; wall depth remains unresolved."
+        )
+        source_note = _text(
+            root,
+            80,
+            478,
+            textwrap.shorten(full_source_note, width=148, placeholder="…"),
+            size=8,
+            css="small",
+            **{
+                "data-entity-ref": host_id,
+                "data-section-membership": "related host reference only",
+                "data-host-depth-status": "unresolved",
+            },
+        )
+        ET.SubElement(source_note, _q("title")).text = full_source_note
+    else:
+        if opening:
+            _unresolved_anchor(root, view_id, opening_id, "opening.sill", unresolved_opening_reason)
+            _unresolved_anchor(root, view_id, opening_id, "opening.head", unresolved_opening_reason)
+        _text(
+            root,
+            505,
+            335,
+            "GLZ-WS-A source opening extent is incomplete; section dimensions remain unresolved.",
+            size=11,
+            css="small",
+            anchor="middle",
+        )
+        _text(root, 80, 478, "No wall or glazing profile is inferred.", size=8, css="small")
+
+    interface_items = (
+        ("head", "opening.head", "Header / head interface"),
+        ("sill", "opening.sill", "Sill / drainage interface"),
+        ("jamb", "opening.start opening.end", "Jamb interfaces"),
+    )
+    for index, (interface_id, anchor_names, title) in enumerate(interface_items):
+        x = 60 + index * 300
+        y = 510
+        card = _rect(
+            root,
+            x,
+            y,
+            285,
+            252,
+            fill=COLOURS["panel"],
+            stroke=COLOURS["rule"],
+            rx=4,
+            id=f"{view_id}-interface-{interface_id}",
+            **{
+                "data-interface-id": f"{opening_id}.{interface_id}",
+                "data-interface-status": "unknown",
+                "data-schematic-only": "true",
+            },
+        )
+        refs = [f"{opening_id}.{name}" for name in anchor_names.split()]
+        target_ids = [
+            f"{elevation_view}-anchor-{_token(opening_id)}-{_token(name)}"
+            for name in anchor_names.split()
+        ]
+        callout_resolved = bool(opening and vertical and horizontal)
+        card.set("data-callout-id", f"{view_id}-callout-{interface_id}")
+        if callout_resolved:
+            card.set("data-callout-refs", " ".join(refs))
+            card.set("data-callout-target-view-id", elevation_view)
+            card.set("data-callout-targets", " ".join(target_ids))
+        else:
+            card.set("data-callout-status", "unresolved")
+            card.set(
+                "data-callout-reason", "required opening anchors are unavailable in the snapshot"
+            )
+        _text(root, x + 14, y + 25, title, size=10, css="panel-title")
+        badge_parent = root
+        if callout_resolved:
+            badge_link = ET.SubElement(
+                root,
+                _q("a"),
+                {
+                    "href": f"{elevation_view}.svg#{target_ids[0]}",
+                    "aria-label": f"Open {elevation_view} at {refs[0]}",
+                    "data-callout-link": f"{view_id}-callout-{interface_id}",
+                },
+            )
+            badge_parent = badge_link
+        badge = _circle(
+            badge_parent,
+            x + 260,
+            y + 21,
+            11,
+            fill="#FFFDFA",
+            stroke="#8A5A16",
+            stroke_width=1.5,
+            **{"class": "callout"},
+        )
+        badge.set("data-callout-status", "resolved" if callout_resolved else "unresolved")
+        _text(
+            badge_parent,
+            x + 260,
+            y + 24,
+            chr(65 + index),
+            size=9,
+            css="body",
+            anchor="middle",
+            fill="#172A32",
+            **{"font-weight": "700"},
+        )
+        _text(root, x + 14, y + 47, "Water", size=8.5, css="small")
+        _text(root, x + 14, y + 77, "Air control", size=8.5, css="small")
+        _text(root, x + 14, y + 107, "Thermal", size=8.5, css="small")
+        for lane in range(3):
+            cy = y + 44 + lane * 30
+            _line(root, x + 78, cy, x + 135, cy, stroke=COLOURS["muted"], width=1.5, dash="4 3")
+            _line(root, x + 151, cy, x + 202, cy, stroke=COLOURS["muted"], width=1.5, dash="4 3")
+            _line(root, x + 137, cy - 5, x + 145, cy + 5, stroke=COLOURS["open"], width=1.2)
+            _line(root, x + 145, cy - 5, x + 153, cy + 5, stroke=COLOURS["open"], width=1.2)
+        _text(
+            root,
+            x + 14,
+            y + 145,
+            "Continuity path: unresolved",
+            size=9,
+            css="finding-heading",
+            fill=COLOURS["open"],
+        )
+        _text(
+            root, x + 14, y + 165, "No assembly layer, material, fixing or", size=8.5, css="small"
+        )
+        _text(
+            root,
+            x + 14,
+            y + 180,
+            "tolerance is supplied for this interface.",
+            size=8.5,
+            css="small",
+        )
+        _text(
+            root,
+            x + 14,
+            y + 212,
+            "Callout references the same GLZ-WS-A opening.",
+            size=8,
+            css="small",
+        )
+
+    _rect(
+        root,
+        60,
+        765,
+        890,
+        125,
+        fill=COLOURS["panel"],
+        stroke=COLOURS["rule"],
+        rx=4,
+        **{"data-panel-id": "quantity-and-interface-evidence"},
+    )
+    _text(root, 78, 792, "SOURCE-DERIVED OPENING MEASUREMENT", size=10, css="panel-title")
+    width_anchor_targets: tuple[str, str] | None = None
+    width_anchor_refs = (f"{opening_id}.opening.start", f"{opening_id}.opening.end")
+    if opening and horizontal is not None:
+        width_y = 818.0
+        width_anchor_targets = (
+            _semantic_anchor(
+                root,
+                view_id,
+                opening_id,
+                "opening.start",
+                82,
+                width_y,
+                world={"x": horizontal[0], "y": _number(geometry.get("y0")), "z": sill_absolute},
+                source="snapshot.entities.geometry",
+            )[1],
+            _semantic_anchor(
+                root,
+                view_id,
+                opening_id,
+                "opening.end",
+                250,
+                width_y,
+                world={"x": horizontal[1], "y": _number(geometry.get("y0")), "z": sill_absolute},
+                source="snapshot.entities.geometry",
+            )[1],
+        )
+        _horizontal_dimension(
+            root,
+            82,
+            250,
+            width_y,
+            845,
+            opening_width,
+            f"{view_id}-{opening_id}-width-summary",
+            opening_id,
+            dimension_source="snapshot.entities.geometry",
+            anchor_refs=width_anchor_refs,
+            anchor_targets=width_anchor_targets,
+            datum=f"facade {facade} · source opening width axis",
+        )
+        _text(root, 78, 866, "Opening width basis · façade axis", size=8, css="small")
+    else:
+        _text(root, 78, 834, "Opening width anchors unresolved.", size=9, css="small")
+    if opening_height is not None and opening_anchor_nodes:
+        _text(
+            root,
+            300,
+            840,
+            f"Height {_dim(opening_height)}",
+            size=9,
+            css="body",
+            **{
+                "data-dimension-id": f"{view_id}-{opening_id}-height-summary",
+                "data-dimension-for": opening_id,
+                "data-dimension-value": _raw_n(opening_height),
+                "data-dimension-unit": "m",
+                "data-dimension-source": vertical[2] if vertical else "opening-parameters",
+                "data-dimension-direction": "vertical",
+                "data-dimension-status": "resolved",
+                "data-anchor-refs": f"{opening_id}.opening.sill {opening_id}.opening.head",
+                "data-anchor-targets": " ".join(
+                    (
+                        opening_anchor_nodes["opening.sill"][1],
+                        opening_anchor_nodes["opening.head"][1],
+                    )
+                ),
+                "data-datum": "project elevation above PB ±0.00 m",
+            },
+        )
+    else:
+        _text(root, 300, 840, "Height anchors unresolved.", size=9, css="small")
+    anchors_for_quantity = (
+        bool(opening_anchor_nodes)
+        and width_anchor_targets is not None
+        and "opening.sill" in opening_anchor_nodes
+        and "opening.head" in opening_anchor_nodes
+    )
+    if (
+        quantity is not None
+        and _number(quantity.get("quantity")) is not None
+        and anchors_for_quantity
+    ):
+        quantity_value = float(_number(quantity.get("quantity")))
+        quantity_unit = str(quantity.get("unit", "unit unknown"))
+        q_text = _text(
+            root,
+            460,
+            825,
+            f"Nominal opening area {quantity_value:.2f} {quantity_unit}",
+            size=9,
+            css="body",
+            **{
+                "data-quantity-id": str(quantity.get("id")),
+                "data-dimension-id": f"{view_id}-{quantity.get('id')}",
+                "data-dimension-for": opening_id,
+                "data-dimension-value": _raw_n(quantity_value),
+                "data-dimension-unit": quantity_unit,
+                "data-dimension-source": "evaluation.quantity_ledger",
+                "data-dimension-formula": str(quantity.get("formula", "not supplied")),
+                "data-dimension-status": "resolved",
+                "data-anchor-refs": " ".join(
+                    (
+                        f"{opening_id}.opening.start",
+                        f"{opening_id}.opening.end",
+                        f"{opening_id}.opening.sill",
+                        f"{opening_id}.opening.head",
+                    )
+                ),
+                "data-anchor-targets": " ".join(
+                    (
+                        width_anchor_targets[0],
+                        width_anchor_targets[1],
+                        opening_anchor_nodes["opening.sill"][1],
+                        opening_anchor_nodes["opening.head"][1],
+                    )
+                ),
+                "data-datum": "snapshot opening width and project elevation anchors",
+            },
+        )
+        ET.SubElement(q_text, _q("title")).text = str(quantity.get("measurement_status", ""))
+    else:
+        _text(
+            root,
+            500,
+            840,
+            "Nominal opening area unavailable or unanchored in evaluation ledger.",
+            size=9,
+            css="small",
+        )
+    _text(
+        root,
+        300,
+        865,
+        "Net glass, frame deductions, product performance and installed rate: unknown.",
+        size=8,
+        css="small",
+    )
+    _text(
+        root,
+        300,
+        881,
+        "Sill/worktop level agreement does not establish support, drainage or sealing.",
+        size=8,
+        css="small",
+    )
+
+    visible_ids = {opening_id} if opening else set()
+    if host_id:
+        visible_ids.add(host_id)
+    _draw_finding_panel(root, view_id, evaluation, visible_ids, include_unlinked=False)
     return _serialized(root)
 
 
@@ -1619,7 +2799,7 @@ svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
   <h1>Dream House · coordination review views</h1>
   <p>Scenario {scenario} · schema {schema} · input {input_hash} · model {model_hash}</p>
   <span class="authority">NOT FOR CONSTRUCTION</span>
-  <nav>{"".join(f'<a href="#section-{html.escape(name[:-4], quote=True)}">{html.escape(name[:-4].replace("-", " ").title())}</a>' for name in views)}</nav>
+<nav aria-label="Generated view navigation">{"".join(f'<a href="#section-{html.escape(name[:-4], quote=True)}">{html.escape(name[:-4].replace("-", " ").title())}</a>' for name in views)}</nav>
 </header>
 <div class="layout">
   <aside aria-label="Read-only element and evidence index">
@@ -1636,6 +2816,15 @@ svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
       <h2>Evaluation evidence</h2>
       <p id="finding-filter-status" class="helper" aria-live="polite">Showing all {len(findings)} findings.</p>
       <ul>{"".join(finding_rows)}</ul>
+    </section>
+    <section class="panel">
+      <h2>Machine-readable review evidence</h2>
+      <ul>
+        <li><a href="disciplines.json">Discipline inputs and status</a></li>
+        <li><a href="view_inventory.json">View, occurrence and annotation inventory</a></li>
+        <li><a href="anchor_lifecycle.json">Anchor lifecycle</a></li>
+        <li><a href="dependencies.json">Source dependency map</a></li>
+      </ul>
     </section>
     <section class="panel helper">
       Review only. This page has no model editing or write-back capability. Search and selection affect presentation only.
@@ -1666,8 +2855,9 @@ svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
   }}
   function selectEntity(entityId, sourceButton) {{
     selectedId = entityId;
-    document.querySelectorAll('[data-entity-id]').forEach((node) => {{
-      node.classList.toggle('is-selected', node.dataset.entityId === entityId);
+    document.querySelectorAll('[data-entity-id], [data-anchor-entity-id], [data-dimension-for]').forEach((node) => {{
+      const targetId = node.dataset.entityId || node.dataset.anchorEntityId || node.dataset.dimensionFor;
+      node.classList.toggle('is-selected', targetId === entityId);
     }});
     document.querySelectorAll('[data-select-entity]').forEach((button) => {{
       const active = button.dataset.selectEntity === entityId;
@@ -1730,6 +2920,7 @@ def render_views(snapshot: dict, evaluation: dict) -> dict[str, str]:
             snapshot, evaluation, view_id="elevation-rear", facade="REAR", title="Rear elevation"
         ),
         "window-details.svg": _render_window_details(snapshot, evaluation),
+        "window-sections.svg": _render_window_sections(snapshot, evaluation),
     }
     views["index.html"] = _render_html(snapshot, evaluation, views)
     return views

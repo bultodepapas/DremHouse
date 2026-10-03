@@ -2,7 +2,7 @@
 
 **Status:** retained graphic-improvement roadmap; bounded D-084 review implementation;
 publication migration pending; no construction authority
-**Version:** 0.4
+**Version:** 0.5
 **Date:** 2026-10-02
 **Original audit date:** 2026-08-23
 **Source:** owner request of 2026-08-21; code and rendered-output audit of the 27
@@ -17,18 +17,25 @@ scope, status, open conflicts or professional design gates.
 
 ### Reconciliation with connected coordination
 
-D-084 adds seven generated SVG review views with shared styling, entity identities,
-status cues and a read-only HTML index. It uses a resolved current-source snapshot and
-keeps source edits in validated repository files. See the
+D-084 increments 01–02 provide eight generated SVG review views with shared styling,
+entity identities, status cues and a read-only HTML index. `window-sections.svg` is a
+section projection of GLZ-WS-A only. The view contract checks named anchors, dimensions
+and cross-view callouts. Source edits remain in validated repository files. See the
 [connected implementation checkpoint](../06_gestion_y_obra/connected_project_coordination_next_step.md#implementation-checkpoint--2026-10-02)
 for accepted behaviour and the remaining phase gates.
 
-This is a bounded application of the graphic direction below. It does not migrate the
-27 published drawing identities or close this roadmap's full section/detail, label
-layout, raster-preview, contact-sheet and publication-quality requirements. The original
-audit statistics and observations below retain their 2026-08-23 scope; this documentation
-reconciliation is not a new census of every historical SVG. D-084 candidate checks and
-existing publication checks cover different outputs and must remain distinguishable.
+This is a bounded application of the graphic direction below. Optional `--visuals` output
+uses explicit pinned font files to generate PNG previews and a contact sheet and compare
+candidate pixels with the baseline. These review artifacts do not approve a drawing or
+establish publication acceptance. Consumer-impact metadata is recorded, but the pipeline
+still rebuilds the complete candidate rather than selectively rebuilding affected views.
+The work does not migrate the 27 published drawing identities or close this roadmap's
+broader sheet-composition, section/detail, accessibility, whole-set visual review and
+publication-quality requirements. The original audit statistics and observations below
+retain their 2026-08-23 scope; this documentation reconciliation is not a new census of
+every historical SVG. D-084 candidate checks and existing publication checks cover
+different outputs and must remain distinguishable. See the
+[increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md).
 
 ### Original audit outcome and remaining target
 

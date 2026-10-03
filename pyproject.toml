@@ -71,7 +71,7 @@ include = ["dreamhouse*"]
 "dreamhouse.model" = ["*.json"]
 "dreamhouse.equipment" = ["*.json"]
 "dreamhouse.cost" = ["*.json"]
-"dreamhouse.coordination" = ["*.json"]
+"dreamhouse.coordination" = ["*.json", "fonts/*.ttf", "fonts/*.txt", "fonts/*.md"]
 
 [tool.ruff]
 line-length = 100

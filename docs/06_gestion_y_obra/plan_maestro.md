@@ -1,7 +1,7 @@
 # Master plan
 
 **Status:** active project delivery roadmap; stage gates remain evidence-based<br>
-**Version:** 0.3<br>
+**Version:** 0.4<br>
 **Date:** 2026-10-02<br>
 **Source:** master plan v0.2, active governance/discipline records and D-084.<br>
 **Language note:** controlled English translation under D-044; existing project and
@@ -13,16 +13,20 @@ attractive drawing does not close a site, engineering, cost or construction gate
 ## Current coordination position
 
 The current published architectural basis includes PB b37/P2 b28 under D-083. D-084
-adds an executable source-driven coordination review: repository JSON, a shared model,
-supported checks and quantities, and seven generated read-only SVG views. It preserves
-historical scenarios and the 27 separately published drawing aliases. This work has
-not selected the site, closed professional gates or established a construction budget.
+increments 01–02 provide an executable source-driven coordination review: repository JSON,
+a shared model, supported checks and quantities, and eight generated read-only SVG views.
+One view is a GLZ-WS-A section projection only. The bounded programme, equipment-benchmark,
+workstation and structural plan-line adapters preserve OPEN and unsupported results where
+the available sources do not justify approval. The work preserves historical scenarios
+and the 27 separately published drawing aliases. It has not changed the house design,
+selected the site, closed professional gates or established a construction budget.
 
 Use the [connected implementation plan](connected_project_coordination_next_step.md)
 for its 19 software subphases, the [workflow](connected_coordination_workflow.md) for
 commands and coverage, and the [source inventory](connected_source_inventory.md) for
-current consumers. The first increment is implemented; discipline adapters, complete
-section/interface details and current-set migration remain outstanding.
+current consumers, and the [increment 02 record](connected_coordination_increment_02.md)
+for its coverage limits. The two bounded increments are implemented; wider discipline
+coverage, complete section/interface details and current-set migration remain outstanding.
 
 | Numbering system | Meaning |
 | --- | --- |
@@ -138,6 +142,7 @@ switching them on.
    discipline evidence; retain CF-009–CF-013 until resolved by their responsible roles.
 5. Develop structural sizing and market-based cost validation.
 
-In parallel, use D-084's implemented review to expose source relationships and changes,
-then complete its remaining adapters/detail coverage before migrating the current set.
+In parallel, use D-084's implemented review and bounded adapters to expose source
+relationships and changes, then complete remaining discipline and detail coverage before
+migrating the current set.
 Photorealistic renders are not on the critical path ahead of these evidence steps.

@@ -213,8 +213,8 @@ def render_drawings_readme(manifest: dict[str, Any]) -> str:
 **Status:** {manifest["status"]}<br>
 **Version:** {manifest["version"]}<br>
 **Date:** {manifest["date"]}<br>
-**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
-**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084
+**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
+**Source:** [`actual/catalog.json`](actual/catalog.json), D-056 and D-084 increment 02
 
 > [!IMPORTANT]
 > `actual/` is the stable publication layer for the current project state. Its SVG files
@@ -234,12 +234,19 @@ open gates.
 ## Connected candidate review
 
 D-084 provides a separate [source-driven review workflow](../docs/06_gestion_y_obra/connected_coordination_workflow.md).
-Repository JSON changes generate seven connected SVG review views, quantities and
-findings in `.build/coordination/`. SVGs display results; there is no graphical editing.
-A complete candidate package does not update this catalog or certify all 27 published
-drawings against the candidate. The [source inventory](../docs/06_gestion_y_obra/connected_source_inventory.md)
-records their distinct consumers and remaining migration work. CF-013 records seven PB
-doors with unresolved anchors; generated views do not invent their positions.
+Repository JSON changes generate eight connected SVG review views, quantities and
+findings in `.build/coordination/`. `window-sections.svg` is a schematic projection of
+GLZ-WS-A only. Current programme/workstation checks, unadopted equipment-benchmark
+geometry, and ten structural plan-line comparisons remain bounded evidence; unsupported
+geometry and engineering remain OPEN. Optional `--visuals` uses pinned fonts for PNG
+previews, contact sheets and pixel comparisons, not drawing approval. Consumer-impact
+metadata is reported, while builds still rebuild the complete candidate. SVGs display
+results; there is no graphical editing. A complete candidate package does not update this
+catalog or certify all 27 published drawings against the candidate. The [increment 02
+record](../docs/06_gestion_y_obra/connected_coordination_increment_02.md) and [source
+inventory](../docs/06_gestion_y_obra/connected_source_inventory.md) record adapter limits
+and remaining migration work. CF-013 records seven PB doors with unresolved anchors;
+generated views do not invent their positions.
 
 ## Complete current set
 
@@ -286,8 +293,8 @@ def render_current_readme(manifest: dict[str, Any]) -> str:
 **Status:** {manifest["status"]}<br>
 **Version:** {manifest["version"]}<br>
 **Date:** {manifest["date"]}<br>
-**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
-**Source:** [catalog](catalog.json), D-056 and D-084<br>
+**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
+**Source:** [catalog](catalog.json), D-056 and D-084 increment 02<br>
 **Construction authority:** none
 
 This generated directory contains **{len(manifest["drawings"])} stable SVG/PNG pairs**
@@ -304,9 +311,15 @@ catalog entry, and run `python3 .github/scripts/sync_current_drawings.py --write
 inherits the status and limitations of its versioned source.
 
 The [D-084 connected review](../../docs/06_gestion_y_obra/connected_coordination_workflow.md)
-generates a separate candidate under `.build/coordination/`. Its seven SVG views and
-findings do not replace these aliases. The [source inventory](../../docs/06_gestion_y_obra/connected_source_inventory.md)
-records the remaining consumer migration and known geometry gaps.
+generates a separate candidate under `.build/coordination/` with eight SVG views, including
+a GLZ-WS-A section projection only. Its findings do not replace these aliases. Optional
+`--visuals` adds pinned-font PNG previews, contact sheets and pixel comparisons for review;
+these do not approve a drawing. Consumer-impact metadata accompanies a complete rebuild.
+Current programme/workstation checks, unadopted equipment benchmark geometry and ten
+structural plan-line comparisons remain bounded, with unsupported geometry and engineering
+OPEN. The [increment 02 record](../../docs/06_gestion_y_obra/connected_coordination_increment_02.md)
+and [source inventory](../../docs/06_gestion_y_obra/connected_source_inventory.md) record
+the remaining consumer migration and known geometry gaps.
 """
 
 
@@ -319,8 +332,8 @@ def render_docs_current(manifest: dict[str, Any]) -> str:
 **Status:** active publication guide; source-sheet limitations remain in force<br>
 **Version:** {manifest["version"]}<br>
 **Date:** {manifest["date"]}<br>
-**Guide revision:** 0.2 — 2026-10-02; catalog version/date retained<br>
-**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056 and D-084
+**Guide revision:** 0.3 — 2026-10-02; catalog version/date retained<br>
+**Source:** [current-drawing catalog](../../planos/actual/catalog.json), D-056 and D-084 increment 02
 
 This page is the visual entry point to Dream House's published coordination set. It
 uses stable files under [`planos/actual/`](../../planos/actual/) so links in the project
@@ -334,11 +347,17 @@ record, repository README, and presentation do not change when a new issue is pr
 ## Connected review versus published drawings
 
 The [D-084 workflow](../06_gestion_y_obra/connected_coordination_workflow.md) resolves
-current PB b37/P2 b28 sources into seven new SVG review views, quantities and findings.
-Changes originate in repository JSON; the drawings display the generated result.
-These isolated `.build/coordination/` candidates do not promote or regenerate the full
-published set below. The [source inventory](../06_gestion_y_obra/connected_source_inventory.md)
-identifies each consumer and its remaining migration scope. E0/E1 retain their declared
+current PB b37/P2 b28 sources into eight new SVG review views, quantities and findings;
+`window-sections.svg` projects GLZ-WS-A only. Current programme/workstation checks,
+unadopted equipment-benchmark geometry and ten structural plan-line comparisons remain
+bounded evidence. Optional `--visuals` uses pinned fonts for PNG previews, contact sheets
+and pixel comparisons; these are review artifacts, not approvals. Consumer-impact metadata
+is reported, while each build still rebuilds the complete candidate. Changes originate in
+repository JSON; the drawings display generated results. These isolated
+`.build/coordination/` candidates do not promote or regenerate the full published set
+below. The [increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md)
+and [source inventory](../06_gestion_y_obra/connected_source_inventory.md) identify
+coverage, current consumers and remaining migration scope. E0/E1 retain their declared
 historical screening inputs. Seven unresolved PB door anchors are tracked under CF-013;
 neither a missing projection nor an `OPEN` result is a geometric clearance.
 

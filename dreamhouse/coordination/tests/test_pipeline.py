@@ -59,7 +59,13 @@ class PipelineTests(unittest.TestCase):
         )
         self.assertEqual(totals["ROOFLIGHT-GLAZING"]["m2"], 23.04)
         self.assertIsNone(read_json(first / "cost.json")["approved_budget_total_cop"])
-        self.assertEqual(len(list(first.glob("*.svg"))), 7)
+        self.assertEqual(len(list(first.glob("*.svg"))), 8)
+        self.assertTrue((first / "window-sections.svg").is_file())
+        self.assertTrue((first / "disciplines.json").is_file())
+        self.assertTrue((first / "dependencies.json").is_file())
+        self.assertGreater(
+            read_json(first / "view_inventory.json")["annotation_coverage"]["anchors"], 0
+        )
 
     def test_source_width_propagates_to_plan_elevation_detail_and_quantity(self):
         first = self.build()
@@ -97,6 +103,53 @@ class PipelineTests(unittest.TestCase):
             stream.write("<!-- manual change -->")
         with self.assertRaisesRegex(CoordinationError, "artifact"):
             check_candidate(self.study, self.out)
+
+    def test_sill_change_reaches_section_anchors_and_workstation_warning(self):
+        first = self.build()
+        self.document["changes"] = {
+            "GLZ-WS-A": {"expected": {"sill_m": 0.75}, "set": {"sill_m": 0.85}}
+        }
+        self.study.write_text(json_text(self.document))
+        second = self.build()
+        self.assertNotEqual(
+            (first / "window-sections.svg").read_bytes(),
+            (second / "window-sections.svg").read_bytes(),
+        )
+        changes = read_json(second / "anchor_lifecycle.json")["items"]
+        self.assertTrue(
+            any(
+                c["view_id"] == "window-sections"
+                and c["anchor_id"].startswith("GLZ-WS-A.")
+                and c["state"] == "changed"
+                for c in changes
+            )
+        )
+        self.assertTrue(
+            any(
+                f["rule_id"] == "WORKSTATION-WINDOW-DATUM"
+                and f["status"] == "FAIL"
+                and f["entity_ids"] == ["GLZ-WS-A"]
+                for f in read_json(second / "findings.json")
+            )
+        )
+
+    def test_missing_named_view_cannot_publish_even_if_view_count_matches(self):
+        from dreamhouse.coordination.render import render_views
+
+        self.build()
+        previous = (self.out / "latest.json").read_bytes()
+
+        def omit(snapshot, result):
+            files = render_views(snapshot, result)
+            files["unrelated.svg"] = files.pop("window-sections.svg")
+            return files
+
+        with (
+            patch("dreamhouse.coordination.pipeline.render_views", side_effect=omit),
+            self.assertRaisesRegex(CoordinationError, "required review views"),
+        ):
+            self.build()
+        self.assertEqual((self.out / "latest.json").read_bytes(), previous)
 
     def test_generation_failure_leaves_previous_pointer_and_artifacts(self):
         issue = self.build()

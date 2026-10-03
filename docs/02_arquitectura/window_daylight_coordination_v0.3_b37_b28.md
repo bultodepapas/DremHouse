@@ -4,7 +4,7 @@
 or construction  
 **Version:** 0.3-b37-PB / 0.3-b28-P2  
 **Date:** 2026-08-21  
-**Document revision:** 0.2 — reconciled on 2026-10-02 with D-084; original design issue retained<br>
+**Document revision:** 0.3 — implementation note added on 2026-10-02; original design issue retained<br>
 **Decision:** D-083  
 **Canonical geometry source:** `dreamhouse/window_daylight_d083.json`  
 **Drawing sources:** `planos/conceptual_v0.3_b37_pb/` and
@@ -25,6 +25,17 @@ the 123.84 m² vertical-glazing and 23.04 m² rooflight baseline below. The dini
 remains excluded from adopted totals; it may appear with a distinct study status in the
 read-only candidate review. Review quantities are measured schematic geometry, without
 approved prices, procurement quantities or glass/frame specifications.
+
+### Increment 02 implementation note — 2026-10-02
+
+The [D-084 increment 02 record](../06_gestion_y_obra/connected_coordination_increment_02.md)
+adds eight isolated review SVGs. `window-sections.svg` is a schematic section projection
+of GLZ-WS-A only; it does not detail all openings or revise the D-083 geometry, the
+worktop/window design intent or the source authority stated below. The connected check
+compares current PB workstation spans and sills with the captured workstation data. It
+does not verify frame design, load transfer, drainage, flashing or envelope performance.
+The review remains outside the published drawing catalog and is not an approval or
+construction issue.
 
 All sill/head values in the tables below are relative to the corresponding finished
 floor. PB uses project Z=0 and P2 uses Z=+3.80 m: the bedroom-window sill/head therefore

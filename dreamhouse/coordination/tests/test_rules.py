@@ -187,7 +187,12 @@ class TestRuleEvaluation(unittest.TestCase):
         outside_finding = _by_rule(outside_result, "ROOFLIGHT-IN-HALL-EXTENT")[0]
         self.assertEqual(outside_finding["status"], "FAIL")
         self.assertEqual(outside_finding["coverage"], "evaluated")
-        self.assertEqual(outside_result["finding_lifecycle"]["items"][0]["state"], "new")
+        lifecycle = next(
+            item
+            for item in outside_result["finding_lifecycle"]["items"]
+            if item["finding_id"] == outside_finding["finding_id"]
+        )
+        self.assertEqual(lifecycle["state"], "new")
 
         unknown_hall = _snapshot({"RL-STUDY": rooflight})
         unknown_hall["geometry"].pop("hall")
@@ -428,7 +433,11 @@ class TestRuleEvaluation(unittest.TestCase):
         self.assertEqual(module_finding["evidence"]["computed_width_m"], 2.4)
         self.assertEqual(module_finding["evidence"]["difference_m"], 0.1)
         self.assertEqual(
-            result["finding_lifecycle"]["items"][0]["state"],
+            next(
+                item
+                for item in result["finding_lifecycle"]["items"]
+                if item["finding_id"] == module_finding["finding_id"]
+            )["state"],
             "new",
         )
 
