@@ -708,7 +708,7 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
         else str(path),
         "dependency_policy": "conservative full rebuild; no incremental cache",
         "changes_requested": deepcopy(document["changes"]),
-        "open_conflicts": ["CF-009", "CF-010", "CF-011", "CF-012", "CF-013"],
+        "open_conflicts": ["CF-009", "CF-010", "CF-011", "CF-012", "CF-013", "CF-014"],
     }
 
 

@@ -1,7 +1,7 @@
 # Connected Source Inventory
 
 **Status:** audited baseline; coordination evidence only  
-**Version:** 0.4<br>
+**Version:** 0.5<br>
 **Date:** 2026-10-03<br>
 **Source:** Read-only inspection of the PB b37 and P2 b28 loaders, their JSON inputs and
 transitive loader lineage, current drawing catalog and adjacent issue manifests.  
@@ -16,6 +16,14 @@ baseline. See the [workflow](connected_coordination_workflow.md) for execution a
 for completed capabilities and remaining rollout gates.
 
 ## Current migration — 2026-10-03
+
+The current view inventory (schema 3) audits explicit source bindings, numerical
+measurements and declared painted dimension labels. Native opening projections in
+front/side elevations, roof plan and measured technical-bench elevations use independent
+registered source-to-SVG transforms. Other sheet annotations retain explicit coverage
+limits. The main review links all inventoried occurrences; source editing remains in
+JSON/Python. CF-014 is included in propagated open-conflict context.
+
 
 The [migration and extension guide](connected_coordination_migration_and_extension_guide.md) supersedes the pilot migration statuses in the retained table below.
 The resolver captures all 27 catalog identities and adjacent source-manifest hashes in

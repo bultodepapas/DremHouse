@@ -1112,6 +1112,7 @@ def _horizontal_dimension(
         "data-dimension-value": _raw_n(value),
         "data-dimension-source": dimension_source,
         "data-dimension-direction": "horizontal",
+        "data-dimension-label-format": "fixed-2-m",
         "data-dimension-status": "resolved" if anchor_refs and anchor_targets else "unanchored",
     }
     if anchor_refs:
@@ -1176,6 +1177,7 @@ def _vertical_dimension(
         "data-dimension-value": _raw_n(value),
         "data-dimension-source": dimension_source,
         "data-dimension-direction": "vertical",
+        "data-dimension-label-format": "fixed-2-m",
         "data-dimension-status": "resolved" if anchor_refs and anchor_targets else "unanchored",
     }
     if anchor_refs:
@@ -2891,6 +2893,61 @@ svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
 </html>"""
 
 
+def _bind_review_anchor_sources(svg: str, snapshot: Mapping[str, Any]) -> str:
+    """Bind named opening features to model coordinates, including true midpoints.
+
+    These expressions come from the feature convention, never by matching the
+    numbers drawn in SVG. Unsupported context anchors remain explicitly unbound.
+    """
+    root = ET.fromstring(svg)
+    view_id = root.get("data-view-id", "")
+    entities = snapshot.get("entities", {})
+    for anchor in root.iter():
+        identifier = anchor.get("data-anchor-entity-id")
+        name = anchor.get("data-anchor-name")
+        if identifier not in entities or anchor.get("data-anchor-status") == "unresolved":
+            continue
+        entity = entities[identifier]
+        geometry = _geom(entity)
+        if entity.get("kind") not in {"opening", "door"}:
+            continue
+        prefix = ["entities", identifier, "geometry"]
+        refs = {axis: prefix + [axis + "0"] for axis in ("x", "y", "z")}
+        along = "y" if _params(entity).get("facade") in {"FRONT", "REAR"} else "x"
+        fixed = "x" if along == "y" else "y"
+        if (view_id.startswith("elevation-") or view_id == "window-details") and not (
+            name or ""
+        ).startswith("plan."):
+            refs[fixed] = {"mean": [prefix + [fixed + "0"], prefix + [fixed + "1"]]}
+        if name in {"opening.end", "extent.end"}:
+            refs[along] = prefix + [along + "1"]
+        elif name in {"opening.sill", "opening.head", "extent.bottom", "extent.top"}:
+            for axis in ("x", "y"):
+                refs[axis] = {"mean": [prefix + [axis + "0"], prefix + [axis + "1"]]}
+            if view_id == "window-sections":
+                refs["y"] = prefix + ["y0"]
+            if name in {"opening.head", "extent.top"}:
+                refs["z"] = prefix + ["z1"]
+        elif name in {"plan.x1", "plan.y1"}:
+            axis = name.split(".")[1][0]
+            refs[axis] = prefix + [axis + "1"]
+        elif name not in {"opening.start", "extent.start", "plan.x0", "plan.y0"}:
+            continue
+        bindings = {
+            axis: ref for axis, ref in refs.items() if anchor.get(f"data-world-{axis}") is not None
+        }
+        paths = [
+            path
+            for ref in bindings.values()
+            for path in (ref["mean"] if isinstance(ref, dict) else [ref])
+        ]
+        if bindings and all(_number(geometry.get(path[-1])) is not None for path in paths):
+            anchor.set(
+                "data-anchor-bindings", json.dumps(bindings, sort_keys=True, separators=(",", ":"))
+            )
+    return ET.tostring(root, encoding="unicode")
+
+
 def render_views(snapshot: dict, evaluation: dict) -> dict[str, str]:
     """Return standalone SVG review projections and a self-contained HTML index.
 
@@ -2922,5 +2979,6 @@ def render_views(snapshot: dict, evaluation: dict) -> dict[str, str]:
         "window-details.svg": _render_window_details(snapshot, evaluation),
         "window-sections.svg": _render_window_sections(snapshot, evaluation),
     }
+    views = {name: _bind_review_anchor_sources(svg, snapshot) for name, svg in views.items()}
     views["index.html"] = _render_html(snapshot, evaluation, views)
     return views

@@ -1,7 +1,7 @@
 # Connected project coordination — phased implementation plan
 
 **Status:** software consumer migration verified within declared coverage; professional design gates remain open<br>
-**Version:** 0.9<br>
+**Version:** 0.10<br>
 **Date:** 2026-10-03<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -19,7 +19,10 @@ construction scope or cost, drawing promotion or professional gate closure is ad
 
 **Continuation baseline:** documentation reconciliation committed at `e58aba5`, following
 the first implementation at `0e69ddf`; increment 02 continues the existing D-084 authority.<br>
-**Revision note:** v0.9 continues from `f0448ef` with current catalog consumer migration,
+**Revision note:** v0.10 continues from `d7c3e65`: precondition-preserving study migration,
+source-bound review anchors, five audited native projections and cross-sheet occurrence
+navigation. The guide separates measured annotation coverage from unsupported sheets.
+v0.9 continues from `f0448ef` with current catalog consumer migration,
 house interface records, complete review releases, recovery, source watching and a
 connected showcase reader. The [migration and extension guide](connected_coordination_migration_and_extension_guide.md)
 records current execution, acceptance evidence and remaining source-data limits.
@@ -46,7 +49,14 @@ contains executable commands and final verification evidence. All completions ar
 by actual source data and reported capabilities; the construction and professional gates
 in the master plan remain independent.
 
-Integrated acceptance: **468 tests passed**, static checks passed, **35 current SVGs**
+Current continuation acceptance (baseline `d7c3e65`): **493 tests passed**, static and
+artifact checks passed, and the 35-view package reproduced identically. The package has
+204 source-bound anchors, 112 evaluated measurements and 95 checked numeric labels.
+Study migration preserves original preconditions; native annotation coverage is five
+supported sheets, 15 unsupported geometric sheets and seven nonmetric sheets. The guide
+records exact identities, recovery evidence and remaining coverage boundaries.
+
+Previous migration acceptance (baseline `f0448ef`): **468 tests passed**, static checks passed, **35 current SVGs**
 and their visual artifacts reproduced deterministically, and the complete baseline review
 passed freshness, release, recovery and showcase-export checks. Its evaluation is
 **57 PASS / 186 OPEN / 0 FAIL**. The guide records exact package identities, propagation
@@ -58,7 +68,7 @@ fixtures, visual inspection and the limits of these results.
 | 0.3 | Current-source quantity parity and same-snapshot schedules retained through the migration | Measured opening and wall-line quantities remain distinct from unspecified assemblies, mass and price |
 | 1.1–1.3 | Shared entity IDs, exact supported parameter contract, baseline preconditions, captured native/structural context and dependency ordering | `capabilities.json` exposes all entities and unsupported operations; no arbitrary add/delete/rehost or general geometry editor |
 | 2.1–2.3 | Unified findings/coverage/lifecycle plus programme, equipment, wall-line, stair, phase/service and maintenance adapters | Missing data stays OPEN; current data is not replaced with plausible defaults or interpreted as professional approval |
-| 3.1–3.3 | Eight annotated review projections plus a native consumer per catalog identity; same-snapshot schedule/details and review indexes | Inventory distinguishes actual entity/annotation coverage; catalog-wide named dimensions and construction-detail design are not claimed |
+| 3.1–3.3 | Eight source-checked review projections, five native opening projection contracts, a consumer per catalog identity, and all-sheet occurrence navigation | Inventory distinguishes actual entity/annotation coverage; catalog-wide named dimensions and construction-detail design are not claimed |
 | 4.1–4.2 | Schema-3 complete packages, full source/code invalidation, deterministic visual exports, CI and optional debounced watching | Each watched build starts a new interpreter; no selective-cache correctness or skipped-analysis freshness claim |
 | 4.3 | Verified immutable baseline review release, atomic reader pointer, rollback and showcase export | Studies remain candidates; historic current aliases are preserved. Selecting a review is not design adoption |
 | 5.1 | Per-family/operation/view/rule capability report, regenerated window/door consumers and structural context | Seven PB doors remain unlocated under CF-013; structural solids/heights await source evidence |

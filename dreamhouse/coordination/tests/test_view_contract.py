@@ -1,7 +1,9 @@
 """References must survive sheet renames and reject dangling annotations."""
 
+import json
 import unittest
 from copy import deepcopy
+from xml.etree import ElementTree as ET
 
 from dreamhouse.coordination.model import CoordinationError
 from dreamhouse.coordination.view_contract import compare_anchors, inspect_views
@@ -121,6 +123,86 @@ class ViewContractTests(unittest.TestCase):
             item["anchor_id"]: item["state"] for item in compare_anchors(after, before)["items"]
         }
         self.assertEqual(states, {"W.sill": "changed", "W.head": "removed"})
+
+    def source_bound_detail(self):
+        self.snapshot["entities"]["W"] = {"geometry": {"z0": 1.0, "z1": 3.0}}
+        root = ET.fromstring(self.detail)
+        for node, field in (
+            (root.find("circle[@id='a']"), "z0"),
+            (root.find("circle[@id='b']"), "z1"),
+        ):
+            node.set(
+                "data-anchor-bindings", json.dumps({"z": ["entities", "W", "geometry", field]})
+            )
+        return root
+
+    def test_equal_length_but_displaced_anchors_do_not_pass_source_binding(self):
+        root = self.source_bound_detail()
+        result = inspect_views(self.snapshot, {"detail.svg": ET.tostring(root, encoding="unicode")})
+        self.assertEqual(result["annotation_coverage"]["source_bound_anchors"], 2)
+        root.find("circle[@id='a']").set("data-world-z", "2")
+        root.find("circle[@id='b']").set("data-world-z", "4")
+        with self.assertRaisesRegex(CoordinationError, "disagrees with source"):
+            inspect_views(self.snapshot, {"detail.svg": ET.tostring(root, encoding="unicode")})
+
+    def test_bindings_reject_missing_cross_owner_and_partial_source_paths(self):
+        for bindings in (
+            {},
+            {"z": ["entities", "W", "geometry", "missing"]},
+            {"z": ["entities", "UNLOCATED", "geometry", "z0"]},
+            [],
+        ):
+            with self.subTest(bindings=bindings):
+                root = self.source_bound_detail()
+                root.find("circle[@id='a']").set("data-anchor-bindings", json.dumps(bindings))
+                with self.assertRaises(CoordinationError):
+                    inspect_views(
+                        self.snapshot, {"detail.svg": ET.tostring(root, encoding="unicode")}
+                    )
+
+    def test_unreferenced_nonfinite_anchor_is_rejected(self):
+        files = {
+            "plan.svg": '<svg data-view-id="plan"><circle id="a" data-anchor-id="W.unused" data-world-x="NaN"/></svg>'
+        }
+        with self.assertRaisesRegex(CoordinationError, "Nonfinite"):
+            inspect_views(self.snapshot, files)
+
+    def test_visible_dimension_text_is_verified_independently_of_metadata(self):
+        root = ET.fromstring(self.detail)
+        label = root.find("g[@id='dim']")
+        label.tag = "text"
+        label.set("data-dimension-label-format", "fixed-2-m")
+        label.text = "2.00 m"
+        ET.SubElement(label, "title").text = "Accessible description is not painted text"
+        self.assertEqual(
+            inspect_views(self.snapshot, {"detail.svg": ET.tostring(root, encoding="unicode")})[
+                "annotation_coverage"
+            ]["verified_dimension_labels"],
+            1,
+        )
+        label.text = "3.00 m"
+        with self.assertRaisesRegex(CoordinationError, "Visible dimension label"):
+            inspect_views(self.snapshot, {"detail.svg": ET.tostring(root, encoding="unicode")})
+
+    def test_opening_area_is_measured_from_two_independent_spans(self):
+        svg = """<svg data-view-id="area">
+          <circle id="a" data-anchor-id="W.left" data-world-x="1"/>
+          <circle id="b" data-anchor-id="W.right" data-world-x="4"/>
+          <circle id="c" data-anchor-id="W.sill" data-world-z="1"/>
+          <circle id="d" data-anchor-id="W.head" data-world-z="3"/>
+          <text id="area" data-dimension-id="area" data-dimension-value="6"
+            data-dimension-unit="m2" data-dimension-formula="width_m * height_m"
+            data-anchor-refs="W.left W.right W.sill W.head" data-anchor-targets="a b c d"
+            data-dimension-label-format="fixed-2-m2">6.00 m2</text></svg>"""
+        result = inspect_views(self.snapshot, {"area.svg": svg})
+        measurement = result["views"][0]["dimensions"][0]["measurement_check"]
+        self.assertEqual(measurement["measured_m2"], 6)
+        for broken in (
+            svg.replace('data-world-x="4"', 'data-world-x="5"'),
+            svg.replace("data-world-z=", "data-world-x="),
+        ):
+            with self.subTest(broken=broken), self.assertRaises(CoordinationError):
+                inspect_views(self.snapshot, {"area.svg": broken})
 
 
 if __name__ == "__main__":

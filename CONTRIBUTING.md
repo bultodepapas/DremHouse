@@ -1,7 +1,7 @@
 # Contributing to Dream House
 
 **Status:** active contributor guide<br>
-**Version:** 0.4<br>
+**Version:** 0.5<br>
 **Date:** 2026-10-03<br>
 **Source:** repository instructions, D-044, D-056 and D-084 connected coordination migration.
 
@@ -129,3 +129,10 @@ A contribution is ready when it is traceable, does not violate hard rules,
 states its uncertainties, updates every affected document, and clearly
 distinguishes concept work, coordination information, and construction-ready
 documentation.
+
+Pinned coordination studies can be migrated with `--project OLD.json --migrate-study
+NEW.json`. Retain the generated report and reevaluate the new candidate; a changed
+expected value is a conflict, not permission to replace its precondition. When adding
+annotations, test source coordinates, numerical spans and declared visible text
+independently. Register a source-to-SVG transform before claiming native projection
+coverage; keep unsupported sheets explicit in the inventory.

@@ -1,10 +1,10 @@
 # Connected coordination — consumer migration and extension guide
 
-**Version:** 0.2<br>
+**Version:** 0.3<br>
 **Date:** 2026-10-03<br>
 **Status:** software consumer migration verified within declared coverage; schematic review authority only<br>
 **Source:** owner's instruction to complete software migrations; D-084; implementation
-baseline `f0448ef`; the [phased plan](connected_project_coordination_next_step.md).<br>
+baselines `f0448ef` and `d7c3e65`; the [phased plan](connected_project_coordination_next_step.md).<br>
 **Scope:** connected source consumers, review publication, recovery and maintenance of
 the software. No changed house design, adopted equipment, engineering approval or cost
 target is established.
@@ -63,10 +63,48 @@ represented occurrences and evaluated/unsupported rules. Source-context records 
 wall types, maintenance requirements and service reservations remain distinct from
 editable geometry. A field absent from the capability report is not silently supported.
 
-This migration adds structural search-space context to the semantic fingerprint. Older
-pinned studies must be rebased from a fresh template after reviewing their intended
-deltas and expected values. Replacing a hash without that review bypasses the purpose
-of the stale-source check.
+### Migrate a pinned study without discarding its preconditions
+
+```bash
+python3 -m dreamhouse.coordination --project .build/studies/old.json --migrate-study .build/studies/rebased.json
+python3 -m dreamhouse.coordination --project .build/studies/rebased.json --out .build/rebased --visuals --require-no-fail
+```
+
+The first command compares every original `expected` value with the current baseline.
+It preserves requested changes and expected values and updates only the baseline hash.
+It creates a new study and an adjacent migration report; `--migration-report PATH`
+selects a separate report destination. Existing destinations are never overwritten.
+A conflicting precondition produces a report only and exit status 2. Malformed or
+unsupported operations are rejected. The original study remains unchanged.
+
+A ready report is not evidence that unchanged context is equivalent: the complete
+candidate must run again against the current sources. The report records original
+study, semantic baseline and current input fingerprints. This supports migration from
+older studies without silently accepting a changed surrounding design. Watching uses
+candidate rebuilds; `--watch --require-no-fail` is rejected because a persistent watcher
+cannot provide a one-shot finding exit status.
+
+### Source-bound dimensions and cross-sheet navigation
+
+The root review index includes all enrolled entities, links to actual inventoried SVG
+occurrences, and per-sheet annotation coverage. Unrepresented entities and unresolved
+references remain visible. SVGs are generated output; these controls navigate and
+highlight the review, not edit geometry.
+
+`view_inventory.json` schema 3 records source checks separately from numerical
+measurement and visible-label checks. Known opening-feature anchors in the eight
+review projections bind to explicit model paths (or declared coordinate midpoints).
+Linear dimensions and four-anchor rectangular areas are evaluated numerically;
+labels declaring the fixed-format contract are checked against their painted text.
+Unbound context anchors and unsupported annotations are reported without approval.
+
+Five native catalog views now carry source-bound opening dimensions: front and side
+A/B elevations, roof plan, and the measured A/B technical-bench elevations. Registered
+transforms independently compare actual SVG rectangles with source coordinates.
+Missing occurrences, changed rectangles, broken source bindings, corrupted declared
+labels and inconsistent dimensions block the candidate before pointer selection.
+Other sheets retain explicit unsupported/not-applicable annotation coverage; their
+native detail graphics are not silently certified by these five projection contracts.
 
 ## Complete packages and recovery
 
@@ -104,7 +142,7 @@ conflicts. This distinction is preserved in the connected drawing index and show
 | Add a study operation | `editable_fields()` and input validation | Expected-value preconditions, geometry update, reference validation, before/after findings and every affected view/quantity; reject unsupported cases |
 | Add a calculation or engineering adapter | `coordination/rules.py`, `disciplines.py` or `extensions.py` | Pure snapshot input; required data; evaluated/unsupported coverage; stable finding identity; missing-input lifecycle; no inherited engineering approval |
 | Add or migrate a catalog drawing | `coordination/drawings.py` | Explicit catalog identity and injected inputs; source-change propagation through geometry and text; no hidden loaders; declared partial or unsupported scope |
-| Add a projection or annotation | `coordination/render.py` and `view_contract.py` | Stable view/occurrence IDs, known anchors, numerical dimension checks and working callout destinations; corruption and rename fixtures |
+| Add a projection or annotation | `coordination/render.py`, `drawing_annotations.py` and `view_contract.py` | Stable view/occurrence IDs, known anchors, numerical dimension checks and working callout destinations; corruption and rename fixtures |
 | Add a consumer | `coordination/dependencies.py` and `pipeline.py` | Dependency graph entry, complete artifact inventory, freshness and rollback behaviour; same-snapshot output |
 | Change raster output | `coordination/visual.py` and declared fonts | Recorded renderer/font configuration, deterministic repeated export, contact-sheet inspection and exact pixel comparison with no automatic design-approval threshold |
 
@@ -131,10 +169,61 @@ its unsupported claims are visible. It does not mean that all disciplines or the
 design are complete. The phase checkpoint and verification record must state those
 separate outcomes explicitly.
 
-## Verification record
+## Current completion record — continuation from d7c3e65
+
+This continuation implements study migration and a stricter annotation contract under
+D-084. It retains the earlier full drawing-consumer migration and adds these boundaries:
+
+| Capability | Current evidence | Explicit limit |
+| --- | --- | --- |
+| Source propagation | 35 SVGs, 105 entities, 98 represented, 36 parameter-editable entities | Seven PB doors still lack source placement; no general add/delete/rehost authoring |
+| Source-bound annotations | 204 of 214 anchors linked to model paths; all 112 declared measurements evaluated; 95 declared numeric labels checked | Ten context anchors and 17 labels lack source/text contracts; coverage is not inferred |
+| Native geometric projections | Five catalog sheets, 15 actual rectangles and 30 named dimensions | 15 geometric sheets remain unsupported for this stricter annotation contract; seven nonmetric sheets are not applicable |
+| Study migration | Existing W-H1 study migrated to a separate candidate and fully reevaluated; original preserved | Its intentionally incompatible module width remains FAIL after migration; migration is not acceptance |
+| Review navigation | All 35 sheets and actual entity occurrence destinations exposed through the main index | Missing occurrences remain visible; no SVG write-back |
+| Source conflicts | CF-014 now propagates in model conflict context | The inherited wall-build-up discrepancy remains unresolved |
+
+Five rendered native sheets were inspected at 1400 px: front and both side elevations,
+roof plan and technical-workbench elevations. Checks cover source projection, anchors,
+measurements and declared labels; they do not constitute a general text collision engine.
+Navigation is checked through real inventories and HTML contract tests; no browser-driven
+interaction test is claimed in this environment.
+
+### Integrated acceptance for this continuation
+
+- **493 repository tests passed** with `python3 -m unittest discover -s dreamhouse -p 'test_*.py'`.
+- Ruff passed for coordination and quantities; `git diff --check` passed. All 260 local
+  links in changed Markdown resolved; generated README and all 27 historical alias pairs
+  passed their checks. No tracked design JSON/SVG/PNG or legacy source was changed.
+- Baseline findings remain **57 PASS / 186 OPEN / 0 FAIL**. The visual package contains
+  **199 hashed artifacts** and regenerated all 35 current and archived-baseline SVGs.
+- Repeated complete visual generation produced the same manifest and image hashes.
+  Candidate/release freshness, failed-study publication refusal, rollback, rejection of
+  stale history, restoration and same-release showcase export all passed.
+- The existing study was migrated through the CLI to
+  `.build/studies/completion-migrated.json`; its W-H1 module inconsistency remained FAIL
+  after a complete build (exit 2), as required. Original-precondition conflict, refusal
+  to overwrite files, and interrupted-write recovery are covered by migration tests.
+- Corrupted native geometry blocks the pipeline while preserving the prior complete
+  candidate pointer. Annotation tests also reject transformed geometry, stale source
+  coordinates, invalid rectangular-area spans and corrupted declared label text.
+
+```text
+Candidate: 6808fe0b2ea3268b5605ae34c029846409c1b006ae139d86eea38647678bf131
+Release:   0f048a03556d25cf48d8176589b38acdc03a7eeb912f03e2271d12e530e65320
+Study:     b9963cf41f05091235ff7da3b486562469c0b5f59da0dbd497e4d67ccdb8b1ce
+```
+
+The main review is `.build/coordination/issues/6808fe0b2ea3268b5605ae34c029846409c1b006ae139d86eea38647678bf131/index.html`.
+Logs and the machine-readable acceptance record are
+`.build/connected-completion-tests.log`, `.build/connected-completion-build.log`,
+`.build/connected-completion-verification.log` and `.build/connected-completion-verification.json`.
+The showcase was regenerated locally; no remote deployment or remote CI run is claimed.
+
+## Previous verification record — migration from f0448ef
 
 Local integrated acceptance completed on **2026-10-03** against the working tree based
-on `f0448ef`. These results supersede the earlier increments' software-delivery counts;
+on `f0448ef`. These retained results superseded the earlier increments' software-delivery counts;
 they do not supersede the design decisions or unresolved professional gates.
 
 | Check | Result and scope |

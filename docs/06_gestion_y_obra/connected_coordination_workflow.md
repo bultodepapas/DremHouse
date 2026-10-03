@@ -1,6 +1,6 @@
 # Connected coordination workflow
 
-**Version:** 0.4<br>
+**Version:** 0.5<br>
 **Date:** 2026-10-03<br>
 **Status:** connected consumer migration and review publication; schematic coordination only<br>
 **Source:** owner authorization to implement the [phased plan](connected_project_coordination_next_step.md),
@@ -13,6 +13,20 @@ bounded discipline adapters, annotated views and optional visual evidence under 
 software authority. Software phases 0–5 in the connected plan are distinct
 from the project stage gates and the two construction phases in the
 [master plan](plan_maestro.md).
+
+## Study migration and connected annotation checks
+
+Use `--project OLD.json --migrate-study NEW.json` to prepare a fresh pinned candidate
+while retaining every original expected-value precondition. Conflicts produce a report
+and exit 2 without a new study; existing files are not overwritten. A ready candidate
+requires a complete new build. See the [migration guide](connected_coordination_migration_and_extension_guide.md#migrate-a-pinned-study-without-discarding-its-preconditions)
+for commands and limits.
+
+The main index links each enrolled entity to its real occurrences across the complete
+package. View inventory schema 3 distinguishes source-bound anchors, checked numerical
+measurements, checked painted labels and unassessed coverage. Five native metric
+projections also audit actual rectangle geometry against registered source transforms.
+`--watch --require-no-fail` is invalid; use the finding exit flag on a one-shot build.
 
 ## What now works
 

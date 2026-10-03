@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.24
+**Version:** 0.25
 **Date:** 2026-10-03
 **Source:** active project registers, current drawing catalog and D-084 connected
 coordination migration; documentation update without a new design or scope decision.
@@ -21,6 +21,7 @@ coordination migration; documentation update without a new design or scope decis
   bounded programme, workstation, equipment-benchmark and structural plan-line checks;
   one GLZ-WS-A section view, optional pinned-font visual artifacts, and coverage limits.
 - [Connected coordination migration and extension guide](06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md):
+  precondition-preserving study migration, cross-sheet navigation, annotation checks,
   candidate, immutable review-release and rollback commands; separates connected
   drawing-consumer coverage from the adopted alias catalog and records extension contracts.
 - [Connected source and consumer inventory](06_gestion_y_obra/connected_source_inventory.md):
@@ -229,7 +230,7 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Master plan](06_gestion_y_obra/plan_maestro.md): project delivery gates, connected-system
   workstream and construction F1/F2, with separate completion criteria.
 - [Connected project coordination — phased implementation plan](06_gestion_y_obra/connected_project_coordination_next_step.md):
-  v0.9 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
+  v0.10 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
   fixtures: repository source changes feed one resolved model, Python calculations/checks
   and regenerated SVGs and reports. SVGs are read-only outputs. Each stage defines
   dependencies, scope and completion evidence; records the D-084 consumer migration,

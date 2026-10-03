@@ -55,6 +55,11 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(self.build(), first)
         self.assertFalse(result["manifest"]["construction_authority"])
         self.assertFalse(result["manifest"]["published_aliases_promoted"])
+        page = (first / "index.html").read_text()
+        self.assertIn('id="source-navigation"', page)
+        self.assertIn('data-navigation-entity="W-H1"', page)
+        self.assertIn("drawings/architecture-side-a-elevation.svg#", page)
+        self.assertIn("CF-014", read_json(first / "model.json")["open_conflicts"])
         ledger = read_json(first / "quantities.json")
         totals = ledger["totals_by_assembly"]
         self.assertAlmostEqual(
@@ -176,6 +181,28 @@ class PipelineTests(unittest.TestCase):
         with (
             patch("dreamhouse.coordination.pipeline.render_drawings", side_effect=omit),
             self.assertRaisesRegex(CoordinationError, "required catalog drawings"),
+        ):
+            self.build()
+        self.assertEqual(previous, (self.out / "latest.json").read_bytes())
+
+    def test_corrupt_native_geometry_preserves_previous_complete_package(self):
+        from dreamhouse.coordination.drawings import render_drawings
+
+        self.build()
+        previous = (self.out / "latest.json").read_bytes()
+
+        def corrupt(snapshot, result):
+            rendered = render_drawings(snapshot, result)
+            name = "drawings/architecture-side-a-elevation.svg"
+            root = ET.fromstring(rendered["files"][name])
+            window = next(e for e in root.iter() if e.get("data-entity-id") == "W-H1")
+            window.set("x", str(float(window.get("x")) + 10))
+            rendered["files"][name] = ET.tostring(root, encoding="unicode")
+            return rendered
+
+        with (
+            patch("dreamhouse.coordination.pipeline.render_drawings", side_effect=corrupt),
+            self.assertRaisesRegex(CoordinationError, "Native geometry projection mismatch"),
         ):
             self.build()
         self.assertEqual(previous, (self.out / "latest.json").read_bytes())

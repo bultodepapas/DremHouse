@@ -27,6 +27,7 @@ from dreamhouse import (
     generate_rooflight_b11,
     generate_structure_plan,
 )
+from dreamhouse.coordination.drawing_annotations import annotate_native_view
 from dreamhouse.coordination.model import CoordinationError
 from dreamhouse.envelope.openings import build_opening_schedule
 from dreamhouse.structure.e1_screening import run_screening
@@ -619,6 +620,9 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
         svg = _decorate_svg(
             svg, row, evidence, render_status, snapshot["scenario_id"], conflict_ids
         )
+        svg_root = ET.fromstring(svg)
+        annotation_coverage = annotate_native_view(snapshot, svg_root)
+        svg = ET.tostring(svg_root, encoding="unicode")
         files[f"drawings/{identifier}.svg"] = svg
         inventory_rows.append(
             {
@@ -635,8 +639,19 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
                 "manifest_sha256": evidence["manifest_sha256"],
                 "generator": evidence["generator"],
                 "render_status": render_status,
+                "annotation_coverage": annotation_coverage,
             }
         )
+
+    supported_annotations = [
+        row for row in inventory_rows if row["annotation_coverage"]["status"] == "supported"
+    ]
+    unsupported_annotations = [
+        row for row in inventory_rows if row["annotation_coverage"]["status"] == "unsupported"
+    ]
+    not_applicable_annotations = [
+        row for row in inventory_rows if row["annotation_coverage"]["status"] == "not_applicable"
+    ]
 
     inventory = {
         "schema_version": 1,
@@ -646,7 +661,26 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
         "drawing_count": len(inventory_rows),
         "rendered_catalog_ids": [row["id"] for row in inventory_rows],
         "drawings": inventory_rows,
-        "coverage_claim": "All 27 current catalog consumers are regenerated from snapshot-injected native geometry. This does not claim full semantic annotation coverage or construction documentation migration.",
+        "coverage_claim": "All 27 current catalog consumers are regenerated from snapshot-injected native geometry. Five sheets have source-bound named dimensions on audited native rectangles; unsupported metric sheets and non-metric sheets are identified individually below.",
+        "annotation_migration": {
+            "status": "partial",
+            "supported_sheet_count": len(supported_annotations),
+            "supported_sheets": [row["id"] for row in supported_annotations],
+            "named_dimension_count": sum(
+                row["annotation_coverage"]["dimensions"] for row in supported_annotations
+            ),
+            "unsupported_sheet_count": len(unsupported_annotations),
+            "unsupported_sheets": [
+                {"id": row["id"], "reason": row["annotation_coverage"]["reason"]}
+                for row in unsupported_annotations
+            ],
+            "not_applicable_sheet_count": len(not_applicable_annotations),
+            "not_applicable_sheets": [
+                {"id": row["id"], "reason": row["annotation_coverage"]["reason"]}
+                for row in not_applicable_annotations
+            ],
+            "limitation": "Coverage represents only registered source-to-SVG projections and does not establish design adoption, engineering adequacy, or construction authority.",
+        },
         "limitations": [
             "PB core and rear door coordinates remain omitted under CF-013; the historic b36 coordinates are not reused. CF-011 rear stair discharge level also remains open.",
             "Structural sheets are live E0/E1 coordination and bounded screening evidence only; no member, system, connection, fire strategy or foundation is approved.",

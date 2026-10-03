@@ -218,6 +218,11 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 ## Connected coordination review
 
+The connected review also links entities to their actual occurrences across all generated
+sheets and reports source-anchor, dimension and label coverage. Pinned studies can be
+migrated with `--project OLD.json --migrate-study NEW.json`; conflicts preserve the
+original study and require source review. See the [migration guide](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md).
+
 **D-084 connected review and publication migration:** repository JSON studies feed one
 resolved model, supported checks, opening quantities, cost reconciliation and generated
 SVG review views. `window-sections.svg` is a schematic projection of GLZ-WS-A only. SVGs

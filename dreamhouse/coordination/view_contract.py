@@ -6,11 +6,13 @@ prevents publication instead of leaving a dimension or callout attached to old g
 
 from __future__ import annotations
 
+import json
 import math
 import posixpath
 from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree as ET
 
+from dreamhouse.coordination.drawing_annotations import audit_native_geometry
 from dreamhouse.coordination.model import CoordinationError
 
 
@@ -33,6 +35,7 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
         view = {
             "view_id": view_id,
             "file": name,
+            "geometry_check": audit_native_geometry(snapshot, root),
             "occurrences": [],
             "anchors": {},
             "dimensions": [],
@@ -65,6 +68,10 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
                         k: v for k, v in element.attrib.items() if k.startswith("data-world-")
                     },
                 }
+                anchor = view["anchors"][anchor_id]
+                for coordinate in anchor["coordinates"].values():
+                    _finite_number(coordinate, f"anchor {anchor_id}")
+                anchor["source_check"] = _check_anchor_source(snapshot, element, anchor)
             elif entity_id is not None:
                 if not element.get("id"):
                     raise CoordinationError(f"Unaddressable occurrence {entity_id} in {name}")
@@ -89,6 +96,8 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
                         "value": element.get("data-dimension-value"),
                         "unit": element.get("data-dimension-unit", "m"),
                         "source": element.get("data-dimension-source"),
+                        "formula": element.get("data-dimension-formula"),
+                        "label_check": _check_dimension_label(element),
                     }
                 )
             if element.get("data-callout-refs") is not None:
@@ -164,7 +173,7 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
                 raise CoordinationError(f"Incorrect callout navigation in {view['view_id']}")
     missing = [key for key, occurrences in by_entity.items() if not occurrences]
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "scenario_id": snapshot["scenario_id"],
         "input_hash": snapshot["input_hash"],
         "entity_count": len(by_entity),
@@ -179,6 +188,21 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
             "unresolved_anchors": sum(
                 a["status"] == "unresolved" for v in views.values() for a in v["anchors"].values()
             ),
+            "source_bound_anchors": sum(
+                a["source_check"]["state"] == "evaluated"
+                for v in views.values()
+                for a in v["anchors"].values()
+            ),
+            "evaluated_dimensions": sum(
+                d["measurement_check"]["state"] == "evaluated"
+                for v in views.values()
+                for d in v["dimensions"]
+            ),
+            "verified_dimension_labels": sum(
+                d["label_check"]["state"] == "evaluated"
+                for v in views.values()
+                for d in v["dimensions"]
+            ),
             "views_without_named_dimensions": [
                 v["view_id"] for v in views.values() if not v["dimensions"]
             ],
@@ -187,8 +211,162 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
     }
 
 
+def _finite_number(value: object, label: str) -> float:
+    if isinstance(value, bool):
+        raise CoordinationError(f"Invalid numeric {label}")
+    try:
+        number = float(value)
+    except (ValueError, TypeError, OverflowError) as exc:
+        raise CoordinationError(f"Invalid numeric {label}: {value!r}") from exc
+    if not math.isfinite(number):
+        raise CoordinationError(f"Nonfinite {label}")
+    return number
+
+
+def _check_anchor_source(snapshot: dict, element: ET.Element, anchor: dict) -> dict:
+    """Check explicit snapshot paths independently of the coordinates printed in SVG."""
+    raw = element.get("data-anchor-bindings")
+    if raw is None:
+        return {"state": "unresolved" if anchor["status"] == "unresolved" else "unbound"}
+
+    def unique_pairs(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise CoordinationError(f"Duplicate anchor binding: {key}")
+            result[key] = value
+        return result
+
+    try:
+        bindings = json.loads(raw, object_pairs_hook=unique_pairs)
+    except (ValueError, TypeError) as exc:
+        raise CoordinationError("Invalid anchor source bindings") from exc
+    axes = {key.removeprefix("data-world-") for key in anchor["coordinates"]}
+    if not isinstance(bindings, dict) or not axes or set(bindings) != axes:
+        raise CoordinationError("Anchor bindings must cover exactly its world coordinates")
+    if not axes <= {"x", "y", "z"} or anchor["status"] == "unresolved":
+        raise CoordinationError("Cannot source-bind an unresolved or unknown-axis anchor")
+
+    def resolve_path(path):
+        if (
+            not isinstance(path, list)
+            or not path
+            or any(type(key) not in {str, int} for key in path)
+            or path[0] not in {"entities", "geometry", "discipline_inputs"}
+        ):
+            raise CoordinationError("Invalid anchor source path")
+        if anchor["entity_id"] is not None and path[:2] != ["entities", anchor["entity_id"]]:
+            raise CoordinationError("Anchor source path disagrees with its entity owner")
+        source = snapshot
+        try:
+            for key in path:
+                if isinstance(source, list) and (type(key) is not int or key < 0):
+                    raise KeyError(key)
+                source = source[key]
+        except (KeyError, IndexError, TypeError) as exc:
+            raise CoordinationError(f"Missing anchor source path: {path}") from exc
+        if type(source) not in {int, float}:
+            raise CoordinationError("Anchor source must be a numeric model value")
+        return _finite_number(source, "anchor source")
+
+    for axis, binding in bindings.items():
+        if isinstance(binding, dict):
+            if (
+                set(binding) != {"mean"}
+                or not isinstance(binding["mean"], list)
+                or len(binding["mean"]) != 2
+            ):
+                raise CoordinationError("Unknown anchor source expression")
+            expected = sum(resolve_path(path) for path in binding["mean"]) / 2
+        else:
+            expected = resolve_path(binding)
+        observed = _finite_number(anchor["coordinates"][f"data-world-{axis}"], "anchor coordinate")
+        if not math.isclose(expected, observed, rel_tol=0, abs_tol=1e-6):
+            raise CoordinationError(
+                f"Anchor disagrees with source: {element.get('data-anchor-id')}"
+            )
+    return {"state": "evaluated", "bindings": bindings, "numerical_tolerance_m": 1e-6}
+
+
+def _check_dimension_label(element: ET.Element) -> dict:
+    label_format = element.get("data-dimension-label-format")
+    if label_format is None:
+        return {"state": "unbound", "reason": "No visible numeric label contract declared"}
+    if label_format not in {"fixed-2-m", "fixed-2-m2"}:
+        raise CoordinationError(f"Unknown dimension label format: {label_format}")
+    if element.tag.rsplit("}", 1)[-1] != "text":
+        raise CoordinationError("A dimension label contract must address SVG text")
+    unit = "m2" if label_format == "fixed-2-m2" else "m"
+    if element.get("data-dimension-unit", "m") != unit:
+        raise CoordinationError("Dimension label unit disagrees with its measurement")
+    value = _finite_number(element.get("data-dimension-value"), "dimension label")
+
+    # SVG title/description children are accessible metadata, not painted labels.
+    def painted_text(node):
+        pieces = [node.text or ""]
+        for child in node:
+            if child.tag.rsplit("}", 1)[-1] not in {"title", "desc", "metadata"}:
+                pieces.append(painted_text(child))
+            pieces.append(child.tail or "")
+        return "".join(pieces)
+
+    expected = f"{value:.2f} {unit}"
+    if painted_text(element).strip() != expected:
+        raise CoordinationError(
+            f"Visible dimension label disagrees with value: {element.get('data-dimension-id')}"
+        )
+    return {"state": "evaluated", "format": label_format, "expected_text": expected}
+
+
 def _check_measurement(dimension: dict, anchors: dict) -> dict:
     refs = dimension["anchor_refs"]
+    value = (
+        _finite_number(dimension["value"], f"dimension {dimension['dimension_id']}")
+        if dimension["value"] is not None
+        else None
+    )
+    if (
+        len(refs) == 4
+        and value is not None
+        and dimension["unit"] == "m2"
+        and dimension.get("formula") == "width_m * height_m"
+    ):
+        spans = []
+        vectors = []
+        for pair in (refs[:2], refs[2:]):
+            left, right = [anchors[ref]["coordinates"] for ref in pair]
+            axes = sorted(left.keys() & right.keys())
+            if not axes:
+                return {
+                    "state": "unsupported",
+                    "reason": "Area anchors lack shared coordinate axes",
+                }
+            spans.append(
+                math.dist(
+                    [_finite_number(left[k], "area anchor") for k in axes],
+                    [_finite_number(right[k], "area anchor") for k in axes],
+                )
+            )
+            vectors.append({k: float(right[k]) - float(left[k]) for k in axes})
+        if (
+            abs(vectors[0].get("data-world-z", 0)) > 1e-6
+            or abs(vectors[1].get("data-world-z", 0)) < 1e-9
+            or any(abs(vectors[1].get(k, 0)) > 1e-6 for k in ("data-world-x", "data-world-y"))
+            or spans[0] <= 0
+        ):
+            raise CoordinationError(
+                "Opening area requires horizontal width and vertical height anchors"
+            )
+        measured = spans[0] * spans[1]
+        if not math.isclose(value, measured, rel_tol=0, abs_tol=1e-6):
+            raise CoordinationError(f"Area disagrees with anchors: {dimension['dimension_id']}")
+        return {
+            "state": "evaluated",
+            "measured_m2": measured,
+            "span_lengths_m": spans,
+            "numerical_tolerance_m2": 1e-6,
+            "construction_tolerance": False,
+        }
     if len(refs) != 2 or dimension["value"] is None or dimension["unit"] != "m":
         return {"state": "unsupported", "reason": "No two-anchor linear measurement declared"}
     left, right = [anchors[ref]["coordinates"] for ref in refs]

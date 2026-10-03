@@ -26,6 +26,7 @@ from dreamhouse.coordination.model import (
     resolve_project,
     study_template,
 )
+from dreamhouse.coordination.navigation import attach_navigation
 from dreamhouse.coordination.render import render_views
 from dreamhouse.coordination.rules import evaluate
 from dreamhouse.coordination.view_contract import compare_anchors, inspect_views
@@ -234,6 +235,7 @@ def build_candidate(
         )
         files, drawing_inventory = _render_outputs(snapshot, result)
         inventory = view_inventory(snapshot, files)
+        files["index.html"] = attach_navigation(files["index.html"], snapshot, inventory)
         files["capabilities.json"] = json_text(
             capability_report(snapshot, result, inventory, drawing_inventory)
         )
@@ -455,6 +457,17 @@ def main(argv=None) -> int:
         action="store_true",
         help="rebuild isolated candidates after debounced source edits; Ctrl-C to stop",
     )
+    mode.add_argument(
+        "--migrate-study",
+        type=Path,
+        metavar="NEW_STUDY",
+        help="rebase --project into a new candidate only when every original field precondition matches",
+    )
+    parser.add_argument(
+        "--migration-report",
+        type=Path,
+        help="exclusive migration report output; defaults to NEW_STUDY.migration.json",
+    )
     parser.add_argument("--scenario-id", default="UNADOPTED_STUDY")
     parser.add_argument(
         "--visuals",
@@ -467,7 +480,36 @@ def main(argv=None) -> int:
         help="exit 2 for geometric FAIL findings; OPEN is still unresolved",
     )
     args = parser.parse_args(argv)
+    if args.migration_report and not args.migrate_study:
+        parser.error("--migration-report requires --migrate-study")
+    if args.watch and args.require_no_fail:
+        parser.error("--require-no-fail is a one-shot exit status; use --watch without it")
     try:
+        if args.migrate_study:
+            from dreamhouse.coordination.migration import prepare_migration, write_migration
+
+            original_hash = file_hash(args.project)
+            document = read_json(args.project)
+            snapshot = resolve_project(DEFAULT_PROJECT)
+            plan = prepare_migration(document, snapshot)
+            if (
+                file_hash(args.project) != original_hash
+                or dependency_hashes(DEFAULT_PROJECT) != snapshot["build_dependencies"]
+            ):
+                raise CoordinationError("Migration inputs changed; retry from stable sources")
+            args.migrate_study.parent.mkdir(parents=True, exist_ok=True)
+            if args.migration_report:
+                args.migration_report.parent.mkdir(parents=True, exist_ok=True)
+            written = write_migration(plan, args.migrate_study, args.migration_report)
+            print(f"Migration report: {written['report']}")
+            if "study" not in written:
+                print("Migration blocked: original expected values differ; no study was created.")
+                return 2
+            print(f"Migrated candidate: {written['study']}")
+            print(
+                "Full reevaluation is required; unchanged context equivalence and adoption are not asserted."
+            )
+            return 0
         if args.watch:
             from dreamhouse.coordination.watch import build_fresh_process, watch_sources
 
