@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>105</strong> documents · <strong>75</strong> decisions · <strong>9</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>107</strong> documents · <strong>75</strong> decisions · <strong>9</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -245,6 +245,12 @@ which is refreshed by the repository's Pages workflow after publication.
 The architectural plans incorporate the [documented graphic repairs](docs/02_arquitectura/connected_svg_architectural_visual_review_2026_10.md):
 source-consistent island labels, clearer bathroom annotations and explicit unresolved-access notes.
 SVGs remain generated outputs of repository sources.
+
+The [visual-language audit and improvement plan](docs/08_investigacion/connected_svg_visual_language_audit_and_plan_2026_10.md)
+examines the complete SVG corpus, explains current colour meanings and proposes a
+clearer shared graphic language, supported by fourteen primary-source investigations.
+It records an export-colour mismatch to address before the visual rollout; the proposed
+palette and layouts are not yet adopted.
 
 | Ground floor architecture | Upper floor architecture |
 | --- | --- |

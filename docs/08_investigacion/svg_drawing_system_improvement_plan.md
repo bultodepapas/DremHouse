@@ -2,7 +2,7 @@
 
 **Status:** retained graphic-improvement roadmap; bounded D-084 review implementation;
 connected review publication implemented; adopted aliases retained; no construction authority
-**Version:** 0.6
+**Version:** 0.7
 **Date:** 2026-10-03
 **Original audit date:** 2026-08-23
 **Source:** owner request of 2026-08-21; code and rendered-output audit of the 27
@@ -14,6 +14,15 @@ control only. It does not change architectural geometry, programme, structure, c
 scope, status, open conflicts or professional design gates.
 
 ## Connected catalog migration — 2026-10-03
+
+The subsequent [visual-language audit and phased plan](connected_svg_visual_language_audit_and_plan_2026_10.md)
+adds a fresh census of 231 tracked SVGs and 36 generated release SVGs, fourteen
+[primary-source investigations](connected_svg_visual_language_research_2026_10.md),
+colour-role analysis and a proposed visual specimen. It identifies a reproducible
+original-colour mismatch between the installed rasterizer and Chromium; export fidelity
+therefore precedes the new palette and layout rollout. Its Phase 0–6 sequence develops
+the remaining graphic work under SVG-G0/G1/G2 without adopting a theme or changing
+geometry. The August figures below remain historical measurements.
 
 The [migration and extension guide](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
 records the native consumers registered by catalog ID, generated from captured source

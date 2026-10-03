@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1010" viewBox="0 0 1280 1010" role="img" aria-labelledby="title desc">
+  <title id="title">Dream House — proposed visual language specimen</title>
+  <desc id="desc">Unadopted graphic proposal, not a building drawing. Warm neutral paper and dark ink form the base. Teal identifies opening or reference information. Amber ring means open evidence, red diamond means failed check, violet dash means study geometry, green denotes a narrow passed check. Cobalt corners indicate selection independently of all those states. Lineweights separate geometry from annotation and context; explicit words preserve meaning without hue.</desc>
+  <metadata>{"version":"0.1","date":"2026-10-03","status":"graphic proposal only; not adopted","physical_geometry":false,"source":"connected_svg_visual_language_audit_and_plan_2026_10.md"}</metadata>
+  <rect x="0" y="0" width="1280" height="1010" fill="#F4F0E7" stroke="none" />
+  <rect x="0" y="0" width="1280" height="112" fill="#172A32" stroke="none" />
+  <text x="40" y="36" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#DDE4E2" font-weight="600">DREAM HOUSE  /  GRAPHIC PROPOSAL</text>
+  <text x="40" y="76" font-family="IBM Plex Sans, sans-serif" font-size="30" fill="#FFFDFA" font-weight="600">One calm base. Separate meanings.</text>
+  <text x="40" y="144" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">A WARM TECHNICAL ATLAS</text>
+  <text x="40" y="171" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#536168" font-weight="400">Colours identify roles. Shape, pattern and words keep those roles legible without colour.</text>
+  <rect x="40" y="196" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="40" y="196" width="8" height="100" fill="#172A32" stroke="none" />
+  <rect x="60" y="212" width="34" height="34" fill="#172A32" stroke="none" />
+  <text x="105" y="231" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">Ink</text>
+  <text x="105" y="251" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#172A32</text>
+  <text x="60" y="277" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Geometry + readable text</text>
+  <rect x="344" y="196" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="344" y="196" width="8" height="100" fill="#1D7480" stroke="none" />
+  <rect x="364" y="212" width="34" height="34" fill="#1D7480" stroke="none" />
+  <text x="409" y="231" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">Information</text>
+  <text x="409" y="251" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#1D7480</text>
+  <text x="364" y="277" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Openings + references</text>
+  <rect x="648" y="196" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="648" y="196" width="8" height="100" fill="#74543C" stroke="none" />
+  <rect x="668" y="212" width="34" height="34" fill="#74543C" stroke="none" />
+  <text x="713" y="231" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">Material</text>
+  <text x="713" y="251" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#74543C</text>
+  <text x="668" y="277" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Finish cue + named hatch</text>
+  <rect x="952" y="196" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="952" y="196" width="8" height="100" fill="#2454A6" stroke="none" />
+  <rect x="972" y="212" width="34" height="34" fill="#2454A6" stroke="none" />
+  <text x="1017" y="231" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">Selected</text>
+  <text x="1017" y="251" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#2454A6</text>
+  <text x="972" y="277" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Viewer focus only</text>
+  <rect x="40" y="313" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="40" y="313" width="8" height="100" fill="#8A5A16" stroke="none" />
+  <rect x="60" y="329" width="34" height="34" fill="#8A5A16" stroke="none" />
+  <text x="105" y="348" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">OPEN</text>
+  <text x="105" y="368" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#8A5A16</text>
+  <text x="60" y="394" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Missing / pending evidence</text>
+  <rect x="344" y="313" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="344" y="313" width="8" height="100" fill="#A33F31" stroke="none" />
+  <rect x="364" y="329" width="34" height="34" fill="#A33F31" stroke="none" />
+  <text x="409" y="348" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">FAIL</text>
+  <text x="409" y="368" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#A33F31</text>
+  <text x="364" y="394" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">A failed declared check</text>
+  <rect x="648" y="313" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="648" y="313" width="8" height="100" fill="#66538A" stroke="none" />
+  <rect x="668" y="329" width="34" height="34" fill="#66538A" stroke="none" />
+  <text x="713" y="348" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">STUDY</text>
+  <text x="713" y="368" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#66538A</text>
+  <text x="668" y="394" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Unadopted alternative</text>
+  <rect x="952" y="313" width="288" height="100" fill="#FFFDFA" stroke="none" />
+  <rect x="952" y="313" width="8" height="100" fill="#39765A" stroke="none" />
+  <rect x="972" y="329" width="34" height="34" fill="#39765A" stroke="none" />
+  <text x="1017" y="348" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">PASS</text>
+  <text x="1017" y="368" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#536168" font-weight="400">#39765A</text>
+  <text x="972" y="394" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">This check only; not approval</text>
+  <rect x="40" y="458" width="744" height="255" fill="#FFFDFA" stroke="none" />
+  <rect x="804" y="458" width="436" height="255" fill="#FFFDFA" stroke="none" />
+  <text x="60" y="493" font-family="IBM Plex Sans, sans-serif" font-size="19" fill="#172A32" font-weight="600">MEANINGS CAN COEXIST</text>
+  <text x="60" y="521" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#536168" font-weight="400">Generic symbol specimen — no house geometry</text>
+  <rect x="74" y="557" width="220" height="102" fill="#F0ECF6" stroke="#66538A" stroke-width="2" stroke-dasharray="9 6" />
+  <text x="94" y="601" font-family="IBM Plex Sans, sans-serif" font-size="19" fill="#66538A" font-weight="600">STUDY</text>
+  <text x="94" y="629" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#172A32" font-weight="400">Entity label</text>
+  <line x1="62" y1="545" x2="84" y2="545" stroke="#2454A6" stroke-width="3" />
+  <line x1="62" y1="545" x2="62" y2="567" stroke="#2454A6" stroke-width="3" />
+  <line x1="306" y1="545" x2="284" y2="545" stroke="#2454A6" stroke-width="3" />
+  <line x1="306" y1="545" x2="306" y2="567" stroke="#2454A6" stroke-width="3" />
+  <line x1="62" y1="671" x2="84" y2="671" stroke="#2454A6" stroke-width="3" />
+  <line x1="62" y1="671" x2="62" y2="649" stroke="#2454A6" stroke-width="3" />
+  <line x1="306" y1="671" x2="284" y2="671" stroke="#2454A6" stroke-width="3" />
+  <line x1="306" y1="671" x2="306" y2="649" stroke="#2454A6" stroke-width="3" />
+  <circle cx="294" cy="557" r="10" fill="#FFFDFA" stroke="#8A5A16" stroke-width="2" />
+  <text x="290" y="562" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#8A5A16" font-weight="600">?</text>
+  <text x="344" y="570" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#66538A" font-weight="600">Violet dash  →  study geometry</text>
+  <text x="344" y="602" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#8A5A16" font-weight="600">Amber ring  →  OPEN evidence</text>
+  <text x="344" y="634" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#2454A6" font-weight="600">Blue corners  →  selected now</text>
+  <text x="60" y="692" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#536168" font-weight="400">Selection never recolours an OPEN issue into a different status.</text>
+  <text x="824" y="493" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">WHAT A COLOUR MUST NOT SAY</text>
+  <text x="824" y="535" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#172A32" font-weight="400">Green does not mean safe to build.</text>
+  <text x="824" y="573" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#172A32" font-weight="400">Teal does not prove a window fits.</text>
+  <text x="824" y="611" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#172A32" font-weight="400">Brown does not select a product.</text>
+  <text x="824" y="649" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#172A32" font-weight="400">A clean page does not close a conflict.</text>
+  <rect x="40" y="735" width="744" height="176" fill="#FFFDFA" stroke="none" />
+  <rect x="804" y="735" width="436" height="176" fill="#FFFDFA" stroke="none" />
+  <text x="60" y="770" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">HIERARCHY BEFORE DECORATION</text>
+  <line x1="62" y1="806" x2="205" y2="806" stroke="#172A32" stroke-width="4" />
+  <text x="229" y="811" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#172A32" font-weight="400">Known primary boundary</text>
+  <line x1="62" y1="840" x2="205" y2="840" stroke="#172A32" stroke-width="2" />
+  <text x="229" y="845" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#172A32" font-weight="400">Object / opening outline</text>
+  <line x1="62" y1="874" x2="205" y2="874" stroke="#172A32" stroke-width="0.8" stroke-dasharray="5 4" />
+  <text x="229" y="879" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#172A32" font-weight="400">Context / projection — label the role</text>
+  <text x="824" y="770" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#172A32" font-weight="600">ONE SOURCE, TWO OUTPUTS</text>
+  <text x="824" y="805" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Screen: warm paper + restrained accents</text>
+  <text x="824" y="837" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Print: white paper + stable line hierarchy</text>
+  <text x="824" y="872" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#172A32" font-weight="400">Both: same values, IDs, limits and authority</text>
+  <rect x="0" y="935" width="1280" height="75" fill="#172A32" stroke="none" />
+  <text x="40" y="965" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#FFFDFA" font-weight="600">PROPOSED, NOT ADOPTED  ·  Representation only  ·  No design or cost decision</text>
+  <text x="40" y="991" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#DDE4E2" font-weight="400">Read the audit and phased plan before rollout. This is a legend specimen, not a project plan.</text>
+</svg>

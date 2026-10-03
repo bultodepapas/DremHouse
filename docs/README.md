@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.27
+**Version:** 0.28
 **Date:** 2026-10-03
 **Source:** active project registers, current drawing catalog and D-084 connected
 coordination migration; documentation update without a new design or scope decision.
@@ -13,6 +13,9 @@ coordination migration; documentation update without a new design or scope decis
 
 ## Start with the current project state
 
+- [Connected SVG visual-language audit and improvement plan](08_investigacion/connected_svg_visual_language_audit_and_plan_2026_10.md):
+  complete 267-file-occurrence census, colour semantics, export-parity evidence,
+  proposed visual specimen and phased treatment of all 36 connected sheets.
 - [Architectural visual review of the connected SVG set](02_arquitectura/connected_svg_architectural_visual_review_2026_10.md):
   visual findings across 36 sheets and the resulting generator refinements; no design changes adopted.
 - [Connected coordination workflow](06_gestion_y_obra/connected_coordination_workflow.md):
@@ -299,6 +302,12 @@ they stay stable while their explicitly promoted versioned source can advance.
   contract, research-backed professional/didactic graphic system, shared SVG architecture,
   collision/readability controls, sheet-by-sheet actions and acceptance gates that
   preserve the architectural design.
+- [Connected SVG visual-language research](08_investigacion/connected_svg_visual_language_research_2026_10.md):
+  fourteen primary-source investigations on colour, linework, legibility, uncertainty,
+  accessibility, view purpose, typography and print; recommendations remain unadopted.
+- [Connected SVG visual-language audit and phased plan](08_investigacion/connected_svg_visual_language_audit_and_plan_2026_10.md):
+  current census and renderer experiment, sheet-specific recommendations, a proposed
+  graphic language, dependencies and measurable acceptance criteria.
 - [Architectural drawing communication research](08_investigacion/architectural_drawing_conventions_research.md):
   sixteen comparative studies covering lines, sheets, title blocks, lettering,
   dimensions, layers, symbols, information reliability, colour, diagrams, egress, SVG
