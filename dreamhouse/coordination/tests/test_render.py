@@ -261,6 +261,7 @@ class TestRenderViews(unittest.TestCase):
                 "elevation-rear.svg",
                 "window-details.svg",
                 "window-sections.svg",
+                "stair-sections.svg",
                 "index.html",
             },
         )

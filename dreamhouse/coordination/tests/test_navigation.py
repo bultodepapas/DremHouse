@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import unittest
 from html.parser import HTMLParser
+from urllib.parse import parse_qs, urlsplit
 from xml.etree import ElementTree as ET
 
 from dreamhouse.coordination.navigation import attach_navigation
 from dreamhouse.coordination.view_contract import inspect_views
+from dreamhouse.coordination.viewpoints import build_viewpoints
 
 SVG = "http://www.w3.org/2000/svg"
 
@@ -172,6 +174,144 @@ class NavigationTests(unittest.TestCase):
         self.assertIn('type="button" data-select-entity="SECOND" aria-pressed="false"', page)
         self.assertIn('aria-live="polite"', page)
         self.assertNotIn("<script src=", page)
+
+    def test_saved_issue_link_carries_package_identity_and_selects_real_view(self):
+        snapshot = {
+            "scenario_id": "ISSUE-SCENARIO",
+            "input_hash": "input-hash-1",
+            "model_hash": "model-hash-1",
+            "entities": {"E-1": {"id": "E-1", "label": "Wall"}},
+        }
+        evaluation = {
+            "findings": [
+                {
+                    "finding_id": "RULE:E-1",
+                    "rule_id": "RULE",
+                    "status": "OPEN",
+                    "coverage": "evaluated",
+                    "severity": "warning",
+                    "message": "Review this wall.",
+                    "entity_ids": ["E-1"],
+                    "scenario_id": "ISSUE-SCENARIO",
+                    "input_hash": "input-hash-1",
+                    "model_hash": "model-hash-1",
+                }
+            ]
+        }
+        inventory = {
+            "schema_version": 4,
+            "scenario_id": "ISSUE-SCENARIO",
+            "input_hash": "input-hash-1",
+            "views": [
+                {
+                    "view_id": "plan-pb",
+                    "file": "plan-pb.svg",
+                    "definition": {
+                        "purpose": "plan",
+                        "basis": "PB",
+                        "view_box": [0, 0, 10, 10],
+                        "projected_axes": ["X", "Y"],
+                        "cut_plane": {"state": "known", "z_m": 1.2},
+                        "depth_range": {"state": "known", "near_m": 0, "far_m": 1},
+                        "transform": {"scale": 20},
+                        "unknowns": [],
+                    },
+                    "occurrences": [{"entity_id": "E-1", "occurrence_id": "occ-1"}],
+                }
+            ],
+            "by_entity": {
+                "E-1": [
+                    {"view": "plan-pb.svg", "view_id": "plan-pb", "occurrence_id": "occ-1"}
+                ]
+            },
+        }
+        saved = build_viewpoints(snapshot, evaluation, inventory)
+        page = attach_navigation(
+            '<html><head></head><body><header><nav aria-label="Views"></nav></header>'
+            '<ul><li class="finding" data-saved-finding-id="OTHER:FINDING">'
+            "<strong>PASS · OTHER</strong><p>Another finding.</p></li>"
+            '<li class="finding" data-saved-finding-id="RULE:E-1">'
+            "<strong>OPEN · RULE</strong><p>Review this wall.</p></li></ul>"
+            '<section class="view" id="section-plan-pb"></section></body></html>',
+            snapshot,
+            inventory,
+            viewpoints=saved,
+        )
+        markup = _Markup()
+        markup.feed(page)
+
+        self.assertTrue(
+            any(
+                link.get("data-source-navigation-link") == "true"
+                and link.get("href") == "#source-navigation"
+                for link in markup.links
+            )
+        )
+        saved_link = next(link for link in markup.links if link.get("data-saved-viewpoint") == "true")
+        self.assertIn("#section-plan-pb", saved_link["href"])
+        self.assertIn("scenario_id=ISSUE-SCENARIO", saved_link["href"])
+        self.assertIn("input_hash=input-hash-1", saved_link["href"])
+        self.assertIn("model_hash=model-hash-1", saved_link["href"])
+        self.assertIn("finding_id=RULE%3AE-1", saved_link["href"])
+        self.assertEqual(
+            parse_qs(urlsplit(saved_link["href"]).query)["finding_id"], ["RULE:E-1"]
+        )
+        self.assertIn("belongs to a different scenario or input package", page)
+        self.assertIn("row.dataset.savedFindingId === findingId", page)
+        self.assertNotIn("issueRows[index]", page)
+
+    def test_viewpoint_records_for_another_scenario_are_reported_without_links(self):
+        snapshot = {
+            "scenario_id": "ISSUE-SCENARIO",
+            "input_hash": "input-hash-1",
+            "model_hash": "model-hash-1",
+            "entities": {"E-1": {"id": "E-1", "label": "Wall"}},
+        }
+        evaluation = {
+            "findings": [
+                {
+                    "finding_id": "RULE:E-1",
+                    "rule_id": "RULE",
+                    "status": "OPEN",
+                    "coverage": "evaluated",
+                    "severity": "warning",
+                    "message": "Review this wall.",
+                    "entity_ids": ["E-1"],
+                    "scenario_id": "ISSUE-SCENARIO",
+                    "input_hash": "input-hash-1",
+                    "model_hash": "model-hash-1",
+                }
+            ]
+        }
+        inventory = {
+            "scenario_id": "ISSUE-SCENARIO",
+            "input_hash": "input-hash-1",
+            "views": [
+                {
+                    "view_id": "plan-pb",
+                    "file": "plan-pb.svg",
+                    "definition": {"purpose": "plan"},
+                    "occurrences": [{"entity_id": "E-1", "occurrence_id": "occ-1"}],
+                }
+            ],
+            "by_entity": {
+                "E-1": [
+                    {"view": "plan-pb.svg", "view_id": "plan-pb", "occurrence_id": "occ-1"}
+                ]
+            },
+        }
+        saved = build_viewpoints(snapshot, evaluation, inventory)
+        rendered_snapshot = {**snapshot, "scenario_id": "OTHER-SCENARIO"}
+        page = attach_navigation(
+            '<html><head></head><body><nav></nav><section id="section-plan-pb"></section></body></html>',
+            rendered_snapshot,
+            inventory,
+            viewpoints=saved,
+        )
+
+        self.assertNotIn('class="saved-issue-view"', page)
+        self.assertIn("different scenario or input package", page)
+        self.assertIn('data-package-scenario="OTHER-SCENARIO"', page)
 
 
 if __name__ == "__main__":

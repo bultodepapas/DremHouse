@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.25
+**Version:** 0.26
 **Date:** 2026-10-03
 **Source:** active project registers, current drawing catalog and D-084 connected
 coordination migration; documentation update without a new design or scope decision.
@@ -15,13 +15,15 @@ coordination migration; documentation update without a new design or scope decis
 
 - [Connected coordination workflow](06_gestion_y_obra/connected_coordination_workflow.md):
   run Python over repository sources to generate an isolated model, checks, quantities,
-  eight connected SVG views, 27 catalog drawing consumers and a read-only review;
+  nine connected SVG views, 27 catalog drawing consumers and a read-only review;
   per-sheet coverage and remaining engineering limits are explicit.
 - [D-084 connected coordination — increment 02](06_gestion_y_obra/connected_coordination_increment_02.md):
-  bounded programme, workstation, equipment-benchmark and structural plan-line checks;
-  one GLZ-WS-A section view, optional pinned-font visual artifacts, and coverage limits.
+  retained 2026-10-02 checkpoint for bounded programme, workstation, equipment-benchmark
+  and structural plan-line checks; its GLZ-WS-A section and counts are historical. See the
+  migration guide for the current nine-view software closure and limits.
 - [Connected coordination migration and extension guide](06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md):
-  precondition-preserving study migration, cross-sheet navigation, annotation checks,
+  nineteen-subphase evidence, saved issue viewpoints, view cuts, purpose-specific information,
+  retained review evidence, study migration, cross-sheet navigation and annotation checks;
   candidate, immutable review-release and rollback commands; separates connected
   drawing-consumer coverage from the adopted alias catalog and records extension contracts.
 - [Connected source and consumer inventory](06_gestion_y_obra/connected_source_inventory.md):
@@ -230,11 +232,11 @@ they stay stable while their explicitly promoted versioned source can advance.
 - [Master plan](06_gestion_y_obra/plan_maestro.md): project delivery gates, connected-system
   workstream and construction F1/F2, with separate completion criteria.
 - [Connected project coordination — phased implementation plan](06_gestion_y_obra/connected_project_coordination_next_step.md):
-  v0.10 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
+  v0.11 living-system plan with six phases, 19 subphases and 25 research-linked acceptance
   fixtures: repository source changes feed one resolved model, Python calculations/checks
   and regenerated SVGs and reports. SVGs are read-only outputs. Each stage defines
-  dependencies, scope and completion evidence; records the D-084 consumer migration,
-  review releases and the remaining source-data and professional acceptance gates.
+  dependencies, scope and completion evidence; records the completed D-084 software
+  sequence, review releases and the remaining source-data and professional acceptance gates.
 - [Parametric architecture–structure–cost integration plan](06_gestion_y_obra/parametric_architecture_structure_cost_integration_plan.md):
   retained discipline contracts and historical I01–I04 results, reconciled with D-084.
   Bounded current equipment/programme, structural-context and wall-line adapters are

@@ -1,7 +1,7 @@
 # Connected Source Inventory
 
 **Status:** audited baseline; coordination evidence only  
-**Version:** 0.5<br>
+**Version:** 0.6<br>
 **Date:** 2026-10-03<br>
 **Source:** Read-only inspection of the PB b37 and P2 b28 loaders, their JSON inputs and
 transitive loader lineage, current drawing catalog and adjacent issue manifests.  
@@ -9,20 +9,32 @@ transitive loader lineage, current drawing catalog and adjacent issue manifests.
 not adopt geometry, resolve a conflict, select an assembly, change cost or promote a
 drawing.
 
-**Implementation reference:** D-084, increments 01–02; this documentation revision
-reconciles the inventory with the implemented resolver and preserves the audited source
-baseline. See the [workflow](connected_coordination_workflow.md) for execution and the
-[phase checkpoint](connected_project_coordination_next_step.md#implementation-checkpoint--2026-10-02)
-for completed capabilities and remaining rollout gates.
+**Implementation reference:** D-084, increments 01–02 and the 2026-10-03 continuation;
+this inventory reconciles source ownership with the implemented resolver and preserves
+the audited baseline. See the [workflow](connected_coordination_workflow.md) for execution
+and the [current phase checkpoint](connected_project_coordination_next_step.md#current-migration-checkpoint--2026-10-03)
+for software completion and remaining source-data/professional gates.
+
+The final 2026-10-03 acceptance record covers 36 current SVGs, 20 source-backed native
+sheets, 322 checked source anchors and 166 checked named dimensions. Two P2 schematic
+layer-sum dimensions have separate source-context audits; seven tabular/screening sheets
+are explicitly nonmetric. Exact identities and test results are retained in the
+[final acceptance record](connected_coordination_migration_and_extension_guide.md#final-acceptance-record--2026-10-03).
 
 ## Current migration — 2026-10-03
 
+The nine review views include SC-01's cross-level envelopes and known access-floor datum.
+View definitions and saved issue references retain the original package identity; optional
+presentation cuts do not change physical quantities. Purpose/milestone requirements and
+review-evidence dependencies are separate generated reports. The closure record links
+all nineteen subphases to their current artifacts and acceptance test modules.
+
+
 The current view inventory (schema 3) audits explicit source bindings, numerical
-measurements and declared painted dimension labels. Native opening projections in
-front/side elevations, roof plan and measured technical-bench elevations use independent
-registered source-to-SVG transforms. Other sheet annotations retain explicit coverage
-limits. The main review links all inventoried occurrences; source editing remains in
-JSON/Python. CF-014 is included in propagated open-conflict context.
+measurements and declared painted dimension labels. Registered source-to-SVG transforms
+bind native geometry and measurements on enrolled sheets. Other sheet annotations retain
+explicit coverage limits. The main review links all inventoried occurrences; source editing
+remains in JSON/Python. CF-014 is included in propagated open-conflict context.
 
 
 The [migration and extension guide](connected_coordination_migration_and_extension_guide.md) supersedes the pilot migration statuses in the retained table below.
@@ -30,7 +42,7 @@ The resolver captures all 27 catalog identities and adjacent source-manifest has
 `drawing_catalog` and `drawing_source_evidence`. The connected drawing dispatcher uses
 captured native PB/P2, roof and structure inputs; it does not reload a historical scenario
 while rendering. It writes a separate review sheet per catalog identity alongside the
-eight annotated review projections. `drawing_inventory.json` is the executable coverage
+nine annotated review projections. `drawing_inventory.json` is the executable coverage
 record, including limitations of inherited annotations and engineering hypotheses.
 `capabilities.json` relates entities, permitted operations, rule coverage and occurrences.
 
@@ -44,11 +56,11 @@ Review releases and their rollback pointer do not rewrite the adopted catalog.
 
 ## Scope and publication boundary
 
-This inventory establishes the Phase 0 source baseline for the connected-coordination
-pilot. The current published plans use `load_b37_model()` and `load_b28_model()`; the
-existing shared-model loader still defaults to the distinct D059 integration scenario.
-The implemented pilot produces eight new review views in an isolated review output directory. Those
-views remain candidate evidence and are not added to the current drawing catalog. All 27
+This inventory preserves the Phase 0 source baseline for the connected-coordination
+implementation. The current published plans use `load_b37_model()` and `load_b28_model()`;
+the existing shared-model loader still defaults to the distinct D059 integration scenario.
+The current implementation produces nine new review views in an isolated review output
+directory. Those views remain candidate evidence and are not added to the current drawing catalog. All 27
 existing SVG/PNG aliases remain separately published until an explicit catalog promotion
 is made under the current publication workflow.
 
@@ -247,17 +259,20 @@ refer to the isolated window-coordination pilot; current SVG/PNG aliases remain 
 | `structure-e1-synthesis` | `planos/estructura/DH-EST-E1-001_SINTESIS-ESTRUCTURAL.svg` (E0/E1) | `dreamhouse/generate_structure_plan.py` | Structural context only; separate alias retained. |
 | `structure-vertical-continuity` | `planos/estructura/DH-EST-E1-002_CONTINUIDAD-VERTICAL-ESCALERA.svg` (E0/E1) | `dreamhouse/generate_structure_plan.py` | Column-context evidence; separate alias retained. |
 
-The eight new pilot review views are isolated candidate outputs, not catalog records.
+The nine new review views are isolated candidate outputs, not catalog records.
 Their generated identities, source references and findings must be traceable within the
 review package. Adding or replacing any stable current alias remains a separate explicit
 promotion step.
 
-## Increment 02 implementation reconciliation
+## Retained increment 02 implementation reconciliation — 2026-10-02
 
-The [increment 02 record](connected_coordination_increment_02.md) documents the retained increment-02
-software scope. The eight-view package adds `window-sections.svg`, a projected section of
-GLZ-WS-A only; it does not add details for every opening or change the adopted opening
-geometry. The package audits named anchors, dimensions and cross-view callouts. Optional
+This subsection records the implementation at its 2026-10-02 checkpoint; it is superseded
+for current view count and software status by [Current migration](#current-migration--2026-10-03)
+and the [closure guide](connected_coordination_migration_and_extension_guide.md). The
+[increment 02 record](connected_coordination_increment_02.md) documents that retained
+software scope. Its eight-view package added `window-sections.svg`, a projected section of
+GLZ-WS-A only; it did not add details for every opening or change the adopted opening
+geometry. That package audited named anchors, dimensions and cross-view callouts. Optional
 `--visuals` output supplies pinned-font PNG previews, a contact sheet and pixel comparisons
 for review; those artifacts do not grant approval. Dependency metadata identifies affected
 consumers, while package generation still performs a conservative full rebuild rather than

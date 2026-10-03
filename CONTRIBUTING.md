@@ -1,7 +1,7 @@
 # Contributing to Dream House
 
 **Status:** active contributor guide<br>
-**Version:** 0.5<br>
+**Version:** 0.6<br>
 **Date:** 2026-10-03<br>
 **Source:** repository instructions, D-044, D-056 and D-084 connected coordination migration.
 
@@ -52,8 +52,9 @@ python3 .github/scripts/build_showcase.py --check-readme
 Follow the [coordination workflow](docs/06_gestion_y_obra/connected_coordination_workflow.md)
 and [increment 02 record](docs/06_gestion_y_obra/connected_coordination_increment_02.md).
 Create a pinned JSON study, change supported fields by canonical entity ID, then build
-and inspect the complete candidate. It produces eight SVG views, including a schematic
-GLZ-WS-A section only; named anchors, dimensions and cross-view callouts are audited.
+and inspect the complete candidate. It produces nine review SVGs, including the schematic
+GLZ-WS-A interface and SC-01 stair-envelope sections. Named anchors, dimensions, declared
+labels and saved finding viewpoints retain explicit source and package identity.
 Preserve historical hash-locked inputs; do not edit SVGs, generated snapshots or current
 aliases to author geometry. Record the resulting design decision separately before
 adopting any study into the published source basis.
@@ -136,3 +137,9 @@ expected value is a conflict, not permission to replace its precondition. When a
 annotations, test source coordinates, numerical spans and declared visible text
 independently. Register a source-to-SVG transform before claiming native projection
 coverage; keep unsupported sheets explicit in the inventory.
+
+The candidate's `phase_gates.md` links all nineteen software subphases to artifacts and
+acceptance test modules. Keep view settings independent of physical geometry. Saved issue
+links must use stable finding/entity/view identities and the original package fingerprints;
+never infer identity from display order. Retained professional evidence must be invalidated
+when its declared source/dependencies change; freshness does not grant professional approval.

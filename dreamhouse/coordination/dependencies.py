@@ -45,7 +45,7 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
                 "id": f"view:{view['view_id']}",
                 "artifact": view["file"],
                 "entity_ids": sorted({v["entity_id"] for v in view["occurrences"]}),
-                "context_inputs": ["geometry", "discipline_inputs"],
+                "context_inputs": ["geometry", "discipline_inputs", "view_settings"],
                 "depends_on": ["structural_screening"]
                 if view["view_id"].startswith("structure-")
                 else ["evaluation"],
@@ -108,6 +108,47 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
             },
         ]
     )
+    for identifier, artifact in (
+        ("information_requirements", "information_requirements.json"),
+        ("evidence", "evidence.json"),
+        ("viewpoints", "viewpoints.json"),
+        ("phase_gates", "phase_gates.json"),
+    ):
+        consumers.append(
+            {
+                "id": identifier,
+                "artifact": artifact,
+                "entity_ids": sorted(entities),
+                "context_inputs": [
+                    "geometry",
+                    "discipline_inputs",
+                    "view_settings",
+                    "evidence_records",
+                ],
+                "depends_on": ["evaluation"]
+                + (
+                    [f"view:{v['view_id']}" for v in inventory["views"]]
+                    if identifier in {"viewpoints", "phase_gates"}
+                    else []
+                )
+                + (
+                    [
+                        "opening_schedule",
+                        "quantity_ledger",
+                        "house_extensions",
+                        "cost",
+                        "information_requirements",
+                        "evidence",
+                        "viewpoints",
+                    ]
+                    if identifier == "phase_gates"
+                    else ["quantity_ledger", "house_extensions"]
+                    if identifier == "information_requirements"
+                    else []
+                ),
+                "state": "recomputed; source and purpose coverage remain explicit",
+            }
+        )
     changes = evaluation["changes"]
     dependency_order = validate_consumers(consumers)
     changed = (
@@ -116,6 +157,9 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
         | {row["entity_id"] for row in changes["modified"]}
     )
     context_changes = {row["path"] for row in changes.get("context_changes", [])}
+    # These authored review inputs differ from the source baseline without
+    # changing the physical model or triggering design-evidence claims.
+    review_inputs = {key for key in ("view_settings", "evidence_records") if snapshot.get(key)}
     related = set(changed)
     for key, entity in entities.items():
         refs = entity.get("relationships", {})
@@ -131,7 +175,7 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
         if related.intersection(row["entity_ids"])
         or any(
             path == declared or path.startswith(declared + ".")
-            for path in context_changes
+            for path in context_changes | review_inputs
             for declared in row["context_inputs"]
         )
     }
@@ -175,6 +219,7 @@ def dependency_report(snapshot: dict, evaluation: dict, inventory: dict) -> dict
         "change_impact": {
             "changed_entity_ids": sorted(changed),
             "changed_context_paths": sorted(context_changes),
+            "changed_review_inputs": sorted(review_inputs),
             "related_entity_ids": sorted(related),
             "affected_consumer_ids": sorted(affected),
             "recomputed_consumer_ids": sorted(row["id"] for row in consumers),

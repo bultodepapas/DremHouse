@@ -27,8 +27,17 @@ from dreamhouse import (
     generate_rooflight_b11,
     generate_structure_plan,
 )
+from dreamhouse.coordination.context_annotations import annotate_context_view
 from dreamhouse.coordination.drawing_annotations import annotate_native_view
 from dreamhouse.coordination.model import CoordinationError
+from dreamhouse.coordination.native_notes import bind_native_notes
+from dreamhouse.coordination.p2_context_annotations import (
+    annotate_p2_context_view,
+)
+from dreamhouse.coordination.wall_context_annotations import (
+    annotate_wall_context,
+    render_wall_context,
+)
 from dreamhouse.envelope.openings import build_opening_schedule
 from dreamhouse.structure.e1_screening import run_screening
 
@@ -268,6 +277,7 @@ def _roof_longitudinal(pb: dict, p2: dict, stair: dict) -> str:
     p2_start = float(p2["envelope"]["x"])
     p2_end = p2_start + float(p2["envelope"]["length"])
     p2_level = float(stair["levels"]["p2_finished_floor"])
+    section_y = float(pb["envelope"]["width"]) / 2
     roof = pb["roof"]
     mean_roof_level = (float(roof["low_eave"]) + float(roof["high_eave"])) / 2
     x0, base, scale = 110.0, 570.0, 22.0
@@ -275,16 +285,16 @@ def _roof_longitudinal(pb: dict, p2: dict, stair: dict) -> str:
     floor_y = base - p2_level * scale
     return f'''<svg xmlns="{SVG_NS}" width="1120" height="720" viewBox="0 0 1120 720">
 <rect width="1120" height="720" fill="#fbfaf7"/><g font-family="Arial" fill="#20292e">
-<text x="75" y="48" font-size="25" font-weight="700">LONGITUDINAL SECTION · Y=9.00 m REFERENCE</text>
+<text x="75" y="48" font-size="25" font-weight="700">LONGITUDINAL SECTION · Y={section_y:.2f} m REFERENCE</text>
 <text x="75" y="75" font-size="13" fill="#566269">Source-derived plan datums and roof ordinate; structural build-ups and clear heights are unresolved.</text>
-<line x1="{x0}" y1="{base}" x2="{x0 + length * scale}" y2="{base}" stroke="#172126" stroke-width="3"/>
-<line x1="{x0}" y1="{roof_y}" x2="{x0 + length * scale}" y2="{roof_y}" stroke="#172126" stroke-width="4"/>
+<line data-context-feature="ground-datum" x1="{x0}" y1="{base}" x2="{x0 + length * scale}" y2="{base}" stroke="#172126" stroke-width="3"/>
+<line data-context-feature="roof-ordinate" x1="{x0}" y1="{roof_y}" x2="{x0 + length * scale}" y2="{roof_y}" stroke="#172126" stroke-width="4"/>
 <line x1="{x0}" y1="{base}" x2="{x0}" y2="{roof_y}" stroke="#778387" stroke-width="1.5" stroke-dasharray="5 5"/>
 <line x1="{x0 + length * scale}" y1="{base}" x2="{x0 + length * scale}" y2="{roof_y}" stroke="#778387" stroke-width="1.5" stroke-dasharray="5 5"/>
-<line x1="{x0 + p2_start * scale}" y1="{floor_y}" x2="{x0 + p2_end * scale}" y2="{floor_y}" stroke="#8f6f5a" stroke-width="3"/>
+<line data-context-feature="p2-datum" x1="{x0 + p2_start * scale}" y1="{floor_y}" x2="{x0 + p2_end * scale}" y2="{floor_y}" stroke="#8f6f5a" stroke-width="3"/>
 <line x1="{x0 + p2_start * scale}" y1="{floor_y}" x2="{x0 + p2_start * scale}" y2="{base}" stroke="#798589" stroke-width="1.2" stroke-dasharray="5 4"/>
 <text x="{x0 + p2_start * scale + (p2_end - p2_start) * scale / 2}" y="{floor_y - 12}" text-anchor="middle" font-size="13">P2 PLAN EXTENT · {p2_start:.2f}–{p2_end:.2f} m · DATUM +{p2_level:.2f} m</text>
-<text x="{x0 + length * scale / 2}" y="{roof_y - 12}" text-anchor="middle" font-size="12">ROOF ORDINATE AT Y=9.00 m · +{mean_roof_level:.2f} m INTERPOLATED FROM EAVES</text>
+<text x="{x0 + length * scale / 2}" y="{roof_y - 12}" text-anchor="middle" font-size="12">ROOF ORDINATE AT Y={section_y:.2f} m · +{mean_roof_level:.2f} m INTERPOLATED FROM EAVES</text>
 <text x="{x0 + p2_start * scale / 2}" y="{base - 28}" text-anchor="middle" font-size="11">DOUBLE-HEIGHT PLAN ZONE</text>
 <text x="{x0 + (p2_start + length) * scale / 2}" y="{base - 28}" text-anchor="middle" font-size="11">GROUND-FLOOR PLAN ZONE</text>
 <rect x="75" y="620" width="970" height="62" fill="#fff3dc" stroke="#b95336"/><text x="95" y="648" font-size="15" font-weight="700" fill="#8e3825">COORDINATION SECTION · NOT FOR CONSTRUCTION</text><text x="95" y="671" font-size="10">No floor thickness, roof assembly, wall solid, stair clearance or finished room height is asserted.</text>
@@ -307,11 +317,11 @@ def _roof_transverse(pb: dict, p2: dict, stair: dict) -> str:
 <rect width="1120" height="720" fill="#fbfaf7"/><g font-family="Arial" fill="#20292e">
 <text x="75" y="48" font-size="25" font-weight="700">TRANSVERSE ROOF PROFILE · SOURCE DATUMS</text>
 <text x="75" y="75" font-size="13" fill="#566269">One reference profile across the {width:.2f} m hall; eave heights remain schematic coordination values.</text>
-<line x1="{x0}" y1="{base}" x2="{x0 + width * scale}" y2="{base}" stroke="#172126" stroke-width="3"/>
-<line x1="{x0}" y1="{low_y}" x2="{x0 + width * scale}" y2="{high_y}" stroke="#172126" stroke-width="4"/>
+<line data-context-feature="ground-datum" x1="{x0}" y1="{base}" x2="{x0 + width * scale}" y2="{base}" stroke="#172126" stroke-width="3"/>
+<line data-context-feature="roof-ordinate" x1="{x0}" y1="{low_y}" x2="{x0 + width * scale}" y2="{high_y}" stroke="#172126" stroke-width="4"/>
 <line x1="{x0}" y1="{base}" x2="{x0}" y2="{low_y}" stroke="#778387" stroke-width="1.5" stroke-dasharray="5 5"/>
 <line x1="{x0 + width * scale}" y1="{base}" x2="{x0 + width * scale}" y2="{high_y}" stroke="#778387" stroke-width="1.5" stroke-dasharray="5 5"/>
-<line x1="{x0}" y1="{p2_y}" x2="{x0 + width * scale}" y2="{p2_y}" stroke="#8f6f5a" stroke-width="3"/>
+<line data-context-feature="p2-datum" x1="{x0}" y1="{p2_y}" x2="{x0 + width * scale}" y2="{p2_y}" stroke="#8f6f5a" stroke-width="3"/>
 <text x="{x0 + 10}" y="{low_y - 12}" font-size="11">SIDE A {"LOW" if low_side == "A" else "HIGH"} EAVE · +{y_a:.2f} m</text>
 <text x="{x0 + width * scale - 10}" y="{high_y - 12}" text-anchor="end" font-size="11">SIDE B {"HIGH" if low_side == "A" else "LOW"} EAVE · +{y_b:.2f} m</text>
 <text x="{x0 + width * scale / 2}" y="{p2_y - 12}" text-anchor="middle" font-size="11">P2 FINISHED-FLOOR DATUM +{p2_level:.2f} m · NO SLAB THICKNESS IMPLIED</text>
@@ -595,7 +605,7 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
         identifier = row["id"]
         if identifier not in renderers:
             raise CoordinationError(f"No connected renderer is registered for {identifier}")
-        svg = renderers[identifier]()
+        svg = render_wall_context(snapshot, identifier) or renderers[identifier]()
         evidence = evidence_by_id[identifier]
         structural = identifier.startswith("structure-")
         render_status = (
@@ -606,12 +616,13 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
         conflict_ids = []
         if identifier in {
             "architecture-ground-floor", "architecture-ground-floor-core",
-            "architecture-rear-elevation", "architecture-access-egress",
+            "architecture-great-wall-elevation", "architecture-rear-elevation", "architecture-access-egress",
             "structure-coordination-plan", "structure-lateral-a", "structure-great-wall",
             "structure-e1-synthesis", "structure-vertical-continuity",
         }:
             conflict_ids.extend(("CF-013", "CF-011"))
-        if identifier in {"architecture-upper-floor", "architecture-p2-exterior-wall"}:
+        if identifier in {"architecture-upper-floor", "architecture-p2-exterior-wall",
+                          "architecture-p2-acoustic-partition", "architecture-p2-hall-edge"}:
             conflict_ids.append("CF-014")
         if p2_report["failed"] and identifier.startswith(("architecture-upper-floor", "architecture-access-egress", "architecture-owner-priorities", "architecture-p2-")):
             conflict_ids.append(f"P2 CHECKS FAIL: {p2_report['failed']}")
@@ -621,7 +632,13 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
             svg, row, evidence, render_status, snapshot["scenario_id"], conflict_ids
         )
         svg_root = ET.fromstring(svg)
-        annotation_coverage = annotate_native_view(snapshot, svg_root)
+        bind_native_notes(snapshot, svg_root)
+        annotation_coverage = (
+            annotate_context_view(snapshot, svg_root)
+            or annotate_wall_context(snapshot, svg_root)
+            or annotate_p2_context_view(snapshot, svg_root)
+            or annotate_native_view(snapshot, svg_root)
+        )
         svg = ET.tostring(svg_root, encoding="unicode")
         files[f"drawings/{identifier}.svg"] = svg
         inventory_rows.append(
@@ -661,13 +678,16 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
         "drawing_count": len(inventory_rows),
         "rendered_catalog_ids": [row["id"] for row in inventory_rows],
         "drawings": inventory_rows,
-        "coverage_claim": "All 27 current catalog consumers are regenerated from snapshot-injected native geometry. Five sheets have source-bound named dimensions on audited native rectangles; unsupported metric sheets and non-metric sheets are identified individually below.",
+        "coverage_claim": "All 27 current catalog consumers are regenerated from resolved snapshot sources. Source-bound feature and dimension coverage, unresolved geometry and non-metric sheets are identified individually below.",
         "annotation_migration": {
-            "status": "partial",
+            "status": "partial" if unsupported_annotations else "source_backed_scope_complete",
             "supported_sheet_count": len(supported_annotations),
             "supported_sheets": [row["id"] for row in supported_annotations],
             "named_dimension_count": sum(
                 row["annotation_coverage"]["dimensions"] for row in supported_annotations
+            ),
+            "source_checked_context_dimension_count": sum(
+                row["annotation_coverage"].get("context_dimensions", 0) for row in supported_annotations
             ),
             "unsupported_sheet_count": len(unsupported_annotations),
             "unsupported_sheets": [

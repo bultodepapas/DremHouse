@@ -218,6 +218,11 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 ## Connected coordination review
 
+The current candidate includes a cross-level stair section, saved finding viewpoints,
+purpose-specific information requirements and a nineteen-subphase evidence record.
+Optional JSON view cuts affect representation without changing quantities; retained review
+evidence becomes stale when its declared sources or geometry change.
+
 The connected review also links entities to their actual occurrences across all generated
 sheets and reports source-anchor, dimension and label coverage. Pinned studies can be
 migrated with `--project OLD.json --migrate-study NEW.json`; conflicts preserve the
@@ -225,8 +230,10 @@ original study and require source review. See the [migration guide](docs/06_gest
 
 **D-084 connected review and publication migration:** repository JSON studies feed one
 resolved model, supported checks, opening quantities, cost reconciliation and generated
-SVG review views. `window-sections.svg` is a schematic projection of GLZ-WS-A only. SVGs
-display the resulting state; they are not graphical editing inputs.
+SVG review views. `window-sections.svg` is a schematic projection of GLZ-WS-A only;
+`stair-sections.svg` projects the declared SC-01 envelopes and floor datum without
+inventing stair solids or resolving discharge. SVGs display the resulting state; they are
+not graphical editing inputs.
 
 ```bash
 python3 -m pip install -e .
@@ -267,9 +274,10 @@ it does not publish a release.
 
 Use the [workflow guide](docs/06_gestion_y_obra/connected_coordination_workflow.md) for
 study authoring and commands; the [increment 02 record](docs/06_gestion_y_obra/connected_coordination_increment_02.md)
-for current adapters and limits; the [source inventory](docs/06_gestion_y_obra/connected_source_inventory.md)
+for its retained 2026-10-02 evidence; the [source inventory](docs/06_gestion_y_obra/connected_source_inventory.md)
 for ownership and migration coverage; and the [phased implementation plan](docs/06_gestion_y_obra/connected_project_coordination_next_step.md)
-for remaining acceptance gates. The [migration and extension guide](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
+for the nineteen-subphase software closure and its remaining source-data and professional
+gates. The [migration and extension guide](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md)
 documents release selection, recovery and extension points. The older
 `dreamhouse.pipeline` command retains its D059 historical scenario.
 

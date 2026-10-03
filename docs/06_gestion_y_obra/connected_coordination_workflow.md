@@ -1,18 +1,28 @@
 # Connected coordination workflow
 
-**Version:** 0.5<br>
+**Version:** 0.6<br>
 **Date:** 2026-10-03<br>
-**Status:** connected consumer migration and review publication; schematic coordination only<br>
+**Status:** nineteen-subphase software sequence verified within declared coverage; schematic coordination only<br>
 **Source:** owner authorization to implement the [phased plan](connected_project_coordination_next_step.md),
 the [current-source audit](connected_source_inventory.md), PB b37/P2 b28/D-083, SC-01 and rooflight b12.  
 **Decision:** D-084. Software workflow authority does not adopt a changed house design.
 
 **Implementation reference:** first increment `0e69ddf`, documentation baseline `e58aba5`,
-and [increment 02](connected_coordination_increment_02.md). This revision documents
-bounded discipline adapters, annotated views and optional visual evidence under the same
+[increment 02](connected_coordination_increment_02.md) and the 2026-10-03 continuation.
+This revision documents source-family extension, saved finding viewpoints, view-cut intent,
+purpose/milestone information, evidence invalidation and review publication under the same
 software authority. Software phases 0–5 in the connected plan are distinct
 from the project stage gates and the two construction phases in the
 [master plan](plan_maestro.md).
+
+## Complete plan evidence
+
+The current candidate adds `stair-sections.svg`, immutable `viewpoints.json` issue
+references, purpose/milestone `information_requirements.json`, retained `evidence.json`
+freshness checks and the nineteen-subphase `phase_gates.json` / `phase_gates.md` record.
+The [closure guide](connected_coordination_migration_and_extension_guide.md#plan-closure--continuation-from-7352f8a)
+documents optional source-authored view cuts and review-evidence records, their validation,
+and the exact boundary between runtime artifacts, test evidence and professional review.
 
 ## Study migration and connected annotation checks
 
@@ -24,8 +34,8 @@ for commands and limits.
 
 The main index links each enrolled entity to its real occurrences across the complete
 package. View inventory schema 3 distinguishes source-bound anchors, checked numerical
-measurements, checked painted labels and unassessed coverage. Five native metric
-projections also audit actual rectangle geometry against registered source transforms.
+measurements, checked painted labels and unassessed coverage. Registered native projections
+also audit actual sheet geometry against their source transforms.
 `--watch --require-no-fail` is invalid; use the finding exit flag on a one-shot build.
 
 ## What now works
@@ -38,7 +48,7 @@ dated evidence; the migration guide records the current integrated checks.
 
 One Python command resolves the current architectural sources into a shared model,
 evaluates supported rules, measures openings, reconciles the available cost mappings and
-generates eight annotated review SVGs and 27 native catalog-consumer SVGs, with read-only
+generates nine annotated review SVGs and 27 native catalog-consumer SVGs, with read-only
 HTML indexes. Changes originate in repository sources or an explicit JSON study. Generated SVGs are outputs; no graphical editor or SVG
 write-back exists.
 
@@ -122,13 +132,13 @@ The package includes:
 | `findings.json`, `coverage.json` | Rule findings, required inputs, numerical tolerance and evaluated/unsupported/inapplicable coverage |
 | `changes.json`, `finding_lifecycle.json` | Comparison with the preserved current baseline, including prior finding evidence |
 | `disciplines.json` | Bounded programme/equipment/workstation checks and source-referenced support-line plan comparisons |
-| `dependencies.json` | Full-rebuild consumer relationships, entity/context change impact and outstanding professional evidence |
+| `dependencies.json` | Full-rebuild consumer relationships, entity/context/review-input impact, report dependency ordering and outstanding professional evidence |
 | `cost.json` | Existing cost-code reconciliation; unmapped or ineligible costs stay unknown; no approved total |
 | `drawing_inventory.json`, `drawings/index.html` | All 27 catalog consumers, source hashes, generated review sheets and explicit migration/engineering limits |
 | `structural_screening.json` | Recomputed E0/E1 source hypotheses and raw checks; unknown current loads/member choices remain explicit and supply no design approval |
 | `extensions.json`, `capabilities.json` | Wall/stair/phase/service/maintenance records and entity/family/operation/view/rule coverage |
 | `view_inventory.json`, `anchor_lifecycle.json` | Occurrence/annotation coverage, anchor coordinates, dimension/callout checks and before/after anchor changes |
-| Eight SVGs and `index.html` | PB/P2 plans, four elevations, opening details and the GLZ-WS-A section/interface review |
+| Nine review SVGs and `index.html` | PB/P2 plans, four elevations, opening details, the GLZ-WS-A section/interface review and the SC-01 stair-envelope section |
 | Optional PNGs, `contact_sheet.png`, `visual_manifest.json`, `visual_comparison.json`, `visual-diff/` | Pinned-font previews and exact pixel-change evidence; no automatic visual-approval threshold |
 | Optional `baseline/` | Archived-baseline SVG/PNG previews, contact sheet and its rendering manifest |
 | `review.md`, `manifest.json` | Readable review and complete output inventory with SHA-256 hashes and explicit authority |
@@ -298,7 +308,7 @@ state, not the last candidate. Cross-platform equivalence is not certified.
 Full engineered construction details require their actual design inputs. Catalog consumer
 migration and the showcase's review reader are described in the current migration record.
 
-## Extension points and next acceptance gates
+## Extension points and continuing change controls
 
 - `dreamhouse/coordination/model.py`: source ownership, normalization, identities,
   strict study validation and freshness inputs. Add a family here only with a source
@@ -318,11 +328,12 @@ migration and the showcase's review reader are described in the current migratio
 - `dreamhouse/coordination/visual.py`: declared-font rendering, contact sheets and exact
   pixel evidence; rendering failure must preserve the previous complete package.
 
-Before extending authoring beyond openings, finish the phase gates recorded in the
-plan: verify the coverage recorded for catalog consumers and resolve missing source data
-before extending discipline claims or study authoring. The migration guide specifies how
-to add a source, family, rule or drawing and reproduce the release. No missing engineering
-geometry is filled in merely to advance a phase.
+The nineteen software subphases are closed within the declared source and capability
+coverage. To extend authoring or discipline claims, add a source-backed family or rule
+through the resolver, capability, dependency and package contracts, then record its own
+positive, negative and missing-data fixtures. The migration guide specifies how to add a
+source, family, rule or drawing and reproduce the release. No missing engineering geometry
+is filled in merely to extend software coverage.
 
 ## Retained increment 01 evidence — 2026-10-02
 
@@ -348,8 +359,9 @@ python3 -m dreamhouse.coordination --check --require-no-fail
 ```
 
 The GitHub workflow is configured in `.github/workflows/coordination.yml`; remote CI
-execution is not claimed by this local verification record. These checks establish
-the implemented candidate workflow, not completion of the remaining plan phases.
+execution is not claimed by this retained local verification record. These checks document
+increment 01 only; the current nineteen-subphase software closure and integrated results
+are recorded in the migration guide.
 
 The test counts above are the retained implementation verification record, not a claim
 that each subsequent documentation edit reruns every engineering calculation. For a

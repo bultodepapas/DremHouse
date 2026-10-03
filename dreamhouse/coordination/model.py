@@ -112,6 +112,11 @@ def dependency_hashes(project_path: Path) -> dict[str, str]:
     paths.update((ROOT / "showcase").rglob("*.woff*"))
     paths.update((ROOT / "dreamhouse/coordination/fonts").glob("*.ttf"))
     paths.add(project_path.resolve())
+    document = read_json(project_path)
+    if isinstance(document, dict) and "evidence_records" in document:
+        from dreamhouse.coordination.evidence import evidence_source_paths
+
+        paths.update(evidence_source_paths(document["evidence_records"], ROOT))
     result = {}
     for path in sorted(paths):
         # Validate even historical JSON before legacy permissive loaders read it.
@@ -628,6 +633,31 @@ def _validate_changes(document: dict, entities: dict, base_hash: str, geometry: 
 def _validate_entities(entities: dict) -> None:
     identities = set(entities)
     aliases: set[str] = set()
+    for identifier, entity in entities.items():
+        if entity.get("id") != identifier or entity.get("kind") not in {
+            "opening",
+            "door",
+            "space",
+            "wall",
+            "stair",
+            "reservation",
+        }:
+            raise CoordinationError(f"Unsupported entity identity/kind: {identifier}")
+    for identifier, entity in entities.items():
+        host = entity["relationships"]["host_id"]
+        if host in entities and entities[host]["kind"] != "wall":
+            raise CoordinationError(f"Host relationship requires a wall: {identifier} -> {host}")
+        for space in entity["relationships"]["space_ids"]:
+            if space in entities and entities[space]["kind"] != "space":
+                raise CoordinationError(
+                    f"Space relationship requires a space: {identifier} -> {space}"
+                )
+        ancestors = {identifier}
+        while host in entities:
+            if host in ancestors:
+                raise CoordinationError(f"Cyclic hosting relationship at {identifier}")
+            ancestors.add(host)
+            host = entities[host]["relationships"]["host_id"]
     for entity in entities.values():
         for alias in entity["aliases"]:
             if alias in identities or alias in aliases:
@@ -664,11 +694,19 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
         "status",
         "base_model_hash",
         "changes",
+        "view_settings",
+        "evidence_records",
     }
     if unknown:
         raise CoordinationError(f"Unknown project fields: {sorted(unknown)}")
     if not isinstance(document.get("scenario_id"), str) or not document["scenario_id"].strip():
         raise CoordinationError("scenario_id must be nonempty")
+    from dreamhouse.coordination.evidence import capture_source_hashes, validate_records
+    from dreamhouse.coordination.view_definitions import validate_view_settings
+
+    view_settings = validate_view_settings(document.get("view_settings", {}))
+    evidence_records = validate_records(document.get("evidence_records", []))
+    evidence_source_hashes = capture_source_hashes(evidence_records, ROOT)
     geometry, entities, discipline_inputs = _baseline()
     drawing_catalog, drawing_source_evidence = _drawing_sources()
     _validate_entities(entities)
@@ -708,6 +746,9 @@ def resolve_project(project_path: Path | str = DEFAULT_PROJECT) -> dict:
         else str(path),
         "dependency_policy": "conservative full rebuild; no incremental cache",
         "changes_requested": deepcopy(document["changes"]),
+        "view_settings": view_settings,
+        "evidence_records": evidence_records,
+        "evidence_source_hashes": evidence_source_hashes,
         "open_conflicts": ["CF-009", "CF-010", "CF-011", "CF-012", "CF-013", "CF-014"],
     }
 

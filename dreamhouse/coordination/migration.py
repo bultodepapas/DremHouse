@@ -32,6 +32,8 @@ _STUDY_FIELDS = {
     "status",
     "base_model_hash",
     "changes",
+    "view_settings",
+    "evidence_records",
 }
 
 
@@ -73,9 +75,7 @@ def _current_baseline(snapshot: Any) -> tuple[dict, str, str]:
     discipline_inputs = baseline.get("discipline_inputs", {})
     if not isinstance(discipline_inputs, dict):
         raise CoordinationError("Current snapshot baseline discipline_inputs must be an object")
-    computed_hash = model_digest(
-        baseline["geometry"], baseline["entities"], discipline_inputs
-    )
+    computed_hash = model_digest(baseline["geometry"], baseline["entities"], discipline_inputs)
     snapshot_hash = snapshot.get("base_model_hash")
     if not isinstance(snapshot_hash, str) or computed_hash != snapshot_hash:
         raise CoordinationError("Current snapshot baseline fingerprint is inconsistent")
@@ -114,13 +114,8 @@ def _validate_and_compare(document: dict, baseline: dict, current_hash: str) -> 
                 f"Unknown canonical entity ID {entity_id}; aliases are read-only"
             )
         entity = entities[entity_id]
-        if (
-            entity["kind"] not in {"opening", "door"}
-            or entity["geometry"]["shape"] == "unresolved"
-        ):
-            raise CoordinationError(
-                f"{entity_id} has no supported editable source parameters yet"
-            )
+        if entity["kind"] not in {"opening", "door"} or entity["geometry"]["shape"] == "unresolved":
+            raise CoordinationError(f"{entity_id} has no supported editable source parameters yet")
         if entity["status"] != "active":
             raise CoordinationError(
                 f"{entity_id} is not active; adoption requires a separate decision"
@@ -134,9 +129,7 @@ def _validate_and_compare(document: dict, baseline: dict, current_hash: str) -> 
             or not isinstance(expected, dict)
             or set(expected) != set(setters)
         ):
-            raise CoordinationError(
-                f"{entity_id}: expected must cover exactly the changed fields"
-            )
+            raise CoordinationError(f"{entity_id}: expected must cover exactly the changed fields")
 
         supported = editable_fields(entity)
         field_report = {}
@@ -194,6 +187,12 @@ def prepare_migration(document: dict, current_snapshot: dict) -> dict:
     It does not establish equivalence of unchanged context or authorize adoption.
     """
     source = _validate_study_document(document)
+    from .view_definitions import validate_view_settings
+
+    validate_view_settings(source.get("view_settings", {}))
+    from .evidence import validate_records
+
+    validate_records(source.get("evidence_records", []))
     baseline, current_hash, current_input_hash = _current_baseline(current_snapshot)
     comparison = _validate_and_compare(source, baseline, current_hash)
     ready = not comparison["conflicts"]

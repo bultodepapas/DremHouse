@@ -14,6 +14,8 @@ from pathlib import Path
 from dreamhouse.coordination.capabilities import capability_report
 from dreamhouse.coordination.dependencies import dependency_report
 from dreamhouse.coordination.drawings import render_drawings
+from dreamhouse.coordination.evidence import assess_evidence
+from dreamhouse.coordination.information_requirements import information_requirements
 from dreamhouse.coordination.model import (
     DEFAULT_PROJECT,
     ROOT,
@@ -27,9 +29,11 @@ from dreamhouse.coordination.model import (
     study_template,
 )
 from dreamhouse.coordination.navigation import attach_navigation
+from dreamhouse.coordination.phase_gates import gate_markdown, phase_gate_record
 from dreamhouse.coordination.render import render_views
 from dreamhouse.coordination.rules import evaluate
 from dreamhouse.coordination.view_contract import compare_anchors, inspect_views
+from dreamhouse.coordination.viewpoints import build_viewpoints
 from dreamhouse.cost.reconcile import reconcile_costs
 
 DEFAULT_OUTPUT = ROOT / ".build/coordination"
@@ -42,6 +46,7 @@ REQUIRED_VIEW_FILES = {
     "elevation-rear.svg",
     "window-details.svg",
     "window-sections.svg",
+    "stair-sections.svg",
     "index.html",
 }
 
@@ -172,6 +177,8 @@ def _review_text(snapshot: dict, result: dict, cost: dict, files: dict) -> str:
         "",
         "A complete build means the listed artifacts were produced together. It does not mean that engineering checks, procurement or construction are approved.",
         "",
+        "See [phase gate evidence](phase_gates.md), [saved issue viewpoints](viewpoints.json), [purpose-specific information](information_requirements.json) and [review evidence freshness](evidence.json).",
+        "",
         "## Coverage and authority",
         "",
         "Facade windows, rooflight plan extents, located doors, P2 spaces, PB core spaces, shared stair and column reservations have persistent identities. Host planes and inferred room boundaries do not establish wall assemblies. Door heights, several PB door anchors, column vertical extents, engineering design and professional approvals remain unresolved.",
@@ -235,7 +242,11 @@ def build_candidate(
         )
         files, drawing_inventory = _render_outputs(snapshot, result)
         inventory = view_inventory(snapshot, files)
-        files["index.html"] = attach_navigation(files["index.html"], snapshot, inventory)
+        viewpoints = build_viewpoints(snapshot, result, inventory)
+        files["viewpoints.json"] = json_text(viewpoints)
+        files["index.html"] = attach_navigation(
+            files["index.html"], snapshot, inventory, viewpoints=viewpoints
+        )
         files["capabilities.json"] = json_text(
             capability_report(snapshot, result, inventory, drawing_inventory)
         )
@@ -244,6 +255,10 @@ def build_candidate(
         files["view_inventory.json"] = json_text(inventory)
         files["anchor_lifecycle.json"] = json_text(compare_anchors(inventory, baseline_inventory))
         files["dependencies.json"] = json_text(dependency_report(snapshot, result, inventory))
+        files["evidence.json"] = json_text(assess_evidence(snapshot))
+        files["information_requirements.json"] = json_text(
+            information_requirements(snapshot, result)
+        )
         for name, value in {
             "model.json": snapshot,
             "findings.json": result["findings"],
@@ -310,6 +325,13 @@ def build_candidate(
                 "<p>Pixel differences include scenario labels and findings; they are review "
                 "evidence, not design approval.</p></section></body>",
             )
+        gates = phase_gate_record(
+            snapshot, inventory, drawing_inventory, set(files) | {"review.md"}
+        )
+        if any(row["missing_artifacts"] for row in gates["subphases"]):
+            raise CoordinationError("Incomplete phase gate artifacts; candidate was not published")
+        files["phase_gates.json"] = json_text(gates)
+        files["phase_gates.md"] = gate_markdown(gates)
         files["review.md"] = _review_text(snapshot, result, cost, files)
         issue_id = _issue_identity(snapshot["input_hash"], rendering)
         issues = out / "issues"

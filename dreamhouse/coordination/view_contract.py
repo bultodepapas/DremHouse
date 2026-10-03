@@ -12,8 +12,13 @@ import posixpath
 from urllib.parse import unquote, urlsplit
 from xml.etree import ElementTree as ET
 
+from dreamhouse.coordination.context_annotations import audit_context_geometry
 from dreamhouse.coordination.drawing_annotations import audit_native_geometry
 from dreamhouse.coordination.model import CoordinationError
+from dreamhouse.coordination.native_notes import audit_native_notes
+from dreamhouse.coordination.p2_context_annotations import audit_p2_context_geometry
+from dreamhouse.coordination.view_definitions import inspect_definition
+from dreamhouse.coordination.wall_context_annotations import audit_wall_context
 
 
 def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
@@ -32,10 +37,15 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
         dom_ids = [e.attrib["id"] for e in root.iter() if "id" in e.attrib]
         if len(dom_ids) != len(set(dom_ids)):
             raise CoordinationError(f"Duplicate SVG occurrence/DOM ID in {name}")
+        audit_native_notes(snapshot, root)
         view = {
             "view_id": view_id,
             "file": name,
-            "geometry_check": audit_native_geometry(snapshot, root),
+            "geometry_check": audit_context_geometry(snapshot, root)
+            or audit_wall_context(snapshot, root)
+            or audit_p2_context_geometry(snapshot, root)
+            or audit_native_geometry(snapshot, root),
+            "definition": inspect_definition(root),
             "occurrences": [],
             "anchors": {},
             "dimensions": [],
@@ -75,7 +85,12 @@ def inspect_views(snapshot: dict, files: dict[str, str]) -> dict:
             elif entity_id is not None:
                 if not element.get("id"):
                     raise CoordinationError(f"Unaddressable occurrence {entity_id} in {name}")
-                occurrence = {"entity_id": entity_id, "occurrence_id": element.get("id")}
+                occurrence = {
+                    "entity_id": entity_id,
+                    "occurrence_id": element.get("id"),
+                    "representation_role": element.get("data-representation-role"),
+                    "section_membership": element.get("data-section-membership"),
+                }
                 view["occurrences"].append(occurrence)
                 by_entity[entity_id].append(
                     {"view": name, "view_id": view_id, "occurrence_id": element.get("id")}
@@ -271,13 +286,23 @@ def _check_anchor_source(snapshot: dict, element: ET.Element, anchor: dict) -> d
 
     for axis, binding in bindings.items():
         if isinstance(binding, dict):
-            if (
-                set(binding) != {"mean"}
-                or not isinstance(binding["mean"], list)
-                or len(binding["mean"]) != 2
-            ):
+            if set(binding) == {"datum"} and binding["datum"] == "project-origin":
+                if anchor["context_id"] not in {"PROJECT.PB", "PROJECT.P2"} or axis not in {
+                    "x",
+                    "y",
+                }:
+                    raise CoordinationError("Project origin is only a plan context datum")
+                expected = 0.0
+            elif set(binding) in ({"mean"}, {"sum"}):
+                operation = next(iter(binding))
+                paths = binding[operation]
+                if not isinstance(paths, list) or len(paths) != 2:
+                    raise CoordinationError("Coordinate expression requires two source paths")
+                expected = sum(resolve_path(path) for path in paths)
+                if operation == "mean":
+                    expected /= 2
+            else:
                 raise CoordinationError("Unknown anchor source expression")
-            expected = sum(resolve_path(path) for path in binding["mean"]) / 2
         else:
             expected = resolve_path(binding)
         observed = _finite_number(anchor["coordinates"][f"data-world-{axis}"], "anchor coordinate")
@@ -292,11 +317,22 @@ def _check_dimension_label(element: ET.Element) -> dict:
     label_format = element.get("data-dimension-label-format")
     if label_format is None:
         return {"state": "unbound", "reason": "No visible numeric label contract declared"}
-    if label_format not in {"fixed-2-m", "fixed-2-m2"}:
+    if label_format not in {
+        "fixed-2-m",
+        "fixed-2-comma",
+        "fixed-2-comma-m",
+        "numeric-prefix-fixed-2-m",
+        "tv-centre-fixed-2-m",
+        "fixed-2-m2",
+        "nominal-area-fixed-2-m2",
+        "height-fixed-2-m",
+        "span-fixed-2-m",
+        "worktop-delta-signed-2-m",
+    }:
         raise CoordinationError(f"Unknown dimension label format: {label_format}")
     if element.tag.rsplit("}", 1)[-1] != "text":
         raise CoordinationError("A dimension label contract must address SVG text")
-    unit = "m2" if label_format == "fixed-2-m2" else "m"
+    unit = "m2" if label_format in {"fixed-2-m2", "nominal-area-fixed-2-m2"} else "m"
     if element.get("data-dimension-unit", "m") != unit:
         raise CoordinationError("Dimension label unit disagrees with its measurement")
     value = _finite_number(element.get("data-dimension-value"), "dimension label")
@@ -310,8 +346,26 @@ def _check_dimension_label(element: ET.Element) -> dict:
             pieces.append(child.tail or "")
         return "".join(pieces)
 
-    expected = f"{value:.2f} {unit}"
-    if painted_text(element).strip() != expected:
+    prefix = "Nominal opening area " if label_format == "nominal-area-fixed-2-m2" else ""
+    prefix = {"height-fixed-2-m": "Height ", "span-fixed-2-m": "Plan span "}.get(
+        label_format, prefix
+    )
+    expected = (
+        f"Δz worktop − sill = {value:+.2f} m"
+        if label_format == "worktop-delta-signed-2-m"
+        else f"{prefix}{value:.2f} {unit}"
+    )
+    if label_format == "fixed-2-comma":
+        expected = f"{value:.2f}".replace(".", ",")
+    elif label_format == "fixed-2-comma-m":
+        expected = f"{value:.2f} m".replace(".", ",")
+    elif label_format == "tv-centre-fixed-2-m":
+        expected = f"TV CENTRE {value:+.2f} m AFF"
+    actual = painted_text(element).strip()
+    matches = actual == expected
+    if label_format == "numeric-prefix-fixed-2-m":
+        matches = actual.startswith(expected + " ")
+    if not matches:
         raise CoordinationError(
             f"Visible dimension label disagrees with value: {element.get('data-dimension-id')}"
         )

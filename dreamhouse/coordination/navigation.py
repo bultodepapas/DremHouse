@@ -3,12 +3,17 @@
 from __future__ import annotations
 
 import html
+import json
+import re
 from collections import Counter
+from html.parser import HTMLParser
 from pathlib import PurePosixPath
-from urllib.parse import quote, urlsplit
+from urllib.parse import quote, urlencode, urlsplit
 
 
-def attach_navigation(page: str, snapshot: dict, inventory: dict) -> str:
+def attach_navigation(
+    page: str, snapshot: dict, inventory: dict, viewpoints: dict | None = None
+) -> str:
     """Attach occurrence links and declared annotation coverage to the HTML index.
 
     Links are emitted only when an inventory reference resolves to an occurrence in
@@ -77,6 +82,11 @@ def attach_navigation(page: str, snapshot: dict, inventory: dict) -> str:
         dimension_count=len(dimensions),
         unknown_inventory_entities=sorted(set(by_entity) - set(entities)),
     )
+    page_ids = _PageIds()
+    page_ids.feed(page)
+    if viewpoints is not None:
+        issue_panel = _render_saved_issues(viewpoints, snapshot, page_ids.ids)
+        section = section.replace("</section>", issue_panel + "</section>", 1)
     style = """<style id="source-navigation-style">
 #source-navigation { margin: 16px; }
 #source-navigation table {
@@ -94,6 +104,11 @@ def attach_navigation(page: str, snapshot: dict, inventory: dict) -> str:
 #source-navigation .navigation-entity { border-top: 1px solid #EEF2F0; padding: 8px 0; }
 #source-navigation .navigation-entity button { font: inherit; color: inherit; cursor: pointer; }
 #source-navigation .navigation-links { padding-left: 1.5rem; }
+#source-navigation .saved-issue { border-top: 1px solid #CBD0CC; padding: 10px 0; }
+#source-navigation .saved-issue[aria-current="location"] { outline: 2px solid #BD7626; outline-offset: 2px; }
+#source-navigation .saved-issue-view[aria-current="location"] { font-weight: 700; }
+#source-navigation .saved-issue-selected { outline: 2px solid #BD7626; }
+#source-navigation .saved-issue-viewpoints, #source-navigation .saved-issue-gaps ul { padding-left: 1.5rem; }
 @media (max-width: 900px) {
   #source-navigation { overflow-x: auto; }
 }
@@ -127,6 +142,10 @@ def attach_navigation(page: str, snapshot: dict, inventory: dict) -> str:
   });
 })();
 </script>"""
+    if viewpoints is not None:
+        script += _saved_issue_script()
+
+    page = _add_header_navigation_link(page)
 
     if "</body>" in page:
         index = page.rfind("</body>")
@@ -139,6 +158,353 @@ def attach_navigation(page: str, snapshot: dict, inventory: dict) -> str:
     else:
         page = style + page
     return page
+
+
+class _PageIds(HTMLParser):
+    """Collect actual IDs from the generated index before offering an anchor link."""
+
+    def __init__(self):
+        super().__init__()
+        self.ids: set[str] = set()
+
+    def handle_starttag(self, tag, attrs):
+        identifier = dict(attrs).get("id")
+        if isinstance(identifier, str):
+            self.ids.add(identifier)
+
+
+def _add_header_navigation_link(page: str) -> str:
+    if 'data-source-navigation-link="true"' in page:
+        return page
+    match = re.search(r"<nav\b[^>]*>", page, flags=re.IGNORECASE)
+    if match is None:
+        return page
+    close = re.search(r"</nav\s*>", page[match.end() :], flags=re.IGNORECASE)
+    if close is None:
+        return page
+    end = match.end() + close.start()
+    link = (
+        '<a data-source-navigation-link="true" href="#source-navigation">'
+        "Source navigation</a>"
+    )
+    return page[:end] + link + page[end:]
+
+
+def _render_saved_issues(viewpoints: dict, snapshot: dict, page_ids: set[str]) -> str:
+    package = viewpoints.get("snapshot_ref", {})
+    package = package if isinstance(package, dict) else {}
+    expected = {
+        "scenario_id": snapshot.get("scenario_id"),
+        "input_hash": snapshot.get("input_hash"),
+        "model_hash": snapshot.get("model_hash"),
+    }
+    package_matches = all(
+        isinstance(value, str) and value and package.get(key) == value
+        for key, value in expected.items()
+    )
+    issues = viewpoints.get("issues", [])
+    issues = issues if isinstance(issues, list) else []
+    rows = []
+    for issue in issues:
+        if not isinstance(issue, dict):
+            continue
+        issue_id = issue.get("issue_id")
+        finding_id = issue.get("finding_id")
+        if not isinstance(issue_id, str) or not isinstance(finding_id, str):
+            continue
+        summary = issue.get("summary", {})
+        summary = summary if isinstance(summary, dict) else {}
+        finding_ref = issue.get("finding_ref", {})
+        finding_ref = finding_ref if isinstance(finding_ref, dict) else {}
+        finding_state = finding_ref.get("state", "unavailable")
+        entity_refs = issue.get("entity_refs", [])
+        entity_refs = entity_refs if isinstance(entity_refs, list) else []
+        entity_ids = [
+            item["entity_id"]
+            for item in entity_refs
+            if isinstance(item, dict)
+            and item.get("state") == "available"
+            and isinstance(item.get("entity_id"), str)
+        ]
+        viewpoints_for_issue = issue.get("viewpoints", [])
+        viewpoints_for_issue = (
+            viewpoints_for_issue if isinstance(viewpoints_for_issue, list) else []
+        )
+        links = []
+        for viewpoint in viewpoints_for_issue:
+            if not isinstance(viewpoint, dict) or viewpoint.get("state") != "available":
+                continue
+            view_id = viewpoint.get("view_id")
+            view_file = viewpoint.get("view_file")
+            if not isinstance(view_id, str) or not isinstance(view_file, str):
+                continue
+            definition_ref = viewpoint.get("view_definition_ref", {})
+            definition_ref = definition_ref if isinstance(definition_ref, dict) else {}
+            if (
+                definition_ref.get("view_id") != view_id
+                or definition_ref.get("view_file") != view_file
+                or not isinstance(definition_ref.get("definition_hash"), str)
+                or not isinstance(definition_ref.get("definition"), dict)
+            ):
+                continue
+            selected = viewpoint.get("selected_occurrences", [])
+            selected = selected if isinstance(selected, list) else []
+            valid_selected = [
+                item
+                for item in selected
+                if isinstance(item, dict)
+                and isinstance(item.get("entity_id"), str)
+                and isinstance(item.get("occurrence_id"), str)
+            ]
+            basename = view_file.rsplit("/", 1)[-1]
+            section_id = f"section-{basename[:-4]}" if basename.lower().endswith(".svg") else ""
+            embedded = section_id in page_ids
+            if not package_matches or finding_state != "available":
+                continue
+            if embedded:
+                params = urlencode(
+                    {
+                        "scenario_id": expected["scenario_id"],
+                        "input_hash": expected["input_hash"],
+                        "model_hash": expected["model_hash"],
+                        "issue_id": issue_id,
+                        "finding_id": finding_id,
+                        "view_id": view_id,
+                    },
+                    quote_via=quote,
+                )
+                href = f"?{params}#{quote(section_id, safe='-_')}"
+                view_label = f"Open {view_id} in this review"
+                link = (
+                    f'<a class="saved-issue-view" data-saved-viewpoint="true" '
+                    f'data-view-id="{html.escape(view_id, quote=True)}" '
+                    f'data-view-file="{html.escape(view_file, quote=True)}" '
+                    f'data-section-id="{html.escape(section_id, quote=True)}" '
+                    f'href="{html.escape(href, quote=True)}">{html.escape(view_label)}</a>'
+                )
+            else:
+                safe_file = _safe_svg_path(view_file)
+                occurrence_link = None
+                if safe_file and valid_selected:
+                    first_occurrence = valid_selected[0].get("occurrence_id")
+                    occurrence_link = (
+                        f'{html.escape(safe_file, quote=True)}#'
+                        f'{quote(first_occurrence, safe="")}'
+                    )
+                if occurrence_link is None:
+                    continue
+                link = (
+                    f'<a class="saved-issue-view" data-saved-viewpoint="true" '
+                    f'data-view-id="{html.escape(view_id, quote=True)}" '
+                    'data-section-id="" '
+                    f'href="{occurrence_link}">Open {html.escape(view_id)} source SVG occurrence</a>'
+                )
+            count = len(valid_selected)
+            links.append(
+                '<li>'
+                f'{link} <small>· {count} linked occurrence(s) · '
+                f'{html.escape(view_file)}</small>'
+                "</li>"
+            )
+
+        unavailable = issue.get("unavailable_references", [])
+        unavailable = unavailable if isinstance(unavailable, list) else []
+        reference_gaps = []
+        for reference in unavailable:
+            if not isinstance(reference, dict):
+                continue
+            kind = reference.get("kind", "reference")
+            identifier = (
+                reference.get("entity_id")
+                or reference.get("view_id")
+                or reference.get("finding_id")
+                or reference.get("occurrence_id")
+                or "unknown"
+            )
+            reason = reference.get("reason", "reference is unavailable")
+            reference_gaps.append(
+                f"<li>{html.escape(str(kind))} {html.escape(str(identifier))}: "
+                f"{html.escape(str(reason))}</li>"
+            )
+        if not package_matches:
+            reference_gaps.append(
+                "<li>Viewpoint package identity does not match the rendered review.</li>"
+            )
+        if not links and not reference_gaps:
+            reference_gaps.append("<li>No view destination is available for this finding.</li>")
+
+        entity_buttons = " ".join(
+            '<button type="button" class="saved-issue-entity" '
+            f'data-select-entity="{html.escape(entity_id, quote=True)}">'
+            f"{html.escape(entity_id)}</button>"
+            for entity_id in entity_ids
+        ) or "No linked snapshot entities."
+        state_reasons = finding_ref.get("reasons", [])
+        state_reasons = state_reasons if isinstance(state_reasons, list) else []
+        reason_text = ""
+        if finding_state != "available":
+            reason_text = " · ".join(str(item) for item in state_reasons) or "finding reference is unavailable"
+        reason_markup = (
+            f'<p class="navigation-gap">{html.escape(reason_text)}</p>' if reason_text else ""
+        )
+        gaps_markup = ""
+        if reference_gaps:
+            gaps_markup = (
+                '<details class="saved-issue-gaps">'
+                f"<summary>Unavailable references ({len(reference_gaps)})</summary>"
+                f'<ul>{"".join(reference_gaps)}</ul></details>'
+            )
+        rows.append(
+            f'<li class="saved-issue" id="saved-issue-{html.escape(issue_id, quote=True)}" '
+            f'data-saved-issue="{html.escape(issue_id, quote=True)}" '
+            f'data-finding-id="{html.escape(finding_id, quote=True)}" '
+            f'data-finding-state="{html.escape(str(finding_state), quote=True)}" '
+            f'data-rule-id="{html.escape(str(summary.get("rule_id") or ""), quote=True)}" '
+            f'data-finding-status="{html.escape(str(summary.get("status") or ""), quote=True)}" '
+            f'data-finding-message="{html.escape(str(summary.get("message") or ""), quote=True)}" '
+            f'data-entity-ids="{html.escape(json.dumps(entity_ids, ensure_ascii=False), quote=True)}">'
+            f'<strong>{html.escape(str(summary.get("status") or "UNKNOWN"))} · '
+            f'{html.escape(str(summary.get("rule_id") or "Finding"))}</strong> '
+            f'<small>Finding {html.escape(finding_id)}</small>'
+            f'<p>{html.escape(str(summary.get("message") or "No finding message supplied."))}</p>'
+            f'<p>Linked elements: {entity_buttons}</p>'
+            f"{reason_markup}"
+            f'<ul class="saved-issue-viewpoints">{"".join(links)}</ul>'
+            f"{gaps_markup}"
+            "</li>"
+        )
+    if not rows:
+        rows.append('<li class="navigation-gap">No saved issue viewpoints are available.</li>')
+    package_note = "" if package_matches else (
+        '<p class="navigation-gap">Saved issue records identify a different scenario or '
+        "input package; no viewpoint links are enabled.</p>"
+    )
+    return (
+        '<section id="saved-issues" aria-labelledby="saved-issues-title" '
+        f'data-package-scenario="{html.escape(str(expected["scenario_id"] or ""), quote=True)}" '
+        f'data-package-input="{html.escape(str(expected["input_hash"] or ""), quote=True)}" '
+        f'data-package-model="{html.escape(str(expected["model_hash"] or ""), quote=True)}">'
+        '<h2 id="saved-issues-title">Saved issue viewpoints</h2>'
+        '<p id="saved-issue-navigation-status" aria-live="polite">'
+        f'{len(issues)} finding-linked issue record(s). Each destination retains its '
+        "original scenario, input identity and view definition.</p>"
+        f"{package_note}<ul class=\"saved-issue-list\">{''.join(rows)}</ul></section>"
+    )
+
+
+def _saved_issue_script() -> str:
+    return """<script id="saved-issue-navigation">
+(() => {
+  const panel = document.getElementById('saved-issues');
+  if (!panel) return;
+  let savedIssueActive = false;
+  let savedSelectedNodes = [];
+  let selectedIssue = null;
+  let selectedViewLink = null;
+  const params = new URLSearchParams(window.location.search);
+  const issueId = params.get('issue_id');
+  const findingId = params.get('finding_id');
+  const viewId = params.get('view_id');
+  if (!issueId && !findingId && !viewId) return;
+  const status = document.getElementById('saved-issue-navigation-status');
+  const expected = {
+    scenario_id: panel.dataset.packageScenario,
+    input_hash: panel.dataset.packageInput,
+    model_hash: panel.dataset.packageModel,
+  };
+  const supplied = {
+    scenario_id: params.get('scenario_id'),
+    input_hash: params.get('input_hash'),
+    model_hash: params.get('model_hash'),
+  };
+  if (Object.keys(expected).some((key) => !expected[key] || supplied[key] !== expected[key])) {
+    if (status) status.textContent = 'Saved issue belongs to a different scenario or input package. No finding, element, or view was selected.';
+    return;
+  }
+  const issue = [...panel.querySelectorAll('[data-saved-issue]')].find((row) =>
+    row.dataset.savedIssue === issueId && row.dataset.findingId === findingId
+  );
+  if (!issue) {
+    if (status) status.textContent = 'Saved finding or issue reference is unavailable in this package.';
+    return;
+  }
+  issue.setAttribute('aria-current', 'location');
+  if (issue.dataset.findingState !== 'available') {
+    if (status) status.textContent = 'Saved finding ' + findingId + ' is unavailable: ' + issue.textContent.trim();
+    return;
+  }
+  savedIssueActive = true;
+  selectedIssue = issue;
+  const findingRows = [...document.querySelectorAll('.finding')];
+  let linkedIds = [];
+  try { linkedIds = JSON.parse(issue.dataset.entityIds || '[]'); } catch (_) { linkedIds = []; }
+  const selected = new Set(linkedIds);
+  document.querySelectorAll('.is-selected').forEach((node) => node.classList.remove('is-selected'));
+  document.querySelectorAll('[data-entity-id], [data-anchor-entity-id], [data-dimension-for]').forEach((node) => {
+    const entityId = node.dataset.entityId || node.dataset.anchorEntityId || node.dataset.dimensionFor;
+    if (selected.has(entityId)) {
+      node.classList.add('is-selected');
+      savedSelectedNodes.push(node);
+    }
+  });
+  document.querySelectorAll('[data-select-entity]').forEach((button) => {
+    button.setAttribute('aria-pressed', selected.has(button.dataset.selectEntity) ? 'true' : 'false');
+  });
+  const matchingFindings = findingRows.filter((row) => row.dataset.savedFindingId === findingId);
+  findingRows.forEach((row) => {
+    row.hidden = matchingFindings.length > 0 && !matchingFindings.includes(row);
+    row.classList.toggle('saved-issue-selected', matchingFindings.includes(row));
+  });
+  const viewpoints = [...issue.querySelectorAll('[data-saved-viewpoint]')];
+  const selectedView = viewpoints.find((link) => link.dataset.viewId === viewId);
+  if (status) {
+    status.textContent = 'Opened saved finding ' + findingId + ' for scenario ' + expected.scenario_id
+      + ' with ' + selected.size + ' linked element(s).';
+    if (matchingFindings.length === 0) {
+      status.textContent += ' The finding row is unavailable in this index.';
+    }
+  }
+  if (viewId && !selectedView) {
+    if (status) status.textContent += ' View ' + viewId + ' is unavailable for this saved issue.';
+  }
+  if (selectedView) {
+    selectedViewLink = selectedView;
+    selectedView.setAttribute('aria-current', 'location');
+    if (!selectedView.dataset.sectionId && status) {
+      status.textContent += ' The recorded source SVG exists, but this index has no embedded section for it.';
+    }
+  }
+  document.addEventListener('click', (event) => {
+    const entityButton = event.target.closest('[data-select-entity]');
+    if (!entityButton || !savedIssueActive) return;
+    savedIssueActive = false;
+    findingRows.forEach((row) => row.classList.remove('saved-issue-selected'));
+    selectedIssue?.removeAttribute('aria-current');
+    selectedViewLink?.removeAttribute('aria-current');
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !savedIssueActive) return;
+    savedIssueActive = false;
+    savedSelectedNodes.forEach((node) => node.classList.remove('is-selected'));
+    document.querySelectorAll('[data-select-entity]').forEach((button) => {
+      button.setAttribute('aria-pressed', 'false');
+    });
+    findingRows.forEach((row) => {
+      row.hidden = false;
+      row.classList.remove('saved-issue-selected');
+    });
+    selectedIssue?.removeAttribute('aria-current');
+    selectedViewLink?.removeAttribute('aria-current');
+    const selectionStatus = document.getElementById('selection-status');
+    const selectedEvidence = document.getElementById('selected-evidence');
+    const findingFilterStatus = document.getElementById('finding-filter-status');
+    if (selectionStatus) selectionStatus.textContent = 'No element selected.';
+    if (selectedEvidence) selectedEvidence.textContent = 'Element source and status will appear here.';
+    if (findingFilterStatus) findingFilterStatus.textContent = 'Showing all ' + findingRows.length + ' findings.';
+    if (status) status.textContent = 'Saved issue selection cleared.';
+  });
+})();
+</script>"""
 
 
 def _resolve_occurrence(

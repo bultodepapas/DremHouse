@@ -826,6 +826,16 @@ def _render_plan(
             size=10,
             css="small",
         )
+    settings = snapshot.get("view_settings", {}).get(view_id, {})
+    if settings:
+        _text(
+            root,
+            80,
+            165,
+            f"Cut envelope Z={settings['cut_plane_m']:.2f} m; depth {settings.get('depth_range_m', 'unbounded')}. Dashed/faded: projected above/outside depth; unknown heights remain unclassified.",
+            size=9,
+            css="small",
+        )
     show_hall = envelope_source != "unavailable"
 
     px, py, pw, ph = 80.0, 188.0, 860.0, 620.0
@@ -833,6 +843,17 @@ def _render_plan(
     drawn_width, drawn_height = length * scale, width * scale
     left = px + (pw - drawn_width) / 2
     top = py + (ph - drawn_height) / 2 + 16
+
+    root.set(
+        "data-world-to-view",
+        json.dumps(
+            {
+                "axes": ["x", "y"],
+                "scale": [scale, -scale],
+                "offset": [left - origin_x * scale, top + width * scale],
+            }
+        ),
+    )
 
     def transform(world_x: float, world_y: float) -> tuple[float, float]:
         return left + (world_x - origin_x) * scale, top + (width - world_y) * scale
@@ -1065,6 +1086,9 @@ def _render_plan(
             entity_id,
             marker_offset=offset,
         )
+    from dreamhouse.coordination.view_definitions import apply_plan_intent
+
+    apply_plan_intent(root, snapshot)
     return _serialized(root)
 
 
@@ -1851,6 +1875,9 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 css="dimension",
                 **{
                     "data-dimension-id": f"{view_id}-{entity_id}-height",
+                    "data-dimension-label-format": "span-fixed-2-m"
+                    if is_roof
+                    else "height-fixed-2-m",
                     "data-dimension-for": entity_id,
                     "data-dimension-value": _raw_n(display_height),
                     "data-dimension-source": "geometry"
@@ -2293,6 +2320,7 @@ def _render_window_sections(snapshot: Mapping[str, Any], evaluation: Mapping[str
                         "data-dimension-id": f"{view_id}-{opening_id}-worktop-sill-level-difference",
                         "data-dimension-for": opening_id,
                         "data-dimension-value": _raw_n(worktop_delta),
+                        "data-dimension-label-format": "worktop-delta-signed-2-m",
                         "data-dimension-unit": "m",
                         "data-dimension-source": "opening parameters + discipline equipment context",
                         "data-dimension-direction": "vertical level comparison",
@@ -2567,6 +2595,7 @@ def _render_window_sections(snapshot: Mapping[str, Any], evaluation: Mapping[str
             css="body",
             **{
                 "data-dimension-id": f"{view_id}-{opening_id}-height-summary",
+                "data-dimension-label-format": "height-fixed-2-m",
                 "data-dimension-for": opening_id,
                 "data-dimension-value": _raw_n(opening_height),
                 "data-dimension-unit": "m",
@@ -2613,6 +2642,7 @@ def _render_window_sections(snapshot: Mapping[str, Any], evaluation: Mapping[str
                 "data-dimension-unit": quantity_unit,
                 "data-dimension-source": "evaluation.quantity_ledger",
                 "data-dimension-formula": str(quantity.get("formula", "not supplied")),
+                "data-dimension-label-format": "nominal-area-fixed-2-m2",
                 "data-dimension-status": "resolved",
                 "data-anchor-refs": " ".join(
                     (
@@ -2747,6 +2777,7 @@ def _render_html(
         )
         finding_rows.append(
             f'<li class="finding status-{html.escape(status.lower(), quote=True)}" id="html-finding-{index}" '
+            f'data-saved-finding-id="{html.escape(str(finding.get("finding_id", "")), quote=True)}" '
             f'data-entity-ids="{html.escape(json.dumps(linked_ids, ensure_ascii=False), quote=True)}">'
             f"<strong>{html.escape(status)} · {html.escape(rule_id)}</strong>"
             f"<p>{html.escape(str(finding.get('message', '')))}</p>"
@@ -2822,6 +2853,9 @@ svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
     <section class="panel">
       <h2>Machine-readable review evidence</h2>
       <ul>
+        <li><a href="phase_gates.md">Plan subphase evidence</a></li>
+        <li><a href="information_requirements.json">Information by purpose and milestone</a></li>
+        <li><a href="evidence.json">Review evidence freshness</a></li>
         <li><a href="disciplines.json">Discipline inputs and status</a></li>
         <li><a href="view_inventory.json">View, occurrence and annotation inventory</a></li>
         <li><a href="anchor_lifecycle.json">Anchor lifecycle</a></li>
@@ -2905,6 +2939,41 @@ def _bind_review_anchor_sources(svg: str, snapshot: Mapping[str, Any]) -> str:
     for anchor in root.iter():
         identifier = anchor.get("data-anchor-entity-id")
         name = anchor.get("data-anchor-name")
+        context = anchor.get("data-anchor-context-id")
+        if context in {"PROJECT.PB", "PROJECT.P2"} and name and name.startswith("extent."):
+            source = "p2" if context == "PROJECT.P2" else "hall"
+            origin = ["geometry", "p2", "x_m"] if source == "p2" else {"datum": "project-origin"}
+            bindings = {"x": origin, "y": {"datum": "project-origin"}}
+            if name == "extent.x1":
+                length = ["geometry", source, "length_m"]
+                bindings["x"] = {"sum": [origin, length]} if source == "p2" else length
+            elif name == "extent.y1":
+                bindings["y"] = ["geometry", source, "width_m"]
+            anchor.set("data-anchor-bindings", json.dumps(bindings))
+        elif view_id == "window-sections" and anchor.get("data-anchor-status") != "unresolved":
+            level = ["entities", "GLZ-WS-A", "parameters", "level_m"]
+            if context == "PROJECT.PB" and name == "finished-floor":
+                anchor.set("data-anchor-bindings", json.dumps({"z": level}))
+            elif context and name == "worktop.top":
+                workstations = (
+                    snapshot.get("discipline_inputs", {})
+                    .get("equipment", {})
+                    .get("pb", {})
+                    .get("workstations", [])
+                )
+                for index, workstation in enumerate(workstations):
+                    if workstation.get("id") == context:
+                        height = [
+                            "discipline_inputs",
+                            "equipment",
+                            "pb",
+                            "workstations",
+                            index,
+                            "worktop_height",
+                        ]
+                        anchor.set(
+                            "data-anchor-bindings", json.dumps({"z": {"sum": [level, height]}})
+                        )
         if identifier not in entities or anchor.get("data-anchor-status") == "unresolved":
             continue
         entity = entities[identifier]
@@ -2957,7 +3026,10 @@ def render_views(snapshot: dict, evaluation: dict) -> dict[str, str]:
     """
     if not isinstance(snapshot, Mapping) or not isinstance(evaluation, Mapping):
         raise TypeError("snapshot and evaluation must be mappings")
+    from dreamhouse.coordination.stair_view import render_stair_section
+
     views = {
+        "stair-sections.svg": render_stair_section(snapshot, evaluation),
         "plan-pb.svg": _render_plan(
             snapshot, evaluation, view_id="plan-pb", level="PB", title="Ground floor plan (PB)"
         ),

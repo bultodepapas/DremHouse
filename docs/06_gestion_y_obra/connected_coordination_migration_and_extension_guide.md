@@ -1,13 +1,145 @@
 # Connected coordination — consumer migration and extension guide
 
-**Version:** 0.3<br>
+**Version:** 0.5<br>
 **Date:** 2026-10-03<br>
 **Status:** software consumer migration verified within declared coverage; schematic review authority only<br>
 **Source:** owner's instruction to complete software migrations; D-084; implementation
-baselines `f0448ef` and `d7c3e65`; the [phased plan](connected_project_coordination_next_step.md).<br>
+baselines `f0448ef`, `d7c3e65` and `7352f8a`, with the 2026-10-03 continuation; the
+[phased plan](connected_project_coordination_next_step.md).<br>
 **Scope:** connected source consumers, review publication, recovery and maintenance of
 the software. No changed house design, adopted equipment, engineering approval or cost
 target is established.
+
+## Plan closure — continuation from 7352f8a
+
+The closure follows all nineteen subphases rather than stopping at consumer migration.
+Each complete candidate now contains `phase_gates.json` and `phase_gates.md`: prerequisites,
+artifact links, acceptance test modules, source fingerprints, unlocated elements and native
+annotation coverage. Runtime evidence generation, executed test results and professional
+acceptance remain separate fields. The builder does not claim to have run its own tests.
+
+### Connected views and retained issue references
+
+Nine review SVGs include the new `stair-sections.svg` source-envelope projection. It links
+ST-F1/ST-F2/ST-L1 and the known D-STAIR floor datum to the same plan identities and SC-01
+findings. The two parallel flights retain their separate Y bands; the XZ projection does
+not invent nosings, a stair solid or a rear exit. EXT-ESC remains unlocated under CF-013
+and its discharge relationship remains open under CF-011.
+
+Every declared numeric label and resolved anchor in the nine review views is checked
+against its source or named measurement. Plan-envelope origins use the declared project
+coordinate datum; other context coordinates use explicit source paths and sums.
+
+Connected copies of existing stair-core sheets also refresh inherited SC-01 captions
+from `discipline_inputs.structure.stair`; the view audit rejects later caption drift.
+This updates only candidate review output. Historical drawing sources and published aliases
+remain unchanged.
+
+`viewpoints.json` retains one record per finding, exact scenario/input/model identity,
+actual entity occurrences and a captured view-definition fingerprint. Links in the main
+review reopen the identified issue against its immutable package. A mismatching package,
+missing occurrence or unavailable view is reported instead of selecting an unrelated
+entity. The header links directly to source-sheet navigation.
+
+### Presentation-only cut settings
+
+A schema-1 JSON study may add these optional settings:
+
+```json
+"view_settings": {
+  "plan-pb": {"cut_plane_m": 1.2, "depth_range_m": [0.0, 4.0]},
+  "plan-p2": {"cut_plane_m": 5.0, "depth_range_m": [3.8, 7.0]}
+}
+```
+
+These are example view choices, not adopted design dimensions. All values are project
+coordinates/elevations in metres. Depth must contain the cut plane; unsupported view IDs,
+unknown settings and nonfinite values fail validation. The generated plan distinguishes
+cut-envelope, on-plane, projected-above/below, outside-depth and unknown-height context.
+Outside-depth context remains visibly faded for orientation; it is not silently removed
+from the model or quantity schedule. With no settings the view is an explicit projection
+without an asserted cut plane. Presentation settings affect the input/build fingerprint,
+not the physical model fingerprint. A changed cut is reported as a review-input change,
+invalidates the candidate and refreshes saved viewpoint definitions; it does not mark cost
+as affected. Migration preserves the setting unchanged.
+
+### Purpose-specific information and review evidence
+
+`information_requirements.json` reports required and missing information independently
+for coordination, procurement, installation and maintenance, with a declared milestone,
+source references and label-independent evidence fingerprints. Meeting coordination
+fields cannot satisfy missing product, price, installation or maintenance evidence.
+
+A study can retain optional `evidence_records`. Each record requires `id`, `entity_ids`,
+`context_paths`, `purpose`, `milestone`, `responsible_role`, `recorded_status`,
+`reviewed_fingerprint`, and `source` (`path`, `sha256`). Paths are repository-relative;
+context dependencies start with `geometry` or `discipline_inputs`. Capture the dependency
+fingerprint with `evidence.dependency_fingerprint(snapshot, entity_ids, context_paths)`
+and the source byte hash with `model.file_hash(path)` when recording real review evidence.
+Do not replace those recorded hashes merely to make an old review appear current.
+
+`evidence.json` compares retained records with current source bytes and declared semantic
+dependencies. Changed or missing documents, moved/resized entities and unavailable
+references require review; display-label changes alone do not. Source records participate
+in build invalidation. Recorded statuses (`submitted`, `reviewed`, `accepted`, `rejected`)
+are authored metadata: the software does not authenticate the reviewer or grant approval.
+No actual professional review record is fabricated for the current baseline.
+
+### Extending and validating source families
+
+A new source family enters through the resolver's source adapter, then the existing
+rule, view, capability and complete-package path. An end-to-end fixture demonstrates
+this with an additional support reservation; it does not become a second authored model.
+Unknown kinds, mismatched map/element IDs, wrong host/space kinds, hosting cycles and
+deleted mandatory references are rejected. Calculation cycles are checked separately;
+reciprocal semantic relationships are not confused with calculation dependencies.
+
+Schema 1 remains backward compatible with the optional presentation and evidence fields.
+Migration is a precondition-preserving semantic rebase within this schema. Unknown future
+schemas remain rejected until an explicit conversion and its fixtures exist; no invented
+schema conversion or unrestricted entity creation operation is advertised.
+
+### Final acceptance record — 2026-10-03
+
+This record supersedes the historical checkpoints below for the delivered software scope.
+The nineteen subphases have implementations, regression evidence and generated gate
+artifacts. Professional acceptance remains `not_asserted` in the generated records.
+
+| Verification | Observed result |
+| --- | --- |
+| Complete repository suite | **534 tests passed** in 162.082 s. After the final caption corrections, **39 drawing/annotation/contract tests passed**; Ruff and `git diff --check` passed. |
+| Source-only build | Copied 806 repository files into an isolated directory without `.git`, `.build` or generated caches; complete build, freshness check and all 19 runtime gate records passed. |
+| Complete visual package | **36 current SVGs**: 9 review projections and 27 catalog consumers; **208 manifest artifacts**, including baseline comparisons and visual evidence. An independent repeat produced the identical manifest. |
+| Standard annotation contract | **322/322 source-bound anchors; 166/166 numerically evaluated dimensions; 166/166 verified visible labels**; 3 linked callouts and no unresolved declared anchors. |
+| Native source coverage | **20 supported sheets**, with 82 named dimensions and 2 separately audited schematic layer-sum dimensions. Seven tabular/screening sheets have an explicit not-applicable metric status; no catalog sheet remains in the unsupported-adapter bucket. |
+| Model and findings | 105 entities, 98 represented entities and 36 entities with supported editable parameters. **57 PASS / 186 OPEN / 0 FAIL**; 243 saved finding records. |
+| Propagation and release refusal | A fresh-interpreter W-H1 width study changed the opening quantity and exterior-wall remainder, produced the expected module-consistency FAIL, and was refused baseline release. |
+| Recovery and export | Selected a retained prior release, detected its stale source dependencies, restored and revalidated the current release, and exported that same release through the showcase builder. |
+| Preserved authority | The 27 historical SVG/PNG pairs still pass provenance checks. No historical JSON/SVG/PNG, `docs/BORN_Legacy/` artifact, design decision, scope or cost baseline was changed. |
+
+- Candidate: `aa8c5d4925508b5b556521298b019c3f375017fb332e34ea8af61511dec18787`.
+- Review release: `0a8a6d1578730cc5101b7fcc2b7ce5bb6e034eb91a9fd257be3fa431b62aad5e`.
+- Propagation-only study: `9bb60e7e2afaf6202acdaf085676ddda1dfd99b45f407b9f2837b738a9513962`.
+- Physical model fingerprint: `7386d33026a4a1e22f5b68df1c4187a18a9d01831c5f1f53f2bf06d3010fb6d3`.
+- Local execution logs: `.build/plan-closure-tests.log`,
+  `.build/plan-closure-final-captions-tests.log`, `.build/plan-closure-clean-build.json`
+  and `.build/plan-closure-verification.json`. These are reproducible generated evidence,
+  not additional authored model sources.
+
+Native coverage includes source-backed roof datums, Great Wall core spans, media-wall
+layout and the P2 wall-detail context. The adapters distinguish the 198 mm illustrative
+acoustic stack from its 200 mm nominal thickness, and retain the exterior 229/230 mm
+and inherited 297 mm discrepancy under CF-014. Those numbers describe the current
+captured sources; the adapters recompute their labels when sources change. Great Wall
+height and unresolved door positions remain unavailable. The seven unrepresented
+entities are EXT-BOD, EXT-ESC and the five PB-DOOR core records under CF-013.
+
+Visual review covered the new stair projection, the eight newly enrolled native
+projections and seven source-context sheets, including the corrected annotation offsets.
+Navigation was exercised by unit tests and a local Node fake-DOM check; full browser
+automation was not run. Projection audits certify only the source features declared in
+`drawing_inventory.json` / `view_inventory.json`; no wall/roof solid, engineering
+capacity, product performance or construction approval is inferred.
 
 ## Routine operation
 
@@ -84,27 +216,27 @@ older studies without silently accepting a changed surrounding design. Watching 
 candidate rebuilds; `--watch --require-no-fail` is rejected because a persistent watcher
 cannot provide a one-shot finding exit status.
 
-### Source-bound dimensions and cross-sheet navigation
+### Previous annotation checkpoint — baseline d7c3e65
 
 The root review index includes all enrolled entities, links to actual inventoried SVG
 occurrences, and per-sheet annotation coverage. Unrepresented entities and unresolved
 references remain visible. SVGs are generated output; these controls navigate and
 highlight the review, not edit geometry.
 
-`view_inventory.json` schema 3 records source checks separately from numerical
-measurement and visible-label checks. Known opening-feature anchors in the eight
-review projections bind to explicit model paths (or declared coordinate midpoints).
+At baseline `d7c3e65`, `view_inventory.json` schema 3 recorded source checks separately
+from numerical measurement and visible-label checks. Known opening-feature anchors in
+that eight-view review package bound to explicit model paths (or declared coordinate midpoints).
 Linear dimensions and four-anchor rectangular areas are evaluated numerically;
 labels declaring the fixed-format contract are checked against their painted text.
 Unbound context anchors and unsupported annotations are reported without approval.
 
-Five native catalog views now carry source-bound opening dimensions: front and side
+That checkpoint's five native catalog views carried source-bound opening dimensions: front and side
 A/B elevations, roof plan, and the measured A/B technical-bench elevations. Registered
 transforms independently compare actual SVG rectangles with source coordinates.
 Missing occurrences, changed rectangles, broken source bindings, corrupted declared
 labels and inconsistent dimensions block the candidate before pointer selection.
-Other sheets retain explicit unsupported/not-applicable annotation coverage; their
-native detail graphics are not silently certified by these five projection contracts.
+At that checkpoint, other sheets retained explicit unsupported/not-applicable annotation
+coverage. The final acceptance record above supersedes those coverage counts.
 
 ## Complete packages and recovery
 
@@ -169,7 +301,7 @@ its unsupported claims are visible. It does not mean that all disciplines or the
 design are complete. The phase checkpoint and verification record must state those
 separate outcomes explicitly.
 
-## Current completion record — continuation from d7c3e65
+## Previous completion record — continuation from d7c3e65
 
 This continuation implements study migration and a stricter annotation contract under
 D-084. It retains the earlier full drawing-consumer migration and adds these boundaries:
@@ -267,7 +399,9 @@ Future source/code edits deliberately produce a different input fingerprint and 
 a fresh build. GitHub Actions configuration was updated, but no remote CI run or external
 deployment is claimed by this local record.
 
-The remaining work is explicit: reconcile CF-013/CF-014, supply the outstanding
-engineering/product/site inputs, broaden named annotation coverage per sheet, and enroll
-new authoring operations or entity families through the extension contract above. The
-software migration does not close those separate design and coverage gates.
+At the `f0448ef` checkpoint, remaining work included reconciling CF-013/CF-014, supplying
+engineering/product/site inputs, broadening named annotation coverage and enrolling new
+families. The current software closure above supersedes that checkpoint for implemented
+consumer and extension coverage. CF-013/CF-014 and outstanding engineering/product/site
+inputs remain open; any further source family or annotation contract must use the extension
+path and keep its unsupported cases visible.

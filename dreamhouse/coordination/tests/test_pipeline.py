@@ -60,6 +60,24 @@ class PipelineTests(unittest.TestCase):
         self.assertIn('data-navigation-entity="W-H1"', page)
         self.assertIn("drawings/architecture-side-a-elevation.svg#", page)
         self.assertIn("CF-014", read_json(first / "model.json")["open_conflicts"])
+        gates = read_json(first / "phase_gates.json")
+        self.assertEqual(len(gates["subphases"]), 19)
+        self.assertTrue(
+            all(row["runtime_evidence_state"] == "generated" for row in gates["subphases"])
+        )
+        self.assertTrue(
+            all(
+                row["test_execution"] == "not_run_by_candidate_builder"
+                for row in gates["subphases"]
+            )
+        )
+        viewpoints = read_json(first / "viewpoints.json")
+        self.assertEqual(len(viewpoints["issues"]), len(read_json(first / "findings.json")))
+        self.assertEqual(
+            set(read_json(first / "information_requirements.json")["summary_by_purpose"]),
+            {"coordination", "procurement", "installation", "maintenance"},
+        )
+        self.assertEqual(read_json(first / "evidence.json")["records"], [])
         ledger = read_json(first / "quantities.json")
         totals = ledger["totals_by_assembly"]
         self.assertAlmostEqual(
@@ -71,7 +89,7 @@ class PipelineTests(unittest.TestCase):
         )
         self.assertEqual(totals["ROOFLIGHT-GLAZING"]["m2"], 23.04)
         self.assertIsNone(read_json(first / "cost.json")["approved_budget_total_cop"])
-        self.assertEqual(len(list(first.glob("*.svg"))), 8)
+        self.assertEqual(len(list(first.glob("*.svg"))), 9)
         self.assertTrue((first / "window-sections.svg").is_file())
         self.assertTrue((first / "disciplines.json").is_file())
         self.assertTrue((first / "dependencies.json").is_file())

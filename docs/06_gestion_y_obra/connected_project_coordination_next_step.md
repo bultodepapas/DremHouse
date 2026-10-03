@@ -1,7 +1,7 @@
 # Connected project coordination — phased implementation plan
 
 **Status:** software consumer migration verified within declared coverage; professional design gates remain open<br>
-**Version:** 0.10<br>
+**Version:** 0.11<br>
 **Date:** 2026-10-03<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -19,7 +19,14 @@ construction scope or cost, drawing promotion or professional gate closure is ad
 
 **Continuation baseline:** documentation reconciliation committed at `e58aba5`, following
 the first implementation at `0e69ddf`; increment 02 continues the existing D-084 authority.<br>
-**Revision note:** v0.10 continues from `d7c3e65`: precondition-preserving study migration,
+**Revision note:** v0.11 continues from `7352f8a` through the remaining software
+acceptance criteria: explicit view-cut intent, retained finding viewpoints, complete
+review anchor/label contracts, native geometry enrollment, a connected SC-01 section,
+purpose/milestone requirements, retained review-evidence invalidation and an end-to-end
+source-family extension fixture. `phase_gates.json` / `phase_gates.md` now identify the
+nineteen subphases and their runtime artifacts and acceptance test modules. Detailed
+completion evidence is in the [closure guide](connected_coordination_migration_and_extension_guide.md#plan-closure--continuation-from-7352f8a).
+v0.10 continues from `d7c3e65`: precondition-preserving study migration,
 source-bound review anchors, five audited native projections and cross-sheet occurrence
 navigation. The guide separates measured annotation coverage from unsupported sheets.
 v0.9 continues from `f0448ef` with current catalog consumer migration,
@@ -39,7 +46,9 @@ investigations support source-driven propagation and validation; R23 is revised 
 read-only representations. The owner's examples are illustrations, not diagnosed clashes.
 Implementation evidence and commands are in the [working workflow](connected_coordination_workflow.md)
 and [source inventory](connected_source_inventory.md). The phase specifications below
-remain the completion contract; an implemented subset does not close the entire roadmap.
+remain the scope contract. The current checkpoint and closure guide record completion of
+the software criteria within declared source and capability coverage; they do not close
+professional design, construction, or unprovided-data gates.
 
 ## Current migration checkpoint — 2026-10-03
 
@@ -49,7 +58,16 @@ contains executable commands and final verification evidence. All completions ar
 by actual source data and reported capabilities; the construction and professional gates
 in the master plan remain independent.
 
-Current continuation acceptance (baseline `d7c3e65`): **493 tests passed**, static and
+Current acceptance (continuation from `7352f8a`): **534 repository tests passed**, followed
+by **39 passing targeted tests after the final caption corrections**; static, source-only
+build, freshness, deterministic regeneration, recovery and showcase checks passed.
+The package contains **36 current SVGs**, **322 source-bound anchors**, **166 evaluated
+and visibly verified named dimensions**, and **243 saved finding records**. Native
+coverage is **20 source-backed sheets**, two additional schematic layer-sum dimensions,
+and seven explicitly nonmetric sheets. The [final acceptance record](connected_coordination_migration_and_extension_guide.md#final-acceptance-record--2026-10-03)
+retains exact package identities, executed evidence and coverage boundaries.
+
+Previous continuation acceptance (baseline `d7c3e65`): **493 tests passed**, static and
 artifact checks passed, and the 35-view package reproduced identically. The package has
 204 source-bound anchors, 112 evaluated measurements and 95 checked numeric labels.
 Study migration preserves original preconditions; native annotation coverage is five
@@ -62,25 +80,33 @@ passed freshness, release, recovery and showcase-export checks. Its evaluation i
 **57 PASS / 186 OPEN / 0 FAIL**. The guide records exact package identities, propagation
 fixtures, visual inspection and the limits of these results.
 
-| Subphases | Delivered connection | Acceptance boundary |
+| Subphase | Delivered software scope | Boundary retained in the current record |
 | --- | --- | --- |
-| 0.1–0.2 | Existing source/ownership audit plus captured provenance for all 27 catalog identities; preserved historical regression scenarios | Historical aliases remain the adopted issue record; changed source definitions require traceable precedence |
-| 0.3 | Current-source quantity parity and same-snapshot schedules retained through the migration | Measured opening and wall-line quantities remain distinct from unspecified assemblies, mass and price |
-| 1.1–1.3 | Shared entity IDs, exact supported parameter contract, baseline preconditions, captured native/structural context and dependency ordering | `capabilities.json` exposes all entities and unsupported operations; no arbitrary add/delete/rehost or general geometry editor |
-| 2.1–2.3 | Unified findings/coverage/lifecycle plus programme, equipment, wall-line, stair, phase/service and maintenance adapters | Missing data stays OPEN; current data is not replaced with plausible defaults or interpreted as professional approval |
-| 3.1–3.3 | Eight source-checked review projections, five native opening projection contracts, a consumer per catalog identity, and all-sheet occurrence navigation | Inventory distinguishes actual entity/annotation coverage; catalog-wide named dimensions and construction-detail design are not claimed |
-| 4.1–4.2 | Schema-3 complete packages, full source/code invalidation, deterministic visual exports, CI and optional debounced watching | Each watched build starts a new interpreter; no selective-cache correctness or skipped-analysis freshness claim |
-| 4.3 | Verified immutable baseline review release, atomic reader pointer, rollback and showcase export | Studies remain candidates; historic current aliases are preserved. Selecting a review is not design adoption |
-| 5.1 | Per-family/operation/view/rule capability report, regenerated window/door consumers and structural context | Seven PB doors remain unlocated under CF-013; structural solids/heights await source evidence |
-| 5.2 | W05/W04R bounded line quantities, W01A adjacency candidates, SC-01 levels and current structural screening inputs | No inferred wall area/mass/price; CF-009/010/011 remain open. CF-014 exposes inherited wall-note disagreement |
-| 5.3 | Actual source-backed phase reservations, bench/service interfaces and maintenance requirements | Routes and product/installed/tested/commissioned evidence remain explicitly absent; no fabricated service network |
-| 5.4 | Catalog dispatcher, complete-package checks, reader/export/recovery commands and extension protocol | Consumer migration is review-purpose software delivery. Per-sheet annotation limitations and professional inputs are separately recorded |
+| 0.1 | Source ownership and a consumer inventory capture the 27 catalog identities and their provenance. | Conflicting or incomplete project sources remain explicit; the adopted aliases are unchanged. |
+| 0.2 | Preserved scenarios, current geometry/quantity comparisons and regression fixtures provide a repeatable baseline. | Historical scenarios remain distinct from the current-source scenario. |
+| 0.3 | Current-source opening and wall-line quantities feed same-snapshot schedules and reports. | Unspecified assemblies, mass, rates and prices remain unknown. |
+| 1.1 | Stable entity IDs, declared geometry capabilities, project axes/datums and available host/space/stair context resolve in one snapshot. | Missing locations, heights and solids are not inferred. |
+| 1.2 | Typed references and the calculation/consumer dependency graph are validated, including extension-fixture cycle checks. | The graph supports complete rebuilds; selective-cache correctness is not claimed. |
+| 1.3 | Strict input validation, source/model/build fingerprints and precondition-preserving study migration are implemented. | Unsupported operations and unknown future schema versions are rejected with diagnostics. |
+| 2.1 | Pinned source studies accept only declared edits, preserve expected-value preconditions and fail without replacing the prior complete candidate. | General add/delete/rehost or arbitrary geometry editing is outside the contract. |
+| 2.2 | Unified findings and explicit coverage combine opening, programme, workstation, equipment, wall-line, stair and structural-context checks. | Missing data stays OPEN; schematic checks are not engineering conclusions. |
+| 2.3 | Finding lifecycle, affected-consumer reporting, review-input impact and retained evidence freshness react to declared source/dependency changes. | A current fingerprint or recorded status does not authenticate a reviewer or grant approval. |
+| 3.1 | Catalog consumers render from the resolved snapshot and are represented in the migration ledger. | Their generated review copies do not replace or promote the adopted catalog issues. |
+| 3.2 | Semantic views, source-bound anchors, declared annotations and optional plan cut/depth settings are validated. | Presentation settings change view context, not model geometry or quantities; annotation coverage remains sheet-specific. |
+| 3.3 | Nine review projections include the SC-01 stair-envelope section; saved finding viewpoints retain package/view/entity identities and navigation. | The stair projection does not create nosings, a solid stair, or a resolved rear discharge. |
+| 4.1 | A complete candidate packages model, findings, reports, views, source evidence and phase-gate records. | Runtime artifact presence is reported separately from executed tests and human review. |
+| 4.2 | Source, code, rendering and authored review inputs participate in freshness checks; view-only changes update views/viewpoints without invalidating quantities or cost. | Builds remain full rebuilds; cross-platform renderer equivalence is not certified. |
+| 4.3 | Immutable review releases, pointer selection, verification, rollback and showcase export are implemented. | A review release remains a candidate and does not adopt a design or alter current aliases. |
+| 5.1 | Capability coverage and an end-to-end new-family fixture exercise source adapter, resolver, rules, views and package generation. | Broader families and operations require actual source contracts and their own coverage. |
+| 5.2 | SC-01 section context, bounded wall/stair extensions and available cost mappings consume the shared snapshot. | CF-009/010/011 remain open; no unsupported wall mass, structural capacity, price or stair discharge is supplied. |
+| 5.3 | Purpose/milestone information requirements and retained professional-evidence records report missing fields and invalidation. | Product, route, installation, testing, commissioning and maintenance evidence is not fabricated. |
+| 5.4 | All catalog consumers have a generated review consumer, explicit capability/annotation coverage and a reproducible extension path. | Declared per-sheet limits and project/professional inputs remain open; consumer coverage is not drawing equivalence. |
 
-The initial pilot has therefore become a source-driven review system with explicit
-coverage and recovery. Its next design-enabling input is reconciled source evidence for
-CF-013/CF-014 and the unresolved engineering interfaces. New entity families and broader
-authoring operations follow the documented extension protocol when their source contracts
-exist; they must not bypass the same preconditions, propagation checks or authority gates.
+The software acceptance sequence is complete within this declared source and capability
+scope. The next project-facing inputs are reconciled evidence for CF-013/CF-014 and the
+unresolved engineering interfaces. New entity families and authoring operations remain
+future extensions that require source contracts and the same preconditions, propagation
+checks and authority gates; they are not unfinished gates in this delivered sequence.
 
 ## Implementation checkpoint — 2026-10-02
 
@@ -116,7 +142,7 @@ separately published. The baseline introduces no hypothetical clash or geometric
 | 5.3 | No route/product geometry fabricated | Services, operation/removal envelopes and phased handover remain planned |
 | 5.4 | All 27 current outputs explicitly labelled pending migration | Full current-set rollout and extension acceptance remain planned |
 
-The next implementation gate is to qualify migration of existing publication consumers
+At this retained increment-02 checkpoint, the next implementation gate was to qualify migration of existing publication consumers
 against the shared snapshot, extending their occurrence and annotation coverage. Resolve
 the recorded source/data gaps before enabling additional authoring or engineering results.
 The current adapters and GLZ-WS-A plate are bounded deliverables, not full discipline closure.
@@ -253,10 +279,12 @@ is a manageable family with an existing
 [shared D-083 source](../../dreamhouse/window_daylight_d083.json). It connects daylight,
 plans, elevations, details, secondary structure, envelope performance and quantities.
 
-This section defines the complete target demonstration. The implemented eight-view
-review covers projections, named annotations, quantities and findings. The GLZ-WS-A
-section links opening/worktop datums and shows unresolved head/sill/jamb control paths.
-Assembly selection, engineered interfaces and their performance calculations remain open.
+This section records the original target demonstration and its acceptance examples. The
+current review extends it to nine projections, saved finding viewpoints, source-bound
+annotation checks and the SC-01 envelope section; current delivery status is summarized
+above and detailed in the closure guide. The GLZ-WS-A section links opening/worktop datums
+and shows unresolved head/sill/jamb control paths. Assembly selection, engineered
+interfaces and their performance calculations remain open.
 
 ```mermaid
 flowchart TD
@@ -915,11 +943,10 @@ SVGs and the static showcase display its results.
 | C06 — Delivery reliability | Phase 4 verifies complete, repeatable builds and controlled publication. |
 
 The first implementation delivered Phase 0's source/consumer inventory, baseline
-fixtures and current-window comparison, plus the connected review path. Its continuing
-review questions are concrete: which source
-owns each input, which current views and calculations consume it, which historical checks
-must remain unchanged, and which outputs still require migration. Then advance through
-the phase gates; an attractive viewer is not a substitute for resolving those questions.
+fixtures and current-window comparison. The current closure record traces the subsequent
+software work through all nineteen subphases. Its source, coverage and professional limits
+remain visible; a connected review is not a substitute for resolving project decisions or
+engineering evidence.
 
 ### 8.2 Evidence retained at each phase gate
 
@@ -933,8 +960,9 @@ responsibilities, not a new approval board.
 The implemented candidate contains `model.json`, `changes.json`, `findings.json`,
 `coverage.json`, `finding_lifecycle.json`, `openings.json`, `quantities.json`, `cost.json`,
 `drawing_inventory.json`, `view_inventory.json`, `disciplines.json`, `dependencies.json`,
-`anchor_lifecycle.json`, eight SVG files, `index.html` and `review.md`, plus
-`manifest.json` with hashes for every generated artifact. Optional visual output adds
+`anchor_lifecycle.json`, `viewpoints.json`, `information_requirements.json`, `evidence.json`,
+`phase_gates.json` / `phase_gates.md`, nine SVG review projections, `index.html` and
+`review.md`, plus `manifest.json` with hashes for every generated artifact. Optional visual output adds
 PNGs/contact sheets, visual manifests/comparisons and archived baseline SVGs/PNGs. Views are at the
 package root, not a `views/` subdirectory. The output layout is
 `.build/coordination/issues/<issue_id>/`; the issue identity combines source input hash,
