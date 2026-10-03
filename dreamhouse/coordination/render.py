@@ -60,6 +60,7 @@ text { font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif
 .dimension.is-selected { fill: #8A5A16; font-weight: 800; }
 .entity-occurrence.is-selected .entity-label { fill: #8A5A16; font-weight: 800; }
 .finding-marker { font-size: 11px; font-weight: 800; }
+.coordinate-axis { fill: var(--muted); font-size: 9px; font-weight: 700; }
 """.strip()
 
 
@@ -599,27 +600,49 @@ def _finding_marker(
     ET.SubElement(
         anchor, _q("title")
     ).text = f"{group_count} related finding record(s): {rules}. Select to reach {rule_id}."
-    marker_x = x + ((marker_offset % 5) - 2) * 9
-    marker_y = y - 12 + (((marker_offset // 5) % 3) - 1) * 9
-    _circle(
-        anchor,
-        marker_x,
-        marker_y,
-        8,
-        fill=fill,
-        stroke=COLOURS["panel"],
-        stroke_width=1,
-        **{"class": "finding-marker"},
-    )
-    _text(
-        anchor,
-        marker_x,
-        marker_y + 3.5,
-        "!" if status == "FAIL" else "?",
-        size=10,
-        css="warning",
-        anchor="middle",
-    )
+    marker_x = x
+    marker_y = y
+    if marker_offset:
+        marker_x += ((marker_offset % 5) - 2) * 4
+        marker_y += ((marker_offset // 5) % 3 - 1) * 4
+    if status == "FAIL":
+        ET.SubElement(
+            anchor,
+            _q("polygon"),
+            {
+                "points": (
+                    f"{_n(marker_x)},{_n(marker_y - 5)} "
+                    f"{_n(marker_x + 5)},{_n(marker_y)} "
+                    f"{_n(marker_x)},{_n(marker_y + 5)} "
+                    f"{_n(marker_x - 5)},{_n(marker_y)}"
+                ),
+                "fill": fill,
+                "stroke": COLOURS["panel"],
+                "stroke-width": "1",
+                "class": "finding-marker",
+            },
+        )
+        _text(anchor, marker_x, marker_y + 3, "!", size=7, css="warning", anchor="middle")
+    else:
+        _circle(
+            anchor,
+            marker_x,
+            marker_y,
+            4.5,
+            fill=COLOURS["panel"],
+            stroke=fill,
+            stroke_width=1.5,
+            **{"class": "finding-marker"},
+        )
+        _circle(
+            anchor,
+            marker_x,
+            marker_y,
+            1.5,
+            fill=fill,
+            stroke=fill,
+            stroke_width=0.5,
+        )
 
 
 def _draw_finding_panel(
@@ -700,8 +723,8 @@ def _draw_finding_panel(
             top,
             width - 28,
             66,
-            fill=COLOURS["open_surface"],
-            stroke=color,
+            fill=COLOURS["panel"],
+            stroke=COLOURS["rule"],
             rx=3,
             id=panel_id,
             **{
@@ -713,6 +736,7 @@ def _draw_finding_panel(
         heading = f"{status} · {rule_id}" + (
             f" · {finding_count} records" if finding_count > 1 else ""
         )
+        _rect(root, x + 14, top, 4, 66, fill=color, stroke=color, stroke_width=0, rx=2)
         message = str(finding.get("message", ""))
         ET.SubElement(card, _q("title")).text = f"{heading}. {message}"
         heading_lines = textwrap.wrap(
@@ -857,6 +881,22 @@ def _render_plan(
 
     def transform(world_x: float, world_y: float) -> tuple[float, float]:
         return left + (world_x - origin_x) * scale, top + (width - world_y) * scale
+
+    root.set("data-plan-axis-directions", "positive X right; positive Y up")
+    axis_label = "X+ / Y+"
+    axis_definition = str(geometry.get("axes", ""))
+    if "X front-to-rear" in axis_definition and "Y Side A-to-B" in axis_definition:
+        axis_label = "X+ front → rear · Y+ Side A → B"
+    _text(root, px + 12, py + 41, axis_label, size=9, css="small")
+    axis_x, axis_y = px + pw - 63, py + 48
+    _line(root, axis_x, axis_y, axis_x + 28, axis_y, stroke=COLOURS["muted"], width=1.2)
+    _line(root, axis_x, axis_y, axis_x, axis_y - 28, stroke=COLOURS["muted"], width=1.2)
+    _line(root, axis_x + 28, axis_y, axis_x + 23, axis_y - 3, stroke=COLOURS["muted"], width=1.2)
+    _line(root, axis_x + 28, axis_y, axis_x + 23, axis_y + 3, stroke=COLOURS["muted"], width=1.2)
+    _line(root, axis_x, axis_y - 28, axis_x - 3, axis_y - 23, stroke=COLOURS["muted"], width=1.2)
+    _line(root, axis_x, axis_y - 28, axis_x + 3, axis_y - 23, stroke=COLOURS["muted"], width=1.2)
+    _text(root, axis_x + 32, axis_y + 3, "X+", size=9, css="coordinate-axis")
+    _text(root, axis_x, axis_y - 33, "Y+", size=9, css="coordinate-axis", anchor="middle")
 
     if show_hall:
         x0, y0 = transform(origin_x, width)
@@ -1042,7 +1082,10 @@ def _render_plan(
                 anchor="middle",
                 **{"data-label-for": entity_id},
             )
-        pending_markers.append((group, anchor[0] + 4, anchor[1] - 2, entity_id, occurrences - 1))
+        marker_x, marker_y = anchor
+        if rect_bounds is not None:
+            marker_x, marker_y = transform(rect_bounds[1], rect_bounds[3])
+        pending_markers.append((group, marker_x + 5, marker_y - 5, entity_id, 0))
     if occurrences == 0:
         _text(
             root,
@@ -1086,10 +1129,85 @@ def _render_plan(
             entity_id,
             marker_offset=offset,
         )
+    _add_stair_section_reference(root, view_id, snapshot, transform, level)
     from dreamhouse.coordination.view_definitions import apply_plan_intent
 
     apply_plan_intent(root, snapshot)
     return _serialized(root)
+
+
+def _add_stair_section_reference(
+    root: ET.Element,
+    view_id: str,
+    snapshot: Mapping[str, Any],
+    transform: Any,
+    level: str,
+) -> None:
+    """Reference known stair plan envelopes with a source-derived SC-01 tag."""
+    entities = {
+        _display_id(key, entity): entity
+        for key, entity in _entity_pairs(snapshot)
+        if _display_id(key, entity) in {"ST-F1", "ST-F2"}
+    }
+    if not all(identifier in entities for identifier in ("ST-F1", "ST-F2")):
+        return
+
+    bounds = [_rect_geometry(_geom(entities[identifier])) for identifier in ("ST-F1", "ST-F2")]
+    if any(bound is None for bound in bounds):
+        return
+    for identifier in ("ST-F1", "ST-F2"):
+        geometry = _geom(entities[identifier])
+        z0, z1 = _number(geometry.get("z0")), _number(geometry.get("z1"))
+        if z0 is None or z1 is None or z1 <= z0:
+            return
+
+    typed_bounds = [bound for bound in bounds if bound is not None]
+    x0 = min(bound[0] for bound in typed_bounds)
+    x1 = max(bound[1] for bound in typed_bounds)
+    y0 = min(bound[2] for bound in typed_bounds)
+    y1 = max(bound[3] for bound in typed_bounds)
+    _left, top = transform(x0, y1)
+    right, _bottom = transform(x1, y0)
+    tag_x, tag_y = right + 8, top + 3
+    target_view = "stair-sections"
+    anchor_refs = ("ST-F1.rise.z0", "ST-F1.rise.z1", "ST-F2.rise.z0", "ST-F2.rise.z1")
+    anchor_targets = tuple(
+        f"stair-sections-anchor-{_token(ref.replace('.rise.', '-').replace('.', '-'))}"
+        for ref in anchor_refs
+    )
+    callout_id = f"{view_id}-callout-SC-01"
+    callout = ET.SubElement(
+        root,
+        _q("g"),
+        {
+            "id": callout_id,
+            "data-callout-id": callout_id,
+            "data-callout-refs": " ".join(anchor_refs),
+            "data-callout-target-view-id": target_view,
+            "data-callout-targets": " ".join(anchor_targets),
+            "data-reference-type": "cross-level stair projection",
+            "data-section-cut-claim": "false",
+            "data-related-view-id": target_view,
+            "data-plan-level": level,
+        },
+    )
+    _line(root, right, top + 6, tag_x, tag_y + 9, stroke=COLOURS["info"], width=1)
+    _rect(
+        callout,
+        tag_x,
+        tag_y,
+        62,
+        18,
+        fill=COLOURS["panel"],
+        stroke=COLOURS["info"],
+        stroke_width=1,
+        rx=3,
+        **{"class": "section-reference"},
+    )
+    _text(callout, tag_x + 31, tag_y + 12, "SC-01", size=8, css="coordinate-axis", anchor="middle")
+    ET.SubElement(callout, _q("title")).text = (
+        "SC-01 cross-level source-envelope projection; no stair cut, solid or discharge is implied."
+    )
 
 
 def _horizontal_dimension(
@@ -1170,6 +1288,7 @@ def _vertical_dimension(
     anchor_refs: tuple[str, str] | None = None,
     anchor_targets: tuple[str, str] | None = None,
     datum: str | None = None,
+    label_position: tuple[float, str] | None = None,
 ) -> None:
     _line(
         parent,
@@ -1210,14 +1329,18 @@ def _vertical_dimension(
         attrs["data-anchor-targets"] = " ".join(anchor_targets)
     if datum:
         attrs["data-datum"] = datum
+    label_x, label_anchor = label_position or (
+        x_dimension + (8 if x_dimension > x_object else -8),
+        "start" if x_dimension > x_object else "end",
+    )
     _text(
         parent,
-        x_dimension + (8 if x_dimension > x_object else -8),
+        label_x,
         (y0 + y1) / 2,
         _dim(value),
         size=10,
         css="dimension",
-        anchor="start" if x_dimension > x_object else "end",
+        anchor=label_anchor,
         **attrs,
     )
 
@@ -1280,6 +1403,178 @@ def _horizontal_extent(entity: Mapping[str, Any], axis: str) -> tuple[float, flo
     return min(first, second), max(first, second)
 
 
+def _sill_label_layout(
+    candidates: list[tuple[str, Mapping[str, Any], tuple[float, float], tuple[float, float, str]]],
+    to_screen: Any,
+    *,
+    minimum_y: float,
+    maximum_y: float,
+    avoid_y: tuple[float, ...] = (),
+) -> dict[str, tuple[float, float, str]]:
+    """Place sill labels in clear lanes around projected openings and level datums."""
+    shape_boxes = {
+        key: _projected_candidate_box(horizontal, vertical, to_screen)
+        for key, _entity, horizontal, vertical in candidates
+    }
+    labels: list[tuple[str, float, float, float, str]] = []
+    width_label_boxes = []
+    for key, entity, horizontal, _vertical in candidates:
+        if str(entity.get("kind", "")).lower() not in {"opening", "door"}:
+            continue
+        left, _top, right, bottom = shape_boxes[key]
+        half_width = len(_dim(horizontal[1] - horizontal[0])) * 5.6 / 2
+        center = (left + right) / 2
+        # Width labels sit 17 px below the opening, above their dimension line.
+        width_label_boxes.append((center - half_width, bottom + 7, center + half_width, bottom + 20))
+    for key, entity, horizontal, vertical in candidates:
+        sill = _number(_params(entity).get("sill_m"))
+        if sill is None:
+            continue
+        level = _number(_params(entity).get("level_m"))
+        level_text = "" if level is None else f" · LEVEL {level:+.2f} m"
+        label = f"SILL {sill:+.2f} m{level_text}"
+        x, head_y = to_screen((horizontal[0] + horizontal[1]) / 2, vertical[1])
+        width = len(label) * 3.9
+        labels.append((key, x, head_y - 21, width, label))
+
+    placed: list[tuple[float, float, float, float]] = []
+    result: dict[str, tuple[float, float, str]] = {}
+    for key, x, base_y, width, label in sorted(labels, key=lambda item: (item[1], item[2])):
+        offsets = [0]
+        for lane in range(1, 61):
+            offsets.extend((-lane * 4, lane * 4))
+        for offset in offsets:
+            y = base_y + offset
+            if y < minimum_y or y > maximum_y:
+                continue
+            box = (x - width / 2, y - 8.5, x + width / 2, y + 2.5)
+            if any(box[1] < datum_y + 7 and box[3] > datum_y - 7 for datum_y in avoid_y):
+                continue
+            if any(
+                _boxes_overlap(box, shape_box, padding=2)
+                for shape_box in shape_boxes.values()
+            ):
+                continue
+            if any(_boxes_overlap(box, other, padding=2) for other in placed):
+                continue
+            if any(_boxes_overlap(box, other, padding=3) for other in width_label_boxes):
+                continue
+            result[key] = (x, y, label)
+            placed.append(box)
+            break
+        else:
+            # Keep the source annotation visible if a dense facade has no clear lane.
+            result[key] = (x, base_y, label)
+    return result
+
+
+def _projected_candidate_box(
+    horizontal: tuple[float, float],
+    vertical: tuple[float, float, str],
+    to_screen: Any,
+) -> tuple[float, float, float, float]:
+    left, top = to_screen(horizontal[0], vertical[1])
+    right, bottom = to_screen(horizontal[1], vertical[0])
+    return min(left, right), min(top, bottom), max(left, right), max(top, bottom)
+
+
+def _boxes_overlap(
+    first: tuple[float, float, float, float],
+    second: tuple[float, float, float, float],
+    *,
+    padding: float = 0,
+) -> bool:
+    return (
+        first[0] < second[2] + padding
+        and first[2] > second[0] - padding
+        and first[1] < second[3] + padding
+        and first[3] > second[1] - padding
+    )
+
+
+def _vertical_dimension_layout(
+    candidates: list[tuple[str, Mapping[str, Any], tuple[float, float], tuple[float, float, str]]],
+    to_screen: Any,
+    sill_labels: Mapping[str, tuple[float, float, str]],
+    *,
+    panel_bounds: tuple[float, float, float, float],
+) -> dict[str, tuple[float, float, float, str]]:
+    """Put vertical dimension labels and leaders in source-projected clear space."""
+    shape_boxes = {
+        key: _projected_candidate_box(horizontal, vertical, to_screen)
+        for key, _entity, horizontal, vertical in candidates
+    }
+    sill_boxes = {
+        key: (x - len(label) * 3.9 / 2, y - 8.5, x + len(label) * 3.9 / 2, y + 2.5)
+        for key, (x, y, label) in sill_labels.items()
+    }
+    placed_labels: list[tuple[float, float, float, float]] = []
+    result: dict[str, tuple[float, float, float, str]] = {}
+    panel_left, _panel_top, panel_right, _panel_bottom = panel_bounds
+
+    ordered = sorted(candidates, key=lambda item: (item[2][0] + item[2][1], item[0]))
+    for key, entity, horizontal, vertical in ordered:
+        if str(entity.get("kind", "")).lower() not in {"opening", "door"}:
+            continue
+        box = shape_boxes[key]
+        center_y = (box[1] + box[3]) / 2
+        y0, y1 = box[1], box[3]
+        value = vertical[1] - vertical[0]
+        label_width = len(_dim(value)) * 5.6
+        text_box_height = 12
+        chosen: tuple[float, float, float, str] | None = None
+        for side in (1, -1):
+            object_x = box[2] if side > 0 else box[0]
+            maximum_offset = (panel_right - object_x) if side > 0 else (object_x - panel_left)
+            for offset in range(36, max(37, int(maximum_offset) + 1), 12):
+                dimension_x = object_x + side * offset
+                label_x = dimension_x + side * 8
+                if side > 0:
+                    text_box = (
+                        label_x - 1,
+                        center_y - text_box_height / 2,
+                        label_x + label_width + 1,
+                        center_y + text_box_height / 2,
+                    )
+                else:
+                    text_box = (
+                        label_x - label_width - 1,
+                        center_y - text_box_height / 2,
+                        label_x + 1,
+                        center_y + text_box_height / 2,
+                    )
+                corridor = (
+                    min(object_x, dimension_x) - 1,
+                    y0 - 4,
+                    max(object_x, dimension_x) + 1,
+                    y1 + 4,
+                )
+                other_shapes = [
+                    other_box for other_key, other_box in shape_boxes.items() if other_key != key
+                ]
+                if any(_boxes_overlap(corridor, other, padding=1) for other in other_shapes):
+                    continue
+                if any(_boxes_overlap(text_box, other, padding=2) for other in other_shapes):
+                    continue
+                if any(_boxes_overlap(text_box, other, padding=2) for other in sill_boxes.values()):
+                    continue
+                if any(_boxes_overlap(text_box, other, padding=2) for other in placed_labels):
+                    continue
+                if text_box[0] < panel_left + 6 or text_box[2] > panel_right - 6:
+                    continue
+                chosen = (object_x, dimension_x, label_x, "start" if side > 0 else "end")
+                placed_labels.append(text_box)
+                break
+            if chosen is not None:
+                break
+        if chosen is None:
+            object_x = box[2]
+            dimension_x = object_x + 36
+            chosen = (object_x, dimension_x, dimension_x + 8, "start")
+        result[key] = chosen
+    return result
+
+
 def _render_elevation(
     snapshot: Mapping[str, Any],
     evaluation: Mapping[str, Any],
@@ -1293,12 +1588,15 @@ def _render_elevation(
         "The shell and roof are omitted wherever the snapshot provides no geometry."
     )
     root = _root(snapshot, view_id, title, description)
+    view_direction = {"A": "+Y", "B": "−Y", "FRONT": "+X", "REAR": "−X"}[facade]
+    root.set("data-view-direction", view_direction)
+    root.set("data-view-direction-basis", "model coordinate axes; no geographic north assigned")
     _frame(
         root,
         snapshot,
         view_id,
         title,
-        "Facade projection · only supplied horizontal and vertical extents are shown",
+        f"Facade projection · view toward {view_direction} · supplied extents only",
     )
     hall = snapshot.get("geometry", {}).get("hall", {})
     hall_length = _number(hall.get("length_m")) if isinstance(hall, Mapping) else None
@@ -1332,7 +1630,7 @@ def _render_elevation(
         root,
         gx + 12,
         gy + 22,
-        f"{facade} facade · {plane_label} · horizontal model {axis.upper()} (m)",
+        f"{facade} facade · {plane_label} · model {axis.upper()} (m) · view {view_direction}",
         size=11,
         css="panel-title",
     )
@@ -1362,6 +1660,21 @@ def _render_elevation(
         def to_screen(horizontal: float, elevation: float) -> tuple[float, float]:
             return left + (horizontal - h0) * scale, bottom - (elevation - z0) * scale
 
+        datum_elevations = [0.0] + ([] if p2_level is None else [p2_level])
+        avoid_y = tuple(to_screen(h0, elevation)[1] for elevation in datum_elevations)
+        sill_labels = _sill_label_layout(
+            candidates,
+            to_screen,
+            minimum_y=gy + 40,
+            maximum_y=gy + gh - 24,
+            avoid_y=avoid_y,
+        )
+        vertical_dimensions = _vertical_dimension_layout(
+            candidates,
+            to_screen,
+            sill_labels,
+            panel_bounds=(gx + 8, gy, gx + gw - 8, gy + gh),
+        )
         for index, (key, entity, horizontal, vertical) in enumerate(candidates):
             group = _entity_group(root, view_id, key, entity, index)
             entity_id = _display_id(key, entity)
@@ -1471,12 +1784,18 @@ def _render_elevation(
                     datum=f"facade {plane_label} · model {axis.upper()}",
                 )
                 measured_height = vertical[1] - vertical[0]
+                dimension_object_x, dimension_x, dimension_label_x, dimension_label_anchor = (
+                    vertical_dimensions.get(
+                        key,
+                        (x1, x1 + 36, x1 + 44, "start"),
+                    )
+                )
                 _vertical_dimension(
                     group,
-                    x1,
+                    dimension_object_x,
                     y0,
                     y1,
-                    x1 + 20,
+                    dimension_x,
                     measured_height,
                     f"{view_id}-{entity_id}-height",
                     entity_id,
@@ -1498,34 +1817,38 @@ def _render_elevation(
                     if opening_anchors
                     else None,
                     datum="project elevation above PB ±0.00 m",
+                    label_position=(dimension_label_x, dimension_label_anchor),
                 )
                 params = _params(entity)
                 sill = _number(params.get("sill_m"))
-                level = _number(params.get("level_m"))
                 if sill is not None:
-                    baseline = "" if level is None else f" above level {_dim(level)}"
-                    _text(
-                        group,
-                        x0,
-                        y1 - 9,
-                        f"Sill {_dim(sill)}{baseline}",
-                        size=8.5,
-                        css="small",
-                        **{"data-note-for": entity_id},
-                    )
+                    label_x, label_y, sill_text = sill_labels[key]
+                    if abs(label_y - (y1 - 21)) > 30:
+                        _line(
+                            group, label_x, label_y + 4, (x0 + x1) / 2, y1 - 3,
+                            stroke=COLOURS["muted"], width=0.7,
+                            **{"stroke-dasharray": "2 3", "data-note-leader-for": entity_id},
+                        )
+                    sill_attrs = {"data-note-for": entity_id}
                     if dimensionable_kind == "opening" and opening_anchors:
-                        _text(
-                            group,
-                            x0,
-                            y1 - 21,
-                            "SILL DATUM",
-                            size=7.5,
-                            css="semantic-anchor-label",
-                            **{
+                        sill_attrs.update(
+                            {
                                 "data-anchor-ref": f"{entity_id}.opening.sill",
                                 "data-anchor-target": opening_anchors["opening.sill"][1],
-                            },
+                            }
                         )
+                    _text(
+                        group,
+                        label_x,
+                        label_y,
+                        sill_text,
+                        size=7.5,
+                        css="semantic-anchor-label"
+                        if dimensionable_kind == "opening" and opening_anchors
+                        else "small",
+                        anchor="middle",
+                        **sill_attrs,
+                    )
         datums = [("PB", 0.0)]
         if p2_level is not None:
             datums.append(("P2", p2_level))
@@ -1591,7 +1914,7 @@ def _render_elevation(
             _entity_warnings(entity_id, evaluation, visible_findings),
             view_id,
             entity_id,
-            marker_offset=offset,
+            marker_offset=0,
         )
     return _serialized(root)
 

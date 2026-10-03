@@ -45,7 +45,7 @@ def _contract(snapshot, view_id):
         return {
             "axes": ["x", "z"],
             "scale": 22.0,
-            "offset": [110.0, 570.0],
+            "offset": [110.0, 360.0],
             "lines": {
                 "ground-datum": [0, pb, length, pb],
                 "roof-ordinate": [0, roof, length, roof],
@@ -59,8 +59,8 @@ def _contract(snapshot, view_id):
                     length,
                     {"datum": "project-origin"},
                     ["geometry", "hall", "length_m"],
-                    [110, 602],
-                    [110 + 22 * length, 602],
+                    [110, 392],
+                    [110 + 22 * length, 392],
                 ),
                 (
                     "p2-span",
@@ -69,8 +69,8 @@ def _contract(snapshot, view_id):
                     end,
                     ["geometry", "p2", "x_m"],
                     {"sum": [["geometry", "p2", "x_m"], ["geometry", "p2", "length_m"]]},
-                    [110 + 22 * start, 570 - 22 * p2 + 24],
-                    [110 + 22 * end, 570 - 22 * p2 + 24],
+                    [110 + 22 * start, 360 - 22 * p2 + 24],
+                    [110 + 22 * end, 360 - 22 * p2 + 24],
                 ),
                 (
                     "p2-level",
@@ -79,8 +79,8 @@ def _contract(snapshot, view_id):
                     p2,
                     LEVEL + ["pb_finished_floor"],
                     LEVEL + ["p2_finished_floor"],
-                    [950, 570],
-                    [950, 570 - 22 * p2],
+                    [950, 360],
+                    [950, 360 - 22 * p2],
                 ),
                 (
                     "roof-ordinate",
@@ -89,8 +89,8 @@ def _contract(snapshot, view_id):
                     roof,
                     LEVEL + ["pb_finished_floor"],
                     {"mean": [ROOF + ["low_eave"], ROOF + ["high_eave"]]},
-                    [1000, 570],
-                    [1000, 570 - 22 * roof],
+                    [1000, 360],
+                    [1000, 360 - 22 * roof],
                 ),
             ],
         }

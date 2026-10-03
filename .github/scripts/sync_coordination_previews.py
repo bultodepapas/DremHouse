@@ -19,7 +19,10 @@ sys.path.insert(0, str(ROOT))
 from dreamhouse.coordination.publication import read_current_release
 
 DESTINATION = ROOT / ".github/assets/coordination"
-VIEWS = ("plan-pb", "plan-p2", "stair-sections")
+VIEWS = (
+    "plan-pb", "plan-p2", "stair-sections",
+    "drawings/architecture-ground-floor", "drawings/architecture-upper-floor",
+)
 
 
 def preview_files(release_root: Path) -> dict[str, bytes]:
@@ -57,7 +60,9 @@ def main() -> None:
     if args.write:
         DESTINATION.mkdir(parents=True, exist_ok=True)
         for name, contents in files.items():
-            (DESTINATION / name).write_bytes(contents)
+            path = DESTINATION / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(contents)
     else:
         for name, contents in files.items():
             path = DESTINATION / name

@@ -34,6 +34,8 @@ from dreamhouse.coordination.native_notes import bind_native_notes
 from dreamhouse.coordination.p2_context_annotations import (
     annotate_p2_context_view,
 )
+from dreamhouse.coordination.presentation_refinements import refine_native_svg
+from dreamhouse.coordination.sheet_layout import append_view_references, recompose_screening
 from dreamhouse.coordination.wall_context_annotations import (
     annotate_wall_context,
     render_wall_context,
@@ -280,11 +282,11 @@ def _roof_longitudinal(pb: dict, p2: dict, stair: dict) -> str:
     section_y = float(pb["envelope"]["width"]) / 2
     roof = pb["roof"]
     mean_roof_level = (float(roof["low_eave"]) + float(roof["high_eave"])) / 2
-    x0, base, scale = 110.0, 570.0, 22.0
+    x0, base, scale = 110.0, 360.0, 22.0
     roof_y = base - mean_roof_level * scale
     floor_y = base - p2_level * scale
-    return f'''<svg xmlns="{SVG_NS}" width="1120" height="720" viewBox="0 0 1120 720">
-<rect width="1120" height="720" fill="#fbfaf7"/><g font-family="Arial" fill="#20292e">
+    return f'''<svg xmlns="{SVG_NS}" width="1120" height="520" viewBox="0 0 1120 520">
+<rect width="1120" height="520" fill="#fbfaf7"/><g font-family="Arial" fill="#20292e">
 <text x="75" y="48" font-size="25" font-weight="700">LONGITUDINAL SECTION · Y={section_y:.2f} m REFERENCE</text>
 <text x="75" y="75" font-size="13" fill="#566269">Source-derived plan datums and roof ordinate; structural build-ups and clear heights are unresolved.</text>
 <line data-context-feature="ground-datum" x1="{x0}" y1="{base}" x2="{x0 + length * scale}" y2="{base}" stroke="#172126" stroke-width="3"/>
@@ -297,7 +299,7 @@ def _roof_longitudinal(pb: dict, p2: dict, stair: dict) -> str:
 <text x="{x0 + length * scale / 2}" y="{roof_y - 12}" text-anchor="middle" font-size="12">ROOF ORDINATE AT Y={section_y:.2f} m · +{mean_roof_level:.2f} m INTERPOLATED FROM EAVES</text>
 <text x="{x0 + p2_start * scale / 2}" y="{base - 28}" text-anchor="middle" font-size="11">DOUBLE-HEIGHT PLAN ZONE</text>
 <text x="{x0 + (p2_start + length) * scale / 2}" y="{base - 28}" text-anchor="middle" font-size="11">GROUND-FLOOR PLAN ZONE</text>
-<rect x="75" y="620" width="970" height="62" fill="#fff3dc" stroke="#b95336"/><text x="95" y="648" font-size="15" font-weight="700" fill="#8e3825">COORDINATION SECTION · NOT FOR CONSTRUCTION</text><text x="95" y="671" font-size="10">No floor thickness, roof assembly, wall solid, stair clearance or finished room height is asserted.</text>
+<rect x="75" y="430" width="970" height="62" fill="#fff3dc" stroke="#b95336"/><text x="95" y="458" font-size="15" font-weight="700" fill="#8e3825">COORDINATION SECTION · NOT FOR CONSTRUCTION</text><text x="95" y="481" font-size="10">No floor thickness, roof assembly, wall solid, stair clearance or finished room height is asserted.</text>
 </g></svg>'''
 
 
@@ -606,6 +608,9 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
         if identifier not in renderers:
             raise CoordinationError(f"No connected renderer is registered for {identifier}")
         svg = render_wall_context(snapshot, identifier) or renderers[identifier]()
+        svg = refine_native_svg(snapshot, identifier, svg)
+        svg = recompose_screening(svg, identifier)
+        svg = append_view_references(svg, identifier)
         evidence = evidence_by_id[identifier]
         structural = identifier.startswith("structure-")
         render_status = (

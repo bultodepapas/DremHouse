@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>104</strong> documents · <strong>75</strong> decisions · <strong>9</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>105</strong> documents · <strong>75</strong> decisions · <strong>9</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -220,8 +220,8 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 **Verified software baseline · 2026-10-03:** 36 generated SVGs, 322 source-bound anchors,
 166 checked dimensions and visible labels; 57 PASS / 186 OPEN / 0 FAIL findings.
-The final repository regression suite passed **535 tests**; see the
-[review record](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md#final-repository-review--continuation-from-6af3022).
+The full repository regression passed **545 tests**; graphic-repair verification is recorded in the
+[visual repair report](docs/02_arquitectura/connected_svg_architectural_visual_review_2026_10.md).
 These counts describe declared coverage. Seven door records remain unlocated under
 CF-013; site, product and professional engineering decisions remain open.
 
@@ -241,6 +241,14 @@ verified release on 2026-10-03. Click an image for its SVG; the
 For the published connected reader, use the
 [coordination review](https://bultodepapas.github.io/DremHouse/coordination/index.html),
 which is refreshed by the repository's Pages workflow after publication.
+
+The architectural plans incorporate the [documented graphic repairs](docs/02_arquitectura/connected_svg_architectural_visual_review_2026_10.md):
+source-consistent island labels, clearer bathroom annotations and explicit unresolved-access notes.
+SVGs remain generated outputs of repository sources.
+
+| Ground floor architecture | Upper floor architecture |
+| --- | --- |
+| [![Ground floor architectural review](.github/assets/coordination/drawings/architecture-ground-floor.png)](.github/assets/coordination/drawings/architecture-ground-floor.svg) | [![Upper floor architectural review](.github/assets/coordination/drawings/architecture-upper-floor.png)](.github/assets/coordination/drawings/architecture-upper-floor.svg) |
 
 | Ground floor coordination | Upper floor coordination |
 | --- | --- |

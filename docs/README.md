@@ -1,7 +1,7 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.26
+**Version:** 0.27
 **Date:** 2026-10-03
 **Source:** active project registers, current drawing catalog and D-084 connected
 coordination migration; documentation update without a new design or scope decision.
@@ -13,6 +13,8 @@ coordination migration; documentation update without a new design or scope decis
 
 ## Start with the current project state
 
+- [Architectural visual review of the connected SVG set](02_arquitectura/connected_svg_architectural_visual_review_2026_10.md):
+  visual findings across 36 sheets and the resulting generator refinements; no design changes adopted.
 - [Connected coordination workflow](06_gestion_y_obra/connected_coordination_workflow.md):
   run Python over repository sources to generate an isolated model, checks, quantities,
   nine connected SVG views, 27 catalog drawing consumers and a read-only review;

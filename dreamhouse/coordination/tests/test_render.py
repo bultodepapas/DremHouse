@@ -39,6 +39,33 @@ def _opening(entity_id: str = "GLZ-A") -> dict:
     }
 
 
+def _facade_opening(
+    entity_id: str,
+    facade: str,
+    horizontal: tuple[float, float],
+    vertical: tuple[float, float],
+    *,
+    sill: float,
+    level: float,
+) -> dict:
+    entity = _opening(entity_id)
+    if facade in {"A", "B"}:
+        fixed = 18.0 if facade == "B" else 0.0
+        entity["geometry"].update(
+            {"x0": horizontal[0], "x1": horizontal[1], "y0": fixed, "y1": fixed}
+        )
+    else:
+        fixed = 36.0 if facade == "REAR" else 0.0
+        entity["geometry"].update(
+            {"x0": fixed, "x1": fixed, "y0": horizontal[0], "y1": horizontal[1]}
+        )
+    entity["geometry"].update({"z0": vertical[0], "z1": vertical[1]})
+    entity["parameters"].update(
+        {"facade": facade, "sill_m": sill, "level_m": level, "height_m": vertical[1] - vertical[0]}
+    )
+    return entity
+
+
 def _snapshot() -> dict:
     unknown_z = {
         "id": "WALL-UNKNOWN-Z",
@@ -211,6 +238,33 @@ def _connected_snapshot() -> dict:
     return snapshot
 
 
+def _add_stair_envelopes(snapshot: dict) -> None:
+    for identifier, y0, y1, z0, z1 in (
+        ("ST-F1", 7.7, 9.1, 0.0, 1.9),
+        ("ST-F2", 9.3, 10.7, 1.9, 3.8),
+    ):
+        snapshot["entities"][identifier] = {
+            "id": identifier,
+            "kind": "stair",
+            "label": identifier,
+            "level": "PROJECT",
+            "aliases": [],
+            "status": "context",
+            "source": {"path": "dreamhouse/stair_core.json", "key": identifier},
+            "geometry": {
+                "shape": "rect",
+                "x0": 31.7,
+                "x1": 34.4,
+                "y0": y0,
+                "y1": y1,
+                "z0": z0,
+                "z1": z1,
+            },
+            "parameters": {},
+            "relationships": {"host_id": None, "space_ids": []},
+        }
+
+
 def _evaluation() -> dict:
     return {
         "findings": [
@@ -331,6 +385,186 @@ class TestRenderViews(unittest.TestCase):
             "P2 extent unavailable; hall bounds shown as context only.",
             "".join(fallback_root.itertext()),
         )
+
+    def test_plan_axes_and_stair_section_callouts_are_source_bound(self) -> None:
+        snapshot = _snapshot()
+        snapshot["geometry"]["axes"] = "X front-to-rear; Y Side A-to-B; Z above PB; units m"
+        _add_stair_envelopes(snapshot)
+        views = render_views(snapshot, _evaluation())
+        inventory = inspect_views(snapshot, views)
+
+        self.assertEqual(inventory["annotation_coverage"]["callouts"], 2)
+        for plan_name in ("plan-pb.svg", "plan-p2.svg"):
+            with self.subTest(view=plan_name):
+                root = _parse_svg(views[plan_name])
+                self.assertEqual(
+                    root.get("data-plan-axis-directions"), "positive X right; positive Y up"
+                )
+                self.assertIn("X+ front → rear · Y+ Side A → B", "".join(root.itertext()))
+                self.assertNotIn("NORTH", "".join(root.itertext()).upper())
+                callout = next(
+                    node for node in root.iter() if node.get("data-reference-type")
+                )
+                self.assertEqual(callout.get("data-callout-target-view-id"), "stair-sections")
+                self.assertEqual(callout.get("data-related-view-id"), "stair-sections")
+                self.assertEqual(callout.get("data-section-cut-claim"), "false")
+                self.assertEqual(
+                    len(callout.get("data-callout-refs", "").split()), 4
+                )
+                self.assertIn("SC-01", "".join(callout.itertext()))
+                self.assertFalse(
+                    any("stair-sections.svg#" in node.get("href", "") for node in root.iter())
+                )
+
+    def test_finding_badges_keep_navigation_without_question_mark_clutter(self) -> None:
+        root = _parse_svg(render_views(_snapshot(), _evaluation())["plan-pb.svg"])
+        badges = [
+            node
+            for node in root.iter()
+            if node.tag == f"{{{SVG_NS}}}a" and node.get("data-finding-id") == "TEST-OPEN-01"
+        ]
+        self.assertEqual(len(badges), 1)
+        self.assertTrue(badges[0].get("href", "").startswith("#plan-pb-finding-"))
+        marker = next(node for node in badges[0].iter() if node.get("class") == "finding-marker")
+        self.assertEqual(marker.get("r"), "4.5")
+        self.assertNotIn("?", "".join(badges[0].itertext()))
+        card = next(
+            node
+            for node in root.iter()
+            if node.tag == f"{{{SVG_NS}}}rect" and node.get("data-finding-id") == "TEST-OPEN-01"
+        )
+        self.assertEqual(card.get("fill"), "#FFFDFA")
+
+    def test_elevations_keep_sill_anchor_labels_and_coordinate_view_direction(self) -> None:
+        snapshot = _snapshot()
+        snapshot["entities"].update(
+            {
+                "GLZ-B": _facade_opening(
+                    "GLZ-B", "B", (2.0, 3.2), (0.9, 1.9), sill=0.9, level=0.0
+                ),
+                "GLZ-DINING-STUDY-B": _facade_opening(
+                    "GLZ-DINING-STUDY-B",
+                    "B",
+                    (23.85, 28.65),
+                    (0.75, 2.55),
+                    sill=0.75,
+                    level=0.0,
+                ),
+                "W-H2": _facade_opening(
+                    "W-H2", "B", (21.5, 25.1), (3.85, 6.75), sill=0.05, level=3.8
+                ),
+                "W-G": _facade_opening(
+                    "W-G", "B", (28.65, 32.25), (3.85, 6.75), sill=0.05, level=3.8
+                ),
+                "W-EGRESS-P2": _facade_opening(
+                    "W-EGRESS-P2",
+                    "REAR",
+                    (11.25, 12.25),
+                    (4.7, 5.9),
+                    sill=0.9,
+                    level=3.8,
+                ),
+                "W-WELL": _facade_opening(
+                    "W-WELL", "REAR", (13.0, 17.0), (5.2, 6.4), sill=1.4, level=3.8
+                ),
+            }
+        )
+        views = render_views(snapshot, _evaluation())
+        for filename, expected_direction in (
+            ("elevation-side-a.svg", "+Y"),
+            ("elevation-side-b.svg", "−Y"),
+            ("elevation-rear.svg", "−X"),
+        ):
+            with self.subTest(view=filename):
+                root = _parse_svg(views[filename])
+                self.assertEqual(root.get("data-view-direction"), expected_direction)
+                self.assertIn("no geographic north assigned", root.get("data-view-direction-basis", ""))
+                sill_labels = [
+                    node for node in root.iter() if node.get("data-anchor-ref", "").endswith(".opening.sill")
+                ]
+                self.assertTrue(sill_labels)
+                self.assertTrue(all((node.text or "").startswith("SILL ") for node in sill_labels))
+                self.assertTrue(all(node.get("data-anchor-target") for node in sill_labels))
+                self.assertTrue(all(node.get("data-note-for") for node in sill_labels))
+                datum_y = [
+                    float(node.get("y1", "0"))
+                    for node in root.iter()
+                    if node.get("data-datum-level")
+                ]
+                self.assertTrue(
+                    all(
+                        abs(float(label.get("y", "0")) - value) > 9
+                        for label in sill_labels
+                        for value in datum_y
+                    )
+                )
+                shapes = []
+                for occurrence in root.iter():
+                    if occurrence.get("class") != "entity-occurrence":
+                        continue
+                    shape = next(
+                        (node for node in occurrence.iter() if node.get("class") == "entity-shape"),
+                        None,
+                    )
+                    if shape is not None:
+                        x, y = float(shape.get("x", "0")), float(shape.get("y", "0"))
+                        shapes.append(
+                            (
+                                x,
+                                y,
+                                x + float(shape.get("width", "0")),
+                                y + float(shape.get("height", "0")),
+                            )
+                        )
+                collision_labels = [
+                    node
+                    for node in root.iter()
+                    if node.get("data-dimension-direction") == "vertical"
+                    or node.get("data-anchor-ref", "").endswith(".opening.sill")
+                ]
+                horizontal_labels = [
+                    node for node in root.iter()
+                    if node.get("data-dimension-direction") == "horizontal"
+                ]
+                for label in collision_labels:
+                    font_size = float(label.get("font-size", "10"))
+                    text_width = len(label.text or "") * (3.9 if font_size < 8 else 5.6)
+                    x = float(label.get("x", "0"))
+                    anchor = label.get("text-anchor", "start")
+                    if anchor == "middle":
+                        left, right = x - text_width / 2, x + text_width / 2
+                    elif anchor == "end":
+                        left, right = x - text_width, x
+                    else:
+                        left, right = x, x + text_width
+                    label_box = (
+                        left,
+                        float(label.get("y", "0")) - (8.5 if font_size < 8 else 6),
+                        right,
+                        float(label.get("y", "0")) + 2.5,
+                    )
+                    if label.get("data-anchor-ref", "").endswith(".opening.sill"):
+                        for dimension in horizontal_labels:
+                            dx = float(dimension.get("x"))
+                            dy = float(dimension.get("y"))
+                            half_width = len(dimension.text or "") * 5.6 / 2
+                            self.assertFalse(
+                                label_box[0] < dx + half_width + 2
+                                and label_box[2] > dx - half_width - 2
+                                and label_box[1] < dy + 3
+                                and label_box[3] > dy - 10,
+                                msg=f"Sill label overlaps width dimension in {filename}",
+                            )
+                    self.assertFalse(
+                        any(
+                            label_box[0] < shape[2] + 2
+                            and label_box[2] > shape[0] - 2
+                            and label_box[1] < shape[3] + 2
+                            and label_box[3] > shape[1] - 2
+                            for shape in shapes
+                        ),
+                        msg=f"{label.text} overlaps a projected opening in {filename}",
+                    )
 
     def test_changed_geometry_preserves_identity_and_updates_anchored_dimensions(self) -> None:
         source = _snapshot()

@@ -1,15 +1,19 @@
 {
   "artifacts": {
-    "plan-p2.png": "8b7a697f37aa3f28d4b60c4c49e3beb62e367c3942e568a06a2bce5e44974aea",
-    "plan-p2.svg": "037127e9e70bc6094448f83fdb61262bb5bb4b0656398f8c6cca79d5edb26e0a",
-    "plan-pb.png": "d1686ed366d66ae63689fe2db73278300beff32233f6d27bb62e66bfb29ac5fc",
-    "plan-pb.svg": "01e01a47dd93e3bac0c44f4cec1f62bcf71e0931ee6dca71f8792c195c5f093f",
-    "stair-sections.png": "77d6f73123f196061ea808d4c6ce4a00942d61cbd247193b36b37cf2860e167b",
-    "stair-sections.svg": "6bdc7e0b769f560a168032c908badf6e2198f220b1561c55c722535e20c7f531"
+    "drawings/architecture-ground-floor.png": "c5197c1d3ac0b7a7edf8f9bdca3117a81a82e1e807f2ba705e23d43c85e290da",
+    "drawings/architecture-ground-floor.svg": "bcfbc8e1083834a49287d0e69ddeeff8558ee781a3702bea166d1e37cf9b6acd",
+    "drawings/architecture-upper-floor.png": "2fd536484a27a8eb1cca6542fca5887a77a978a869a32abe16a3193d55d9e6cd",
+    "drawings/architecture-upper-floor.svg": "c2731baec1ec9172491a5fa15517e8db0256ac1b6112d7e656254257b278f802",
+    "plan-p2.png": "f967d1883a29eb7442d45bf4f0ae6a022af5be5ac63d672dbfd79250a33d3f7c",
+    "plan-p2.svg": "a01d43a2a6f6604cabc403cb3d2ef932871f3ad3e7d3c5998962e4f3b836bd3f",
+    "plan-pb.png": "3bf761d54e18961d9538cd56fa1b49e4af07afa7f525431f0a094f5a69d7b746",
+    "plan-pb.svg": "575c6774c75ebfcd4fc5832e67ec1730717b7ff5f23361fbef0b8b20401cf893",
+    "stair-sections.png": "82e7716a2c004054ccd4ed3ce418f98c29bf7a0aac500645fbb1ec35a14e247f",
+    "stair-sections.svg": "7511e4954b64b6ffc8b73ae903a9f89d67fd04afa6374ce6d26c767477317532"
   },
-  "release_id": "b6d68cd34843fbe489a13cfdbfb25e2b5332065f6635242d39fb148d70f9fcf7",
+  "release_id": "6f9ff2314f3bd7e2e2f2b9c15084b3375b6dec176a248457dd46af8ee751793e",
   "schema_version": 1,
-  "source_input_hash": "c4e40097c60dcdf9fe7bd10b3c8cb0e6096db0549357b20f956d1ec910c2a565",
+  "source_input_hash": "cb4cee736a6d15bc8ca2edfcd4d776fe54109b6794488ade91fba4479cdb5beb",
   "source_model_hash": "7386d33026a4a1e22f5b68df1c4187a18a9d01831c5f1f53f2bf06d3010fb6d3",
   "status": "review snapshot; not for construction; not an adopted drawing issue"
 }

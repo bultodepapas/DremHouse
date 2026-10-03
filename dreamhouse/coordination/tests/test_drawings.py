@@ -69,6 +69,23 @@ class ConnectedDrawingRendererTests(unittest.TestCase):
             rendered["structural_screening"]["selection_or_construction_authority"], False
         )
 
+    def test_every_catalog_sheet_names_existing_related_views_without_external_resources(self):
+        rendered = render_drawings(self.snapshot, {})
+        files = rendered["files"]
+        for name, svg in files.items():
+            if not name.endswith(".svg"):
+                continue
+            root = ET.fromstring(svg)
+            targets = [n.get("data-related-view") for n in root.iter() if n.get("data-related-view")]
+            self.assertTrue(targets, name)
+            for target in targets:
+                self.assertIn(f"drawings/{target}.svg", files, name)
+                self.assertNotEqual(name, f"drawings/{target}.svg")
+            self.assertFalse(
+                any(n.get("href") and not n.get("href").startswith("#") for n in root.iter()),
+                name,
+            )
+
     def test_h2_and_g_detail_rows_keep_their_own_current_dimensions(self):
         cases = (
             ("W-H2", {"width_m": 2.4, "modules": 2}, "2.40 × 2.90 m · 2 modules"),
