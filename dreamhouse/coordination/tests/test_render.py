@@ -5,6 +5,7 @@ from copy import deepcopy
 from html.parser import HTMLParser
 from xml.etree import ElementTree as ET
 
+from dreamhouse.coordination.model import resolve_project
 from dreamhouse.coordination.render import SVG_NS, render_views
 from dreamhouse.coordination.view_contract import compare_anchors, inspect_views
 
@@ -326,6 +327,7 @@ class TestRenderViews(unittest.TestCase):
                 root = _parse_svg(svg)
                 self.assertEqual(root.attrib["data-construction-authority"], "false")
                 self.assertEqual(root.attrib["data-status"], "coordination projection")
+                self.assertEqual(root.attrib["data-visual-language-version"], "connected-atlas-1")
                 self.assertEqual(root.attrib["data-scenario-id"], "baseline-test")
                 self.assertIsNotNone(root.find(f"{{{SVG_NS}}}title"))
                 self.assertIsNotNone(root.find(f"{{{SVG_NS}}}desc"))
@@ -653,8 +655,10 @@ class TestRenderViews(unittest.TestCase):
             for node in root.iter()
             if node.get("data-finding-index") is not None and node.tag == f"{{{SVG_NS}}}rect"
         ]
-        self.assertEqual(len(cards), 8)
-        self.assertIn("4 additional findings are listed in index.html.", "".join(root.itertext()))
+        self.assertEqual(len(cards), 7)
+        self.assertIn(
+            "5 additional local records · 0 FAIL · open register ↗", "".join(root.itertext())
+        )
         self.assertTrue(
             all(
                 node.text and len(node.text) <= 42
@@ -667,6 +671,99 @@ class TestRenderViews(unittest.TestCase):
             len(cards[0].find(f"{{{SVG_NS}}}title").text),
             len("OPEN · LONG-RULE-0-" + ("x" * 70) + ". Finding 0: " + ("unbroken" * 20)),
         )
+
+    def test_p2_room_labels_use_source_names_and_small_space_ids(self) -> None:
+        snapshot = resolve_project()
+        root = _parse_svg(render_views(snapshot, _evaluation())["plan-p2.svg"])
+        labels = {
+            node.get("data-label-for"): node
+            for node in root.iter()
+            if node.get("data-label-for")
+        }
+        self.assertEqual(labels["M-D"].text, "Primary bedroom · M-D")
+        self.assertEqual(
+            labels["M-D"].get("data-label-source"),
+            "dreamhouse/generate_p2_b28.py · load_b28_model().spaces[id=M-D].name",
+        )
+        self.assertEqual(labels["G-ENTRY"].text, "G-ENTRY")
+        self.assertEqual(labels["G-C"].text, "G-C")
+        self.assertEqual(
+            labels["G-ENTRY"].get("data-label-fallback"),
+            "stable entity ID; source name does not fit",
+        )
+
+    def test_study_roof_opening_keeps_both_roles_and_findings_link_to_register(self) -> None:
+        snapshot = _snapshot()
+        snapshot["entities"]["RL-01"]["status"] = "study"
+        evaluation = {
+            "findings": [
+                {
+                    "rule_id": f"LOCAL-FAIL-{index}",
+                    "status": "FAIL",
+                    "message": f"Failure evidence {index}",
+                    "entity_ids": ["GLZ-A"],
+                }
+                for index in range(10)
+            ],
+            "quantity_ledger": {},
+        }
+        views = render_views(snapshot, evaluation)
+        plan = _parse_svg(views["plan-pb.svg"])
+        roof = next(node for node in plan.iter() if node.get("data-entity-id") == "RL-01")
+        shape = next(node for node in roof.iter() if node.get("class") == "entity-shape")
+        self.assertEqual(roof.get("data-visual-role"), "geometry.roof-opening")
+        self.assertEqual(roof.get("data-projection-context"), "overhead")
+        self.assertEqual(shape.get("stroke-dasharray"), "6 4")
+        self.assertNotEqual(shape.get("stroke"), "#2454A6")
+        style = "".join(
+            node.text or "" for node in plan.iter() if node.tag == f"{{{SVG_NS}}}style"
+        )
+        self.assertIn(".entity-occurrence.is-selected .entity-shape", style)
+        roles = {node.get("data-legend-role") for node in plan.iter() if node.get("data-legend-role")}
+        self.assertIn("geometry.roof-opening", roles)
+        self.assertIn("status.study", roles)
+        panel = next(
+            node
+            for node in plan.iter()
+            if node.get("data-local-fail-count") is not None
+        )
+        self.assertEqual(panel.get("data-local-fail-count"), "10")
+        self.assertEqual(panel.get("data-project-fail-count"), "10")
+        self.assertIn("3 additional local records · 3 FAIL", "".join(plan.itertext()))
+        hrefs = {node.get("href") for node in plan.iter() if node.tag == f"{{{SVG_NS}}}a"}
+        self.assertIn("index.html#project-finding-register", hrefs)
+        for index in range(10):
+            self.assertIn(f"LOCAL-FAIL-{index}", views["index.html"])
+
+    def test_window_details_name_families_and_individual_fit_scales(self) -> None:
+        snapshot = _snapshot()
+        p2_opening = _opening("GLZ-P2")
+        p2_opening["level"] = "P2"
+        p2_opening["parameters"]["facade"] = "B"
+        p2_opening["geometry"].update({"x0": 4.0, "x1": 5.0, "y0": 18.0, "y1": 18.0})
+        study_roof = deepcopy(snapshot["entities"]["RL-01"])
+        study_roof["id"] = "RL-STUDY"
+        study_roof["status"] = "study"
+        snapshot["entities"].update({"GLZ-P2": p2_opening, "RL-STUDY": study_roof})
+        root = _parse_svg(render_views(snapshot, _evaluation())["window-details.svg"])
+        families = {node.get("data-family-id") for node in root.iter() if node.get("data-family-id")}
+        self.assertTrue({"pb", "p2", "unadopted-studies"}.issubset(families))
+        text = "".join(root.itertext())
+        self.assertIn("PB OPENINGS · ELEVATION SPANS", text)
+        self.assertIn("P2 OPENINGS · ELEVATION SPANS", text)
+        self.assertIn("UNADOPTED STUDIES", text)
+        self.assertIn("INDIVIDUAL FIT PER CARD", text)
+        scales = [
+            float(node.get("data-detail-scale-px-per-m"))
+            for node in root.iter()
+            if node.get("data-detail-scale-px-per-m")
+        ]
+        self.assertGreaterEqual(len(scales), 3)
+        self.assertGreater(len(set(scales)), 1)
+        self.assertTrue(
+            any(node.get("data-dimension-kind") == "plan-x-span" for node in root.iter())
+        )
+        self.assertIn("Plan span", text)
 
     def test_html_index_has_unique_ids_and_only_read_only_controls(self) -> None:
         index = render_views(_snapshot(), _evaluation())["index.html"]

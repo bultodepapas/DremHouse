@@ -31,6 +31,7 @@ from dreamhouse.coordination.context_annotations import annotate_context_view
 from dreamhouse.coordination.drawing_annotations import annotate_native_view
 from dreamhouse.coordination.model import CoordinationError
 from dreamhouse.coordination.native_notes import bind_native_notes
+from dreamhouse.coordination.native_visual_language import apply_native_visual_language
 from dreamhouse.coordination.p2_context_annotations import (
     annotate_p2_context_view,
 )
@@ -42,6 +43,7 @@ from dreamhouse.coordination.wall_context_annotations import (
 )
 from dreamhouse.envelope.openings import build_opening_schedule
 from dreamhouse.structure.e1_screening import run_screening
+from dreamhouse.svg.style import compile_svg_styles
 
 SVG_NS = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG_NS)
@@ -407,7 +409,7 @@ def _decorate_svg(
                 f"{{{SVG_NS}}}rect",
                 {
                     "x": f"{x:g}", "y": f"{y + height:g}", "width": f"{width:g}",
-                    "height": f"{banner_height:g}", "fill": "#7c2f27",
+                    "height": f"{banner_height:g}", "fill": "#31474f",
                 },
             )
             label = ET.SubElement(
@@ -417,10 +419,12 @@ def _decorate_svg(
                     "x": f"{x + 24:g}", "y": f"{y + height + 20:g}",
                     "font-family": EMBEDDED_FONT_FAMILY, "font-size": "13",
                     "font-weight": "700", "fill": "#ffffff",
+                    "data-text-role": "authority-status",
                 },
             )
             label.text = (
-                f"REVIEW ONLY · NOT DESIGN ADOPTION · {scenario_id} · SOURCE {evidence['source_revision']}"
+                f"REVIEW ONLY · NOT DESIGN ADOPTION · NOT FOR CONSTRUCTION · "
+                f"{scenario_id} · SOURCE {evidence['source_revision']}"
             )
             warning = ET.SubElement(
                 banner,
@@ -428,7 +432,7 @@ def _decorate_svg(
                 {
                     "x": f"{x + 24:g}", "y": f"{y + height + 38:g}",
                     "font-family": EMBEDDED_FONT_FAMILY, "font-size": "8.5",
-                    "fill": "#fff4df",
+                    "fill": "#f2d28d", "data-text-role": "open-gate-summary",
                 },
             )
             explanations = {
@@ -452,7 +456,7 @@ def _decorate_svg(
                     {
                         "x": f"{x + 24:g}", "y": f"{y + height + 54:g}",
                         "font-family": EMBEDDED_FONT_FAMILY, "font-size": "8.5",
-                        "fill": "#fff4df",
+                        "fill": "#f2d28d", "data-text-role": "open-gate-summary",
                     },
                 )
                 warning_more.text = lines[1]
@@ -644,6 +648,8 @@ def render_drawings(snapshot: dict, evaluation: dict) -> dict[str, Any]:
             or annotate_p2_context_view(snapshot, svg_root)
             or annotate_native_view(snapshot, svg_root)
         )
+        apply_native_visual_language(snapshot, identifier, svg_root)
+        compile_svg_styles(svg_root)
         svg = ET.tostring(svg_root, encoding="unicode")
         files[f"drawings/{identifier}.svg"] = svg
         inventory_rows.append(

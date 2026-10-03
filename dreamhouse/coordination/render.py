@@ -12,10 +12,12 @@ import math
 import re
 import textwrap
 from collections.abc import Mapping
+from functools import lru_cache
 from typing import Any
 from xml.etree import ElementTree as ET
 
-from dreamhouse.svg.theme import THEME_COLOURS
+from dreamhouse.svg.style import compile_svg_styles
+from dreamhouse.svg.theme import THEME_COLOURS, role_colour
 
 SVG_NS = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG_NS)
@@ -30,8 +32,9 @@ COLOURS = {
     "info": THEME_COLOURS["info"],
     "open": THEME_COLOURS["open"],
     "fail": THEME_COLOURS["conflict"],
-    "pass": THEME_COLOURS["material-insulation-edge"],
+    "pass": role_colour("status.pass"),
     "study": THEME_COLOURS["hypothesis"],
+    "selection": role_colour("selection.focus"),
     "material": THEME_COLOURS["material"],
     "rule": THEME_COLOURS["sheet-rule"],
     "open_surface": THEME_COLOURS["open-surface"],
@@ -42,25 +45,28 @@ COLOURS = {
 }
 
 SVG_STYLE = """
-text { font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
+text { font-family: "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
        text-rendering: geometricPrecision; }
-.sheet-title { fill: var(--ink); font-size: 26px; font-weight: 700; }
-.eyebrow { fill: var(--info); font-size: 11px; font-weight: 700; letter-spacing: 1px; }
-.body { fill: var(--ink); font-size: 12px; }
-.small { fill: var(--muted); font-size: 10px; }
-.panel-title { fill: var(--ink); font-size: 15px; font-weight: 700; }
+.sheet-title { fill: var(--ink); font-weight: 700; }
+.eyebrow { fill: var(--info); font-weight: 700; letter-spacing: 1px; }
+.body { fill: var(--ink); }
+.small { fill: var(--muted); }
+.panel-title { fill: var(--ink); font-weight: 700; }
 .finding-heading { font-weight: 700; }
-.warning { fill: #FFFDFA; font-size: 13px; font-weight: 800; letter-spacing: .6px; }
-.dimension { fill: var(--ink); font-size: 11px; font-weight: 700; }
+.warning { fill: #FFFDFA; font-weight: 800; letter-spacing: .6px; }
+.authority-label { fill: var(--ink); font-weight: 800; letter-spacing: .4px; }
+.dimension { fill: var(--ink); font-weight: 700; }
 .semantic-anchor { fill: var(--paper); stroke: var(--info); stroke-width: 1; }
-.semantic-anchor-label { fill: var(--info); font-size: 8px; font-weight: 700; }
+.semantic-anchor-label { fill: var(--info); font-weight: 700; }
 .entity-shape { vector-effect: non-scaling-stroke; }
-.entity-occurrence.is-selected .entity-shape { stroke: #BD7626 !important; stroke-width: 4px !important; }
-.semantic-anchor.is-selected { fill: #F5DBA7; stroke: #BD7626; stroke-width: 2.5px; }
-.dimension.is-selected { fill: #8A5A16; font-weight: 800; }
-.entity-occurrence.is-selected .entity-label { fill: #8A5A16; font-weight: 800; }
-.finding-marker { font-size: 11px; font-weight: 800; }
-.coordinate-axis { fill: var(--muted); font-size: 9px; font-weight: 700; }
+.entity-occurrence.is-selected .entity-shape { filter: drop-shadow(0 0 2px var(--selection)); }
+.semantic-anchor.is-selected { filter: drop-shadow(0 0 2px var(--selection)); }
+.dimension.is-selected, .entity-occurrence.is-selected .entity-label { filter: drop-shadow(0 0 1.5px var(--selection)); }
+.finding-marker { font-weight: 800; }
+.coordinate-axis { fill: var(--muted); font-weight: 700; }
+.role-legend-label { fill: var(--ink); }
+.role-legend-heading { fill: var(--muted); font-weight: 700; letter-spacing: .5px; }
+.finding-register-link { fill: var(--info); font-weight: 700; text-decoration: underline; }
 """.strip()
 
 
@@ -265,6 +271,7 @@ def _unresolved_anchor(
 
 
 def _serialized(root: ET.Element) -> str:
+    compile_svg_styles(root)
     return ET.tostring(root, encoding="unicode", short_empty_elements=True)
 
 
@@ -305,6 +312,7 @@ def _root(
             "data-model-hash": str(snapshot.get("model_hash", "")),
             "data-status": "coordination projection",
             "data-construction-authority": "false",
+            "data-visual-language-version": "connected-atlas-1",
         },
     )
     ET.SubElement(root, _q("title"), {"id": title_id}).text = title
@@ -334,8 +342,8 @@ def _frame(
     _text(root, 40, 30, "DREAM HOUSE · GENERATED REVIEW VIEW", size=10, css="eyebrow")
     _text(root, 40, 70, title, size=26, css="sheet-title")
     _text(root, 40, 96, subtitle, size=11, css="small")
-    _rect(root, 1085, 25, 315, 31, fill=COLOURS["fail"], stroke=COLOURS["fail"], rx=3)
-    _text(root, 1242.5, 46, "NOT FOR CONSTRUCTION", size=13, css="warning", anchor="middle")
+    _rect(root, 1085, 25, 315, 31, fill=COLOURS["panel"], stroke=COLOURS["rule"], rx=3)
+    _text(root, 1242.5, 46, "NOT FOR CONSTRUCTION", size=13, css="authority-label", anchor="middle")
     _text(
         root, 1085, 77, f"Scenario: {snapshot.get('scenario_id', 'unknown')}", size=10, css="body"
     )
@@ -343,9 +351,15 @@ def _frame(
     _line(root, 40, 116, 1400, 116, stroke=COLOURS["rule"], width=1)
     footer_y = height - 60
     _line(root, 40, footer_y, 1400, footer_y, stroke=COLOURS["rule"], width=1)
-    _rect(root, 40, footer_y + 14, 260, 27, fill=COLOURS["ink"], stroke=COLOURS["ink"], rx=2)
+    _rect(root, 40, footer_y + 14, 260, 27, fill=COLOURS["panel"], stroke=COLOURS["rule"], rx=2)
     _text(
-        root, 170, footer_y + 33, "COORDINATION PROJECTION", size=10, css="warning", anchor="middle"
+        root,
+        170,
+        footer_y + 33,
+        "COORDINATION PROJECTION",
+        size=10,
+        css="authority-label",
+        anchor="middle",
     )
     _text(
         root,
@@ -409,6 +423,7 @@ def _entity_group(
             "data-level": str(entity.get("level", "unknown")),
             "data-status": str(entity.get("status", "unknown")),
             "data-projection-context": "overhead" if roof_context else "direct",
+            "data-visual-role": _physical_role(entity),
             "data-source-path": str(source.get("path", "")),
             "data-source-key": str(source.get("key", "")),
             **_bounds_attrs(geometry),
@@ -427,15 +442,23 @@ def _entity_group(
     return group
 
 
-def _style_for(entity: Mapping[str, Any]) -> tuple[str, str, str | None]:
+def _physical_role(entity: Mapping[str, Any]) -> str:
     kind = str(entity.get("kind", "unknown")).lower()
-    status = str(entity.get("status", "active")).lower()
     if kind == "opening" and str(_params(entity).get("facade", "")).upper() == "ROOF":
+        return "geometry.roof-opening"
+    if kind in {"opening", "door"}:
+        return "geometry.opening"
+    if kind in {"column", "stair"}:
+        return "geometry.structure-envelope"
+    if kind in {"space", "wall", "equipment", "reservation"}:
+        return f"geometry.{kind}"
+    return "geometry.source-extent"
+
+
+def _base_style_for(entity: Mapping[str, Any]) -> tuple[str, str, str | None]:
+    kind = str(entity.get("kind", "unknown")).lower()
+    if _physical_role(entity) == "geometry.roof-opening":
         return COLOURS["context"], COLOURS["info"], "5 4"
-    if status == "study":
-        return COLOURS["study_surface"], COLOURS["study"], "6 4"
-    if status == "context":
-        return COLOURS["context"], COLOURS["muted"], "4 4"
     if kind == "wall":
         return COLOURS["ink"], COLOURS["ink"], None
     if kind in {"opening", "door"}:
@@ -449,6 +472,56 @@ def _style_for(entity: Mapping[str, Any]) -> tuple[str, str, str | None]:
     if kind == "reservation":
         return COLOURS["study_surface"], COLOURS["study"], "7 5"
     return COLOURS["panel"], COLOURS["muted"], "4 3"
+
+
+def _style_for(entity: Mapping[str, Any]) -> tuple[str, str, str | None]:
+    """Resolve object representation first, then apply the independent review state."""
+    fill, stroke, dash = _base_style_for(entity)
+    status = str(entity.get("status", "active")).lower()
+    if status == "study":
+        return fill, COLOURS["study"], "6 4"
+    if status == "context":
+        return fill, COLOURS["muted"], dash or "4 4"
+    return fill, stroke, dash
+
+
+@lru_cache(maxsize=1)
+def _active_p2_room_names() -> dict[str, str]:
+    """Read names from the exact P2 model owner already recorded by source adapters."""
+    from dreamhouse.generate_p2_b28 import load_b28_model
+
+    model = load_b28_model()
+    return {
+        str(space["id"]): str(space["name"])
+        for space in model.get("spaces", [])
+        if isinstance(space, Mapping) and space.get("id") and space.get("name")
+    }
+
+
+def _plan_entity_label(entity_id: str, entity: Mapping[str, Any]) -> tuple[str, str | None]:
+    """Return a source-backed room name and stable ID when the source supports it."""
+    label = str(entity.get("label", ""))
+    if str(entity.get("kind", "")).lower() == "space" and str(
+        entity.get("level", "")
+    ).upper() == "P2":
+        source = entity.get("source", {})
+        source = source if isinstance(source, Mapping) else {}
+        source_path, source_key = str(source.get("path", "")), str(source.get("key", ""))
+        match = re.fullmatch(r"load_b28_model\(\)\.spaces\[id=([^\]]+)\]", source_key)
+        if source_path == "dreamhouse/generate_p2_b28.py" and match:
+            source_id = match.group(1)
+            room_name = _active_p2_room_names().get(source_id)
+            if source_id == entity_id and room_name:
+                return f"{room_name} · {entity_id}", (
+                    f"{source_path} · {source_key}.name"
+                )
+    if label and label != entity_id:
+        source = entity.get("source", {})
+        source = source if isinstance(source, Mapping) else {}
+        source_path, source_key = source.get("path"), source.get("key")
+        source_note = f"{source_path} · {source_key}.label" if source_path and source_key else None
+        return f"{label} · {entity_id}", source_note
+    return entity_id, None
 
 
 def _rect_geometry(geometry: Mapping[str, Any]) -> tuple[float, float, float, float] | None:
@@ -540,41 +613,238 @@ def _finding_records(evaluation: Mapping[str, Any]) -> list[Mapping[str, Any]]:
     return [record for record in records if isinstance(record, Mapping)]
 
 
+def _finding_entity_ids(record: Mapping[str, Any]) -> set[str]:
+    values = record.get("entity_ids", [])
+    return {str(value) for value in values} if isinstance(values, (list, tuple, set)) else set()
+
+
+def _role_legend_entries(
+    snapshot: Mapping[str, Any],
+    visible_ids: set[str],
+    local_findings: list[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    entities = {
+        _display_id(key, entity): entity
+        for key, entity in _entity_pairs(snapshot)
+        if _display_id(key, entity) in visible_ids
+    }
+    labels = {
+        "geometry.space": "Space extent",
+        "geometry.wall": "Wall reference",
+        "geometry.opening": "Opening / door",
+        "geometry.roof-opening": "Roof opening overhead",
+        "geometry.structure-envelope": "Column / stair envelope",
+        "geometry.equipment": "Equipment envelope",
+        "geometry.reservation": "Reservation envelope",
+        "geometry.source-extent": "Other source extent",
+    }
+    rank = {role: index for index, role in enumerate(labels)}
+    entries: dict[str, dict[str, Any]] = {}
+    for entity in entities.values():
+        role = _physical_role(entity)
+        if role not in entries:
+            fill, stroke, dash = _base_style_for(entity)
+            entries[role] = {
+                "role": role,
+                "label": labels[role],
+                "sample": "geometry",
+                "fill": fill,
+                "stroke": stroke,
+                "dash": dash,
+            }
+        status = str(entity.get("status", "")).lower()
+        if status == "study":
+            entries["status.study"] = {
+                "role": "status.study",
+                "label": "Study · dashed outline",
+                "sample": "status",
+                "fill": "none",
+                "stroke": COLOURS["study"],
+                "dash": "6 4",
+            }
+        elif status == "context":
+            entries["status.context"] = {
+                "role": "status.context",
+                "label": "Context · dashed projection",
+                "sample": "status",
+                "fill": "none",
+                "stroke": COLOURS["muted"],
+                "dash": "4 4",
+            }
+    local_statuses = {str(record.get("status", "")).upper() for record in local_findings}
+    if "OPEN" in local_statuses:
+        entries["finding.open"] = {
+            "role": "finding.open",
+            "label": "OPEN finding · ring",
+            "sample": "open",
+            "fill": COLOURS["panel"],
+            "stroke": COLOURS["open"],
+            "dash": None,
+        }
+    if "FAIL" in local_statuses:
+        entries["finding.fail"] = {
+            "role": "finding.fail",
+            "label": "FAIL finding · diamond",
+            "sample": "fail",
+            "fill": COLOURS["fail"],
+            "stroke": COLOURS["fail"],
+            "dash": None,
+        }
+    if entities:
+        entries["selection.focus"] = {
+            "role": "selection.focus",
+            "label": "Selection · cobalt focus",
+            "sample": "selection",
+            "fill": "none",
+            "stroke": COLOURS["selection"],
+            "dash": None,
+        }
+    return sorted(
+        entries.values(),
+        key=lambda entry: (
+            rank.get(entry["role"], len(rank) + {
+                "status.context": 0,
+                "status.study": 1,
+                "finding.open": 2,
+                "finding.fail": 3,
+                "selection.focus": 4,
+            }.get(entry["role"], 5)),
+            entry["role"],
+        ),
+    )
+
+
+def _draw_role_legend(
+    root: ET.Element,
+    view_id: str,
+    entries: list[Mapping[str, Any]],
+    *,
+    x: float,
+    y: float,
+    column_width: float = 118,
+) -> int:
+    if not entries:
+        return 0
+    columns = 3
+    for index, entry in enumerate(entries):
+        column, row = index % columns, index // columns
+        sample_x = x + column * column_width
+        baseline = y + row * 19
+        role = str(entry["role"])
+        group = ET.SubElement(
+            root,
+            _q("g"),
+            {
+                "id": f"{view_id}-legend-{_token(role)}",
+                "data-legend-role": role,
+                "aria-label": str(entry["label"]),
+            },
+        )
+        sample = str(entry["sample"])
+        stroke, fill, dash = str(entry["stroke"]), str(entry["fill"]), entry.get("dash")
+        if sample == "open":
+            _circle(group, sample_x + 7, baseline - 3, 5, fill=fill, stroke=stroke, stroke_width=1.5)
+        elif sample == "fail":
+            ET.SubElement(
+                group,
+                _q("polygon"),
+                {
+                    "points": (
+                        f"{_n(sample_x + 7)},{_n(baseline - 9)} "
+                        f"{_n(sample_x + 13)},{_n(baseline - 3)} "
+                        f"{_n(sample_x + 7)},{_n(baseline + 3)} "
+                        f"{_n(sample_x + 1)},{_n(baseline - 3)}"
+                    ),
+                    "fill": fill,
+                    "stroke": stroke,
+                    "stroke-width": "1",
+                },
+            )
+            _text(group, sample_x + 7, baseline, "!", size=7, css="warning", anchor="middle")
+        elif sample == "selection":
+            _rect(
+                group,
+                sample_x,
+                baseline - 10,
+                15,
+                12,
+                fill="none",
+                stroke=stroke,
+                stroke_width=2,
+            )
+        elif sample == "status":
+            _line(
+                group,
+                sample_x,
+                baseline - 4,
+                sample_x + 16,
+                baseline - 4,
+                stroke=stroke,
+                width=2,
+                dash=str(dash),
+            )
+        else:
+            _rect(
+                group,
+                sample_x,
+                baseline - 10,
+                15,
+                12,
+                fill=fill,
+                stroke=stroke,
+                stroke_width=1.2,
+                **({"stroke-dasharray": str(dash)} if dash else {}),
+            )
+        _text(
+            group,
+            sample_x + 21,
+            baseline,
+            str(entry["label"]),
+            size=8.5,
+            css="role-legend-label",
+        )
+    return math.ceil(len(entries) / columns)
+
+
 def _entity_warnings(
     entity_id: str,
     evaluation: Mapping[str, Any],
-    visible_finding_indices: Mapping[int, tuple[int, int]],
-) -> list[tuple[int, Mapping[str, Any], int]]:
+    visible_finding_indices: Mapping[int, tuple[int, int, str]],
+) -> list[tuple[int, Mapping[str, Any], int, str]]:
     records = _finding_records(evaluation)
-    grouped: dict[int, tuple[Mapping[str, Any], int]] = {}
+    grouped: dict[int, tuple[Mapping[str, Any], int, str]] = {}
     for index, record in enumerate(records):
         if index not in visible_finding_indices:
             continue
         if str(record.get("status", "")).upper() not in {"OPEN", "FAIL"}:
             continue
-        if entity_id not in [str(value) for value in record.get("entity_ids", [])]:
+        if entity_id not in _finding_entity_ids(record):
             continue
-        representative, _count = visible_finding_indices[index]
+        representative, _count, target = visible_finding_indices[index]
         previous = grouped.get(representative)
-        grouped[representative] = (records[representative], (previous[1] + 1) if previous else 1)
-    return [(index, record, count) for index, (record, count) in grouped.items()]
+        grouped[representative] = (
+            records[representative],
+            (previous[1] + 1) if previous else 1,
+            previous[2] if previous else target,
+        )
+    return [(index, record, count, target) for index, (record, count, target) in grouped.items()]
 
 
 def _finding_marker(
     group: ET.Element,
     x: float,
     y: float,
-    findings: list[tuple[int, Mapping[str, Any], int]],
+    findings: list[tuple[int, Mapping[str, Any], int, str]],
     view_id: str,
     entity_id: str,
     marker_offset: int = 0,
 ) -> None:
     if not findings:
         return
-    finding_index, finding, count = next(
+    finding_index, finding, count, target = next(
         (
-            (index, item, count)
-            for index, item, count in findings
+            (index, item, count, target)
+            for index, item, count, target in findings
             if str(item.get("status", "")).upper() == "FAIL"
         ),
         findings[0],
@@ -584,13 +854,13 @@ def _finding_marker(
     rule_id = str(finding.get("rule_id", "finding"))
     fill = COLOURS["fail"] if status == "FAIL" else COLOURS["open"]
     marker_id = f"{view_id}-marker-{_token(entity_id)}-{finding_index:04d}"
-    rules = ", ".join(str(item.get("rule_id", "finding")) for _, item, _ in findings)
+    rules = ", ".join(str(item.get("rule_id", "finding")) for _, item, _, _ in findings)
     anchor = ET.SubElement(
         group,
         _q("a"),
         {
             "id": marker_id,
-            "href": f"#{view_id}-finding-{_token(rule_id)}-{finding_index:04d}",
+            "href": target,
             "data-finding-id": rule_id,
             "data-finding-index": str(finding_index),
             "data-finding-count": str(group_count),
@@ -651,19 +921,72 @@ def _draw_finding_panel(
     evaluation: Mapping[str, Any],
     visible_ids: set[str],
     *,
-    include_unlinked: bool = True,
-) -> dict[int, tuple[int, int]]:
+    snapshot: Mapping[str, Any] | None = None,
+    include_unlinked: bool = False,
+) -> dict[int, tuple[int, int, str]]:
     x, y, width, height = 1010, 152, 390, 720
-    _rect(root, x, y, width, height, fill=COLOURS["panel"], stroke=COLOURS["rule"], rx=5)
+    records = _finding_records(evaluation)
+    global_records = [
+        record for record in records if str(record.get("status", "")).upper() in {"OPEN", "FAIL"}
+    ]
+    local_records = [
+        record
+        for record in global_records
+        if _finding_entity_ids(record).intersection(visible_ids)
+        or (include_unlinked and not _finding_entity_ids(record))
+    ]
+    local_open = sum(str(record.get("status", "")).upper() == "OPEN" for record in local_records)
+    local_fail = sum(str(record.get("status", "")).upper() == "FAIL" for record in local_records)
+    project_open = sum(str(record.get("status", "")).upper() == "OPEN" for record in global_records)
+    project_fail = sum(str(record.get("status", "")).upper() == "FAIL" for record in global_records)
+    _rect(
+        root,
+        x,
+        y,
+        width,
+        height,
+        fill=COLOURS["panel"],
+        stroke=COLOURS["rule"],
+        rx=5,
+        **{
+            "data-local-open-count": str(local_open),
+            "data-local-fail-count": str(local_fail),
+            "data-project-open-count": str(project_open),
+            "data-project-fail-count": str(project_fail),
+        },
+    )
     _text(root, x + 20, y + 30, "Evidence and rule findings", size=15, css="panel-title")
+    _text(
+        root,
+        x + 20,
+        y + 51,
+        f"LOCAL VIEW · {local_open} OPEN · {local_fail} FAIL",
+        size=9,
+        css="body",
+    )
+    project_link = ET.SubElement(
+        root,
+        _q("a"),
+        {
+            "href": "index.html#project-finding-register",
+            "data-evidence-navigation": "project-finding-register",
+            "aria-label": "Open the complete project finding register",
+        },
+    )
+    _text(
+        project_link,
+        x + 20,
+        y + 68,
+        f"PROJECT TOTAL · {project_open} OPEN · {project_fail} FAIL · register ↗",
+        size=9,
+        css="finding-register-link",
+    )
     active: list[dict[str, Any]] = []
     group_index: dict[tuple[str, str, str], int] = {}
-    for finding_index, record in enumerate(_finding_records(evaluation)):
+    for finding_index, record in enumerate(records):
         status = str(record.get("status", "")).upper()
-        ids = {str(value) for value in record.get("entity_ids", [])}
-        if status in {"OPEN", "FAIL"} and (
-            ids.intersection(visible_ids) or (include_unlinked and not ids)
-        ):
+        ids = _finding_entity_ids(record)
+        if status in {"OPEN", "FAIL"} and record in local_records:
             rule_id = str(record.get("rule_id", "finding"))
             message = str(record.get("message", ""))
             key = (status, rule_id, message)
@@ -675,31 +998,30 @@ def _draw_finding_panel(
                         "record": record,
                         "count": 0,
                         "entity_ids": set(),
+                        "record_indices": [],
                     }
                 )
             summary = active[group_index[key]]
             summary["count"] += 1
             summary["entity_ids"].update(ids)
+            summary["record_indices"].append(finding_index)
+    legend_entries = _role_legend_entries(snapshot or {}, visible_ids, local_records)
+    _text(root, x + 20, y + 91, "VISIBLE ROLES", size=8.5, css="role-legend-heading")
+    legend_rows = _draw_role_legend(
+        root, view_id, legend_entries, x=x + 18, y=y + 108
+    )
+    findings_top = y + 112 + legend_rows * 19
     if not active:
         _text(
             root,
             x + 20,
-            y + 58,
-            "No OPEN or FAIL findings linked to this view.",
-            size=11,
-            css="small",
-        )
-        _text(
-            root,
-            x + 20,
-            y + 78,
-            "PASS results remain in the HTML evidence index.",
+            findings_top + 15,
+            "No OPEN or FAIL findings linked to entities in this view.",
             size=10,
             css="small",
         )
         return {}
-    visible_indices: dict[int, tuple[int, int]] = {}
-    records = _finding_records(evaluation)
+    visible_indices: dict[int, tuple[int, int, str]] = {}
     # Show definite failures first, then the evidence linked to this view before
     # unlocated discipline benchmarks can fill the limited panel.
     active.sort(
@@ -708,11 +1030,13 @@ def _draw_finding_panel(
             not bool(item["entity_ids"].intersection(visible_ids)),
         )
     )
-    for slot, summary in enumerate(active[:8]):
+    max_cards = 7 if len(active) > 8 else 8
+    for slot, summary in enumerate(active[:max_cards]):
         finding_index = summary["representative"]
         finding = summary["record"]
         finding_count = summary["count"]
-        top = y + 51 + slot * 78
+        top = findings_top + 7 + slot * 63
+        card_height = 62
         status = str(finding.get("status", "OPEN")).upper()
         rule_id = str(finding.get("rule_id", "finding"))
         color = COLOURS["fail"] if status == "FAIL" else COLOURS["open"]
@@ -722,7 +1046,7 @@ def _draw_finding_panel(
             x + 14,
             top,
             width - 28,
-            66,
+            card_height,
             fill=COLOURS["panel"],
             stroke=COLOURS["rule"],
             rx=3,
@@ -736,7 +1060,7 @@ def _draw_finding_panel(
         heading = f"{status} · {rule_id}" + (
             f" · {finding_count} records" if finding_count > 1 else ""
         )
-        _rect(root, x + 14, top, 4, 66, fill=color, stroke=color, stroke_width=0, rx=2)
+        _rect(root, x + 14, top, 4, card_height, fill=color, stroke=color, stroke_width=0, rx=2)
         message = str(finding.get("message", ""))
         ET.SubElement(card, _q("title")).text = f"{heading}. {message}"
         heading_lines = textwrap.wrap(
@@ -755,24 +1079,39 @@ def _draw_finding_panel(
         lines = textwrap.wrap(message, width=52, break_long_words=True, break_on_hyphens=True)
         if len(lines) > 2:
             lines = [*lines[:1], lines[1][:51].rstrip() + "…"]
-        message_y = top + (40 if len(heading_lines) <= 1 else 43)
+        message_y = top + 42
         for line_index, line in enumerate(lines[:2]):
             _text(root, x + 26, message_y + line_index * 11, line, size=9, css="small")
-        for index, record in enumerate(records):
-            if (
-                str(record.get("status", "")).upper() == status
-                and str(record.get("rule_id", "finding")) == rule_id
-                and str(record.get("message", "")) == str(finding.get("message", ""))
-            ):
-                visible_indices[index] = (finding_index, finding_count)
-    if len(active) > 8:
-        _text(
+        for index in summary["record_indices"]:
+            visible_indices[index] = (finding_index, finding_count, f"#{panel_id}")
+    hidden = active[max_cards:]
+    for summary in hidden:
+        for index in summary["record_indices"]:
+            visible_indices[index] = (
+                summary["representative"],
+                summary["count"],
+                f"index.html#html-finding-{index}",
+            )
+    if hidden:
+        hidden_records = [index for summary in hidden for index in summary["record_indices"]]
+        hidden_failures = sum(
+            str(records[index].get("status", "")).upper() == "FAIL" for index in hidden_records
+        )
+        overflow_link = ET.SubElement(
             root,
+            _q("a"),
+            {
+                "href": "index.html#project-finding-register",
+                "data-evidence-navigation": "project-finding-register",
+            },
+        )
+        _text(
+            overflow_link,
             x + 20,
-            y + height - 20,
-            f"{len(active) - 8} additional findings are listed in index.html.",
+            y + height - 18,
+            f"{len(hidden_records)} additional local records · {hidden_failures} FAIL · open register ↗",
             size=9,
-            css="small",
+            css="finding-register-link",
         )
     return visible_indices
 
@@ -1061,26 +1400,55 @@ def _render_plan(
         visible_ids.add(entity_id)
         occurrences += 1
         rect_bounds = _rect_geometry(_geom(entity))
-        label = entity_id
-        if entity.get("label") and str(entity.get("label")) != entity_id:
-            label = f"{entity_id} · {entity.get('label')}"
+        label, label_source = _plan_entity_label(entity_id, entity)
         if str(_params(entity).get("facade", "")).upper() == "ROOF":
             label = f"ROOF OVERHEAD · {label}"
         roof_context = str(_params(entity).get("facade", "")).upper() == "ROOF"
-        if roof_context or (
-            rect_bounds
-            and abs(rect_bounds[1] - rect_bounds[0]) * scale > 48
-            and abs(rect_bounds[3] - rect_bounds[2]) * scale > 18
-        ):
+        label_width = (
+            abs(rect_bounds[1] - rect_bounds[0]) * scale if rect_bounds is not None else 0
+        )
+        label_height = (
+            abs(rect_bounds[3] - rect_bounds[2]) * scale if rect_bounds is not None else 0
+        )
+        is_space = str(entity.get("kind", "")).lower() == "space"
+        # The SC-01 section callout already identifies the protected stair. A second,
+        # longer room label sits directly on the projected flight IDs and is unreadable.
+        if entity_id == "ESC":
+            label = ""
+        label_size = 9
+        label_fits = label_width >= max(48, len(label) * 5.1 + 8) and label_height > 18
+        if is_space and not label_fits and label:
+            # Use the source name at a smaller but still readable size when it fits;
+            # otherwise preserve the stable room ID in narrow bathrooms/closets.
+            label_fits = label_width >= len(label) * 4.1 + 8 and label_height > 18
+            label_size = 7.5
+        label_fallback = False
+        if is_space and not label_fits and label:
+            label = entity_id
+            label_source = None
+            label_fallback = True
+            label_size = 7.5
+            label_fits = label_width >= len(label) * 3.7 + 8 and label_height > 12
+        can_label = roof_context or (
+            rect_bounds is not None
+            and label_height > 12
+            and (label_fits if is_space else label_width >= 48 and label_height > 18)
+        )
+        if can_label:
+            label_attrs = {"data-label-for": entity_id}
+            if label_source:
+                label_attrs["data-label-source"] = label_source
+            if label_fallback:
+                label_attrs["data-label-fallback"] = "stable entity ID; source name does not fit"
             _text(
                 group,
                 anchor[0],
                 anchor[1] + 3,
-                label[:48],
-                size=9,
+                label if is_space or roof_context else label[:48],
+                size=label_size,
                 css="entity-label",
                 anchor="middle",
-                **{"data-label-for": entity_id},
+                **label_attrs,
             )
         marker_x, marker_y = anchor
         if rect_bounds is not None:
@@ -1118,7 +1486,9 @@ def _render_plan(
             size=9,
             css="small",
         )
-    visible_findings = _draw_finding_panel(root, view_id, evaluation, visible_ids)
+    visible_findings = _draw_finding_panel(
+        root, view_id, evaluation, visible_ids, snapshot=snapshot
+    )
     for group, marker_x, marker_y, entity_id, offset in pending_markers:
         _finding_marker(
             group,
@@ -1223,6 +1593,7 @@ def _horizontal_dimension(
     anchor_refs: tuple[str, str] | None = None,
     anchor_targets: tuple[str, str] | None = None,
     datum: str | None = None,
+    dimension_kind: str | None = None,
 ) -> None:
     _line(
         parent,
@@ -1263,6 +1634,8 @@ def _horizontal_dimension(
         attrs["data-anchor-targets"] = " ".join(anchor_targets)
     if datum:
         attrs["data-datum"] = datum
+    if dimension_kind:
+        attrs["data-dimension-kind"] = dimension_kind
     _text(
         parent,
         (x0 + x1) / 2,
@@ -1289,6 +1662,7 @@ def _vertical_dimension(
     anchor_targets: tuple[str, str] | None = None,
     datum: str | None = None,
     label_position: tuple[float, str] | None = None,
+    dimension_kind: str | None = None,
 ) -> None:
     _line(
         parent,
@@ -1329,6 +1703,8 @@ def _vertical_dimension(
         attrs["data-anchor-targets"] = " ".join(anchor_targets)
     if datum:
         attrs["data-datum"] = datum
+    if dimension_kind:
+        attrs["data-dimension-kind"] = dimension_kind
     label_x, label_anchor = label_position or (
         x_dimension + (8 if x_dimension > x_object else -8),
         "start" if x_dimension > x_object else "end",
@@ -1905,7 +2281,9 @@ def _render_elevation(
             css="small",
             anchor="middle",
         )
-    visible_findings = _draw_finding_panel(root, view_id, evaluation, visible_ids)
+    visible_findings = _draw_finding_panel(
+        root, view_id, evaluation, visible_ids, snapshot=snapshot
+    )
     for group, marker_x, marker_y, entity_id, offset in pending_markers:
         _finding_marker(
             group,
@@ -1919,6 +2297,19 @@ def _render_elevation(
     return _serialized(root)
 
 
+def _opening_family(entity: Mapping[str, Any]) -> tuple[str, str]:
+    status = str(entity.get("status", "")).lower()
+    if status in {"study", "unadopted", "trial"}:
+        return "unadopted-studies", "UNADOPTED STUDIES"
+    facade = str(_params(entity).get("facade", "")).upper()
+    if facade == "ROOF":
+        return "roof", "ROOF OPENINGS · PLAN SPANS"
+    level = str(entity.get("level", "unknown")).upper()
+    if level in {"PB", "P2"}:
+        return level.lower(), f"{level} OPENINGS · ELEVATION SPANS"
+    return "other", f"{level} OPENINGS · ELEVATION SPANS"
+
+
 def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str, Any]) -> str:
     openings = [
         (key, entity)
@@ -1926,12 +2317,29 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
         if str(entity.get("kind", "")).lower() == "opening"
     ]
     view_id = "window-details"
-    row_count = max(1, math.ceil(len(openings) / 2))
-    card_top = 154
     card_width = 440
     card_height = 205
     row_step = card_height + 14
-    height = max(SHEET_HEIGHT, card_top + row_count * row_step + 82)
+    family_rank = {"pb": 0, "p2": 1, "roof": 2, "unadopted-studies": 3, "other": 4}
+    by_family: dict[str, dict[str, Any]] = {}
+    for key, entity in openings:
+        family_id, family_label = _opening_family(entity)
+        family = by_family.setdefault(family_id, {"label": family_label, "items": []})
+        family["items"].append((key, entity))
+    family_groups = sorted(
+        by_family.items(), key=lambda item: (family_rank.get(item[0], 5), item[0])
+    )
+    card_index = {key: index for index, (key, _) in enumerate(openings)}
+    family_placements: list[
+        tuple[str, str, float, list[tuple[int, str, Mapping[str, Any]]]]
+    ] = []
+    family_cursor = 154.0
+    for family_id, family in family_groups:
+        items = sorted(family["items"], key=lambda item: _display_id(item[0], item[1]))
+        placements = [(card_index[key], key, entity) for key, entity in items]
+        family_placements.append((family_id, family["label"], family_cursor, placements))
+        family_cursor += 18 + math.ceil(len(placements) / 2) * row_step
+    height = max(SHEET_HEIGHT, int(family_cursor + 82))
     root = _root(
         snapshot,
         view_id,
@@ -1951,16 +2359,39 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
         root,
         48,
         142,
-        "Projected geometry dimensions · parameter-only diagrams show shape and size, not plan location or assembly.",
-        size=9,
+        "INDIVIDUAL FIT PER CARD · Scale varies to fit; compare labelled dimensions. Roof cards show plan spans; other cards show elevation spans.",
+        size=10,
         css="small",
+        **{"data-detail-scale-policy": "individual-fit; compare labelled dimensions"},
     )
     visible_ids: set[str] = set()
     pending_markers: list[tuple[ET.Element, float, float, str, int]] = []
-    for index, (key, entity) in enumerate(openings):
-        col, row = index % 2, index // 2
-        x, y = 48 + col * 458, card_top + row * row_step
-        card = ET.SubElement(root, _q("g"), {"id": f"window-card-{index:04d}"})
+    card_rows: list[tuple[str, int, str, Mapping[str, Any], float, float]] = []
+    for family_id, family_label, family_y, placements in family_placements:
+        _text(
+            root,
+            48,
+            family_y,
+            family_label,
+            size=10,
+            css="eyebrow",
+            **{"data-window-family": family_id},
+        )
+        cards_top = family_y + 18
+        for row_index, (index, key, entity) in enumerate(placements):
+            col, row = row_index % 2, row_index // 2
+            x, y = 48 + col * 458, cards_top + row * row_step
+            card_rows.append((family_id, index, key, entity, x, y))
+    for family_id, index, key, entity, x, y in card_rows:
+        card = ET.SubElement(
+            root,
+            _q("g"),
+            {
+                "id": f"window-card-{index:04d}",
+                "data-family-id": family_id,
+                "data-detail-scale-policy": "individual-fit",
+            },
+        )
         _rect(
             card, x, y, card_width, card_height, fill=COLOURS["panel"], stroke=COLOURS["rule"], rx=4
         )
@@ -2022,6 +2453,8 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
             attrs = {"class": "entity-shape", "vector-effect": "non-scaling-stroke"}
             if dash:
                 attrs["stroke-dasharray"] = dash
+            attrs["data-detail-scale-policy"] = "individual-fit"
+            attrs["data-detail-scale-px-per-m"] = _raw_n(scale)
             _rect(
                 group,
                 shape_x,
@@ -2032,6 +2465,18 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 stroke=stroke,
                 stroke_width=2,
                 **attrs,
+            )
+            _text(
+                group,
+                x + 286,
+                y + 78,
+                f"Individual fit · {_n(scale)} SVG px/m",
+                size=8.5,
+                css="small",
+                **{
+                    "data-individual-fit-scale": _raw_n(scale),
+                    "data-detail-scale-policy": "individual-fit",
+                },
             )
             opening_anchors: dict[str, tuple[str, str]] = {}
             if is_roof and plan_bounds:
@@ -2151,6 +2596,7 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                 if opening_anchors
                 else None,
                 datum=f"facade {facade} · opening width axis",
+                dimension_kind="plan-x-span" if is_roof else "elevation-width",
             )
             if vertical or is_roof or display_height is not None:
                 _vertical_dimension(
@@ -2185,6 +2631,7 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
                     if opening_anchors and (is_roof or "opening.sill" in opening_anchors)
                     else None,
                     datum="project elevation above PB ±0.00 m",
+                    dimension_kind="plan-y-span" if is_roof else "vertical-height",
                 )
             vertical_label = (
                 f"Plan span {_dim(display_height)}" if is_roof else f"Height {_dim(display_height)}"
@@ -2298,7 +2745,9 @@ def _render_window_details(snapshot: Mapping[str, Any], evaluation: Mapping[str,
             css="small",
             anchor="middle",
         )
-    visible_findings = _draw_finding_panel(root, view_id, evaluation, visible_ids)
+    visible_findings = _draw_finding_panel(
+        root, view_id, evaluation, visible_ids, snapshot=snapshot
+    )
     for group, marker_x, marker_y, entity_id, offset in pending_markers:
         _finding_marker(
             group,
@@ -3016,7 +3465,9 @@ def _render_window_sections(snapshot: Mapping[str, Any], evaluation: Mapping[str
     visible_ids = {opening_id} if opening else set()
     if host_id:
         visible_ids.add(host_id)
-    _draw_finding_panel(root, view_id, evaluation, visible_ids, include_unlinked=False)
+    _draw_finding_panel(
+        root, view_id, evaluation, visible_ids, snapshot=snapshot, include_unlinked=False
+    )
     return _serialized(root)
 
 
@@ -3040,6 +3491,7 @@ def _render_html(
     entity_rows: list[str] = []
     for index, (key, entity) in enumerate(entities):
         entity_id = _display_id(key, entity)
+        display_label, display_label_source = _plan_entity_label(entity_id, entity)
         source = entity.get("source", {})
         source = source if isinstance(source, Mapping) else {}
         aliases = entity.get("aliases", [])
@@ -3062,7 +3514,7 @@ def _render_html(
             part
             for part in (
                 f"{entity.get('kind', 'element')} {entity_id}",
-                str(entity.get("label", "")),
+                display_label,
                 f"level {entity.get('level', 'unknown')}",
                 f"status {entity.get('status', 'unknown')}",
                 geometry_coverage,
@@ -3075,8 +3527,9 @@ def _render_html(
         entity_rows.append(
             f'<li class="entity-row" id="entity-row-{index}" data-search="{searchable}">'
             f'<button type="button" class="entity-select" data-select-entity="{html.escape(entity_id, quote=True)}" '
-            f'data-evidence="{html.escape(evidence, quote=True)}" aria-pressed="false">'
-            f"<strong>{html.escape(entity_id)}</strong><span>{html.escape(str(entity.get('label', '')))}</span>"
+            f'data-evidence="{html.escape(evidence, quote=True)}" '
+            f'data-label-source="{html.escape(display_label_source or "", quote=True)}" aria-pressed="false">'
+            f"<strong>{html.escape(entity_id)}</strong><span>{html.escape(display_label)}</span>"
             f"<small>{html.escape(str(entity.get('kind', 'element')))} · "
             f"{html.escape(str(entity.get('level', 'unknown')))} · "
             f"{html.escape(str(entity.get('status', 'unknown')))}</small>"
@@ -3119,7 +3572,7 @@ def _render_html(
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dream House coordination review · {scenario}</title>
 <style>
-:root {{ color-scheme: light; font-family: Inter, "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
+:root {{ color-scheme: light; font-family: "IBM Plex Sans", "Liberation Sans", Arial, sans-serif;
   color: #172A32; background: #F4F0E7; }}
 body {{ margin: 0; }}
 header {{ position: sticky; top: 0; z-index: 2; padding: 14px 22px; background: #172A32; color: #FFFDFA; }}
@@ -3127,7 +3580,7 @@ header h1 {{ margin: 0 0 6px; font-size: 1.25rem; }}
 header p {{ margin: 0; font-size: .84rem; color: #DDE4E2; }}
 nav {{ display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }}
 nav a {{ color: #FFFDFA; border: 1px solid #9AA5A4; border-radius: 3px; padding: 5px 8px; text-decoration: none; }}
-.authority {{ display: inline-block; margin-top: 8px; padding: 5px 8px; background: #A33F31; font-weight: 800; }}
+.authority {{ display: inline-block; margin-top: 8px; padding: 5px 8px; color: #172A32; background: #DDE4E2; font-weight: 800; }}
 .layout {{ display: grid; grid-template-columns: minmax(260px, 330px) minmax(0, 1fr); gap: 16px; padding: 16px; align-items: start; }}
 aside {{ position: sticky; top: 160px; max-height: calc(100vh - 178px); overflow: auto; }}
 .panel {{ background: #FFFDFA; border: 1px solid #B9C0BD; border-radius: 5px; margin-bottom: 12px; padding: 12px; }}
@@ -3137,7 +3590,9 @@ input[type="search"] {{ width: 100%; box-sizing: border-box; padding: 8px; borde
 ul {{ list-style: none; padding: 0; margin: 0; }}
 .entity-row {{ border-top: 1px solid #EEF2F0; }}
 .entity-select {{ display: grid; width: 100%; gap: 3px; border: 0; padding: 8px 5px; text-align: left; color: inherit; background: transparent; cursor: pointer; }}
-.entity-select:hover, .entity-select[aria-pressed="true"] {{ background: #FBF0D9; }}
+.entity-select:hover {{ background: #FBF0D9; }}
+.entity-select[aria-pressed="true"] {{ background: #E8EEF9; box-shadow: inset 3px 0 #2454A6; }}
+.entity-select:focus-visible, .evidence-entity:focus-visible {{ outline: 3px solid #2454A6; outline-offset: 2px; }}
 .entity-select small, .finding small {{ color: #536168; }}
 .evidence-entity {{ margin: 4px 5px 0 0; border: 1px solid #536168; border-radius: 2px; background: #FFFDFA; cursor: pointer; }}
 .finding {{ border-top: 1px solid #CBD0CC; padding: 9px 0; }}
@@ -3146,7 +3601,11 @@ ul {{ list-style: none; padding: 0; margin: 0; }}
 .empty, .helper {{ color: #536168; font-size: .82rem; }}
 .view {{ margin: 0 auto 18px; max-width: 1440px; scroll-margin-top: 165px; }}
 .view svg {{ display: block; width: 100%; height: auto; border: 1px solid #B9C0BD; background: #F4F0E7; }}
-svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
+svg .entity-occurrence.is-selected .entity-shape {{ filter: drop-shadow(0 0 2px #2454A6); }}
+svg .semantic-anchor.is-selected, svg .dimension.is-selected,
+svg .entity-occurrence.is-selected .entity-label {{
+  filter: drop-shadow(0 0 1.5px #2454A6);
+}}
 @media (max-width: 900px) {{ .layout {{ grid-template-columns: 1fr; }} aside {{ position: static; max-height: 45vh; }} header {{ position: static; }} }}
 </style>
 </head>
@@ -3169,7 +3628,7 @@ svg .entity-occurrence.is-selected {{ filter: drop-shadow(0 0 3px #BD7626); }}
       <div id="selected-evidence" class="helper">Element source and status will appear here.</div>
     </section>
     <section class="panel">
-      <h2>Evaluation evidence</h2>
+      <h2 id="project-finding-register">Evaluation evidence</h2>
       <p id="finding-filter-status" class="helper" aria-live="polite">Showing all {len(findings)} findings.</p>
       <ul>{"".join(finding_rows)}</ul>
     </section>

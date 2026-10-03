@@ -105,9 +105,9 @@ def attach_navigation(
 #source-navigation .navigation-entity button { font: inherit; color: inherit; cursor: pointer; }
 #source-navigation .navigation-links { padding-left: 1.5rem; }
 #source-navigation .saved-issue { border-top: 1px solid #CBD0CC; padding: 10px 0; }
-#source-navigation .saved-issue[aria-current="location"] { outline: 2px solid #BD7626; outline-offset: 2px; }
+#source-navigation .saved-issue[aria-current="location"] { outline: 2px solid #2454A6; outline-offset: 2px; }
 #source-navigation .saved-issue-view[aria-current="location"] { font-weight: 700; }
-#source-navigation .saved-issue-selected { outline: 2px solid #BD7626; }
+#source-navigation .saved-issue-selected { outline: 2px solid #2454A6; }
 #source-navigation .saved-issue-viewpoints, #source-navigation .saved-issue-gaps ul { padding-left: 1.5rem; }
 @media (max-width: 900px) {
   #source-navigation { overflow-x: auto; }

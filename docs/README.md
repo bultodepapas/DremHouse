@@ -1,10 +1,11 @@
 # Dream House Project Record
 
 **Status:** active
-**Version:** 0.28
+**Version:** 0.29
 **Date:** 2026-10-03
-**Source:** active project registers, current drawing catalog and D-084 connected
-coordination migration; documentation update without a new design or scope decision.
+**Source:** active project registers, current drawing catalog, D-084 connected
+coordination migration and D-085 visual-language implementation; no physical design
+or construction scope change.
 
 > [!NOTE]
 > The derived project record is being migrated to professional technical English under
@@ -13,6 +14,9 @@ coordination migration; documentation update without a new design or scope decis
 
 ## Start with the current project state
 
+- [Connected visual-language implementation](06_gestion_y_obra/connected_visual_language_implementation_2026_10.md):
+  D-085 graphic delivery, source-preserving legends and paired reading, portable colour
+  output, verification evidence and remaining human acceptance tasks.
 - [Connected SVG visual-language audit and improvement plan](08_investigacion/connected_svg_visual_language_audit_and_plan_2026_10.md):
   complete 267-file-occurrence census, colour semantics, export-parity evidence,
   proposed visual specimen and phased treatment of all 36 connected sheets.

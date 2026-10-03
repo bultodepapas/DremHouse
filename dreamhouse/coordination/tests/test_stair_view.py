@@ -43,3 +43,59 @@ class StairViewTests(unittest.TestCase):
         self.assertIn("no stair section inferred", svg)
         root = ET.fromstring(svg)
         self.assertFalse(any(e.get("data-entity-id") for e in root.iter()))
+
+    def test_review_header_roles_counts_and_links_preserve_stair_cues(self):
+        snapshot = resolve_project()
+        evaluation = evaluate(snapshot)
+        root = ET.fromstring(render_stair_section(snapshot, evaluation))
+        self.assertEqual(root.get("data-visual-language-version"), "connected-atlas-1")
+        self.assertIsNotNone(root.find("{http://www.w3.org/2000/svg}title"))
+        self.assertIsNotNone(root.find("{http://www.w3.org/2000/svg}desc"))
+
+        roles = {node.get("data-legend-role") for node in root.iter() if node.get("data-legend-role")}
+        self.assertTrue(
+            {
+                "geometry.structure-envelope",
+                "representation.context",
+                "access-floor-datum-only",
+                "selection.focus",
+            }.issubset(roles)
+        )
+        style = "".join(
+            node.text or ""
+            for node in root.iter()
+            if node.tag == "{http://www.w3.org/2000/svg}style"
+        )
+        self.assertIn(".entity-occurrence.is-selected .entity-shape", style)
+        flight = next(node for node in root.iter() if node.get("data-entity-id") == "ST-F1")
+        shape = next(node for node in flight.iter() if node.get("class") == "entity-shape")
+        self.assertEqual(shape.get("stroke"), "#1D7480")
+        self.assertEqual(shape.get("stroke-width"), "5")
+        self.assertNotEqual(shape.get("stroke"), "#2454A6")
+
+        visible_ids = {"ST-F1", "ST-F2", "ST-L1", "D-STAIR"}
+        records = [
+            finding
+            for finding in evaluation["findings"]
+            if str(finding.get("status", "")).upper() in {"OPEN", "FAIL"}
+        ]
+        local = [
+            finding
+            for finding in records
+            if visible_ids.intersection(finding.get("entity_ids", []))
+        ]
+        self.assertEqual(root.get("data-local-open-count"), str(sum(f["status"] == "OPEN" for f in local)))
+        self.assertEqual(root.get("data-local-fail-count"), str(sum(f["status"] == "FAIL" for f in local)))
+        self.assertEqual(root.get("data-project-open-count"), str(sum(f["status"] == "OPEN" for f in records)))
+        self.assertEqual(root.get("data-project-fail-count"), str(sum(f["status"] == "FAIL" for f in records)))
+        links = [
+            node
+            for node in root.iter()
+            if node.tag == "{http://www.w3.org/2000/svg}a"
+        ]
+        finding_links = [node for node in links if node.get("data-finding-index") is not None]
+        self.assertEqual(len(finding_links), len(local))
+        self.assertTrue(all(node.get("href", "").startswith("index.html#html-finding-") for node in finding_links))
+        self.assertTrue(
+            any(node.get("href") == "index.html#project-finding-register" for node in links)
+        )

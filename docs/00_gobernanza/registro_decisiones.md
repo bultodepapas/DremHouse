@@ -1,10 +1,10 @@
 # Decision Register
 
 **Status:** active  
-**Version:** 0.44
+**Version:** 0.45
 **Date:** 2026-10-03
 **Language note:** controlled English translation under D-044; decision content unchanged
-except for the additions of D-044 to D-084 and the explicit supersession statuses of
+except for the additions of D-044 to D-085 and the explicit supersession statuses of
 D-026, D-037, D-040, D-049, and D-053.
 
 | ID    | Decision                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Status                                                                                                                                                                   | Source/date                                                                   |
@@ -86,6 +86,8 @@ D-026, D-037, D-040, D-049, and D-053.
 
 | D-084 | Implement the repository-authored connected coordination workflow in phased, isolated review packages. Resolve current PB b37/P2 b28 sources into shared element identities, evaluate supported rules and quantities, and generate read-only SVG/HTML evidence with complete manifests and freshness checks. Retain historical scenarios and explicit publication authority. See [decision record](decision_d084_connected_coordination.md) and [implemented workflow](../06_gestion_y_obra/connected_coordination_workflow.md), including [increment 02](../06_gestion_y_obra/connected_coordination_increment_02.md) and the [consumer migration](../06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md) of 2026-10-03. | **Owner-authorized software and information workflow.** No graphical editor, synthetic design adoption, construction scope/target change, current-drawing promotion or closure of CF-009/010/011/012/013. Remaining phase gates and geometry limitations stay explicit. | Owner instruction to proceed with implementation of the phased plan, 2026-10-02 |
 
+| D-085 | Implement the researched connected drawing visual language: portable literal colour export, independent graphic roles, local legends and paired architectural/coordination reading. See [decision record](decision_d085_connected_visual_language.md) and [implementation evidence](../06_gestion_y_obra/connected_visual_language_implementation_2026_10.md). | **Owner-authorized graphic/software implementation for connected review.** No physical design, construction scope, cost, alias promotion or conflict closure. Reading and print acceptance remain explicit. | Owner instruction to proceed after the visual-language audit and plan, 2026-10-03 |
+
 ## Decisions to open next
 
 - D-017: site and municipality.
@@ -108,7 +110,7 @@ Use the [decision template](../07_plantillas/decision.md) for every new entry.
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-08-11 | Identifier `D-037` had been assigned to two different decisions. `D-037` remains assigned to adoption of P2 b06/R05, continuing the sequence from D-036 to D-038; the steel-structure basis becomes **D-041**. | Finding H-15 in the [coordination review](../02_arquitectura/revision_coordinacion_v0.3_2026_08.md). Document precedence relies on unique decision identifiers. |
 
-**Next available identifier: `D-085`.** The D-017 to D-025 range remains reserved for the
+**Next available identifier: `D-086`.** The D-017 to D-025 range remains reserved for the
 pending decisions listed above.
 
 ## Hard rules modified by a later decision

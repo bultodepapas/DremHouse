@@ -15,7 +15,10 @@ import re
 from collections.abc import Mapping, Sequence
 from pathlib import Path, PurePosixPath
 from typing import Any
+from urllib.parse import unquote
 from xml.etree import ElementTree as ET
+
+from dreamhouse.svg.style import has_svg_css_variables
 
 XML_NS = "http://www.w3.org/XML/1998/namespace"
 
@@ -190,6 +193,9 @@ def _parse_svg(svg_text: str, *, name: str) -> ET.Element:
     if _local_name(root.tag) != "svg":
         raise ValueError(f"Visual input {name} must have an <svg> root element")
 
+    if has_svg_css_variables(root):
+        raise ValueError(f"Compile SVG CSS variables before raster export ({name})")
+
     for element in root.iter():
         local = _local_name(element.tag)
         if local in {"script", "foreignObject"}:
@@ -202,8 +208,13 @@ def _parse_svg(svg_text: str, *, name: str) -> ET.Element:
                 # A relative SVG navigation link is not a fetched image/font resource.
                 # The connected view contract validates its semantic/DOM destination.
                 target_path, separator, fragment = value.partition("#")
+                if unquote(target_path) != target_path:
+                    raise ValueError(f"Encoded SVG navigation paths are not allowed: {name}")
                 if local == "a" and target_path and separator and fragment:
-                    _input_name(target_path)
+                    if target_path != "index.html" or not re.fullmatch(
+                        r"(?:project-finding-register|html-finding-[0-9]+)", fragment
+                    ):
+                        _input_name(target_path)
                 else:
                     _validate_reference(value, context=f"{name} @{attr_local}")
             if attr_local == "style":
@@ -221,6 +232,8 @@ def _input_name(value: str) -> str:
         raise ValueError("SVG input names must be non-empty relative paths")
     if "\\" in value:
         raise ValueError(f"SVG input paths must use forward slashes: {value!r}")
+    if unquote(value) != value:
+        raise ValueError(f"Encoded SVG artifact paths are not allowed: {value!r}")
     if ":" in value:
         raise ValueError(f"SVG input paths cannot contain a URI scheme: {value!r}")
     path = PurePosixPath(value)

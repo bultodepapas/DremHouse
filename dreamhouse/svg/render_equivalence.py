@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree as ET
 
+from dreamhouse.svg.style import compile_svg_styles, has_svg_css_variables
 
 SVG_NS = "http://www.w3.org/2000/svg"
 DRAWABLE_TAGS = frozenset(
@@ -635,6 +636,9 @@ def audit_file(
     geometry_tolerance_px: int = DEFAULT_GEOMETRY_EDGE_TOLERANCE_PX,
 ) -> dict[str, Any]:
     root = ET.parse(svg_path).getroot()
+    source_had_css_variables = has_svg_css_variables(root)
+    portable_root = copy.deepcopy(root)
+    compile_svg_styles(portable_root)
     width = _numeric_dimension(root, "width")
     height = _numeric_dimension(root, "height")
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -724,15 +728,21 @@ def audit_file(
 
     full_browser = output_dir / f"{prefix}-browser.png"
     full_resvg = output_dir / f"{prefix}-resvg.png"
+    portable_svg = output_dir / f"{prefix}-portable.svg"
+    ET.ElementTree(portable_root).write(
+        portable_svg,
+        encoding="utf-8",
+        xml_declaration=True,
+    )
     _render_browser(
-        svg_path,
+        portable_svg,
         full_browser,
         browser=browser,
         width=width,
         height=height,
         scale=1,
     )
-    _render_resvg(svg_path, full_resvg, width=width, height=height)
+    _render_resvg(portable_svg, full_resvg, width=width, height=height)
     full_metrics = _full_render_metrics(full_browser, full_resvg)
     _save_comparison(full_metrics, output_dir / f"{prefix}-comparison.png")
 
@@ -763,6 +773,20 @@ def audit_file(
             "resvg": resvg_clearance,
         },
         "full_render": {
+            "style_compilation": "theme variables compiled to literal paint values",
+            "portable_copy_rendered_for_parity": True,
+            "source_had_css_variable_references": source_had_css_variables,
+            "original_source_style_portable": not source_had_css_variables,
+            "original_source_artifact_parity_certified": not source_had_css_variables,
+            "parity_subject": portable_svg.name,
+            "parity_limit": (
+                "A source containing CSS variable references is compared only after bounded "
+                "literal compilation; this result does not certify direct rendering of the "
+                "uncompiled source artifact."
+                if source_had_css_variables
+                else "The source has no CSS variable references; the literal style tree is "
+                "rendered in both engines."
+            ),
             "mean_absolute_channel_delta": full_metrics["mean_absolute_channel_delta"],
             "pixels_above_16_percent": full_metrics["pixels_above_16_percent"],
             "maximum_channel_delta": full_metrics["maximum_channel_delta"],

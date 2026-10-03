@@ -2,7 +2,7 @@
 
 **Status:** retained graphic-improvement roadmap; bounded D-084 review implementation;
 connected review publication implemented; adopted aliases retained; no construction authority
-**Version:** 0.7
+**Version:** 0.8
 **Date:** 2026-10-03
 **Original audit date:** 2026-08-23
 **Source:** owner request of 2026-08-21; code and rendered-output audit of the 27
@@ -14,6 +14,12 @@ control only. It does not change architectural geometry, programme, structure, c
 scope, status, open conflicts or professional design gates.
 
 ## Connected catalog migration — 2026-10-03
+
+D-085 now authorizes the connected visual-language implementation. The
+[implementation record](../06_gestion_y_obra/connected_visual_language_implementation_2026_10.md)
+separates delivered code and generated review evidence from remaining composition,
+reader and physical-print acceptance. The historical aliases and original pilot
+acceptance records are preserved.
 
 The subsequent [visual-language audit and phased plan](connected_svg_visual_language_audit_and_plan_2026_10.md)
 adds a fresh census of 231 tracked SVGs and 36 generated release SVGs, fourteen

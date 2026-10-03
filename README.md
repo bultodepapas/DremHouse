@@ -48,7 +48,7 @@ structure, and performance—not from arbitrary forms or decorative layers.
 
 <!-- showcase:begin -->
 <p align="center">
-  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>107</strong> documents · <strong>75</strong> decisions · <strong>9</strong> open conflicts</sub>
+  <sub><strong>27</strong> current SVG/PNG pairs · <strong>185</strong> preserved versioned sheets · <strong>109</strong> documents · <strong>76</strong> decisions · <strong>9</strong> open conflicts</sub>
 </p>
 
 <table>
@@ -220,8 +220,9 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 **Verified software baseline · 2026-10-03:** 36 generated SVGs, 322 source-bound anchors,
 166 checked dimensions and visible labels; 57 PASS / 186 OPEN / 0 FAIL findings.
-The full repository regression passed **545 tests**; graphic-repair verification is recorded in the
-[visual repair report](docs/02_arquitectura/connected_svg_architectural_visual_review_2026_10.md).
+The full repository regression passed **575 tests**; current graphic delivery and its
+remaining acceptance tasks are recorded in the
+[visual-language implementation](docs/06_gestion_y_obra/connected_visual_language_implementation_2026_10.md).
 These counts describe declared coverage. Seven door records remain unlocated under
 CF-013; site, product and professional engineering decisions remain open.
 
@@ -241,6 +242,7 @@ verified release on 2026-10-03. Click an image for its SVG; the
 For the published connected reader, use the
 [coordination review](https://bultodepapas.github.io/DremHouse/coordination/index.html),
 which is refreshed by the repository's Pages workflow after publication.
+These snapshots are excerpts; cross-sheet and finding links require the complete reader.
 
 The architectural plans incorporate the [documented graphic repairs](docs/02_arquitectura/connected_svg_architectural_visual_review_2026_10.md):
 source-consistent island labels, clearer bathroom annotations and explicit unresolved-access notes.
@@ -249,8 +251,14 @@ SVGs remain generated outputs of repository sources.
 The [visual-language audit and improvement plan](docs/08_investigacion/connected_svg_visual_language_audit_and_plan_2026_10.md)
 examines the complete SVG corpus, explains current colour meanings and proposes a
 clearer shared graphic language, supported by fourteen primary-source investigations.
-It records an export-colour mismatch to address before the visual rollout; the proposed
-palette and layouts are not yet adopted.
+Its implementation is tracked in the [D-085 visual-language record](docs/06_gestion_y_obra/connected_visual_language_implementation_2026_10.md),
+including source invariants, export checks and remaining reading/print acceptance tasks.
+The generated set now provides portable literal colours, local role legends, clearer
+room labels and independent blue selection. Amber marks OPEN evidence and violet marks
+studies; native material colours keep their own local meanings. The reader pairs spatial
+and coordination views and includes a text guide, vector A3 review-print companion and
+per-sheet graphic coverage report. All 36 sheets pass delivery checks and 148 internal
+SVG links resolve to their recorded destinations.
 
 | Ground floor architecture | Upper floor architecture |
 | --- | --- |

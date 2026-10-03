@@ -6,8 +6,10 @@ import unittest
 from dreamhouse.svg.sheet import CSS
 from dreamhouse.svg.theme import (
     APPROVED_PRESENTATION_COLOURS,
+    SEMANTIC_COLOUR_ROLES,
     THEME_COLOURS,
     colour,
+    role_colour,
 )
 
 
@@ -25,6 +27,19 @@ class TestSvgTheme(unittest.TestCase):
     def test_unknown_semantic_token_fails_closed(self) -> None:
         with self.assertRaisesRegex(ValueError, "Unknown SVG theme colour token"):
             colour("not-a-token")
+
+    def test_semantic_roles_resolve_without_duplicating_palette_primitives(self) -> None:
+        self.assertTrue(set(SEMANTIC_COLOUR_ROLES.values()) <= set(THEME_COLOURS))
+        self.assertEqual(len(THEME_COLOURS), len(set(THEME_COLOURS.values())))
+        self.assertNotEqual(
+            role_colour("status.pass"),
+            role_colour("material.insulation-edge"),
+        )
+        self.assertEqual(role_colour("selection.focus"), "#2454A6")
+
+    def test_unknown_semantic_role_fails_closed(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Unknown SVG semantic colour role"):
+            role_colour("not-a-role")
 
 
 if __name__ == "__main__":

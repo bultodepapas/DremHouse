@@ -30,10 +30,12 @@ from dreamhouse.coordination.model import (
 )
 from dreamhouse.coordination.navigation import attach_navigation
 from dreamhouse.coordination.phase_gates import gate_markdown, phase_gate_record
+from dreamhouse.coordination.reader import attach_reading_guide, companion_pages
 from dreamhouse.coordination.render import render_views
 from dreamhouse.coordination.rules import evaluate
 from dreamhouse.coordination.view_contract import compare_anchors, inspect_views
 from dreamhouse.coordination.viewpoints import build_viewpoints
+from dreamhouse.coordination.visual_quality import visual_quality_report
 from dreamhouse.cost.reconcile import reconcile_costs
 
 DEFAULT_OUTPUT = ROOT / ".build/coordination"
@@ -153,6 +155,9 @@ def _render_outputs(snapshot: dict, result: dict) -> tuple[dict, dict]:
         '<a href="structural_screening.json">Structural screening hypotheses and results</a></p>'
         "</section></body>",
     )
+    files["visual_quality.json"] = json_text(visual_quality_report(files, snapshot))
+    files.update(companion_pages(files, snapshot))
+    files["index.html"] = attach_reading_guide(files["index.html"], files)
     return files, migrated["inventory"]
 
 

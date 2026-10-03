@@ -1,19 +1,19 @@
 {
   "artifacts": {
-    "drawings/architecture-ground-floor.png": "c5197c1d3ac0b7a7edf8f9bdca3117a81a82e1e807f2ba705e23d43c85e290da",
-    "drawings/architecture-ground-floor.svg": "bcfbc8e1083834a49287d0e69ddeeff8558ee781a3702bea166d1e37cf9b6acd",
-    "drawings/architecture-upper-floor.png": "2fd536484a27a8eb1cca6542fca5887a77a978a869a32abe16a3193d55d9e6cd",
-    "drawings/architecture-upper-floor.svg": "c2731baec1ec9172491a5fa15517e8db0256ac1b6112d7e656254257b278f802",
-    "plan-p2.png": "f967d1883a29eb7442d45bf4f0ae6a022af5be5ac63d672dbfd79250a33d3f7c",
-    "plan-p2.svg": "a01d43a2a6f6604cabc403cb3d2ef932871f3ad3e7d3c5998962e4f3b836bd3f",
-    "plan-pb.png": "3bf761d54e18961d9538cd56fa1b49e4af07afa7f525431f0a094f5a69d7b746",
-    "plan-pb.svg": "575c6774c75ebfcd4fc5832e67ec1730717b7ff5f23361fbef0b8b20401cf893",
-    "stair-sections.png": "82e7716a2c004054ccd4ed3ce418f98c29bf7a0aac500645fbb1ec35a14e247f",
-    "stair-sections.svg": "7511e4954b64b6ffc8b73ae903a9f89d67fd04afa6374ce6d26c767477317532"
+    "drawings/architecture-ground-floor.png": "e1a9ea34143113e1635e3e19be7e133e44e89a8b3f7d1f78b1665f556b5a36e2",
+    "drawings/architecture-ground-floor.svg": "43da302da8de473eb1381a8fc81b82b10d32dd59670cbdfcb75afbf7ce5e2a09",
+    "drawings/architecture-upper-floor.png": "d43f5c8cf7a37f71726d01de96be4119e8b15c86b59c9f12335b4bdbb25ec565",
+    "drawings/architecture-upper-floor.svg": "1abe933463b8b9c6bf43b647402190e9ab8e2db5393d338684de7980283417d0",
+    "plan-p2.png": "1d512a5245b41b54e9c2c72306404462e8a77fe363beabc48570d9bea82d14da",
+    "plan-p2.svg": "5ff9f9b733a0914f7c7ba35a42f018d1e2a3e8dbce05e5625238143f3f66ae68",
+    "plan-pb.png": "af598b3acaa17fa29d2f02d522cf4b3a32e7083072e736d8ef2bfa3c9880db96",
+    "plan-pb.svg": "e4c7fe3a6bc9ffecd44b2e5d7b68037a6aec685d8eb83758ec5e922610b3101d",
+    "stair-sections.png": "4a290161b833b7181244321c8e760c594d1c1e1e932dcdb9974ecfa5ad241af0",
+    "stair-sections.svg": "6c80843508d5cbc917af8be425663d5a44c15b8805f53b32ad2492e6d90d2afb"
   },
-  "release_id": "6f9ff2314f3bd7e2e2f2b9c15084b3375b6dec176a248457dd46af8ee751793e",
+  "release_id": "6d3de073dc7333a0afd32ec30ae8c8c5ed09ff5156be7f13e5b183cbd7d129bb",
   "schema_version": 1,
-  "source_input_hash": "cb4cee736a6d15bc8ca2edfcd4d776fe54109b6794488ade91fba4479cdb5beb",
+  "source_input_hash": "eea24b5d1e1179ee7e2ebd4ca3807d1204fa9666acea597f6224711d2a75a2d7",
   "source_model_hash": "7386d33026a4a1e22f5b68df1c4187a18a9d01831c5f1f53f2bf06d3010fb6d3",
   "status": "review snapshot; not for construction; not an adopted drawing issue"
 }

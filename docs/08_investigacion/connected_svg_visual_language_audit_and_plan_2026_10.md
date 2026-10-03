@@ -1,10 +1,18 @@
 # Dream House — a coherent visual language for the connected drawing set
 
-**Version:** 0.1  
+**Version:** 0.2<br>
 **Date:** 2026-10-03  
-**Status:** researched proposal and visual audit; implementation and graphic adoption pending  
+**Status:** retained pre-implementation audit and plan; D-085 implementation tracked separately<br>
 **Source:** owner's request to examine all SVGs, images and colours for beauty and usefulness; repository snapshot `77b380022f14837eb82c61e2c4bec0986815b53a`; current drawing catalog; verified connected release; primary-source research linked below.  
 **Authority:** presentation, communication and software quality only. No geometry, product, scope, cost, source precedence or construction authority changes. SVGs remain generated outputs, never graphical editing inputs.
+
+## Implementation follow-through — 2026-10-03
+
+The owner subsequently authorized implementation. [D-085](../00_gobernanza/decision_d085_connected_visual_language.md)
+records the graphic/software direction. The [implementation record](../06_gestion_y_obra/connected_visual_language_implementation_2026_10.md)
+tracks delivered coverage, tests and remaining acceptance tasks. The census, colour
+measurements and defects below describe the **pre-implementation** snapshot; they are
+retained as comparison evidence rather than silently updated to the new output.
 
 ## 1. Recommendation
 

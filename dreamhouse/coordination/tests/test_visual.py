@@ -190,6 +190,14 @@ class VisualExportTests(unittest.TestCase):
         ):
             visual_configuration(FONTS)
 
+    def test_uncompiled_css_variables_fail_instead_of_silently_rendering_black(self) -> None:
+        from dreamhouse.coordination.visual import _parse_svg
+
+        for style in ('<style>.a {fill:var(--ink)}</style><rect class="a"/>',
+                      '<rect fill="var(--ink)"/>', '<rect style="fill:var(--ink)"/>'):
+            with self.subTest(style=style), self.assertRaisesRegex(ValueError, "Compile SVG CSS"):
+                _parse_svg('<svg xmlns="http://www.w3.org/2000/svg">' + style + '</svg>', name="probe.svg")
+
     def test_external_resources_are_rejected(self) -> None:
         svg = sample_svg("PB", "#9bc4cb").replace(
             "</svg>", '<image href="../hidden-source.png" /></svg>'
@@ -205,7 +213,14 @@ class VisualExportTests(unittest.TestCase):
         )
         images, _ = render_visuals({"pb.svg": linked}, font_paths=FONTS, width_px=320)
         self.assertIn("pb.png", images)
-        for href in ("../detail.svg#anchor", "https://example.com/detail.svg#anchor"):
+        for fragment in ("project-finding-register", "html-finding-9"):
+            exported, _ = render_visuals(
+                {"pb.svg": linked.replace("detail.svg#anchor", "index.html#" + fragment)},
+                font_paths=FONTS, width_px=320,
+            )
+            self.assertIn("pb.png", exported)
+        for href in ("../detail.svg#anchor", "https://example.com/detail.svg#anchor",
+                     "%2e%2e/secret.svg#target", "drawings/%2E%2E/secret.svg#target"):
             with self.subTest(href=href), self.assertRaises(ValueError):
                 render_visuals(
                     {"pb.svg": linked.replace("detail.svg#anchor", href)},
