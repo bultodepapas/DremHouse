@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "plan-p2.png": "8b7a697f37aa3f28d4b60c4c49e3beb62e367c3942e568a06a2bce5e44974aea",
+    "plan-p2.svg": "037127e9e70bc6094448f83fdb61262bb5bb4b0656398f8c6cca79d5edb26e0a",
+    "plan-pb.png": "d1686ed366d66ae63689fe2db73278300beff32233f6d27bb62e66bfb29ac5fc",
+    "plan-pb.svg": "01e01a47dd93e3bac0c44f4cec1f62bcf71e0931ee6dca71f8792c195c5f093f",
+    "stair-sections.png": "77d6f73123f196061ea808d4c6ce4a00942d61cbd247193b36b37cf2860e167b",
+    "stair-sections.svg": "6bdc7e0b769f560a168032c908badf6e2198f220b1561c55c722535e20c7f531"
+  },
+  "release_id": "b6d68cd34843fbe489a13cfdbfb25e2b5332065f6635242d39fb148d70f9fcf7",
+  "schema_version": 1,
+  "source_input_hash": "c4e40097c60dcdf9fe7bd10b3c8cb0e6096db0549357b20f956d1ec910c2a565",
+  "source_model_hash": "7386d33026a4a1e22f5b68df1c4187a18a9d01831c5f1f53f2bf06d3010fb6d3",
+  "status": "review snapshot; not for construction; not an adopted drawing issue"
+}

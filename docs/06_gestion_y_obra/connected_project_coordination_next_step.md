@@ -1,7 +1,7 @@
 # Connected project coordination — phased implementation plan
 
 **Status:** software consumer migration verified within declared coverage; professional design gates remain open<br>
-**Version:** 0.11<br>
+**Version:** 0.12<br>
 **Date:** 2026-10-03<br>
 **Source:** owner's request to understand the repository and recommend meaningful progress
 toward clearer, connected, automatically generated project information; repository review,
@@ -19,7 +19,10 @@ construction scope or cost, drawing promotion or professional gate closure is ad
 
 **Continuation baseline:** documentation reconciliation committed at `e58aba5`, following
 the first implementation at `0e69ddf`; increment 02 continues the existing D-084 authority.<br>
-**Revision note:** v0.11 continues from `7352f8a` through the remaining software
+**Final review:** v0.12 reconciles the remaining prospective wording against the
+implemented closure at `6af3022` and includes this plan and the declared information-need
+research in build freshness dependencies. Design authority remains unchanged.<br>
+**Implementation revision:** v0.11 continues from `7352f8a` through the remaining software
 acceptance criteria: explicit view-cut intent, retained finding viewpoints, complete
 review anchor/label contracts, native geometry enrollment, a connected SC-01 section,
 purpose/milestone requirements, retained review-evidence invalidation and an end-to-end
@@ -818,8 +821,10 @@ fixtures test different dependencies and should not be replaced by screenshot eq
 
 ### 6.2 Additional delivery acceptance evidence
 
-These ten further fixtures turn the second research round into observable behaviour.
-They are proposed tests for implementation, not checks claimed to have passed today.
+These ten fixtures translate the second research round into observable behaviour.
+They define acceptance requirements; the closure record in the
+[migration guide](connected_coordination_migration_and_extension_guide.md) identifies
+the executed checks and their limits. This table alone is not execution evidence.
 
 | Research | Concrete acceptance evidence |
 | --- | --- |
@@ -862,22 +867,28 @@ professionally reviewed. Never combine those into a single completion percentage
 
 ## 7. Subsequent applications with practical decision value
 
+The following applications retain the original sequencing rationale. Their bounded
+software consumers are now implemented under the nineteen-subphase closure: SC-01
+envelope sections, P2 wall schedule/interfaces and maintenance information requirements.
+The remaining work is to supply and reconcile authoritative project inputs, then extend
+and rerun those consumers; it is not a second unimplemented software roadmap.
+
 ### 7.1 Shared stair core and section relationships
 
-The next application should connect the ground floor (PB), upper floor (P2), longitudinal
-section, doors, landings and four columns through the same
+The implemented application connects the ground floor (PB), upper floor (P2), source-envelope
+section, known door datums, landings and plan-level column reservations through the same
 [SC-01 geometry](../../dreamhouse/stair_core.json).
 
 The existing conflict register documents that **CF-011** places the rear opening at the
 **+1.90 m intermediate landing**, rather than at ground-floor grade. A connected section
-and plan comparison would make that relationship explicit and help evaluate alternatives.
-This is a recommendation for better evidence; it does not resolve discharge, headroom,
+and plan comparison now makes that relationship explicit and can help evaluate alternatives.
+This is coordination evidence; it does not resolve discharge, headroom,
 fire protection or structural design.
 
 ### 7.2 P2 wall assemblies, loads and quantities
 
-Extend the mechanism to the current P2 wall family, measured wall/opening quantities and
-their structural-load and cost dispositions. Retain **CF-009** and **CF-010** until the
+The current P2 wall family and measured wall/opening quantities now feed bounded
+structural-load and cost dispositions. Retain **CF-009** and **CF-010** until the
 required professional evidence resolves them. Installed masses, product performance and
 costs remain unknown where supporting inputs are absent.
 

@@ -1,14 +1,69 @@
 # Connected coordination — consumer migration and extension guide
 
-**Version:** 0.5<br>
+**Version:** 0.6<br>
 **Date:** 2026-10-03<br>
 **Status:** software consumer migration verified within declared coverage; schematic review authority only<br>
 **Source:** owner's instruction to complete software migrations; D-084; implementation
-baselines `f0448ef`, `d7c3e65` and `7352f8a`, with the 2026-10-03 continuation; the
+baselines `f0448ef`, `d7c3e65` and `7352f8a`, with the 2026-10-03 continuation and final
+owner-requested review of `6af3022`; the
 [phased plan](connected_project_coordination_next_step.md).<br>
 **Scope:** connected source consumers, review publication, recovery and maintenance of
 the software. No changed house design, adopted equipment, engineering approval or cost
 target is established.
+
+## Final repository review — continuation from 6af3022
+
+The final audit covered model resolution, retained evidence, migrations, candidate and
+release integrity, generated views, source-only reconstruction and publication assets.
+It found and corrected one freshness gap: the phase-gate plan and the delivery research
+cited by information requirements were not captured as build dependencies. Both documents
+now participate in the input fingerprint. A regression changes each document's observed
+hash and verifies that the candidate becomes stale while its physical model hash remains
+unchanged. Source/release checks therefore require regeneration after a declared basis
+changes, even if no door, window or quantity changes.
+
+Final local verification after the correction:
+
+| Check | Result |
+| --- | --- |
+| Complete repository regression suite | **535 tests passed** in 162.732 s; log: `.build/final-review-tests.log`. |
+| Static checks | Ruff passed for coordination, quantity mapping and the preview exporter; `git diff --check` passed. |
+| Source-only reconstruction | Complete build and freshness verification passed without `.git`, `.build` or reused generated caches; 36 SVGs and all 19 runtime gates. |
+| Candidate and release | Complete 208-artifact visual package; CLI candidate and selected-release freshness checks passed. |
+| Coverage and findings | 322 source-bound anchors, 166 evaluated dimensions and verified labels; 57 PASS / 186 OPEN / 0 FAIL. Physical model fingerprint unchanged. |
+| Publication and images | Same immutable release exported to the local showcase and three README SVG/PNG pairs. Stale and deliberately altered previews were rejected; original bytes restored and rechecked. |
+| Documentation and adopted drawings | 129 local Markdown links checked across README, plan and this guide; generated README check and provenance of all 27 adopted SVG/PNG pairs passed. |
+
+- Final candidate: `25acce0205999546149e5a01910e7eb165a6502fcc8273fa720d57eb96362060`.
+- Final review release: `b6d68cd34843fbe489a13cfdbfb25e2b5332065f6635242d39fb148d70f9fcf7`.
+- Build logs: `.build/final-review-build.log` and `.build/final-review-clean-build.log`.
+
+The plan's remaining prospective language was reconciled with implemented software
+coverage. Historical checkpoints below remain dated evidence, not the current package
+identity. Generated gates remain separate from executed tests and professional approval.
+
+### README review images
+
+The README now shows source-derived ground-floor, upper-floor and SC-01 review snapshots.
+Their SVG/PNG bytes and release identity are recorded in
+[the preview manifest](../../.github/assets/coordination/manifest.json). They are explicit
+captures of a verified review, not another model or a replacement for `planos/actual/`.
+
+After generating and verifying a visual review release, refresh them with:
+
+```bash
+python3 .github/scripts/sync_coordination_previews.py --write
+python3 .github/scripts/sync_coordination_previews.py --check
+python3 .github/scripts/build_showcase.py --write-readme
+```
+
+The exporter verifies freshness and immutable artifact hashes, captures both formats from
+one release, and checks that the selected release remains the same before writing.
+`--check` compares committed preview bytes and provenance with the current verified
+release. A source edit requires rebuilding first; a stale review cannot refresh images.
+The README's snapshot date must be updated when capturing a later review. The connected
+Pages reader continues to export the selected complete release through the existing
+showcase workflow. This review does not claim a remote CI run or deployment.
 
 ## Plan closure — continuation from 7352f8a
 

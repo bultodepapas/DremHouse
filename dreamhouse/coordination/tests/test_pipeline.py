@@ -11,6 +11,7 @@ from dreamhouse.coordination.model import (
     ROOT,
     CoordinationError,
     dependency_hashes,
+    file_hash,
     json_text,
     read_json,
     resolve_project,
@@ -296,6 +297,24 @@ class PipelineTests(unittest.TestCase):
             self.assertRaisesRegex(CoordinationError, "stale"),
         ):
             check_candidate(self.study, self.out)
+
+    def test_changed_declared_document_basis_invalidates_unchanged_geometry(self):
+        self.build()
+        for name in (
+            "docs/06_gestion_y_obra/connected_project_coordination_next_step.md",
+            "docs/08_investigacion/connected_coordination_delivery_research_2026_10.md",
+        ):
+            with self.subTest(source=name):
+                self.assertIn(name, self.base["build_dependencies"])
+
+                def changed_hash(path, source_name=name):
+                    return "f" * 64 if path == ROOT / source_name else file_hash(path)
+
+                with patch("dreamhouse.coordination.model.file_hash", side_effect=changed_hash):
+                    current = resolve_project(self.study)
+                    self.assertEqual(current["model_hash"], self.base["model_hash"])
+                    with self.assertRaisesRegex(CoordinationError, "stale"):
+                        check_candidate(self.study, self.out)
 
     def test_changed_inputs_during_build_do_not_replace_previous_review(self):
         self.build()

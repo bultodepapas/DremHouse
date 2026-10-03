@@ -102,6 +102,8 @@ def dependency_hashes(project_path: Path) -> dict[str, str]:
             "docs/00_gobernanza/fuentes_precedencia_y_conflictos.md",
             "docs/00_gobernanza/registro_decisiones.md",
             "docs/00_gobernanza/language_and_translation_policy.md",
+            "docs/06_gestion_y_obra/connected_project_coordination_next_step.md",
+            "docs/08_investigacion/connected_coordination_delivery_research_2026_10.md",
         )
     )
     catalog = read_json(ROOT / "planos/actual/catalog.json")

@@ -218,6 +218,36 @@ exterior walls conceal steel and services behind smooth, quiet interior finishes
 
 ## Connected coordination review
 
+**Verified software baseline · 2026-10-03:** 36 generated SVGs, 322 source-bound anchors,
+166 checked dimensions and visible labels; 57 PASS / 186 OPEN / 0 FAIL findings.
+The final repository regression suite passed **535 tests**; see the
+[review record](docs/06_gestion_y_obra/connected_coordination_migration_and_extension_guide.md#final-repository-review--continuation-from-6af3022).
+These counts describe declared coverage. Seven door records remain unlocated under
+CF-013; site, product and professional engineering decisions remain open.
+
+```mermaid
+flowchart LR
+    A[Repository JSON and source adapters] --> B[Validated model snapshot]
+    B --> C[Rules, quantities and evidence freshness]
+    B --> D[Generated SVG plans, sections and details]
+    C --> E[Complete review package with hashes]
+    D --> E
+    E --> F[Verified review release and connected viewer]
+```
+
+**Review snapshots — not for construction.** The images below were exported from the
+verified release on 2026-10-03. Click an image for its SVG; the
+[preview manifest](.github/assets/coordination/manifest.json) records release and file hashes.
+For the published connected reader, use the
+[coordination review](https://bultodepapas.github.io/DremHouse/coordination/index.html),
+which is refreshed by the repository's Pages workflow after publication.
+
+| Ground floor coordination | Upper floor coordination |
+| --- | --- |
+| [![Ground floor geometry and open findings](.github/assets/coordination/plan-pb.png)](.github/assets/coordination/plan-pb.svg) | [![Upper floor geometry and open findings](.github/assets/coordination/plan-p2.png)](.github/assets/coordination/plan-p2.svg) |
+
+[![SC-01 section with source datums and unresolved discharge](.github/assets/coordination/stair-sections.png)](.github/assets/coordination/stair-sections.svg)
+
 The current candidate includes a cross-level stair section, saved finding viewpoints,
 purpose-specific information requirements and a nineteen-subphase evidence record.
 Optional JSON view cuts affect representation without changing quantities; retained review
@@ -254,6 +284,21 @@ python3 -m dreamhouse.coordination --check --visuals
 
 It uses the checked-in fonts with system font discovery disabled and adds PNG previews,
 contact sheets and pixel-comparison evidence. Those artifacts do not approve a drawing.
+
+To regenerate the complete review and explicitly refresh these README snapshots:
+
+```bash
+python3 -m dreamhouse.coordination --visuals --require-no-fail --release
+python3 -m dreamhouse.coordination --check-release
+python3 .github/scripts/sync_coordination_previews.py --write
+python3 .github/scripts/sync_coordination_previews.py --check
+python3 .github/scripts/build_showcase.py --write-readme
+```
+
+The preview exporter requires a fresh, verified visual release and checks source hashes
+before copying. README snapshots are captured evidence; future source changes require
+rerunning these commands. They do not replace the adopted drawing catalog.
+
 Consumer-impact metadata describes affected outputs, while each build still rebuilds the
 complete candidate. Current programme, workstation, unadopted equipment-benchmark and ten
 structural plan-line checks are bounded; unsupported geometry and engineering remain
